@@ -49,6 +49,7 @@ lets the city read it.
 
 | Capability | System 3 Company has | Starter kit | Covered? | Action |
 |---|---|---|---|---|
+| Seating (rooms, floors, home rooms) | `src/lib/hq-floors.ts`, `src/lib/hq.ts` ROOMS, `src/app/hq/people.ts` HOME | the org contract's seating fields | **yes, through a bridge**: the adapter reads those TypeScript files as text; System 3 Company should move its seating into `tools/org` (its own work) |
 | The org as data | `tools/org/roles.mjs`, `people.mjs` (109 roles, names) | the org contract | **yes**: live via `hq/org-from-roles.mjs` | the adapter moves with System 3 Company |
 | Roles → onboarding docs and subagents | `tools/org/generate.mjs` → `company/roles/*.md`, `.claude/agents/*.md` | generator writes ORG.md, CONTEXT.md only | **no** | promote the pattern: the generator writes agent files from the org contract |
 | The role catalog | `tools/org/roles.mjs` (generic and domain roles mixed) | `onboard.mjs` reads it by path | **no** | split: the 11 generic roles (`STARTER_ROLES`) into Meta's catalog; domain roles stay |

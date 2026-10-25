@@ -12,3 +12,11 @@ test("System 3 Company's org through the org contract: every role reports to a r
   assert.ok(org.length > 100); assert.ok(org.every((r) => r.reportsTo === null || ids.has(r.reportsTo)));
   assert.equal(org.find((r) => r.id === "chief-of-staff").name, "Ada");
 });
+
+test("System 3 Company's seating through the org contract: rooms with names, kinds and floors, and the floors' names", async () => {
+  const org = await orgFromRoles(path.join(ROOT, "tools", "org", "roles.mjs")), seated = org.filter((r) => r.room);
+  assert.ok(seated.length > 90, `${seated.length} roles seated`);
+  assert.ok(new Set(seated.map((r) => r.floor)).size >= 6);
+  const hq = org.find((r) => r.id === "hq-engineer"); assert.equal(hq.room, "tools"); assert.equal(hq.floor, 1); assert.match(hq.floorName, /^Floor 1/);
+  assert.equal(org.find((r) => r.id === "cm-math").floor, 3);
+});

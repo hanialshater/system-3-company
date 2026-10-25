@@ -105,6 +105,11 @@ svg.chart { width:100%; height:150px; display:block; } .grid { stroke:var(--line
 .mcard { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin-bottom:6px; } .st { display:inline-grid; place-items:center; width:18px; height:18px; border-radius:50%; font-size:11px; color:#fff; }
 .st.good { background:var(--stgood); } .st.active { background:var(--s1); } .st.warn { background:var(--stwarn); color:#0b0b0b; } .st.next { background:var(--muted); } .st.crit { background:var(--crit); }
 @media (max-width:700px) { .brow { grid-template-columns:1fr; gap:4px; } .bval { text-align:left; } }
+.floors { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; } .fl { display:flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:var(--panel); cursor:pointer; font-size:13px; max-width:100%; }
+.fl b { font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:46ch; } .fl span { color:var(--muted); display:inline-flex; align-items:center; gap:4px; font-variant-numeric:tabular-nums; } .fl i.dot { width:7px; height:7px; display:inline-block; }
+.fl.on { background:var(--accent); border-color:var(--accent); color:#fff; } .fl.on b { font-weight:600; } .fl.on span { color:rgba(255,255,255,.85); } .fl:hover:not(.on) { border-color:var(--accent); }
+.stairBg { fill:var(--hqDesk); opacity:.45; } .step { fill:var(--hqDesk); } .liftFrame { fill:var(--hqDesk); } .liftDoor { fill:#c9d3e6; stroke:#9aa7bf; stroke-width:.6; } .liftPanel { fill:#1e2433; } .liftNum { font-size:6.5px; fill:#ffd166; font-weight:700; }
+@media (prefers-color-scheme: dark) { .liftDoor { fill:#3a4558; stroke:#56627a; } }
 main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 </style>
 </head>
@@ -286,22 +291,24 @@ function pack(rooms, y0, W = 1000, cols = 4, gap = 12, pad = 22) {
 }
 // the building: north wing, the hallway, south wing, then the lobby at the entrance between two gardens (idle members
 // sit in the garden). Positions are remembered between draws so people walk to where they now are.
-function layout(list) {
+function layout(list, ground = true) {
   const W = 1000, rooms = list.filter((r) => !["lobby", "lounge"].includes(r.kind)), lobby = list.find((r) => r.kind === "lobby"), garden = list.find((r) => r.kind === "lounge");
   // balance the wings by headcount, the busiest rooms first
   const north = [], south = []; let nN = 0, nS = 0;
   for (const r of rooms) { if (nN <= nS) { north.push(r); r.wing = "north"; nN += r.people.length + 1; } else { south.push(r); r.wing = "south"; nS += r.people.length + 1; } }
   const yN = 22, endN = north.length ? pack(north, yN) : yN, hallY = endN + 14, hallH = 48, yS = hallY + hallH + 14, endS = south.length ? pack(south, yS) : yS - 14;
   // the south wing hangs from the hallway: align each south room's top to the hallway
+  if (!ground) return { W, H: endS + 34, hallY, hallH, gardens: [], lobby: null, garden: null, rooms: [...north, ...south], ground };
   const baseY = endS + 22, lobbyW = 360, lobbyH = 150;
   if (lobby) Object.assign(lobby, { x: (W - lobbyW) / 2, y: baseY, w: lobbyW, h: lobbyH, perRow: 6, wing: "south" });
   const gw = (W - lobbyW) / 2 - 34, gardens = [{ x: 22, y: baseY, w: gw, h: lobbyH }, { x: W - 22 - gw, y: baseY, w: gw, h: lobbyH }];
   if (garden) { garden.slots = []; for (const g of gardens) for (let k = 0; k < 4; k++) garden.slots.push({ cx: g.x + 40 + k * ((g.w - 80) / 3), cy: g.y + 70 }); }
-  return { W, H: baseY + lobbyH + 40, hallY, hallH, gardens, lobby, garden, rooms: [...north, ...south] };
+  return { W, H: baseY + lobbyH + 40, hallY, hallH, gardens, lobby, garden, rooms: [...north, ...south], ground };
 }
-function floorPlan(list) {
-  const L = layout(list), { W, H } = L, sel = state.room, now = state.at ?? Date.now(), pos = (state.pos ??= {}), next = {};
-  const entrance = { cx: W / 2, cy: H - 12 };
+function floorPlan(list, { floor = null, floors = [] } = {}) {
+  const ground = floor == null || floor === floors[0], L = layout(list, ground), { W, H } = L, sel = state.room, now = state.at ?? Date.now(), pos = (state.pos ??= {}), next = {};
+  const entrance = { cx: W / 2, cy: H - 12 }, lift = { cx: W - 74, cy: L.hallY + L.hallH / 2 }, multi = floors.length > 1;
+  const tabSwitch = state.lastFloorDrawn !== floor; state.lastFloorDrawn = floor;
   const recentLand = new Set(state.events.filter((e) => e.type === "land" && e.after > e.before && now - Date.parse(e.t) < 5 * 60000).map((e) => e.by));
   // what each agent just did (the last 10 minutes of the run, live or replayed): a bubble over its head
   const said = {}; for (const e of state.events) { if (!e.by || now - Date.parse(e.t) > 10 * 60000 || Date.parse(e.t) > now) continue; const t = e.type === "note" ? `“${e.text}”` : e.type === "land" ? `landed ${e.after > e.before ? `+${((e.after - e.before) * 100).toFixed(2)}` : "(=)"}` : e.type === "land.refused" ? "refused by the referee" : e.type === "board.post" ? `${e.kind}: ${e.area}` : e.type === "claim" ? `on ${e.area}` : e.type === "meeting" ? `meeting: ${e.title}` : e.type === "kernel.enter" ? `${e.stage ?? "working"}` : null; if (t) said[e.by] = t; }
@@ -310,8 +317,12 @@ function floorPlan(list) {
   const speakAt = {}; for (const e of state.events) if (said[e.by] && last[e.by] && Date.parse(e.t) <= now) speakAt[last[e.by]] = e.by;
   for (const id of Object.keys(said)) if (speakAt[last[id]] !== id) delete said[id];
   const person = (p, cx, cy) => {
-    const prev = pos[p.id], moved = prev && (Math.abs(prev.cx - cx) > 1 || Math.abs(prev.cy - cy) > 1), arrive = !prev && state.drawn; next[p.id] = { cx, cy };
-    const from = moved ? prev : arrive ? entrance : null, dim = ["idle", "done"].includes(p.status), dot = { working: "#3ddc97", crashed: "#ff6b6b" }[p.status];
+    // walking: a member who changed floor (since the last draw of the whole building) steps out of the lift; a newcomer
+    // comes in at the entrance (or the lift, upstairs); within a floor, from where they were. Switching tabs moves nobody.
+    const key = `${floor}:${p.id}`, prev = pos[key], pf = state.prevFloorOf, changed = pf && pf[p.id] !== undefined && pf[p.id] !== state.floorOf?.[p.id], newcomer = pf && pf[p.id] === undefined && state.drawn;
+    // a walk only when they changed room; a re-pack of the plan (a room grew) just redraws
+    const moved = !tabSwitch && prev && state.prevRoomOf && state.prevRoomOf[p.id] !== state.roomOf?.[p.id] && (Math.abs(prev.cx - cx) > 1 || Math.abs(prev.cy - cy) > 1); next[key] = { cx, cy };
+    const from = changed && multi ? lift : newcomer ? (ground ? entrance : lift) : moved ? prev : null, dim = ["idle", "done"].includes(p.status), dot = { working: "#3ddc97", crashed: "#ff6b6b" }[p.status];
     const anim = from ? `<animateTransform attributeName="transform" type="translate" values="${from.cx - cx} ${from.cy - cy};${(from.cx - cx) * 0.5} ${L.hallY + L.hallH / 2 - cy};0 0" keyTimes="0;.5;1" dur="${state.playing ? 0.5 : 1.6}s" fill="freeze"/>` : "";
     return `<g class="person"><title>${esc(nameOf(p.id))} (${esc(p.id)}) · ${esc(p.status)}${p.model && p.model !== "owner" ? ` · ${esc(p.model)}` : ""}${p.lands ? ` · ${p.lands} lands` : ""}</title>${anim}${recentLand.has(p.id) ? `<g class="spark">${[0, 60, 120, 180, 240, 300].map((a) => `<path d="M${cx} ${cy}l${(Math.cos((a * Math.PI) / 180) * 26).toFixed(1)} ${(Math.sin((a * Math.PI) / 180) * 26).toFixed(1)}" class="ray"/>`).join("")}</g>` : ""}${face(cx, cy, 14, p.id, p.status === "owner" ? "#f2c94c" : teamColor(p.id), dim, p.status === "crashed" ? "#ff6b6b" : p.status === "owner" ? "#ffd54f" : "")}${dot ? `<circle cx="${cx + 10}" cy="${cy - 10}" r="3.8" fill="${dot}" stroke="var(--panel)" stroke-width="1.4"/>` : ""}${p.status === "working" && roomOf[p.id] === "desk" ? `<path d="M${cx - 12} ${cy - 2}a12 12 0 0 1 24 0" class="headset"/><rect x="${cx - 15}" y="${cy - 4}" width="5" height="8" rx="2" class="cup"/><rect x="${cx + 10}" y="${cy - 4}" width="5" height="8" rx="2" class="cup"/><path d="M${cx - 12} ${cy + 3}q2 8 9 8" class="mic"/>` : ""}<rect x="${cx - 26}" y="${cy + 16}" width="52" height="13" rx="6.5" class="pill"/><text x="${cx}" y="${cy + 25.5}" text-anchor="middle" class="pillT">${esc(nameOf(p.id).slice(0, 10))}</text>${said[p.id] ? `<g class="bubble"><rect x="${cx - 6}" y="${cy - 38}" width="${Math.min(150, 12 + said[p.id].slice(0, 26).length * 5.4)}" height="17" rx="8"/><path d="M${cx + 2} ${cy - 22}l-2 6 7 -6z"/><text x="${cx + 1}" y="${cy - 26.5}">${esc(said[p.id].length > 26 ? said[p.id].slice(0, 25) + "…" : said[p.id])}</text></g>` : ""}</g>`;
   };
@@ -324,10 +335,10 @@ function floorPlan(list) {
   const windows = [];
   for (let x = 60; x < W - 60; x += 90) windows.push(`<rect x="${x}" y="2" width="44" height="5" rx="2" class="window"/>`);
   for (let y = 60; y < H - 80; y += 90) windows.push(`<rect x="2" y="${y}" width="5" height="44" rx="2" class="window"/><rect x="${W - 7}" y="${y}" width="5" height="44" rx="2" class="window"/>`);
-  const hall = `<rect x="16" y="${L.hallY}" width="${W - 32}" height="${L.hallH}" rx="10" fill="url(#hall)" class="hall"/><rect x="40" y="${L.hallY + L.hallH / 2 - 7}" width="${W - 80}" height="14" rx="7" class="runner"/>${[0.2, 0.5, 0.8].map((f) => lamp(16 + (W - 32) * f, L.hallY + 10)).join("")}${plant(30, L.hallY + L.hallH / 2, 1.1)}${plant(W - 30, L.hallY + L.hallH / 2, 1.1)}<text x="${W / 2}" y="${L.hallY + L.hallH / 2 + 4}" text-anchor="middle" class="hallText">HALLWAY</text><g transform="translate(${W * 0.33} ${L.hallY + 6})"><rect width="30" height="14" rx="3" class="desk"/><rect x="4" y="2" width="9" height="10" rx="2" class="coffee"/><circle cx="21" cy="7" r="3" class="mug"/><text x="15" y="24" text-anchor="middle" class="tiny">coffee</text></g><g transform="translate(${W * 0.67} ${L.hallY + 6})"><rect x="0" y="0" width="12" height="18" rx="3" class="cooler"/><rect x="2" y="-6" width="8" height="7" rx="3" class="water"/><text x="6" y="28" text-anchor="middle" class="tiny">water</text></g><rect x="${W / 2 - 12}" y="${L.hallY + L.hallH}" width="24" height="${(L.lobby?.y ?? H) - L.hallY - L.hallH}" class="corridor"/>`;
+  const hall = `<rect x="16" y="${L.hallY}" width="${W - 32}" height="${L.hallH}" rx="10" fill="url(#hall)" class="hall"/><rect x="40" y="${L.hallY + L.hallH / 2 - 7}" width="${W - 80}" height="14" rx="7" class="runner"/>${[0.2, 0.5, 0.8].map((f) => lamp(16 + (W - 32) * f, L.hallY + 10)).join("")}${plant(30, L.hallY + L.hallH / 2, 1.1)}${plant(W - 30, L.hallY + L.hallH / 2, 1.1)}<text x="${W / 2}" y="${L.hallY + L.hallH / 2 + 4}" text-anchor="middle" class="hallText">${multi ? esc(`FLOOR ${floor ?? floors[0]}`) : "HALLWAY"}</text>${multi ? `<g class="stairs" transform="translate(52 ${L.hallY + 6})"><rect width="44" height="36" rx="4" class="stairBg"/>${[0, 1, 2, 3, 4].map((k) => `<rect x="${4 + k * 7}" y="${28 - k * 6}" width="${36 - k * 7}" height="5" rx="1" class="step"/>`).join("")}<text x="22" y="46" text-anchor="middle" class="tiny">stairs</text></g><g class="lift" transform="translate(${W - 100} ${L.hallY + 4})"><rect width="52" height="40" rx="5" class="liftFrame"/><rect x="5" y="9" width="20" height="28" rx="2" class="liftDoor"/><rect x="27" y="9" width="20" height="28" rx="2" class="liftDoor"/><rect x="16" y="1" width="20" height="7" rx="2" class="liftPanel"/><text x="26" y="7" text-anchor="middle" class="liftNum">${floor ?? floors[0]}</text><text x="26" y="50" text-anchor="middle" class="tiny">lift ▲▼</text></g>` : ""}<g transform="translate(${W * 0.33} ${L.hallY + 6})"><rect width="30" height="14" rx="3" class="desk"/><rect x="4" y="2" width="9" height="10" rx="2" class="coffee"/><circle cx="21" cy="7" r="3" class="mug"/><text x="15" y="24" text-anchor="middle" class="tiny">coffee</text></g><g transform="translate(${W * 0.67} ${L.hallY + 6})"><rect x="0" y="0" width="12" height="18" rx="3" class="cooler"/><rect x="2" y="-6" width="8" height="7" rx="3" class="water"/><text x="6" y="28" text-anchor="middle" class="tiny">water</text></g>${L.lobby ? `<rect x="${W / 2 - 12}" y="${L.hallY + L.hallH}" width="24" height="${L.lobby.y - L.hallY - L.hallH}" class="corridor"/>` : ""}`;
   const door = `<rect x="${W / 2 - 50}" y="${H - 14}" width="100" height="14" class="entranceGap"/><rect x="${W / 2 - 46}" y="${H - 12}" width="44" height="6" rx="2" class="glass"><animate attributeName="x" values="${W / 2 - 46};${W / 2 - 46};${W / 2 - 46}" dur="3s"/></rect><rect x="${W / 2 + 2}" y="${H - 12}" width="44" height="6" rx="2" class="glass"/><rect x="${W / 2 - 36}" y="${H - 32}" width="72" height="14" rx="4" class="mat"/><text x="${W / 2}" y="${H - 22}" text-anchor="middle" class="matText">WELCOME</text>`;
-  const svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="floor plan"><defs><pattern id="tile" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" class="tileBg"/><path d="M20 0H0V20" class="tileLine"/></pattern><pattern id="hall" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" class="hallBg"/><path d="M0 0L24 24M24 0L0 24" class="hallLine"/></pattern><pattern id="wood" width="60" height="10" patternUnits="userSpaceOnUse"><rect width="60" height="10" class="woodBg"/><path d="M0 9.5H60M22 0V10" class="woodLine"/></pattern><pattern id="carpet" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" class="carpetBg"/><circle cx="4" cy="4" r=".8" class="carpetDot"/></pattern><pattern id="lobbyC" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" class="lobbyBg"/><circle cx="4" cy="4" r=".8" class="carpetDot"/></pattern><pattern id="grass" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" class="grassBg"/><path d="M3 10l1-4M9 5l1-3M11 12l1-3" class="grassBlade"/></pattern><filter id="lift" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-opacity=".18"/></filter></defs><rect x="4" y="4" width="${W - 8}" height="${H - 8}" rx="20" fill="url(#tile)" class="building"/>${windows.join("")}${hall}${gardenSvg}${L.rooms.map(roomSvg).join("")}${L.lobby ? roomSvg(L.lobby) : ""}${door}${people.join("")}</svg>`;
-  state.pos = next; state.drawn = true;
+  const svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="floor plan"><defs><pattern id="tile" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" class="tileBg"/><path d="M20 0H0V20" class="tileLine"/></pattern><pattern id="hall" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" class="hallBg"/><path d="M0 0L24 24M24 0L0 24" class="hallLine"/></pattern><pattern id="wood" width="60" height="10" patternUnits="userSpaceOnUse"><rect width="60" height="10" class="woodBg"/><path d="M0 9.5H60M22 0V10" class="woodLine"/></pattern><pattern id="carpet" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" class="carpetBg"/><circle cx="4" cy="4" r=".8" class="carpetDot"/></pattern><pattern id="lobbyC" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" class="lobbyBg"/><circle cx="4" cy="4" r=".8" class="carpetDot"/></pattern><pattern id="grass" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" class="grassBg"/><path d="M3 10l1-4M9 5l1-3M11 12l1-3" class="grassBlade"/></pattern><filter id="lift" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-opacity=".18"/></filter></defs><rect x="4" y="4" width="${W - 8}" height="${H - 8}" rx="20" fill="url(#tile)" class="building"/>${windows.join("")}${hall}${gardenSvg}${L.rooms.map(roomSvg).join("")}${L.lobby ? roomSvg(L.lobby) : ""}${L.ground ? door : ""}${people.join("")}</svg>`;
+  state.pos = { ...pos, ...next }; state.drawn = true;
   return `<div class="plan">${svg}</div>`;
 }
 function roomsModel() {
@@ -338,9 +349,15 @@ function roomsModel() {
     if (e.room) where[e.by] = e.room; else if (e.type === "claim" || e.type === "board.post") where[e.by] = e.area; else if (e.type === "claim.drop" && where[e.by] === e.area) delete where[e.by];
   }
   const owner = state.city.find((c) => c.id === state.company)?.owner ?? "owner", rooms = {};
-  const room = (id, kind) => (rooms[id] ??= { id, name: id, kind, people: [], activity: 0, floor: null });
+  // the org contract's seating (optional): each role's room (with its name, kind and floor) and the floors' names
+  const info = {}, floorNames = {}; for (const o of state.org ?? []) { if (o.room) info[o.room] ??= { name: o.roomName ?? o.room, kind: o.roomKind, floor: o.floor ?? null }; if (o.floor != null && o.floorName) floorNames[o.floor] = o.floorName; }
+  const KIND = { office: "desk", floor: "desk", meeting: "meeting", lobby: "desk" };
+  const room = (id, kind) => (rooms[id] ??= { id, name: info[id]?.name ?? id, kind: KIND[info[id]?.kind] ?? kind, people: [], activity: 0, floor: info[id]?.floor ?? null });
   room("Lobby", "lobby").people.push({ id: owner, status: "owner", model: "owner" });
   for (const m of ms) { if (m.id === owner) continue; const r = m.status === "idle" ? room("Lounge", "lounge") : m.status === "crashed" ? room("Offline", "offline") : m.status === "done" ? room("Gone home", "offline") : room(where[m.id] ?? home[m.id]?.room ?? "The floor", meetRooms.has(where[m.id]) || /meeting|review|crit|retro|planning|standup|wbr/i.test(where[m.id] ?? "") ? "meeting" : "desk"); r.people.push(m); }
+  // everyone else in the org sits in their home room (no recent activity: at their desk)
+  const placed = new Set([owner, ...ms.map((m) => m.id)]);
+  for (const o of state.org ?? []) if (o.room && !placed.has(o.id)) room(o.room, "desk").people.push({ id: o.id, status: "home", model: "" });
   const now = state.at ?? Date.now(), hourAgo = now - 3600000;
   for (const e of ev) { const t = Date.parse(e.t); if (t < hourAgo || t > now || !e.by) continue; const rid = e.room ?? (e.type === "meeting" ? e.room ?? "Meeting room" : where[e.by]); if (rid && rooms[rid]) rooms[rid].activity++; }
   for (const [id, o] of Object.entries(home)) if (o.room && rooms[o.room]) rooms[o.room].floor = o.floor ?? rooms[o.room].floor;
@@ -349,6 +366,7 @@ function roomsModel() {
   const directs = (id) => (state.org ?? []).filter((o) => o.reportsTo === id).length;
   for (const r of list) if (r.kind === "desk" && r.people.length === 1 && directs(r.people[0].id) > 0) r.kind = "office";
   for (const r of list) r.span = r.kind === "lobby" ? 2 : r.people.length > 6 ? 3 : r.people.length > 2 ? 2 : 1;
+  list.floorNames = floorNames;
   return list;
 }
 // ---- the dashboard: the company's mission, budget and milestones (its dashboard tool) and its spend (the event log)
@@ -388,15 +406,20 @@ function strip() {
   return `<svg class="strip" viewBox="0 0 ${W} 30" preserveAspectRatio="none">${ticks}${at != null ? `<rect x="${at}" y="0" width="2" height="30" fill="var(--warn)"/>` : ""}</svg>`;
 }
 function viewRooms() {
-  const all = roomsModel(), floors = [...new Set(all.map((r) => r.floor).filter((f) => f != null))].sort((a, b) => a - b);
-  if (floors.length > 1 && !floors.includes(state.floor)) state.floor = floors[0];
-  const list = floors.length > 1 ? all.filter((r) => r.floor === state.floor || (r.floor == null && state.floor === floors[0])) : all, sel = list.find((r) => r.id === state.room);
-  const tabs = floors.length > 1 ? `<div class="row" style="margin-bottom:10px">${floors.map((f) => `<a class="chip" style="cursor:pointer;${f === state.floor ? "background:var(--accent);color:#fff" : ""}" onclick="state.floor=${f};render()">Floor ${f} · ${all.filter((r) => r.floor === f || (r.floor == null && f === floors[0])).reduce((a, r) => a + r.people.length, 0)}</a>`).join("")}</div>` : "";
+  const all = roomsModel(), floors = [...new Set(all.map((r) => r.floor).filter((f) => f != null))].sort((a, b) => a - b), ground = floors[0];
+  const onFloor = (r, f) => r.floor === f || (r.floor == null && f === ground);
+  if (floors.length > 1 && !floors.includes(state.floor)) state.floor = ground;
+  // who is on which floor, across the whole building: a change between draws is someone taking the lift
+  state.prevFloorOf = state.floorOf; state.floorOf = {}; state.prevRoomOf = state.roomOf; state.roomOf = {};
+  for (const r of all) for (const p of r.people) { state.floorOf[p.id] = r.floor ?? ground; state.roomOf[p.id] = r.id; }
+  const list = floors.length > 1 ? all.filter((r) => onFloor(r, state.floor)) : all, sel = list.find((r) => r.id === state.room);
+  const fname = (f) => all.floorNames?.[f] ?? `Floor ${f}`;
+  const tabs = floors.length > 1 ? `<div class="floors">${floors.map((f) => { const n = all.filter((r) => onFloor(r, f)).reduce((a, r) => a + r.people.length, 0), working = all.filter((r) => onFloor(r, f)).reduce((a, r) => a + r.people.filter((p) => p.status === "working").length, 0); return `<a class="fl ${f === state.floor ? "on" : ""}" onclick="state.floor=${f};state.room=null;render()" title="${esc(fname(f))}"><b>${esc(fname(f).replace(/^(Floor \d+)\s*·\s*/, "$1 · "))}</b><span>${n}${working ? ` · <i class="dot s-running"></i>${working}` : ""}</span></a>`; }).join("")}</div>` : "";
   if (list.length <= 1 && !list[0]?.people.length) return `<h1>Rooms</h1>${replayBar()}<div class="empty">Nobody here yet.</div>`;
   // the room's activity: what happened in it (its meetings, events naming it) and what the people in it did and said
   const inRoom = (e) => e.room === sel.id || e.area === sel.id || (e.type === "meeting" && (e.room ?? "Meeting room") === sel.id) || sel.people.some((p) => p.id === e.by);
   const feed = sel ? state.events.filter((e) => e.by && ["land", "land.refused", "note", "board.post", "claim", "meeting", "kernel.enter", "kernel.send"].includes(e.type) && inRoom(e)).slice(-30).reverse() : [];
-  return `<h1>Rooms</h1><div class="sub1">who is working where, live or at any moment of the run · click a room</div>${replayBar()}${strip()}${tabs}${floorPlan(list)}${sel ? `<div class="card" style="margin-top:12px"><h3>${esc(sel.name)} <span class="k">${sel.kind} · ${sel.people.length} here${sel.activity ? ` · ${sel.activity} events in the last hour` : ""}</span></h3><div style="margin:6px 0 10px">${sel.people.map((p) => avatar(p.id, p.status, p.model)).join("")}</div>${feed.length ? `<div class="feed">${feed.map(feedItem).join("")}</div>` : `<div class="k">No activity here yet.</div>`}</div>` : ""}`;
+  return `<h1>Rooms</h1><div class="sub1">who is working where, live or at any moment of the run · click a room</div>${replayBar()}${strip()}${tabs}${floorPlan(list, { floor: floors.length > 1 ? state.floor : null, floors })}${sel ? `<div class="card" style="margin-top:12px"><h3>${esc(sel.name)} <span class="k">${sel.kind} · ${sel.people.length} here${sel.activity ? ` · ${sel.activity} events in the last hour` : ""}</span></h3><div style="margin:6px 0 10px">${sel.people.map((p) => avatar(p.id, p.status, p.model)).join("")}</div>${feed.length ? `<div class="feed">${feed.map(feedItem).join("")}</div>` : `<div class="k">No activity here yet.</div>`}</div>` : ""}`;
 }
 function feedItem(e) {
   const what = e.type === "note" ? `<span class="k">to ${e.broadcast ? "everyone" : esc(nameOf(e.to))}</span><div>${esc(e.text)}</div>` : e.type === "land" ? `landed <b>${esc(e.msg || "a change")}</b> <span class="${e.after > e.before ? "up" : "flat"}">${pct(e.before)} → ${pct(e.after)}</span>` : e.type === "land.refused" ? `<span class="down">refused</span> ${esc(e.why)}` : e.type === "board.post" ? `<span class="chip">${esc(e.kind)}</span> <b>${esc(e.area)}</b><div>${esc(e.text)}</div><div class="k">evidence: ${esc(e.evidence)}</div>` : e.type === "claim" ? `claimed <b>${esc(e.area)}</b>: ${esc(e.text)}` : e.type === "meeting" ? `held <b>${esc(e.title)}</b> with ${esc((e.attendees ?? []).filter((a) => a !== e.by).map(nameOf).join(", "))}${(e.decisions ?? []).length ? `<ul>${e.decisions.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}` : e.type === "kernel.enter" ? `entered for <b>${esc(e.stage ?? "")}</b> ${esc(e.order ?? "")}` : `${esc(e.type)}`;

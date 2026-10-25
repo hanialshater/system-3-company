@@ -68,7 +68,9 @@ generator. A company's knowledge base is private unless its owner publishes entr
   read-only command with `[{ id, name?, title, reportsTo, team?, level?, room?, floor?, model? }]` (the root has
   `reportsTo: null`): the kernel `meta.mjs org roles`, the crew `crew.mjs org`, System 3 Company
   `adapters/s3c/org-from-roles.mjs tools/org/roles.mjs` (its roles and people modules, live). The HQ runs the command named
-  by the company's `orgCmd` and never reads a tool's files. Fields are only added, never renamed.
+  by the company's `orgCmd` and never reads a tool's files. Fields are only added, never renamed. Optional seating
+  fields (2026-10-25): `room`, `roomName`, `roomKind` (office, floor, meeting, lobby), `floor`, `floorName`; the
+  HQ draws named floors, rooms and who sits where from them.
 - **Writes go through the tools, never the HQ.** The HQ is read-only: an org change is `org propose` (applied only
   with the founder's approval), a land is `crew land`, minutes are `crew minutes`; the HQ shows each from the event
   log (Org changes, Landings, Meetings).
