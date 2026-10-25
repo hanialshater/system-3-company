@@ -4,7 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { typesOf, typeFor, itemOf, pipelineOf, loadPipeline, counts, gateOptions, readCraft } from "./lifecycle.mjs";
+import { typesOf, typeFor, itemOf, pipelineOf, loadPipeline, counts, gateOptions, readCraft, transitionsOf, historyOf } from "./lifecycle.mjs";
 import { readReview } from "../lib/readiness.mjs";
 
 const HERE = path.dirname(new URL(import.meta.url).pathname), ROOT = path.resolve(HERE, "..", "..");
@@ -116,6 +116,31 @@ test("pipelineOf: the first 3 of a type by first commit get the first-3 checks; 
   assert.equal(gateOptions(ROOT).versionSince, "2026-10-17", "READINESS_SINCE as tools/company.mjs states it");
 });
 
+test("transitions: the forward path in state order, the pairwise skip for lane M, and the back edges", () => {
+  const e = (t) => transitionsOf(t).map((x) => `${x.from}>${x.to}:${x.kind}`);
+  const s = e(S), m = e(M);
+  for (const x of ["brief>build:forward", "build>checks:forward", "checks>launch:forward", "launch>published:forward", "published>live:forward", "checks>revise:back", "revise>checks:back", "checks>build:back"]) assert.ok(s.includes(x), x);
+  assert.ok(m.includes("published>pairwise:forward") && m.includes("pairwise>live:forward") && m.includes("published>live:skip"), m.join(" "));
+  assert.ok(!m.includes("published>live:forward"));
+  for (const t of TYPES) for (const x of transitionsOf(t)) { assert.ok(t.states.some((st) => st.id === x.from) && t.states.some((st) => st.id === x.to)); assert.ok(x.label); }
+  // a lane's own transitions are added from its lifecycle data
+  const extra = transitionsOf({ ...S, extraTransitions: [{ from: "published", to: "build", kind: "back", label: "withdrawn" }] });
+  assert.ok(extra.some((x) => x.from === "published" && x.to === "build" && x.kind === "back"));
+});
+
+test("groups and history: category and strand on every item; the path from the records' dates, ending at the current state", () => {
+  const records = [learner("toy", "2026-10-14", 1, "launch"), qa("toy", "2026-10-14", 1)];
+  const it = itemOf({ meta: meta({ status: "published", curriculum: { strand: "algebra" } }), records, git: git("2026-10-12", "2026-10-12", "2026-10-15"), deploy: { id: "r9", date: "2026-10-17" }, built: true }, S, env());
+  assert.deepEqual([it.group, it.subgroup], ["math", "algebra"]);
+  assert.deepEqual(it.history, [{ state: "build", since: "2026-10-12" }, { state: "checks", since: "2026-10-14" }, { state: "published", since: "2026-10-15" }, { state: "live", since: "2026-10-17" }]);
+  // a version made after the publish: its build comes before the deploy that carries it
+  const v2 = itemOf({ meta: meta({ status: "published", version: 2 }), records, git: git("2026-10-12", "2026-10-20", "2026-10-15"), deploy: { id: "r16", date: "2026-10-20" }, built: true }, S, env());
+  assert.deepEqual(v2.history.map((h) => h.state), ["build", "checks", "published", "build", "live"]);
+  const b = itemOf({ meta: meta(), records: [], git: git("2026-10-20", "2026-10-20"), built: true, subgroup: "geometry" }, S, env());
+  assert.deepEqual([b.subgroup, b.history], ["geometry", [{ state: "build", since: "2026-10-20" }]]);
+  assert.deepEqual(historyOf({ meta: meta(), records: [], git: {} }, S, { state: "build", since: null }), [{ state: "build", since: null }]);
+});
+
 // ------------------------------------------------------------ today's real lessons
 const P = loadPipeline(ROOT);
 const item = (id) => P.items.find((i) => i.id === id);
@@ -162,4 +187,16 @@ test("real: published lane S lessons are published or live, and some are live", 
   assert.deepEqual(off.map((i) => i.id), []);
   assert.ok(pub.filter((i) => ["published", "live"].includes(i.state)).length > pub.length * 0.9);
   assert.ok(pub.some((i) => i.state === "live" && i.deployedIn));
+});
+
+test("real: every item has its category as group, a history ending at its state, and the types their transitions", () => {
+  assert.equal(P.groupBy, "category");
+  assert.ok(P.groups.length >= 10 && P.groups.every((g) => g.id && g.title && Array.isArray(g.subgroups)));
+  for (const i of P.items) {
+    assert.equal(i.group, i.id.split("/")[0], i.id);
+    assert.equal(i.history.at(-1).state, i.state, i.id);
+    for (let k = 1; k < i.history.length; k++) assert.ok(!i.history[k].since || !i.history[k - 1].since || i.history[k].since >= i.history[k - 1].since, `${i.id}: history out of order`);
+  }
+  assert.ok(P.items.filter((i) => i.subgroup).length > P.items.length / 2, "most lessons have a strand");
+  for (const t of P.types) assert.ok(t.transitions.some((x) => x.kind === "back"), t.id);
 });

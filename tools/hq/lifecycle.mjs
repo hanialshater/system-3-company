@@ -16,6 +16,11 @@
 //   - status and version from meta.json, publish and version dates from git, deploys from company/ops/releases.json,
 //     open board items naming the slug (company/ops/board.json).
 //
+// Each type also carries its transitions (transitionsOf: the forward path in state order, the skips of an optional
+// state, and the back edges these rules can produce), and each item its group (the category, meta.domain: the unit of
+// scale), its subgroup (the strand: meta.curriculum.strand, else the concept's subarea in content/curriculum, a
+// logical grouping) and its history (historyOf: dates the records already hold, no extra git calls).
+//
 // itemOf() and pipelineOf() are pure (no disk, no git): tests feed them fixtures. loadPipeline(root) does the I/O.
 // Read-only.   node tools/hq/lifecycle.mjs [<root>] [--summary] [--slug=<slug>]
 import fs from "node:fs";
@@ -44,8 +49,71 @@ export function typesOf(registry) {
       id: l.type?.id ?? p.contentType ?? p.id, title: l.type?.title ?? p.title, lane: p.id, manager: p.manager ?? null, editedBy: l.editedBy ?? null,
       formats: Array.isArray(l.formats) ? l.formats : null, firstN: l.firstN ?? 0,
       states: l.states.map((s) => ({ id: s.id, title: s.title ?? s.id, owner: s.owner ?? null, kind: s.kind ?? null, what: s.what ?? null, ...(s.checks ? { checks: s.checks } : {}), ...(s.applies ? { applies: s.applies } : {}) })),
+      ...(Array.isArray(l.transitions) ? { extraTransitions: l.transitions } : {}),
     };
   });
+}
+
+// The edges these rules can move an item along, by state id: [from, to, kind, label]. Only the edges whose two states a
+// type keeps are emitted. "forward" is the path in state order, "skip" passes an optional state, "back" is rework.
+const EDGES = [
+  ["brief", "build", "forward", "a builder takes the brief"],
+  ["build", "checks", "forward", "hand-off: a check record for this version, or status review"],
+  ["checks", "launch", "forward", "every gate passes for the current version"],
+  ["launch", "published", "forward", "release-manager publishes from the batch launch record"],
+  ["published", "pairwise", "forward", "one of the first N items: pairwise after publish"],
+  ["pairwise", "live", "forward", "pairwise record, and a production deploy the founder approved"],
+  ["published", "live", "forward", "a production deploy the founder approved (company/ops/releases.json)"],
+  ["checks", "revise", "back", "a check said revise or fail, or a claim is disputed"],
+  ["revise", "checks", "back", "one fix: re-run only the failed check"],
+  ["checks", "build", "back", "a failed gate needs a new version: back to the maker, checks restart at hand-off"],
+  ["revise", "build", "back", "the fix is a new version: hand it off again"],
+  ["live", "checks", "back", "a newer version with check records of its own (the live version stays up)"],
+];
+/** A type's transitions [{ from, to, kind, label }]: forward in state order, skips, back edges; plus the lane's own `transitions`. */
+export function transitionsOf(type) {
+  const ids = type.states.map((s) => s.id), has = (id) => ids.includes(id), at = (id) => ids.indexOf(id);
+  const optional = new Set(type.states.filter((s) => s.applies).map((s) => s.id));
+  const out = [];
+  for (const [from, to, kind, label] of EDGES) {
+    if (!has(from) || !has(to)) continue;
+    // a forward edge that jumps a state the type keeps is a skip, and only if every state it jumps is optional
+    const between = ids.slice(at(from) + 1, at(to)).filter((x) => x !== "revise");
+    if (kind === "forward" && between.length) { if (between.every((x) => optional.has(x))) out.push({ from, to, kind: "skip", label: `${label} (not one of the first N: no ${between.join(", ")})` }); continue; }
+    out.push({ from, to, kind, label });
+  }
+  for (const t of type.extraTransitions ?? []) if (has(t.from) && has(t.to) && !out.some((x) => x.from === t.from && x.to === t.to)) out.push({ from: t.from, to: t.to, kind: ["forward", "back", "skip"].includes(t.kind) ? t.kind : "forward", label: t.label ?? "" });
+  return out;
+}
+
+/**
+ * Pure. An item's path so far, [{ state, since }], oldest first, from dates the records already hold: the first commit of
+ * its meta.json, the commit that set its current version, its dated review records, its launch record, the commit that
+ * published it and the first production deploy containing it. It ends at the item's current state. A step with no
+ * dated record is left out, so a path can skip states it went through.
+ */
+export function historyOf(lesson, type, cur) {
+  const ids = type.states.map((s) => s.id), has = (id) => ids.includes(id), g = lesson.git ?? {}, slug = lesson.meta.slug;
+  const dated = (lesson.records ?? []).filter((r) => r.f.startsWith(`company/reviews/${slug}/`) && dateOf(r.f)).map((r) => dateOf(r.f)).sort();
+  const steps = [];
+  const add = (state, since) => { if (since && has(state)) steps.push({ state, since }); };
+  add(lesson.built || !has("brief") ? "build" : "brief", g.firstAt?.date);
+  const pub = g.publishedAt?.date ?? null, ver = g.versionAt?.date ?? null;
+  const firstCheck = dated.find((d) => !pub || d <= pub) ?? null;
+  add("checks", firstCheck);
+  const launchAt = lesson.launchRecord ? dateOf(lesson.launchRecord) : null;
+  if (launchAt && (!pub || launchAt <= pub)) add("launch", launchAt);
+  add("published", pub);
+  // a version made after the publish: its build and checks come before the deploy (lesson.deploy is that version's)
+  if (ver && pub && ver > pub) { add("build", ver); add("checks", dated.find((d) => d >= ver)); if (launchAt > pub && cur.state === "launch") add("launch", launchAt); }
+  if (lesson.deploy && cur.state !== "pairwise") add("live", lesson.deploy.date);
+  // oldest first; on one day, in the order the steps were added above (the order an item moves in; sort is stable)
+  steps.sort((a, b) => a.since.localeCompare(b.since));
+  const out = [];
+  for (const s of steps) { if (cur.since && s.since > cur.since) continue; if (out.at(-1)?.state !== s.state) out.push(s); }
+  if (out.at(-1)?.state === cur.state) out.pop();
+  out.push({ state: cur.state, since: cur.since ?? null });
+  return out;
 }
 
 /** Which type a lesson belongs to: a type listing its format (or the brief's lane letter), else the type with no format list. */
@@ -193,7 +261,9 @@ export function itemOf(lesson, type, env = {}) {
     if (!has(st)) { const later = STATE_IDS.slice(STATE_IDS.indexOf(st)).find(has) ?? type.states.at(-1).id; notes.push(`state ${st} is not in ${type.id}'s lifecycle; shown as ${later}`); st = later; }
     return {
       id: `${meta.domain}/${meta.slug}`, title: meta.title ?? meta.slug, type: type.id, state: st, since: since ?? null, version: v, waitingOn,
-      category: meta.domain ?? null, status: meta.status ?? null, tier: env.tier ?? null,
+      category: meta.domain ?? null, group: meta.domain ?? null, subgroup: lesson.subgroup ?? meta.curriculum?.strand ?? null,
+      history: historyOf(lesson, type, { state: st, since: since ?? null }),
+      status: meta.status ?? null, tier: env.tier ?? null,
       openBoard: board.map((i) => i.id), ...(extra.gaps?.length ? { gaps: extra.gaps } : {}), ...(notes.length ? { notes } : {}),
       ...(lesson.deploy ? { deployedIn: lesson.deploy.id } : {}),
     };
@@ -210,9 +280,12 @@ export function pipelineOf(types, lessons, env = {}) {
   const items = typed.map(({ l, t }) => itemOf(l, t, { ...env, firstN, tier: tierOf(l.meta, publishedBy[t.id] ?? 0) }));
   return {
     staleDays: env.staleDays ?? 7,
-    types: types.map((t) => ({ id: t.id, title: t.title, lane: t.lane, editedBy: t.editedBy, states: t.states.map(({ id, title, owner, kind, what }) => ({ id, title, owner, kind, what })) })),
+    types: types.map((t) => ({ id: t.id, title: t.title, lane: t.lane, editedBy: t.editedBy, states: t.states.map(({ id, title, owner, kind, what }) => ({ id, title, owner, kind, what })), transitions: transitionsOf(t) })),
+    groupBy: "category", subgroupBy: "strand",
+    ...(env.groups ? { groups: env.groups } : {}),
     items,
     source: "tools/hq/lifecycle.mjs from company/ops/projects.json (lanes' lifecycle), src/demos/*/*/meta.json, company/reviews/, company/ops/board.json, company/ops/releases.json, git",
+    historySource: "the first commit of each meta.json, the commits that set its version and its published status, its dated records in company/reviews/<slug>/, its launch record and the first production deploy containing it (company/ops/releases.json); a step with no dated record is left out",
   };
 }
 
@@ -282,6 +355,13 @@ export function loadPipeline(root, { slugs = null } = {}) {
     if (CLOSED.has(i.state)) continue;
     for (const w of new Set(`${i.title ?? ""} ${(i.links ?? []).join(" ")}`.toLowerCase().match(/[a-z0-9]+(?:-[a-z0-9]+)+/g) ?? [])) { if (!words.has(w)) words.set(w, []); words.get(w).push(i); }
   }
+  // groups: the categories (content/domains.json) and their strands; a lesson's strand is meta.curriculum.strand, else its
+  // concept's subarea in content/curriculum/<domain>.json
+  const subareaOf = {};
+  for (const f of fs.existsSync(path.join(root, "content/curriculum")) ? fs.readdirSync(path.join(root, "content/curriculum")).filter((x) => x.endsWith(".json")) : []) {
+    const c = json(`content/curriculum/${f}`, {}); for (const x of c.concepts ?? []) if (x.subarea) subareaOf[`${c.domain}:${x.id}`] = x.subarea;
+  }
+  const groups = (json("content/domains.json", {}).domains ?? []).map((d) => ({ id: d.id, title: d.name ?? d.id, subgroups: (d.subareas ?? []).map((s) => ({ id: s.id, title: s.name ?? s.id })) }));
   const launches = fs.existsSync(path.join(root, "company/rituals/records")) ? fs.readdirSync(path.join(root, "company/rituals/records")).filter((f) => /launch/.test(f)).map((f) => ({ f: `company/rituals/records/${f}`, t: read(`company/rituals/records/${f}`) ?? "" })) : [];
 
   const lessons = [];
@@ -301,13 +381,13 @@ export function loadPipeline(root, { slugs = null } = {}) {
       const spec = specText ? { owner: /^owner:[ \t]*([^\n·]+)/m.exec(specText)?.[1]?.trim() ?? null } : null;
       const demo = read(`src/demos/${dom.name}/${s.name}/Demo.tsx`);
       lessons.push({
-        meta, records, board: words.get(meta.slug) ?? [], git: { versionAt, publishedAt, firstAt }, deploy: live, hold: holds[meta.slug] ?? null, spec,
+        meta, records, subgroup: meta.curriculum?.strand ?? subareaOf[meta.curriculum?.primary] ?? null, board: words.get(meta.slug) ?? [], git: { versionAt, publishedAt, firstAt }, deploy: live, hold: holds[meta.slug] ?? null, spec,
         built: demo != null && demo !== read("tools/templates/Demo.tsx.tpl"),
         launchRecord: launches.find((l) => new RegExp(`(?<![a-z0-9-])${meta.slug}(?![a-z0-9-])`).test(l.t))?.f ?? null,
       });
     }
   }
-  const p = pipelineOf(types, lessons, { readiness: readinessOpts });
+  const p = pipelineOf(types, lessons, { readiness: readinessOpts, groups });
   if (slugs) p.items = p.items.filter((i) => slugs.includes(i.id.split("/").pop()));
   return p;
 }
