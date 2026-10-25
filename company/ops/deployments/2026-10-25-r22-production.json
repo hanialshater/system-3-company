@@ -1,0 +1,37 @@
+{
+  "release": "r22",
+  "status": "READY",
+  "target": "production",
+  "commit": "4d3301270262f03e623dccd2fd0a4d1679d5aa33",
+  "sourceCommit": "40b8bfbc1f902bb51bb56ba470efe38d27ef6a98",
+  "deploymentId": "dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU",
+  "deploymentUrl": "https://system-3-company-b65r09nog-hanis-projects-2e2b67f6.vercel.app",
+  "productionUrl": "https://system-3-company.vercel.app",
+  "lessonUrl": "https://system-3-company.vercel.app/d/flatten-the-cube-to-a-dot",
+  "previousProduction": {"release": "r21", "commit": "57230dad9052f21eea9fbe0322047780bdf027e7", "deploymentId": "dpl_AKCZ1SGmu4HRE4aGtPJtsLzUH5hh"},
+  "checkedAt": "2026-10-25T21:35:00Z",
+  "projectId": "prj_US7nNpj24KIFV5aIe27i2lqvD1Zq",
+  "accountId": "team_Ss0FbvX3HyCJMqitsy31SLPj",
+  "approval": "founder, 2026-10-25, the separately listed option \"Cube lesson: skip pairwise\": \"Publish flatten-the-cube-to-a-dot and deploy System 3 Lessons once its own checks pass, without the comparison against a single-card version. That comparison runs after publishing.\" company/decisions/2026-10-25-founder-cube-pairwise-after-publish.md; system3-meta docs/decisions/2026-10-25-founder-approvals.md item 4",
+  "method": "Pushed the [deploy] commit to ccr-eab7206b-3uqp4w and main; no automatic production build appeared (as for r20 and r21), so created a production deployment of that exact SHA (ref main) through the existing Vercel project Git connection (Vercel MCP create_deployment). READY in about 2.5 min; Vercel assigned system-3-company.vercel.app. No project settings, env vars or credentials changed.",
+  "preDeployChecks": {
+    "publishGate": "npm run company -- publish flatten-the-cube-to-a-dot: pass",
+    "companyCheck": "810 errors, 4 warnings, all pre-existing (r21 recorded 811); none for flatten-the-cube-to-a-dot or euclid-three-steps",
+    "typecheck": "pass",
+    "privateBuild": "NEXT_DIST_DIR=.next-rm-r22, built, then exit 1 at Next.js 16.4.0 SecurityFatalError advisory after BUILD_ID (W-2067; not upgraded); dir removed",
+    "qaLocal": "tests/qa/contract.spec.ts (QA_ONLY flatten-the-cube-to-a-dot, euclid-three-steps) 4/4; tests/qa/feed.spec.ts 10/10",
+    "testHq": "107 pass, 9 fail, the same 9 as at the parent commit with the old releases.json"
+  },
+  "productionSmoke": {
+    "http": {"/": 200, "/d/flatten-the-cube-to-a-dot": 200, "/d/euclid-three-steps": 200, "/hq": 200, "/history": 200},
+    "lessonTrustLine": "flatten-the-cube-to-a-dot 9/9 claims checked, no In review tag",
+    "hqCityLink": "present (system3-city-hq.vercel.app)",
+    "feedSpec": "QA_BASE_URL=https://system-3-company.vercel.app npx playwright test tests/qa/feed.spec.ts: 10/10",
+    "contractSpec": "QA_ONLY=flatten-the-cube-to-a-dot,euclid-three-steps contract.spec.ts against production: 4/4 (phone and desktop; predict, explore, reveal)",
+    "reviewLessons": "review and draft lessons still render with an 'In review · Unpublished' / 'Draft' tag (e.g. /d/penalty-on-wiggle), the same as r21 (checked on the r21 deployment); not changed by this release"
+  },
+  "buildNotes": [
+    "The Vercel build completed (Build Completed in /vercel/output [2m]); the SecurityFatalError advisory did not stop it."
+  ],
+  "rollback": "npx vercel rollback (or promote dpl_AKCZ1SGmu4HRE4aGtPJtsLzUH5hh, r21), then a COE"
+}
