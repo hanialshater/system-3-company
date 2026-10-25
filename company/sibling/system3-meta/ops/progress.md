@@ -5,6 +5,30 @@ what's next, what's blocked). Until 2026-10-25 Meta's handoffs were written into
 `company/ops/progress.md`; the entries below were copied from it on 2026-10-25 (product/MIGRATION.md, step 1). From
 now on Meta writes here; the copies in System 3 Company's log stay there until the records split at the migration.
 
+## 2026-10-25 · vp-meta · Migration step 1 done; HQ dashboards; B13 near its end
+
+Founder: "go ahead with step 1"; "system 3 co need restructuring … different content type, multi level/priority/budget based execution"; "we also need dashboards in hq meta (eg token budget, mission, big milestones)"; no V arm for B13.
+
+**Done:**
+- **The export is complete and clean.** It now includes the HQ, Meta's own records, the knowledge base, the product docs, research write-ups, CI and a Vercel config. A clean export passes 359/359 tests with no path into System 3 Company.
+- **Meta has its own catalog and records:** `catalog/roles.json` (the 11 generic roles), `org/org.json`, `company.json`, `milestones.json` and this log.
+- **Two new generic tools:** `orgfile.mjs` and `dashboard.mjs`.
+- **The HQ has a Dashboard page** (mission, budget lines, spend over time and by member, milestones) and city totals.
+- **The HQ builds as a static site** with `hq/build.mjs`.
+- **System 3 Company's restructuring** is on its board as W-2002, owned by its org-health head. MIGRATION.md §4 maps the ask onto kernel features.
+- Tests: 370/370.
+
+**Belief:**
+- High: Meta can be pushed to its own repository as soon as one exists.
+- Medium: the static build is enough for the city HQ until companies need live data. Live data needs a server or a scheduled build.
+
+**Next:**
+- B13's end: final scoring, off-boarding, BENCH13.md. Check whether m-planner's 12:43 EXPLAIN QUERY PLAN land holds on the hidden set.
+- Steps 2-4 of MIGRATION.md.
+- Fold the sandbox out of `bench8/`.
+
+**Blocked:** the repositories and Vercel access (the founder).
+
 ## 2026-10-25 · chief-of-staff (for System 3 Meta, as vp-meta) · B13 running; the starter HQ, crew sessions, meetings and onboarding as code
 
 Founder: "need to go do b13, write code for other features, when you need new repos for migration I will provide them later"; B13 approved at about $500.
