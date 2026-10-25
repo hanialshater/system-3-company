@@ -33,7 +33,16 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 | Org evaluation (do agents learn, improve, self-correct) | starter | `orgeval.mjs` | built |
 | Discrete-event simulator | starter (tool) | `sim.mjs` | built |
 
-## Proven in benchmarks, to be folded into the kernel
+## The crew (the dynamic-workflow archetype), in the kernel since 2026-10-25
+
+| Feature | Layer | Where | Status |
+|---|---|---|---|
+| Members land their own work past the company's referee (sync, land; refused if main falls; serialised; stale locks broken) | starter | `crew.mjs` | built; tests/crew.test.mjs (9 tests) |
+| Notes, unread counts, the board (evidence and wrong-if required), claims that expire | starter | `crew.mjs` | built |
+| The v1 event log (`events.jsonl`): crew.start, land, land.refused, sync, note, board.post, claim, idle, wake, spend, crew.end | starter | `crew.mjs` | built: the contract for the starter HQ |
+| The runner: continuous member sessions, the shared budget, idle and wake, a plateau stop, off-boarding into the knowledge base | starter | `crew-run.mjs` | built (fake mode tested; SDK sessions wired by the launcher: next) |
+
+## Proven in benchmarks, to be folded into the kernel (the rest)
 
 | Feature | Layer | Where | Evidence |
 |---|---|---|---|
