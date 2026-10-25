@@ -52,6 +52,16 @@ input.search { width:100%; padding:7px 10px; border:1px solid var(--line); borde
 .av.idle { opacity:.55; } .av.crashed { outline:1px solid var(--bad); }
 .tree ul { list-style:none; margin:0; padding-left:18px; border-left:1px solid var(--line); } .tree > ul { padding-left:0; border-left:none; }
 .tree li { margin:4px 0; } .node { display:inline-flex; gap:8px; align-items:baseline; padding:4px 8px; border:1px solid var(--line); border-radius:8px; background:var(--panel); }
+.plan { overflow-x:auto; border-radius:14px; } .plan svg { width:100%; min-width:720px; display:block; }
+.strip { width:100%; height:30px; display:block; background:var(--panel); border:1px solid var(--line); border-radius:8px; margin:-8px 0 12px; }
+:root { --faceBg:#ffffff; --hqTile:#eef1f6; --hqTileLine:#e4e8f0; --hqWood:#f3e7d7; --hqWoodLine:#ead9c3; --hqCarpet:#efe8f8; --hqCarpetDot:#e1d6f1; --hqLobby:#fbf1d6; --hqFloor:#e8eefc; --hqDesk:#c9cfdb; --hqMonitor:#5b7cf0; --hqSofa:#b9a7e0; --hqHead:#ffffff; }
+@media (prefers-color-scheme: dark) { :root { --faceBg:#d9dce3; --hqTile:#161a23; --hqTileLine:#1f2430; --hqWood:#2a2420; --hqWoodLine:#322a24; --hqCarpet:#251f33; --hqCarpetDot:#31294a; --hqLobby:#2c2717; --hqFloor:#172033; --hqDesk:#3a4254; --hqMonitor:#7c9cff; --hqSofa:#4b3f6b; --hqHead:#1e2433; } }
+.building { stroke:var(--line); stroke-width:2; } .tileBg { fill:var(--hqTile); } .tileLine { fill:none; stroke:var(--hqTileLine); } .woodBg { fill:var(--hqWood); } .woodLine { fill:none; stroke:var(--hqWoodLine); }
+.carpetBg { fill:var(--hqCarpet); } .lobbyBg { fill:var(--hqLobby); } .carpetDot { fill:var(--hqCarpetDot); } .heat { fill:#7c9cff; } .door { fill:var(--hqTile); }
+.desk, .table { fill:var(--hqDesk); } .monitor { fill:var(--hqMonitor); opacity:.8; } .chair, .sofa { fill:var(--hqSofa); } .plant { fill:#2f8f5b; } .plantL { fill:#4fbf7f; }
+.roomHead { fill:var(--hqHead); opacity:.92; } .roomName { font-size:11px; letter-spacing:.04em; text-transform:uppercase; font-weight:600; fill:var(--text); }
+.roomRect { stroke:var(--line); } .roomRect.sel { stroke:var(--accent); stroke-width:3; } .roomRect.off { opacity:.6; stroke-dasharray:4 4; } .room { cursor:pointer; }
+.rate { fill:var(--accent); opacity:.9; } .rateT { font-size:9.5px; font-weight:700; fill:#fff; } .pill { fill:var(--panel); stroke:var(--line); } .pillT { font-size:9px; font-weight:600; fill:var(--text); }
 main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 </style>
 </head>
@@ -65,7 +75,7 @@ main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 // (its HQ developers' extension point), not a starter page
 const VIEWS = [["overview", "Overview"], ["rooms", "Rooms"], ["org", "Org"], ["board", "Board"], ["notes", "Notes"], ["meetings", "Meetings"], ["knowledge", "Knowledge"]];
 const HAS = { rooms: () => members(state.all).length, org: () => state.org.length || members(state.all).length, board: () => state.all.some((e) => e.type === "board.post" || e.type === "claim"), notes: () => state.all.some((e) => e.type === "note"), meetings: () => state.all.some((e) => e.type === "meeting"), knowledge: () => state.knowledge.length };
-let state = { city: [], company: null, view: "city", all: [], events: [], knowledge: [], org: [], q: "", at: null, playing: null };
+let state = { room: null, city: [], company: null, view: "city", all: [], events: [], knowledge: [], org: [], q: "", at: null, playing: null };
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const pct = (x) => (x == null ? "—" : `${(x * 100).toFixed(2)}%`);
@@ -139,21 +149,81 @@ function table(list) {
   if (!list.length) return `<div class="empty">Nothing yet.</div>`;
   return `<table><tr><th>when</th><th>who</th><th>what</th><th>score</th></tr>${list.map((e) => `<tr><td class="k">${time(e.t)}</td><td class="who">${esc(e.by)}</td><td>${e.type === "land" ? esc(e.msg || "landed") : e.type === "land.refused" ? `<span class="down">refused</span> ${esc(e.why)}` : `<span class="chip">${e.type}</span>`}</td><td>${e.type === "land" ? `${pct(e.before)} → ${pct(e.after)} <span class="${e.after > e.before ? "up" : "flat"}">${e.after > e.before ? "▲" : "="}</span>` : ""}</td></tr>`).join("")}</table>`;
 }
-// rooms: where each member is working, from their latest claim, board post or land area (a kernel event's room wins)
-function viewRooms() {
-  const ev = state.events, ms = members(ev), where = {};
+// ---- rooms: a floor plan drawn from the event log (generic: a room is where events say a member is; its kind decides
+// the furniture). Kinds: lobby (the owner), meeting (where meetings are held), desk (work areas), lounge (idle),
+// offline (crashed). Floors come from the org file's rooms when a company has them; else one floor.
+const SKIN = ["#f6d2b8", "#eab894", "#d29b72", "#b07850", "#8a5a3b", "#5e3a24"], HAIR = ["#1f1a17", "#4a3020", "#7a4a26", "#b8792f", "#d9b26b", "#9a9a9a", "#2b2b5c", "#7b2d43"];
+const seedOf = (id) => [...String(id)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
+function face(cx, cy, r, id, color, dim, ring) {
+  const seed = seedOf(id), skin = SKIN[seed % SKIN.length], hair = HAIR[(seed >>> 3) % HAIR.length], style = (seed >>> 6) % 5, smile = (seed >>> 9) % 3, glasses = (seed >>> 11) % 5 === 0, u = r / 10, clip = `c${seed}x${Math.round(cx)}y${Math.round(cy)}`;
+  const hairPath = [`<path d="M${cx - u * 4.8} ${cy - u * 1.4} a${u * 4.8} ${u * 4.8} 0 0 1 ${u * 9.6} 0 q${-u * 4.8} ${-u * 2.2} ${-u * 9.6} 0z" fill="${hair}"/>`, `<path d="M${cx - u * 4.9} ${cy - u * 0.6} a${u * 4.9} ${u * 4.9} 0 0 1 ${u * 9.8} 0 l${-u * 1.2} ${-u * 1.6} q${-u * 3.7} ${-u * 1.4} ${-u * 7.4} 0z" fill="${hair}"/>`, `<circle cx="${cx}" cy="${cy - u * 5.4}" r="${u * 2.4}" fill="${hair}"/><path d="M${cx - u * 4.7} ${cy - u * 1.2} a${u * 4.7} ${u * 4.7} 0 0 1 ${u * 9.4} 0z" fill="${hair}"/>`, `<path d="M${cx - u * 5} ${cy - u * 0.8} a${u * 5} ${u * 5} 0 0 1 ${u * 10} 0 q${-u * 5} ${-u * 3} ${-u * 10} 0z" fill="${hair}"/>`, `<path d="M${cx - u * 4.6} ${cy - u * 2.2} q${u * 4.6} ${-u * 4.6} ${u * 9.2} 0" stroke="${hair}" stroke-width="${u * 1.6}" fill="none" stroke-linecap="round"/>`][style];
+  const mouth = smile === 0 ? `M${cx - u * 1.6} ${cy + u * 1.6} q${u * 1.6} ${u * 1.4} ${u * 3.2} 0` : smile === 1 ? `M${cx - u * 1.3} ${cy + u * 1.9} h${u * 2.6}` : `M${cx - u * 1.8} ${cy + u * 1.4} q${u * 1.8} ${u * 2} ${u * 3.6} 0`;
+  return `<g opacity="${dim ? 0.45 : 1}"><circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}"/><clipPath id="${clip}"><circle cx="${cx}" cy="${cy}" r="${r - u * 1.2}"/></clipPath><g clip-path="url(#${clip})"><circle cx="${cx}" cy="${cy}" r="${r}" fill="var(--faceBg)"/><ellipse cx="${cx}" cy="${cy + u * 10}" rx="${u * 7.5}" ry="${u * 4.5}" fill="${color}" opacity=".9"/>${style === 3 ? `<rect x="${cx - u * 5.4}" y="${cy - u * 4}" width="${u * 10.8}" height="${u * 9}" rx="${u * 3}" fill="${hair}"/>` : ""}<circle cx="${cx}" cy="${cy - u * 0.6}" r="${u * 4.6}" fill="${skin}"/>${hairPath}<circle cx="${cx - u * 1.7}" cy="${cy - u * 0.3}" r="${u * 0.6}" fill="#1b1b1b"/><circle cx="${cx + u * 1.7}" cy="${cy - u * 0.3}" r="${u * 0.6}" fill="#1b1b1b"/>${glasses ? `<g stroke="#1b1b1b" stroke-width="${u * 0.45}" fill="none"><circle cx="${cx - u * 1.7}" cy="${cy - u * 0.3}" r="${u * 1.3}"/><circle cx="${cx + u * 1.7}" cy="${cy - u * 0.3}" r="${u * 1.3}"/></g>` : ""}<path d="${mouth}" stroke="#7a3b2e" stroke-width="${u * 0.6}" fill="none" stroke-linecap="round"/></g>${ring ? `<circle cx="${cx}" cy="${cy}" r="${r + u * 1.2}" fill="none" stroke="${ring}" stroke-width="${u * 1.4}"/>` : ""}</g>`;
+}
+const teamColor = (id) => `hsl(${hue(id)} 60% 62%)`;
+const plant = (x, y) => `<circle cx="${x}" cy="${y}" r="6" class="plant"/><circle cx="${x + 4}" cy="${y - 3}" r="4" class="plantL"/><circle cx="${x - 3}" cy="${y - 4}" r="3.5" class="plantL"/>`;
+function furniture(r) {
+  const { x, y, w, h } = r, desk = (dx, dy, dw = 40, dh = 12) => `<rect x="${dx}" y="${dy}" width="${dw}" height="${dh}" rx="3" class="desk"/><rect x="${dx + dw / 2 - 6}" y="${dy + 2}" width="12" height="4" rx="1" class="monitor"/>`;
+  if (r.kind === "meeting") { const tw = Math.min(w - 60, 160), th = Math.min(h - 60, 36), tx = x + (w - tw) / 2, ty = y + h - th - 18; return `<rect x="${tx}" y="${ty}" width="${tw}" height="${th}" rx="${th / 2}" class="table"/>${[0, 1, 2, 3].map((i) => `<circle cx="${tx + 12 + (i * (tw - 24)) / 3}" cy="${ty - 7}" r="4" class="chair"/><circle cx="${tx + 12 + (i * (tw - 24)) / 3}" cy="${ty + th + 7}" r="4" class="chair"/>`).join("")}`; }
+  if (r.kind === "lobby" || r.kind === "lounge") return `<rect x="${x + 16}" y="${y + h - 30}" width="${Math.min(90, w / 3)}" height="16" rx="8" class="sofa"/><rect x="${x + w - 16 - Math.min(90, w / 3)}" y="${y + h - 30}" width="${Math.min(90, w / 3)}" height="16" rx="8" class="sofa"/>${plant(x + w / 2 - 14, y + h - 20)}${plant(x + w / 2 + 14, y + h - 20)}`;
+  if (r.kind === "offline") return "";
+  const n = Math.max(1, Math.floor((w - 20) / 64)); return Array.from({ length: n }, (_, i) => desk(x + 14 + i * 64, y + h - 22)).join("") + (h > 120 ? plant(x + w - 12, y + 40) : "");
+}
+// a skyline packer: rooms in order, each into the columns where it sits highest
+function pack(rooms, W = 1000, cols = 4, gap = 12, pad = 16) {
+  const cw = (W - 2 * pad - gap * (cols - 1)) / cols, top = Array(cols).fill(pad);
+  for (const r of rooms) {
+    const span = Math.min(cols, r.span), perRow = Math.max(1, Math.floor((span * cw + (span - 1) * gap - 20) / 58)), rows = Math.max(1, Math.ceil(r.people.length / perRow));
+    r.h = Math.max(r.kind === "meeting" || r.kind === "lobby" ? 140 : 110, 44 + rows * 54 + (r.kind === "offline" ? 0 : r.kind === "meeting" ? 64 : 26));
+    let best = 0, bestY = Infinity; for (let c = 0; c + span <= cols; c++) { const yy = Math.max(...top.slice(c, c + span)); if (yy < bestY) { bestY = yy; best = c; } }
+    r.x = pad + best * (cw + gap); r.y = bestY; r.w = span * cw + (span - 1) * gap; r.perRow = perRow;
+    for (let c = best; c < best + span; c++) top[c] = bestY + r.h + gap;
+  }
+  return Math.max(...top) + pad;
+}
+function roomsModel() {
+  const ev = state.events, ms = members(ev), where = {}, meetRooms = new Set(), home = Object.fromEntries((state.org ?? []).map((o) => [o.id, o]));
   for (const e of ev) {
     if (!e.by) continue;
-    if (e.room) where[e.by] = e.room;
-    else if (e.type === "claim" || e.type === "board.post") where[e.by] = e.area;
-    else if (e.type === "claim.drop" && where[e.by] === e.area) delete where[e.by];
+    if (e.type === "meeting") { const r = e.room ?? "Meeting room"; meetRooms.add(r); for (const a of e.attendees ?? []) where[a] = r; continue; }
+    if (e.room) where[e.by] = e.room; else if (e.type === "claim" || e.type === "board.post") where[e.by] = e.area; else if (e.type === "claim.drop" && where[e.by] === e.area) delete where[e.by];
   }
-  const rooms = {}; const put = (r, m) => (rooms[r] ??= []).push(m);
-  for (const m of ms) put(m.status === "idle" ? "Lounge (idle)" : m.status === "crashed" ? "Offline" : m.status === "done" ? "Gone home" : where[m.id] ?? "The floor", m);
-  const last = (id) => [...ev].reverse().find((e) => e.by === id && ["land", "board.post", "claim", "note"].includes(e.type));
-  const order = Object.keys(rooms).sort((a, b) => (/\(idle\)|Offline|Gone/.test(a) - /\(idle\)|Offline|Gone/.test(b)) || rooms[b].length - rooms[a].length);
-  if (!ms.length) return `<h1>Rooms</h1>${replayBar()}<div class="empty">Nobody here yet.</div>`;
-  return `<h1>Rooms</h1><div class="sub1">who is working where: a room is the area a member last claimed or posted about</div>${replayBar()}<div class="floor">${order.map((r) => `<div class="room ${/\(idle\)|Offline|Gone/.test(r) ? "quiet" : ""}"><h4><span>${esc(r)}</span><span class="k">${rooms[r].length}</span></h4>${rooms[r].map((m) => { const l = last(m.id); return `<div>${avatar(m.id, m.status, m.model)}<div class="k" style="margin:-2px 0 8px 4px">${l ? `${l.type === "land" ? "landed" : l.type === "note" ? "noted" : l.type === "claim" ? "claimed" : "posted"} ${ago(l.t)}` : ""}</div></div>`; }).join("")}</div>`).join("")}</div>`;
+  const owner = state.city.find((c) => c.id === state.company)?.owner ?? "owner", rooms = {};
+  const room = (id, kind) => (rooms[id] ??= { id, name: id, kind, people: [], activity: 0, floor: null });
+  room("Lobby", "lobby").people.push({ id: owner, status: "owner", model: "owner" });
+  for (const m of ms) { if (m.id === owner) continue; const r = m.status === "idle" ? room("Lounge", "lounge") : m.status === "crashed" ? room("Offline", "offline") : m.status === "done" ? room("Gone home", "offline") : room(where[m.id] ?? home[m.id]?.room ?? "The floor", meetRooms.has(where[m.id]) || /meeting|review|crit|retro|planning|standup|wbr/i.test(where[m.id] ?? "") ? "meeting" : "desk"); r.people.push(m); }
+  const now = state.at ?? Date.now(), hourAgo = now - 3600000;
+  for (const e of ev) { const t = Date.parse(e.t); if (t < hourAgo || t > now || !e.by) continue; const rid = e.room ?? (e.type === "meeting" ? e.room ?? "Meeting room" : where[e.by]); if (rid && rooms[rid]) rooms[rid].activity++; }
+  for (const [id, o] of Object.entries(home)) if (o.room && rooms[o.room]) rooms[o.room].floor = o.floor ?? rooms[o.room].floor;
+  const order = { lobby: 0, desk: 1, meeting: 2, lounge: 3, offline: 4 };
+  const list = Object.values(rooms).filter((r) => r.people.length || r.kind === "lobby").sort((a, b) => order[a.kind] - order[b.kind] || b.people.length - a.people.length || a.id.localeCompare(b.id));
+  for (const r of list) r.span = r.kind === "lobby" ? 2 : r.people.length > 6 ? 3 : r.people.length > 2 ? 2 : 1;
+  return list;
+}
+function floorPlan(list) {
+  const H = pack(list), sel = state.room;
+  const roomSvg = (r) => {
+    const fill = r.kind === "desk" ? "url(#wood)" : r.kind === "meeting" ? "url(#carpet)" : r.kind === "lobby" ? "url(#lobbyC)" : r.kind === "lounge" ? "url(#carpet)" : "var(--hqFloor)", heat = Math.min(1, r.activity / 12);
+    return `<g class="room" onclick="state.room=${JSON.stringify(r.id).replace(/"/g, "&quot;")};render()"><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="10" fill="${fill}" filter="url(#lift)" class="roomRect ${sel === r.id ? "sel" : ""} ${r.kind === "offline" ? "off" : ""}"/>${heat ? `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="10" class="heat" opacity="${0.06 + heat * 0.22}" pointer-events="none"/>` : ""}<rect x="${r.x + r.w / 2 - 14}" y="${r.y + r.h - 2}" width="28" height="4" rx="2" class="door"/>${furniture(r)}<path d="M${r.x} ${r.y + 24}V${r.y + 10}a10 10 0 0 1 10 -10H${r.x + r.w - 10}a10 10 0 0 1 10 10V${r.y + 24}z" class="roomHead"/><text x="${r.x + 10}" y="${r.y + 16}" class="roomName">${esc(r.name.length > Math.floor(r.w / 7.5) ? r.name.slice(0, Math.floor(r.w / 7.5) - 1) + "…" : r.name)}</text>${r.activity ? `<rect x="${r.x + r.w - 40}" y="${r.y + 5}" width="34" height="14" rx="7" class="rate"/><text x="${r.x + r.w - 23}" y="${r.y + 15.5}" text-anchor="middle" class="rateT">${r.activity}/h</text>` : ""}${r.people.map((p, i) => { const cx = r.x + 32 + (i % r.perRow) * 58, cy = r.y + 50 + Math.floor(i / r.perRow) * 54, dim = ["idle", "done"].includes(p.status), dot = { working: "#3ddc97", crashed: "#ff6b6b" }[p.status]; return `<g class="person"><title>${esc(p.id)} · ${esc(p.status)}${p.model && p.model !== "owner" ? ` · ${esc(p.model)}` : ""}${p.lands ? ` · ${p.lands} lands` : ""}</title>${face(cx, cy, 14, p.id, p.status === "owner" ? "#f2c94c" : teamColor(p.id), dim, p.status === "crashed" ? "#ff6b6b" : p.status === "owner" ? "#ffd54f" : "")}${dot ? `<circle cx="${cx + 10}" cy="${cy - 10}" r="3.8" fill="${dot}" stroke="var(--panel)" stroke-width="1.4"/>` : ""}<rect x="${cx - 26}" y="${cy + 16}" width="52" height="13" rx="6.5" class="pill"/><text x="${cx}" y="${cy + 25.5}" text-anchor="middle" class="pillT">${esc(String(p.id).replace(/^m-/, "").slice(0, 10))}</text></g>`; }).join("")}</g>`;
+  };
+  return `<div class="plan"><svg viewBox="0 0 1000 ${H}" role="img" aria-label="floor plan"><defs><pattern id="tile" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" class="tileBg"/><path d="M20 0H0V20" class="tileLine"/></pattern><pattern id="wood" width="60" height="10" patternUnits="userSpaceOnUse"><rect width="60" height="10" class="woodBg"/><path d="M0 9.5H60M22 0V10" class="woodLine"/></pattern><pattern id="carpet" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" class="carpetBg"/><circle cx="4" cy="4" r=".8" class="carpetDot"/></pattern><pattern id="lobbyC" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" class="lobbyBg"/><circle cx="4" cy="4" r=".8" class="carpetDot"/></pattern><filter id="lift" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-opacity=".18"/></filter></defs><rect x="4" y="4" width="992" height="${H - 8}" rx="20" fill="url(#tile)" class="building"/>${list.map(roomSvg).join("")}</svg></div>`;
+}
+// the activity strip: one tick per event over the run, coloured by kind; the replay position marked
+function strip() {
+  if (state.all.length < 2) return "";
+  const t0 = Date.parse(state.all[0].t), t1 = Date.parse(state.all.at(-1).t), W = 1000, col = { land: "var(--good)", "land.refused": "var(--bad)", note: "var(--accent)", meeting: "#f2c94c", "board.post": "#b48ef0", claim: "#7fb6ff", crash: "var(--bad)" };
+  const ticks = state.all.filter((e) => col[e.type] || e.type.startsWith("kernel.")).map((e) => `<rect x="${(((Date.parse(e.t) - t0) / Math.max(1, t1 - t0)) * (W - 4)).toFixed(1)}" y="${e.type === "land" ? 2 : 10}" width="2" height="${e.type === "land" ? 26 : 18}" fill="${col[e.type] ?? "var(--muted)"}" opacity=".8"/>`).join("");
+  const at = state.at == null ? null : ((state.at - t0) / Math.max(1, t1 - t0)) * (W - 4);
+  return `<svg class="strip" viewBox="0 0 ${W} 30" preserveAspectRatio="none">${ticks}${at != null ? `<rect x="${at}" y="0" width="2" height="30" fill="var(--warn)"/>` : ""}</svg>`;
+}
+function viewRooms() {
+  const all = roomsModel(), floors = [...new Set(all.map((r) => r.floor).filter((f) => f != null))].sort((a, b) => a - b);
+  if (floors.length > 1 && !floors.includes(state.floor)) state.floor = floors[0];
+  const list = floors.length > 1 ? all.filter((r) => r.floor === state.floor || (r.floor == null && state.floor === floors[0])) : all, sel = list.find((r) => r.id === state.room);
+  const tabs = floors.length > 1 ? `<div class="row" style="margin-bottom:10px">${floors.map((f) => `<a class="chip" style="cursor:pointer;${f === state.floor ? "background:var(--accent);color:#fff" : ""}" onclick="state.floor=${f};render()">Floor ${f} · ${all.filter((r) => r.floor === f || (r.floor == null && f === floors[0])).reduce((a, r) => a + r.people.length, 0)}</a>`).join("")}</div>` : "";
+  if (list.length <= 1 && !list[0]?.people.length) return `<h1>Rooms</h1>${replayBar()}<div class="empty">Nobody here yet.</div>`;
+  const recent = sel ? state.events.filter((e) => e.by && sel.people.some((p) => p.id === e.by) && ["land", "note", "board.post", "claim", "meeting", "land.refused"].includes(e.type)).slice(-8).reverse() : [];
+  return `<h1>Rooms</h1><div class="sub1">who is working where, live or at any moment of the run · click a room</div>${replayBar()}${strip()}${tabs}${floorPlan(list)}${sel ? `<div class="card" style="margin-top:12px"><h3>${esc(sel.name)} <span class="k">${sel.kind} · ${sel.people.length} here${sel.activity ? ` · ${sel.activity} events in the last hour` : ""}</span></h3>${sel.people.map((p) => avatar(p.id, p.status, p.model)).join("")}${recent.length ? table(recent) : ""}</div>` : ""}`;
 }
 // the org: reporting lines from the company's org file, or the crew's members as peers under its owner
 function viewOrg(c) {

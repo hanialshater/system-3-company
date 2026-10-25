@@ -26,5 +26,5 @@ export function kernelEvents(stateFile) {
 /** the kernel's org: its roles with their level, reporting line, lane and home room */
 export function kernelOrg(stateFile, s = null) {
   try { s ??= JSON.parse(fs.readFileSync(stateFile, "utf8")); } catch { return []; }
-  return Object.values(plain(s.org?.roles) ?? {}).filter((r) => r.active !== false).map((r) => ({ id: r.id, title: r.level ?? "", reportsTo: r.reportsTo ?? null, team: r.lane ?? null, room: r.room ?? null }));
+  return Object.values(plain(s.org?.roles) ?? {}).filter((r) => r.active !== false).map((r) => ({ id: r.id, title: r.level ?? "", reportsTo: r.reportsTo ?? null, team: r.lane ?? null, room: r.room ?? null, floor: r.floor ?? null }));
 }
