@@ -1,3 +1,11 @@
+## 2026-10-25 · content hub pilot live · W-2030 ready for review
+
+Deployed https://system3-content-hub-demo.vercel.app/d/sum-seven-ignores-first-die on a dedicated Next.js project. Separate artifact project serves both immutable real-lesson revisions. Live host/publication/frame/client asset requests return 200; unknown publication returns 404. Confirmed A → B → A → B with the same host deployment dpl_FbfQrsfJ7VPppcZvgd4Q7E93HUA4. Frame CSP/sandbox, CORS and immutable caching are present; manifest/API responses are no-store. Vercel reports no runtime errors in the sampled hour.
+
+Global Config token creation was blocked by a connector schema bug rejecting its valid ID. The pilot uses a public CDN manifest and versioned release alias instead; no Next build is needed for switching/rollback. One Global Config was created but remains unused, with no read token. No connector delete capability is available. Local Git/compiler operator remains local; existing System 3 production app/domains are unchanged.
+
+Local full phone/desktop lesson flows, failure preservation and cache restoration passed before deployment. Live interactive browser verification was interrupted by test-browser proxy CA trust failure and then workspace unavailability; no TLS verification was disabled and no live-browser success is claimed. W-2030 is review, not independent acceptance. Receipt: company/ops/deployments/2026-10-25-content-hub-pilot.json; status: company/rnd/content-hub/deployment-status.md. Next: rerun the live browser flow when the test environment returns, then W-2027/W-2028 independent R&D/production integration decisions.
+
 ## 2026-10-25 · one-demo content hub deployment · W-2030 blocked on Vercel team access
 
 Prepared the published sum-seven-ignores-first-die lesson in a real Git-per-space hub with a trusted React compiler profile, pinned runtime/types, TypeScript checks and compiled model tests. A separate minimal Next.js host builds successfully and reads a mutable publication endpoint without demo imports. Local phone/desktop full flows, A → B → A → B with one host process, failed React compilation preserving publication, restored-input cache reuse and opaque frame isolation pass. Eight hub/index regressions pass. Evidence: company/rnd/content-hub/deployment-status.md and evidence/deployment-*.

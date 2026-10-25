@@ -1,42 +1,33 @@
-# One-demo deployment status
+# One-demo content hub deployment
 
 owner: release-manager · date: 2026-10-25 · board: W-2030
-status: locally verified; deployment blocked on Vercel team connection access
+status: deployed READY; live HTTP/publishing checks passed; live interactive browser rerun pending
 
-## Prepared and verified
+## Live URL
 
-The founder authorized "Also lets deploy one with the content hub". The isolated pilot selects the published probability/sum-seven-ignores-first-die lesson, version 3. Original production routes, lesson source and protected paths are unchanged.
+[Open the content hub pilot](https://system3-content-hub-demo.vercel.app/d/sum-seven-ignores-first-die). It runs the already published probability/sum-seven-ignores-first-die lesson, version 3, on an isolated Next.js project. Existing System 3 production app, domains, lesson source, editorial publication state and learner metrics are unchanged.
 
-- Added a trusted React compiler profile to the actual Git-per-space hub. Immutable runtime package pins include the compiled React/kit runtime and matching SDK types. Each write runs full TypeScript checks and compiled model tests before emitting browser artifacts.
-- Built delivery revisions A and B from real Git space commits. B only adds an exported delivery marker; the published lesson content/claims are unchanged.
-- Created a separate minimal Next.js host. Dynamic slug routes fetch the publication server-side at request time; no lesson source or generated catalogue is part of its build. The artifact URL is restricted to the configured artifact origin. Only a safe public publication identity reaches the client.
-- The independent host's production build passes. Its own local browser verification passes desktop/phone full lesson flows, opaque-origin frame isolation, A → B → A → B pointer changes with the same Next process, unknown-demo 404, invalid React build preserving the published pointer, and restored inputs reusing the original artifact. No page errors. Evidence: [deployment-local.json](evidence/deployment-local.json).
-- Existing hub/index regressions pass 8/8. Repository check remains the baseline's 811 errors/four warnings; aggregate verify retains its known publication-readiness failures. The isolated host is not a release of that whole-app tree.
+## Actual deployed architecture
 
-The initial failure-injection check exposed that the old transpile-only loader could repair malformed TSX while emitting code. The new React profile therefore performs TypeScript diagnostics before any bundling. The final failure-injection test rejects invalid source correctly. Earlier failed preparation directories remain in ignored artifacts as diagnostic evidence.
+- Next.js host: system3-content-hub-demo.vercel.app, deployment dpl_FbfQrsfJ7VPppcZvgd4Q7E93HUA4.
+- Separate immutable artifacts: system3-content-hub-artifacts.vercel.app, retained A and B releases. Both include both artifact revisions so rollback does not remove old content-addressed files.
+- Publication lookup: public publication.json with no-store headers, exported from the operator's content-hub builds. Publishing selects a versioned static release by changing its CDN alias. The Next.js host fetches this pointer at request time and does not import demo code.
+- Git-per-space, TypeScript checks, compiled model tests, SDK/runtime pins, artifact hashing, failed-build preservation and cache restoration run in the local operator prototype. This pilot does not deploy a distributed write/build control plane.
 
-## Deployment boundary
+## Live validation
 
-Intended cloud resources: one dedicated static artifact project, one dedicated Next.js pilot project and one Global Config containing the publication pointer. No existing System 3 production project/domain should be changed. The Git source, compiler and build operator remain local for this technical pilot; the deployed read path will be cloud-hosted. This does not deploy a distributed write/build control plane.
+The host page, publication API, compiled client asset and artifact frame return HTTP 200. Unknown publication IDs return 404. Verified the served revision sequence **A → B → A → B** through the host API and confirmed that the host deployment stayed **dpl_FbfQrsfJ7VPppcZvgd4Q7E93HUA4** throughout. Final revision is B. The frame serves sandbox/CSP, CORS and immutable-cache headers; manifest/API responses are no-store. Vercel reports no runtime errors in the sampled one-hour window. Full details and source/artifact identities: [deployment receipt](../../ops/deployments/2026-10-25-content-hub-pilot.json).
 
-The artifact upload package contains only the selected immutable compiled files and hosting headers, not source Git history, private claims/reviews, local SQLite state or credentials. The host contains no demo imports and requires server-only CONTENT_HUB_PUBLICATION_URL and CONTENT_HUB_ARTIFACT_ORIGIN configuration. A newly created scoped Global Config read token should be injected directly as an encrypted project environment variable, never printed or committed.
+Local production-host phone/desktop full flows, frame isolation, failed React compilation preserving publication and restored-input cache reuse passed before deployment; the existing hub/index regressions pass 8/8. Root TypeScript checking passes. Main repository check retains 811 errors/four warnings and aggregate verify retains the known publication-readiness failures; this is not a deployment of that whole-app tree.
 
-## Blocker and remaining live checks
+The live interactive browser recheck did **not** complete: the environment's test Chromium rejected the environment proxy CA, then the execution workspace became unavailable. TLS verification was never disabled. Live HTTP/publishing validation is successful; live full-flow browser acceptance remains open. The local browser evidence must not be presented as live browser evidence.
 
-Vercel lists the existing project but denies scoped access with HTTP 403 for team `team_Ss0FbvX3HyCJMqitsy31SLPj` (hanis-projects-2e2b67f6). The connector explicitly requires authorize_team_access. No cloud project, store, deployment or publication was created. The deployment itself is already authorized; this is missing account/team access, not a request to approve deployment again.
+## Difference from the prepared plan
 
-After the user grants team access through the connector's short-lived link: retry get_project in that same scope, create the isolated resources, package exact frame-ancestor headers for the actual host origin, upload artifacts, set the initial A pointer, deploy the independent host, and run live full-flow + A/B/rollback checks. Capture deployment IDs to establish that pointer changes did not rebuild the host. Do not report a live URL until READY and these checks pass.
+The Vercel connection's Global Config token tool rejects its own valid config ID against the prefix schema. The supported fallback here is the public CDN manifest/versioned-alias pointer, not a fabricated token or another account. The created Global Config ecfg_x3uekw3reodjp4bifhvhy72p1hla is unused and no read token was created. The available connector has no delete capability, so this unused configuration is recorded for later cleanup/reuse.
 
-## Reproduce local preparation
+No additional host builds were performed to change A/B pointers. This demonstrates independent artifact delivery and release selection; it is not a claim that the full physical production architecture has been deployed.
 
-```sh
-# Run against a fresh output directory; existing catalogue kit artifacts are required.
-node src/lab/content-hub/prepare-deployment.mjs
-cd src/lab/content-hub/deploy-host
-npm ci --ignore-scripts
-npm run build
-cd ../../../..
-node src/lab/content-hub/test/deployment.mjs
-```
+## Tracking
 
-The final local artifact state and public upload files are under `artifacts/content-hub-deployment-final/`. Default preparation is intentionally non-destructive and refuses an existing space. See [deployment-plan.md](deployment-plan.md) and [prototype README](../../../src/lab/content-hub/README.md).
+[PR #20](https://github.com/hanialshater/system-3-company/pull/20), [issue #18](https://github.com/hanialshater/system-3-company/issues/18). W-2030 is ready for review, with the live browser recheck explicitly open. W-2027 independent R&D acceptance and W-2028 production integration review remain open.

@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "framework": null,
+  "headers": [
+    {
+      "source": "/objects/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "cross-origin"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public,max-age=31536000,immutable"
+        }
+      ]
+    },
+    {
+      "source": "/objects/pilot/c3dc95eed3e8cd075a45781e9f1fd2e0fd604c378257f336ad0382405dc3478d/frame.html",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; script-src 'self' 'sha256-jDXQGqsVnTShaRVlfiZDSSCU8k2vXcg/GT9eeVEBypI='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors https://system3-content-hub-demo.vercel.app; sandbox allow-scripts"
+        }
+      ]
+    },
+    {
+      "source": "/objects/pilot/dc6f67092e708f266f34540ccb6ed769fcf95a830303b4f81158d70436a7d8ae/frame.html",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; script-src 'self' 'sha256-i09z4bWQw4UUuiuBxTLxQDpsK17vdijNzFpZ/C7WFWw='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors https://system3-content-hub-demo.vercel.app; sandbox allow-scripts"
+        }
+      ]
+    },
+    {
+      "source": "/publication.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    }
+  ]
+}
