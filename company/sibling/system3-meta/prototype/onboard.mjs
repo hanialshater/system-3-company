@@ -5,7 +5,7 @@
 // company.json, a v1 event log the starter HQ reads, a knowledge base, the archetype's own files (crew.json for the
 // crew-shaped archetypes, a spec skeleton for corporate) and its entry for the city file.
 //   node onboard.mjs archetypes
-//   node onboard.mjs search <words> [--catalog=<roles.mjs>]
+//   node onboard.mjs search <words> [--catalog=<domain roles .json|.mjs>]   (Meta's starter catalog always included)
 //   node onboard.mjs propose <intake.json> <designs.json> --by=<role>   → proposal.json beside the intake
 //   node onboard.mjs approve <proposal.json> --by=<owner> --choice=<n>
 //   node onboard.mjs generate <proposal.json> <company dir>
@@ -31,10 +31,16 @@ export const ALWAYS = ["evaluation-steward", "hq-engineer"];
 export const STARTER_ROLES = ["chief-of-staff", "chief-of-staff-ceo-office", "principal-engineer", "evaluation-steward", "fact-checker", "qa-tester", "release-manager", "hq-engineer", "portfolio-manager", "analytics-steward", "privacy-reviewer"];
 const PROPOSERS = ["chief-of-staff", "chief-of-staff-ceo-office"];
 
-/** the catalog: System 3 Company's org as data until the migration moves it to the starter kit */
-export async function loadCatalog(file = path.join(HERE, "..", "..", "..", "..", "tools", "org", "roles.mjs")) {
-  const { roles } = await import(pathToFileURL(path.resolve(file)).href);
-  return roles.map((r) => ({ id: r.id, title: r.title, team: r.team, reportsTo: r.reportsTo ?? null, mission: r.mission ?? "", description: r.description ?? "", layer: STARTER_ROLES.includes(r.id) ? "starter" : "domain" }));
+/** the catalog: Meta's starter catalog (../catalog/roles.json, the generic roles) plus any domain catalogs a company
+ *  adds (a .json with { roles } or a .mjs exporting `roles`, e.g. System 3 Company's tools/org/roles.mjs) */
+export const STARTER_CATALOG = path.join(HERE, "..", "catalog", "roles.json");
+export async function loadCatalog(files = []) {
+  const list = [STARTER_CATALOG, ...(Array.isArray(files) ? files : [files]).filter(Boolean)], out = new Map();
+  for (const f of list) {
+    const roles = f.endsWith(".json") ? JSON.parse(fs.readFileSync(f, "utf8")).roles : (await import(pathToFileURL(path.resolve(f)).href)).roles;
+    for (const r of roles) if (!out.has(r.id)) out.set(r.id, { id: r.id, title: r.title, team: r.team, reportsTo: r.reportsTo ?? null, mission: r.mission ?? "", description: r.description ?? "", layer: STARTER_ROLES.includes(r.id) ? "starter" : "domain" });
+  }
+  return [...out.values()];
 }
 /** roles ranked by how many of the words they mention (id, title, team, mission, description) */
 export function searchCatalog(catalog, words) {

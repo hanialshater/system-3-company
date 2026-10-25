@@ -4,6 +4,7 @@
 //   GET /api/city                      the companies in the city file: [{ id, name, archetype, health }]
 //   GET /api/company/<id>/events       the company's events (v1), newest last
 //   GET /api/company/<id>/knowledge    its knowledge base entries (knowledge/entries.jsonl), if it has one
+//   GET /api/company/<id>/dashboard    its mission, budget and milestones, from its dashboard tool (dashboardCmd)
 //   GET /api/company/<id>/org          its org (reporting lines), from its org tool (orgCmd)
 //   GET /api/company/<id>/page/<p>.js  one of the company's own HQ pages (its extension point, below)
 // A company is { id, name, archetype, events: <path to events.jsonl>, knowledge?: <dir> } in the city file, or a
@@ -30,7 +31,7 @@ const city = () => JSON.parse(fs.readFileSync(cityFile, "utf8"));
 export function pagesOf(c) { if (!c.hq) return []; try { return JSON.parse(fs.readFileSync(path.join(c.hq, "pages.json"), "utf8")).filter((p) => /^[a-z0-9-]+$/.test(p.id ?? "") && p.file); } catch { return []; } }
 /** the org (the org contract, product/STARTER.md): from the company's own org tool, `orgCmd` in its entry, a
  *  read-only command that prints [{ id, name?, title, reportsTo, team?, level?, room?, floor?, model? }]
- *  (kernel: `meta.mjs org roles`; crew: `crew.mjs org`; System 3 Company: `hq/org-from-roles.mjs tools/org/roles.mjs`).
+ *  (kernel: `meta.mjs org roles`; crew: `crew.mjs org`; System 3 Company: `adapters/s3c/org-from-roles.mjs tools/org/roles.mjs`).
  *  Cached for a few seconds. A plain org file (`org`) is read only when a company has no tool. */
 const orgCache = new Map();
 export function orgOf(c) {
@@ -42,6 +43,17 @@ export function orgOf(c) {
   }
   if (c.org) { try { const o = JSON.parse(fs.readFileSync(c.org, "utf8")); return Array.isArray(o) ? o : o.roles ?? []; } catch { return []; } }
   return c.kernel ? kernelOrg(c.kernel) : [];
+}
+/** the dashboard (the dashboard contract, product/STARTER.md §3): from the company's dashboard tool, `dashboardCmd`
+ *  (e.g. `dashboard.mjs <company dir>`), printing { mission, budget: { unit, approved, spent, lines }, milestones,
+ *  kpis }. Cached like the org. */
+const dashCache = new Map();
+export function dashboardOf(c) {
+  if (!c.dashboardCmd) return null;
+  const hit = dashCache.get(c.id); if (hit && Date.now() - hit.t < 10_000) return hit.d;
+  const r = spawnSync("sh", ["-c", c.dashboardCmd], { encoding: "utf8", timeout: 20_000, cwd: c.cwd ?? path.dirname(cityFile) });
+  let d = null; try { d = JSON.parse(r.stdout); } catch {}
+  dashCache.set(c.id, { t: Date.now(), d }); return d;
 }
 export function eventsOf(c) { return c.bench ? benchEvents(c.bench) : c.kernel ? kernelEvents(c.kernel) : readJsonl(c.events); }
 export function health(ev) {
@@ -55,7 +67,7 @@ export function handler(req, res) {
   const u = new URL(req.url, "http://x"), parts = u.pathname.split("/").filter(Boolean);
   try {
     if (u.pathname === "/" || u.pathname === "/index.html") return send(res, 200, fs.readFileSync(path.join(HERE, "index.html"), "utf8"), "text/html; charset=utf-8");
-    if (u.pathname === "/api/city") return send(res, 200, city().companies.map((c) => ({ id: c.id, name: c.name, archetype: c.archetype, owner: c.owner ?? null, pages: pagesOf(c).map(({ id, title }) => ({ id, title: title ?? id })), health: health(eventsOf(c)) })));
+    if (u.pathname === "/api/city") return send(res, 200, city().companies.map((c) => ({ id: c.id, name: c.name, archetype: c.archetype, owner: c.owner ?? null, pages: pagesOf(c).map(({ id, title }) => ({ id, title: title ?? id })), health: health(eventsOf(c)), budget: dashboardOf(c)?.budget ?? null, mission: dashboardOf(c)?.mission ?? null })));
     if (parts[0] === "api" && parts[1] === "company") {
       const c = city().companies.find((x) => x.id === parts[2]); if (!c) return send(res, 404, { error: "no such company" });
       if (parts[3] === "events") return send(res, 200, eventsOf(c));
@@ -65,6 +77,7 @@ export function handler(req, res) {
         return send(res, 200, fs.readFileSync(f, "utf8"), "text/javascript; charset=utf-8");
       }
       if (parts[3] === "org") return send(res, 200, orgOf(c));
+      if (parts[3] === "dashboard") return send(res, 200, dashboardOf(c));
       if (parts[3] === "knowledge") return send(res, 200, c.knowledge ? readJsonl(path.join(c.knowledge, "entries.jsonl")) : []);
     }
     send(res, 404, { error: "not found" });

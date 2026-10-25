@@ -67,7 +67,7 @@ generator. A company's knowledge base is private unless its owner publishes entr
 - **The org contract** (2026-10-25: "UI and tools should work together"). Every company's org tool answers one
   read-only command with `[{ id, name?, title, reportsTo, team?, level?, room?, floor?, model? }]` (the root has
   `reportsTo: null`): the kernel `meta.mjs org roles`, the crew `crew.mjs org`, System 3 Company
-  `hq/org-from-roles.mjs tools/org/roles.mjs` (its roles and people modules, live). The HQ runs the command named
+  `adapters/s3c/org-from-roles.mjs tools/org/roles.mjs` (its roles and people modules, live). The HQ runs the command named
   by the company's `orgCmd` and never reads a tool's files. Fields are only added, never renamed.
 - **Writes go through the tools, never the HQ.** The HQ is read-only: an org change is `org propose` (applied only
   with the founder's approval), a land is `crew land`, minutes are `crew minutes`; the HQ shows each from the event

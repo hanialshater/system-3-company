@@ -6,14 +6,15 @@ import path from "node:path";
 
 // Onboarding (product/ONBOARDING.md): archetypes, the catalog, proposal with alternatives, the owner's approval, generation.
 const { ARCHETYPES, loadCatalog, searchCatalog, propose, approve, generate, OnboardRefusal } = await import("../onboard.mjs");
-const catalog = await loadCatalog();
+const HERE = path.dirname(new URL(import.meta.url).pathname);
+const catalog = await loadCatalog([path.join(HERE, "fixtures", "domain-roles.json")]); // Meta's starter catalog plus a company's domain roles
 const intake = { id: "kitchen", name: "Kitchen Co", purpose: "recipes that work", product: "tested recipes", measure: "recipes passing a cook test", budget: 50, owner: "founder-k", referee: { cmd: "node score.mjs {dir}", heldOut: "hidden/" } };
 const crewDesign = { archetype: "dynamic-workflow", reason: "broad work that divides by cuisine", roles: ["evaluation-steward", "hq-engineer", "qa-tester", { id: "recipe-builder", mission: "write and test recipes" }], members: [{ id: "m-a", role: "recipes", model: "m" }, { id: "m-b", role: "tests", model: "m" }] };
 const corpDesign = { archetype: "corporate", reason: "recurring production with gates", roles: ["chief-of-staff", "evaluation-steward", "hq-engineer", "qa-tester"] };
 const refusal = (fn, re) => assert.throws(fn, (e) => e instanceof OnboardRefusal && re.test(e.message));
 
 test("the catalog: one catalog, generic roles in the starter layer, searchable", () => {
-  assert.ok(catalog.length > 100);
+  assert.equal(catalog.filter((r) => r.layer === "starter").length, 11); assert.ok(catalog.length >= 13);
   assert.equal(catalog.find((r) => r.id === "hq-engineer").layer, "starter"); assert.equal(catalog.find((r) => r.id === "demo-builder").layer, "domain");
   assert.ok(searchCatalog(catalog, "HQ pages event log").slice(0, 5).some((r) => r.id === "hq-engineer"));
   assert.deepEqual(Object.keys(ARCHETYPES), ["corporate", "dynamic-workflow", "science", "population", "single-agent"]);

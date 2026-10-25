@@ -81,6 +81,16 @@ input.search { width:100%; padding:7px 10px; border:1px solid var(--line); borde
 .cnt { font-size:12px; color:var(--accent); cursor:pointer; } .crumbs { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:12px; padding:8px 10px; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
 .crumbs a { display:inline-flex; align-items:center; gap:5px; cursor:pointer; } .hits { margin:-4px 0 12px; } .opanel { position:sticky; top:12px; }
 .tree ul { list-style:none; margin:0; padding-left:22px; border-left:1px solid var(--line); } .tree > ul { padding-left:0; border-left:none; }
+.dh { margin:20px 0 8px; } .mission { margin-bottom:12px; font-size:15px; line-height:1.5; }
+.bars { display:grid; gap:8px; } .brow { display:grid; grid-template-columns:minmax(160px,34%) 1fr 190px; gap:10px; align-items:center; } .blab { display:flex; align-items:center; gap:6px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.btrack { position:relative; height:10px; background:var(--chip); border-radius:5px; } .btrack i { position:absolute; left:0; top:0; bottom:0; background:var(--s1); border-radius:0 4px 4px 0; } .btrack i.over { background:var(--crit); } .btrack b { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--text); opacity:.6; }
+.bval { text-align:right; font-variant-numeric:tabular-nums; } .crit { color:var(--crit); font-weight:600; } .chip.live { background:var(--good); color:#fff; }
+:root { --s1:#2a78d6; --crit:#d03b3b; --stgood:#0ca30c; --stwarn:#fab219; } @media (prefers-color-scheme: dark) { :root { --s1:#3987e5; } }
+svg.chart { width:100%; height:150px; display:block; } .grid { stroke:var(--line); stroke-width:1; vector-effect:non-scaling-stroke; } .axis { font-size:10px; fill:var(--muted); } .sline { fill:none; stroke:var(--s1); stroke-width:2; }
+.mcols { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; } .mcol { background:var(--side); border:1px solid var(--line); border-radius:10px; padding:8px; } .mhead { font-weight:600; margin:2px 4px 8px; }
+.mcard { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin-bottom:6px; } .st { display:inline-grid; place-items:center; width:18px; height:18px; border-radius:50%; font-size:11px; color:#fff; }
+.st.good { background:var(--stgood); } .st.active { background:var(--s1); } .st.warn { background:var(--stwarn); color:#0b0b0b; } .st.next { background:var(--muted); } .st.crit { background:var(--crit); }
+@media (max-width:700px) { .brow { grid-template-columns:1fr; gap:4px; } .bval { text-align:left; } }
 main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 </style>
 </head>
@@ -92,8 +102,8 @@ main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 <script>
 // the starter's pages: few and generic; a page with nothing to show is hidden. Anything else is a company's own page
 // (its HQ developers' extension point), not a starter page
-const VIEWS = [["overview", "Overview"], ["rooms", "Rooms"], ["org", "Org"], ["board", "Board"], ["notes", "Notes"], ["meetings", "Meetings"], ["knowledge", "Knowledge"]];
-const HAS = { rooms: () => members(state.all).length, org: () => state.org.length || members(state.all).length, board: () => state.all.some((e) => e.type === "board.post" || e.type === "claim"), notes: () => state.all.some((e) => e.type === "note"), meetings: () => state.all.some((e) => e.type === "meeting"), knowledge: () => state.knowledge.length };
+const VIEWS = [["overview", "Overview"], ["dashboard", "Dashboard"], ["rooms", "Rooms"], ["org", "Org"], ["board", "Board"], ["notes", "Notes"], ["meetings", "Meetings"], ["knowledge", "Knowledge"]];
+const HAS = { dashboard: () => state.dash || state.all.some((e) => e.type === "spend"), rooms: () => members(state.all).length, org: () => state.org.length || members(state.all).length, board: () => state.all.some((e) => e.type === "board.post" || e.type === "claim"), notes: () => state.all.some((e) => e.type === "note"), meetings: () => state.all.some((e) => e.type === "meeting"), knowledge: () => state.knowledge.length };
 let state = { room: null, names: {}, open: null, focus: null, oq: "", city: [], company: null, view: "city", all: [], events: [], knowledge: [], org: [], q: "", at: null, playing: null };
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -152,7 +162,11 @@ function spark(ev) {
 }
 function viewCity() {
   if (!state.city.length) return `<div class="empty">No companies in the city file yet.</div>`;
-  return `<h1>The city</h1><div class="sub1">${state.city.length} companies · owners choose what to share</div><div class="cards">${state.city.map((c) => `<div class="card" style="cursor:pointer" onclick="go('${c.id}','overview')"><h3><span class="dot s-${c.health.state}" style="display:inline-block;margin-right:6px"></span>${esc(c.name)}</h3><div class="k">${esc(c.archetype ?? "")} · ${c.health.members} members · ${c.health.state}</div><div class="row" style="margin-top:10px"><div class="stat"><div class="k">score</div><div class="v">${pct(c.health.score)}</div></div><div class="stat"><div class="k">spent</div><div class="v">$${c.health.spent}</div></div></div><div class="k">${c.health.lands} lands · ${c.health.refused} refused · ${ago(c.health.last)}</div></div>`).join("")}</div>`;
+  // a company's budget lines (its dashboard tool) when it has them, else its spend events; benchmark orgs that a
+  // company's budget line already counts (Meta's B10-B13) are not counted twice
+  const counted = new Set(state.city.flatMap((c) => (c.budget?.lines ?? []).map((l) => l.id.toLowerCase())));
+  const own = (c) => (c.budget?.lines?.length ? c.budget : null), tot = state.city.reduce((a, c) => a + (own(c) ? own(c).spent : counted.has(c.id) ? 0 : c.health.spent ?? 0), 0), appr = state.city.reduce((a, c) => a + (own(c) ? own(c).approved : counted.has(c.id) ? 0 : c.health.budget ?? 0), 0);
+  return `<h1>The city</h1><div class="sub1">${state.city.length} companies · owners choose what to share</div><div class="row" style="margin-bottom:14px"><div class="card stat"><div class="k">companies</div><div class="v">${state.city.length}</div><div class="k">${state.city.filter((c) => c.health.state === "running").length} running</div></div><div class="card stat"><div class="k">spent across the city</div><div class="v">${usd(tot)}</div><div class="k">${appr ? `of ${usd(appr)} approved` : ""}</div></div></div><div class="cards">${state.city.map((c) => `<div class="card" style="cursor:pointer" onclick="go('${c.id}','overview')"><h3><span class="dot s-${c.health.state}" style="display:inline-block;margin-right:6px"></span>${esc(c.name)}</h3><div class="k">${esc(c.archetype ?? "")} · ${c.health.members} members · ${c.health.state}</div><div class="row" style="margin-top:10px"><div class="stat"><div class="k">score</div><div class="v">${pct(c.health.score)}</div></div><div class="stat"><div class="k">spent</div><div class="v">${usd(c.budget?.lines?.length ? c.budget.spent : c.health.spent)}</div></div></div><div class="k">${c.health.lands} lands · ${c.health.refused} refused · ${ago(c.health.last)}</div></div>`).join("")}</div>`;
 }
 function viewOverview(c) {
   const ev = state.events, ms = members(ev), lands = ev.filter((e) => e.type === "land"), h = state.at == null ? c.health : { ...c.health, score: lands.at(-1)?.after ?? c.health.start, lands: lands.length, refused: ev.filter((e) => e.type === "land.refused").length, spent: Number(ev.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0).toFixed(2)), last: ev.at(-1)?.t }, budget = h.budget ?? 0;
@@ -289,6 +303,34 @@ function roomsModel() {
   for (const r of list) r.span = r.kind === "lobby" ? 2 : r.people.length > 6 ? 3 : r.people.length > 2 ? 2 : 1;
   return list;
 }
+// ---- the dashboard: the company's mission, budget and milestones (its dashboard tool) and its spend (the event log)
+const usd = (x) => (x == null ? "—" : `$${Number(x).toLocaleString(undefined, { maximumFractionDigits: x >= 100 ? 0 : 2 })}`);
+const STATE = { done: ["✓", "good", "Done"], active: ["●", "active", "Active"], partly: ["◐", "warn", "Partly"], next: ["○", "next", "Next"], blocked: ["■", "crit", "Blocked"] };
+function spendLine(ev) {
+  const sp = ev.filter((e) => e.type === "spend" && e.usd > 0); if (sp.length < 2) return "";
+  let acc = 0; const pts = sp.map((e) => [Date.parse(e.t), (acc += e.usd)]), W = 1000, H = 150, P = 56;
+  const x0 = pts[0][0], x1 = Math.max(pts.at(-1)[0], x0 + 1), y1 = acc * 1.08, X = (x) => P + ((x - x0) / (x1 - x0)) * (W - 2 * P), Y = (y) => H - 22 - (y / y1) * (H - 40);
+  const grid = [0.25, 0.5, 0.75, 1].map((f) => `<line x1="${P}" x2="${W - P}" y1="${Y(acc * f)}" y2="${Y(acc * f)}" class="grid"/><text x="${P - 4}" y="${Y(acc * f) + 3}" text-anchor="end" class="axis">${usd(acc * f)}</text>`).join("");
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="cumulative spend">${grid}<path d="${pts.map((p, i) => `${i ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(" ")}" class="sline" vector-effect="non-scaling-stroke"/>${pts.map((p, i) => `<rect x="${X(p[0]) - 6}" y="0" width="12" height="${H}" fill="transparent"><title>${time(new Date(p[0]).toISOString())} · ${usd(p[1])} spent · ${esc(nameOf(sp[i].by))} +${usd(sp[i].usd)}</title></rect>`).join("")}<text x="${P}" y="${H - 6}" class="axis">${time(new Date(x0).toISOString())}</text><text x="${W - P}" y="${H - 6}" text-anchor="end" class="axis">${time(new Date(x1).toISOString())}</text></svg>`;
+}
+function bars(rows, max) { return `<div class="bars">${rows.map((r) => `<div class="brow" title="${esc(r.tip ?? "")}"><div class="blab">${r.label}</div><div class="btrack"><i style="width:${Math.max(0.5, Math.min(100, (100 * (r.value ?? 0)) / max))}%" class="${r.over ? "over" : ""}"></i>${r.cap ? `<b style="left:${Math.min(100, (100 * r.cap) / max)}%"></b>` : ""}</div><div class="bval">${r.text}</div></div>`).join("")}</div>`; }
+function viewDashboard(c) {
+  const d = state.dash, ev = state.events, h = c.health, sp = ev.filter((e) => e.type === "spend");
+  const evSpent = sp.reduce((a, e) => a + (e.usd ?? 0), 0), budget = d?.budget, spent = budget?.lines?.length ? budget.spent : evSpent, approved = (budget?.lines?.length && budget.approved) || h.budget || null;
+  const byMember = {}; for (const e of sp) byMember[e.by] = (byMember[e.by] ?? 0) + e.usd;
+  const model = {}; for (const m of ev.find((e) => e.type === "crew.start")?.members ?? []) model[m.id] = m.model;
+  const mrows = Object.entries(byMember).sort((a, b) => b[1] - a[1]).map(([id, v]) => ({ label: `${mini(id, 20)} ${esc(nameOf(id))} <span class="k">${esc(model[id] ?? "")}</span>`, value: v, text: usd(v), tip: `${nameOf(id)} (${id}): ${usd(v)}` }));
+  const lines = (budget?.lines ?? []).map((l) => ({ label: `<b>${esc(l.id)}</b> <span class="k">${esc(l.title.replace(/^[^:]+:\s*/, ""))}</span>`, value: l.spent ?? 0, cap: l.approved, over: l.approved != null && l.spent > l.approved, text: `${l.live ? `<span class="chip live">live</span> ` : ""}${usd(l.spent)}${l.approved != null ? ` <span class="k">of ${usd(l.approved)}</span>` : ` <span class="k">no cap</span>`}${l.approved != null && l.spent > l.approved ? ` <span class="crit">▲ over</span>` : ""}`, tip: `${l.title} · ${l.source ?? ""} · approved by ${l.approvedBy ?? "—"}` }));
+  const ms = d?.milestones ?? [], cols = Object.keys(STATE).filter((k) => ms.some((m) => m.state === k));
+  const tile = (k, v, sub = "") => `<div class="card stat"><div class="k">${k}</div><div class="v">${v}</div>${sub ? `<div class="k">${sub}</div>` : ""}</div>`;
+  return `<h1>Dashboard</h1><div class="sub1">${esc(c.name)} · from its dashboard tool and its event log</div>
+  ${d?.mission ? `<div class="card mission"><div class="k">mission</div><div>${esc(d.mission)}</div></div>` : ""}
+  <div class="row">${tile("spent", usd(spent), approved ? `of ${usd(approved)} approved` : "")}${approved ? (() => { const used = budget?.lines?.length ? budget.spentCapped ?? spent : spent; return tile("left", usd(Math.max(0, approved - used)), `${Math.round((100 * used) / approved)}% of approved lines used${budget?.spentUncapped ? ` · ${usd(budget.spentUncapped)} on lines with no cap` : ""}`); })() : ""}${h.lands ? tile("score", pct(h.score), `from ${pct(h.start)} · ${h.lands} lands`) : ""}${ms.length ? tile("milestones", `${ms.filter((m) => m.state === "done").length} / ${ms.length}`, `${ms.filter((m) => m.state === "blocked").length} blocked`) : ""}</div>
+  ${lines.length ? `<h3 class="dh">Budget lines</h3><div class="card">${bars(lines, Math.max(...lines.map((l) => Math.max(l.value, l.cap ?? 0))))}<div class="k" style="margin-top:6px">bar: spent · tick: approved</div></div>` : ""}
+  ${sp.length > 1 ? `<h3 class="dh">Spend over time</h3><div class="card">${spendLine(ev)}</div>` : ""}
+  ${mrows.length ? `<h3 class="dh">Spend by member</h3><div class="card">${bars(mrows, Math.max(...mrows.map((r) => r.value)))}</div>` : ""}
+  ${ms.length ? `<h3 class="dh">Milestones</h3><div class="mcols">${cols.map((k) => `<div class="mcol"><div class="mhead"><span class="st ${STATE[k][1]}">${STATE[k][0]}</span> ${STATE[k][2]} <span class="k">${ms.filter((m) => m.state === k).length}</span></div>${ms.filter((m) => m.state === k).map((m) => `<div class="mcard"><b>${esc(m.id)}</b> ${esc(m.title)}<div class="k">${esc(m.evidence ?? "")}</div></div>`).join("")}</div>`).join("")}</div>` : ""}`;
+}
 // the activity strip: one tick per event over the run, coloured by kind; the replay position marked
 function strip() {
   if (state.all.length < 2) return "";
@@ -369,12 +411,12 @@ function viewKnowledge() {
 }
 function render() {
   nav(); const c = state.city.find((x) => x.id === state.company);
-  const v = !c ? viewCity() : state.view.startsWith("x-") ? state.custom : { overview: () => viewOverview(c), rooms: viewRooms, org: () => viewOrg(c), board: viewBoard, notes: viewNotes, meetings: viewMeetings, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
+  const v = !c ? viewCity() : state.view.startsWith("x-") ? state.custom : { overview: () => viewOverview(c), dashboard: () => viewDashboard(c), rooms: viewRooms, org: () => viewOrg(c), board: viewBoard, notes: viewNotes, meetings: viewMeetings, knowledge: viewKnowledge }[state.view]?.() ?? viewOverview(c);
   const focus = document.activeElement?.classList?.contains("search"); $("#main").innerHTML = v; if (focus) { const s = $("input.search"); s.focus(); s.setSelectionRange(s.value.length, s.value.length); }
 }
 async function load() {
   state.city = await api("/api/city");
-  if (state.company) { if (state.loaded !== state.company) { state.at = null; state.loaded = state.company; state.open = null; state.focus = null; state.room = null; state.pos = {}; state.drawn = false; } [state.all, state.knowledge, state.org] = await Promise.all([api(`/api/company/${state.company}/events`), api(`/api/company/${state.company}/knowledge`), api(`/api/company/${state.company}/org`)]); nameAll(); applyAt(); }
+  if (state.company) { if (state.loaded !== state.company) { state.at = null; state.loaded = state.company; state.open = null; state.focus = null; state.room = null; state.pos = {}; state.drawn = false; } [state.all, state.knowledge, state.org, state.dash] = await Promise.all([api(`/api/company/${state.company}/events`), api(`/api/company/${state.company}/knowledge`), api(`/api/company/${state.company}/org`), api(`/api/company/${state.company}/dashboard`)]); nameAll(); applyAt(); }
   // a company's own page (the extension point): its module renders from the same events and knowledge
   if (state.company && state.view.startsWith("x-")) {
     try { const mod = await import(`/api/company/${state.company}/page/${state.view.slice(2)}.js?t=${Date.now()}`); state.custom = mod.render({ events: state.events, knowledge: state.knowledge, company: state.city.find((x) => x.id === state.company), esc, time, pct }); }
