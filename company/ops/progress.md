@@ -1,3 +1,11 @@
+## 2026-10-25 · one-demo content hub deployment · W-2030 blocked on Vercel team access
+
+Prepared the published sum-seven-ignores-first-die lesson in a real Git-per-space hub with a trusted React compiler profile, pinned runtime/types, TypeScript checks and compiled model tests. A separate minimal Next.js host builds successfully and reads a mutable publication endpoint without demo imports. Local phone/desktop full flows, A → B → A → B with one host process, failed React compilation preserving publication, restored-input cache reuse and opaque frame isolation pass. Eight hub/index regressions pass. Evidence: company/rnd/content-hub/deployment-status.md and evidence/deployment-*.
+
+The failure-injection test caught the old transpile-only loader accepting malformed TSX; the new profile now performs full TypeScript diagnostics before bundling. Main repository check retains 811 errors/four warnings and aggregate verify retains its known publication-readiness failures. No production app route, protected file, lesson source or learner metric changed.
+
+Vercel denies scoped access (403) to team_Ss0FbvX3HyCJMqitsy31SLPj and explicitly requires authorize_team_access. The founder already authorized deploying one demo; this is missing connection access. No cloud project/resource/deployment was created and no live URL exists. The initial access link expired during preparation; request a fresh short-lived link when resuming. After access: dedicated artifact + Next host projects, Global Config pointer, READY checks and live A/B/rollback with unchanged host deployment ID. Git/build operator remains local for this pilot; a distributed control plane is outside scope.
+
 ## 2026-10-24 · R&D real-catalogue content hub test · W-2029 ready for review
 
 All 1,645 real React demos bundled independently in 185.84 s; shared kit 4.15 s separately. One scoped comment-only source revision rebuilt in 36.6 ms. Selected exactly 1/10/0 demos for isolated/ten/docs edits; shared controls selected 1,643 consumers. Dependency index: 801 ms real / 813 ms with 1,000 labelled source copies (2,645 records). Copies are deduplication fixtures, not incoming authored demos.

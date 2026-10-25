@@ -72,6 +72,8 @@ The host page fetches publication state and loads a frame whose module graph com
 
 ## Limits and next decision
 
+The [one-demo deployment preparation](../../../company/rnd/content-hub/deployment-status.md) connects the actual hub to a trusted React compiler profile and a separately buildable Next.js host. It passes local A/B publication and rollback checks. Vercel team connection authorization is required before any live deployment. `ContentHub` accepts an operator-selected `compiler`, `sdk` and `compilerIdentityExtra`; these are trusted process configuration, never inputs accepted from demo authors. The default worker/preview remain DOM-profile tools. The React pilot uses its explicit operator runner.
+
 The subsequent [real-catalogue experiment](../../../company/rnd/content-hub/catalogue-results.md) bundled all 1,645 available React demos and exercised 1,000 labelled growth copies. It is a separate lab compiler/index adapter, not a completed integration into the original DOM hub or production Next.js routes. [Next.js integration proposal](../../../company/rnd/content-hub/nextjs-architecture.md).
 
 ```sh

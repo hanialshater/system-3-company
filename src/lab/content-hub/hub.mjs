@@ -22,8 +22,10 @@ const git = (repo, ...args) => execFileSync('git', ['-C', repo, ...args], {
 });
 
 export class ContentHub {
-  constructor(root) {
+  constructor(root, { compiler = COMPILER, sdk = 'content-hub-dom-v1', compilerIdentityExtra = '' } = {}) {
     this.root = path.resolve(root);
+    this.compilerFile = path.resolve(compiler);
+    this.sdk = sdk;
     fs.mkdirSync(this.root, { recursive: true });
     this.db = new DatabaseSync(path.join(this.root, 'metadata.sqlite'));
     this.db.exec(`PRAGMA journal_mode=WAL;
@@ -38,8 +40,8 @@ export class ContentHub {
       CREATE TABLE IF NOT EXISTS releases(id INTEGER PRIMARY KEY, space TEXT, demo TEXT, job INTEGER, generation INTEGER);
     `);
     this.compilerIdentity = hash(JSON.stringify({
-      source: fs.readFileSync(COMPILER, 'utf8'), typescript: ts.version,
-      node: process.versions.node, sdk: 'content-hub-dom-v1',
+      source: fs.readFileSync(this.compilerFile, 'utf8'), typescript: ts.version,
+      node: process.versions.node, sdk, compilerIdentityExtra,
     }));
   }
   close() { this.db.close(); }
@@ -103,7 +105,7 @@ export class ContentHub {
     const prefix = `demos/${demo}/`;
     if (!snapshot.has(prefix + 'demo.json')) throw new Error('Missing demo manifest');
     const config = JSON.parse(snapshot.get(prefix + 'demo.json'));
-    if (config.sdk !== 'content-hub-dom-v1') throw new Error('Unsupported host SDK');
+    if (config.sdk !== this.sdk) throw new Error('Unsupported host SDK');
     safePath(config.entry); safePath(config.test);
     const selected = new Map([...snapshot].filter(([f]) => f.startsWith(prefix)));
     const aliases = {};
@@ -182,12 +184,12 @@ export class ContentHub {
           }
           const configFile = path.join(scratch, 'config.json'), resultFile = path.join(scratch, 'result.json');
           fs.writeFileSync(configFile, JSON.stringify(input.config));
-          execFileSync(process.execPath, [COMPILER, source, configFile, output, resultFile], {
+          execFileSync(process.execPath, [this.compilerFile, source, configFile, output, resultFile], {
             timeout: 30000, maxBuffer: 1024 * 1024, env: { PATH: process.env.PATH, NODE_ENV: 'test' }, stdio: ['ignore', 'pipe', 'pipe'],
           });
           const result = JSON.parse(fs.readFileSync(resultFile, 'utf8'));
           const files = Object.fromEntries(result.files.map(f => [f, fs.readFileSync(path.join(output, f))]));
-          const manifest = { entry: result.entry, sdk: 'content-hub-dom-v1', files: Object.fromEntries(Object.entries(files).map(([f, bytes]) => [f, { sha256: hash(bytes), bytes: bytes.length }])) };
+          const manifest = { entry: result.entry, sdk: this.sdk, files: Object.fromEntries(Object.entries(files).map(([f, bytes]) => [f, { sha256: hash(bytes), bytes: bytes.length }])) };
           artifact = hash(JSON.stringify(manifest));
           const dest = path.join(this.root, 'objects', job.space, artifact);
           fs.mkdirSync(path.dirname(dest), { recursive: true });
