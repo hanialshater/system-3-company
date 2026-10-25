@@ -141,8 +141,10 @@ export const MEMBERS = [
 ];
 async function armO() {
   const led = ledgerOf("O"); let rows = S8.readJsonl(led);
-  if (rows.some((x) => x.event === "end") && !opt.continue) return { done: true };
+  if (rows.some((x) => x.event === "end") && !opt.continue && !opt.resume) return { done: true };
   if (opt.continue) log(led, { event: "continue", caps: { cost: CAP_COST, min: CAP_MIN }, why: "founder: +$150 each (2026-10-25)" });
+  // --resume: the run was ended by a harness error, not by its rules; same caps, same sessions
+  if (opt.resume) log(led, { event: "resume", caps: { cost: CAP_COST, min: CAP_MIN }, why: String(opt.resume === true ? "harness error" : opt.resume) });
   if (!rows.length) log(led, { event: "start", arm: "O", model: MODEL, second: SECOND_MODEL, caps: { cost: CAP_COST, min: CAP_MIN }, fake: FAKE });
   const clock = clockFor("O"), all = () => S8.readJsonl(led);
   fs.mkdirSync(ORG, { recursive: true });
@@ -179,9 +181,12 @@ How the organisation works:
 
 Commit as you go. When you stop, I will say "go on" while the organisation's time and budget last.`;
   const PLATEAU = Number(opt.plateau ?? 60), CRASH = { id: opt["crash-id"] ?? "m-engine", at: Number(opt["crash-at"] ?? 45), down: Number(opt["crash-down"] ?? 20) };
-  const lastGainMin = () => { try { const st = JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")), g = (st.lands ?? []).filter((l) => l.after > l.before).at(-1); return g ? (Date.parse(g.t) - Date.parse(rows[0]?.t ?? new Date().toISOString())) / 60000 : 0; } catch { return 0; } };
-  const plateaued = () => clock.min() > 60 && (Date.now() - startWall) / 60000 - lastGainMin() > PLATEAU;
+  // the plateau: no gain on main for PLATEAU minutes (wall clock since the last gain, or since the start), after the first
+  // hour. Fixed 10:51: the base was the ledger's rows as read before the start row existed, so the last gain counted as
+  // "now" at read time and the run stopped at minute 60 while gaining (BENCH13.md, harness deviations)
   const startWall = Date.parse(S8.readJsonl(led)[0]?.t ?? new Date().toISOString());
+  const lastGainWall = () => { try { const st = JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")), g = (st.lands ?? []).filter((l) => l.after > l.before).at(-1); return g ? Date.parse(g.t) : startWall; } catch { return startWall; } };
+  const plateaued = () => clock.min() > 60 && (Date.now() - lastGainWall()) / 60000 > PLATEAU;
   const one = async (w) => {
     while (true) {
       const spent = spentNow(), left = CAP_MIN - clock.min();
@@ -193,7 +198,7 @@ Commit as you go. When you stop, I will say "go on" while the organisation's tim
       const active = W.filter((x) => !x.idle).length, rate = clock.min() > 5 && spent > 0 ? spent / clock.min() : 0.5 * active, byBudget = Math.floor((CAP_COST - 2 - spent) / Math.max(rate, 0.05));
       if (byBudget < 3) return;
       const unread = notesFor(w) - seenFor(w);
-      const prompt = w.k === 0 ? intro(w) : w.recovered && !w.toldRecover ? ((w.toldRecover = true), `Your session crashed ${CRASH.down} minutes ago and has been restored (your tree is as you left it). The organisation went on meanwhile: check \`${ORGCMD(w)} status\` and your notes, then go on. The organisation: $${spent.toFixed(2)} of $${CAP_COST} spent; main at ${JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")).rate}.`) : `${opt.continue && !w.told ? ((w.told = true), "The founder has raised the organisation's budget by $150 (to $" + CAP_COST + ") so that you can keep working. ") : ""}Go on. The organisation: $${spent.toFixed(2)} of $${CAP_COST} spent, ${Math.round(clock.min())} of ${CAP_MIN} minutes; main at ${JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")).rate}.${unread > 0 ? ` You have ${unread} unread note${unread > 1 ? "s" : ""} (\`${ORGCMD(w)} notes\`).` : ""} Your last commit: ${gitOk(w.R.V, "log", "--oneline", "-1")}.`;
+      const prompt = w.k === 0 ? intro(w) : w.recovered && !w.toldRecover ? ((w.toldRecover = true), `Your session crashed ${CRASH.down} minutes ago and has been restored (your tree is as you left it). The organisation went on meanwhile: check \`${ORGCMD(w)} status\` and your notes, then go on. The organisation: $${spent.toFixed(2)} of $${CAP_COST} spent; main at ${JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")).rate}.`) : `${opt.continue && !w.told ? ((w.told = true), "The founder has raised the organisation's budget by $150 (to $" + CAP_COST + ") so that you can keep working. ") : ""}${opt.resume && !w.toldResume ? ((w.toldResume = true), "The organisation was stopped a few minutes ago by a fault in the operator's harness, not by you or its rules; it has been resumed with the same budget and time. ") : ""}Go on. The organisation: $${spent.toFixed(2)} of $${CAP_COST} spent, ${Math.round(clock.min())} of ${CAP_MIN} minutes; main at ${JSON.parse(fs.readFileSync(path.join(ORG, "status.json"), "utf8")).rate}.${unread > 0 ? ` You have ${unread} unread note${unread > 1 ? "s" : ""} (\`${ORGCMD(w)} notes\`).` : ""} Your last commit: ${gitOk(w.R.V, "log", "--oneline", "-1")}.`;
       const crashNow = () => w.id === CRASH.id && !w.crashed && clock.min() >= CRASH.at && (log(led, { event: "crash", id: w.id, min: Math.round(clock.min()) }), (w.crashed = true));
       const r = await turn(w.R, prompt, { resume: w.sid, ms: Math.min(TURN_MAX, left, byBudget) * 60000, label: `O ${w.id} ${w.k + 1}`, ledger: led, model: w.model, stop: () => spentNow() >= CAP_COST || clock.min() >= CAP_MIN || plateaued() || crashNow(), onSid: (s) => (w.sid = s) });
       w.sid = r.sid ?? w.sid; w.k++;
@@ -232,7 +237,7 @@ async function offboard() {
 
 async function finalScoring() {
   const out = {}, cands = { start: startDir };
-  for (const arm of ["V", "O"]) { const e = S8.readJsonl(ledgerOf(arm)).find((x) => x.event === "end"); if (e?.dir) cands[arm] = e.dir; }
+  for (const arm of ["V", "O"]) { const e = S8.readJsonl(ledgerOf(arm)).findLast((x) => x.event === "end"); if (e?.dir) cands[arm] = e.dir; }
   if (opt.only) { const keep = String(opt.only).split(","); for (const k of Object.keys(cands)) if (!keep.includes(k)) delete cands[k]; }
   for (const [arm, dir] of Object.entries(cands)) { out[arm] = await full(dir, path.join(B11, "_operator", `final-${arm}.json`)); const { lines, ...x } = out[arm]; log(path.join(B11, "_operator", "final.jsonl"), { arm, ...x }); }
   return out;
