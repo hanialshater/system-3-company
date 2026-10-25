@@ -10,14 +10,25 @@
 * { box-sizing:border-box; }
 body { margin:0; font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif; background:var(--bg); color:var(--text); }
 .app { display:grid; grid-template-columns:240px 1fr; min-height:100vh; }
-aside { background:var(--side); border-right:1px solid var(--line); padding:14px 10px; position:sticky; top:0; height:100vh; overflow:auto; }
-.brand { font-weight:650; padding:4px 8px 14px; letter-spacing:.2px; }
+aside { background:var(--side); border-right:1px solid var(--line); padding:12px 10px; position:sticky; top:0; height:100vh; overflow:auto; display:flex; flex-direction:column; gap:6px; }
+.ws { display:flex; align-items:center; gap:10px; padding:6px 8px 8px; } .ws-logo { width:28px; height:28px; border-radius:8px; display:grid; place-items:center; font-weight:800; font-size:12px; color:#fff; background:linear-gradient(135deg,#7c86ff,#5e6ad2 55%,#2e9d66); box-shadow:0 2px 6px rgba(94,106,210,.35); }
+.ws-name { display:flex; flex-direction:column; line-height:1.15; } .ws-name span { font-size:11.5px; color:var(--muted); }
+.search-btn { display:flex; align-items:center; gap:8px; width:100%; padding:7px 9px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--muted); font:inherit; font-size:13px; cursor:pointer; text-align:left; } .search-btn:hover { border-color:var(--accent); }
+.search-btn kbd { margin-left:auto; font:11px ui-monospace,monospace; padding:1px 5px; border:1px solid var(--line); border-radius:4px; background:var(--side); }
+.ic { width:16px; height:16px; flex:none; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; opacity:.8; }
+.nav { flex:1; } .nav .item { position:relative; display:flex; align-items:center; gap:9px; padding:6px 8px; margin:1px 0; border-radius:7px; color:var(--text); text-decoration:none; cursor:pointer; font-size:13.5px; transition:background .12s; }
+.nav .item:hover { background:var(--chip); } .nav .item.on { background:color-mix(in srgb, var(--accent) 13%, transparent); color:var(--text); font-weight:600; } .nav .item.on::before { content:""; position:absolute; left:-10px; top:6px; bottom:6px; width:3px; border-radius:0 3px 3px 0; background:var(--accent); }
+.nav .item.on .ic { opacity:1; color:var(--accent); } .nav .co .nm { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .nav .co.open { font-weight:600; }
+.chev { color:var(--muted); font-size:10px; width:10px; } .nav .sub { margin:2px 0 6px 12px; padding-left:8px; border-left:1px solid var(--line); } .nav .sub .item { color:var(--muted); font-size:13px; } .nav .sub .item.on { color:var(--text); }
+.badge { margin-left:auto; font-size:11px; color:var(--muted); background:var(--chip); border-radius:999px; padding:0 7px; line-height:18px; font-variant-numeric:tabular-nums; } .item.on .badge { background:var(--panel); }
+.clogo { flex:none; border-radius:6px; display:grid; place-items:center; color:#fff; font-weight:700; font-size:11px; box-shadow:inset 0 0 0 1px rgba(255,255,255,.15); }
+.me { display:flex; align-items:center; gap:9px; padding:10px 8px 4px; border-top:1px solid var(--line); } .me div { display:flex; flex-direction:column; line-height:1.15; font-size:13px; } .me span { font-size:11.5px; color:var(--muted); }
+.kbox { display:none; position:fixed; inset:0; background:rgba(10,12,20,.35); backdrop-filter:blur(2px); z-index:50; } .kbox.on { display:block; }
+.kpanel { width:min(560px,92vw); margin:12vh auto 0; background:var(--panel); border:1px solid var(--line); border-radius:12px; box-shadow:0 18px 50px rgba(0,0,0,.25); overflow:hidden; }
+.kpanel input { width:100%; border:none; border-bottom:1px solid var(--line); padding:14px 16px; font:inherit; font-size:15px; background:var(--panel); color:var(--text); outline:none; }
+.kit { display:flex; align-items:center; gap:10px; padding:9px 14px; cursor:pointer; color:var(--text); } .kit .k { margin-left:auto; } .kit.on, .kit:hover { background:var(--chip); }
+.topbar { display:none; } .scrim { display:none; }
 .sec { font-size:11px; text-transform:uppercase; color:var(--muted); padding:12px 8px 4px; letter-spacing:.6px; }
-.nav a { display:flex; align-items:center; gap:8px; padding:5px 8px; border-radius:6px; color:var(--text); text-decoration:none; cursor:pointer; }
-.nav a:hover { background:var(--chip); }
-.nav a.on { background:var(--chip); font-weight:600; }
-.nav .sub a { padding-left:22px; color:var(--muted); }
-.nav .sub a.on { color:var(--text); }
 .dot { width:8px; height:8px; border-radius:50%; background:var(--muted); flex:none; }
 .dot.s-running { background:var(--good); } .dot.s-onboarded { background:var(--accent); } .dot.s-ended { background:var(--muted); } .dot.s-empty { background:var(--line); }
 main { padding:22px 28px; max-width:1200px; }
@@ -40,7 +51,10 @@ tr:last-child td { border-bottom:none; }
 svg.spark { width:100%; height:120px; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
 .empty { color:var(--muted); padding:30px; text-align:center; background:var(--panel); border:1px dashed var(--line); border-radius:10px; }
 input.search { width:100%; padding:7px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--text); margin-bottom:12px; }
-@media (max-width: 760px) { .app { grid-template-columns:1fr; } aside { position:static; height:auto; } main { padding:16px; } }
+@media (max-width: 760px) { .app { grid-template-columns:1fr; } main { padding:16px; }
+  .topbar { display:flex; align-items:center; gap:10px; position:sticky; top:0; z-index:20; padding:10px 14px; background:var(--side); border-bottom:1px solid var(--line); } .topbar .menu { border:1px solid var(--line); background:var(--panel); color:var(--text); border-radius:7px; width:34px; height:30px; font-size:15px; cursor:pointer; } .tb-title { font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  aside { position:fixed; left:0; top:0; bottom:0; width:min(290px,86vw); z-index:40; transform:translateX(-102%); transition:transform .2s ease; box-shadow:4px 0 24px rgba(0,0,0,.18); }
+  body.navopen aside { transform:none; } body.navopen .scrim { display:block; position:fixed; inset:0; background:rgba(10,12,20,.35); z-index:30; } }
 .replay { display:flex; align-items:center; gap:10px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:8px 12px; margin-bottom:16px; }
 .replay input[type=range] { flex:1; accent-color:var(--accent); } .replay button { border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:6px; padding:3px 10px; cursor:pointer; font:inherit; }
 .replay .live { color:var(--good); font-weight:600; } .replay .past { color:var(--warn); font-weight:600; }
@@ -96,7 +110,12 @@ main{min-width:0} .msg,.thread,td{overflow-wrap:anywhere}
 </head>
 <body>
 <div class="app">
-  <aside><div class="brand">System 3 HQ</div><nav class="nav" id="nav"></nav></aside>
+  <div class="topbar"><button class="menu" onclick="document.body.classList.toggle('navopen')" aria-label="menu">☰</button><span class="tb-title" id="tbtitle">System 3 HQ</span></div>
+  <aside><div class="ws"><span class="ws-logo">S3</span><div class="ws-name"><b>System 3</b><span>the city</span></div></div>
+    <button class="search-btn" onclick="openK()"><svg viewBox="0 0 16 16" class="ic"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Search or jump to…<kbd>⌘K</kbd></button>
+    <nav class="nav" id="nav"></nav><div class="me" id="me"></div></aside>
+  <div class="scrim" onclick="document.body.classList.remove('navopen')"></div>
+  <div class="kbox" id="kbox" onclick="if(event.target===this)closeK()"><div class="kpanel"><input id="kq" placeholder="Jump to a company or a page…" oninput="drawK()" onkeydown="keyK(event)"><div id="klist"></div></div></div>
   <main id="main"><div class="empty">Loading…</div></main>
 </div>
 <script>
@@ -115,14 +134,41 @@ const at = (p) => (window.HQ_STATIC ? p.replace(/^\/api\//, "data/").replace(/(\
 async function api(p) { const r = await fetch(at(p)); return r.json(); }
 function go(company, view) { state.company = company; state.view = view; location.hash = company ? `${company}/${view}` : "city"; load(); }
 window.addEventListener("hashchange", () => { const [c, v] = location.hash.slice(1).split("/"); if (c && c !== "city") { state.company = c; state.view = v || "overview"; } else { state.company = null; state.view = "city"; } load(); });
+// icons (16px, stroke): one per starter page; a company's own pages get the puzzle piece
+const ICON = { city: "M2 14V6l4-3 4 3v8M10 14V8h4v6M2 14h12M5 8h2M5 11h2", overview: "M2 7.5 8 3l6 4.5V14H2zM6.5 14v-4h3v4", dashboard: "M3 13V9M7 13V4M11 13V7M2 14h12", rooms: "M2 3h12v10H2zM2 8h5M7 3v10M10 8v5", org: "M8 2v3M3 9V7h10v2M3 9v2M13 9v2M8 5v6M1.5 11h3v3h-3zM11.5 11h3v3h-3zM6.5 11h3v3h-3z", board: "M2 3h3.5v10H2zM6.3 3h3.5v6H6.3zM10.6 3H14v8h-3.4z", notes: "M2.5 3h11v7.5H7l-3 2.5v-2.5H2.5z", meetings: "M5 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM1.5 13c.4-2.4 1.8-4 3.5-4s3.1 1.6 3.5 4M8.5 11c.6-1.3 1.4-2 2.5-2 1.7 0 3.1 1.6 3.5 4", knowledge: "M3 2.5h7.5L13 5v8.5H3zM10.5 2.5V5H13M5.5 8h5M5.5 10.5h5", page: "M6 2.5h4v2a1.3 1.3 0 0 0 2.6 0V4H14v4h-1.5a1.3 1.3 0 0 0 0 2.6H14v3.4H2V10h1.5a1.3 1.3 0 0 0 0-2.6H2V4h4z" };
+const ic = (k) => `<svg viewBox="0 0 16 16" class="ic"><path d="${ICON[k] ?? ICON.page}"/></svg>`;
+// a company's mark: a short code in its name's brackets (B13), else the initials of its distinctive words (S3C, M)
+const mark = (name) => { const n = String(name), code = n.match(/\(([A-Za-z0-9]{1,4})[,)]/)?.[1]; if (code) return code.toUpperCase(); const w = n.replace(/\(.*?\)/g, "").split(/\s+/).filter((x) => x && !/^(org|company|crew|the|of)$/i.test(x)); return (w.length > 1 ? w.map((x) => (/^\d/.test(x) ? x : x[0])).join("") : (w[0] ?? "C")[0]).slice(0, 3).toUpperCase(); };
+const logo = (c, size = 20) => { const m = mark(c.name); return `<span class="clogo" style="width:${size + (m.length > 2 ? 6 : 0)}px;height:${size}px;font-size:${m.length > 1 ? 9 : 11}px;background:linear-gradient(135deg,hsl(${hue(c.id)} 70% 58%),hsl(${(hue(c.id) + 40) % 360} 65% 46%))">${esc(m)}</span>`; };
+// count badges for the open company: what is going on in each page
+function badge(v) {
+  if (!state.all.length) return "";
+  const n = { rooms: () => members(state.events).filter((m) => m.status === "working").length, notes: () => state.events.filter((e) => e.type === "note" && Date.now() - Date.parse(e.t) < 3600000).length, board: () => state.events.filter((e) => e.type === "board.post").length, meetings: () => state.events.filter((e) => e.type === "meeting").length, knowledge: () => state.knowledge.length, org: () => (state.org.length || members(state.events).length) }[v]?.() ?? 0;
+  return n ? `<span class="badge">${n > 999 ? "999+" : n}</span>` : "";
+}
 function nav() {
-  let h = `<div class="sec">City</div><a class="${state.view === "city" ? "on" : ""}" onclick="go(null,'city')">All companies</a><div class="sec">Companies</div>`;
+  const pages = (c) => [...VIEWS.filter(([v]) => !HAS[v] || HAS[v]() || state.view === v), ...(c.pages ?? []).map((p) => [`x-${p.id}`, esc(p.title)])];
+  let h = `<a class="item ${state.view === "city" ? "on" : ""}" onclick="go(null,'city')">${ic("city")}<span>All companies</span><span class="badge">${state.city.length}</span></a><div class="sec">Companies</div>`;
   for (const c of state.city) {
-    h += `<a class="${state.company === c.id && state.view === "overview" ? "on" : ""}" onclick="go('${c.id}','overview')"><span class="dot s-${c.health.state}"></span>${esc(c.name)}</a>`;
-    if (state.company === c.id) h += `<div class="sub">${[...VIEWS.filter(([v]) => !HAS[v] || HAS[v]() || state.view === v), ...(c.pages ?? []).map((p) => [`x-${p.id}`, esc(p.title)])].map(([v, n]) => `<a class="${state.view === v ? "on" : ""}" onclick="go('${c.id}','${v}')">${n}</a>`).join("")}</div>`;
+    const open = state.company === c.id;
+    h += `<a class="item co ${open ? "open" : ""} ${open && state.view === "overview" ? "on" : ""}" onclick="go('${c.id}','overview')" title="${esc(c.name)} · ${esc(c.archetype ?? "")} · ${esc(c.health.state)}">${logo(c)}<span class="nm">${esc(c.name)}</span><span class="dot s-${c.health.state}" title="${esc(c.health.state)}"></span><span class="chev">${open ? "▾" : "▸"}</span></a>`;
+    if (open) h += `<div class="sub">${pages(c).filter(([v]) => v !== "overview").map(([v, n]) => `<a class="item ${state.view === v ? "on" : ""}" onclick="go('${c.id}','${v}')">${ic(v.startsWith("x-") ? "page" : v)}<span>${n}</span>${badge(v)}</a>`).join("")}</div>`;
   }
   $("#nav").innerHTML = h;
+  const c = state.city.find((x) => x.id === state.company), owner = c?.owner ?? "founder";
+  $("#me").innerHTML = `${mini(owner, 26)}<div><b>${esc(state.company ? nameOf(owner) : "Founder")}</b><span>${esc(c ? `owner of ${c.name}` : "owner")}</span></div>`;
+  $("#tbtitle").textContent = c ? `${c.name} · ${(VIEWS.find(([v]) => v === state.view) ?? [, "page"])[1]}` : "System 3 HQ";
+  document.body.classList.remove("navopen");
 }
+// ⌘K: jump to any company or any of its pages
+const kItems = () => state.city.flatMap((c) => [{ c, v: "overview", label: c.name, sub: c.archetype ?? "" }, ...VIEWS.filter(([v]) => v !== "overview").map(([v, n]) => ({ c, v, label: `${c.name} › ${n}`, sub: "" })), ...(c.pages ?? []).map((p) => ({ c, v: `x-${p.id}`, label: `${c.name} › ${p.title}`, sub: "company page" }))]);
+let kSel = 0;
+function openK() { $("#kbox").classList.add("on"); $("#kq").value = ""; kSel = 0; drawK(); setTimeout(() => $("#kq").focus(), 0); }
+function closeK() { $("#kbox").classList.remove("on"); }
+function kHits() { const q = $("#kq").value.toLowerCase().trim(); return kItems().filter((x) => !q || q.split(/\s+/).every((w) => `${x.label} ${x.sub}`.toLowerCase().includes(w))).slice(0, 12); }
+function drawK() { const hs = kHits(); kSel = Math.min(kSel, Math.max(0, hs.length - 1)); $("#klist").innerHTML = hs.map((x, i) => `<a class="kit ${i === kSel ? "on" : ""}" onclick="closeK();go('${x.c.id}','${x.v}')">${logo(x.c, 18)}${ic(x.v.startsWith("x-") ? "page" : x.v)}<span>${esc(x.label)}</span><span class="k">${esc(x.sub)}</span></a>`).join("") || `<div class="k" style="padding:12px">Nothing matches.</div>`; }
+function keyK(e) { const hs = kHits(); if (e.key === "ArrowDown") { kSel = Math.min(kSel + 1, hs.length - 1); drawK(); e.preventDefault(); } else if (e.key === "ArrowUp") { kSel = Math.max(kSel - 1, 0); drawK(); e.preventDefault(); } else if (e.key === "Enter" && hs[kSel]) { closeK(); go(hs[kSel].c.id, hs[kSel].v); } else if (e.key === "Escape") closeK(); }
+window.addEventListener("keydown", (e) => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openK(); } });
 const HUES = [210, 340, 150, 30, 270, 190, 0, 90, 300, 50];
 const hue = (id) => HUES[[...String(id)].reduce((a, c) => a + c.charCodeAt(0), 0) % HUES.length];
 const avatar = (id, cls = "", extra = "") => `<span class="av ${cls}" title="${esc(id)}${extra ? ` · ${esc(extra)}` : ""}">${mini(id, 22, cls)}${esc(nameOf(id))}<span class="k">${esc(id)}</span></span>`;
