@@ -57,6 +57,9 @@ fast, founder-led), **guild** (craft standards across companies).
 | 7. On-board | members read the starter knowledge (city-wide entries, if on) and the company's purpose; HQ developers set up its HQ pages | the company | first orders on the tracker |
 | 8. First review | after the first orders: the referee's results, cost, and whether the archetype fits | founder, Meta | keep, adjust the archetype, or retire |
 
+Built (2026-10-25): steps 2, 3, 3b and 6 are `prototype/onboard.mjs` (archetypes, search, propose, approve,
+generate), with tests in `prototype/tests/onboard.test.mjs`.
+
 ## Decided (founder, 2026-10-25)
 
 - **The first starter kit's archetypes:** corporate, and those tried in System 3 Meta's runs: dynamic workflow

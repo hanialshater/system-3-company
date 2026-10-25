@@ -20,9 +20,9 @@ const readJsonl = (f) => { try { return fs.readFileSync(f, "utf8").trim().split(
 const city = () => JSON.parse(fs.readFileSync(cityFile, "utf8"));
 export function eventsOf(c) { return c.bench ? benchEvents(c.bench) : readJsonl(c.events); }
 export function health(ev) {
-  const start = ev.find((e) => e.type === "crew.start"), lands = ev.filter((e) => e.type === "land"), last = lands.at(-1);
+  const co = ev.find((e) => e.type === "company.start"), start = ev.find((e) => e.type === "crew.start"), lands = ev.filter((e) => e.type === "land"), last = lands.at(-1);
   const spent = ev.filter((e) => e.type === "spend").reduce((a, e) => a + (e.usd ?? 0), 0), end = ev.find((e) => e.type === "crew.end");
-  return { score: last?.after ?? start?.rate ?? null, start: start?.rate ?? null, lands: lands.length, refused: ev.filter((e) => e.type === "land.refused").length, spent: Number(spent.toFixed(2)), budget: start?.budget ?? null, state: end ? "ended" : ev.length ? "running" : "empty", members: start?.members?.length ?? 0, last: ev.at(-1)?.t ?? null };
+  return { score: last?.after ?? start?.rate ?? null, start: start?.rate ?? null, lands: lands.length, refused: ev.filter((e) => e.type === "land.refused").length, spent: Number(spent.toFixed(2)), budget: start?.budget ?? co?.budget ?? null, state: end ? "ended" : start ? "running" : co ? "onboarded" : ev.length ? "running" : "empty", members: start?.members?.length ?? co?.roles?.length ?? 0, last: ev.at(-1)?.t ?? null };
 }
 const send = (res, code, body, type = "application/json") => { res.writeHead(code, { "content-type": type, "cache-control": "no-store" }); res.end(type === "application/json" ? JSON.stringify(body) : body); };
 

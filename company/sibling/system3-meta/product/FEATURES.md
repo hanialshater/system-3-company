@@ -55,6 +55,16 @@ benchmark harness, not yet in the kernel). Update this file in the same change t
 | Meetings page: the minutes members recorded, newest first | starter | `hq/index.html` | built |
 | Company extension points for custom pages (HQ developers); the kernel's meetings (meetings.mjs) as v1 events | starter | — | next |
 
+## Onboarding (`prototype/onboard.mjs`), since 2026-10-25
+
+| Feature | Layer | Where | Status |
+|---|---|---|---|
+| The first starter kit's archetypes as data: corporate, dynamic workflow, science, population, single agent | starter | `onboard.mjs ARCHETYPES` | built |
+| One catalog of roles (System 3 Company's org as data until the migration), the starter layer marked, search by words | starter | `onboard.mjs loadCatalog, searchCatalog` | built |
+| Org design proposal: by the chief of staff or the org-health head, one design and at least one alternative, each with its reason; the referee owner and HQ developers always included; new domain roles need a mission | starter | `onboard.mjs propose` | built; tests/onboard.test.mjs (6 tests) |
+| The CEO's approval: only the company's owner approves one design | starter | `onboard.mjs approve` | built |
+| Generation: company.json, crew.json (crew-shaped) or a spec skeleton (corporate), a knowledge base, a v1 event log, the city entry; a science company refused without a held-out referee | starter | `onboard.mjs generate` | built; the HQ shows it as onboarded |
+
 ## Proven in benchmarks, to be folded into the kernel (the rest)
 
 | Feature | Layer | Where | Evidence |
