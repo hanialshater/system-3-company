@@ -107,3 +107,51 @@ The fix is for category-curator, who owns the hook: qualify "always". For exampl
 
 - category-curator: reword the hook's "always" (c8). Then route it to a fact-checker.
 - category-curator: the c6 source field should say "variant of Cauchy's" and add PMC10239678 and PMC9640434 (non-blocking).
+
+---
+
+# Pass 2 (W-2055): re-check of c8 and c6's amended source, at fb76d7c13
+
+Fact-checker, 2026-10-25. Scope: only what fb76d7c13 touched. The new hook (c8), c6's `source` field, and `brief.subCards[2].title`. c1 to c5 and c7 are untouched and keep their status.
+
+## 1. Artifact first (findings written before opening meta.json or the diff)
+
+- The first walkthrough served a stale build: `.next/BUILD_ID` is from 18:50, and fb76d7c13 is from 19:05. It showed the old hook ("…show why it is always 2") and every claim as NOT YET CHECKED. I rebuilt into `.next-fc2055` (`NEXT_DIST_DIR=.next-fc2055 npx next build`) and ran `NEXT_DIST_DIR=.next-fc2055 npm run walkthrough -- flatten-the-cube-to-a-dot` again. The transcript at `artifacts/walkthroughs/flatten-the-cube-to-a-dot/transcript.md` comes from that run. Anyone else who runs the walkthrough should rebuild first.
+- The hook as shown: "Corners minus edges plus faces is 2 for a cube. Every convex solid too? Three moves tell."
+  - Sentence 1 is 8 − 12 + 6 = 2, the content of c1 (verified in pass 1). It is true.
+  - Sentence 2 is a question and asserts nothing. It sets the scope to convex solids, which matches the reveal's "Any convex solid" and c6's "every convex solid". The holed counterexample from pass 1 (the picture frame, 16 − 32 + 16 = 0) is not convex, so it no longer contradicts the hook.
+  - Sentence 3, "Three moves tell", carries the claim: the lesson's three moves settle the question for convex solids. The cards are exactly three (1 Slice, 2 Flatten, 3 Shrink). The reveal answers yes. Flatten and shrink, the argument verified as c6 in pass 1 (own2.py on 5 convex solids, plus sources), settle it for every convex solid. Slice settles nothing in general: it shows that one particular change leaves the total alone. "Three moves tell" is therefore slightly loose, because one of the three is a check on an example and not part of the proof. A hook leaves room for that, and nothing a learner would take from it is false. **True.**
+  - The hook no longer says "always" or gives a value for other solids.
+- `subCards[2]` shows as "3 Shrink" on the card. That is a label, not a claim.
+- The trust sheet shows c8's text as "Every convex solid too? Three moves tell." with "rests on a published source". A question with a published source reads oddly on the sheet. That is a support-kind and display matter, and I note it in section 2.
+- Nothing else that a learner sees changed between this pass and pass 1: same predict, stage, reveal and the c1 to c7 text.
+
+## 2. Read after my findings (the account: the fb76d7c13 diff and meta.json)
+
+- The diff touches only `hook`, c6 `source`, c8 (text, source, status, note) and `subCards[2].title`, which is what the curator's handoff says. No learner text outside the hook moved, so c1 to c5 and c7 are out of scope for this pass and keep **verified**.
+- c8's `support` is "source", and its source field says the implication rests on c6 and c3 to c5. I agree with the substance. "derivation" would describe it a little better, and the trust sheet would then not print "rests on a published source" under a question. This is non-blocking and the curator's choice. I did not change it.
+- Nothing in the account changes section 1.
+
+## 3. c6's amended source
+
+- The field now reads "a variant of Cauchy's (1813; Cauchy removed triangles, the lesson removes edges)". This is what caveat (i) of pass 1 asked for.
+- It matches PMC10239678's account of Lakatos's chapter 1, quoted in pass 1: stretch onto the plane, triangulate, and remove triangles one at a time.
+- PMC10239678: Crossref (api.crossref.org/works/10.1098/rsta.2022.0052) re-confirms the title *Representational change is integral to reasoning*, Phil. Trans. R. Soc. A, 2023-06-05.
+- PMC9640434: the title *Two Types of Refutation in Philosophical Argumentation* matches the one I opened in pass 1. ncbi.nlm.nih.gov returned a proxy 403 this session, so I did not re-open it.
+- One leftover point, not blocking: the source field still gives "1813". Pass 1 caveat (iv) stands, because no source I opened confirms the year. This is not learner text. I put it on the board for the curator (drop the year, or add a source for it).
+- **c6 stays verified.** I appended the confirmation to its note.
+
+## 4. Verdicts (pass 2)
+
+| Claim | Status | Basis |
+|---|---|---|
+| c8 "Every convex solid too? Three moves tell." | **verified** (was disputed, then unverified) | Section 1. Scoped to convex solids. The implied claim rests on c6. Slice is illustrative, which is acceptable for a hook. |
+| c6 (source field only) | **verified**, unchanged | Section 3. The amendment is correct. "1813" is still unsourced (non-blocking). |
+| c1 to c5, c7 | unchanged (verified) | Not touched by fb76d7c13. |
+
+No claim on the lesson is disputed or unverified now. Script: `fc-2026-10-25/set_status_pass2.py` (claims array only, with asserts).
+
+## Board (pass 2)
+
+- category-curator (non-blocking): c6 source "1813" is unconfirmed, so drop it or source it. Optionally change c8 support from "source" to "derivation".
+- Whoever runs walkthroughs: the shared `.next` build can be older than HEAD. Rebuild, or use `NEXT_DIST_DIR`, before evaluating.

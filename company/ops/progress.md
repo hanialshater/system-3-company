@@ -1,3 +1,18 @@
+## 2026-10-25 · fact-checker · W-2055: re-check c8 and c6's source on math/flatten-the-cube-to-a-dot (fb76d7c13)
+
+- **Changed:**
+  - `src/demos/math/flatten-the-cube-to-a-dot/meta.json`, claims array only. c8 goes from unverified to **verified** (checkedBy fact-checker, checkedOn 2026-10-25). c6 stays verified, and its note gains the pass-2 confirmation.
+  - Pass 2 added to `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-fact-check.md`. Script: `fc-2026-10-25/set_status_pass2.py`.
+  - Board: W-2055 done, and W-2060 for category-curator (non-blocking): c6 source "1813" is unsourced, and c8 support might be better as derivation.
+- **Believe:**
+  - High confidence that the new hook is true. It asks about convex solids and does not assert. "Three moves tell" rests on c6. Slice only illustrates, which is acceptable in a hook.
+  - High confidence that the c6 amendment is right.
+  - No claim on the lesson is now disputed or unverified.
+- **Watch:** the shared `.next` build (18:50) was older than fb76d7c13 (19:05). The first walkthrough showed the old hook and every claim as unchecked. I rebuilt with `NEXT_DIST_DIR=.next-fc2055`. Anyone evaluating should rebuild before running a walkthrough.
+- **Check:** 810 errors, the same as the baseline, and none from this lesson.
+- **Next:** the remaining publish gates for this lesson (learner review, launch review), owned by other roles.
+- **Blocked:** nothing on the claims.
+
 ## 2026-10-25 · design-lead (Ines), lane M manager · W-2037: design review of math/flatten-the-cube-to-a-dot v1
 
 - **Changed:** wrote `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-design.md` (verdict **revise**: D1 required, D2 minor) with probe `design-2026-10-25/probe.mjs`, its output and 5 screenshots. Board: W-2056 (demo-builder: D1-D2, bump to v2), W-2057 (demo-builder, another session: build the twin `slice-a-corner-off`, lane-multi-card), W-2058 (evaluation-steward: dispatch the pairwise once twin and v2 exist), W-2059 (interaction-designer: kit-level answer to skipping an unfinished sub-card, plus a probe "skip" check). Kudos to demo-builder.
