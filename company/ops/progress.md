@@ -1,3 +1,11 @@
+## 2026-10-25 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 12: SQLite compatibility by SQLite's own test suite
+
+Founder: "make it grounded in real compatibility test", "Yes go ahead with B12".
+
+**Done:** bench12/BENCH12.md (final). Test material: SQLite 3.53.4's own Tcl suite (from Ubuntu's archive), replayed through the driver: 763 files, 34,868 statements, real SQLite's outputs; 480 hidden files. Both arms from B11 V's engine (57.8% hidden). Hidden mean per test file: **V 86.92% ($145.05, 142 min), O 85.76% ($142.27, 63 min)**. O divided the work by SQLite area on its own (27 lands, none refused, 10 notes); all sessions read the knowledge base; off-boarding added 52 entries (106 in total).
+
+**Belief (medium-high):** at the same budget the autonomous org now matches one strong agent within about a point, and gets there in under half the wall-clock time; the single agent is still slightly better per dollar. **Next:** test the org's speed advantage directly (same wall-clock limit for both, or a budget that does not run out), with the wake-notes fix. **Blocked:** nothing.
+
 ## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 11: SQLite-compatible database in Clojure; off-boarding and a persistent knowledge base
 
 Founder: "go for sqllight", "Clojure, core families"; the org must have autonomy (continuous work, self-landing, roles not limits); "add the persistent knowledge base", "i thought we have agents off boarding"; "make it grounded in real compatibility test".
