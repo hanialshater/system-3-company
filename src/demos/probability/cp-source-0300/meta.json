@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0300",
+  "title": "Hospital counts need age composition",
+  "hook": "Two stated cases: explore the strata weights behind a hospital-risk aggregate.",
+  "domain": "probability",
+  "concept": "cp-source-0300",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the strata weights behind a hospital-risk aggregate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the strata weights behind a hospital-risk aggregate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0300.predict",
+      "text": "Two toy strata have B rates 0.3,0.02; A is better by -0.01 in both. Stratum-1 shares are 0.2 in A, 0.8 in B. What is aggregate A minus B?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.reveal.0",
+      "text": "The retained results are WeightA=0.2 WeightB=0.8; Gap=-0.178 and WeightA=0.5 WeightB=0.5; Gap=-0.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.reveal.1",
+      "text": "Each stratum has the same stipulated advantage, but different weights can reverse the aggregate comparison. Equalizing weights removes this composition channel. This comparison isolates the strata weights behind a hospital-risk aggregate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.case.0.witness",
+      "text": "WeightA=0.2 WeightB=0.8; Gap=-0.178",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightA\",0.2],[\"WeightB\",0.8],[\"Rate1\",0.3],[\"Rate2\",0.02],[\"Advantage\",-0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-0.17800000000000002},{\"label\":\"AggregateA\",\"value\":0.066},{\"label\":\"AggregateB\",\"value\":0.244}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-0.178\"},{\"label\":\"WeightA\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.case.1.witness",
+      "text": "WeightA=0.5 WeightB=0.5; Gap=-0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightA\",0.5],[\"WeightB\",0.5],[\"Rate1\",0.3],[\"Rate2\",0.02],[\"Advantage\",-0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-0.01},{\"label\":\"AggregateA\",\"value\":0.15},{\"label\":\"AggregateB\",\"value\":0.16}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-0.01\"},{\"label\":\"WeightA\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0300.recall",
+      "text": "Two toy strata have B rates 0.3,0.02; A is better by -0.01 in both. Stratum-1 shares are 0.3 in A, 0.8 in B. What is aggregate A minus B? Answer -0.15.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0300/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #300. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy strata have B rates 0.3,0.02; A is better by -0.01 in both. Stratum-1 shares are 0.3 in A, 0.8 in B. What is aggregate A minus B?",
+    "options": [
+      "-0.25",
+      "-0.15",
+      "-0.05"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap -0.15 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0300",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-300"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 300,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceEntryOriginal": "- **300. Vaccinated in hospital** \\[Story\\]: in Israel in 2021 many hospitalized patients were vaccinated, yet within each age group vaccines strongly protected.",
+    "modelBoundary": "the strata weights behind a hospital-risk aggregate",
+    "recallInputs": [
+      0.30000000000000004,
+      0.8,
+      0.3,
+      0.02,
+      -0.01
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

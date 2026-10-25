@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0277",
+  "title": "A summary can miss one strange point",
+  "hook": "Two stated cases: explore the sensitivity hidden by a single numerical summary.",
+  "domain": "probability",
+  "concept": "cp-source-0277",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sensitivity hidden by a single numerical summary affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the sensitivity hidden by a single numerical summary in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0277.predict",
+      "text": "A toy sample has 10 identical values 10 and one extreme 50. What is the sample mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.reveal.0",
+      "text": "The retained results are Extreme=50; Mean=13.636 and Extreme=10; Mean=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.reveal.1",
+      "text": "The extreme value can move the mean substantially while the median of this sample stays at the repeated value. Sensitivity does not itself establish which observations are invalid. This comparison isolates the sensitivity hidden by a single numerical summary.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.case.0.witness",
+      "text": "Extreme=50; Mean=13.636",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",10],[\"N\",10],[\"Extreme\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":13.636363636363637},{\"label\":\"Median\",\"value\":10}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"13.636\"},{\"label\":\"Extreme\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.case.1.witness",
+      "text": "Extreme=10; Mean=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",10],[\"N\",10],[\"Extreme\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":10},{\"label\":\"Median\",\"value\":10}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"10\"},{\"label\":\"Extreme\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0277.recall",
+      "text": "A toy sample has 10 identical values 11 and one extreme 50. What is the sample mean? Answer 14.545.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0277/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #277. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sample has 10 identical values 11 and one extreme 50. What is the sample mean?",
+    "options": [
+      "8.727",
+      "20.364",
+      "14.545"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 14.545 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0277",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-277"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 277,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceEntryOriginal": "- **277. Anscombe's quartet** \\[Gotcha\\]: four datasets with identical stats and totally different pictures.",
+    "modelBoundary": "the sensitivity hidden by a single numerical summary",
+    "recallInputs": [
+      11,
+      10,
+      50
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

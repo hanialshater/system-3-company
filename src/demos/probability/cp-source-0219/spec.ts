@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0219", "title": "A test reduces average uncertainty", "op": "testinfo", "labels": ["Prior", "Sensitivity", "FalsePositive"], "outputs": ["Bits"], "a": [0.1, 0.9, 0.05], "b": [0.1, 0.6, 0.4], "question": "Toy prevalence is 0.1; sensitivity 0.9, false-positive rate 0.05. What is prior binary entropy minus expected posterior entropy, in bits?", "questionTemplate": "Toy prevalence is {Prior}; sensitivity {Sensitivity}, false-positive rate {FalsePositive}. What is prior binary entropy minus expected posterior entropy, in bits?", "explain": "Average uncertainty reduction weighs positive and negative results by their frequencies. Information value and decision value are different quantities.", "lens": "information averaged over positive and negative results", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

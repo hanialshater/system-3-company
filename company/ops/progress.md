@@ -1,3 +1,11 @@
+## 2026-10-25 · source batch 05 · 200 information and inference drafts
+
+Implemented the next 200 remaining source entries, spanning information, testing, confounding, selection, counterfactual and experimental-design models. Exact curation and boundaries are in company/reviews/continuation-batch-05. All claims remain unverified and all lessons draft. No independent review is asserted.
+
+Validation: 956 arithmetic/schema/state assertions, 437 relationship/fresh-recall checks and TypeScript pass; inherited company diagnostics remain 811 errors/four warnings. The full verification retains publication failures. Production browser checks for batches 02–04 are running from their recorded snapshot; this batch's build and browser checks remain pending. Transfer generation now rejects either displayed input as recall; older continuation cases are queued for audit before completion.
+
+Source-list implementation coverage is now 500 behavioral plus 500 probability entries, 1,000 total; 500 probability entries remain (200, 200, 100). W-2033 remains doing; this batch and its review boundaries are recorded separately. No merge or deploy.
+
 ## 2026-10-25 · source batch 04 · 200 probability drafts
 
 Implemented probability source entries 1–200 as explicit finite mini-labs. Manifest, original provenance, curation and fixtures are in company/reviews/continuation-batch-04. Validation: 854 arithmetic/schema/state assertions, 32 mathematical relationships and TypeScript pass. Company check remains 811 errors/four warnings; full verify retains publication failures. Build and browser validation remain pending after session interruption; no completed result is fabricated. No independent source or learner approval is claimed.

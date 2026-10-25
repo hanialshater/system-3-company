@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0209",
+  "title": "A predictable next character",
+  "hook": "Two stated cases: explore surprisal in a stated next-character model.",
+  "domain": "probability",
+  "concept": "cp-source-0209",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How surprisal in a stated next-character model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bits, regardless of the stated inputs.",
+  "objective": "Compare surprisal in a stated next-character model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0209.predict",
+      "text": "A specified toy outcome has probability 0.5. How many bits of surprisal does -log2(P) assign it?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.reveal.0",
+      "text": "The retained results are P=0.5; Bits=1 and P=0.9; Bits=0.152.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.reveal.1",
+      "text": "Surprisal measures one outcome; entropy averages over possible outcomes. Neither measures the semantic importance of the event. This comparison isolates surprisal in a stated next-character model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.case.0.witness",
+      "text": "P=0.5; Bits=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":1}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"1\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.case.1.witness",
+      "text": "P=0.9; Bits=0.152",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":0.15200309344504995}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"0.152\"},{\"label\":\"P\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0209.recall",
+      "text": "A specified toy outcome has probability 0.4. How many bits of surprisal does -log2(P) assign it? Answer 1.322.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0209/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A specified toy outcome has probability 0.4. How many bits of surprisal does -log2(P) assign it?",
+    "options": [
+      "1.322",
+      "0.793",
+      "1.851"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Bits 1.322 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0209",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-209"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 209,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **209. Guess the next letter** \\[Measure\\]: play Shannon's game; English carries only about 1 bit per letter.",
+    "modelBoundary": "surprisal in a stated next-character model",
+    "recallInputs": [
+      0.4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0376",
+  "title": "A small initial difference grows",
+  "hook": "Two stated cases: explore the amplification assumed in a divergent toy recurrence.",
+  "domain": "probability",
+  "concept": "cp-source-0376",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the amplification assumed in a divergent toy recurrence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the amplification assumed in a divergent toy recurrence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0376.predict",
+      "text": "A toy feedback process starts at 0.001; each step multiplies the current level by 2. What level follows 10 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.reveal.0",
+      "text": "The retained results are Initial=0.001; Level=1.024 and Initial=0.002; Level=2.048.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.reveal.1",
+      "text": "A self-reinforcing measurement process can amplify its starting differences. The recurrence is assumed and does not separate true underlying need from observed activity. This comparison isolates the amplification assumed in a divergent toy recurrence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.case.0.witness",
+      "text": "Initial=0.001; Level=1.024",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",0.001],[\"Amplification\",2],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0.001},{\"label\":\"2.5\",\"value\":0.005656854249492381},{\"label\":\"5\",\"value\":0.032},{\"label\":\"7.5\",\"value\":0.1810193359837562},{\"label\":\"10\",\"value\":1.024}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"1.024\"},{\"label\":\"Initial\",\"value\":\"0.001\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.case.1.witness",
+      "text": "Initial=0.002; Level=2.048",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",0.002],[\"Amplification\",2],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0.002},{\"label\":\"2.5\",\"value\":0.011313708498984762},{\"label\":\"5\",\"value\":0.064},{\"label\":\"7.5\",\"value\":0.3620386719675124},{\"label\":\"10\",\"value\":2.048}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"2.048\"},{\"label\":\"Initial\",\"value\":\"0.002\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0376.recall",
+      "text": "A toy feedback process starts at 0.101; each step multiplies the current level by 2. What level follows 10 steps? Answer 103.424.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0376/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #376. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy feedback process starts at 0.101; each step multiplies the current level by 2. What level follows 10 steps?",
+    "options": [
+      "62.054",
+      "144.794",
+      "103.424"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Level 103.424 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0376",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-376"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 376,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **376. Weather butterfly** \\[Slider\\]: nudge starting conditions slightly and watch ensemble forecasts diverge.",
+    "modelBoundary": "the amplification assumed in a divergent toy recurrence",
+    "recallInputs": [
+      0.101,
+      2,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0403", "title": "An empty assignment cell", "op": "overlap", "labels": ["TLow", "CLow", "THigh", "CHigh"], "outputs": ["Supported"], "a": [0.0, 50.0, 50.0, 0.0], "b": [50.0, 50.0, 50.0, 50.0], "question": "Two toy strata have treated/control counts 0/50 and 50/0. How many strata contain both treatment assignments?", "questionTemplate": "Two toy strata have treated/control counts {TLow}/{CLow} and {THigh}/{CHigh}. How many strata contain both treatment assignments?", "explain": "An observed comparison needs support for both assignments in the relevant strata. Modeling unsupported strata adds extrapolation assumptions rather than creating observed overlap.", "lens": "the distinction between support and extrapolation", "kind": "grid", "answerPosition": 1, "recall": [0.0, 20.0, 20.0, 20.0]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

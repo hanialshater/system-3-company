@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0230",
+  "title": "Forks create more possible analyses",
+  "hook": "Two stated cases: explore the number of false-alarm opportunities.",
+  "domain": "probability",
+  "concept": "cp-source-0230",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the number of false-alarm opportunities affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bound, regardless of the stated inputs.",
+  "objective": "Compare the number of false-alarm opportunities in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0230.predict",
+      "text": "There are 16 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.reveal.0",
+      "text": "The retained results are Tests=16; Bound=0.8 and Tests=4; Bound=0.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.reveal.1",
+      "text": "The bound needs no independence but can be loose. Repeated looks at shared data require their own sequential-testing model. This comparison isolates the number of false-alarm opportunities.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.case.0.witness",
+      "text": "Tests=16; Bound=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",16],[\"Alpha\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bound\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Bound\",\"value\":\"0.8\"},{\"label\":\"Tests\",\"value\":\"16\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.case.1.witness",
+      "text": "Tests=4; Bound=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",4],[\"Alpha\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bound\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Bound\",\"value\":\"0.2\"},{\"label\":\"Tests\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0230.recall",
+      "text": "There are 17 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm? Answer 0.85.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0230/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #230. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "There are 17 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm?",
+    "options": [
+      "0.85",
+      "0.51",
+      "1.19"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Bound 0.85 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0230",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-230"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 230,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **230. Forking paths** \\[Gotcha\\]: one dataset, many reasonable analysis choices, wildly different conclusions.",
+    "modelBoundary": "the number of false-alarm opportunities",
+    "recallInputs": [
+      17,
+      0.05
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

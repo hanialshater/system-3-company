@@ -4,7 +4,7 @@ import {formatNumber} from '../mini-lab/model';
 export type CuratedCase = {
  id:string; title:string; op:string; labels:string[]; outputs:string[];
  a:number[]; b:number[]; question:string; questionTemplate?:string; explain:string; lens:string;
- kind:'bars'|'curve'|'timeline'|'grid'|'scatter'|'table'|'intervals'; answerPosition:number; plot?:[number,number,number]; recall?:number[];
+ kind:'bars'|'curve'|'timeline'|'grid'|'scatter'|'table'|'intervals'|'graph'; answerPosition:number; plot?:[number,number,number]; recall?:number[]; graph?:string; binary?:boolean;
 };
 export type Calculator=(p:number[])=>number[];
 const f=formatNumber;
@@ -15,6 +15,17 @@ function checked(calc:Calculator,p:number[]) {
  return v;
 }
 function picture(c:CuratedCase,p:number[],v:number[],calc:Calculator):MiniLabVisual {
+ if(c.kind==='graph') {
+  const pattern=c.graph==='dsep'?['fork','chain','collider'][p[0]]:c.graph;
+  const middle=pattern==='fork'||pattern==='counterfactual'?'U':pattern==='collider'?'S':pattern==='instrument'?'T':pattern==='spillover'?'Neighbors':'M';
+  const nodes=[{id:'x',label:'X',x:40,y:130},{id:'m',label:middle,x:160,y:40},{id:'y',label:'Y',x:280,y:130}];
+  if(pattern==='instrument')nodes[0].label='Z';
+  const active=c.graph==='dsep'?Boolean(v[0]):true;
+  const edges=pattern==='fork'?[{from:'m',to:'x',active:c.graph==='dsep'?active:c.op!=='confounded'||p[3]!==1},{from:'m',to:'y',active}]:pattern==='collider'?[{from:'x',to:'m',active},{from:'y',to:'m',active}]:pattern==='counterfactual'||pattern==='spillover'?[{from:'x',to:'y',active},{from:'m',to:'y',active}]:[{from:'x',to:'m',active},{from:'m',to:'y',active}];
+  if(pattern==='fork'||c.op==='mediation')edges.push({from:'x',to:'y',active:true});
+  if(c.graph==='dsep'&&pattern==='fork')edges.pop();
+  return {kind:'graph',nodes,edges};
+ }
  if(c.kind==='grid') return {kind:'grid',cells:v.map((value,i)=>({label:c.outputs[i],value}))};
  if(c.kind==='scatter' && p.length>=4) return {kind:'scatter',points:[{x:p[0],y:p[1]},{x:p[2],y:p[3]}],xLabel:'First',yLabel:'Second'};
  if(c.kind==='scatter') return {kind:'scatter',points:[{x:0,y:0},{x:p[0],y:p[1]}],xLabel:c.labels[0],yLabel:c.labels[1]};
@@ -38,10 +49,12 @@ function picture(c:CuratedCase,p:number[],v:number[],calc:Calculator):MiniLabVis
   else if(c.op==='annuity') events=[1,2,3,p[1]].filter((x,i,a)=>x<=p[1]&&a.indexOf(x)===i).map(t=>({label:f(t),value:p[0]/Math.pow(1+p[2],t)}));
   else if(c.op==='beta') events=[{label:'Now',value:p[0]},{label:`t${f(p[2])}`,value:p[1]}];
   else if(c.op==='repeat') events=Array.from({length:6},(_,i)=>({label:String(i+1),value:p[0]*(1-Math.pow(p[2],i+1))/(1-p[2])}));
+  else if(c.op==='feedback') events=[0,p[2]/4,p[2]/2,3*p[2]/4,p[2]].map(t=>({label:f(t),value:p[0]*Math.pow(p[1],t)}));
   else events=[{label:'Input',value:p[0]},{label:'Result',value:v[0]}];
   return {kind:'timeline',events};
  }
  // A visual interval here is a displayed span, never an inferred confidence interval.
+ if(c.kind==='intervals'&&c.op==='waldinterval') return {kind:'intervals',items:[{label:'Estimate',low:v[0],mid:p[0],high:v[1]}]};
  if(c.kind==='intervals') return {kind:'intervals',items:[{label:c.outputs[0],low:Math.min(0,v[0]),mid:v[0],high:Math.max(0,v[0])}]};
  if(c.kind==='table') return {kind:'table',columns:['Quantity','Value'],rows:v.map((x,i)=>[c.outputs[i],x])};
  return {kind:'bars',items:v.map((value,i)=>({label:c.outputs[i],value}))};
@@ -64,7 +77,7 @@ export function makeCuratedSpec(c:CuratedCase,calc:Calculator):MiniLabSpec {
  const options=[f(value-delta),f(value+delta)];options.splice(c.answerPosition,0,f(value));
  if(new Set(options).size!==3) throw Error('Indistinguishable choices');
  return {id:c.id,family:c.op,setup:'Toy model: two stated cases',hint:'Run the question case, then compare the changed condition.',
-  predict:{question:c.question,options,answer:c.answerPosition},scenarios,
+  predict:{question:c.question,options:c.binary?['0: no / blocked','1: yes / active']:options,answer:c.binary?(value===0?0:1):c.answerPosition},scenarios,
   reveal:[`The retained results are ${scenarios[0].summary} and ${scenarios[1].summary}.`,`${c.explain} This comparison isolates ${c.lens}.`]
  };
 }

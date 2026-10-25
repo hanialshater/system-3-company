@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0323",
+  "title": "Precision has a sample-size price",
+  "hook": "Two stated cases: explore the half-width target of a stated normal approximation.",
+  "domain": "probability",
+  "concept": "cp-source-0323",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the half-width target of a stated normal approximation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines N, regardless of the stated inputs.",
+  "objective": "Compare the half-width target of a stated normal approximation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0323.predict",
+      "text": "Use the toy large-population normal approximation with proportion 0.1, multiplier 1.96, and desired half-width 0.01. What rounded-up sample size is required?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.reveal.0",
+      "text": "The retained results are Error=0.01; N=3,458 and Error=0.005; N=13,830.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.reveal.1",
+      "text": "Precision improves with the square root of sample size. The calculation assumes a simple random sample and ignores nonresponse and design effects. This comparison isolates the half-width target of a stated normal approximation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.case.0.witness",
+      "text": "Error=0.01; N=3,458",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.1],[\"Z\",1.96],[\"Error\",0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"N\",\"value\":3458}]},\"metrics\":[{\"label\":\"N\",\"value\":\"3,458\"},{\"label\":\"Error\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.case.1.witness",
+      "text": "Error=0.005; N=13,830",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.1],[\"Z\",1.96],[\"Error\",0.005]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"N\",\"value\":13830}]},\"metrics\":[{\"label\":\"N\",\"value\":\"13,830\"},{\"label\":\"Error\",\"value\":\"0.005\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0323.recall",
+      "text": "Use the toy large-population normal approximation with proportion 0.08, multiplier 1.96, and desired half-width 0.01. What rounded-up sample size is required? Answer 2,828.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0323/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #323. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Use the toy large-population normal approximation with proportion 0.08, multiplier 1.96, and desired half-width 0.01. What rounded-up sample size is required?",
+    "options": [
+      "2,828",
+      "1,696.8",
+      "3,959.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives N 2,828 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0323",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-323"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 323,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceEntryOriginal": "- **323. How many users?** \\[Slider\\]: set baseline rate and effect size; see the sample size needed.",
+    "modelBoundary": "the half-width target of a stated normal approximation",
+    "recallInputs": [
+      0.08000000000000002,
+      1.96,
+      0.01
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0211",
+  "title": "Confident and wrong costs more",
+  "hook": "Two stated cases: explore the probability assigned to the observed class.",
+  "domain": "probability",
+  "concept": "cp-source-0211",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the probability assigned to the observed class affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Loss, regardless of the stated inputs.",
+  "objective": "Compare the probability assigned to the observed class in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0211.predict",
+      "text": "A toy binary outcome is Y 1; predicted probability of class 1 is 0.99. What is its binary log loss in nats?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.reveal.0",
+      "text": "The retained results are P=0.99; Loss=0.01 and P=0.01; Loss=4.605.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.reveal.1",
+      "text": "Log loss grows sharply when a confident prediction assigns little probability to the observed class. Calibration requires repeated outcome checks. This comparison isolates the probability assigned to the observed class.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.case.0.witness",
+      "text": "P=0.99; Loss=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Y\",1],[\"P\",0.99]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Loss\",\"value\":0.01005033585350145}]},\"metrics\":[{\"label\":\"Loss\",\"value\":\"0.01\"},{\"label\":\"P\",\"value\":\"0.99\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.case.1.witness",
+      "text": "P=0.01; Loss=4.605",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Y\",1],[\"P\",0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Loss\",\"value\":4.605170185988091}]},\"metrics\":[{\"label\":\"Loss\",\"value\":\"4.605\"},{\"label\":\"P\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0211.recall",
+      "text": "A toy binary outcome is Y 1; predicted probability of class 1 is 0.792. What is its binary log loss in nats? Answer 0.233.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0211/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy binary outcome is Y 1; predicted probability of class 1 is 0.792. What is its binary log loss in nats?",
+    "options": [
+      "0.133",
+      "0.333",
+      "0.233"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Loss 0.233 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0211",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-211"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 211,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **211. Cross-entropy loss** \\[Slider\\]: see why a confident wrong prediction is punished so much harder than a hesitant one.",
+    "modelBoundary": "the probability assigned to the observed class",
+    "recallInputs": [
+      1,
+      0.792
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

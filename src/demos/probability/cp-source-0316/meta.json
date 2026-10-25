@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0316",
+  "title": "Crediting guaranteed survival time",
+  "hook": "Two stated cases: explore the time denominator before causal interpretation.",
+  "domain": "probability",
+  "concept": "cp-source-0316",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the time denominator before causal interpretation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the time denominator before causal interpretation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0316.predict",
+      "text": "A toy analysis records 10 events over 100 time units, then credits 5 guaranteed event-free units for each of 20 people. What recorded event rate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.reveal.0",
+      "text": "The retained results are Guaranteed=5; Rate=0.05 and Guaranteed=0; Rate=0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.reveal.1",
+      "text": "Crediting guaranteed survival time enlarges the denominator without adding possible events. Time-zero alignment is essential to a causal survival comparison. This comparison isolates the time denominator before causal interpretation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.case.0.witness",
+      "text": "Guaranteed=5; Rate=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Deaths\",10],[\"PersonTime\",100],[\"Guaranteed\",5],[\"People\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":0.05}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.05\"},{\"label\":\"Guaranteed\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.case.1.witness",
+      "text": "Guaranteed=0; Rate=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Deaths\",10],[\"PersonTime\",100],[\"Guaranteed\",0],[\"People\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.1\"},{\"label\":\"Guaranteed\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0316.recall",
+      "text": "A toy analysis records 11 events over 100 time units, then credits 5 guaranteed event-free units for each of 20 people. What recorded event rate results? Answer 0.055.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0316/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #316. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy analysis records 11 events over 100 time units, then credits 5 guaranteed event-free units for each of 20 people. What recorded event rate results?",
+    "options": [
+      "-0.045",
+      "0.155",
+      "0.055"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rate 0.055 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0316",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-316"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 316,
+    "sourceSection": "16. Selection bias, colliders & survivorship",
+    "sourceEntryOriginal": "- **316. Do Oscar winners live longer?** \\[Story\\]: an early finding of extra years (Redelmeier & Singh, 2001) shrank after fixing immortal-time bias (Sylvestre et al., 2006).",
+    "modelBoundary": "the time denominator before causal interpretation",
+    "recallInputs": [
+      11,
+      100,
+      5,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

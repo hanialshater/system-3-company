@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0207",
+  "title": "Give the frequent symbol fewer bits",
+  "hook": "Two stated cases: explore frequency-weighted prefix-code length.",
+  "domain": "probability",
+  "concept": "cp-source-0207",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How frequency-weighted prefix-code length affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MeanLength, regardless of the stated inputs.",
+  "objective": "Compare frequency-weighted prefix-code length in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0207.predict",
+      "text": "Three toy symbols have probabilities 0.5,0.25,and the remainder; code lengths 1,2,2. What is the mean code length?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.reveal.0",
+      "text": "The retained results are P1=0.5; MeanLength=1.5 and P1=0.25; MeanLength=1.75.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.reveal.1",
+      "text": "Frequent symbols have greater influence on average length. Code validity and the chosen symbol probabilities must be checked separately. This comparison isolates frequency-weighted prefix-code length.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.case.0.witness",
+      "text": "P1=0.5; MeanLength=1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P1\",0.5],[\"P2\",0.25],[\"L1\",1],[\"L2\",2],[\"L3\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanLength\",\"value\":1.5}]},\"metrics\":[{\"label\":\"MeanLength\",\"value\":\"1.5\"},{\"label\":\"P1\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.case.1.witness",
+      "text": "P1=0.25; MeanLength=1.75",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P1\",0.25],[\"P2\",0.25],[\"L1\",1],[\"L2\",2],[\"L3\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanLength\",\"value\":1.75}]},\"metrics\":[{\"label\":\"MeanLength\",\"value\":\"1.75\"},{\"label\":\"P1\",\"value\":\"0.25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0207.recall",
+      "text": "Three toy symbols have probabilities 0.6,0.25,and the remainder; code lengths 1,2,2. What is the mean code length? Answer 1.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0207/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #207. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three toy symbols have probabilities 0.6,0.25,and the remainder; code lengths 1,2,2. What is the mean code length?",
+    "options": [
+      "0.84",
+      "1.4",
+      "1.96"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives MeanLength 1.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0207",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-207"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 207,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **207. Build a Huffman code** \\[Slider\\]: give common letters short codes and watch the message shrink.",
+    "modelBoundary": "frequency-weighted prefix-code length",
+    "recallInputs": [
+      0.6,
+      0.25,
+      1,
+      2,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

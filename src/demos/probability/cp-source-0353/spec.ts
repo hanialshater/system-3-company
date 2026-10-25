@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0353", "title": "Select on a consequence of the outcome", "op": "collider", "labels": ["PX", "PY", "Selected", "XValue"], "outputs": ["YGiven"], "a": [0.5, 0.5, 1.0, 0.0], "b": [0.5, 0.5, 1.0, 1.0], "question": "Independent toy binary X,Y have probabilities 0.5,0.5. Selected 1=1 keeps only X OR Y=1; otherwise all. Given X=0, what is P(Y=1) in the retained set?", "questionTemplate": "Independent toy binary X,Y have probabilities {PX},{PY}. Selected {Selected}=1 keeps only X OR Y=1; otherwise all. Given X={XValue}, what is P(Y=1) in the retained set?", "explain": "Selecting a common consequence can create a negative association between initially independent causes. Conditioning and intervening answer different questions.", "lens": "the selection facet of conditioning on downstream information", "kind": "graph", "answerPosition": 2, "graph": "collider", "recall": [0.5, 0.3, 1.0, 1.0]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

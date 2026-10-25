@@ -24,14 +24,16 @@ for(let i=0;i<records.length;i++){
   let state=advance(spec,initialState(),'run');state=advance(spec,state,'compare');const seen=[...state.witnessed];state=advance(spec,state,'reset');assert.deepEqual(state.witnessed,seen);assert(seen.every(Boolean));assertions++;
   let recallP=null,recallValue;
   if(c.recall){assert.equal(c.recall.length,c.a.length);assert.notDeepEqual(c.recall,c.a);assert.notDeepEqual(c.recall,c.b);recallP=c.recall;recallValue=compute(recallP)[0];assert(Number.isFinite(recallValue));}
-  for(let j=0;!recallP&&j<c.a.length;j++){
-   const p=[...c.a];p[j]=probabilityNames.has(c.labels[j])&&p[j]>=0&&p[j]<=1?p[j]*.8:(Number.isInteger(p[j])?p[j]+1:p[j]+.1);
+  for(const offset of [1,2,3,5,10])for(let j=0;!recallP&&j<c.a.length;j++){
+   const p=[...c.a];p[j]=probabilityNames.has(c.labels[j])&&p[j]>=0&&p[j]<=1?p[j]*Math.pow(.8,offset):(Number.isInteger(p[j])?p[j]+offset:p[j]+.1*offset);
+   if(p.every((v,k)=>v===c.a[k])||p.every((v,k)=>v===c.b[k]))continue;
    try {const v=compute(p)[0];if(Number.isFinite(v)&&formatNumber(v)!==formatNumber(compute(c.a)[0])) {recallP=p;recallValue=v;break;}}catch{}
   }
   assert(recallP,`${r.slug}: no transfer case`);
   const template=c.questionTemplate??c.question;
   const recallQuestion=template.replace(/\{(\w+)\}/g,(_,name)=>formatNumber(recallP[c.labels.indexOf(name)]));
   const position=(r.sourceEntryId+1)%3, delta=Math.max(Math.abs(recallValue)*.4,.1), options=[formatNumber(recallValue-delta),formatNumber(recallValue+delta)];options.splice(position,0,formatNumber(recallValue));
+  const recallOptions=c.binary?['0: no / blocked','1: yes / active']:options, recallAnswer=c.binary?(recallValue===0?0:1):position;
   const modelSource=`${folder}/model.ts; finite explicit model from ${curationPath}; source idea ${r.sourceFile} #${r.sourceEntryId}. Empirical source remains unverified.`;
   const claims=[];const add=(key,text,support='derivation')=>claims.push({id:`${r.domain}.${r.slug}.${key}`,text,support,source:modelSource,status:'unverified'});
   add('predict',spec.predict.question);add('setup',spec.setup,'convention');spec.reveal.forEach((t,k)=>add(`reveal.${k}`,t));
@@ -46,10 +48,10 @@ for(let i=0;i<records.length;i++){
    misconception:`The headline alone determines ${c.outputs[0]}, regardless of the stated inputs.`,
    objective:`Compare ${r.lens} in two explicit finite cases; separate model arithmetic from an empirical population claim.`,
    keyState:'Both question and changed cases computed; both parameter/result witnesses retained.',claims,confidence:'',
-   recall:{question:recallQuestion,options,answer:position,why:`The same explicit rule gives ${c.outputs[0]} ${formatNumber(recallValue)} for the changed inputs. This is a new numerical case.`},
+   recall:{question:recallQuestion,options:recallOptions,answer:recallAnswer,why:`The same explicit rule gives ${c.outputs[0]} ${formatNumber(recallValue)} for the changed inputs. This is a new numerical case.`},
    evidence:{qa:[],simulatedLearner:[],pairwise:[],humanLearners:[]},version:1,
    curriculum:{primary:`${r.domain}:${r.slug}`,also:[],prerequisites:[],level:'core',references:[],tags:['source-list-continuation',batch,`source-${r.sourceEntryId}`]},format:'single-card',interactions:['choice-before-reveal','computed-case-comparison'],
-   provenance:{sourceFile:r.sourceFile,sourceEntryId:r.sourceEntryId,sourceSection:r.sourceSection,sourceEntryOriginal:r.sourceText,modelBoundary:r.lens,sourceVerification:'unverified; not a replication',overlapBoundary:'Source-specific finite model; cross-category publication review remains open.'}};
+   provenance:{sourceFile:r.sourceFile,sourceEntryId:r.sourceEntryId,sourceSection:r.sourceSection,sourceEntryOriginal:r.sourceText,modelBoundary:r.lens,recallInputs:recallP,sourceVerification:'unverified; not a replication',overlapBoundary:'Source-specific finite model; cross-category publication review remains open.'}};
   assert(meta.title.length<=40,`${r.slug}: title budget`);
   if(meta.hook.length>90) meta.hook=`Two stated cases for ${meta.title.toLowerCase().replace(/\?$/,'')}.`;
   assert(meta.hook.length<=90);

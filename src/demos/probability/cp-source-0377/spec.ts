@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0377", "title": "An attributable fraction needs a model", "op": "attributable", "labels": ["Exposed", "RR"], "outputs": ["Fraction"], "a": [0.3, 3.0], "b": [0.1, 3.0], "question": "Under a toy homogeneous causal risk-ratio model, exposure prevalence is 0.3 and RR 3. What population attributable fraction follows if exposure is removed?", "questionTemplate": "Under a toy homogeneous causal risk-ratio model, exposure prevalence is {Exposed} and RR {RR}. What population attributable fraction follows if exposure is removed?", "explain": "The fraction requires causal and transport assumptions, not just an observed association. Removing an exposure may change other pathways absent from this toy model.", "lens": "exposure prevalence under a homogeneous causal risk-ratio model", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0298",
+  "title": "Equal distances at unequal speeds",
+  "hook": "Two stated cases: explore time weighting of an out-and-back speed.",
+  "domain": "probability",
+  "concept": "cp-source-0298",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How time weighting of an out-and-back speed affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Speed, regardless of the stated inputs.",
+  "objective": "Compare time weighting of an out-and-back speed in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0298.predict",
+      "text": "Travel equal distances at toy speeds 30 out and 60 back. What is total distance divided by total time?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.reveal.0",
+      "text": "The retained results are Out=30 Back=60; Speed=40 and Out=40 Back=40; Speed=40.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.reveal.1",
+      "text": "Equal distances give a harmonic rather than arithmetic mean of speeds. The slower leg occupies more time. This comparison isolates time weighting of an out-and-back speed.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.case.0.witness",
+      "text": "Out=30 Back=60; Speed=40",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Out\",30],[\"Back\",60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Speed\",\"value\":40}]},\"metrics\":[{\"label\":\"Speed\",\"value\":\"40\"},{\"label\":\"Out\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.case.1.witness",
+      "text": "Out=40 Back=40; Speed=40",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Out\",40],[\"Back\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Speed\",\"value\":40}]},\"metrics\":[{\"label\":\"Speed\",\"value\":\"40\"},{\"label\":\"Out\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0298.recall",
+      "text": "Travel equal distances at toy speeds 31 out and 60 back. What is total distance divided by total time? Answer 40.879.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0298/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #298. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Travel equal distances at toy speeds 31 out and 60 back. What is total distance divided by total time?",
+    "options": [
+      "24.527",
+      "57.231",
+      "40.879"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Speed 40.879 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0298",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-298"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 298,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceEntryOriginal": "- **298. Average speed** \\[Gotcha\\]: 30 km/h out, 60 km/h back is an average of 40, not 45.",
+    "modelBoundary": "time weighting of an out-and-back speed",
+    "recallInputs": [
+      31,
+      60
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

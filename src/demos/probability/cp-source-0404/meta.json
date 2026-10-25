@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0404",
+  "title": "A weighted unit changes its influence",
+  "hook": "Two stated cases: explore the inverse assignment probability of an observed unit.",
+  "domain": "probability",
+  "concept": "cp-source-0404",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the inverse assignment probability of an observed unit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weight, regardless of the stated inputs.",
+  "objective": "Compare the inverse assignment probability of an observed unit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0404.predict",
+      "text": "A toy unit has treatment propensity 0.2. Treated 1=1 uses inverse treatment probability; 0 uses inverse control probability. What weight results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.reveal.0",
+      "text": "The retained results are Propensity=0.2; Weight=5 and Propensity=0.8; Weight=1.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.reveal.1",
+      "text": "Rare observed assignments receive large weights. Weighting cannot recover comparisons with no overlap or fix unmeasured confounding by itself. This comparison isolates the inverse assignment probability of an observed unit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.case.0.witness",
+      "text": "Propensity=0.2; Weight=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Propensity\",0.2],[\"Treated\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weight\",\"value\":5}]},\"metrics\":[{\"label\":\"Weight\",\"value\":\"5\"},{\"label\":\"Propensity\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.case.1.witness",
+      "text": "Propensity=0.8; Weight=1.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Propensity\",0.8],[\"Treated\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weight\",\"value\":1.25}]},\"metrics\":[{\"label\":\"Weight\",\"value\":\"1.25\"},{\"label\":\"Propensity\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0404.recall",
+      "text": "A toy unit has treatment propensity 0.3. Treated 1=1 uses inverse treatment probability; 0 uses inverse control probability. What weight results? Answer 3.333.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0404/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #404. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy unit has treatment propensity 0.3. Treated 1=1 uses inverse treatment probability; 0 uses inverse control probability. What weight results?",
+    "options": [
+      "3.333",
+      "2",
+      "4.667"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Weight 3.333 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0404",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-404"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 404,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceEntryOriginal": "- **404. Weighted bubbles** \\[Slider\\]: inverse-probability weights resize each dot until both groups look alike.",
+    "modelBoundary": "the inverse assignment probability of an observed unit",
+    "recallInputs": [
+      0.30000000000000004,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

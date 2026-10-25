@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0224",
+  "title": "A p-value under a specified null",
+  "hook": "Two stated cases: explore the null-tail event rather than probability of the null.",
+  "domain": "probability",
+  "concept": "cp-source-0224",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the null-tail event rather than probability of the null affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Tail, regardless of the stated inputs.",
+  "objective": "Compare the null-tail event rather than probability of the null in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0224.predict",
+      "text": "For 20 independent toy births with boy probability 0.5, what is the probability of strictly more than 14 boys?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.reveal.0",
+      "text": "The retained results are Cut=14; Tail=0.021 and Cut=9; Tail=0.588.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.reveal.1",
+      "text": "The binomial calculation counts every qualifying outcome. Smaller samples have more variable proportions; equal expected proportions do not mean equal tail probabilities. This comparison isolates the null-tail event rather than probability of the null.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.case.0.witness",
+      "text": "Cut=14; Tail=0.021",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",20],[\"P\",0.5],[\"Cut\",14]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.020694732666015625}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.021\"},{\"label\":\"Cut\",\"value\":\"14\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.case.1.witness",
+      "text": "Cut=9; Tail=0.588",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",20],[\"P\",0.5],[\"Cut\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.5880985260009766}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.588\"},{\"label\":\"Cut\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0224.recall",
+      "text": "For 21 independent toy births with boy probability 0.5, what is the probability of strictly more than 14 boys? Answer 0.039.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0224/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #224. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 21 independent toy births with boy probability 0.5, what is the probability of strictly more than 14 boys?",
+    "options": [
+      "0.039",
+      "-0.061",
+      "0.139"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Tail 0.039 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0224",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-224"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 224,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **224. What does p mean?** \\[Split\\]: poll common definitions; most popular answers are wrong.",
+    "modelBoundary": "the null-tail event rather than probability of the null",
+    "recallInputs": [
+      21,
+      0.5,
+      14
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

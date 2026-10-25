@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0231",
+  "title": "Null voxels can still light up",
+  "hook": "Two stated cases: explore multiple testing under an all-null toy scan.",
+  "domain": "probability",
+  "concept": "cp-source-0231",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How multiple testing under an all-null toy scan affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines FWER, regardless of the stated inputs.",
+  "objective": "Compare multiple testing under an all-null toy scan in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0231.predict",
+      "text": "Run 100 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.reveal.0",
+      "text": "The retained results are Corrected=0; FWER=0.994 and Corrected=1; FWER=0.049.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.reveal.1",
+      "text": "This exact family calculation assumes independent null tests. Bonferroni’s union-bound guarantee can also be used without independence. This comparison isolates multiple testing under an all-null toy scan.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.case.0.witness",
+      "text": "Corrected=0; FWER=0.994",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",100],[\"Alpha\",0.05],[\"Corrected\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.994079470779666}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"0.994\"},{\"label\":\"Corrected\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.case.1.witness",
+      "text": "Corrected=1; FWER=0.049",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",100],[\"Alpha\",0.05],[\"Corrected\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.04878246975766576}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"0.049\"},{\"label\":\"Corrected\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0231.recall",
+      "text": "Run 100 independent true-null tests. Nominal Alpha is 0.15; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0231/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #231. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Run 100 independent true-null tests. Nominal Alpha is 0.15; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives FWER 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0231",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-231"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 231,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **231. The dead salmon** \\[Story\\]: an fMRI scan of a dead fish showed \"brain activity\" without multiple-comparison correction (Bennett et al., 2009).",
+    "modelBoundary": "multiple testing under an all-null toy scan",
+    "recallInputs": [
+      100,
+      0.15000000000000002,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

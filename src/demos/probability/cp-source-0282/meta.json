@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0282",
+  "title": "Departments have different base rates",
+  "hook": "Two stated cases: explore department composition behind an aggregate admission contrast.",
+  "domain": "probability",
+  "concept": "cp-source-0282",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How department composition behind an aggregate admission contrast affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare department composition behind an aggregate admission contrast in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0282.predict",
+      "text": "Two toy strata have B rates 0.8,0.2; A is better by 0.05 in both. Stratum-1 shares are 0.2 in A, 0.8 in B. What is aggregate A minus B?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.reveal.0",
+      "text": "The retained results are WeightA=0.2 WeightB=0.8; Gap=-0.31 and WeightA=0.5 WeightB=0.5; Gap=0.05.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.reveal.1",
+      "text": "Each stratum has the same stipulated advantage, but different weights can reverse the aggregate comparison. Equalizing weights removes this composition channel. This comparison isolates department composition behind an aggregate admission contrast.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.case.0.witness",
+      "text": "WeightA=0.2 WeightB=0.8; Gap=-0.31",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightA\",0.2],[\"WeightB\",0.8],[\"Rate1\",0.8],[\"Rate2\",0.2],[\"Advantage\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-0.3100000000000001},{\"label\":\"AggregateA\",\"value\":0.37000000000000005},{\"label\":\"AggregateB\",\"value\":0.6800000000000002}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-0.31\"},{\"label\":\"WeightA\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.case.1.witness",
+      "text": "WeightA=0.5 WeightB=0.5; Gap=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightA\",0.5],[\"WeightB\",0.5],[\"Rate1\",0.8],[\"Rate2\",0.2],[\"Advantage\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0.05},{\"label\":\"AggregateA\",\"value\":0.55},{\"label\":\"AggregateB\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0.05\"},{\"label\":\"WeightA\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0282.recall",
+      "text": "Two toy strata have B rates 0.8,0.2; A is better by 0.05 in both. Stratum-1 shares are 0.3 in A, 0.8 in B. What is aggregate A minus B? Answer -0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0282/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy strata have B rates 0.8,0.2; A is better by 0.05 in both. Stratum-1 shares are 0.3 in A, 0.8 in B. What is aggregate A minus B?",
+    "options": [
+      "-0.35",
+      "-0.25",
+      "-0.15"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap -0.25 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0282",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-282"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 282,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceEntryOriginal": "- **282. Berkeley admissions** \\[Story\\]: women had lower admission rates overall in 1973, but most departments admitted women at equal or higher rates.",
+    "modelBoundary": "department composition behind an aggregate admission contrast",
+    "recallInputs": [
+      0.30000000000000004,
+      0.8,
+      0.8,
+      0.2,
+      0.05
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0406",
+  "title": "A method versus a trial benchmark",
+  "hook": "Two stated cases: explore the numerical estimation error against a stipulated benchmark.",
+  "domain": "probability",
+  "concept": "cp-source-0406",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the numerical estimation error against a stipulated benchmark affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Error, regardless of the stated inputs.",
+  "objective": "Compare the numerical estimation error against a stipulated benchmark in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0406.predict",
+      "text": "A toy result is at percentile 2; the forecast was percentile 5. What signed forecasting error is guessed minus actual?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.reveal.0",
+      "text": "The retained results are Guessed=5; Error=3 and Guessed=2; Error=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.reveal.1",
+      "text": "A rank gap describes the two numbers. Measurement noise and mathematical coupling can also affect patterns in such gaps. This comparison isolates the numerical estimation error against a stipulated benchmark.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.case.0.witness",
+      "text": "Guessed=5; Error=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",2],[\"Guessed\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":2,\"y\":5}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"3\"},{\"label\":\"Guessed\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.case.1.witness",
+      "text": "Guessed=2; Error=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",2],[\"Guessed\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":2,\"y\":2}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"0\"},{\"label\":\"Guessed\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0406.recall",
+      "text": "A toy result is at percentile 3; the forecast was percentile 5. What signed forecasting error is guessed minus actual? Answer 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0406/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #406. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy result is at percentile 3; the forecast was percentile 5. What signed forecasting error is guessed minus actual?",
+    "options": [
+      "1.2",
+      "2.8",
+      "2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Error 2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0406",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-406"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 406,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceEntryOriginal": "- **406. LaLonde's benchmark** \\[Story\\]: many observational methods failed to recover a job-training program's experimental effect (LaLonde, 1986).",
+    "modelBoundary": "the numerical estimation error against a stipulated benchmark",
+    "recallInputs": [
+      3,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

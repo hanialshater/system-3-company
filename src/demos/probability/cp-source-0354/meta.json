@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0354",
+  "title": "An occupation path is part of the total",
+  "hook": "Two stated cases: explore the mediated component removed by holding a mediator fixed.",
+  "domain": "probability",
+  "concept": "cp-source-0354",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mediated component removed by holding a mediator fixed affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Total, regardless of the stated inputs.",
+  "objective": "Compare the mediated component removed by holding a mediator fixed in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0354.predict",
+      "text": "A toy linear model has X→Y coefficient 1, X→M coefficient 2, M→Y coefficient 3, with no interactions or confounding. What is the total X effect?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.reveal.0",
+      "text": "The retained results are XM=2; Total=7 and XM=0; Total=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.reveal.1",
+      "text": "The total includes the direct path and the product along the mediator path. This decomposition needs the specified structural assumptions. This comparison isolates the mediated component removed by holding a mediator fixed.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.case.0.witness",
+      "text": "XM=2; Total=7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"XM\",2],[\"MY\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"M\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"7\"},{\"label\":\"XM\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.case.1.witness",
+      "text": "XM=0; Total=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"XM\",0],[\"MY\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"M\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"1\"},{\"label\":\"XM\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0354.recall",
+      "text": "A toy linear model has X→Y coefficient 2, X→M coefficient 2, M→Y coefficient 3, with no interactions or confounding. What is the total X effect? Answer 8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0354/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #354. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy linear model has X→Y coefficient 2, X→M coefficient 2, M→Y coefficient 3, with no interactions or confounding. What is the total X effect?",
+    "options": [
+      "4.8",
+      "8",
+      "11.2"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Total 8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0354",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-354"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 354,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceEntryOriginal": "- **354. Bad control in pay gaps** \\[Gotcha\\]: controlling for occupation can hide discrimination that works through occupation.",
+    "modelBoundary": "the mediated component removed by holding a mediator fixed",
+    "recallInputs": [
+      2,
+      2,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0201",
+  "title": "Twenty balanced questions",
+  "hook": "Two stated cases: explore the maximum number of distinct answer strings.",
+  "domain": "probability",
+  "concept": "cp-source-0201",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the maximum number of distinct answer strings affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Capacity, regardless of the stated inputs.",
+  "objective": "Compare the maximum number of distinct answer strings in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0201.predict",
+      "text": "With 2 possible answers per question and 20 questions, what is the maximum number of distinct answer sequences?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.reveal.0",
+      "text": "The retained results are Questions=20; Capacity=1.05e+6 and Questions=10; Capacity=1,024.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.reveal.1",
+      "text": "Balanced questions can use the available answer sequences efficiently. Counting sequences is a capacity bound, not a guarantee that a particular puzzle achieves it. This comparison isolates the maximum number of distinct answer strings.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.case.0.witness",
+      "text": "Questions=20; Capacity=1.05e+6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",2],[\"Questions\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":1048576}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"1.05e+6\"},{\"label\":\"Questions\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.case.1.witness",
+      "text": "Questions=10; Capacity=1,024",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",2],[\"Questions\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":1024}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"1,024\"},{\"label\":\"Questions\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0201.recall",
+      "text": "With 3 possible answers per question and 20 questions, what is the maximum number of distinct answer sequences? Answer 3.49e+9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0201/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #201. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With 3 possible answers per question and 20 questions, what is the maximum number of distinct answer sequences?",
+    "options": [
+      "2.09e+9",
+      "3.49e+9",
+      "4.88e+9"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Capacity 3.49e+9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0201",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-201"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 201,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **201. Twenty questions** \\[Measure\\]: 20 yes/no questions can pin down one of about a million things, if each splits the options in half.",
+    "modelBoundary": "the maximum number of distinct answer strings",
+    "recallInputs": [
+      3,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0347", "title": "A coefficient answers a partial question", "op": "mediation", "labels": ["Direct", "XM", "MY"], "outputs": ["Total", "Indirect"], "a": [1.0, 2.0, 3.0], "b": [1.0, 2.0, 0.0], "question": "A toy linear model has X→Y coefficient 1, X→M coefficient 2, M→Y coefficient 3, with no interactions or confounding. What is the total X effect?", "questionTemplate": "A toy linear model has X→Y coefficient {Direct}, X→M coefficient {XM}, M→Y coefficient {MY}, with no interactions or confounding. What is the total X effect?", "explain": "The total includes the direct path and the product along the mediator path. This decomposition needs the specified structural assumptions.", "lens": "the direct path versus the total intervention effect", "kind": "graph", "answerPosition": 2, "graph": "chain"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

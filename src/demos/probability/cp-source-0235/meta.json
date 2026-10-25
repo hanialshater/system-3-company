@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0235",
+  "title": "One tail versus two tails",
+  "hook": "Two stated cases: explore the disjoint tail events included in a test.",
+  "domain": "probability",
+  "concept": "cp-source-0235",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the disjoint tail events included in a test affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the disjoint tail events included in a test in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0235.predict",
+      "text": "Each of 1 disjoint symmetric tails has toy probability 0.04. What is their combined probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.reveal.0",
+      "text": "The retained results are Tails=1; Probability=0.04 and Tails=2; Probability=0.08.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.reveal.1",
+      "text": "Adding the tails changes the rejection event. A one-sided direction should be chosen with the question, before inspecting the effect sign. This comparison isolates the disjoint tail events included in a test.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.case.0.witness",
+      "text": "Tails=1; Probability=0.04",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OneTail\",0.04],[\"Tails\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.04}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.04\"},{\"label\":\"Tails\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.case.1.witness",
+      "text": "Tails=2; Probability=0.08",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OneTail\",0.04],[\"Tails\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.08}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.08\"},{\"label\":\"Tails\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0235.recall",
+      "text": "Each of 1 disjoint symmetric tails has toy probability 0.14. What is their combined probability? Answer 0.14.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0235/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #235. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each of 1 disjoint symmetric tails has toy probability 0.14. What is their combined probability?",
+    "options": [
+      "0.04",
+      "0.24",
+      "0.14"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.14 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0235",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-235"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 235,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **235. One tail or two?** \\[Split\\]: the same data is significant under one choice and not the other.",
+    "modelBoundary": "the disjoint tail events included in a test",
+    "recallInputs": [
+      0.14,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
