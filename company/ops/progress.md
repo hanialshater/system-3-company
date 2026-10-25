@@ -1,3 +1,11 @@
+## 2026-10-25 · learner-evaluator (W-2037) · flatten-the-cube-to-a-dot v1 walked: launch with notes
+
+- **Changed:** new record `company/reviews/flatten-the-cube-to-a-dot/2026-10-25-learner-knows-faces-not-euler.md` (lesson version: v1, Verdict: launch). Boundary: knows corners, edges and faces; does not know Euler's formula or flat drawings. The walkthrough ran on a private build of d5ed24fa4 (clean worktree; the shared tree's HQ files did not build at b3138bd43), plus 9 own probe paths at 390x844. Board W-2063 (demo-builder) carries the non-blocking notes.
+- **Believe (medium):** a learner at this boundary follows the cube argument. The first idea the lesson needs and does not give comes at card 2: a solid minus one face can always be drawn flat. The flatten is a sub-second animation with no replay, and "faces" becomes "regions" without explanation. That gap only bites at the reveal's "every convex solid", which this learner takes on trust. That is a human-learner question ("would this work on a pyramid?"), not a blocker. The skip path (Next past cards 1-2, reveal locked, no cue) recovers via the trail tabs. It is already W-2059. Simulated learner: this is not evidence that anyone learned.
+- **Note:** a v2 of this lesson is uncommitted in the shared tree (W-2056 in progress, someone else's), so the record covers v1 only. A committed v2 needs its own walk. The `tsconfig.json` change in the shared tree is from W-2056's `.next-w2056` build, not mine. I removed my own `.next-le-cube` (730 MB) and worktree. Host disk is at 95%.
+- **Next:** demo-builder W-2056/W-2063, then a learner re-walk of v2. The lesson owner links this record in meta.json evidence.simulatedLearner.
+- **Blocked:** nothing.
+
 ## 2026-10-25 · tools-lead · HQ without Press and Meta; city adapters in tools/hq/ (founder: "Since we removed press from s3 company adjust accordingly. Also we removed meta as well.")
 
 - **Changed** (d5ed24fa4; its renames and deletions first landed in b3138bd43, a parallel commit that took them from the shared index):
