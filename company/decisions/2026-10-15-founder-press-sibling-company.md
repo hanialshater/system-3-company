@@ -1,5 +1,11 @@
 # Founder decision: a sibling company for the founder's books, starting with *System 3*
 
+> **Superseded in part (2026-10-25, founder: "Since we removed press from s3 company adjust accordingly").** The press
+> is now **S3 Press**, its own company in the System 3 city (`hanialshater/system3-city`), with its org in the book
+> repo (hanialshater/system3, `press/org/`). System 3 Lessons no longer carries it: HQ floor 8 and
+> `company/sibling/press/` are removed, and the HQ links to the city HQ (https://system3-city-hq.vercel.app) instead.
+> The record below stands as history.
+
 owner: founder (recorded by chief-of-staff)
 date: 2026-10-15
 class: org

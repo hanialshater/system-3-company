@@ -544,45 +544,5 @@
   outline-offset: 1px;
 }
 
-/* System 3 Press (floor 8): a sibling company, drawn in its own accent so it never reads as part of System 3 Company. */
-.pressBanner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 12px;
-  align-items: baseline;
-  margin: 0 0 8px;
-  padding: 8px 12px;
-  border: 1px solid var(--press);
-  border-left-width: 6px;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--press) 12%, var(--bg));
-  font-size: 13px;
-}
-.pressLabel { color: var(--press); font-size: 15px; }
-.pressSibling, .pressChip {
-  border: 1px solid var(--press);
-  color: var(--press);
-  border-radius: 999px;
-  padding: 0 8px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-left: 6px;
-}
-.pressSibling { margin-left: 0; }
-.pressNote { flex-basis: 100%; color: var(--muted); }
-.pressTag { font-size: 8px; font-weight: 700; letter-spacing: 0.06em; fill: #c8553d; pointer-events: none; }
-.pressVisitors { fill: none; stroke: #c8553d; stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.8; }
-.pressOrg { margin: 12px 0 0; padding: 10px 12px; border: 1px solid var(--press); border-left-width: 6px; border-radius: 10px; }
-.pressOrg h3 { margin: 0 0 6px; font-size: 14px; color: var(--press); }
-.pressRoot, .pressTree { list-style: none; margin: 0; padding: 0; }
-.pressTree { margin-left: 11px; padding-left: 14px; border-left: 2px solid color-mix(in srgb, var(--press) 45%, var(--line)); }
-.pressPerson { display: flex; gap: 8px; align-items: center; padding: 3px 0; font-size: 13px; }
-.pressPanelHead { padding: 4px 0; font-size: 12px; font-weight: 700; color: var(--press); }
-.pressResidents { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 8px; }
-.pressResidents li { display: flex; gap: 8px; font-size: 13px; }
-.pressMission { font-size: 12px; }
-.floorPress { border: 1px solid #c8553d; }
-.floorPressOn { background: #c8553d; color: #fff; }
-.pressTitle { font-size: 7.5px; fill: var(--muted); pointer-events: none; }
+/* The door to the System 3 city HQ (2026-10-25): the founder's other companies are drawn there, not on a floor here. */
+.cityLink { display: inline-block; margin: 0 0 8px; color: var(--accent); font-size: 13px; }

@@ -8,14 +8,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { FounderItem, HqEvent, OrgRole, Room } from "@/lib/hq";
 import { teamColor } from "@/lib/hq-colors";
-import { FLOORS, FLOOR_NAMES, stairsTo, type Floor } from "@/lib/hq-floors";
+import { CITY_HQ_URL, CITY_ROOM, FLOORS, FLOOR_NAMES, stairsTo, type Floor } from "@/lib/hq-floors";
 import { kudosRole } from "@/lib/hq-kudos";
 import type { Due } from "../../../tools/lib/rituals.mjs";
 import { Avatar } from "./Avatar";
 import Office from "./Office";
 import People from "./PeoplePanel";
-import { PressBanner, PressOrg, PressResidents } from "./Press";
-import type { PressSnapshot } from "@/lib/hq-press";
 import { peopleAt, personName, personSeed, type Person } from "./people";
 import s from "./hq.module.css";
 
@@ -40,7 +38,7 @@ const HOUR = 3_600_000;
 const fmt = (ms: number) => new Date(ms).toISOString().slice(5, 16).replace("T", " ") + " UTC";
 const roleOf = (e: HqEvent) => (e.actor === "chief-of-staff" && e.agent ? "chief-of-staff" : e.actor);
 
-export default function HQ({ events, rooms, founderQueue, due, org, now, press }: { events: HqEvent[]; rooms: Room[]; founderQueue: FounderItem[]; due: Due[]; org: OrgRole[]; now: number; press?: PressSnapshot | null }) {
+export default function HQ({ events, rooms, founderQueue, due, org, now }: { events: HqEvent[]; rooms: Room[]; founderQueue: FounderItem[]; due: Due[]; org: OrgRole[]; now: number }) {
   const router = useRouter();
   const times = useMemo(() => events.map((e) => Date.parse(e.ts)), [events]);
   const t0 = times[0] ?? Date.now();
@@ -256,18 +254,18 @@ export default function HQ({ events, rooms, founderQueue, due, org, now, press }
               <div className={s.floors} role="tablist" aria-label="Floor">
                 {FLOORS.map((f) => {
                   const here = people.filter((p) => floorOf(p.room) === f && p.state !== "idle").length;
-                  const isPress = f === 8;
                   return (
-                    <button key={f} role="tab" aria-selected={floor === f} className={isPress ? `${floor === f ? s.tabOn : s.tab} ${floor === f ? s.floorPressOn : s.floorPress}` : floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
+                    <button key={f} role="tab" aria-selected={floor === f} className={floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
                       {FLOOR_NAMES[f]}
-                      {here && !isPress ? ` · ${here}` : ""}
+                      {here ? ` · ${here}` : ""}
                     </button>
                   );
                 })}
               </div>
-              {floor === 8 && press && <PressBanner press={press} />}
-              <Office press={press?.roles} rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (stairsTo(id) ? setFloor(stairsTo(id)!) : setRoom(id))} onPerson={pickPerson} kudos={kudosBy} />
-              {floor === 8 && press && <PressOrg press={press} />}
+              <a className={s.cityLink} href={CITY_HQ_URL} target="_blank" rel="noreferrer">
+                The founder&apos;s other companies (S3 Press, System 3 Meta) are in the System 3 city HQ ↗
+              </a>
+              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (stairsTo(id) ? setFloor(stairsTo(id)!) : setRoom(id))} onPerson={pickPerson} kudos={kudosBy} />
             </div>
           ) : (
             <People org={org} people={people} rooms={rooms} onRoom={pickRoom} />
@@ -283,11 +281,13 @@ export default function HQ({ events, rooms, founderQueue, due, org, now, press }
               </Link>
             </p>
           )}
-          {room.startsWith("press-") && press && (
-            <>
-              <p className={s.muted}>System 3 Press, sibling company. Roster only: no press event log, so no live presence.</p>
-              <PressResidents roles={press.roles.filter((r) => r.room === room)} />
-            </>
+          {room === CITY_ROOM && (
+            <p>
+              The founder&apos;s other companies (S3 Press, the books; System 3 Meta, the platform) are their own companies in the System 3 city.{" "}
+              <a className={s.roomLink} href={CITY_HQ_URL} target="_blank" rel="noreferrer">
+                Open the city HQ ↗
+              </a>
+            </p>
           )}
           {inRoom.length > 0 && (
             <div className={s.roster}>

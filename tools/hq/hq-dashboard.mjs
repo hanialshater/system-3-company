@@ -31,6 +31,6 @@ export function dashboard(root) {
   return { v: 1, id: "system-3-company", name: "System 3 Lessons", mission, owner: "founder", links, asks, budget: { unit: "tokens", approved, spent: total, spentCapped: capped, spentUncapped: total - capped, lines }, milestones: ms, kpis };
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  const root = path.resolve(process.argv[2] ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../../../../.."));
+  const root = path.resolve(process.argv[2] ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../.."));
   console.log(JSON.stringify(dashboard(root), null, 1));
 }

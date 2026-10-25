@@ -1,0 +1,20 @@
+# tools/hq: System 3 Lessons in the System 3 city HQ
+
+These are this company's tools for the city HQ (https://system3-city-hq.vercel.app). Meta's city build runs them to
+read the company, as the city contracts require: the HQ reads a company only through its tools and its event log.
+They moved here from `company/sibling/system3-meta/adapters/s3c/` on 2026-10-25, when System 3 Meta became its own
+company (`hanialshater/system3-meta`). All of them are read-only.
+
+| File | City contract | What it reads |
+|---|---|---|
+| `hq-city.json` | the city entry (`eventsCmd`, `orgCmd`, `buildingCmd`, `dashboardCmd`, `knowledgeCmd`, `docsCmd`), paths relative to this folder | |
+| `hq-events.mjs` | event log v1 | `company/ops/events.jsonl` |
+| `org-from-roles.mjs` | org, and `--building` for the seating | `tools/org/roles.mjs`, `people.mjs`, `src/lib/hq.ts`, `src/lib/hq-floors.ts`, `src/app/hq/people.ts` |
+| `hq-dashboard.mjs` | dashboard | `company/mission.md`, `company/ops/projects.json`, `ledger.jsonl`, `founder-inbox.json`, lesson `meta.json` |
+| `hq-knowledge.mjs` | knowledge | `company/knowledge/` |
+| `hq-docs.json` | config for Meta's docs tool (`$META/src/docs.mjs`) | the folders it lists |
+
+Run one from the repo root: `node tools/hq/hq-dashboard.mjs .`. Publish the company's city snapshot from this folder,
+with a checkout of system3-meta beside this repository (or set `META`):
+`node ${META:-../../../system3-meta}/hq/build.mjs --city=hq-city.json --snapshot=system-3-company --out=<dir>`.
+Test: `node --test tools/hq/org.test.mjs`, and `tests/hq/city-door.test.mjs` (inside `npm run test:hq`).

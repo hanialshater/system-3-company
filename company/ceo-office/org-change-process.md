@@ -45,7 +45,7 @@ Applies to: a new role, a new agent definition (`.claude/agents/*.md`), a new or
 | 8 | **First dispatch** | the role's lane POC asks for it in a batch. The chief of staff dispatches it (company/ceo-office/dispatch-requests.md) | the first board item, run | within 7 days, or the next WBR flags it (O3 in the handoff map) |
 | 9 | **Used, or retired** | Leonie, at the WBR (agent metrics) and the sunset date in the record | the role evaluation; offboarding if it is unused | a role with no dispatch in 14 days gets a verdict: activate, re-scope, merge or retire. Retirement comes back to step 2 as its own record, and the founder approves it |
 
-**What counts as "new":** the role id (or agent file, floor or room id) is not yet in tools/org/roles.mjs, HQ or company/sibling/press/hq-snapshot.json. Renaming a person, or a wording fix inside a role's existing scope, is not new. It still needs a decision record, because roles are never edited without one.
+**What counts as "new":** the role id (or agent file, floor or room id) is not yet in tools/org/roles.mjs or HQ (S3 Press keeps its own org in hanialshater/system3, press/org/, since 2026-10-25). Renaming a person, or a wording fix inside a role's existing scope, is not new. It still needs a decision record, because roles are never edited without one.
 
 **Mechanism:** at each WBR, Leonie diffs `tools/org/roles.mjs`, `.claude/agents/` and HQ's room list against `company/decisions/` since the last WBR. Any role, agent, floor or room with no approved record is a health finding. The chief of staff answers it in writing, and it goes to the founder in the digest.
 

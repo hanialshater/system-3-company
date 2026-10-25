@@ -1,5 +1,11 @@
 # Founder decision: a sibling company, System 3 Meta, after First Light
 
+> **Superseded in part (2026-10-25, founder: "Also we removed meta as well").** System 3 Meta is its own company in the
+> System 3 city, in `hanialshater/system3-meta`. System 3 Lessons no longer carries it: `company/sibling/system3-meta/`
+> is removed (its history stays in git). This company's own city adapters (events, org, dashboard, knowledge, docs
+> config, `hq-city.json`) moved to `tools/hq/`; the kernel-driven adapters, which nothing here called, were deleted.
+> The record below stands as history.
+
 owner: founder (recorded by chief-of-staff)
 date: 2026-10-16
 class: org (new sibling company, new VP, new HQ floor)

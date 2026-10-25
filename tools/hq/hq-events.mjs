@@ -54,6 +54,6 @@ export function hqEvents(root) {
   return out.filter((e) => e.t).sort((a, b) => a.t.localeCompare(b.t));
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  const root = path.resolve(process.argv[2] ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../../../../.."));
+  const root = path.resolve(process.argv[2] ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../.."));
   process.stdout.write(hqEvents(root).map((e) => JSON.stringify(e)).join("\n") + "\n");
 }

@@ -2,7 +2,7 @@
 // A company's org file for the HQ's Org page, from its org as data (System 3 Company: tools/org/roles.mjs):
 // [{ id, name, title, reportsTo, team }], the founder at the root; names from its people data (people.mjs beside
 // roles.mjs: nameFor), if it has one.
-//   node company/sibling/system3-meta/adapters/s3c/org-from-roles.mjs <roles.mjs> [out.json]    prints the org contract (the HQ runs this live), or writes it
+//   node tools/hq/org-from-roles.mjs <roles.mjs> [out.json]    prints the org contract (the HQ runs this live), or writes it
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";

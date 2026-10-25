@@ -64,10 +64,11 @@ ended early), `merge`, `publish`, `unpublish`, `dispute`, `verify`, `review`, `r
 | `research-room` | Old id, drawn as `research-lab` (read-time alias in `loadEvents`; stored events keep it) |
 | `cm-<domain>` | Category managers' offices |
 
-**Floor 8, System 3 Press**, is a sibling company, not part of this one. Its rooms (`press-*`) are drawn
-from a roster snapshot (`company/sibling/press/hq-snapshot.json`); it has no event log, so no event in
-`events.jsonl` should use a `press-*` room. Work this company does for the press goes in the room of
-the role doing it.
+**No floor 8 (2026-10-25).** System 3 Press, the founder's books, is now **S3 Press**, its own company in
+the System 3 city, and System 3 Meta is too; both are drawn in the city HQ (https://system3-city-hq.vercel.app),
+which the lobby's `city-hq` room links to. No event in `events.jsonl` should use a `press-*` or `city-hq` room.
+Work this company does for another company goes in the room of the role doing it. This company publishes itself
+to the city through `tools/hq/` (`hq-city.json`).
 
 ## Writing events
 

@@ -8,7 +8,6 @@ export { FLOORS, FLOOR_NAMES, ROOM_ALIASES, stairsTo, type Floor } from "./hq-fl
 import { computeDue, type Due } from "../../tools/lib/rituals.mjs";
 import { recordEvents } from "../../tools/lib/ritual-records.mjs";
 import { roles } from "../../tools/org/roles.mjs";
-import { pressRooms, type PressSnapshot } from "./hq-press";
 
 export interface HqEvent {
   id: string;
@@ -34,7 +33,7 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
-  /** Building floor (see FLOOR_NAMES): 1 = lobby, leadership and operations, 2 = Product, 3 = Categories (science and technology), 4 = Categories (society, money and ideas), 5 = Engineering and R&D, 6 = Quality, 7 = Marketing, 8 = Press. */
+  /** Building floor (see FLOOR_NAMES): 1 = lobby, leadership and operations, 2 = Product, 3 = Categories (science and technology), 4 = Categories (society, money and ideas), 5 = Engineering and R&D, 6 = Quality, 7 = Marketing. */
   floor?: Floor;
 }
 
@@ -64,7 +63,7 @@ const FLOOR4_ROW2: [string, string, string][] = [
 ];
 const office = (id: string, name: string, color: string, x: number, y: number, floor: Floor): Room => ({ id: `cm-${id}`, name, x, y, w: 186, h: 236, kind: "office", color, floor });
 
-// The floor plan, in SVG units (1000 x 660). F-40 reseat: one floor per org (floor 9 is reserved for System 3 Meta, a note only, not drawn).
+// The floor plan, in SVG units (1000 x 660). F-40 reseat: one floor per org (the founder's other companies are in the city HQ: the lobby's city-hq room, CITY_ROOM in hq-floors.ts).
 export const ROOMS: Room[] = [
   // Floor 1 · Lobby, leadership & operations. Stairs row.
   { id: "to-floor-2", name: "↑ Floor 2 · Product", x: 20, y: 16, w: 150, h: 84, kind: "lobby" },
@@ -72,8 +71,8 @@ export const ROOMS: Room[] = [
   { id: "to-floor-5", name: "↑ Floor 5 · Engineering & R&D", x: 336, y: 16, w: 150, h: 84, kind: "lobby" },
   { id: "to-floor-6", name: "↑ Floor 6 · Quality", x: 494, y: 16, w: 150, h: 84, kind: "lobby" },
   { id: "to-floor-7", name: "↑ Floor 7 · Marketing", x: 652, y: 16, w: 150, h: 84, kind: "lobby" },
-  // Stairs to floor 8: System 3 Press, the founder's sibling company (company/sibling/press/).
-  { id: "to-floor-8", name: "↑ Floor 8 · System 3 Press", x: 810, y: 16, w: 170, h: 84, kind: "lobby", color: "#c8553d" },
+  // The door to the System 3 city HQ (2026-10-25): the founder's other companies (S3 Press, System 3 Meta, ...) are drawn there, not here.
+  { id: "city-hq", name: "↗ System 3 city HQ", x: 810, y: 16, w: 170, h: 84, kind: "lobby", color: "#c8553d" },
   { id: "chief-of-staff", name: "Chief of Staff · dispatched agents", x: 20, y: 116, w: 300, h: 230, kind: "office" },
   { id: "tools", name: "Company tools", x: 330, y: 116, w: 250, h: 110, kind: "office" },
   { id: "boardroom", name: "Boardroom · project review", x: 330, y: 236, w: 250, h: 110, kind: "meeting" },
@@ -149,20 +148,6 @@ export const ROOMS: Room[] = [
   { id: "marketing-floor", name: "Open floor (no team yet)", x: 20, y: 272, w: 960, h: 200, kind: "floor", color: "#ff7eb6", floor: 7 },
   { id: "to-floor-1-from-7", name: "↓ Floor 1 · Lobby", x: 20, y: 492, w: 380, h: 120, kind: "lobby", floor: 7 },
 ];
-
-// Floor 8 (W-940): System 3 Press, a sibling company. Rooms come from the snapshot (company/sibling/press/hq-snapshot.json), not from tools/org.
-export function loadPress(): PressSnapshot | null {
-  try {
-    return JSON.parse(fs.readFileSync(path.join(process.cwd(), "company/sibling/press/hq-snapshot.json"), "utf8"));
-  } catch {
-    return null;
-  }
-}
-const PRESS = loadPress();
-if (PRESS) {
-  ROOMS.push(...pressRooms(PRESS));
-  ROOMS.push({ id: "to-floor-1-from-8", name: "↓ Floor 1 · Lobby · back to System 3 Company", x: 20, y: 580, w: 380, h: 64, kind: "lobby", floor: 8 });
-}
 
 const LOG = () => path.join(process.cwd(), "company/ops/events.jsonl");
 
