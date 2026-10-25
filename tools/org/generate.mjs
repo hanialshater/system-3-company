@@ -5,7 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { roles, parked, SUBAREAS } from "./roles.mjs";
+import { roles, parked, SUBAREAS, AGENTS } from "./roles.mjs";
 import { PERSONA, nameFor } from "./people.mjs";
 import { MEMORY_POLICY, kb } from "./memory-policy.mjs";
 import { template as memoryTemplate } from "../memory.mjs";
@@ -32,7 +32,7 @@ function onboarding(r) {
 name: ${PERSONA[r.id] ?? nameFor(r.id, r.id)}${PERSONA[r.id] === "Builders" ? " (each running builder gets its own name in HQ)" : ""}
 team: ${r.team}
 reports_to: ${r.reportsTo}
-${agentLine}${r.domain ? `\ndomain: ${r.domain}` : ""}${r.constitutional ? "\nconstitutional: true (this role's authority is part of the constitutional surface)" : ""}
+${agentLine}${r.agent ? `\nphysical agent: ${r.agent} (shared with ${AGENTS[r.agent].roles.filter((x) => x !== r.id).length} other role(s); company/company.json \`agents\`)` : ""}${r.domain ? `\ndomain: ${r.domain}` : ""}${r.constitutional ? "\nconstitutional: true (this role's authority is part of the constitutional surface)" : ""}
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
 
@@ -82,6 +82,14 @@ ${WORKING_AGREEMENT}
 `;
 }
 
+// F-53: roles grouped under one physical agent share its template; the role is bound by the subagent's name.
+function physical(r) {
+  const g = AGENTS[r.agent];
+  return `
+**Physical agent: \`${r.agent}\`** (company/decisions/2026-10-25-founder-f53.md). ${g.what} The same definition runs ${g.roles.length} logical roles (${g.roles.join(", ")}); this session runs as **${r.id}**. Grouped because: ${g.why}.
+`;
+}
+
 function agent(r) {
   const fm = [`name: ${r.id}`, `description: ${r.description}`];
   if (r.tools) fm.push(`tools: ${r.tools}`);
@@ -91,7 +99,7 @@ ${fm.join("\n")}
 ---
 
 You are the **${r.title}** at System 3 Company, a company of narrow AI agents that makes 60-second interactive lessons.
-
+${r.agent ? physical(r) : ""}
 Before doing anything else, read your onboarding doc \`company/roles/${r.id}.md\`, then your memory \`${MEMORY_POLICY.dir}/${r.id}.md\` (run \`node tools/memory.mjs read ${r.id}\`: it also shows run entries not yet merged, and compacts the memory first if it is past ${kb(MEMORY_POLICY.maxBytes)}). The onboarding doc defines your mission, scope, authority and outputs. The memory is testimony, not truth: check a line's cited file before you act on it. A dispatch brief does not replace either step. Then read only the inputs your task needs.
 
 Your mission: ${r.mission}
@@ -167,10 +175,13 @@ for (const t of teams) {
   chart.push("");
 }
 if (parked?.length) {
-  chart.push("## Parked (2026-10-25: restructuring, F-50; principles, F-52)", "", "Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md and company/decisions/2026-10-25-founder-f52.md (each row names its record in the role doc).", "", "| Role | Work now with | Why |", "|---|---|---|");
+  chart.push("## Parked (2026-10-25: restructuring, F-50; principles, F-52; categories, F-53)", "", "Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md, company/decisions/2026-10-25-founder-f52.md and company/decisions/2026-10-25-founder-f53.md (each row names its record in the role doc).", "", "| Role | Work now with | Why |", "|---|---|---|");
   for (const r of parked) chart.push(`| [${r.title}](${fs.existsSync(path.join(ROOT, "company/roles", `${r.id}.md`)) ? "" : "parked/"}${r.id}.md) | ${r.parked.into ?? "nobody (dormant)"} | ${r.parked.why.replace(/\|/g, "/")} |`);
   chart.push("");
 }
+chart.push("## Physical agents (F-53)", "", "Logical roles that run on one agent definition (company/decisions/2026-10-25-founder-f53.md; company/company.json `agents`). Each role keeps its own doc, memory, records and queue.", "", "| Agent | Roles | Why grouped |", "|---|---|---|");
+for (const [a, g] of Object.entries(AGENTS)) chart.push(`| ${a} | ${g.roles.join(", ")} | ${g.why.replace(/\|/g, "/")} |`);
+chart.push("");
 fs.writeFileSync(path.join(ROOT, "company/roles/README.md"), chart.join("\n"));
 
 // Sub-areas: copy the single source (roles.mjs) into content/domains.json, and make sure each strand has a briefs file.
@@ -188,7 +199,7 @@ fs.writeFileSync(path.join(ROOT, "company/roles/README.md"), chart.join("\n"));
       if (!fs.existsSync(bp)) fs.writeFileSync(bp, `# ${name} briefs (cm-${dom}-${id})\n\nRanked briefs for this strand, in the same format as \`${dom}.md\` (\`### N. slug · concept: <id> · level · demand N\`). \`tools/claim.mjs next ${dom}\` hands these out after the domain's own list. Check every brief's answer in node before adding it.\n`);
     }
 }
-console.log(`generated ${roles.length} onboarding docs and ${roles.filter((r) => !r.human).length} agents; ${parked?.length ?? 0} parked (docs kept: 14 category leads in company/roles/ with a stand-in agent, the rest in company/roles/parked/)`);
+console.log(`generated ${roles.length} onboarding docs and ${roles.filter((r) => !r.human).length} agents; ${parked?.length ?? 0} parked (docs in company/roles/parked/; a parked categoryManager would keep a stand-in)`);
 
 // Org-change hygiene (company/ceo-office/org-change-process.md): every role should appear in a decision record.
 {

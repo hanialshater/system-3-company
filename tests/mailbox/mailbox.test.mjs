@@ -88,12 +88,13 @@ test("release-manager and anything naming deploy refused", () => {
   assert.equal(r3.code, 1);
 });
 
-test("lane S: principal-pm-verticals (lane 1) may request demo-builder and category-curator, not a checker", () => {
+test("lane S: principal-pm-verticals (lane 1) may request demo-builder and a category owner (F-53), not a checker", () => {
   const sb = sandbox();
   const r = request(sb, "principal-pm-verticals", "demo-builder");
   assert.equal(r.code, 0, r.err);
   assert.match(r.out, /role demo-builder, lane 1/);
-  assert.equal(request(sb, "principal-pm-verticals", "category-curator").code, 0);
+  assert.equal(request(sb, "principal-pm-verticals", "cm-history").code, 0);
+  assert.equal(request(sb, "principal-pm-verticals", "category-curator").code, 1, "category-curator is parked (F-53)");
   assert.equal(request(sb, "principal-pm-verticals", "qa-tester").code, 1);
   assert.equal(request(sb, "principal-pm-verticals", "demo-builder", ["--lane=6"]).code, 1, "not POC of lane 6");
 });

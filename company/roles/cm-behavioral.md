@@ -1,11 +1,10 @@
-# Category Manager (category lead) — Behavioral Economics and Irrational Behavior
-
-> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-restructuring.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `category-curator`. Why: instance category=behavioral; the category's charter, curriculum, briefs and this role's memory are the curator's data. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
+# Category Owner — Behavioral Economics and Irrational Behavior
 
 name: Rasmus
 team: categories
-reports_to: head-of-product
-agent: .claude/agents/cm-behavioral.md (parked stand-in: it does no work; dispatch-check refuses parked roles)
+reports_to: principal-pm-verticals
+agent: .claude/agents/cm-behavioral.md
+physical agent: category-owner (shared with 13 other role(s); company/company.json `agents`)
 domain: behavioral
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -27,6 +26,9 @@ Decide what Behavioral Economics and Irrational Behavior should teach next and w
 - Category OP narrative and its slice of the cycle budget
 - Retiring lessons that no longer help (retirement review)
 - Focus: choice under risk, time and other people, where the stage is the learner's own choice compared with a stated model (Allais, reflection, present-bias reversal, the beauty contest), and the reveal shows where the learner departed from the model
+- The category is the unit of scale: this role owns the behavioral category's charter, rulings, curriculum map, briefs, coverage line and its open board items as owner of record, and takes each of its items through its lane (S or M) to "ready for check"; it answers findings about its lessons (company/decisions/2026-10-25-founder-f53.md)
+- No subcategories today (no SUBAREAS entry); a strand, if ever needed, is a section of company/domains/briefs/behavioral.md held by this owner, not a role (company/decisions/2026-10-25-founder-f53.md)
+- Memory: write your own (`node tools/memory.mjs add cm-behavioral …`); read company/roles/memory/category-curator.md entries whose run key or text names behavioral (the pooled curator's notes, 2026-10-25), as testimony (company/decisions/2026-10-25-founder-f53.md)
 
 ## Out of scope
 
@@ -39,6 +41,8 @@ Decide what Behavioral Economics and Irrational Behavior should teach next and w
 - Designing the interaction (learning designer)
 - Building or verifying lessons
 - Other categories' maps
+- Another category in the same session
+- Dispatching anything until F-53 row 2's history pilot is cleared (gated on B1-B4); after that, makers only (demo-builder, interaction-designer, research-scientist), never a checker (company/decisions/2026-10-25-founder-f53.md)
 
 ## Authority
 
@@ -53,6 +57,8 @@ May not:
 - Brief a lesson before its boundary row is signed and the fact-checker's step-9 statement covers its claim types
 - Brief a sixth lesson before the Domain Launch Review reconvenes on the DLR five
 - Teach a failed effect as a claim, or a contested effect as a predict answer
+- Dispatch or request a checker of its own items (checkers come from the quality desk's standing orders, F-53 Q1)
+- Brief a sensitive, safety or copyright concept without the route named
 
 ## Inputs
 
@@ -65,6 +71,8 @@ May not:
 - Learner requests
 - Reviews of the category's lessons
 - The format catalogue (company/design/formats.md) and the HQ Design inspector (/hq/design): which UI concepts exist, how they look across lessons, and which ones reviews keep flagging
+- The lane manager's batch request (lane, count)
+- The board filtered to owner=cm-behavioral
 
 ## Outputs
 

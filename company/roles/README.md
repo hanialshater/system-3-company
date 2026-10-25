@@ -21,7 +21,6 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | Role | Reports to | Mission |
 |---|---|---|
 | [Head of Product](head-of-product.md) | founder | Decide what the product should be next and write it down so that someone who was not in the room can tell when a line has stopped being true.. |
-| [Principal Product Manager — Strategic Verticals](principal-pm-verticals.md) | head-of-product | Pick the few verticals where 60-second predict-and-see lessons can be the best in the world, and make the categories work together to win them.. |
 
 ## Studio
 
@@ -77,6 +76,26 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 | [Analytics & Experiment Steward](analytics-steward.md) | head-of-product | Before the result arrives, write down what the number is taken to mean, over what period, and what would count against the claim.. |
 | [Pattern Librarian](pattern-librarian.md) | chief-of-staff | Turn lessons into patterns that can lose an argument, and retire the ones that have stopped being true.. |
 
+## Categories
+
+| Role | Reports to | Mission |
+|---|---|---|
+| [Category Owner — Mathematics](cm-math.md) | principal-pm-verticals | Decide what Mathematics should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Computer Science](cm-cs.md) | principal-pm-verticals | Decide what Computer Science should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Probability & Data](cm-probability.md) | principal-pm-verticals | Decide what Probability & Data should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Physics](cm-physics.md) | principal-pm-verticals | Decide what Physics should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — AI & Machine Learning](cm-ai.md) | principal-pm-verticals | Decide what AI & Machine Learning should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Economics & Money](cm-economics.md) | principal-pm-verticals | Decide what Economics & Money should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Life Sciences](cm-life.md) | principal-pm-verticals | Decide what Life Sciences should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Geography & Maps](cm-geography.md) | principal-pm-verticals | Decide what Geography & Maps should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Life Hacks](cm-lifehacks.md) | principal-pm-verticals | Decide what Life Hacks should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Chemistry](cm-chemistry.md) | principal-pm-verticals | Decide what Chemistry should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Book Summaries](cm-books.md) | principal-pm-verticals | Decide what Book Summaries should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Big Ideas](cm-big-ideas.md) | principal-pm-verticals | Decide what Big Ideas should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — History through data and maps](cm-history.md) | principal-pm-verticals | Decide what History through data and maps should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Owner — Behavioral Economics and Irrational Behavior](cm-behavioral.md) | principal-pm-verticals | Decide what Behavioral Economics and Irrational Behavior should teach next and why, and keep the category's map honest about what it does not yet teach.. |
+| [Category Lead (Principal Product Manager, Strategic Verticals)](principal-pm-verticals.md) | founder | Pick the few verticals where 60-second predict-and-see lessons can be the best in the world, and make the categories work together to win them.. |
+
 ## Rnd
 
 | Role | Reports to | Mission |
@@ -102,15 +121,9 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [VP of Marketing](vp-marketing.md) | founder | People who would benefit from 60-second predict-and-see lessons hear about them in words that are true, checkable and ours.. |
 
-## Categories
+## Parked (2026-10-25: restructuring, F-50; principles, F-52; categories, F-53)
 
-| Role | Reports to | Mission |
-|---|---|---|
-| [Category Curator (pooled; one instance per category)](category-curator.md) | principal-pm-verticals | Keep each category's queue full of briefs worth building, in priority order, and keep its map honest about what it does not yet teach. |
-
-## Parked (2026-10-25: restructuring, F-50; principles, F-52)
-
-Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md and company/decisions/2026-10-25-founder-f52.md (each row names its record in the role doc).
+Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md, company/decisions/2026-10-25-founder-f52.md and company/decisions/2026-10-25-founder-f53.md (each row names its record in the role doc).
 
 | Role | Work now with | Why |
 |---|---|---|
@@ -118,20 +131,6 @@ Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.m
 | [Learning Designer](parked/learning-designer.md) | interaction-designer | 1 run; pedagogy fields go to interaction-designer, brief fields to category-curator |
 | [Mockup Artist](parked/mockup-artist.md) | interaction-designer | never ran |
 | [Researcher (Research org, learning and teaching)](parked/researcher.md) | research-scientist | never ran; same job |
-| [Category Manager (category lead) — Mathematics](cm-math.md) | category-curator | instance category=math; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Computer Science](cm-cs.md) | category-curator | instance category=cs; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Probability & Data](cm-probability.md) | category-curator | instance category=probability; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Physics](cm-physics.md) | category-curator | instance category=physics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — AI & Machine Learning](cm-ai.md) | category-curator | instance category=ai; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Economics & Money](cm-economics.md) | category-curator | instance category=economics; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Life Sciences](cm-life.md) | category-curator | instance category=life; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Geography & Maps](cm-geography.md) | category-curator | instance category=geography; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Life Hacks](cm-lifehacks.md) | category-curator | instance category=lifehacks; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Chemistry](cm-chemistry.md) | category-curator | instance category=chemistry; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Book Summaries](cm-books.md) | category-curator | instance category=books; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Big Ideas](cm-big-ideas.md) | category-curator | instance category=big-ideas; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — History through data and maps](cm-history.md) | category-curator | instance category=history; the category's charter, curriculum, briefs and this role's memory are the curator's data |
-| [Category Manager (category lead) — Behavioral Economics and Irrational Behavior](cm-behavioral.md) | category-curator | instance category=behavioral; the category's charter, curriculum, briefs and this role's memory are the curator's data |
 | [Life Hacks Safety Reviewer](parked/lifehacks-safety-reviewer.md) | route-reviewer | route=safety checklist |
 | [VP of Personalization (CEO Office)](parked/vp-personalization.md) | head-of-product | 13 events up to 10-20, tokens unmeasured, no step in a flow (audit P7); keep or kill per term to head-of-product, objective and phases to personalization-engineer's brief |
 | [Applied Scientist, Personalization](parked/applied-scientist-personalization.md) | personalization-engineer | 3 events (audit P7); curve numbers to personalization-engineer, second reads to research-scientist |
@@ -191,3 +190,13 @@ Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.m
 | [Head of Evaluation](parked/head-of-evaluation.md) | nobody (dormant) | never ran; lane 21 has no budget |
 | [Pairwise Judge (Evaluation)](parked/pairwise-judge.md) | pedagogy-critic | never ran; pedagogy-critic already judges pairwise |
 | [Evaluation Engineer](parked/evaluation-engineer.md) | nobody (dormant) | never ran |
+| [Category Curator (pooled; one instance per category)](parked/category-curator.md) | the 14 category owners (cm-<domain>, run by the category-owner agent) | F-53 row 1: the category is the unit of scale; the pool's 4 runs were all one category and 0 of 173 category items moved under it. Its memory stays readable: owners read its entries for their category |
+
+## Physical agents (F-53)
+
+Logical roles that run on one agent definition (company/decisions/2026-10-25-founder-f53.md; company/company.json `agents`). Each role keeps its own doc, memory, records and queue.
+
+| Agent | Roles | Why grouped |
+|---|---|---|
+| category-owner | cm-math, cm-cs, cm-probability, cm-physics, cm-ai, cm-economics, cm-life, cm-chemistry, cm-geography, cm-lifehacks, cm-books, cm-big-ideas, cm-history, cm-behavioral | the same kind of work on the same kind of artifact (a category's map, charter, briefs and queue); one category per session so no two categories' rulings share a context |
+| tester | qa-tester, accessibility-reviewer | mechanical checks of the rendered page on the same artifact (one build of one version); neither role witnesses against the other. The independent witnesses (fact-checker, learner-evaluator, pedagogy-critic, route-reviewer) keep their own agents |

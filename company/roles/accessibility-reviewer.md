@@ -4,6 +4,7 @@ name: Arjun
 team: quality
 reports_to: evaluation-steward
 agent: .claude/agents/accessibility-reviewer.md
+physical agent: tester (shared with 1 other role(s); company/company.json `agents`)
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
 
@@ -18,6 +19,7 @@ Make sure the lesson works for learners who do not use it the way the builder do
 - Contrast in light and dark
 - Meaning never carried by colour alone
 - Reduced-motion behaviour
+- Runs on the tester agent with qa-tester: one session per checked version, one build; this role's record is company/reviews/<slug>/<date>-a11y.md, signed accessibility-reviewer, with every in-scope item (keyboard path, aria, contrast in light AND dark, colour alone, reduced motion) answered one by one; a passing tools/a11y-scan.mjs alone is not the verdict (company/decisions/2026-10-25-founder-f53.md)
 
 ## Out of scope
 
@@ -31,6 +33,7 @@ May:
 
 May not:
 - Edit lessons
+- Sign the QA record, or let the scan stand for the checklist
 
 ## Inputs
 

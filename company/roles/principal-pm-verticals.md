@@ -1,8 +1,8 @@
-# Principal Product Manager — Strategic Verticals
+# Category Lead (Principal Product Manager, Strategic Verticals)
 
 name: Selin
-team: product
-reports_to: head-of-product
+team: categories
+reports_to: founder
 agent: .claude/agents/principal-pm-verticals.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -19,10 +19,14 @@ Pick the few verticals where 60-second predict-and-see lessons can be the best i
 - Working with International (which verticals and locales go together) and Personalization (paths through a vertical)
 - Lane S (single-card lessons): the lane's manager. Owns its queue (board items tagged project:lane-single-card, in priority order), asks category-curator instances for briefs and demo-builder for builds through mailbox dispatch requests (F-42), inside the lane's cycle budget in company/ops/projects.json; a spent lane asks the portfolio-manager for a tranche and never borrows. Never dispatches checkers (quality lane) (company/decisions/2026-10-25-founder-restructuring.md)
 - New subjects and courses (absorbed domain-scout and courses-lead, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
+- Category lead (F-53 L1): the single report line for the 14 category owners (cm-<domain>); the cross-category portfolio (which concepts the verticals need, in what order); each category's cycle token line, under the portfolio-manager's register. Does not approve briefs one by one (company/decisions/2026-10-25-founder-f53.md)
+- The per-category clearing meter: a category's queue clears in a cycle if it closes at least as many items as it opens, and at least 1 (board.json closes and opens by owner=cm-<d>). The dormant rule on 2 cycles without clearing waits on the founder's answer to F53-6 (company/decisions/2026-10-25-founder-f53.md)
+- Course items (content/courses/**, the parked cm-course-ncm's queue): a course is an ordered path over existing items, so its items are this role's (company/decisions/2026-10-25-founder-f53.md)
+- F-53 row 2 pilot (history), once B1-B4 are met: the category lead runs it and reports the dispatch share against P2 and P3 (company/decisions/2026-10-25-founder-f53.md)
 
 ## Out of scope
 
-- Writing briefs (sub-area managers)
+- Writing briefs (category owners)
 - Building lessons
 - Deciding the mission (founder)
 

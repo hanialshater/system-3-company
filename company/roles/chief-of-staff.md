@@ -23,6 +23,7 @@ Given everything we know, choose what to try next and send it to the narrowest r
 - Owns the structure of company/ops/board.json and company/ops/progress.md: every role adds board items through the CLI (`npm run company -- board add`) and its own dated handoff at the top of progress.md (CLAUDE.md, "Before you finish"). The only writer of company/ops/events.jsonl and company/ops/founder-inbox.json (company/decisions/2026-10-25-founder-f52.md)
 - Writing the session handoff at the end of every session
 - Drains mailbox dispatch requests mechanically: priority, then lane budget headroom, then age; no production work itself (a founder ask that touches lessons becomes a lane batch, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
+- The quality desk (F-53 Q1): drains the review queue mechanically from evaluation-steward's standing orders (the tester once per checked version, fact-checker, learner-evaluator, route-reviewer for a non-standard route, pedagogy-critic where the lane says). The dispatcher of a check never made the item; the referee owner stays out of dispatch (company/decisions/2026-10-25-founder-f53.md)
 
 ## Out of scope
 

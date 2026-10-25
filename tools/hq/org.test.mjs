@@ -12,7 +12,9 @@ test("System 3 Company's org through the org contract: every role reports to a r
   // 39 roles since the 2026-10-25 restructuring (company/decisions/2026-10-25-founder-restructuring.md); 34 since F-52 G2 parked five
   // personalization roles (company/decisions/2026-10-25-founder-f52.md). Parked roles are not in the org.
   assert.ok(org.length >= 34); assert.ok(!ids.has("vp-personalization"), "vp-personalization is parked (F-52)"); assert.ok(org.every((r) => r.reportsTo === null || ids.has(r.reportsTo)));
-  assert.ok(!ids.has("cm-math") && ids.has("category-curator"), "category managers are parked; the pooled curator is in the org");
+  // F-53 (company/decisions/2026-10-25-founder-f53.md): the 14 category owners are back, the pooled curator is parked, strands stay parked.
+  assert.ok(ids.has("cm-math") && ids.has("cm-history") && !ids.has("category-curator") && !ids.has("cm-math-geometry"), "category owners in the org; curator and strands parked");
+  assert.equal(org.find((r) => r.id === "cm-history").reportsTo, "principal-pm-verticals");
   assert.equal(org.find((r) => r.id === "chief-of-staff").name, "Ada");
 });
 

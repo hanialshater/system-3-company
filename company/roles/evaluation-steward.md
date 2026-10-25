@@ -20,6 +20,7 @@ Keep the thing that judges harder to change than the thing being judged, and sti
 - Running the planted-belief experiment (company/experiments/EXP-001)
 - Standing check orders for both production lanes: checkers (fact-checker, qa-tester, learner-evaluator, accessibility-reviewer, pedagogy-critic, route-reviewer) are dispatched only from the quality lane (company/decisions/2026-10-25-founder-restructuring.md)
 - AMD-014 redraft with risk tiers S, R and N (company/constitution/amendments/AMD-017-risk-tiers-and-lanes.md draft) (company/decisions/2026-10-25-founder-restructuring.md)
+- Quality desk standing orders (F-53 Q1): writes which checks each lane's item gets and in what order; the operator dispatches from them. Owns the record formats of the tester agent's two records (qa and a11y stay separate, signed by role) (company/decisions/2026-10-25-founder-f53.md)
 
 ## Out of scope
 

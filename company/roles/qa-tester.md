@@ -4,6 +4,7 @@ name: Rosa
 team: quality
 reports_to: evaluation-steward
 agent: .claude/agents/qa-tester.md
+physical agent: tester (shared with 1 other role(s); company/company.json `agents`)
 constitutional: true (this role's authority is part of the constitutional surface)
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -18,6 +19,7 @@ Use the thing. Click controls in the wrong order, resize the page, find the beau
 - Exploratory sessions with Playwright scripts in artifacts/ (not committed) at phone and desktop sizes
 - Writing company/reviews/<slug>/<date>-qa.md with steps, screenshots and failures
 - Proposing new contract checks to the evaluation steward
+- Runs on the tester agent with accessibility-reviewer: one session per checked version, one build; this role's record is company/reviews/<slug>/<date>-qa.md (and `company qa-record`), signed qa-tester. The a11y record is not this role's verdict (company/decisions/2026-10-25-founder-f53.md)
 
 ## Out of scope
 
@@ -32,6 +34,7 @@ May:
 May not:
 - Edit tests/qa (protected)
 - Fix lessons
+- Sign the accessibility record
 
 ## Inputs
 

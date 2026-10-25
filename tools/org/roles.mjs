@@ -2252,6 +2252,112 @@ for (const [id, into, why] of [
 // F-50 parked lesson-dims-owner into learning-scientist-personalization, now parked too: its work goes where lesson dims went.
 PARK["lesson-dims-owner"] = ["personalization-engineer", `${PARK["lesson-dims-owner"][1]}; re-routed by F-52 G2 (learning-scientist-personalization parked)`];
 
+// ------------------------------------------------------------------ categories and physical agents (2026-10-25, F-53)
+// Record: company/decisions/2026-10-25-founder-f53.md (proposal: company/ceo-office/2026-10-25-f53-categories-and-agents.md).
+// Row 1: the category is the unit of scale. The 14 domain leads are logical roles again (un-parked), all run by ONE physical
+//        agent definition, `category-owner` (the `agent` field; company/company.json `agents`). Strands (subcategories) are
+//        logical sub-units held by their category's owner: the 36 strand roles stay parked, their scope is the owner's data.
+//        category-curator (the F-50 pool) parks into the owners. principal-pm-verticals becomes the category lead (L1).
+// Row 2: owners dispatching their own makers is approved but GATED on B1-B4; nothing is enabled (no Agent tool here).
+// Row 3: qa-tester and accessibility-reviewer run on one physical `tester` agent; each keeps its own record.
+// Row 4: one read-only build per commit shared by checkers: a platform-engineer board item, nothing here.
+// Q1: the operator dispatches checks from the quality desk's standing orders (evaluation-steward writes them).
+const F53 = { date: "2026-10-25", record: "company/decisions/2026-10-25-founder-f53.md" };
+const f53 = (s) => `${s} (${F53.record})`;
+export const CATEGORY_OWNERS = ["cm-math", "cm-cs", "cm-probability", "cm-physics", "cm-ai", "cm-economics", "cm-life", "cm-chemistry", "cm-geography", "cm-lifehacks", "cm-books", "cm-big-ideas", "cm-history", "cm-behavioral"];
+// Physical agents (PRINCIPLES.md "Logical roles and physical agents"): roles grouped under one agent definition. Each role keeps
+// its onboarding doc, memory, records and board queue; the generator writes every grouped role's subagent from the agent's one
+// template, bound to the role by name (the protected company check needs .claude/agents/<role>.md for each role doc).
+export const AGENTS = {
+  "category-owner": {
+    roles: CATEGORY_OWNERS,
+    what: "One definition runs every category owner, one category per session, at most 2 category sessions at once. The session is launched as the owner (subagent `cm-<domain>`): it reads that role's doc and memory and writes that memory.",
+    why: "the same kind of work on the same kind of artifact (a category's map, charter, briefs and queue); one category per session so no two categories' rulings share a context",
+  },
+  tester: {
+    roles: ["qa-tester", "accessibility-reviewer"],
+    what: "One session per checked lesson version runs the QA contract and hand runs (qa-tester) and the keyboard, aria, contrast in light and dark, colour-alone and reduced-motion checks plus tools/a11y-scan.mjs (accessibility-reviewer), with tools/sequence-probe.mjs and tools/reveal-fit.mjs, on one build. It writes two records, company/reviews/<slug>/<date>-qa.md signed qa-tester and <date>-a11y.md signed accessibility-reviewer, and offboards both memories. Dispatch it once per version, under either role's name; the session does both.",
+    why: "mechanical checks of the rendered page on the same artifact (one build of one version); neither role witnesses against the other. The independent witnesses (fact-checker, learner-evaluator, pedagogy-critic, route-reviewer) keep their own agents",
+  },
+};
+const AGENT_OF = Object.fromEntries(Object.entries(AGENTS).flatMap(([a, g]) => g.roles.map((r) => [r, a])));
+for (const id of CATEGORY_OWNERS) delete PARK[id];
+PARK["category-curator"] = [
+  "the 14 category owners (cm-<domain>, run by the category-owner agent)",
+  "F-53 row 1: the category is the unit of scale; the pool's 4 runs were all one category and 0 of 173 category items moved under it. Its memory stays readable: owners read its entries for their category",
+  F53,
+];
+const STRANDS_OF = (domain) => (SUBAREAS[domain] ?? []).map(([sub, name]) => `${name} (\`cm-${domain}-${sub}\`, company/domains/briefs/${domain}.${sub}.md)`);
+for (const r of roles) {
+  if (!CATEGORY_OWNERS.includes(r.id)) continue;
+  const d = r.domain;
+  const strands = STRANDS_OF(d);
+  r.title = r.title.replace(/^Category Manager \(category lead\)/, "Category Owner");
+  r.reportsTo = "principal-pm-verticals";
+  r.agent = "category-owner";
+  r.description += ` Run by the category-owner agent, one category per session (F-53).`;
+  r.inScope = [
+    ...r.inScope,
+    f53(`The category is the unit of scale: this role owns the ${d} category's charter, rulings, curriculum map, briefs, coverage line and its open board items as owner of record, and takes each of its items through its lane (S or M) to "ready for check"; it answers findings about its lessons`),
+    f53(strands.length
+      ? `Subcategories are logical units inside the category, held by this owner, not agents: ${strands.join("; ")}. The parked strand roles' scope (company/roles/parked/cm-${d}-<strand>.md: concepts tagged with the strand in content/curriculum/${d}.json, the strand's ranked briefs, every brief's answer checked in node, the overlap check) and their memories are this owner's data; board items carry \`strand\``
+      : `No subcategories today (no SUBAREAS entry); a strand, if ever needed, is a section of company/domains/briefs/${d}.md held by this owner, not a role`),
+    f53(`Memory: write your own (\`node tools/memory.mjs add ${r.id} …\`); read company/roles/memory/category-curator.md entries whose run key or text names ${d} (the pooled curator's notes, 2026-10-25), as testimony`),
+  ];
+  r.outOfScope = [
+    ...r.outOfScope,
+    "Another category in the same session",
+    f53("Dispatching anything until F-53 row 2's history pilot is cleared (gated on B1-B4); after that, makers only (demo-builder, interaction-designer, research-scientist), never a checker"),
+  ];
+  r.authority = { ...r.authority, mayNot: [...(r.authority.mayNot ?? []), "Dispatch or request a checker of its own items (checkers come from the quality desk's standing orders, F-53 Q1)", "Brief a sensitive, safety or copyright concept without the route named"] };
+  r.inputs = [...r.inputs, "The lane manager's batch request (lane, count)", `The board filtered to owner=${r.id}`];
+}
+// Row 3: the tester agent. Records stay per role.
+for (const r of roles) {
+  if (AGENT_OF[r.id] !== "tester") continue;
+  r.agent = "tester";
+  r.inScope = [...r.inScope, f53(r.id === "qa-tester"
+    ? "Runs on the tester agent with accessibility-reviewer: one session per checked version, one build; this role's record is company/reviews/<slug>/<date>-qa.md (and `company qa-record`), signed qa-tester. The a11y record is not this role's verdict"
+    : "Runs on the tester agent with qa-tester: one session per checked version, one build; this role's record is company/reviews/<slug>/<date>-a11y.md, signed accessibility-reviewer, with every in-scope item (keyboard path, aria, contrast in light AND dark, colour alone, reduced motion) answered one by one; a passing tools/a11y-scan.mjs alone is not the verdict")];
+  r.authority = { ...r.authority, mayNot: [...(r.authority.mayNot ?? []), r.id === "qa-tester" ? "Sign the accessibility record" : "Sign the QA record, or let the scan stand for the checklist"] };
+}
+const F53_EDIT = {
+  "principal-pm-verticals": {
+    title: "Category Lead (Principal Product Manager, Strategic Verticals)",
+    reportsTo: "founder",
+    team: "categories",
+    description: " Since F-53 (L1) the category lead: the single report line of the 14 category owners, the cross-category portfolio, the per-category clearing meter, and lane S.",
+    add: [
+      "Category lead (F-53 L1): the single report line for the 14 category owners (cm-<domain>); the cross-category portfolio (which concepts the verticals need, in what order); each category's cycle token line, under the portfolio-manager's register. Does not approve briefs one by one",
+      "The per-category clearing meter: a category's queue clears in a cycle if it closes at least as many items as it opens, and at least 1 (board.json closes and opens by owner=cm-<d>). The dormant rule on 2 cycles without clearing waits on the founder's answer to F53-6",
+      "Course items (content/courses/**, the parked cm-course-ncm's queue): a course is an ordered path over existing items, so its items are this role's",
+      "F-53 row 2 pilot (history), once B1-B4 are met: the category lead runs it and reports the dispatch share against P2 and P3",
+    ],
+    replaceOut: [[/^Writing briefs \(sub-area managers\)$/, "Writing briefs (category owners)"]],
+  },
+  "chief-of-staff": {
+    add: ["The quality desk (F-53 Q1): drains the review queue mechanically from evaluation-steward's standing orders (the tester once per checked version, fact-checker, learner-evaluator, route-reviewer for a non-standard route, pedagogy-critic where the lane says). The dispatcher of a check never made the item; the referee owner stays out of dispatch"],
+  },
+  "evaluation-steward": {
+    add: ["Quality desk standing orders (F-53 Q1): writes which checks each lane's item gets and in what order; the operator dispatches from them. Owns the record formats of the tester agent's two records (qa and a11y stay separate, signed by role)"],
+  },
+  "head-of-product": {
+    add: ["Since F-53 L1 the 14 category owners report to the category lead (principal-pm-verticals, who reports to the founder), not here; head-of-product keeps priority across lanes and signs batch launch records"],
+  },
+};
+for (const r of roles) {
+  const e = F53_EDIT[r.id];
+  if (!e) continue;
+  if (e.title) r.title = e.title;
+  if (e.reportsTo) r.reportsTo = e.reportsTo;
+  if (e.team) r.team = e.team;
+  if (e.description) r.description += e.description;
+  if (e.add) r.inScope = [...r.inScope, ...e.add.map(f53)];
+  for (const [re, to] of e.replaceOut ?? []) r.outOfScope = r.outOfScope.map((s) => s.replace(re, to));
+}
+// Who held category-curator's lines now points at the owners.
+for (const r of roles) if (r.reportsTo === "category-curator") r.reportsTo = "principal-pm-verticals";
+
 export const parked = [];
 for (let i = roles.length - 1; i >= 0; i--) {
   const p = PARK[roles[i].id];

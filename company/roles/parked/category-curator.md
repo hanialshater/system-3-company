@@ -1,9 +1,11 @@
 # Category Curator (pooled; one instance per category)
 
+> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-f53.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `the 14 category owners (cm-<domain>, run by the category-owner agent)`. Why: F-53 row 1: the category is the unit of scale; the pool's 4 runs were all one category and 0 of 173 category items moved under it. Its memory stays readable: owners read its entries for their category. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
+
 name: Curators
 team: categories
 reports_to: principal-pm-verticals
-agent: .claude/agents/category-curator.md
+agent: none (parked; was .claude/agents/category-curator.md)
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
 

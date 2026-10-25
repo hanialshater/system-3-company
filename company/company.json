@@ -5,7 +5,7 @@
   "owner": "founder (Hani Alshater)",
   "archetype": "corporate",
   "mission": "60-second interactive lessons (a vertical feed of predict, explore, reveal cards) whose every learner-facing sentence is a checked claim (CLAUDE.md; company/mission.md)",
-  "recordedBy": "chief-of-staff-ceo-office (Leonie), 2026-10-25, from the company's records; the audit behind each field is company/ceo-office/2026-10-25-principles-audit.md",
+  "recordedBy": "chief-of-staff-ceo-office (Leonie), 2026-10-25, from the company's records; the audit behind each field is company/ceo-office/2026-10-25-principles-audit.md; updated 2026-10-25 by chief-of-staff-ceo-office for F-53 (company/decisions/2026-10-25-founder-f53.md)",
   "principles": "system3-meta PRINCIPLES.md",
   "scope": "System 3 Lessons only. S3 Press (books) and System 3 Meta (the platform) are separate companies in the city (founder, 2026-10-25). Their roles and work are not counted here: tools/org/roles.mjs holds no Press or Meta role (active or parked; Press roles were never in it, company/sibling/press/README.md), and no flow below is theirs. The Books category (src/demos/books, 106 single-card lessons) is this company's own, served by category-curator in lane S. system3-meta is cited only as the source of the principles and of Benchmark 6.",
   "roles": [
@@ -41,10 +41,50 @@
     "interaction-designer",
     "principal-pm-verticals",
     "vp-marketing",
-    "category-curator",
+    "cm-math",
+    "cm-cs",
+    "cm-probability",
+    "cm-physics",
+    "cm-ai",
+    "cm-economics",
+    "cm-life",
+    "cm-chemistry",
+    "cm-geography",
+    "cm-lifehacks",
+    "cm-books",
+    "cm-big-ideas",
+    "cm-history",
+    "cm-behavioral",
     "route-reviewer"
   ],
-  "rolesSource": "tools/org/roles.mjs `roles` export after PARK, 2026-10-25: 34 entries (33 agent roles plus the founder); 77 roles parked: 72 by F-50 (company/decisions/2026-10-25-founder-restructuring.md) and 5 personalization roles by F-52 G2 (company/decisions/2026-10-25-founder-f52.md). Scheduled to park (SCHEDULED_PARK in roles.mjs): head-of-strategic-initiatives and vp-marketing on 2026-11-23 at First Light's close, rnd-lead if F-49 is declined. Pools: demo-builder, category-curator, route-reviewer, research-scientist.",
+  "rolesSource": "tools/org/roles.mjs `roles` export after PARK, 2026-10-25 after F-53: 47 entries (46 agent roles plus the founder), run by 32 agent definitions (see `agents`); 64 roles parked: by F-50 (company/decisions/2026-10-25-founder-restructuring.md), F-52 G2 (company/decisions/2026-10-25-founder-f52.md) and F-53 (category-curator into the 14 category owners, company/decisions/2026-10-25-founder-f53.md). F-53 un-parked the 14 category owners (cm-<domain>); the 36 strand roles and cm-course-ncm stay parked. Scheduled to park (SCHEDULED_PARK in roles.mjs): head-of-strategic-initiatives and vp-marketing on 2026-11-23 at First Light's close, rnd-lead if F-49 is declined. Pools: demo-builder, route-reviewer, research-scientist.",
+  "agents": {
+    "cm-math": "category-owner",
+    "cm-cs": "category-owner",
+    "cm-probability": "category-owner",
+    "cm-physics": "category-owner",
+    "cm-ai": "category-owner",
+    "cm-economics": "category-owner",
+    "cm-life": "category-owner",
+    "cm-chemistry": "category-owner",
+    "cm-geography": "category-owner",
+    "cm-lifehacks": "category-owner",
+    "cm-books": "category-owner",
+    "cm-big-ideas": "category-owner",
+    "cm-history": "category-owner",
+    "cm-behavioral": "category-owner",
+    "qa-tester": "tester",
+    "accessibility-reviewer": "tester"
+  },
+  "agentsSource": "tools/org/roles.mjs `AGENTS` export (F-53, company/decisions/2026-10-25-founder-f53.md): roles grouped under one physical agent definition share its template; each role keeps its own onboarding doc, memory, records and board queue. category-owner runs the 14 category owners, one category per session, at most 2 at once; tester runs qa-tester and accessibility-reviewer in one session per checked version, two records signed by role. No witness is grouped with another witness or with a maker (system3-meta PRINCIPLES.md, Logical roles and physical agents). The other groupings in the proposal (design, eng-review, hq-tools, learner-data, planning, insight; F53-9) were not decided and are not applied.",
+  "unitOfScale": {
+    "unit": "category",
+    "subunit": "subcategory (strand): a logical unit inside its category, held by the category's owner, never an agent",
+    "categories": 14,
+    "owners": "cm-<domain> (one logical role per category, run by the category-owner agent); report line: the category lead, principal-pm-verticals (F-53 L1)",
+    "grow": "a new category adds one owner role and its data (charter, curriculum map, briefs file, memory), nothing else",
+    "source": "company/decisions/2026-10-25-founder-f53.md"
+  },
   "orgReasons": [
     "recurs",
     "too-big-for-one-context",
@@ -57,7 +97,7 @@
     "independent-checking": "Builders never mark their own claims verified (CLAUDE.md; tools/company.mjs claimGates refuses a claim verified by its builder). M6: the independent fact-checker found real errors in 7 of 10 lessons after the builders' own checks passed (system3-meta research/bench6/PREDICTIONS.md). Learner data and a child-safety trigger need a privacy gate (AMD-015).",
     "long-horizon": "A live product with accounts, a feed and 21 production releases since 2026-10-14 (company/ops/releases.json); the disk is the memory (CLAUDE.md)."
   },
-  "sizeReason": "34 roles (33 agents) against the default of 8, falling to about 30 on 2026-11-23. The evidence supports about 30: the 11 roles of the two production flows (curator, builder, interaction-designer, qa, fact, learner, a11y, pedagogy, route, release, design-lead) and the referee owner, because the work recurs at 100 lessons a cycle across 14 curricula and the constitution separates maker from checker at four gates; 4 managers who hold priority and lane budgets; the operator and its auditor; 7 engineers and stewards of a live product with learner accounts and a privacy gate; 2 for learning and metrics; 1 research pool; 2 for personalization (one maker, personalization-engineer, and its independent judge, personalization-eval, now under evaluation-steward) plus growth-designer. The 5 personalization roles with no measured run were parked by F-52 G2 (company/decisions/2026-10-25-founder-f52.md). The 3 left above the reason are dated, as the founder approved: head-of-strategic-initiatives and vp-marketing park at First Light's close on 2026-11-23 (First Light's own release work needs them until then), and rnd-lead parks if F-49 is declined (it holds the open rnd-knots tranche).",
+  "sizeReason": "47 roles (46 agent roles plus the founder) run by 32 agent definitions, against the default of 8; at most 10 sessions at once (8 typical), falling by 2 to 3 definitions on 2026-11-23. The category is the unit of scale (F-53, company/decisions/2026-10-25-founder-f53.md): 14 category owners are 14 logical roles on ONE agent definition (category-owner), because the catalogue recurs at 100 lessons a cycle across 14 curricula with their own charters, rulings and routes (sensitive, safety, copyright), which one pooled prompt did not hold (0 of 173 category items closed under the pool, F-53 section 1b); a new category adds one owner and its data, not an agent. The rest: the steps of the two production flows plus the referee owner (builder, interaction-designer, tester (qa-tester plus accessibility-reviewer on one agent), fact-checker, learner-evaluator, pedagogy-critic, route-reviewer, release-manager, design-lead, evaluation-steward), because the constitution separates maker from checker at four gates and the witnesses are never grouped; the category lead and 3 managers who hold priority and lane budgets (head-of-product, portfolio-manager, plus lane M's design-lead above); the operator and its auditor; 7 engineers and stewards of a live product with learner accounts and a privacy gate; 2 for learning and metrics; 1 research pool; personalization-engineer and its independent judge personalization-eval, plus growth-designer. Dated: head-of-strategic-initiatives and vp-marketing park on 2026-11-23, rnd-lead if F-49 is declined (F-52). Further groupings (F53-9: design, eng-review, hq-tools, learner-data, planning, insight) would bring the definitions to about 26 and are the founder's open choice.",
   "baseline": {
     "weighed": "Benchmark 6 ran the single-agent baseline on this company's work: one vanilla agent (V) with the company's CLAUDE.md, hooks and tools against the many-stage flow (M) on the same 3 cs.systems one-card briefs, scored blind.",
     "result": "V cost $7.19 against $16.66 (43%; about 51% counting its unpriced nested sessions), took 36.5 min against 98, had 0 confirmed S1/S2 defects against 1, 3/3 accepted against 2/3, and won 2 of 3 pairwise. V checked its claims with nested checker sessions it launched itself, which the protocol does not count as independent.",
@@ -72,12 +112,12 @@
     {
       "id": "lane-S",
       "title": "Lane S: single-card lesson (every single-card format)",
-      "source": "company/ceo-office/2026-10-25-restructuring-proposal.md section 2b; company/ceo-office/poc-map.md lane 1; manager principal-pm-verticals",
+      "source": "company/ceo-office/2026-10-25-restructuring-proposal.md section 2b; company/ceo-office/poc-map.md lane 1; manager principal-pm-verticals; owners and checks per company/decisions/2026-10-25-founder-f53.md",
       "steps": [
         {
-          "role": "category-curator",
+          "role": "cm-<domain>",
           "kind": "maker",
-          "what": "brief: misconception, claims, format, reviewRoute, proposed priority; batches of 10-20"
+          "what": "the category owner of the item's category (F-53; one of the 14 category owners on the category-owner agent): brief: misconception, claims, format, reviewRoute, proposed priority; batches of 10-20"
         },
         {
           "role": "demo-builder",
@@ -87,22 +127,22 @@
         {
           "role": "qa-tester",
           "kind": "check",
-          "what": "npm run check, QA contract record, tools/a11y-scan.mjs"
+          "what": "npm run check, QA contract record, tools/a11y-scan.mjs; since F-53 the tester agent: qa-tester and accessibility-reviewer in one session per checked version on one build, two records (<date>-qa.md, <date>-a11y.md) signed by role; dispatched by the operator from the quality desk's standing orders (Q1)"
         },
         {
           "role": "fact-checker",
           "kind": "check",
-          "what": "claims, in batches of 50"
+          "what": "claims, in batches of 50; dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "learner-evaluator",
           "kind": "check",
-          "what": "learner walk of the current version (every lesson until AMD-017 is ratified)"
+          "what": "learner walk of the current version (every lesson until AMD-017 is ratified); dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "route-reviewer",
           "kind": "check",
-          "what": "route verdict, tier R only (sensitive, safety, copyright, health, money)"
+          "what": "route verdict, tier R only (sensitive, safety, copyright, health, money); dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "demo-builder",
@@ -129,12 +169,12 @@
     {
       "id": "lane-M",
       "title": "Lane M: multi-card sequence (2-4 sub-cards): one warm maker per item, checks once at the end (F-52 G1)",
-      "source": "company/decisions/2026-10-25-founder-f52.md (G1); company/ops/projects.json lane-multi-card.flow; company/ceo-office/poc-map.md lane 6; manager design-lead. Supersedes the F-50 relay (company/ceo-office/2026-10-25-restructuring-proposal.md section 2c)",
+      "source": "company/decisions/2026-10-25-founder-f52.md (G1); company/ops/projects.json lane-multi-card.flow; company/ceo-office/poc-map.md lane 6; manager design-lead. Supersedes the F-50 relay (company/ceo-office/2026-10-25-restructuring-proposal.md section 2c); owners and checks per company/decisions/2026-10-25-founder-f53.md",
       "steps": [
         {
-          "role": "category-curator",
+          "role": "cm-<domain>",
           "kind": "maker",
-          "what": "brief: 2-4 sub-cards, claims, category sensitivities, numbers script"
+          "what": "the category owner of the item's category (F-53; one of the 14 category owners on the category-owner agent): brief: 2-4 sub-cards, claims, category sensitivities, numbers script"
         },
         {
           "role": "demo-builder",
@@ -144,32 +184,32 @@
         {
           "role": "interaction-designer",
           "kind": "check",
-          "what": "interaction review of the spec and the built stage, artifact first"
+          "what": "interaction review of the spec and the built stage, artifact first; dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "qa-tester",
           "kind": "check",
-          "what": "automated checks plus sequence probe"
+          "what": "automated checks plus sequence probe; since F-53 the tester agent: qa-tester and accessibility-reviewer in one session per checked version on one build, two records (<date>-qa.md, <date>-a11y.md) signed by role; dispatched by the operator from the quality desk's standing orders (Q1)"
         },
         {
           "role": "fact-checker",
           "kind": "check",
-          "what": "claims"
+          "what": "claims; dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "learner-evaluator",
           "kind": "check",
-          "what": "learner walk (every item for the first 10)"
+          "what": "learner walk (every item for the first 10); dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "design-lead",
           "kind": "check",
-          "what": "design review, first 3 items"
+          "what": "design review, first 3 items; dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "pedagogy-critic",
           "kind": "check",
-          "what": "pairwise against the single-card twin, first 3 items (the cube lesson runs it after publish: founder, 2026-10-25)"
+          "what": "pairwise against the single-card twin, first 3 items (the cube lesson runs it after publish: founder, 2026-10-25); dispatched by the operator from the quality desk's standing orders (F-53 Q1)"
         },
         {
           "role": "demo-builder",
@@ -260,7 +300,7 @@
       ]
     },
     {
-      "role": "category-curator",
+      "role": "cm-<domain>",
       "paths": [
         "content/curriculum/<domain>.json",
         "company/domains/<domain>.md",
@@ -359,7 +399,7 @@
       ]
     }
   ],
-  "ownsSource": "each path is named in the role's inScope in tools/org/roles.mjs (2026-10-25, after F-52 G3, company/decisions/2026-10-25-founder-f52.md): src/app/hq/** is hq-engineer's alone (tools-lead keeps the HQ data adapters and tools); company/ops/events.jsonl is written by chief-of-staff alone (tools-lead owns the schema and tools/events.mjs); src/lib/learner/** moved with learner-model-engineer's work to personalization-engineer (G2). Glob paths are recorded as written; src/lib/hq-*.ts and src/app/hq/** do not overlap.",
+  "ownsSource": "each path is named in the role's inScope in tools/org/roles.mjs (2026-10-25, after F-52 G3, company/decisions/2026-10-25-founder-f52.md): src/app/hq/** is hq-engineer's alone (tools-lead keeps the HQ data adapters and tools); company/ops/events.jsonl is written by chief-of-staff alone (tools-lead owns the schema and tools/events.mjs); src/lib/learner/** moved with learner-model-engineer's work to personalization-engineer (G2). Glob paths are recorded as written; src/lib/hq-*.ts and src/app/hq/** do not overlap. F-53 (company/decisions/2026-10-25-founder-f53.md): content/curriculum/<domain>.json, company/domains/<domain>.md and company/domains/briefs/ belong to the category's owner (cm-<domain>), one owner per category; the pooled category-curator is parked.",
   "referee": {
     "cmd": "npm run company -- publish <slug>",
     "what": "launchGates in tools/company.mjs (protected): every claim verified by someone other than its builder, a computer-use QA record, a learner review of the current version, readiness and publish holds; plus npm run check and the QA contract in tests/qa/** (protected)",
