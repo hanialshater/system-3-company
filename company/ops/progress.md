@@ -1,3 +1,12 @@
+## 2026-10-25 · chief-of-staff · W-2037 (lane M, CP1-L2/L3) not started: no subagent tool in this session
+
+- **Changed:** nothing in production. No dispatches, no events, no spend against `lane-multi-card`.
+- **Why:** this session's tool set has no Agent/Task tool, so the chief of staff cannot dispatch the roles in `.claude/agents/`. The chief of staff does not do production itself, and remote sessions are not the usual way to dispatch, so it stopped.
+- **Checked:** `dispatch-check --kind=check --role=fact-checker --no-claim` returned OK, with warnings: wbr and founder-digest overdue; demo-crit, design-review, ops-review, vertical-review, rnd-review and project-review due; I1 intake records missing class/route. Euclid's `math.euclid-three-steps.c5` is still `unverified`; its source holds FC pass 38's derivation from 2026-10-14, before the copy edit.
+- **Believe:** high confidence that nothing changed. The plan in the brief still stands: re-verify c5, then run the sequence probe and a learner walk on the current version; then one new item through lane M §2c.
+- **Next:** re-run W-2037 from a session that has the Agent tool. Run the overdue wbr and founder-digest first.
+- **Blocked:** dispatch tooling in this session.
+
 ## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · Restructuring applied (F-50 option A): 109 → 39 roles, two content-type lanes, lane budgets
 
 - **Changed:** the founder approved F-50 option A ("Approved and decide for me", relayed verbatim by the coordinating session). The record is `company/decisions/2026-10-25-founder-restructuring.md`.
