@@ -77,7 +77,7 @@ const KERNEL = new Set(fs.readdirSync(HERE).filter((f) => f.endsWith(".mjs") || 
 const toSrc = (t) => t
   .replace(/(["'])\.\.\/([\w.-]+)\1/g, (m, q, f) => (KERNEL.has(f) ? `${q}../src/${f}${q}` : m))
   .replace(/path\.join\(HERE, "\.\.", "\.\.", "(catalog|org|knowledge|city)"/g, 'path.join(HERE, "..", "$1"')
-  .replace(/path\.join\(HERE, "\.\."(?!, "(?:launcher|\.\.|hq|catalog|org|knowledge)")/g, 'path.join(HERE, "..", "src"');
+  .replace(/path\.join\(HERE, "\.\."(?!, "(?:launcher|\.\.|hq|catalog|org|knowledge|city)")/g, 'path.join(HERE, "..", "src"');
 for (const f of fs.readdirSync(path.join(OUT, "tests")).filter((f) => f.endsWith(".mjs"))) { // fixtures/ is data
   const p = path.join(OUT, "tests", f);
   fs.writeFileSync(p, toSrc(fs.readFileSync(p, "utf8")));
@@ -116,7 +116,8 @@ Exported from System 3 Company (company/sibling/system3-meta/) by \`export-kerne
 const LEAK = /system-3-company|company\/sibling|adapters\/s3c|adapters", "s3c|specs\/s3c-|s3c-[\w-]*\.json/;
 const code = (t) => t.split("\n").filter((l) => !/^\s*(\/\/|\*|\/\*)/.test(l)).map((l) => l.replace(/(^|[;,{}()\]]\s*)\/\/ .*$/, "$1")).join("\n");
 const leaks = [];
-const walk = (d) => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) { if (f !== "node_modules") walk(p); } else if (/\.(mjs|json)$/.test(f) && LEAK.test(code(fs.readFileSync(p, "utf8")))) leaks.push(path.relative(OUT, p)); } };
+// the city's registry names companies' repositories on purpose (it is the public directory of companies)
+const walk = (d) => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) { if (f !== "node_modules" && path.relative(OUT, p) !== path.join("city", "registry")) walk(p); } else if (/\.(mjs|json)$/.test(f) && LEAK.test(code(fs.readFileSync(p, "utf8")))) leaks.push(path.relative(OUT, p)); } };
 walk(OUT);
 let test = null;
 if (!process.argv.includes("--no-test")) {
