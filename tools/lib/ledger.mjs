@@ -171,6 +171,17 @@ export function gate(reg, id, { now = new Date().toISOString(), planned = 0, led
   const spent = spendAgainstBudget(p, ledger);
   const frac = budget ? (spent + planned) / budget : null;
   const warnAt = reg.thresholds?.warnAt ?? 0.8;
+  if (p.kind === "lane") {
+    // Content-type lanes (2026-10-25 restructuring, company/decisions/2026-10-25-founder-restructuring.md): a lane runs on a
+    // cycle budget (budget.tokens plus topUps, counted from budget.countFrom) and STOPS at 100% like an approved major project.
+    // A spent lane asks the portfolio-manager for a tranche; it never borrows from another lane.
+    if (!OPEN_OK.has(p.status)) return { pass: false, level: "fail", reasons: [`${id} is a lane in status "${p.status}": only an approved or active lane takes new work`], project: p, spent, budget };
+    if (!budget) return { pass: false, level: "fail", reasons: [`${id} is a lane with no cycle budget: the portfolio-manager sets budget.tokens before the first dispatch`], project: p, spent, budget };
+    if (spent >= budget) return { pass: false, level: "fail", reasons: [`${id} has spent ${fmt(spent)} of its ${fmt(budget)} cycle budget (100%): the lane stops until the portfolio-manager approves a tranche`], project: p, spent, budget };
+    if (frac >= 1) reasons.push(`this dispatch would take lane ${id} past 100% (${fmt(spent)} + ${fmt(planned)} of ${fmt(budget)})`);
+    else if (frac >= warnAt) reasons.push(`lane ${id} is at ${Math.round(frac * 100)}% of its cycle budget: the lane manager files a forecast with the portfolio-manager`);
+    return { pass: true, level: reasons.length ? "warn" : "ok", reasons, project: p, spent, budget };
+  }
   if (!p.major) {
     // Budget lines (rituals, maintenance, catalog) never block small work; they flag.
     if (frac != null && frac >= 1) reasons.push(`${id} is at ${Math.round(frac * 100)}% of its line budget: flag in the WBR, owner re-plans (token-budget.md section 4)`);

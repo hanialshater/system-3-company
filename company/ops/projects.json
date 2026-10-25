@@ -34,7 +34,9 @@
       "lifehacks-safety-reviewer",
       "cultural-reviewer",
       "pedagogy-critic",
-      "^cm-"
+      "^cm-",
+      "category-curator",
+      "route-reviewer"
     ],
     "maintenance": [
       "platform-engineer",
@@ -1207,6 +1209,82 @@
         "onboard",
         "CEO office",
         "portfolio manager"
+      ],
+      "board": []
+    },
+    {
+      "id": "lane-single-card",
+      "title": "Lane S: single-card lessons (every single-card format), one flow, risk-tiered gates",
+      "kind": "lane",
+      "contentType": "single-card",
+      "major": false,
+      "owner": "portfolio-manager",
+      "manager": "principal-pm-verticals",
+      "status": "active",
+      "budget": {
+        "tokens": 9000000,
+        "countFrom": "2026-10-25",
+        "cycleEnds": "2026-11-08",
+        "basis": "100 published lessons at the 90k tier-S target (catalog line measured 78k/pub, ledger report 2026-10-25); restructuring proposal section 2b",
+        "topUps": []
+      },
+      "costTarget": {
+        "perPublished": 90000,
+        "tierR": 300000,
+        "pauseAbove": 180000,
+        "basis": "proposal section 2b; all-in target 150k once the coordinator is measured (F-41 item 7)"
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-25-founder-restructuring.md",
+        "approvedBy": "founder",
+        "date": "2026-10-25",
+        "note": "founder 2026-10-25 on F-50: \"Approved and decide for me\" (relayed verbatim by the coordinating session); budgets set by chief-of-staff-ceo-office under that delegation, to be confirmed by portfolio-manager at the next op-planning"
+      },
+      "returns": {
+        "headline": "tokens per published lesson against costTarget",
+        "predictions": "P1, P2 in the proposal"
+      },
+      "match": [
+        "\\[lane:S\\]",
+        "lane S\\b"
+      ],
+      "board": []
+    },
+    {
+      "id": "lane-multi-card",
+      "title": "Lane M: multi-card sequences (2-4 sub-cards; map stories later), one flow, first-3 design and pairwise review",
+      "kind": "lane",
+      "contentType": "multi-card-sequence",
+      "major": false,
+      "owner": "portfolio-manager",
+      "manager": "design-lead",
+      "status": "active",
+      "budget": {
+        "tokens": 1500000,
+        "countFrom": "2026-10-25",
+        "cycleEnds": "2026-11-08",
+        "basis": "5 published items at the 300k provisional target (n = 1 measured); proposal section 2c",
+        "topUps": []
+      },
+      "costTarget": {
+        "perPublished": 300000,
+        "pauseAbove": 450000,
+        "basis": "provisional; reset from the first 5 published items' ledger lines"
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-25-founder-restructuring.md",
+        "approvedBy": "founder",
+        "date": "2026-10-25",
+        "note": "founder 2026-10-25 on F-50: \"Approved and decide for me\" (relayed verbatim by the coordinating session); budgets set by chief-of-staff-ceo-office under that delegation, to be confirmed by portfolio-manager at the next op-planning"
+      },
+      "returns": {
+        "headline": "published multi-card items (CP1-L3) and tokens per item",
+        "predictions": "P3 in the proposal"
+      },
+      "match": [
+        "\\[lane:M\\]",
+        "lane M\\b",
+        "multi-card"
       ],
       "board": []
     }
