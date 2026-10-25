@@ -16,7 +16,8 @@ The learner's hands discover the idea; the reveal only names what they already s
 - Interaction specs per brief (company/design/specs/<slug>.md): format, controls in DOM order, states, milestones, what is visible at the reveal
 - New format proposals for the catalogue
 - Checking each spec is reachable on the QA path (each control pressed once, in order)
-- Pedagogy design fields (knowledge boundary, prediction question, reveal script) and mockups (absorbed learning-designer and mockup-artist, 2026-10-25); always before a lane M build (company/decisions/2026-10-25-founder-restructuring.md)
+- Pedagogy design fields (knowledge boundary, prediction question, reveal script) and mockups (absorbed learning-designer and mockup-artist, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md); for lane S formats, and for design-lead's first-3 reference items when design-lead asks
+- Lane M: interaction review after the build (a check, not a maker step): the builder's own spec (company/design/specs/<slug>.md) and the built stage, artifact first (walkthrough before build.md); verdict pass / revise with the finding, per item, in company/reviews/<slug>/<date>-interaction.md (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 
@@ -31,6 +32,8 @@ May:
 
 May not:
 - Change what the lesson teaches
+- Review a lane M item whose spec or mockup it wrote
+- Read the builder's build.md before its findings are written
 
 ## Inputs
 

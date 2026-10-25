@@ -2,7 +2,7 @@
 
 name: Tavi
 team: personalization
-reports_to: vp-personalization
+reports_to: head-of-product
 agent: .claude/agents/personalization-engineer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -22,6 +22,9 @@ The org's work is visible and inspectable: anyone can pick a persona and see why
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
+- The learner model and composer, src/lib/learner/**, the policies under test, the per-step trace, the progressive-learning engine, and reproducing a readout from its seeds (determinism only, in a fresh session that did not build what it reproduces) (absorbed learner-model-engineer, F-52 G2) (company/decisions/2026-10-25-founder-f52.md)
+- Candidate curve numbers, each with a written reason, from published evidence only, never from the eval's learner (absorbed applied-scientist-personalization, F-52 G2); a second read of the numbers goes to research-scientist on request (company/decisions/2026-10-25-founder-f52.md)
+- Lesson dimensions as data (the dims generator), absorbed from learning-scientist-personalization (F-52 G2) (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 
@@ -44,6 +47,9 @@ May not:
 - Add dependencies without a decision record
 - Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
 - Approve its own readiness record
+- Build or tune the simulated learner, personas or criteria (personalization-eval)
+- Set the evidence ranges the eval's learner is built from (research-scientist)
+- Add data fields without an EDD, an ADR and a privacy review
 
 ## Inputs
 

@@ -19,6 +19,7 @@ Small, tested, dependency-free libraries that a builder can use in an afternoon.
 - Code review of R&D engineers
 - EDDs for promoting lab libraries into the kit
 - Kept until F-49 (rnd-knots tranche 2) is decided; parks with the line if it is declined (company/decisions/2026-10-25-founder-restructuring.md)
+- Scheduled to park if the founder declines F-49 (rnd-knots tranche 2); its work then goes to principal-engineer (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 

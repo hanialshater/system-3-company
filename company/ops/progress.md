@@ -1,3 +1,23 @@
+## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · F-52 applied: G1 lane M warm maker, G2 park 5 (3 scheduled), G3 one owner per path
+
+- **Changed:**
+  - Record: `company/decisions/2026-10-25-founder-f52.md`. It holds the founder's words (system3-meta docs/decisions/2026-10-25-founder-approvals.md item 3), rows G1-G3, consultations (design-lead's written, the rest represented) and objections 1-9.
+  - **G1:** the lane M flow now runs one demo-builder session per item. That session writes its own spec and mockup, builds, runs its own checks, and walks every reachable path. interaction-designer reviews after the build; then QA, fact-check and the learner walk run once, plus design review and pairwise for the first 3. Recorded in `company/ops/projects.json` `lane-multi-card.flow` (with design-lead's twin-first rule), `company/company.json` flows, `tools/org/roles.mjs` (F-52 block) and poc-map lane 6.
+  - **G2:** parked vp-personalization, applied-scientist-personalization, learning-scientist-personalization, learner-model-engineer and learner-data-engineer (PARK, own record). head-of-strategic-initiatives and vp-marketing are scheduled for 2026-11-23, and rnd-lead for when F-49 is declined (`SCHEDULED_PARK`). personalization-engineer and growth-designer now report to head-of-product, who is lane 14's POC. personalization-eval reports to evaluation-steward and moves to lane 10.
+  - **G3:** `src/app/hq/**` belongs to hq-engineer; tools-lead keeps the HQ adapters and tools. events.jsonl is written by chief-of-staff; tools-lead keeps the schema and tools/events.mjs. The chief of staff's "only writer" line now matches CLAUDE.md.
+  - Board: 46 items re-owned. W-2045 went to demo-builder and W-2047 to platform-engineer, which closes W-2052. W-2054 was retitled (file F-52 as decided). New: W-2061 (org-change event) and W-2062 (written consultations). Regenerated with `node tools/org/generate.mjs`.
+- **Principles audit** (`node /home/user/system3-meta/src/principles.mjs .`): 6 followed, 7 gaps, 0 by hand → **9 followed, 4 gaps, 0 by hand**. P2, P5 and P7 are now green; P3, P4, P6 and P8 stay gaps.
+- **Believe:**
+  - High: no open board item is owned by a parked role (checked against the roles export).
+  - Medium: P7 is honestly green only if the 3 dated parks happen.
+  - Medium: putting personalization-eval under evaluation-steward is right (objection 5, open).
+- **Check:** 810 errors, the same as the baseline. test:mailbox, test:dispatch and test:memory are green. test:hq has the same 9 failures as a clean HEAD worktree.
+- **Next:**
+  - chief-of-staff: file F-52 as decided in founder-inbox.json (W-2054), the org-change event (W-2061), and the consultations (W-2062).
+  - hq-engineer: review tools-lead's in-flight floor 8 removal in src/app/hq (objection 8).
+  - On 2026-11-23, chief-of-staff-ceo-office moves the scheduled roles into PARK.
+- **Blocked:** nothing.
+
 ## 2026-10-25 · fact-checker · W-2055: re-check c8 and c6's source on math/flatten-the-cube-to-a-dot (fb76d7c13)
 
 - **Changed:**

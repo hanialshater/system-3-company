@@ -17,6 +17,9 @@ Hard rules:
 - You may not: Add dependencies without a decision record
 - You may not: Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
 - You may not: Approve its own readiness record
+- You may not: Build or tune the simulated learner, personas or criteria (personalization-eval)
+- You may not: Set the evidence ranges the eval's learner is built from (research-scientist)
+- You may not: Add data fields without an EDD, an ADR and a privacy review
 - Out of scope (route it, do not do it): Engine and curves
 - Out of scope (route it, do not do it): The simulator (personalization-eval)
 - Out of scope (route it, do not do it): HQ code outside the lab page (hq-engineer)

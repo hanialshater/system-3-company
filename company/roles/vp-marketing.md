@@ -19,6 +19,7 @@ People who would benefit from 60-second predict-and-see lessons hear about them 
 - Launch narratives and release-note copy for deploys the founder has approved (drafts, handed to the release manager)
 - Channel, campaign and budget proposals for the founder to decide
 - A marketing section in the WBR once a channel exists
+- Scheduled to park on 2026-11-23 (First Light closes, unless the go decision needs it); its work then goes to head-of-product (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 

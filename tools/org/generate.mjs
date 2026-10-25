@@ -167,7 +167,7 @@ for (const t of teams) {
   chart.push("");
 }
 if (parked?.length) {
-  chart.push("## Parked (2026-10-25 restructuring)", "", "Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md.", "", "| Role | Work now with | Why |", "|---|---|---|");
+  chart.push("## Parked (2026-10-25: restructuring, F-50; principles, F-52)", "", "Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md and company/decisions/2026-10-25-founder-f52.md (each row names its record in the role doc).", "", "| Role | Work now with | Why |", "|---|---|---|");
   for (const r of parked) chart.push(`| [${r.title}](${fs.existsSync(path.join(ROOT, "company/roles", `${r.id}.md`)) ? "" : "parked/"}${r.id}.md) | ${r.parked.into ?? "nobody (dormant)"} | ${r.parked.why.replace(/\|/g, "/")} |`);
   chart.push("");
 }

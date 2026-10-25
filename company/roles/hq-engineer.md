@@ -13,7 +13,7 @@ Make the event log legible at a glance and replayable at any moment.
 
 ## In scope
 
-- src/app/hq/**
+- src/app/hq/**: the only owner; other roles' changes there go through hq-engineer's review (company/decisions/2026-10-25-founder-f52.md)
 - src/lib/events.ts (read side)
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file

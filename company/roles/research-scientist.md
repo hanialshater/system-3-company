@@ -16,6 +16,7 @@ Find out what is known, say how sure we are, and say what it means for a lesson.
 - company/research/notes/<date>-<slug>.md
 - Web and paper searches with links
 - Provenance and research requests from lane managers directly (absorbed research-lead's routing and researcher, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
+- Personalization evidence on request (absorbed learning-scientist-personalization's evidence work, F-52 G2): sourced parameter ranges, full-text checks and fidelity reviews of the eval's simulated learner against them; second reads of personalization-engineer's curve numbers; never for a policy or a learner it built (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 

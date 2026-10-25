@@ -1,9 +1,11 @@
 # VP of Personalization (CEO Office)
 
+> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-f52.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `head-of-product`. Why: 13 events up to 10-20, tokens unmeasured, no step in a flow (audit P7); keep or kill per term to head-of-product, objective and phases to personalization-engineer's brief. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
+
 name: Mateo
 team: personalization
 reports_to: founder
-agent: .claude/agents/vp-personalization.md
+agent: none (parked; was .claude/agents/vp-personalization.md)
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
 

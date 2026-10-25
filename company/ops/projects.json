@@ -1286,7 +1286,78 @@
         "lane M\\b",
         "multi-card"
       ],
-      "board": []
+      "board": [],
+      "flow": {
+        "record": "company/decisions/2026-10-25-founder-f52.md",
+        "since": "2026-10-25",
+        "rule": "one warm maker per item, checks once at the end (F-52 G1; supersedes the relay curator → interaction-designer → demo-builder of F-50 section 2c)",
+        "steps": [
+          {
+            "role": "category-curator",
+            "kind": "maker",
+            "what": "brief: 2-4 sub-cards, claims, category sensitivities, numbers script"
+          },
+          {
+            "role": "demo-builder",
+            "kind": "maker",
+            "what": "one session owns the item: writes the interaction spec and mockup (company/design/specs/<slug>.md), builds in CardSequence, runs its own checks in its loop (npm run check, numbers script, QA contract, sequence-probe, reveal-fit, a11y-scan, 60 s estimate) and walks every reachable path (skip, mid-animation reveal, settled back)"
+          },
+          {
+            "role": "interaction-designer",
+            "kind": "check",
+            "what": "interaction review of the spec and the built stage, artifact first"
+          },
+          {
+            "role": "qa-tester",
+            "kind": "check",
+            "what": "QA plus sequence probe, once"
+          },
+          {
+            "role": "fact-checker",
+            "kind": "check",
+            "what": "claims, once"
+          },
+          {
+            "role": "learner-evaluator",
+            "kind": "check",
+            "what": "learner walk (every item for the first 10)"
+          },
+          {
+            "role": "design-lead",
+            "kind": "check",
+            "what": "design review, first 3 items"
+          },
+          {
+            "role": "pedagogy-critic",
+            "kind": "check",
+            "what": "pairwise against the single-card twin, first 3 items (math/flatten-the-cube-to-a-dot runs it after publish: founder, 2026-10-25, system3-meta docs/decisions/2026-10-25-founder-approvals.md item 4)"
+          },
+          {
+            "role": "demo-builder",
+            "kind": "maker",
+            "what": "one revision round, from its own build.md"
+          },
+          {
+            "role": "head-of-product",
+            "kind": "owner",
+            "what": "batch launch record"
+          },
+          {
+            "role": "release-manager",
+            "kind": "owner",
+            "what": "publishes"
+          },
+          {
+            "role": "founder",
+            "kind": "owner",
+            "what": "approves every deploy"
+          }
+        ],
+        "predictions": "G1-1..G1-3 in company/ceo-office/2026-10-25-principles-org-proposal.md",
+        "laneRules": [
+          "Twin first: a lane M item is not dispatched to a builder until its single-card twin is published or queued in the same batch (design-lead, lane manager, company/reviews/flatten-the-cube-to-a-dot/2026-10-25-design.md)"
+        ]
+      }
     }
   ]
 }

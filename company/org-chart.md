@@ -1,16 +1,15 @@
 # Org chart
 
-> **Since 2026-10-25 (restructuring, F-50 option A, company/decisions/2026-10-25-founder-restructuring.md): 39 roles.** The drawing below is from before that date and is kept for history. The org as data is `tools/org/roles.mjs`, and `company/roles/README.md` lists the active and parked roles. Reporting lines now:
+> **Since 2026-10-25 (restructuring, F-50 option A, company/decisions/2026-10-25-founder-restructuring.md): 39 roles; 34 after F-52 G2 (company/decisions/2026-10-25-founder-f52.md), with head-of-strategic-initiatives and vp-marketing scheduled to park on 2026-11-23 and rnd-lead if F-49 is declined.** The drawing below is from before that date and is kept for history. The org as data is `tools/org/roles.mjs`, and `company/roles/README.md` lists the active and parked roles. Reporting lines now:
 >
 > | Manager | Reports |
 > |---|---|
-> | founder | chief-of-staff, chief-of-staff-ceo-office, head-of-product, evaluation-steward, principal-engineer, vp-personalization, head-of-strategic-initiatives, vp-marketing |
-> | head-of-product | principal-pm-verticals (lane S), design-lead (lane M), platform-engineer, release-manager, analytics-steward, research-scientist |
+> | founder | chief-of-staff, chief-of-staff-ceo-office, head-of-product, evaluation-steward, principal-engineer, head-of-strategic-initiatives, vp-marketing |
+> | head-of-product | principal-pm-verticals (lane S), design-lead (lane M), platform-engineer, release-manager, analytics-steward, research-scientist, personalization-engineer, growth-designer (lane 14, F-52) |
 > | principal-pm-verticals | category-curator (pool, category as data), demo-builder (pool) |
 > | design-lead | interaction-designer |
-> | evaluation-steward | fact-checker, learner-evaluator, qa-tester, accessibility-reviewer, pedagogy-critic, route-reviewer (pool) |
+> | evaluation-steward | fact-checker, learner-evaluator, qa-tester, accessibility-reviewer, pedagogy-critic, route-reviewer (pool), personalization-eval (F-52) |
 > | principal-engineer | principal-engineer-ops, backend-engineer, privacy-reviewer, rnd-lead |
-> | vp-personalization | growth-designer, personalization-eval, applied-scientist-personalization, learning-scientist-personalization, personalization-engineer, learner-model-engineer, learner-data-engineer |
 > | chief-of-staff | tools-lead (and hq-engineer under it), pattern-librarian |
 > | chief-of-staff-ceo-office | portfolio-manager |
 

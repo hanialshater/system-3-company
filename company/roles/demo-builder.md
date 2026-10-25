@@ -23,6 +23,7 @@ Make the design executable: the picture has to pay its debts. Every control does
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file. Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area). Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0
 - Pulls the next brief of its lane by board priority; one revision round per finding, then publish or park (F-41 item 4) (company/decisions/2026-10-25-founder-restructuring.md)
+- Lane M: one session owns the item. It writes the interaction spec and mockup (company/design/specs/<slug>.md), then builds in CardSequence, and in its own loop runs `npm run check`, the brief's numbers script (which it may update), the QA contract, tools/sequence-probe.mjs, tools/reveal-fit.mjs, tools/a11y-scan.mjs and the 60-second time estimate, and walks every reachable path, not only the QA path (the skip path, the reveal mid-animation, back after motion settles; design-lead's probe company/reviews/flatten-the-cube-to-a-dot/design-2026-10-25/probe.mjs until the sequence probe has a skip check, W-2059). If a claim's source or wording must change it edits it, leaves it `unverified`, and notes it in build.md. One revision round, from its own build.md (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 
@@ -40,6 +41,8 @@ May not:
 - Read evaluator rubrics before building (they would become the target)
 - Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record
 - Approve its own readiness record
+- Count its own loop checks as the independent QA, fact-check or learner walk
+- Mark a claim verified
 
 ## Inputs
 

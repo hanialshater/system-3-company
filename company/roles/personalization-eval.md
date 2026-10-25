@@ -2,7 +2,7 @@
 
 name: Uma
 team: personalization
-reports_to: vp-personalization
+reports_to: evaluation-steward
 agent: .claude/agents/personalization-eval.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -20,6 +20,7 @@ A personalization policy is judged against an independent learner and a criterio
 - Registrations, pass criteria and readouts for gamification experiments (challenges, badges, mastery display), frozen before data, under the org's independence rule; in-flight EXP-005 (W-1409) stays with analytics-steward until it closes
 - Blind second rating of a 20% sample of lesson dims (misconceptionStrength), with agreement reported
 - The readout section for the WBR
+- Since F-52 G2: reports to evaluation-steward and is dispatched from lane 10 (poc-map rule 3: the org that kept its own judge is parked); keep or kill per term is head-of-product's; the evidence ranges come from research-scientist (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 
@@ -38,7 +39,7 @@ May:
 May not:
 - Build or tune anything it grades
 - Change a frozen criterion without saying so in the readout (the old result stands)
-- Decide keep or kill (vp-personalization)
+- Decide keep or kill (head-of-product)
 
 ## Inputs
 

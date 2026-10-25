@@ -2,7 +2,7 @@
 
 name: Jonah
 team: personalization
-reports_to: vp-personalization
+reports_to: head-of-product
 agent: .claude/agents/growth-designer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->

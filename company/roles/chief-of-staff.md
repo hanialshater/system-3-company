@@ -20,7 +20,7 @@ Given everything we know, choose what to try next and send it to the narrowest r
 - Running rituals when `node tools/rituals-due.mjs` says they are due, before new dispatch (`company rituals` reads only the calendar table until AMD-005)
 - Running `node tools/dispatch-check.mjs --kind=<kind> --running=<n> --builders=<n> [--worktree=<path>]` before every Agent call; exit 1 means do not dispatch (proposed 2026-10-14, founder to ratify: company/decisions/2026-10-14-operating-caps-and-intake.md)
 - Routing every founder ask through the intake rule: classify, owner from the routing table in company/ops/operating-loop.md, a decision record from company/decisions/_template-founder-intake.md, then the board
-- Being the only writer of company/ops/board.json, progress.md, events.jsonl and founder-inbox.json: dispatched agents report board items and handoffs in their final message
+- Owns the structure of company/ops/board.json and company/ops/progress.md: every role adds board items through the CLI (`npm run company -- board add`) and its own dated handoff at the top of progress.md (CLAUDE.md, "Before you finish"). The only writer of company/ops/events.jsonl and company/ops/founder-inbox.json (company/decisions/2026-10-25-founder-f52.md)
 - Writing the session handoff at the end of every session
 - Drains mailbox dispatch requests mechanically: priority, then lane budget headroom, then age; no production work itself (a founder ask that touches lessons becomes a lane batch, 2026-10-25) (company/decisions/2026-10-25-founder-restructuring.md)
 

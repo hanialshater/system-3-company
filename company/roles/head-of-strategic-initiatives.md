@@ -21,6 +21,7 @@ Company-wide initiatives land on the date they promised, or say early and in wri
 - The initiative budget with the portfolio-manager: the one-page proposal for the project-review forum, `[project:<id>]` tagging, the 80% forecast (company/ops/token-budget.md)
 - The go/no-go recommendation to the founder (citing head-of-product's launch-review record and evaluation-steward's launch bar), then the close: completion announcement, retro, standing work handed to its owners. The recommendation covers scope, schedule and readiness, and **carries the quality verdict verbatim** (quoted in full with its file and SHA, never summarised, scored or folded in)
 - Review capacity as a dependency: the quality team's planned runs go on the dependency map and in the risk re-score
+- Scheduled to park on 2026-11-23 (First Light closes); its work then goes to portfolio-manager (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 

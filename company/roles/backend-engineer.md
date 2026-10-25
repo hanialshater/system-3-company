@@ -22,6 +22,7 @@ Make a learner's progress survive devices and sessions, and make the revisit rec
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)
 - Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file
 - Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)
+- Personalization's stored learner data (absorbed learner-data-engineer, F-52 G2): the settings table and its migrations, retention and purge, the settings API and server code (src/app/api/account/settings/**, src/lib/server/personalization/**), their data-inventory rows; nothing stored before privacy-reviewer's written pass, and no derived value stored (D20) (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 

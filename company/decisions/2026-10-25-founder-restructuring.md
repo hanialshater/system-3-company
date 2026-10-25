@@ -6,6 +6,7 @@ status: approved; applied (all steps that do not touch a protected path; step 10
 class: org
 route: chief-of-staff-ceo-office (proposal) → founder (approved option A) → receiving roles (written consultations, below) → chief-of-staff-ceo-office (generate, data, docs) → evaluation-steward (AMD-017 / AMD-014 redraft) → constitutional review → founder (ratifies)
 recorded by: chief-of-staff-ceo-office
+superseded in part (2026-10-25, F-52): the lane M flow of proposal §2c (interaction spec plus mockup before every build) is replaced by one warm maker per item, and five personalization roles kept here are parked (company/decisions/2026-10-25-founder-f52.md)
 proposal: company/ceo-office/2026-10-25-restructuring-proposal.md (commit 149ff7c21) · checkpoint: CP1-L1, CP1-L3 (system3-meta docs/CHECKPOINT-1.md)
 
 ## What the founder said

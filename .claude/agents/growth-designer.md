@@ -1,6 +1,6 @@
 ---
 name: growth-designer
-description: Designs today's-revisits state (never a streak counted across days), the mastery map, challenges and light social features that reward recall and understanding, never raw activity. Every feature ships as an experiment with predictions committed first. Sits in the personalization org (Gamification); its PRDs are approved by vp-personalization. Use for retention, motivation and social features.
+description: Designs today's-revisits state (never a streak counted across days), the mastery map, challenges and light social features that reward recall and understanding, never raw activity. Every feature ships as an experiment with predictions committed first. Sits in the personalization org (Gamification); its PRDs are approved by head-of-product (vp-personalization parked, F-52). Use for retention, motivation and social features.
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 

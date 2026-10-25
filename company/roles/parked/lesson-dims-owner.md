@@ -1,6 +1,6 @@
 # Lesson Features Owner
 
-> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-restructuring.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `learning-scientist-personalization`. Why: 2 reports. Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
+> **PARKED since 2026-10-25** (company/decisions/2026-10-25-founder-restructuring.md). Not an active role: no HQ seat, not dispatchable. Its work now belongs to `personalization-engineer`. Why: 2 reports; re-routed by F-52 G2 (learning-scientist-personalization parked). Un-park: remove the id from PARK in tools/org/roles.mjs and regenerate.
 
 name: Anneke
 team: personalization

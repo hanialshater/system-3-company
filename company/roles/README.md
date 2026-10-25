@@ -59,14 +59,9 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Growth & Gamification Designer](growth-designer.md) | vp-personalization | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
-| [VP of Personalization (CEO Office)](vp-personalization.md) | founder | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
-| [Personalization Evaluator](personalization-eval.md) | vp-personalization | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
-| [Applied Scientist, Personalization](applied-scientist-personalization.md) | vp-personalization | The curves say what the evidence says, and every change to them has a reason someone can check.. |
-| [Learning Scientist, Personalization](learning-scientist-personalization.md) | vp-personalization | The org's questions about learning get sourced answers, and the simulated learner behaves the way the evidence says learners do.. |
-| [Personalization Engineer](personalization-engineer.md) | vp-personalization | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
-| [Learner Model Engineer](learner-model-engineer.md) | vp-personalization | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
-| [Learner Data Engineer (Customer Data)](learner-data-engineer.md) | vp-personalization | Every piece of learner data personalization reads or keeps is stated, minimal, privacy-read before it exists, and leaves with the account.. |
+| [Growth & Gamification Designer](growth-designer.md) | head-of-product | People come back because coming back helps them remember, and the rewards point at that, not at taps.. |
+| [Personalization Evaluator](personalization-eval.md) | evaluation-steward | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
+| [Personalization Engineer](personalization-engineer.md) | head-of-product | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
 
 ## Company-tools
 
@@ -113,9 +108,9 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [Category Curator (pooled; one instance per category)](category-curator.md) | principal-pm-verticals | Keep each category's queue full of briefs worth building, in priority order, and keep its map honest about what it does not yet teach. |
 
-## Parked (2026-10-25 restructuring)
+## Parked (2026-10-25: restructuring, F-50; principles, F-52)
 
-Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md.
+Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.md and company/decisions/2026-10-25-founder-f52.md (each row names its record in the role doc).
 
 | Role | Work now with | Why |
 |---|---|---|
@@ -138,7 +133,12 @@ Files kept; not active. See company/decisions/2026-10-25-founder-restructuring.m
 | [Category Manager (category lead) — History through data and maps](cm-history.md) | category-curator | instance category=history; the category's charter, curriculum, briefs and this role's memory are the curator's data |
 | [Category Manager (category lead) — Behavioral Economics and Irrational Behavior](cm-behavioral.md) | category-curator | instance category=behavioral; the category's charter, curriculum, briefs and this role's memory are the curator's data |
 | [Life Hacks Safety Reviewer](parked/lifehacks-safety-reviewer.md) | route-reviewer | route=safety checklist |
-| [Lesson Features Owner](parked/lesson-dims-owner.md) | learning-scientist-personalization | 2 reports |
+| [VP of Personalization (CEO Office)](parked/vp-personalization.md) | head-of-product | 13 events up to 10-20, tokens unmeasured, no step in a flow (audit P7); keep or kill per term to head-of-product, objective and phases to personalization-engineer's brief |
+| [Applied Scientist, Personalization](parked/applied-scientist-personalization.md) | personalization-engineer | 3 events (audit P7); curve numbers to personalization-engineer, second reads to research-scientist |
+| [Learning Scientist, Personalization](parked/learning-scientist-personalization.md) | research-scientist | 7 events (audit P7); evidence ranges and fidelity reviews to research-scientist (they set the judge's world, so not the maker), lesson dims as data to personalization-engineer |
+| [Lesson Features Owner](parked/lesson-dims-owner.md) | personalization-engineer | 2 reports; re-routed by F-52 G2 (learning-scientist-personalization parked) |
+| [Learner Model Engineer](parked/learner-model-engineer.md) | personalization-engineer | 11 events (audit P7); src/lib/learner/** moves with the work |
+| [Learner Data Engineer (Customer Data)](parked/learner-data-engineer.md) | backend-engineer | 3 events (audit P7); backend-engineer already sets the migration order; privacy-reviewer's pass unchanged |
 | [Localization Lead (International)](parked/localization-lead.md) | nobody (dormant) | never ran; no locale chosen (F-09) |
 | [Localizer](parked/localizer.md) | nobody (dormant) | never ran; no locale chosen (F-09) |
 | [Cultural & Regional Reviewer](parked/cultural-reviewer.md) | route-reviewer | route=sensitive checklist |

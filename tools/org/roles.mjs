@@ -2154,12 +2154,111 @@ for (const r of roles) {
   if (a.inScope) r.inScope = [...(r.inScope ?? []), ...a.inScope.map((x) => `${x} (${RESTRUCTURE.record})`)];
 }
 
+// ------------------------------------------------------------------ principles (2026-10-25, F-52 G1-G3)
+// Record: company/decisions/2026-10-25-founder-f52.md (proposal: company/ceo-office/2026-10-25-principles-org-proposal.md).
+// G1: lane M has one warm maker per item (demo-builder writes its own spec and mockup, builds, runs its own checks in its loop);
+//     interaction-designer becomes a check after the build; the independent checks run once at the end.
+// G2: the 5 personalization roles park now (PARK_F52 below); 3 roles are scheduled, not parked (SCHEDULED_PARK).
+// G3: one owner per path: src/app/hq/** is hq-engineer's; company/ops/events.jsonl is written by chief-of-staff (tools-lead owns
+//     the schema and tools/events.mjs); the chief of staff's "only writer" line matches CLAUDE.md "Before you finish".
+const F52 = { date: "2026-10-25", record: "company/decisions/2026-10-25-founder-f52.md" };
+const f52 = (s) => `${s} (${F52.record})`;
+const LANE_M_F52 = "Lane M (multi-card sequences): the lane's manager. Owns its queue (project:lane-multi-card) and the design review of a format's first 3 items. Each item is one demo-builder session that writes its own interaction spec and mockup, builds and runs its own checks in its loop; then interaction-designer's review after the build and the independent checks once at the end (QA, fact-check, learner walk, plus pedagogy-critic's pairwise for the first 3). Asks curators, demo-builder and interaction-designer through mailbox requests, inside the lane budget. Never dispatches the quality lane's checkers";
+const F52_EDIT = {
+  "design-lead": { replace: [[/^Lane M \(multi-card sequences\): the lane's manager\..*$/, f52(LANE_M_F52)]] },
+  "interaction-designer": {
+    replace: [[/; always before a lane M build \(company\/decisions\/2026-10-25-founder-restructuring\.md\)$/, " (company/decisions/2026-10-25-founder-restructuring.md); for lane S formats, and for design-lead's first-3 reference items when design-lead asks"]],
+    add: ["Lane M: interaction review after the build (a check, not a maker step): the builder's own spec (company/design/specs/<slug>.md) and the built stage, artifact first (walkthrough before build.md); verdict pass / revise with the finding, per item, in company/reviews/<slug>/<date>-interaction.md"],
+    description: " Lane M (F-52): reviews the builder's own spec and the built stage after the build; it does not write lane M specs.",
+    mayNot: ["Review a lane M item whose spec or mockup it wrote", "Read the builder's build.md before its findings are written"],
+  },
+  "demo-builder": {
+    add: ["Lane M: one session owns the item. It writes the interaction spec and mockup (company/design/specs/<slug>.md), then builds in CardSequence, and in its own loop runs `npm run check`, the brief's numbers script (which it may update), the QA contract, tools/sequence-probe.mjs, tools/reveal-fit.mjs, tools/a11y-scan.mjs and the 60-second time estimate, and walks every reachable path, not only the QA path (the skip path, the reveal mid-animation, back after motion settles; design-lead's probe company/reviews/flatten-the-cube-to-a-dot/design-2026-10-25/probe.mjs until the sequence probe has a skip check, W-2059). If a claim's source or wording must change it edits it, leaves it `unverified`, and notes it in build.md. One revision round, from its own build.md"],
+    description: " Lane M (F-52): one session per item writes its own spec and mockup, builds, and runs its own checks before the independent ones.",
+    mayNot: ["Count its own loop checks as the independent QA, fact-check or learner walk", "Mark a claim verified"],
+  },
+  "tools-lead": {
+    replace: [
+      [/^company\/ops\/events\.jsonl and tools\/events\.mjs \(append, backfill, query\)$/, f52("The event schema and tools/events.mjs (append, backfill, query); the log company/ops/events.jsonl itself is written by chief-of-staff")],
+      [/^HQ: src\/app\/hq\/\*\* \(floor plan, timeline, replay, meeting pages\)$/, f52("HQ data adapters (src/lib/hq-*.ts) and HQ tools (tools/hq-*.mjs); HQ pages (src/app/hq/**) through hq-engineer, their owner")],
+    ],
+    descriptionReplace: [/the event log, HQ \(rooms, timeline, replay\)/, "the event schema and tools, HQ's data adapters and tools (HQ pages are hq-engineer's)"],
+  },
+  "hq-engineer": { replace: [[/^src\/app\/hq\/\*\*$/, f52("src/app/hq/**: the only owner; other roles' changes there go through hq-engineer's review")]] },
+  "chief-of-staff": {
+    replace: [[/^Being the only writer of company\/ops\/board\.json, progress\.md, events\.jsonl and founder-inbox\.json: .*$/, f52("Owns the structure of company/ops/board.json and company/ops/progress.md: every role adds board items through the CLI (`npm run company -- board add`) and its own dated handoff at the top of progress.md (CLAUDE.md, \"Before you finish\"). The only writer of company/ops/events.jsonl and company/ops/founder-inbox.json")]],
+  },
+  "head-of-product": {
+    add: ["Personalization (absorbed vp-personalization, F-52 G2): keep or kill per term on personalization-eval's readout; the objective, constraints and phases, set in personalization-engineer's brief (company/personalization/README.md); approving growth-designer's PRDs; POC of lane 14. Un-park vp-personalization if a maker runs out of context on the next phase (F-52 objection 3)"],
+    mayNot: ["Approve a gamification or personalization PRD it wrote", "Override a failed personalization criterion without a written objection to the founder"],
+  },
+  "personalization-engineer": {
+    reportsTo: "head-of-product",
+    add: [
+      "The learner model and composer, src/lib/learner/**, the policies under test, the per-step trace, the progressive-learning engine, and reproducing a readout from its seeds (determinism only, in a fresh session that did not build what it reproduces) (absorbed learner-model-engineer, F-52 G2)",
+      "Candidate curve numbers, each with a written reason, from published evidence only, never from the eval's learner (absorbed applied-scientist-personalization, F-52 G2); a second read of the numbers goes to research-scientist on request",
+      "Lesson dimensions as data (the dims generator), absorbed from learning-scientist-personalization (F-52 G2)",
+    ],
+    mayNot: ["Build or tune the simulated learner, personas or criteria (personalization-eval)", "Set the evidence ranges the eval's learner is built from (research-scientist)", "Add data fields without an EDD, an ADR and a privacy review"],
+  },
+  "personalization-eval": {
+    reportsTo: "evaluation-steward",
+    add: ["Since F-52 G2: reports to evaluation-steward and is dispatched from lane 10 (poc-map rule 3: the org that kept its own judge is parked); keep or kill per term is head-of-product's; the evidence ranges come from research-scientist"],
+    mayNotReplace: [/^Decide keep or kill \(vp-personalization\)$/, "Decide keep or kill (head-of-product)"],
+  },
+  "growth-designer": {
+    reportsTo: "head-of-product",
+    descriptionReplace: [/its PRDs are approved by vp-personalization/, "its PRDs are approved by head-of-product (vp-personalization parked, F-52)"],
+  },
+  "backend-engineer": {
+    add: ["Personalization's stored learner data (absorbed learner-data-engineer, F-52 G2): the settings table and its migrations, retention and purge, the settings API and server code (src/app/api/account/settings/**, src/lib/server/personalization/**), their data-inventory rows; nothing stored before privacy-reviewer's written pass, and no derived value stored (D20)"],
+  },
+  "research-scientist": {
+    add: ["Personalization evidence on request (absorbed learning-scientist-personalization's evidence work, F-52 G2): sourced parameter ranges, full-text checks and fidelity reviews of the eval's simulated learner against them; second reads of personalization-engineer's curve numbers; never for a policy or a learner it built"],
+  },
+};
+for (const r of roles) {
+  const e = F52_EDIT[r.id];
+  if (!e) continue;
+  if (e.reportsTo) r.reportsTo = e.reportsTo;
+  for (const [re, to] of e.replace ?? []) {
+    const i = r.inScope.findIndex((s) => re.test(s));
+    if (i < 0) throw new Error(`F-52 edit: no inScope line of ${r.id} matches ${re}`);
+    r.inScope[i] = r.inScope[i].replace(re, to);
+  }
+  if (e.add) r.inScope = [...r.inScope, ...e.add.map(f52)];
+  if (e.description) r.description += e.description;
+  if (e.descriptionReplace) r.description = r.description.replace(...e.descriptionReplace);
+  if (e.mayNotReplace) r.authority.mayNot = r.authority.mayNot.map((s) => s.replace(...e.mayNotReplace));
+  if (e.mayNot) r.authority = { ...r.authority, mayNot: [...(r.authority.mayNot ?? []), ...e.mayNot] };
+}
+// G2, scheduled (not parked yet): each parks on its date or condition by one entry in PARK_F52 and a regenerate.
+export const SCHEDULED_PARK = [
+  { id: "head-of-strategic-initiatives", on: "2026-11-23", when: "First Light closes", into: "portfolio-manager", record: F52.record },
+  { id: "vp-marketing", on: "2026-11-23", when: "First Light closes, unless the go decision needs it", into: "head-of-product", record: F52.record },
+  { id: "rnd-lead", on: null, when: "the founder declines F-49 (rnd-knots tranche 2)", into: "principal-engineer", record: F52.record },
+];
+for (const s of SCHEDULED_PARK) {
+  const r = roles.find((x) => x.id === s.id);
+  if (r) r.inScope = [...r.inScope, f52(`Scheduled to park ${s.on ? `on ${s.on} (${s.when})` : `if ${s.when}`}; its work then goes to ${s.into}`)];
+}
+for (const [id, into, why] of [
+  ["vp-personalization", "head-of-product", "13 events up to 10-20, tokens unmeasured, no step in a flow (audit P7); keep or kill per term to head-of-product, objective and phases to personalization-engineer's brief"],
+  ["applied-scientist-personalization", "personalization-engineer", "3 events (audit P7); curve numbers to personalization-engineer, second reads to research-scientist"],
+  ["learning-scientist-personalization", "research-scientist", "7 events (audit P7); evidence ranges and fidelity reviews to research-scientist (they set the judge's world, so not the maker), lesson dims as data to personalization-engineer"],
+  ["learner-model-engineer", "personalization-engineer", "11 events (audit P7); src/lib/learner/** moves with the work"],
+  ["learner-data-engineer", "backend-engineer", "3 events (audit P7); backend-engineer already sets the migration order; privacy-reviewer's pass unchanged"],
+]) PARK[id] = [into, why, F52];
+// F-50 parked lesson-dims-owner into learning-scientist-personalization, now parked too: its work goes where lesson dims went.
+PARK["lesson-dims-owner"] = ["personalization-engineer", `${PARK["lesson-dims-owner"][1]}; re-routed by F-52 G2 (learning-scientist-personalization parked)`];
+
 export const parked = [];
 for (let i = roles.length - 1; i >= 0; i--) {
   const p = PARK[roles[i].id];
   if (!p) continue;
   const [r] = roles.splice(i, 1);
-  parked.unshift({ ...r, parked: { since: RESTRUCTURE.date, record: RESTRUCTURE.record, into: p[0], why: p[1] } });
+  const at = p[2] ?? RESTRUCTURE; // F-52 G2 parks carry their own record
+  parked.unshift({ ...r, parked: { since: at.date, record: at.record, into: p[0], why: p[1] } });
 }
 
 export { common };

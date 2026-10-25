@@ -13,8 +13,8 @@ Anyone, the founder above all, can see what the company is doing now and what it
 
 ## In scope
 
-- company/ops/events.jsonl and tools/events.mjs (append, backfill, query)
-- HQ: src/app/hq/** (floor plan, timeline, replay, meeting pages)
+- The event schema and tools/events.mjs (append, backfill, query); the log company/ops/events.jsonl itself is written by chief-of-staff (company/decisions/2026-10-25-founder-f52.md)
+- HQ data adapters (src/lib/hq-*.ts) and HQ tools (tools/hq-*.mjs); HQ pages (src/app/hq/**) through hq-engineer, their owner (company/decisions/2026-10-25-founder-f52.md)
 - tools/metrics.mjs, tools/publish-ready.mjs, tools/commit-own.sh, tools/git-hooks/
 - Event-driven ritual triggers (company/rituals/triggers.json) and their proposal into the gate CLI
 - Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)

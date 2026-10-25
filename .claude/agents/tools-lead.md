@@ -1,6 +1,6 @@
 ---
 name: tools-lead
-description: Owns the company's own instruments: the event log, HQ (rooms, timeline, replay), the metrics and publish-loop tools, and event-driven ritual triggers. Use when running the company is slow, forgetful or hard to see.
+description: Owns the company's own instruments: the event schema and tools, HQ's data adapters and tools (HQ pages are hq-engineer's), the metrics and publish-loop tools, and event-driven ritual triggers. Use when running the company is slow, forgetful or hard to see.
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 

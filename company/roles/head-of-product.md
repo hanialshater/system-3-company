@@ -22,6 +22,7 @@ Decide what the product should be next and write it down so that someone who was
 - Release-1 scope rulings on PRD-003 and PRD-004 inside First Light, until First Light closes
 - Priority across content types and lanes (level L1, with the portfolio-manager): which lane gets the next slot (company/decisions/2026-10-25-founder-restructuring.md)
 - Signing batch launch records for both lanes (company/decisions/2026-10-25-founder-restructuring.md)
+- Personalization (absorbed vp-personalization, F-52 G2): keep or kill per term on personalization-eval's readout; the objective, constraints and phases, set in personalization-engineer's brief (company/personalization/README.md); approving growth-designer's PRDs; POC of lane 14. Un-park vp-personalization if a maker runs out of context on the next phase (F-52 objection 3) (company/decisions/2026-10-25-founder-f52.md)
 
 ## Out of scope
 
@@ -41,6 +42,8 @@ May:
 May not:
 - Answer an objection with 'noted'
 - Change the success criterion alone (Surface Value is the founder's)
+- Approve a gamification or personalization PRD it wrote
+- Override a failed personalization criterion without a written objection to the founder
 
 ## Inputs
 
