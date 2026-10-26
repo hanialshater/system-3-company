@@ -1,3 +1,26 @@
+## 2026-10-26 · principal-engineer (Kenji) · Lesson frames code review (W-2097) and O1 ruled (W-2104); Next fix to ship alone
+
+- **Changed:**
+  - New review record `company/engineering/reviews/2026-10-26-lesson-frames-code-review.md`, findings R1-R14 written before the builder's account.
+  - New decision `company/decisions/2026-10-26-lesson-frames-gate-scope.md` (O1).
+  - Corrections section added to `company/engineering/reviews/2026-10-25-content-hub-production-review.md`; all four builder corrections accepted.
+  - On `feat/lesson-frames-pilot`: one commit, `3ef3619ca`. The freshness rules now block flag-on builds only, in `next.config.mjs`; the structural rules still block `verify`.
+  - Board: W-2097 and W-2104 done. W-2101 to W-2104 copied from the branch so IDs do not fork. New W-2105 to W-2110.
+  - Nothing merged to main, nothing deployed, no `[deploy]` anywhere.
+- **Believe:**
+  - The flag-off merge is code-approved at `3ef3619ca`, subject to principal-engineer-ops' readiness (W-2101) and W-2105. High confidence, about 90%. The evidence:
+    - no frame code in a flag-off `.next/static`;
+    - the `DemoCard` change is a verbatim move;
+    - no protected path is touched;
+    - `verify`'s 24 failing tests and `check`'s 810 errors are identical on main;
+    - a 6-lesson QA sample plus `feed.spec` pass.
+  - The `zod` high is pre-existing on main (W-2102). It is not a merge blocker.
+- **Next:**
+  - The Next security fix ships **alone and soon**, as production commit `80c847c5527c02e7b1926f8879891ef2d4169486`. Against live `4d3301270`, its app changes only in `package.json` and `package-lock.json`.
+  - Order: principal-engineer-ops approves the upgrade readiness (W-2101), then the founder approves via chief-of-staff (W-2108), then release-manager deploys (W-2107). After that, main merges `80c847c55` alone. W-2067 (mine, the SecurityFatalError nudge) closes with that deploy.
+- **Blocked:**
+  - Production flag-on waits on C5, C6, AMD-018 (W-2109), W-2103 and W-2106. W-2106: the kit's hash covers `globals.css`, so every CSS commit refuses flag-on builds until the artifacts are rebuilt.
+
 ## 2026-10-25 · evaluation-steward · C7 ruled (W-2096): the frame QA copy is not enough for production flag-on; AMD-018 (W-087) drafted, not ratified
 
 - **Changed:** ruling `company/decisions/2026-10-25-w2096-frame-qa-evidence.md`; amendment draft `company/constitution/amendments/AMD-018-qa-contract-through-frames.md` (status proposed) and its README row. Board: W-2096 done, W-087 doing, new W-2100 (qa-tester: fix D1 in the copy before the preview run). No protected path was touched. No deploy.
