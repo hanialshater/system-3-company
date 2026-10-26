@@ -3,7 +3,7 @@
 ```
 change: tools/lesson-frames.mjs prune drops every entry of a stale kit (geo kit: the entries that use it); stale-kit fires only while an entry uses the kit; one comment line in DemoFrame
 change-tier: 1
-paths: tools/lesson-frames.mjs, tools/lib/lesson-frames.mjs, tests/lesson-frames/manifest.test.mjs, src/components/DemoFrame.tsx
+paths: tools/lesson-frames.mjs, tools/lib/lesson-frames.mjs, tests/lesson-frames/manifest.test.mjs, tests/lesson-frames/fixture.manifest.json, src/components/DemoFrame.tsx
 author: platform-engineer
 self-check: platform-engineer
 board: W-2105
@@ -20,3 +20,11 @@ Tier 1: none of the four paths matches a rule in `paths.json`; the DemoFrame cha
 5. **Why drop, not rebuild.** A dropped lesson renders in-app at once; a rebuild needs an artifact deploy (release-manager, founder's approval) before its frames serve. The decision record rejects an automatic prune in the build; this is still a manual step whose output is committed. To frame again: `node tools/lesson-frames.mjs build`.
 6. **Dependencies.** None added.
 7. **Open.** W-2106 (the kit hash covers all of `globals.css`, so nearly every CSS commit stales the kit) and W-2110 (the flag-on runbook line) are unchanged by this.
+
+## Addendum 2026-10-26: W2-C1 (M2 review, company/engineering/reviews/2026-10-26-lesson-frames-code-review.md)
+
+The first version missed it: with the committed manifest empty after a stale-kit prune, `test:lesson-frames` failed 8 tests (18, 22-24, 26, 27, 29, 31) in both flag states, because they took their entry from the committed manifest. Reproduced before the fix: 23 pass, 8 fail.
+
+- The mutation and prune tests now take entries from `tests/lesson-frames/fixture.manifest.json`, a frozen copy of the 2026-10-26 manifest re-hashed against today's tree (`fresh()`), never from the committed manifest. The client-projection test adds a fixture entry to the committed manifest instead of deleting one.
+- New: a test that the fixture still has geo and non-geo entries and meets every rule; a test that an empty manifest meets every rule with the kit fresh and stale, flag off and on, and that an entry re-added on a stale kit fires `stale-kit` again. No test skips on an empty manifest; the one skip is the pre-existing "no local artifact build" in `headers.test.mjs`.
+- Suite, 33 pass, 1 skip, 0 fail in all six states: committed manifest flag off and on; pruned empty manifest with the kit stale (real `globals.css` edit) flag off and on; pruned empty manifest with the kit fresh, flag off and on. Mutant (unconditional `stale-kit`) fails tests 25 and 33. Typecheck exit 0; `npm run check` 810 errors, 5 warnings, unchanged.

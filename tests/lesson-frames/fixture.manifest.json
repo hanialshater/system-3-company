@@ -1,0 +1,694 @@
+{
+  "schema": 1,
+  "kitVersion": "1.0.0",
+  "origin": "https://system3-content-hub-artifacts.vercel.app",
+  "toolchain": {
+    "buildMjs": "3be16179bb5cb0fb161772dc9ad20c492697b7b70bfb968449d92e084b8f7962",
+    "tooling": "ff217ba31227396c379435d269d4f8cb4178a9a69701c9c4294da972fffe7644",
+    "packageLock": "e3d80dbcf0263cfc4a97329fc6aab96d44141858da33598f20675629a83badc2",
+    "next": "16.4.3"
+  },
+  "kit": {
+    "js": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+    "css": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+    "boot": "3750a447772fb68b9f6f0e3d005dce8d1619b355429105c0aed303a17c383b63",
+    "geo": "4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45",
+    "sourceHash": "78c36806bc2e9000e50e97d3688525f5f218e28effed2d58c0aadad3757d7b2e",
+    "sources": [
+      "spike/kit/boot.js",
+      "spike/kit/entry.ts",
+      "spike/kit/frame.css",
+      "spike/kit/progress-bridge.ts",
+      "src/app/globals.css",
+      "src/kit/Lesson.tsx",
+      "src/kit/controls.tsx",
+      "src/kit/milestones.tsx",
+      "src/kit/random.ts",
+      "src/kit/reveal-fit.ts"
+    ],
+    "geoSourceHash": "43023e853d75c5c75b2b0fb0cff18ba1a5db1055f43ff0aa00a3d0d64a56ad64",
+    "geoSources": [
+      "spike/kit/geo-entry.ts",
+      "src/kit/geo/countries-110m.json",
+      "src/kit/geo/index.tsx",
+      "src/kit/geo/land-110m.json"
+    ]
+  },
+  "lessons": {
+    "why-seven-wins": {
+      "sourceHash": "6e664be2e71b0d0e8489f265b3dc242ed9ea2c3c9d8680c27c743ea8446f754c",
+      "sources": [
+        "src/demos/probability/why-seven-wins/Demo.tsx",
+        "src/demos/probability/why-seven-wins/meta.json",
+        "src/demos/probability/why-seven-wins/model.ts",
+        "src/demos/probability/why-seven-wins/styles.module.css"
+      ],
+      "lessonJs": "bfb4b0dbc9be76bf72c199b7752d50e2446c52322b21a8838fd5fb6c1877f1bf",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "6a8e9d4fe186fe093d786f1ee517d27696fe2a830806ed61a073297143a5459d"
+    },
+    "bearing-spiral-to-the-pole": {
+      "sourceHash": "a6e0428d14439656977ec206f3d521934bcfbd0a9e4ab806d5f3c0b84334f2bb",
+      "sources": [
+        "src/demos/geography/bearing-spiral-to-the-pole/Demo.tsx",
+        "src/demos/geography/bearing-spiral-to-the-pole/meta.json",
+        "src/demos/geography/bearing-spiral-to-the-pole/styles.module.css"
+      ],
+      "lessonJs": "d341a45babdbbca5599574104410bdb4913aa6a86ce3cdd988ff11d5d85172a6",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": "4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45",
+      "frameDoc": "c816c49af56118d3655d81d12d402c77272dec1fc717b8e1f1db4e83212e534c"
+    },
+    "parallel-of-most-land": {
+      "sourceHash": "e4a5f3d56fc25ad41b1fe2012c41db559c22587e7590d61cc4973c47d6938cd2",
+      "sources": [
+        "src/demos/geography/parallel-of-most-land/Demo.tsx",
+        "src/demos/geography/parallel-of-most-land/meta.json",
+        "src/demos/geography/parallel-of-most-land/parallels.json",
+        "src/demos/geography/parallel-of-most-land/styles.module.css"
+      ],
+      "lessonJs": "a4910fdc6eb88852d2302ac2f239178a7d9591509196d5689cc99404995b8a3b",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": "4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45",
+      "frameDoc": "9862e2aa6fc1995e97663ddee2588e54da392f3d538c9beba2a46929371ca417"
+    },
+    "one-bit-avalanche": {
+      "sourceHash": "71e24111cb9fe32ec2b1334e30f2d0cd031dcde2d605c533aea96390dc525edb",
+      "sources": [
+        "src/demos/cs/one-bit-avalanche/Demo.tsx",
+        "src/demos/cs/one-bit-avalanche/meta.json",
+        "src/demos/cs/one-bit-avalanche/sha256.ts",
+        "src/demos/cs/one-bit-avalanche/styles.module.css"
+      ],
+      "lessonJs": "1941d54af3f8062f4e9b42d95af2927187b6830ddeac6b46e7bdf91180513a53",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "b64e8b753a04f43642ede655572733e3ac11c7a64ba1b931bd7055363ea12235"
+    },
+    "pairs-cancel-under-xor": {
+      "sourceHash": "2c3ff1fb464c4be0eb0f367a6bc3c293d9b1e336bf66d0bd580f3dcca0fa1452",
+      "sources": [
+        "src/demos/cs/pairs-cancel-under-xor/Demo.tsx",
+        "src/demos/cs/pairs-cancel-under-xor/meta.json",
+        "src/demos/cs/pairs-cancel-under-xor/styles.module.css"
+      ],
+      "lessonJs": "44b64688474c81c651cd939afee8f5a3e2c8868d85ef80ecbeef1d70e704697e",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "7b547405bdcb80fa05347a16404055893bc9fc7ca733d0fc47aac6e443476875"
+    },
+    "binary-search": {
+      "sourceHash": "0043aadae7462eeacf94e555526c2dd8b669c48de9f4e0fbe87183c2a742d55f",
+      "sources": [
+        "src/demos/cs/binary-search/Demo.tsx",
+        "src/demos/cs/binary-search/meta.json",
+        "src/demos/cs/binary-search/styles.module.css"
+      ],
+      "lessonJs": "348430d9192a73eca8f9aed2f4195da5a8c6ba14d5fd028333317487813b9475",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "af85008f931dd46719b1b70c6727a74698b78caaa8da6e5d0ec821a0cb3d6873"
+    },
+    "coin-greedy-trap": {
+      "sourceHash": "9d0b2209bff6055a6961bd81ede3f40caa1aa33b19a1ce154b6741a4340380e4",
+      "sources": [
+        "src/demos/cs/coin-greedy-trap/Demo.tsx",
+        "src/demos/cs/coin-greedy-trap/meta.json",
+        "src/demos/cs/coin-greedy-trap/styles.module.css"
+      ],
+      "lessonJs": "342ad3485a802b21e901828413585b9b84df7d9e8a223ef48a05ae642237d93e",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "1981f57f8a52f9f940de69e9e8777788b1ddc1a3abaca93052ae0ed735705c1b"
+    },
+    "fib-call-explosion": {
+      "sourceHash": "635deb521adcaa6800e8f45a5372a60212ab07615e4f798b2bfcf7c0efe62736",
+      "sources": [
+        "src/demos/cs/fib-call-explosion/Demo.tsx",
+        "src/demos/cs/fib-call-explosion/meta.json",
+        "src/demos/cs/fib-call-explosion/styles.module.css"
+      ],
+      "lessonJs": "cca17f5bc522dcd464d1c28b8cb7e6b94fd33e558f4b10927f0be06a1d5033f6",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "f75c1e02e09d15786a348273f67abd90dfb259fc67b3c4533ef1ebd58ec262c1"
+    },
+    "euclid-leftover-rectangle": {
+      "sourceHash": "a7c3a54b162d2dc7ac49fbf7bea6fbcc39c33391c4882dd91275418d03fe21ab",
+      "sources": [
+        "src/demos/cs/euclid-leftover-rectangle/Demo.tsx",
+        "src/demos/cs/euclid-leftover-rectangle/meta.json",
+        "src/demos/cs/euclid-leftover-rectangle/styles.module.css"
+      ],
+      "lessonJs": "5fe056270cb82df8faa2447b4693b3c07958ecfa2a3785084f4e442edc4ee07f",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "6b35b00cd5f297576724de385c9b7aa937b576f401d9f410e2e17717851b7a46"
+    },
+    "skip-the-edge-that-loops": {
+      "sourceHash": "3b8bf9afba50431afcb6a809ead1f40ff22486b1aa755c5b29c75dc3df2a539b",
+      "sources": [
+        "src/demos/cs/skip-the-edge-that-loops/Demo.tsx",
+        "src/demos/cs/skip-the-edge-that-loops/meta.json",
+        "src/demos/cs/skip-the-edge-that-loops/styles.module.css"
+      ],
+      "lessonJs": "28688ebd6e35e520505fe8da77996232d6e0c4932fed41651fb420e959f7fd44",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "d620bc357a4b60ebc433564c14920068cc50d743395f4d384560883dc66935b0"
+    },
+    "back-button-stack": {
+      "sourceHash": "722cd33e6e14b73aa89823f9b7df45d2a93de512749c4aee4b15ec59458662d0",
+      "sources": [
+        "src/demos/cs/back-button-stack/Demo.tsx",
+        "src/demos/cs/back-button-stack/meta.json",
+        "src/demos/cs/back-button-stack/styles.module.css"
+      ],
+      "lessonJs": "e917ce90522910ba88653339e47c24e073a9b9ae7868200c1e40a4533e348bd8",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "8f68ee33e405367b5b8fdcc0f66290c07017ad1ad574d4f88d8b459248d1df9e"
+    },
+    "free-rider-pot": {
+      "sourceHash": "2091ca72dead0fbda6db65d998e6e38336f40d3c8743fa461653cfe5135131d1",
+      "sources": [
+        "src/demos/economics/free-rider-pot/Demo.tsx",
+        "src/demos/economics/free-rider-pot/meta.json",
+        "src/demos/economics/free-rider-pot/styles.module.css"
+      ],
+      "lessonJs": "9204ea695f5ea0e3cea4e9f7c8ef4b96730ca156599e3b1fd7f9b09302c767fa",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "f334ed7892e25cd06db4d4c1443e0d26486c0ef787dd7f546d5b6c08e3d56fdd"
+    },
+    "shade-your-sealed-bid": {
+      "sourceHash": "b44f7672507b1a4fd7b8cee94cf07ca997c563d6b0dda6833088e839d07b1992",
+      "sources": [
+        "src/demos/economics/shade-your-sealed-bid/Demo.tsx",
+        "src/demos/economics/shade-your-sealed-bid/meta.json",
+        "src/demos/economics/shade-your-sealed-bid/styles.module.css"
+      ],
+      "lessonJs": "3292982f3413f4786f0e4ff785d32984251a259f3abd3480bf5bbe86d256e791",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "a2e2ec580bcfe679693e825d80e7c2b4d88096d574ae2084a085cf275856b617"
+    },
+    "bond-seesaw": {
+      "sourceHash": "42cc05ff3901ca3c8710d4d3d8dc565689d2eb4c45cf078f382e3c1c4b90f969",
+      "sources": [
+        "src/demos/economics/bond-seesaw/Demo.tsx",
+        "src/demos/economics/bond-seesaw/meta.json",
+        "src/demos/economics/bond-seesaw/styles.module.css"
+      ],
+      "lessonJs": "fd164d8897989963705455061bcb43c8287d85400bc25cda5283bd8c5aa67ca4",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "db971f26305ed778fe8013b1bc080a3b683da71ea28ad71d37b18fd3766d7b90"
+    },
+    "price-floor-glut": {
+      "sourceHash": "01bab055af14e3bdf8271eaef8b759566ba20d6551ba4a32058311a3bc610cce",
+      "sources": [
+        "src/demos/economics/price-floor-glut/Demo.tsx",
+        "src/demos/economics/price-floor-glut/meta.json",
+        "src/demos/economics/price-floor-glut/styles.module.css"
+      ],
+      "lessonJs": "6b79297dc55eb903b5320956fd7cb443274cc0d6c4df3f604c8a5ef23db34f50",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "7fd63e2996a3b88dadbff3de4fa6ccc258eb5ea5a73c597be15e16dfebd72850"
+    },
+    "rate-up-one-point": {
+      "sourceHash": "c6b6b49eb3efedd937caa2bfd933082915b436eb5fdda93df41fe9127006bb2b",
+      "sources": [
+        "src/demos/economics/rate-up-one-point/Demo.tsx",
+        "src/demos/economics/rate-up-one-point/meta.json",
+        "src/demos/economics/rate-up-one-point/styles.module.css"
+      ],
+      "lessonJs": "358c37e3128b24d460bd4627b835b50eb1201b0b47a254af4fd2146b1240b451",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "634f14165e8a5e48c197e0a50a1143a6b236b43257989e19608b732481c4f840"
+    },
+    "two-squares-become-one": {
+      "sourceHash": "27b5766631673a462fa988cdf88a568d72b1cd9da3d3fb0704b80b414473dcaa",
+      "sources": [
+        "src/demos/math/two-squares-become-one/Demo.tsx",
+        "src/demos/math/two-squares-become-one/meta.json",
+        "src/demos/math/two-squares-become-one/styles.module.css"
+      ],
+      "lessonJs": "a96e2d59b0ad9a58f5fe2416dd995ac63012699b2d9a42ec71a97896510f504b",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "6fadeab4fc50e973653f9012f8c5ce839c8c804ec46c1746c5d9ce564c85d5f2"
+    },
+    "seven-odds-leave-one": {
+      "sourceHash": "07f29f1cf2893701fa30ce179c748d8995f6986d460c1381a7607498255f1083",
+      "sources": [
+        "src/demos/math/seven-odds-leave-one/Demo.tsx",
+        "src/demos/math/seven-odds-leave-one/meta.json",
+        "src/demos/math/seven-odds-leave-one/styles.module.css"
+      ],
+      "lessonJs": "3621b9146c4e4602c558904e663b3ed904a51557246033841b14c33665c4d258",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "714430a2937d807a3b0ca8c06720d68ccc9497a97daec93e724ff67ee87f86b1"
+    },
+    "pi-is-three-and-a-bit": {
+      "sourceHash": "043d1458ef8a4d0eac5059b6f3954d9aa6f5c58bf70590b202000382e8ff95a5",
+      "sources": [
+        "src/demos/math/pi-is-three-and-a-bit/Demo.tsx",
+        "src/demos/math/pi-is-three-and-a-bit/meta.json",
+        "src/demos/math/pi-is-three-and-a-bit/styles.module.css"
+      ],
+      "lessonJs": "d91e14b744bfd141f174c42b1fc6f5da0d9732650a9f051c40b9f8d3e89e75b8",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "cad8022b2ba0292a853efd26ef9ebf419577f51ffb1824c97b86dcf918e96ab1"
+    },
+    "domino-chain": {
+      "sourceHash": "2d4a82f7bd17aea12e4cdb3e83e498d27e37dd876a3407c3206d29761176a40f",
+      "sources": [
+        "src/demos/math/domino-chain/Demo.tsx",
+        "src/demos/math/domino-chain/meta.json",
+        "src/demos/math/domino-chain/styles.module.css"
+      ],
+      "lessonJs": "f06f0a35368c773720c1d2b2f940de49d10f3e874695fa70dfa352adcd74d61e",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "a232ecdd743211e6a7e5dc4b221ae0f57da759704300f9bf4a4ecd82bc565b97"
+    },
+    "times-can-shrink": {
+      "sourceHash": "5e197f7fadae0935a02b1f3a4253f0b5823ce5f5008f9aaf16900efef158aa4f",
+      "sources": [
+        "src/demos/math/times-can-shrink/Demo.tsx",
+        "src/demos/math/times-can-shrink/meta.json",
+        "src/demos/math/times-can-shrink/styles.module.css"
+      ],
+      "lessonJs": "1466cd5518083869e069588777b74dad595c6e1fcee3604097b42dd00ca1453a",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "a3f5bde4367833a74c08ca5eab6c98d8fb0009aacbbf5d9121a1f4355077d22f"
+    },
+    "more-copying-bigger-stars": {
+      "sourceHash": "9b0210602460e1cf16d1471cfd36826f4bc2845ef1be9b22a03cb78a1ca83027",
+      "sources": [
+        "src/demos/probability/more-copying-bigger-stars/Demo.tsx",
+        "src/demos/probability/more-copying-bigger-stars/meta.json",
+        "src/demos/probability/more-copying-bigger-stars/styles.module.css"
+      ],
+      "lessonJs": "b7d0e59cd4c240e3fd08231f6ff20279ed21f8eecd8004a2e0f852e8d33c7df5",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "246abde31e9d7d1d0b64a846eab3023909226e0d9062ab69da4bc93330783a06"
+    },
+    "double-after-every-loss": {
+      "sourceHash": "628c0b4cde4b070fd0e40daea7a4efbb417eeb6e2723f98d3b0a0e8536c3b88c",
+      "sources": [
+        "src/demos/probability/double-after-every-loss/Demo.tsx",
+        "src/demos/probability/double-after-every-loss/meta.json",
+        "src/demos/probability/double-after-every-loss/model.ts",
+        "src/demos/probability/double-after-every-loss/styles.module.css"
+      ],
+      "lessonJs": "10abc2d6d07c2ff7b2242e10f80e8c1aaab31b79405562e48b9877e67616da58",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "794d6bb6d623aff3ff5fcb9dbfdf57545772fd3b1e285cd8e37ca8d2f6e007c7"
+    },
+    "longer-series-fewer-upsets": {
+      "sourceHash": "067e0be17597fd4a630002134e313734dd2b13485fcee9b3fb088ceda13e71c4",
+      "sources": [
+        "src/demos/probability/longer-series-fewer-upsets/Demo.tsx",
+        "src/demos/probability/longer-series-fewer-upsets/meta.json",
+        "src/demos/probability/longer-series-fewer-upsets/model.ts",
+        "src/demos/probability/longer-series-fewer-upsets/styles.module.css"
+      ],
+      "lessonJs": "1ae342a3006b5eab060a58f79abda935902158e76eb796cd1796500edf36f7ae",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "a47a42d1837d8bd5d95e9cf45bde72346a195225a69e9dbf52dcc4d7ab9fc749"
+    },
+    "four-rolls-one-six": {
+      "sourceHash": "479cf5b3ddd6e42ad1c8a5883c03947b3f2af58c8dffddd28227376f43493e42",
+      "sources": [
+        "src/demos/probability/four-rolls-one-six/Demo.tsx",
+        "src/demos/probability/four-rolls-one-six/meta.json",
+        "src/demos/probability/four-rolls-one-six/model.ts",
+        "src/demos/probability/four-rolls-one-six/styles.module.css"
+      ],
+      "lessonJs": "da2f46393361c1feecf9a715f34ff27fca594c267971b761ad7a160b49e3a8e4",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "64e0afabfef88bee97433bf74fe98af0027e75cfaf85434b17062d103943fbab"
+    },
+    "slow-across-a-room": {
+      "sourceHash": "536fb650be78a6637333de20095805d25ee3453b25e230241d4fa82dcfc79813",
+      "sources": [
+        "src/demos/life/slow-across-a-room/Demo.tsx",
+        "src/demos/life/slow-across-a-room/meta.json",
+        "src/demos/life/slow-across-a-room/styles.module.css"
+      ],
+      "lessonJs": "bac599bdc6dc664179a51ff1c92b5cbc9a513377c6e916a977fa1e52f1c9916f",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "79f2ad485a615fd282a9c5d4764fbf070593ccfbf2846a3913f70ad6e35c1849"
+    },
+    "outbreak-can-fizzle-above-one": {
+      "sourceHash": "efbab4ce8be296ec43ab6ebad38a67285ab691bbd7a902d6bc9232686c472a6b",
+      "sources": [
+        "src/demos/life/outbreak-can-fizzle-above-one/Demo.tsx",
+        "src/demos/life/outbreak-can-fizzle-above-one/meta.json",
+        "src/demos/life/outbreak-can-fizzle-above-one/styles.module.css"
+      ],
+      "lessonJs": "dd4577a00c5f52039ebefbb487e128ae53d19ddbae0a94cd8e89215fcb24f5b6",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "df48e46f40626ed2b21f9575070fde38f31b550551593646521f74ba6fd49ca3"
+    },
+    "quiet-decades-then-everywhere": {
+      "sourceHash": "76755b37db68dcf26b862d7d0a7a57bdc0b9f408cb0b9a1c6db4432f7c440139",
+      "sources": [
+        "src/demos/life/quiet-decades-then-everywhere/Demo.tsx",
+        "src/demos/life/quiet-decades-then-everywhere/meta.json",
+        "src/demos/life/quiet-decades-then-everywhere/styles.module.css"
+      ],
+      "lessonJs": "9e71d0531c0084dedc18fc5def72c9c664f74cd082380b99a73d487e666a6374",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "9787878b952b167e95ac487dc2d3c6dea087cc44f87d40f3521dc8111cb19377"
+    },
+    "bigger-beetles-everyone-loses": {
+      "sourceHash": "77ba9f9775fb520fcb95e1898ca805bd2ef916b345f319fb7d2a16737e2cf47b",
+      "sources": [
+        "src/demos/life/bigger-beetles-everyone-loses/Demo.tsx",
+        "src/demos/life/bigger-beetles-everyone-loses/meta.json",
+        "src/demos/life/bigger-beetles-everyone-loses/styles.module.css"
+      ],
+      "lessonJs": "f3586a93f509969b90631dddae6c8965f9dcd52b4cfb874ed8984632b86efb8b",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "84fa72239ccfbb9fa16335cd0a816b63f30034bcc6e7a79f73b1f8658d0dc9f6"
+    },
+    "antibiotic-already-there": {
+      "sourceHash": "31c00613e6dea402967725aee4097d9b1665245c72f40491fc6e33490ef7bb78",
+      "sources": [
+        "src/demos/life/antibiotic-already-there/Demo.tsx",
+        "src/demos/life/antibiotic-already-there/meta.json",
+        "src/demos/life/antibiotic-already-there/styles.module.css"
+      ],
+      "lessonJs": "595186f190e8012dd35ab42cff2a63cc89095bbe31f863524215a65531154976",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "0d746d9f0873ef1ec1024e1c3c8548950af018edf312b874ee1e46aaf217dedf"
+    },
+    "who-runs-out-first": {
+      "sourceHash": "ee772114337ed91ccf9aa22f51dcf29e741c1e59d721ea5fb8045a6dba579639",
+      "sources": [
+        "src/demos/chemistry/who-runs-out-first/Demo.tsx",
+        "src/demos/chemistry/who-runs-out-first/meta.json",
+        "src/demos/chemistry/who-runs-out-first/styles.module.css"
+      ],
+      "lessonJs": "c21ee35cf3e966c6f11f4a44d7d1ae009311dc3a18a448e24876c746584f336f",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "1f7a4e3cb40236900985aebbc7b11229c5000f00d3aa8abe6f9f2a74a2ccee67"
+    },
+    "dilute-until-none-left": {
+      "sourceHash": "eb1c8e4a63050a22d5b3a9de9e99fe4671b2cff2cddd3b232027cb59c67c9493",
+      "sources": [
+        "src/demos/chemistry/dilute-until-none-left/Demo.tsx",
+        "src/demos/chemistry/dilute-until-none-left/meta.json",
+        "src/demos/chemistry/dilute-until-none-left/styles.module.css"
+      ],
+      "lessonJs": "1b50d944d41a5a4aad2e0d5bc0878ffd875ef55020e3e2d8e502c60359763bbf",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "4662ebb49dcc2a545a8494ce8bb62a69848bf76c4147259953002a36f89db9e2"
+    },
+    "one-in-75-lets-go": {
+      "sourceHash": "d210cb0ca0782349309c3ba7f273974745401e07b42fede8235726be85a69720",
+      "sources": [
+        "src/demos/chemistry/one-in-75-lets-go/Demo.tsx",
+        "src/demos/chemistry/one-in-75-lets-go/meta.json",
+        "src/demos/chemistry/one-in-75-lets-go/styles.module.css"
+      ],
+      "lessonJs": "346444caad1d889ba42fc47df735b9e00e1e2cecccd8206d6f8916e423e34f78",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "3c8df26236dda7bee2876566cb731806c1438eddd6e33fba4505f14d4678cc2c"
+    },
+    "cold-pack-takes-heat": {
+      "sourceHash": "4bed96afc83d88e07da67b632e56f99a2e58434f786b143da245e7050bf9c6f3",
+      "sources": [
+        "src/demos/chemistry/cold-pack-takes-heat/Demo.tsx",
+        "src/demos/chemistry/cold-pack-takes-heat/meta.json",
+        "src/demos/chemistry/cold-pack-takes-heat/styles.module.css"
+      ],
+      "lessonJs": "9aca5174ffeed6b17a33f9c859e032086cb756890f2c6116561715c468042c71",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "34cc39aa521edcf9efa7b3512b7af4d183c7f0f4490a9890657cc1b2a80a6573"
+    },
+    "yield-not-mass-in-mass-out": {
+      "sourceHash": "01c085144e7a5cc21a5a707e8d175b13917ddb1b3fde13d8f7c1d969cb6fa6eb",
+      "sources": [
+        "src/demos/chemistry/yield-not-mass-in-mass-out/Demo.tsx",
+        "src/demos/chemistry/yield-not-mass-in-mass-out/meta.json",
+        "src/demos/chemistry/yield-not-mass-in-mass-out/styles.module.css"
+      ],
+      "lessonJs": "726ada736e379c5b6bd0d1daeb3d5b7bc4be1f5ad95a97d7a8f547194b6098b4",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "310f27a4efe62e31eb81d4d796173586b1f4f0380502dabc76f1dfdec6bc63f3"
+    },
+    "long-answers-lose-the-product": {
+      "sourceHash": "43705d204280936ba20923a01293288bc2ca1e37eb232ddd7adbabc3e441ce4e",
+      "sources": [
+        "src/demos/ai/long-answers-lose-the-product/Demo.tsx",
+        "src/demos/ai/long-answers-lose-the-product/meta.json",
+        "src/demos/ai/long-answers-lose-the-product/styles.module.css"
+      ],
+      "lessonJs": "8717729a885df937a67a95f84acbf71cc72ea1089dd64703bdd29a27d223ea98",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "aba476571b06056e8c7d373c7d47bd097f10fe33216a6a8ea77a2d869f224721"
+    },
+    "pixel-nudges-add-up": {
+      "sourceHash": "1c5709ab9fc0ea1a86453c07764930c6810cb20057438058fb34c538c1f45f33",
+      "sources": [
+        "src/demos/ai/pixel-nudges-add-up/Demo.tsx",
+        "src/demos/ai/pixel-nudges-add-up/meta.json",
+        "src/demos/ai/pixel-nudges-add-up/styles.module.css"
+      ],
+      "lessonJs": "f40b25beefbdde68ebde2030211e5bc461e11d9cabe2ad3c558325034e9f6608",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "00a9e3991c958214156b2dce38fd05c923807fff777271e5a6d1c05ab2802347"
+    },
+    "income-in-dollars": {
+      "sourceHash": "24ddb75e7fa49e3c1a9da75e9610b2e50345b0a41a03b5c9fa539725739cbbf2",
+      "sources": [
+        "src/demos/ai/income-in-dollars/Demo.tsx",
+        "src/demos/ai/income-in-dollars/meta.json",
+        "src/demos/ai/income-in-dollars/styles.module.css"
+      ],
+      "lessonJs": "32fc85dccf50fcfb8ff81722b794f3e42e681f6c53bc4c69b0802f5e42f02deb",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "6ec9351d10b343c9fe23104ebc321e1d257e0e54636f1dc90a78ae3e08f363a4"
+    },
+    "patrol-feedback-loop": {
+      "sourceHash": "f7308392e9eee63d5aae49b6a7059aebe40937a33711b2459e04d7dd794bf914",
+      "sources": [
+        "src/demos/ai/patrol-feedback-loop/Demo.tsx",
+        "src/demos/ai/patrol-feedback-loop/meta.json",
+        "src/demos/ai/patrol-feedback-loop/styles.module.css"
+      ],
+      "lessonJs": "2c306d86fde31952d917e18cec5b91431d2e9dee3c99187b4e8ba3662d8119f8",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "d58409df6ec824ed692852e7d45daf3c23f4e929556afa23148062d8f8515815"
+    },
+    "near-the-wall": {
+      "sourceHash": "bf840a6e7bbdafbe55163e78b50a41a1997f9b4757b91df4bb869b770352674c",
+      "sources": [
+        "src/demos/ai/near-the-wall/Demo.tsx",
+        "src/demos/ai/near-the-wall/meta.json",
+        "src/demos/ai/near-the-wall/styles.module.css"
+      ],
+      "lessonJs": "09c213e18feab62f2ef33b70c499c78921d33fe53a2669ef3c2ad18b16999c30",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "0b1cf768457d3d03c4ca784418546c4566ca6149cbe1d9cb606f2cfa1576e364"
+    },
+    "higher-orbit-slower": {
+      "sourceHash": "44d406c6addba13cd14c38f525c9b2313032d1ef11f1c682eedde4a5231b2ad9",
+      "sources": [
+        "src/demos/physics/higher-orbit-slower/Demo.tsx",
+        "src/demos/physics/higher-orbit-slower/meta.json",
+        "src/demos/physics/higher-orbit-slower/styles.module.css"
+      ],
+      "lessonJs": "e9b962354fe0a4a5676cbb78b258110100453c4eda4f69c4905114046022ac4b",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "61d0d67ec9dfe83b8b5ce29b9fd0d5e2065f0958ea3ca9b5bf5d989de0a99ace"
+    },
+    "sound-in-the-jar": {
+      "sourceHash": "0103ead49bdf539d0e642dbeec6a8910e2b2c006c24b123acca7c4e6653c77d1",
+      "sources": [
+        "src/demos/physics/sound-in-the-jar/Demo.tsx",
+        "src/demos/physics/sound-in-the-jar/meta.json",
+        "src/demos/physics/sound-in-the-jar/styles.module.css"
+      ],
+      "lessonJs": "7aeb0a3e5347a84d3f334e55e38235e5165dfc43ff9126faf1b87cf0c15dea4b",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "5c7b8c8adaa75f2ca7870c579cede184fe5d2805f25f5d59d7139c89b156d1b9"
+    },
+    "toaster-trips-breaker": {
+      "sourceHash": "f8bfcf06045866d549d291dc0e3ddbc8d473e9940297d416585a087d2f1e5035",
+      "sources": [
+        "src/demos/physics/toaster-trips-breaker/Demo.tsx",
+        "src/demos/physics/toaster-trips-breaker/meta.json",
+        "src/demos/physics/toaster-trips-breaker/styles.module.css"
+      ],
+      "lessonJs": "02726039a6f2463aa6747e00fce2838738bf8f1dfd3f962ad5165fe919b1608b",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "751cb4730210e6fe1837fa4e7a39a2d30b4cc31fb3222f7a07f4f6a49e636189"
+    },
+    "light-at-double-distance": {
+      "sourceHash": "c31be04cde66202306cb76157ef2d2e22aeec5b13a5d1be77680b3f15dbb4c4a",
+      "sources": [
+        "src/demos/physics/light-at-double-distance/Demo.tsx",
+        "src/demos/physics/light-at-double-distance/meta.json",
+        "src/demos/physics/light-at-double-distance/styles.module.css"
+      ],
+      "lessonJs": "6e24b741043c53d60eeb0c29090cd737d988ff8a7a64e11d338eca9bed3c487c",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "bdc99b7964927655dad4805891527b8f4757357f5c578501f52debb1b80e9cb6"
+    },
+    "four-lines-one-continent": {
+      "sourceHash": "2c1b6ad1e5e736f87fdcadb04c69818aef48e572238c29d343a24ba42d7e7492",
+      "sources": [
+        "src/demos/geography/four-lines-one-continent/Demo.tsx",
+        "src/demos/geography/four-lines-one-continent/meta.json"
+      ],
+      "lessonJs": "2c4072a730577198389aa0a8106a5c8e166ed73fa0440d0d3e659b56552edd34",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": "4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45",
+      "frameDoc": "42d016ed289ed0466463a53ea2d57f18bd2c2e655f6bd0f2867bb797ea48e8e2"
+    },
+    "coastline-ruler": {
+      "sourceHash": "ccfa437e1db15a73fbe34302a8353b0e1a4d711dce21732fc39f6f66fe0af6f9",
+      "sources": [
+        "src/demos/geography/coastline-ruler/Demo.tsx",
+        "src/demos/geography/coastline-ruler/meta.json",
+        "src/demos/geography/coastline-ruler/styles.module.css"
+      ],
+      "lessonJs": "2151c28641624ae501ff51eee93b32575e538fe3557caa0473800652d11fe276",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": "4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45",
+      "frameDoc": "3f920b5e833ae7c69815ba976f5c4818054396224ee3788fb736754ec00d6bcb"
+    },
+    "june-sunshine-pole-or-equator": {
+      "sourceHash": "fe0a4446eeee283001b73c1911f7d97f4e75b5210563eac474af3b4a2f5f413e",
+      "sources": [
+        "src/demos/geography/june-sunshine-pole-or-equator/Demo.tsx",
+        "src/demos/geography/june-sunshine-pole-or-equator/meta.json",
+        "src/demos/geography/june-sunshine-pole-or-equator/styles.module.css"
+      ],
+      "lessonJs": "2b294f176abe14760be890102ef3ae1d1d1bf40556f62b70dde1b951b32d08bc",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "46acb31915dac2c0e1529c20e192a7ecd56fd1cc89c485c1ef957bc88523fd84"
+    },
+    "fifty-hour-monday": {
+      "sourceHash": "965608c5b49f7779cd55a403bc17df865c4ba1bbbe01f4e2513ff26f5f6396e4",
+      "sources": [
+        "src/demos/geography/fifty-hour-monday/Demo.tsx",
+        "src/demos/geography/fifty-hour-monday/meta.json",
+        "src/demos/geography/fifty-hour-monday/styles.module.css"
+      ],
+      "lessonJs": "cd77b63acdc7bb7c67c48a24d27f6e41fff3c988729c3c896a7a79cc5936f069",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": "4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45",
+      "frameDoc": "f81b9d077b468f759a7b082d36a1e904dbad8620ae6383163f3ccf3e0c4eccca"
+    },
+    "london-december-noon-sun": {
+      "sourceHash": "2e56fbeb2bb1bfb890f81685a50dd56d157bcedf29b35f18a2423840202409ff",
+      "sources": [
+        "src/demos/geography/london-december-noon-sun/Demo.tsx",
+        "src/demos/geography/london-december-noon-sun/meta.json",
+        "src/demos/geography/london-december-noon-sun/styles.module.css"
+      ],
+      "lessonJs": "9216e4515325c6b5ecfd7bafdd787ed77032ceb9e5a89e7bc5b42ea5f0a2b73a",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": null,
+      "frameDoc": "25d9494d4f5fb704181dcf909c244a27ede5a977e147788313a035ee108816df"
+    },
+    "equinox-twelve-everywhere": {
+      "sourceHash": "82052587c262c56e4fd0ec8d6d98443ffdcdaaef6411217d8b07a782aea412b0",
+      "sources": [
+        "src/demos/geography/equinox-twelve-everywhere/Demo.tsx",
+        "src/demos/geography/equinox-twelve-everywhere/meta.json",
+        "src/demos/geography/equinox-twelve-everywhere/styles.module.css"
+      ],
+      "lessonJs": "d9f77382ab6d7c84c5bc24b895306bc1e5a94cff1ac667a6695ec0446307f0fc",
+      "kit": "ba8992f145abf6d31b065b55d9ae1df71025afce710211e3c743fa13d8e81631",
+      "kitCss": "569604575c5cece461eacd2eaafc791208bc5598a143197ce44a213a3fe408d2",
+      "geoKit": "4344a731de508723009eb0d30475b396bddf7a87069f6f3e45795d0bf00dcc45",
+      "frameDoc": "e4128363f90fbc46696870c2a26ab2aa12e6a2487c8123a6af48afb636883496"
+    }
+  }
+}

@@ -1,3 +1,11 @@
+## 2026-10-26 · platform-engineer (Noor) · W-2105 W2-C1: the gate suite passes on an empty (pruned) manifest, flag off and on; branch only, not merged, not deployed
+
+- **Changed:** `tests/lesson-frames/manifest.test.mjs` takes its mutation entries from a new fixture, `tests/lesson-frames/fixture.manifest.json` (the 2026-10-26 manifest, re-hashed against today's tree), not from the committed manifest. Two new tests: the fixture is usable (geo and non-geo entries, no problems), and an empty manifest meets every rule with the kit fresh or stale, both flag states. No skip on empty. Addendum in `company/engineering/readiness/2026-10-26-w2105-prune-stale-kit.md`.
+- **Checks:** before the fix, an empty pruned manifest gave 23 pass, 8 fail (as the M2 review found). After: 33 pass, 1 skip (pre-existing, no local artifacts), 0 fail with the committed manifest and with a pruned empty one (kit stale and fresh), each flag off and with `NEXT_PUBLIC_LESSON_FRAMES=pilot-50`. Typecheck exit 0. `npm run check` 810 errors, 5 warnings, unchanged. No build this round (no app code changed).
+- **Believe:** high (about 90%) that committing a pruned manifest no longer blocks a flag-off `verify`.
+- **Next:** principal-engineer re-reads W2-C1 (the review says the empty-manifest suite run in both flag states plus the test diff). W-2105 stays in review until then.
+- **Blocked:** merge to main, as before: M-a and M-c in `company/engineering/readiness/2026-10-26-lesson-frames-pilot.md`.
+
 ## 2026-10-26 · platform-engineer (Noor) · W-2105 done on `feat/lesson-frames-pilot` (prune handles a stale kit, R5 comment); origin/main merged in; not merged to main, not deployed
 
 - **Changed:**

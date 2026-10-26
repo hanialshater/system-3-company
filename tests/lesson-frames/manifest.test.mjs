@@ -7,8 +7,26 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { ALLOWED_ORIGIN, FRESHNESS_RULES, HEX64, blocking, clientFrames, clientSlugs, flagOnBuildRefusal, framesOn, pilotSlugs, problems, pruneManifest, readManifest, treeHash } from "../../tools/lib/lesson-frames.mjs";
 
+import fs from "node:fs";
+
+// The committed manifest: what this build ships. It may be empty: after a stale-kit prune every entry is dropped
+// (W-2105), and that state must pass this suite with the flag off and on (W2-C1). So no test below takes its entry
+// from it; the mutation tests use the fixture instead.
 const m = readManifest();
-const clone = () => structuredClone(m);
+// The fixture: a frozen copy of the manifest as built on 2026-10-26 (tests/lesson-frames/fixture.manifest.json), with
+// every hash re-read from today's tree and every entry that is no longer publishable removed, so the tests do not
+// depend on how far main has moved since. Regenerate it only from a fresh build (node tools/lesson-frames.mjs build).
+const FIXTURE = JSON.parse(fs.readFileSync(new URL("./fixture.manifest.json", import.meta.url), "utf8"));
+const fresh = () => {
+  const x = structuredClone(FIXTURE);
+  x.kit.sourceHash = treeHash(x.kit.sources);
+  x.kit.geoSourceHash = treeHash(x.kit.geoSources);
+  for (const e of Object.values(x.lessons)) e.sourceHash = treeHash(e.sources);
+  for (const s of new Set(problems(x).filter((p) => p.slug).map((p) => p.slug))) delete x.lessons[s];
+  return x;
+};
+const clone = fresh;
+const any = Object.keys(fresh().lessons)[0];
 const rules = (ps) => ps.map((p) => `${p.slug ?? "-"}:${p.rule}`);
 
 // O1 (company/decisions/2026-10-26-lesson-frames-gate-scope.md): with the flag off, the freshness rules (stale,
@@ -58,7 +76,13 @@ test("the toolchain is recorded (a later bundler switch shows up as a toolchain 
 });
 
 // The rules bite: each mutation below must be caught.
-const any = Object.keys(m.lessons)[0];
+test("the fixture still has entries, with and without the geo kit (so the mutation tests below test something)", () => {
+  const x = fresh();
+  assert.ok(any, "no fixture entry is publishable today: rebuild and refresh tests/lesson-frames/fixture.manifest.json");
+  assert.ok(Object.values(x.lessons).some((e) => e.geoKit !== null));
+  assert.ok(Object.values(x.lessons).some((e) => e.geoKit === null));
+  assert.deepEqual(problems(x).filter((p) => p.rule !== "client"), [], "a fresh fixture meets every rule");
+});
 test("a stale source is caught", () => {
   const x = clone();
   x.lessons[any].sourceHash = "0".repeat(64);
@@ -73,14 +97,6 @@ test("a stale kit is caught", () => {
 // fresh(): the committed manifest with every hash re-read from today's tree and every unpublishable entry removed, so
 // these tests do not depend on how far main has moved since the artifacts were built. Outside the two projections
 // (which prune rewrites on disk), a pruned manifest must have no problem at all, so a flag-on build accepts it.
-const fresh = () => {
-  const x = clone();
-  x.kit.sourceHash = treeHash(x.kit.sources);
-  x.kit.geoSourceHash = treeHash(x.kit.geoSources);
-  for (const e of Object.values(x.lessons)) e.sourceHash = treeHash(e.sources);
-  for (const s of new Set(problems(x).filter((p) => p.slug).map((p) => p.slug))) delete x.lessons[s];
-  return x;
-};
 const unprojected = (ps) => ps.filter((p) => p.rule !== "client");
 test("prune with a stale kit drops every entry, and the pruned manifest passes a flag-on build's rules", () => {
   const x = fresh();
@@ -139,9 +155,22 @@ test("another origin is caught", () => {
   assert.ok(rules(problems(x)).includes("-:origin"));
 });
 test("client projections that disagree with the manifest are caught", () => {
-  const x = clone();
-  delete x.lessons[any];
+  const x = structuredClone(m); // the committed projections against the committed manifest plus one entry
+  x.lessons["__extra__"] = fresh().lessons[any];
   assert.ok(rules(problems(x)).includes("-:client"));
+});
+test("an empty manifest (after a stale-kit prune) meets every rule, flag off and on, with the kit fresh or stale", () => {
+  for (const kitHash of ["fresh", "stale"]) {
+    const x = { ...structuredClone(m), lessons: {}, kit: structuredClone(fresh().kit) };
+    if (kitHash === "stale") (x.kit.sourceHash = "0".repeat(64)), (x.kit.geoSourceHash = "0".repeat(64));
+    const ps = problems(x).filter((p) => p.rule !== "client"); // the projections on disk are the committed manifest's
+    assert.deepEqual(ps, [], `${kitHash} kit: ${show(ps)}`);
+    for (const on of [false, true]) assert.deepEqual(blocking(ps, { on }), []);
+    assert.deepEqual(clientSlugs(x).slugs, []);
+    assert.deepEqual(clientFrames(x).frames, {});
+    x.lessons["__extra__"] = fresh().lessons[any];
+    if (kitHash === "stale") assert.ok(rules(problems(x)).includes("-:stale-kit"), "an entry on a stale kit fires again");
+  }
 });
 
 test("no app code imports the manifest record; the client reads only its two projections", async () => {
