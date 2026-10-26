@@ -21,7 +21,8 @@ export type FrameMessage =
   | { type: "track"; event: LessonEvent }
   | { type: "progress"; slug: string; value: LessonProgress }
   | { type: "resize"; slug: string; height: number }
-  | { type: "error"; slug: string; message: string };
+  | { type: "error"; slug: string; message: string }
+  | { type: "key"; slug: string; key: string };
 
 const cfg: { hostOrigin: string | null } = { hostOrigin: null };
 // The frame cannot read the host's progress. It keeps its own copy for this page view only.

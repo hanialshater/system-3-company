@@ -1,0 +1,10 @@
+### 2026-10-26 · pe-w2092-lesson-frames-pilot · platform-engineer
+- did: W-2092/W-2093 on branch feat/lesson-frames-pilot: Next 16.4.3, lesson frames C1-C4 behind NEXT_PUBLIC_LESSON_FRAMES=pilot-50, EXP-010 P1-P6 measured, readiness unapproved (W-2101)
+- learned: Inside a frame the app's :is(.feed-wrap, .single) lesson styles and dark palette never match; the frame <html> needs .single (spike/kit/entry.ts)
+- learned: Unset NEXT_PUBLIC_ flags are not inlined; next.config.mjs env always defines NEXT_PUBLIC_LESSON_FRAMES so the frame branch folds away (next.config.mjs)
+- learned: contract.spec writes 3 screenshots per test into artifacts/qa; a full run filled the shared disk; run QA in batches with QA_BASE_URL and delete between (company/ops/progress.md)
+- know: Never kill by pgrep -f with your own patterns: it matches your shell; select by ps comm and /proc cwd (company/ops/progress.md)
+- know: A scratchpad worktree needs a hardlinked node_modules (cp -al), not a symlink: Turbopack panics on a symlink that leaves the root (next.config.mjs)
+- know: tests/lesson-frames fails verify when a pilot lesson or kit source changes; node tools/lesson-frames.mjs prune drops stale slugs (tools/lesson-frames.mjs)
+- open: C3 desktop parity 26/50: @media max-width 600px matches in a 438 px frame (company/experiments/EXP-010-lesson-frames-pilot-predictions.md)
+- open: O1 staleness gate scope with principal-engineer, W-2104 (company/engineering/readiness/2026-10-26-lesson-frames-pilot.md)

@@ -47,7 +47,7 @@ const br = (b) => zlib.brotliCompressSync(b).length;
 const sizes = (b) => ({ raw: b.length, gzip: gz(b), brotli: br(b) });
 
 // The import-map contract: the only bare specifiers a lesson may import, and where they resolve.
-const LESSON_EXTERNALS = {
+export const LESSON_EXTERNALS = {
   react: [KIT, "react"],
   "react/jsx-runtime": [KIT, "jsx_runtime"],
   "@/kit/Lesson": [KIT, "kit_Lesson"],
@@ -59,7 +59,7 @@ const LESSON_EXTERNALS = {
   "d3-geo": [GEO, "d3geo"],
 };
 
-function webpackConfig({ name, entry, externals, replaceProgress = false }) {
+export function webpackConfig({ name, entry, externals, replaceProgress = false }) {
   const plugins = [
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
@@ -73,9 +73,22 @@ function webpackConfig({ name, entry, externals, replaceProgress = false }) {
   }
   const used = new Set();
   const unknown = new Set();
+  // Lesson frames pilot (W-2092): the repo files this compilation read, outside node_modules (the toolchain's
+  // package-lock covers those). tools/lesson-frames.mjs hashes them into the manifest's sourceHash/kitSourceHash.
+  const sources = new Set();
+  plugins.push({
+    apply(compiler) {
+      compiler.hooks.done.tap("s3c-sources", (stats) => {
+        for (const f of stats.compilation.fileDependencies) {
+          if (f.startsWith(ROOT + path.sep) && !f.includes(`${path.sep}node_modules${path.sep}`) && fs.existsSync(f) && fs.statSync(f).isFile()) sources.add(path.relative(ROOT, f));
+        }
+      });
+    },
+  });
   return {
     used,
     unknown,
+    sources,
     config: {
       name,
       mode: "production",
@@ -133,12 +146,12 @@ function run(configs) {
   });
 }
 
-async function minifyJs(code) {
+export async function minifyJs(code) {
   const out = await terser.minify(code, { module: true, compress: { passes: 2 }, mangle: true, format: { comments: false } });
   return Buffer.from(out.code);
 }
 
-function write(rel, buf) {
+export function write(rel, buf) {
   const file = path.join(OUT, rel);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   if (fs.existsSync(file) && !fs.readFileSync(file).equals(buf)) throw new Error(`immutable artifact changed: ${rel}`);
@@ -163,7 +176,7 @@ function minifyCss(css) {
     .trim();
 }
 
-async function buildKit() {
+export async function buildKit() {
   const t0 = performance.now();
   const kit = webpackConfig({ name: "kit", entry: path.join(SPIKE, "kit/entry.ts"), replaceProgress: true });
   const geo = webpackConfig({
@@ -186,11 +199,13 @@ async function buildKit() {
     boot: { url: write(`kit/${KIT_VERSION}/boot.${sha256(boot)}.js`, boot), sri: sri(boot), ...sizes(boot) },
     geo: { url: write(`kit-geo/${KIT_VERSION}/geo.${sha256(geoJs)}.js`, geoJs), sri: sri(geoJs), ...sizes(geoJs) },
     buildMs: Math.round(performance.now() - t0),
+    sources: [...kit.sources, "src/app/globals.css", "spike/kit/frame.css", "spike/kit/boot.js"].sort(),
+    geoSources: [...geo.sources].sort(),
   };
   return art;
 }
 
-function frameHtml({ slug, lesson, kit, geo }) {
+export function frameHtml({ slug, lesson, kit, geo }) {
   const imports = { [KIT]: kit.js.url };
   const integrity = { [kit.js.url]: kit.js.sri, [kit.boot.url]: kit.boot.sri, [lesson.url]: lesson.sri };
   if (geo) {
@@ -233,7 +248,7 @@ function frameHtml({ slug, lesson, kit, geo }) {
 }
 
 /** Build lesson bundles in parallel batches. variant: a label appended after minification (rollback demo). */
-async function buildLessons(list, kit, { emit = true, batch = 24 } = {}) {
+export async function buildLessons(list, kit, { emit = true, batch = 24 } = {}) {
   const results = [];
   for (let i = 0; i < list.length; i += batch) {
     const chunk = list.slice(i, i + batch);
@@ -253,7 +268,7 @@ async function buildLessons(list, kit, { emit = true, batch = 24 } = {}) {
       if (l.variant) js = Buffer.concat([js, Buffer.from(`\n/* s3c build variant ${l.variant} */\n`)]);
       const hash = sha256(js);
       const geo = c.used.has("@/kit/geo") || c.used.has("d3-geo");
-      const r = { slug: l.slug, domain: l.domain, ok: true, variant: l.variant ?? "A", hash, geo, ...sizes(js), batchWallMs: Math.round(wall), batchSize: chunk.length };
+      const r = { slug: l.slug, domain: l.domain, ok: true, variant: l.variant ?? "A", hash, geo, ...sizes(js), batchWallMs: Math.round(wall), batchSize: chunk.length, sources: [...c.sources].sort() };
       if (emit) {
         const lesson = { url: write(`l/${hash}.js`, js), sri: sri(js) };
         const html = frameHtml({ slug: l.slug, lesson, kit, geo });

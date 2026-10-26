@@ -219,6 +219,8 @@ a { color: inherit; }
    panel returns under the stage as a slim bar, and the stage keeps the room. Layout only: the kit's
    Lesson.tsx (protected) and its phase order are unchanged. */
 .card-shell:has([data-testid="lesson"]) .card-hook { display: none; }
+/* Lesson frames pilot (C3): a framed lesson's DOM is in another document, so the host sets these on ready/phase. */
+.card-shell[data-frame-ready] .card-hook, .card-shell[data-frame-phase] .card-hook { display: none; }
 .lesson[data-phase="predict"] .panel { order: -1; border-top: 0; padding-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
 .lesson[data-phase="predict"] .panel-q { font-size: 1rem; font-weight: 600; }
 .lesson[data-phase="explore"] .panel-q { font-size: 0.86rem; color: var(--muted); margin-bottom: 6px; }
