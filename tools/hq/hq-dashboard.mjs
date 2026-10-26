@@ -100,11 +100,11 @@ export function wbrRecords(root) {
   return [...byWeek.values()].sort((a, b) => b.week.localeCompare(a.week)).map((r) => ({ v: 1, source: "ritual record", ...r }));
 }
 
-/** Meta's goals and WBR tools (src/goals.mjs, src/wbr.mjs, src/news.mjs weekOf), or null without Meta (then goals and
+/** Meta's OKR and WBR tools (src/okrs.mjs, src/wbr.mjs, src/news.mjs weekOf), or null without Meta (then goals and
  *  the live WBR issue are left out; the issues and the WBR records are this company's own and always there). */
 export async function metaTools() {
   const meta = process.env.META ? path.resolve(process.env.META) : path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../system3-meta");
-  try { const [g, w, n] = await Promise.all(["goals", "wbr", "news"].map((m) => import(pathToFileURL(path.join(meta, "src", `${m}.mjs`)).href))); return { goalsOf: g.goalsOf, wbrIssue: w.wbrIssue, weekOf: n.weekOf }; } catch { return null; }
+  try { const [g, w, n] = await Promise.all(["okrs", "wbr", "news"].map((m) => import(pathToFileURL(path.join(meta, "src", `${m}.mjs`)).href))); return { goalsOf: g.goalsOf, wbrIssue: w.wbrIssue, weekOf: n.weekOf }; } catch { return null; }
 }
 /** Meta's principles audit, or null when Meta is not checked out (the field is then left out). */
 export async function metaAudit() {
