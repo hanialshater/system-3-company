@@ -41,6 +41,9 @@ export async function mount() {
   const params = new URLSearchParams(location.hash.slice(1));
   const host = params.get("host");
   configureBridge(host && /^https?:\/\/[^/]+$/.test(host) ? host : null);
+  // C3 parity: the app styles lessons under :is(.feed-wrap, .single) (src/app/globals.css: the dark palette, stage,
+  // options, panel and reveal sizes, the predict-phase picture cap). The frame document is that scope.
+  document.documentElement.classList.add("single");
   const domain = params.get("domain");
   if (domain && /^#[0-9a-fA-F]{3,8}$/.test(domain)) document.documentElement.style.setProperty("--domain", domain);
 
