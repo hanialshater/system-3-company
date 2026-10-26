@@ -1,3 +1,15 @@
+## 2026-10-26 · platform-engineer (Noor) · W-2105 done on `feat/lesson-frames-pilot` (prune handles a stale kit, R5 comment); origin/main merged in; not merged to main, not deployed
+
+- **Changed:**
+  - `node tools/lesson-frames.mjs prune` with a stale kit now drops every entry that names it (a stale geo kit: only the entries that use it), prints each dropped slug with its rule, and says how to frame them again (`build`, then an artifact deploy). `stale-kit` now fires only while an entry still uses the kit, so a pruned manifest passes a flag-on build. The logic is `pruneManifest` in `tools/lib/lesson-frames.mjs`; the rule set (`FRESHNESS_RULES`) is unchanged.
+  - One comment line in `src/components/DemoFrame.tsx` on the host's no-op reveal-fit (review R5).
+  - Three tests in `tests/lesson-frames/manifest.test.mjs`, on a manifest re-hashed from today's tree, so they do not depend on drift. Tier-1 self-check: `company/engineering/readiness/2026-10-26-w2105-prune-stale-kit.md`. Changelog line.
+  - Merged `origin/main` (`18f613825`): board as the review's merge notes say (main's W-2097, W-2101..W-2111; the branch's W-2092/W-2093); progress entries kept, newest first; both `events.jsonl` lines kept. W-2105 moved to review.
+- **Checks (own worktree, `npm ci` on the branch lockfile, Next 16.4.3):** typecheck exit 0; `test:lesson-frames` 31 pass, 1 skip (before and after the merge); two mutants each fail the new stale-kit test. Flag-off `npm run build` exit 0, 156 s, 0 `s3c-lesson-frame-v1` in `.next/static`. Real kit edit (a comment appended to `globals.css`): `check` and a flag-on build refuse with `stale-kit`; `prune` dropped 50; `check` ok (0 framed); flag-on build exit 0, 159 s; edit reverted. `npm run check`: 810 errors, 5 warnings, the same pre-existing count the review recorded (R7).
+- **Believe:** high (about 90%) that prune now unblocks a flag-on build after any kit change; medium that dropping all 50 on every `globals.css` commit is acceptable before W-2106 decouples the frame CSS.
+- **Next:** principal-engineer reads the W-2105 diff (M2); then M-a/M-c in `company/engineering/readiness/2026-10-26-lesson-frames-pilot.md` before any merge to main. W-2106, W-2103 are mine before production flag-on.
+- **Blocked:** merge to main waits on the security deploy of `80c847c55` first (M-a, W-2107/W-2108) and on M-c verify on the merged SHA.
+
 ## 2026-10-26 · principal-engineer-ops (Rhea) · W-2101: both lesson-frames readiness records ruled; the Next security deploy is approved with conditions
 
 - **Changed:**
