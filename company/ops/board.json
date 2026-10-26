@@ -26844,19 +26844,21 @@
       "id": "W-2107",
       "title": "Next 16.4.3 security deploy, on its own, ahead of the pilot: production deploy of exactly 80c847c5527c02e7b1926f8879891ef2d4169486 (live 4d3301270 + records + package.json/package-lock.json Next 16.4.0->16.4.3), only after principal-engineer-ops approves company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md and the founder approves that deploy; then main takes it by merging 80c847c55 alone (company/engineering/reviews/2026-10-26-lesson-frames-code-review.md, 'The Next security fix')",
       "owner": "release-manager",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-26",
-      "links": []
+      "links": [],
+      "updated": "2026-10-26"
     },
     {
       "id": "W-2108",
       "title": "Founder ask: approve the production deploy of commit 80c847c55 (Next 16.4.0 -> 16.4.3 only; clears three next critical advisories on today's production; no app source change) ahead of the lesson frames pilot (company/engineering/reviews/2026-10-26-lesson-frames-code-review.md)",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-26",
-      "links": []
+      "links": [],
+      "updated": "2026-10-26"
     },
     {
       "id": "W-2109",
@@ -26880,6 +26882,24 @@
       "id": "W-2111",
       "title": "Lesson frames before production flag-on (R-033, readiness 2026-10-26-lesson-frames-pilot.md R-new-1): a production meter for a framed lesson that never sends ready or whose progress/track message the host refuses (DemoFrame logs refusals only outside production). A frame-error count in ops-health or the events intake, with a stated alert line; principal-engineer-ops reads it at the ops review",
       "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2112",
+      "title": "U6 for r23: merge 80c847c55 alone into main, before the lesson frames pilot merges (company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md U6; r23 is live from its tree, company/ops/deployments/2026-10-26-r23-production.json); then delete branch release/r23",
+      "owner": "release-manager",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2113",
+      "title": "r23 production smoke sent QA events: U3 (d) feed.spec and (e) contract.spec drove lessons on https://system-3-company.vercel.app and the app's track() beaconed them to /api/events, 2026-10-26 about 09:16-09:19 UTC, mostly flatten-the-cube-to-a-dot and euclid-three-steps (r22's smoke did the same on 2026-10-25 about 21:30). Exclude those windows from learner counts, and propose how production browser smoke stops sending beacons (tests/qa is protected)",
+      "owner": "analytics-steward",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-26",

@@ -1,0 +1,40 @@
+{
+  "release": "r23",
+  "status": "READY",
+  "target": "production",
+  "commit": "0b8b6f539257c9519f5b5cc1b114f4b779b8e9f0",
+  "sourceCommit": "80c847c5527c02e7b1926f8879891ef2d4169486",
+  "treeIdentical": "0b8b6f539's tree is 324437f9c1b735642f791eed366ff5e713edb7e4, the same tree object as 80c847c55 (git diff 80c847c55 0b8b6f539 is empty). 0b8b6f539 is an empty commit whose only parent is 80c847c55; it exists only to carry the [deploy] marker that vercel.json's ignoreCommand needs (a deployment of 80c847c55 itself would be cancelled by that step, as non-[deploy] commits were on 2026-10-18).",
+  "deploymentId": "dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz",
+  "deploymentUrl": "https://system-3-company-eoy3ek8zo-hanis-projects-2e2b67f6.vercel.app",
+  "productionUrl": "https://system-3-company.vercel.app",
+  "inspectorUrl": "https://vercel.com/hanis-projects-2e2b67f6/system-3-company/8V4QujqEZ3ecL5vHmL2LhLFsyoQz",
+  "previousProduction": {"release": "r22", "commit": "4d3301270262f03e623dccd2fd0a4d1679d5aa33", "deploymentId": "dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU", "deploymentUrl": "https://system-3-company-b65r09nog-hanis-projects-2e2b67f6.vercel.app"},
+  "createdAt": "2026-10-26T09:08:58Z",
+  "readyAt": "2026-10-26T09:14:08Z",
+  "projectId": "prj_US7nNpj24KIFV5aIe27i2lqvD1Zq",
+  "accountId": "team_Ss0FbvX3HyCJMqitsy31SLPj",
+  "approval": "founder, 2026-10-26, in the conversation, option \"Approve deploy + rollback\": \"release-manager deploys exactly 80c847c55 to production as r23, runs the smoke checks, and rolls back to r22 if any fails.\" The question answered: \"System 3 Lessons production security fix: deploy exactly commit 80c847c55 (Next.js 16.4.0 → 16.4.3; clears the critical advisories on today's live site) … release-manager runs the smoke list. Rollback if anything regresses: promote the current r22 deployment (dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU), then write a COE. Approve this deploy and that rollback?\" Relayed to release-manager by the dispatching session (W-2107, W-2108). Covers one production deploy of 80c847c55's tree and, on a failed smoke check, a rollback to dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU; nothing else.",
+  "readiness": "company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md (on feat/lesson-frames-pilot, ca6cb00b1), approved by principal-engineer-ops with conditions U1 to U6",
+  "method": "U5: not the staged path (tools/deploy.mjs's npm run verify stops on the 24 pre-existing suite failures, review R7), so the r22 method, which means U3 ran against live traffic with U4 as the remedy. Steps: (1) git commit-tree of 80c847c55's tree with parent 80c847c55 and a [deploy] r23 message (0b8b6f539); (2) pushed it as the new branch release/r23 only (a tag push was refused by the session's git proxy, 403); main's history is untouched; (3) Vercel MCP create_deployment, target production, gitSource github hanialshater/system-3-company ref release/r23 sha 0b8b6f539, through the project's existing Git connection; (4) Vercel built it (ignoreCommand exit 1 on the marker), READY in about 5 min, and assigned system-3-company.vercel.app itself. No automatic Git deployment appeared for the branch push. No project setting, environment variable or credential changed (U2): the project's variable keys were listed, without values, before the deploy; NEXT_PUBLIC_LESSON_FRAMES is not among them, and HQ_PUBLIC is unchanged.",
+  "conditions": {
+    "U1": "pass: deployed tree = 80c847c55's tree (commit 0b8b6f539, empty, parent 80c847c55); the Vercel build log reads 'Cloning github.com/hanialshater/system-3-company (Branch: release/r23, Commit: 0b8b6f5)'. The deployment's Git SHA is 0b8b6f539, not 80c847c55, because of the marker; the code is byte-identical.",
+    "U2": "pass: no env var or project setting changed; NEXT_PUBLIC_LESSON_FRAMES not set",
+    "U3": "pass, (a) to (g): see productionSmoke",
+    "U4": "not needed: no check failed, no rollback",
+    "U5": "stated in method",
+    "U6": "this record and the releases.json r23 entry; main merging 80c847c55 alone is left to its owner (board)"
+  },
+  "productionSmoke": {
+    "a_build": "pass: build log '▲ Next.js 16.4.3 (Turbopack)' and 'Detected Next.js version: 16.4.3'; 'Build Completed in /vercel/output [4m]'; /d/[slug] 3 + 1,643 paths (1,646); state READY, aliasError null",
+    "b_http": {"/": "200, contains data-slug=", "/d/flatten-the-cube-to-a-dot": "200, contains data-slug=\"flatten-the-cube-to-a-dot\"", "/d/euclid-three-steps": 200, "/history": 200, "/hq": 200, "/d/no-such-lesson-xyz": 404, "result": "pass"},
+    "c_events": {"POST {\"type\":\"ops-smoke\"}": 204, "POST with Origin: null": 403, "GET": 405, "result": "pass; no valid beacon sent by curl"},
+    "d_feedSpec": "pass: QA_BASE_URL=https://system-3-company.vercel.app npx playwright test tests/qa/feed.spec.ts: 10/10",
+    "e_contractSpec": "pass: QA_ONLY=flatten-the-cube-to-a-dot,euclid-three-steps QA_BASE_URL=https://system-3-company.vercel.app npx playwright test tests/qa/contract.spec.ts: 4/4 (phone and desktop)",
+    "f_reviewTag": "pass: /d/penalty-on-wiggle 200 and shows 'In review · Unpublished', as on r22",
+    "g_runtimeErrors": "pass: Vercel get_runtime_errors for the project, 2026-10-26T09:14:00Z to 09:45:00Z (the first 30 minutes after READY): no runtime errors. Baseline: none in the 7 days before 09:14 on r22 either, so no new error class"
+  },
+  "eventsNote": "The curl checks in (c) sent no valid beacon. The browser specs in (d) and (e), which the readiness record lists against production and r22 also ran, load lessons in a real browser, and the app's own track() sends navigator.sendBeacon('/api/events') for what the browser does (src/kit/progress.ts; NEXT_PUBLIC_EVENTS is not off). So production received QA-generated events between about 09:16 and 09:19 UTC on 2026-10-26, mostly on flatten-the-cube-to-a-dot and euclid-three-steps. The event log keeps only at, type and slug, so they cannot be told apart from learners except by that window. Routed to analytics-steward on the board.",
+  "aliasCheck": "2026-10-26T09:45Z: system-3-company.vercel.app is still assigned to dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (list_deployment_aliases)",
+  "rollback": "Vercel instant rollback to dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU (r22) (npx vercel rollback, or Vercel MCP request_rollback), then a COE. It reinstates Next 16.4.0 and its advisories (R-031), so it is for a learner-visible break, not a warning."
+}

@@ -1204,6 +1204,44 @@
           "company check keeps 810 pre-existing errors (grandfathered readiness and decision-record format); none for the two lessons in this release."
         ]
       }
+    },
+    {
+      "version": "r23",
+      "date": "2026-10-26T09:14:08.000Z",
+      "commit": "80c847c5527c02e7b1926f8879891ef2d4169486",
+      "deploy_commit": "0b8b6f539257c9519f5b5cc1b114f4b779b8e9f0 (empty [deploy] commit on 80c847c55, same tree; branch release/r23)",
+      "target": "production",
+      "deployment": "dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (company/ops/deployments/2026-10-26-r23-production.json)",
+      "approved_by": {
+        "who": "founder",
+        "record": "conversation, 2026-10-26, option \"Approve deploy + rollback\" (W-2108); readiness company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md U1-U6 (principal-engineer-ops)",
+        "quote": "\"release-manager deploys exactly 80c847c55 to production as r23, runs the smoke checks, and rolls back to r22 if any fails.\" (founder, 2026-10-26)"
+      },
+      "summary": "Security fix: Next.js 16.4.0 -> 16.4.3, clearing the three next advisories on production; no app source change.",
+      "added": {
+        "features": [
+          "HQ (/hq, on in production) now shows the F-54 org (tools/org/roles.mjs) and the records committed since r22 (readiness record, correction to the code review)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "next, @next/env and @next/swc-* 16.4.0 -> 16.4.3 (package.json, package-lock.json; platform-engineer C8, W-2093); the build no longer ends with SecurityFatalError (W-2067)."
+        ],
+        "known_issues": [
+          "zod <4.6.6 (high) via better-auth remains (R-032, W-2102, its own change and deploy).",
+          "npm ci on Vercel reports 33 vulnerabilities (12 moderate, 20 high, 1 critical) across the whole tree; npm audit was not rerun by release-manager.",
+          "The U3 browser specs (feed, contract) ran against production and sent the app's own beacons to /api/events between about 09:16 and 09:19 UTC (see the deployment record).",
+          "main does not yet contain 80c847c55 (U6: main merges it alone, before the pilot)."
+        ]
+      }
     }
   ],
   "historical_deployments": [

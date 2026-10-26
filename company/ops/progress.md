@@ -1,3 +1,28 @@
+## 2026-10-26 · release-manager · W-2107: r23 to production (Next.js 16.4.3 security fix), smoke U3 (a) to (g) green, no rollback
+
+- **Changed:**
+  - **Production is r23**: `dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz` (https://system-3-company-eoy3ek8zo-hanis-projects-2e2b67f6.vercel.app), READY 09:14:08 UTC, serving https://system-3-company.vercel.app. Previous: r22 `dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU`.
+  - **What was deployed:** the tree of `80c847c5527c02e7b1926f8879891ef2d4169486`, byte for byte. Vercel built commit `0b8b6f539`, an empty `[deploy] r23` commit whose only parent is `80c847c55` and whose tree is the same object (`324437f9c`). It is on the new branch `release/r23` only; main's history is untouched. A tag push was refused by the session's git proxy (403).
+  - **Method (U5):** not the staged path (verify stops on the 24 pre-existing failures, review R7). It was the r22 method: Vercel MCP `create_deployment`, target production, through the project's Git connection. So U3 ran on live traffic, with U4 (the rollback) as the cover. No env var or project setting changed (U2); `NEXT_PUBLIC_LESSON_FRAMES` is not set.
+  - Records: `company/ops/deployments/2026-10-26-r23-production.json` (it quotes the founder), and r23 in `company/ops/releases.json`. W-2107 and W-2108 are done; W-2112 and W-2113 added.
+- **Smoke (U3), all pass:**
+  - (a) `Next.js 16.4.3 (Turbopack)` and READY; 1,646 `/d/*`.
+  - (b) `/` 200 with `data-slug=`; cube 200 with its `data-slug`; euclid, `/history` and `/hq` 200; an unknown slug 404.
+  - (c) `/api/events`: dropped body 204, `Origin: null` 403, `GET` 405.
+  - (d) feed.spec 10/10. (e) contract.spec on cube and euclid 4/4.
+  - (f) `/d/penalty-on-wiggle` shows "In review · Unpublished".
+  - (g) no Vercel runtime errors from 09:14 to 09:45 UTC (none in the 7 days before on r22 either).
+  - Production alias still on r23 at 09:45.
+- **Believe:**
+  - High (about 95%) that production now runs exactly 80c847c55's code on Next 16.4.3. The tree identity is checked by git, and the build log names the commit and the version.
+  - **One thing the smoke did that it should not have:** (d) and (e) drive real lessons in a browser, and the app's own `track()` beacons them to `/api/events`. So production holds QA events from about 09:16 to 09:19 UTC, mostly cube and euclid. r22's smoke did the same. The readiness record warns only about curl beacons. The log keeps only `at`, `type` and `slug`, so that window is the only way to tell them apart (W-2113, analytics-steward).
+- **Next:**
+  - U6: main merges `80c847c55` alone, before the pilot (W-2112, release-manager; it needs the merge to bring in platform-engineer's package change and the records between r22 and it, so I left it for a dispatch that names it).
+  - R-031 can close when W-2098 is done (principal-engineer-ops). R-032 (`zod`) is W-2102, its own deploy.
+  - Before the next production smoke, decide how the browser specs avoid learner events (W-2113). `tests/qa` is protected, so the fix is an amendment or an app-side change.
+- **Checks on these records:** `npm run check` 810 errors, 5 warnings, all pre-existing, none for my files. `tests/hq/releases.test.mjs` 5 pass, 5 fail, the same 5 without the r23 entry.
+- **Blocked:** nothing for r23.
+
 ## 2026-10-26 · principal-engineer (Kenji) · M2 re-check: W2-C1 met at 6f4f1b6cf, W-2105 approved and done
 
 - **Changed:** "M2 re-check" appended to `company/engineering/reviews/2026-10-26-lesson-frames-code-review.md`. W-2105 moved to done.
