@@ -47,7 +47,7 @@ const br = (b) => zlib.brotliCompressSync(b).length;
 const sizes = (b) => ({ raw: b.length, gzip: gz(b), brotli: br(b) });
 
 // The import-map contract: the only bare specifiers a lesson may import, and where they resolve.
-const LESSON_EXTERNALS = {
+export const LESSON_EXTERNALS = {
   react: [KIT, "react"],
   "react/jsx-runtime": [KIT, "jsx_runtime"],
   "@/kit/Lesson": [KIT, "kit_Lesson"],
@@ -59,7 +59,7 @@ const LESSON_EXTERNALS = {
   "d3-geo": [GEO, "d3geo"],
 };
 
-function webpackConfig({ name, entry, externals, replaceProgress = false }) {
+export function webpackConfig({ name, entry, externals, replaceProgress = false }) {
   const plugins = [
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
@@ -133,12 +133,12 @@ function run(configs) {
   });
 }
 
-async function minifyJs(code) {
+export async function minifyJs(code) {
   const out = await terser.minify(code, { module: true, compress: { passes: 2 }, mangle: true, format: { comments: false } });
   return Buffer.from(out.code);
 }
 
-function write(rel, buf) {
+export function write(rel, buf) {
   const file = path.join(OUT, rel);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   if (fs.existsSync(file) && !fs.readFileSync(file).equals(buf)) throw new Error(`immutable artifact changed: ${rel}`);
@@ -163,7 +163,7 @@ function minifyCss(css) {
     .trim();
 }
 
-async function buildKit() {
+export async function buildKit() {
   const t0 = performance.now();
   const kit = webpackConfig({ name: "kit", entry: path.join(SPIKE, "kit/entry.ts"), replaceProgress: true });
   const geo = webpackConfig({
@@ -190,7 +190,7 @@ async function buildKit() {
   return art;
 }
 
-function frameHtml({ slug, lesson, kit, geo }) {
+export function frameHtml({ slug, lesson, kit, geo }) {
   const imports = { [KIT]: kit.js.url };
   const integrity = { [kit.js.url]: kit.js.sri, [kit.boot.url]: kit.boot.sri, [lesson.url]: lesson.sri };
   if (geo) {
