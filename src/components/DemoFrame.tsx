@@ -12,14 +12,12 @@
 // src/demos/loaders.generated.ts.
 
 import { useEffect, useLayoutEffect, useRef, useState, type ComponentType } from "react";
-import manifest from "@/lib/lesson-frames.manifest.json";
+// The client projection of the manifest (origin + slug → frameDoc), never the record itself: tools/lib/lesson-frames.mjs.
+import client from "@/lib/lesson-frames.frames.json";
 import { track, updateProgress } from "@/kit/progress";
 import { frameSrc, progressUpdate, readFrameMessage } from "@/lib/lesson-frame-bridge";
 
-interface Entry {
-  frameDoc: string;
-}
-const lessons = manifest.lessons as Record<string, Entry | undefined>;
+const frames = client.frames as Record<string, string | undefined>;
 
 /** The marker P4 greps for: it must never appear in a flag-off build's client chunks. */
 const MARKER = "s3c-lesson-frame-v1";
@@ -27,12 +25,12 @@ const MARKER = "s3c-lesson-frame-v1";
 export default function DemoFrame({ slug, fallback: Fallback }: { slug: string; fallback: ComponentType<{ slug: string }> }) {
   const ref = useRef<HTMLIFrameElement>(null);
   const wrap = useRef<HTMLDivElement>(null);
-  const entry = lessons[slug];
+  const frameDoc = frames[slug];
   // undefined: not computed yet (first commit); null: refused, render in-app. Computed before paint, from this card.
   const [src, setSrc] = useState<string | null | undefined>(undefined);
   useLayoutEffect(() => {
-    setSrc(entry ? frameSrc(manifest.origin, entry.frameDoc, window.location.origin, domainColorOf(wrap.current)) : null);
-  }, [entry]);
+    setSrc(frameDoc ? frameSrc(client.origin, frameDoc, window.location.origin, domainColorOf(wrap.current)) : null);
+  }, [frameDoc]);
 
   useEffect(() => {
     const iframe = ref.current;
