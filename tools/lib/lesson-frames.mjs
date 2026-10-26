@@ -169,6 +169,41 @@ export function problems(m, { root = ROOT, allowedOrigin = ALLOWED_ORIGIN } = {}
   return out;
 }
 
+// ---------------------------------------------------------------- which problems block (O1, W-2104)
+
+/** The flag value that turns frames on (src/components/DemoHost.tsx, next.config.mjs). Anything else is off. */
+export const FLAG_ON = "pilot-50";
+export const framesOn = (env = process.env) => env.NEXT_PUBLIC_LESSON_FRAMES === FLAG_ON;
+
+/**
+ * Freshness rules: they compare the manifest with today's lesson and kit sources, which change every week. With the
+ * flag off no client chunk holds the manifest or DemoFrame (P4), so a stale entry serves nothing, and these rules must
+ * not block a flag-off deploy. With the flag on they block, at the build itself (next.config.mjs), because only the
+ * build knows the flag value the deployed app gets: a --prebuilt deploy builds with the pulled Vercel environment, and
+ * a [deploy] commit builds on Vercel without running npm run verify.
+ * Every other rule (schema, origin, hashes, pilot list, kit names, projections) is structural, changes only when the
+ * manifest is regenerated, and blocks always.
+ * Ruling: company/decisions/2026-10-26-lesson-frames-gate-scope.md.
+ */
+export const FRESHNESS_RULES = new Set(["stale", "stale-kit", "published", "fallback"]);
+
+/** The problems that block, given whether the build turns frames on. */
+export function blocking(ps, { on = framesOn() } = {}) {
+  return on ? ps : ps.filter((p) => !FRESHNESS_RULES.has(p.rule));
+}
+
+/** For next.config.mjs: with the flag on, any problem fails the build. Returns the message, or null. */
+export function flagOnBuildRefusal({ env = process.env, root = ROOT } = {}) {
+  if (!framesOn(env)) return null;
+  const ps = problems(readManifest(root), { root });
+  if (ps.length === 0) return null;
+  return [
+    `NEXT_PUBLIC_LESSON_FRAMES=${FLAG_ON}, but the lesson frames manifest has ${ps.length} problem(s):`,
+    ...ps.map((p) => `  ${p.slug ?? "(manifest)"}: ${p.rule}: ${p.detail}`),
+    "Fix: node tools/lesson-frames.mjs prune (the lesson renders in-app) or a rebuild, then commit; or build with the flag off.",
+  ].join("\n");
+}
+
 // ---------------------------------------------------------------- the artifact origin's headers (C4)
 
 /**

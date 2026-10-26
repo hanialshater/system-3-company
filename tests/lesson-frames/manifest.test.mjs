@@ -2,17 +2,47 @@
 // keeps the editorial gates"). In npm run verify, which tools/deploy.mjs runs before every deploy. A learner is served
 // frame code only for a source tree that is published now and unchanged since its artifact was built.
 // Fix a failure with `node tools/lesson-frames.mjs prune` (the lesson renders in-app) or a rebuild; never by editing here.
+// Scope (O1, company/decisions/2026-10-26-lesson-frames-gate-scope.md): freshness blocks flag-on builds, at the build.
 import assert from "node:assert/strict";
 import test from "node:test";
-import { ALLOWED_ORIGIN, HEX64, pilotSlugs, problems, readManifest } from "../../tools/lib/lesson-frames.mjs";
+import { ALLOWED_ORIGIN, FRESHNESS_RULES, HEX64, blocking, flagOnBuildRefusal, framesOn, pilotSlugs, problems, readManifest } from "../../tools/lib/lesson-frames.mjs";
 
 const m = readManifest();
 const clone = () => structuredClone(m);
 const rules = (ps) => ps.map((p) => `${p.slug ?? "-"}:${p.rule}`);
 
-test("the committed manifest meets every rule (published, fresh, 64-hex, allow-listed origin, projections)", () => {
+// O1 (company/decisions/2026-10-26-lesson-frames-gate-scope.md): with the flag off, the freshness rules (stale,
+// stale-kit, published, fallback) are reported, not failed: a flag-off build serves no frame. The flag-on build itself
+// refuses any problem (next.config.mjs). Structural rules fail here always.
+const show = (ps) => ps.map((p) => `${p.slug ?? "(manifest)"}: ${p.rule}: ${p.detail}`).join("\n");
+test("the committed manifest meets every rule that blocks this build (structural always; freshness with the flag on)", (t) => {
   const ps = problems(m);
-  assert.deepEqual(ps, [], ps.map((p) => `${p.slug ?? "(manifest)"}: ${p.rule}: ${p.detail}`).join("\n"));
+  const block = blocking(ps, { on: framesOn() });
+  const notice = ps.filter((p) => !block.includes(p));
+  if (notice.length) t.diagnostic(`flag off: ${notice.length} freshness problem(s), not blocking; a flag-on build refuses them:\n${show(notice)}`);
+  assert.deepEqual(block, [], show(block));
+});
+
+test("O1 scoping: freshness blocks only with the flag on; structural rules block either way", () => {
+  const x = clone();
+  x.lessons[any].sourceHash = "0".repeat(64);
+  x.kit.sourceHash = "0".repeat(64);
+  x.lessons[any].frameDoc = "../../evil";
+  const ps = problems(x);
+  const off = blocking(ps, { on: false }).map((p) => p.rule);
+  const on = blocking(ps, { on: true }).map((p) => p.rule);
+  assert.ok(on.includes("stale") && on.includes("stale-kit") && on.includes("hash"));
+  assert.ok(!off.includes("stale") && !off.includes("stale-kit"), "a stale manifest must not fail a flag-off deploy");
+  assert.ok(off.includes("hash"), "a malformed manifest fails whatever the flag");
+  assert.deepEqual([...FRESHNESS_RULES].sort(), ["fallback", "published", "stale", "stale-kit"]);
+});
+
+test("O1 scoping: the flag-on build refusal reads the same rules, and only the exact flag value turns it on", () => {
+  assert.equal(framesOn({ NEXT_PUBLIC_LESSON_FRAMES: "pilot-50" }), true);
+  for (const v of [undefined, "", "off", "1", "true", "PILOT-50", "pilot-50 "]) assert.equal(framesOn({ NEXT_PUBLIC_LESSON_FRAMES: v }), false, String(v));
+  assert.equal(flagOnBuildRefusal({ env: {} }), null, "flag off: the build never refuses on the manifest");
+  const r = flagOnBuildRefusal({ env: { NEXT_PUBLIC_LESSON_FRAMES: "pilot-50" } });
+  assert.equal(r === null, problems(m).length === 0, r ?? "");
 });
 
 test("it names the allow-listed origin and only pilot slugs", () => {

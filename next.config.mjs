@@ -1,4 +1,5 @@
 import path from "node:path";
+import { flagOnBuildRefusal } from "./tools/lib/lesson-frames.mjs";
 
 // Worktrees live inside the main checkout (.claude/worktrees/<name>) and symlink its node_modules.
 // Turbopack refuses files outside its root, so the root is the main checkout in both cases.
@@ -6,6 +7,11 @@ import path from "node:path";
 const cwd = process.cwd();
 const marker = `${path.sep}.claude${path.sep}worktrees${path.sep}`;
 const root = cwd.includes(marker) ? cwd.slice(0, cwd.indexOf(marker)) : cwd;
+
+// Lesson frames pilot, O1 (company/decisions/2026-10-26-lesson-frames-gate-scope.md): a build with the flag on refuses
+// a manifest that is stale or otherwise fails the gate's rules. A flag-off build never reads the manifest.
+const framesRefusal = flagOnBuildRefusal();
+if (framesRefusal) throw new Error(framesRefusal);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
