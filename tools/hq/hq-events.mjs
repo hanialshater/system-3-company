@@ -3,6 +3,7 @@
 // { id, ts, type, room, actor, summary, agent?, subjects?, refs?, tokens? }) as v1 events ({ v, t, type, by, … }).
 // Read-only. Every event keeps its own type as `src` and its id, so nothing is lost; the HQ's pages read the v1 types:
 //   note        notes, commits, merges, reviews, verifies, reports, kudos, publishes, org changes (with `kind`)
+//   kudos       a kudos also as the city's kudos event: { from, to, for, refs, emoji? } (tools/kudos.mjs)
 //   wake/idle   a role dispatched (wake) and its report (idle), so the rooms show who is working
 //   spend       a finished run's tokens (unit: tokens; the company's ledger is in tokens, not dollars)
 //   board.post  decisions, founder decisions, incidents and proposals (kind, area, text, evidence)
@@ -43,6 +44,9 @@ export function toV1(e) {
   if (BOARD[e.type]) return [{ ...base, type: "board.post", kind: BOARD[e.type], area: areaOf(e), text, evidence: (e.refs ?? []).join(", "), wrongIf: "" }];
   if (e.type === "ritual") { const m = minutes?.(e.refs?.find((r) => /records\/.*\.md$/.test(r))) ?? {};
     return [{ ...base, type: "meeting", title: text, attendees: [...new Set([e.actor, ...(m.attendees ?? []), ...(/founder/i.test(text) || e.room === "boardroom" ? ["founder"] : []), ...(e.subjects ?? []).filter((x) => roles?.has(x))].filter(Boolean))], chair: m.chair ?? e.actor, decisions: m.decisions ?? [], objections: m.objections ?? [], summary: m.summary ?? null, record: e.refs?.find((r) => /\.md$/.test(r)) ?? null }]; }
+  // a kudos (tools/kudos.mjs) stays a note, as before, and is also the city's v1 kudos event (additive): who thanks whom,
+  // for what, with its records, for the Kudos pages
+  if (e.type === "kudos") return [{ ...base, type: "note", to: e.subjects?.[0] ?? "all", kind: e.type, text }, { ...base, id: `${e.id}:kudos`, type: "kudos", from: e.actor ?? "unknown", to: e.subjects?.[0] ?? null, for: e.body ?? text, refs: e.refs ?? [], ...(/^\p{Extended_Pictographic}/u.test(text) ? { emoji: [...text][0] } : {}) }];
   return [{ ...base, type: "note", to: e.subjects?.[0] ?? "all", kind: e.type, text }];
 }
 export function hqEvents(root) {

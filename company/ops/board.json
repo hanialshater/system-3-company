@@ -1275,7 +1275,7 @@
       "id": "W-087",
       "title": "SPIKE-001 follow-up: amendment to run the QA contract through the lesson iframe (frameLocator)",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-13",
       "links": [],
@@ -1284,7 +1284,8 @@
         "at": "2026-10-13",
         "by": "portfolio-manager",
         "note": "Still real; only matters if EDD-003 stage 1 is approved (F-05)."
-      }
+      },
+      "updated": "2026-10-25"
     },
     {
       "id": "W-088",
@@ -26741,10 +26742,11 @@
       "id": "W-2096",
       "title": "Content hub launch: rule whether a passing frame QA copy suffices or the W-087 amendment must be ratified first (C7; company/engineering/reviews/2026-10-25-content-hub-production-review.md)",
       "owner": "evaluation-steward",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-25",
-      "links": []
+      "links": [],
+      "updated": "2026-10-25"
     },
     {
       "id": "W-2097",
@@ -26769,6 +26771,15 @@
       "title": "Content hub branch rnd/content-hub-prototype: R&D acceptance (branch's W-2027) and close the branch's colliding board IDs W-2026..W-2030 by re-filing (company/engineering/reviews/2026-10-25-content-hub-production-review.md H1)",
       "owner": "rnd-lead",
       "state": "backlog",
+      "domain": null,
+      "created": "2026-10-25",
+      "links": []
+    },
+    {
+      "id": "W-2100",
+      "title": "Frame QA copy: fix D1 (the tap-target check in spike/qa/contract-frame.spec.ts still uses page.locator, so it passes vacuously inside a frame) and point the copy at /d/<slug> on the flag-on build (D2) before the C7 preview run. It stays measurement, not gate evidence (company/decisions/2026-10-25-w2096-frame-qa-evidence.md)",
+      "owner": "qa-tester",
+      "state": "next",
       "domain": null,
       "created": "2026-10-25",
       "links": []

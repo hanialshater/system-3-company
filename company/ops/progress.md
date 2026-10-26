@@ -1,3 +1,12 @@
+## 2026-10-25 · evaluation-steward · C7 ruled (W-2096): the frame QA copy is not enough for production flag-on; AMD-018 (W-087) drafted, not ratified
+
+- **Changed:** ruling `company/decisions/2026-10-25-w2096-frame-qa-evidence.md`; amendment draft `company/constitution/amendments/AMD-018-qa-contract-through-frames.md` (status proposed) and its README row. Board: W-2096 done, W-087 doing, new W-2100 (qa-tester: fix D1 in the copy before the preview run). No protected path was touched. No deploy.
+- **Ruling:** production flag-on of `NEXT_PUBLIC_LESSON_FRAMES` waits for AMD-018 parts (a) lesson list, (b) frame targeting and (d) hash-bound evidence with `tests/lesson-frames/**` protected. Parts (c) security probes and (e) kit sample are severable. The flag-off merge, the artifact deploy, the preview, C6 and the copy run go ahead unchanged.
+- **Found (artifact first):** D1, the copy's tap-target check is still `page.locator`, so inside a frame it passes whatever the targets are. D2 to D6: the copy targets `/spike`, not `/d/<slug>`; its slug list is typed in; frame error capture is unproved; it sits on ordinary surface; and the in-app QA records do not cover the frame code.
+- **Believe:** high (about 85%) that ratification is required: the approved 2026-10-13 rule says so, and D1 shows the copy is not a faithful stand-in. Medium (about 60%) on A18-3, ≤ 4 of 100 side-by-side disagreements.
+- **Next:** steward writes the companion diff once C1's `DemoFrame` exists, plus the A18-2 positive-control fixture. chief-of-staff takes AMD-018 to the founder, with head of product and qa-tester consulted in writing. qa-tester W-2100.
+- **Blocked:** production flag-on, on AMD-018 ratification (and on C2, C3, C5 and C6, as before). Open with principal-engineer: whether (c) and (e) must also come before flag-on, a purpose dispute for the founder.
+
 ## 2026-10-25 · chief-of-staff-ceo-office (Leonie) · F-54 decided and applied: no layer of one, learner-experience team (X1), categories flat; org readable to Meta's audit
 
 - **Changed:**
