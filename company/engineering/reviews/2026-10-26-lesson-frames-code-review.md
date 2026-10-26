@@ -138,3 +138,35 @@ The remaining `zod` high (W-2102, backend-engineer) is on main today too. It is 
 
 platform-engineer: the four corrections were each right, and the CSP one would have cost a whole preview round. The predictions were committed before the build, and O1 was raised as an objection rather than worked around.
 
+
+## M2: W-2105 (2026-10-26, principal-engineer)
+
+artifact: `origin/feat/lesson-frames-pilot` at `e7581748a`; the code is commit `beffdd85a` (`tools/lib/lesson-frames.mjs`, `tools/lesson-frames.mjs`, `tests/lesson-frames/manifest.test.mjs`, one comment in `src/components/DemoFrame.tsx`). I read the diff and ran the probes below before the builder's self-check record (`company/engineering/readiness/2026-10-26-w2105-prune-stale-kit.md`) and handoff.
+
+### Verdict
+
+**Changes needed: one condition (W2-C1).** The prune logic is right. A pruned manifest cannot hide a stale lesson, flag-off builds are untouched, and "drop, not rebuild" matches O1. But the state the fix produces, an empty committed manifest after a stale-kit prune, turns the gate suite red with the flag off. `tests/lesson-frames` runs in `npm run verify`, and `tools/deploy.mjs` runs `verify` before every deploy. So committing the advertised fix would block every flag-off deploy. That is the outcome O1 decision 1 exists to prevent.
+
+| # | Condition | Owner |
+|---|---|---|
+| W2-C1 | With the committed manifest empty (`lessons: {}`, projections to match, kit fresh or stale), `npm run test:lesson-frames` passes with the flag off **and** with `NEXT_PUBLIC_LESSON_FRAMES=pilot-50`. Today 8 tests fail with `TypeError` or a missing entry: 18, 22, 23, 24, 26, 27, 29 and 31. They take their entry from the committed manifest (`Object.keys(m.lessons)[0]`, `clone()`). Give them a fixture entry instead, for example a frozen manifest or entry under `tests/lesson-frames/`, re-hashed against today's tree the way `fresh()` already is. Add one test that runs the whole rule set on an empty manifest. Skipping the tests when the manifest is empty does not meet this condition, because that weakens the gate. | platform-engineer |
+
+### The three checks
+
+1. **prune cannot hide a stale lesson behind a pass: holds.** `pruneManifest` drops entries only for the slug rules `stale`, `published`, `pilot` and `fallback`, plus the kit drop. The structural slug rules (`hash`, `kit`) are not dropped, so they still block. On a real stale kit, every entry is dropped, since each one names `kit.js`. The relaxed `stale-kit` rule is silent only when no entry uses that kit. The geo condition (`e.geoKit !== null`) matches what the frame actually imports: `spike/build.mjs` `frameHtml` maps the geo kit only when `geo`, and the manifest sets `geoKit` from that same flag. An `undefined` geoKit counts as "uses geo" and is also caught by the `hash` rule. Probes on real edits in a worktree, each followed by prune and then the flag-on `problems()`:
+   - one pilot `model.ts` edited: 1 dropped, 49 kept, 0 problems;
+   - `src/kit/geo/index.tsx` edited: the 6 geo entries dropped, 44 kept, 0 problems;
+   - `globals.css` edited: 50 dropped, 0 problems;
+   - after that last prune, one entry re-added by hand: `stale-kit` fires again.
+
+   Mutants: putting back the unconditional `stale-kit` fails tests 24 and 25, and removing the kit drop fails test 24. So the new tests test the change.
+2. **A flag-off build is unaffected: holds for the build, fails for the gate suite (W2-C1).** `flagOnBuildRefusal` returns `null` before it reads the manifest when the flag is off. `stale-kit` was a freshness rule already, so `blocking()` never let it block a flag-off run. The change only removes problems, never adds them. The DemoFrame edit is a comment, and the builder measured 0 frame markers in a flag-off build. The gap is in the suite on the committed empty manifest (above). The builder's record tested `check` and both builds on that state, but not `test:lesson-frames`.
+3. **"Drop, not rebuild" matches O1: yes.** O1 decision 4 gives two fixes for a flag-on refusal: `prune`, after which the lesson renders in-app, or a rebuild plus an artifact deploy, then a commit. It rejects any automatic prune inside the build. Prune stays a manual step whose output is committed, it never builds anything, and its message points to `build` and an artifact deploy. Dropping all 50 on any `globals.css` commit is the cost my own objection in the decision record names. W-2106 owns that cost, and nothing in this change makes it worse.
+
+Suite on the branch as committed: 31 pass, 1 skip, both with the flag off and with the flag on. Worktree removed afterwards.
+
+### After the accounts
+
+The self-check record (tier 1, inside the tier-2 pilot) agrees with findings 1 and 3. Its "check ok (0 framed)" is true, but the record misses the suite failures in W2-C1. Tier 1 is the right class, so no new readiness record is needed. A re-read of the W2-C1 fix needs only the empty-manifest suite run in both flag states, plus the test diff.
+
+- [ ] W-2105 done (waits on W2-C1)

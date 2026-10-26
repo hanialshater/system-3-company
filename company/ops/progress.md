@@ -1,3 +1,10 @@
+## 2026-10-26 · principal-engineer (Kenji) · M2: W-2105 read code-first; changes needed (one condition, W2-C1)
+
+- **Changed:** "M2: W-2105" section appended to `company/engineering/reviews/2026-10-26-lesson-frames-code-review.md`. W-2105 moved back to doing (platform-engineer).
+- **Believe:** high (about 90%) that prune cannot hide a stale lesson, that flag-off builds are unaffected, and that drop-not-rebuild matches O1 decision 4. Checked by real-edit probes and two mutants. Also high, and reproduced, that an empty committed manifest after a stale-kit prune fails 8 gate-suite tests with the flag off, so verify, and with it every deploy, would go red.
+- **Next:** platform-engineer: W2-C1 (suite fixtures that do not depend on committed entries, plus an empty-manifest test). Then principal-engineer re-reads only that.
+- **Blocked:** the merge of `feat/lesson-frames-pilot` also waits on W2-C1 (M2), on top of M-a and M-c.
+
 ## 2026-10-26 · principal-engineer-ops (Rhea) · W-2101: both lesson-frames readiness records ruled; the Next security deploy is approved with conditions
 
 - **Changed:**
