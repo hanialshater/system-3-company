@@ -28,4 +28,59 @@ Measured parity (C3), framed against in-app, 50 pilot lessons after the reveal (
 
 ## Approval (tier 2; written by principal-engineer-ops)
 
-Not approved. Awaiting principal-engineer's code review (C10, W-2097) and principal-engineer-ops.
+approved-by: principal-engineer-ops (Rhea), 2026-10-26 · **approved with conditions M-a to M-e for the flag-off merge of `3ef3619ca` to main, and D1 to D4 for the first production deploy that carries it with the flag off.** **Refused for now: any flag-on build, preview or production.** That needs its own addendum to this record (see the end of this section).
+
+Classes: kit (`DemoHost.tsx`, `src/kit/reveal-fit.ts`), build (`next.config.mjs`, `package.json` scripts), deploy (the artifact origin's headers, flag-on only). The bridge writes learner progress and events only with the flag on. Service: `feed-and-lesson-runtime` (T1). Not my area (platform-engineer's change; the O1 commit is principal-engineer's), so the approval is mine.
+
+**What I checked myself:**
+- **The suite.** `npm run test:lesson-frames` at `3ef3619ca`: 29 tests, 28 pass, 1 skip (the built-artifact meta-CSP check), 0 fail.
+- **No protected path** in `git diff 03d140e22 3ef3619ca` (company/constitution/protected-paths.txt).
+- **Flag off cannot reach the manifest at build time.**
+  - `next.config.mjs` calls `flagOnBuildRefusal()`, which returns `null` before reading anything unless `NEXT_PUBLIC_LESSON_FRAMES=pilot-50`.
+  - `tools/lib/lesson-frames.mjs` does no file reads at module load.
+  - `tools/` is not in `.vercelignore`, so the new import resolves in a Vercel build.
+  - `env` pins the flag to the literal `"off"` unless it is exactly `pilot-50`.
+- **Not rebuilt by me.** The disk held 0.7 to 1.6 GB free during this run. For the flag-off build and the bundle grep I rely on principal-engineer's R3 and the O1 rebuild (exit 0, 144 s, 0 frame markers), on R4 (the `DemoCard` move is verbatim), on R7 (the `verify` failures are identical to main's), and on the builder's P4 sizes.
+
+**Conditions for the merge**
+- **M-a. Order.** `80c847c55` merges to main alone first, after the security deploy under its own record (2026-10-26-next-16-4-3-upgrade.md, U6). If the pilot must merge before that deploy happens, the security deploy is still exactly `80c847c55`, never a main tip that holds pilot code.
+- **M-b. Before merging:** W-2105 is done (prune handles stale-kit, plus the R5 comment). The `board.json` and `progress.md` merge is resolved as the review's merge notes say. There is no `[deploy]` in any merge commit.
+- **M-c. Verify on the merged tree.** `npm run verify` (or every suite in it, plus build and `tests/qa`) on the merged main SHA, with `NEXT_PUBLIC_LESSON_FRAMES` unset. Pass means:
+  - the `not ok` set equals review R7's pre-existing list;
+  - `test:lesson-frames` is green;
+  - the build exits 0;
+  - `.next/static` has 0 matches for `s3c-lesson-frame-v1`.
+
+  The result is recorded with that SHA in the merge handoff. A verify result belongs to the SHA it ran on: if watched paths change after it, run it again.
+- **M-d. Rollback of the merge is path-limited**, not `git revert -m 1` (that would also undo the records merged with it). Run `git diff <merge>^1 <merge> -- next.config.mjs package.json spike/ src/app/globals.css src/components/DemoCard.tsx src/components/DemoFrame.tsx src/components/DemoHost.tsx src/kit/reveal-fit.ts src/lib/lesson-frame-bridge.ts src/lib/lesson-frames.frames.json src/lib/lesson-frames.manifest.json src/lib/lesson-frames.slugs.json tests/lesson-frames/ tools/lesson-frames.mjs tools/lib/lesson-frames.mjs | git apply -R --3way`, then typecheck and build.
+  - This keeps later main edits to `globals.css`.
+  - Leave `package-lock.json` out. Check that the `package.json` hunk is only the two script lines, so the reversal never brings back `next` 16.4.0. M-a makes that the case.
+- **M-e. No flag-on Vercel variable.** Nobody sets `NEXT_PUBLIC_LESSON_FRAMES` in any Vercel environment until a flag-on addendum is approved. A preview build would pick it up from the project environment.
+
+**Conditions for the first production deploy carrying the merge (flag off)**
+- **D1.** The founder approves that deploy. The deployment record states that `NEXT_PUBLIC_LESSON_FRAMES` is unset in production, read from the project settings, not assumed.
+- **D2.** After READY, the client chunks served by `/` and `/d/why-seven-wins` contain 0 matches for `s3c-lesson-frame-v1` and `system3-content-hub-artifacts`.
+- **D3.** The smoke is the upgrade record's U3 (b) to (g), plus `contract.spec.ts` on the six R8 pilot lessons against production.
+- **D4.** The rollback target is the then-live deployment, named in the record before the deploy. If the security deploy has gone out, that is its deployment id, not r22's.
+
+**Flag-on (preview or production): not approved.** A flag-on preview is a different change: the artifact origin's first deploy, its headers, `frame-ancestors` naming a preview alias, and the bridge writing progress. None of that has a measured run I can approve. It comes back as an addendum to this record with:
+- `node tools/lesson-frames.mjs check-origin` output against the deployed origin;
+- the preview alias in `frame-ancestors`;
+- the frame QA copy result (W-2100);
+- the privacy ruling (C5, W-2095).
+
+Production flag-on also waits on:
+- C6 (phones);
+- AMD-018 (C7, W-2096, W-2109);
+- W-2103 (desktop parity);
+- W-2106 (kit hash and `globals.css`);
+- W-2110 (runbook);
+- **W-2111, a production frame-error meter.** R-new-1 is right: without a meter, a learner's lost completion is invisible.
+
+**Register** (company/ops/risks.json on main):
+- R-new-1 → **R-033** (open, 3×3 at flag-on, W-2111).
+- R-new-2 → **R-034** (mitigating, partial: O1 is scoped at `3ef3619ca`; W-2105, W-2106 and W-2110 remain).
+
+How sure:
+- High (about 85%) that the flag-off merge leaves learners' app unchanged. Most of that evidence is principal-engineer's and the builder's, not my own rebuild.
+- High that flag-on is not ready.
