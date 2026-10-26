@@ -70,6 +70,12 @@ test("client projections that disagree with the manifest are caught", () => {
 
 test("no app code imports the manifest record; the client reads only its two projections", async () => {
   const { execFileSync } = await import("node:child_process");
-  const hits = execFileSync("git", ["grep", "-l", "lesson-frames.manifest.json", "--", "src"], { encoding: "utf8" }).split("\n").filter(Boolean);
+  let out = "";
+  try {
+    out = execFileSync("git", ["grep", "-lE", "(from|import\\()\\s*[\"'][^\"']*lesson-frames\\.manifest\\.json", "--", "src"], { encoding: "utf8" });
+  } catch (e) {
+    if (e.status !== 1) throw e; // 1: no match
+  }
+  const hits = out.split("\n").filter(Boolean);
   assert.deepEqual(hits.filter((f) => /\.(tsx?|jsx?|mjs)$/.test(f)), [], "import src/lib/lesson-frames.frames.json or .slugs.json instead");
 });
