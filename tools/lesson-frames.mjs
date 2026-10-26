@@ -9,7 +9,7 @@
 //        The manifest always names the allow-listed origin; a local origin is only for a scratch copy (--origin, --manifest-dir).
 //   node tools/lesson-frames.mjs check            the gate's rules (exit 1 on any problem)
 //   node tools/lesson-frames.mjs prune            drop entries that are stale or no longer published (then commit)
-//   node tools/lesson-frames.mjs serve --dir=<out> [--port=4801] [--frame-ancestors=http://localhost:3000]
+//   node tools/lesson-frames.mjs serve --dir=<out> [--port=4801] [--frame-ancestors=http://localhost:3000] [--log]
 //        a local artifact origin with the same headers (development and QA only)
 //   node tools/lesson-frames.mjs check-origin [--origin=<url>] [--frame-ancestors=...]
 //        C4, read-only, at release time: every artifact the manifest names returns 200 with its path class's headers
@@ -126,6 +126,7 @@ function serve() {
       const rel = path.normalize(decodeURIComponent(url.pathname)).replace(/^([/\\])+/, "");
       const file = path.join(dir, rel);
       const h = headersFor(url.pathname, local);
+      if (args.log) console.log(`${req.method} ${url.pathname} origin=${req.headers.origin ?? "-"} cookie=${req.headers.cookie ? "PRESENT" : "-"}`);
       if (!h || !file.startsWith(dir + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return res.writeHead(404).end("not found");
       let body = fs.readFileSync(file);
       const headers = { ...h, "Content-Type": TYPES[path.extname(file)] ?? "application/octet-stream", Vary: "Accept-Encoding" };
