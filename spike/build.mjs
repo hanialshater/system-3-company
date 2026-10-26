@@ -73,9 +73,22 @@ export function webpackConfig({ name, entry, externals, replaceProgress = false 
   }
   const used = new Set();
   const unknown = new Set();
+  // Lesson frames pilot (W-2092): the repo files this compilation read, outside node_modules (the toolchain's
+  // package-lock covers those). tools/lesson-frames.mjs hashes them into the manifest's sourceHash/kitSourceHash.
+  const sources = new Set();
+  plugins.push({
+    apply(compiler) {
+      compiler.hooks.done.tap("s3c-sources", (stats) => {
+        for (const f of stats.compilation.fileDependencies) {
+          if (f.startsWith(ROOT + path.sep) && !f.includes(`${path.sep}node_modules${path.sep}`) && fs.existsSync(f) && fs.statSync(f).isFile()) sources.add(path.relative(ROOT, f));
+        }
+      });
+    },
+  });
   return {
     used,
     unknown,
+    sources,
     config: {
       name,
       mode: "production",
@@ -186,6 +199,8 @@ export async function buildKit() {
     boot: { url: write(`kit/${KIT_VERSION}/boot.${sha256(boot)}.js`, boot), sri: sri(boot), ...sizes(boot) },
     geo: { url: write(`kit-geo/${KIT_VERSION}/geo.${sha256(geoJs)}.js`, geoJs), sri: sri(geoJs), ...sizes(geoJs) },
     buildMs: Math.round(performance.now() - t0),
+    sources: [...kit.sources, "src/app/globals.css", "spike/kit/frame.css", "spike/kit/boot.js"].sort(),
+    geoSources: [...geo.sources].sort(),
   };
   return art;
 }
@@ -233,7 +248,7 @@ export function frameHtml({ slug, lesson, kit, geo }) {
 }
 
 /** Build lesson bundles in parallel batches. variant: a label appended after minification (rollback demo). */
-async function buildLessons(list, kit, { emit = true, batch = 24 } = {}) {
+export async function buildLessons(list, kit, { emit = true, batch = 24 } = {}) {
   const results = [];
   for (let i = 0; i < list.length; i += batch) {
     const chunk = list.slice(i, i + batch);
@@ -253,7 +268,7 @@ async function buildLessons(list, kit, { emit = true, batch = 24 } = {}) {
       if (l.variant) js = Buffer.concat([js, Buffer.from(`\n/* s3c build variant ${l.variant} */\n`)]);
       const hash = sha256(js);
       const geo = c.used.has("@/kit/geo") || c.used.has("d3-geo");
-      const r = { slug: l.slug, domain: l.domain, ok: true, variant: l.variant ?? "A", hash, geo, ...sizes(js), batchWallMs: Math.round(wall), batchSize: chunk.length };
+      const r = { slug: l.slug, domain: l.domain, ok: true, variant: l.variant ?? "A", hash, geo, ...sizes(js), batchWallMs: Math.round(wall), batchSize: chunk.length, sources: [...c.sources].sort() };
       if (emit) {
         const lesson = { url: write(`l/${hash}.js`, js), sri: sri(js) };
         const html = frameHtml({ slug: l.slug, lesson, kit, geo });

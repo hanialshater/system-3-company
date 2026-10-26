@@ -12,6 +12,8 @@ import * as kit_Lesson from "@/kit/Lesson";
 import * as kit_controls from "@/kit/controls";
 import * as kit_milestones from "@/kit/milestones";
 import * as kit_random from "@/kit/random";
+import { createFoldStore, FoldScope } from "@/kit/controls";
+import { useRevealFit } from "@/kit/reveal-fit";
 import { configureBridge, post } from "./progress-bridge";
 
 export const KIT_VERSION = "1.0.0";
@@ -25,6 +27,8 @@ export const runtime = {
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
   },
 };
+
+const NAV_KEYS = new Set(["ArrowDown", "ArrowUp", "j", "k"]);
 
 function meta(name: string) {
   return document.querySelector(`meta[name="${name}"]`)?.getAttribute("content") ?? "";
@@ -59,13 +63,28 @@ export async function mount() {
 
   new ResizeObserver(() => post({ type: "resize", slug, height: el.scrollHeight })).observe(el);
 
+  // The feed's swipe keys (src/components/Feed.tsx: ArrowDown/j, ArrowUp/k) pressed inside the frame go to the host,
+  // with the feed's own filter: never from a control, a field, a link or a dialog (a slider owns its arrows).
+  window.addEventListener("keydown", (e) => {
+    if (!NAV_KEYS.has(e.key) || e.altKey || e.ctrlKey || e.metaKey) return;
+    const t = e.target instanceof Element ? e.target : null;
+    if (t?.closest("input, textarea, select, button, a, [contenteditable], [role=dialog], [role=slider]")) return;
+    e.preventDefault();
+    post({ type: "key", slug, key: e.key });
+  });
+
+  // C3: the frame document plays DemoCard's .card-body: #root is the scroller (spike/kit/frame.css), so the host's
+  // reveal fit and the EDD-005 fold run here on it, with the frame's own fold store, exactly as in the app.
+  const rootRef = { current: el as HTMLDivElement };
+  const fold = createFoldStore();
   function Shell() {
     // Ready = the lesson's first render is committed (predict options are in the DOM). Not rAF:
     // Chrome pauses rAF in off-screen cross-origin frames, so a pre-created next card never paints.
     react.useEffect(() => {
       post({ type: "ready", slug, bundle, kit: KIT_VERSION });
     }, []);
-    return react.createElement(Demo, { slug });
+    useRevealFit(rootRef, true, fold);
+    return react.createElement(FoldScope, { store: fold, children: react.createElement(Demo, { slug }) });
   }
   createRoot(el).render(react.createElement(Shell));
 }

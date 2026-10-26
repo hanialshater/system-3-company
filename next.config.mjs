@@ -14,6 +14,9 @@ const nextConfig = {
   // Separate build dirs let parallel agents build without clobbering each other.
   distDir: process.env.NEXT_DIST_DIR || ".next",
   turbopack: { root },
+  // Lesson frames pilot: always define the flag, so an unset flag is the constant "off" and DemoHost's frame branch
+  // folds away at build time (P4, company/engineering/reviews/2026-10-25-content-hub-production-review.md).
+  env: { NEXT_PUBLIC_LESSON_FRAMES: process.env.NEXT_PUBLIC_LESSON_FRAMES === "pilot-50" ? "pilot-50" : "off" },
   // HQ routes read the working tree via process.cwd(), so output file tracing pulls in whatever
   // is on disk, including QA screenshots verify writes just before `vercel build`. Vercel fails
   // the deploy when a traced file matches .vercelignore (run 39032703960). Keep this list in step
