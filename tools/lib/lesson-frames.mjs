@@ -149,8 +149,10 @@ export function problems(m, { root = ROOT, allowedOrigin = ALLOWED_ORIGIN } = {}
   if (m.origin !== allowedOrigin) p(null, "origin", `origin ${m.origin} is not the allow-listed ${allowedOrigin}`);
   for (const k of ["js", "css", "boot", "geo", "sourceHash", "geoSourceHash"]) if (!HEX64.test(m.kit?.[k] ?? "")) p(null, "hash", `kit.${k} is not 64-hex`);
   for (const k of ["buildMjs", "tooling", "packageLock"]) if (!HEX64.test(m.toolchain?.[k] ?? "")) p(null, "hash", `toolchain.${k} is not 64-hex`);
-  if (m.kit && treeHash(m.kit.sources ?? [], root) !== m.kit.sourceHash) p(null, "stale-kit", "the kit's sources changed since its artifact was built: rebuild (node tools/lesson-frames.mjs build) or empty the manifest");
-  if (m.kit && treeHash(m.kit.geoSources ?? [], root) !== m.kit.geoSourceHash) p(null, "stale-kit", "the geo kit's sources changed since its artifact was built");
+  // A stale kit matters only while an entry still uses it: prune drops those entries, and an unused kit serves nothing (W-2105).
+  const entries = Object.values(m.lessons ?? {});
+  if (m.kit && entries.length && treeHash(m.kit.sources ?? [], root) !== m.kit.sourceHash) p(null, "stale-kit", "the kit's sources changed since its artifact was built: rebuild (node tools/lesson-frames.mjs build) or drop its entries (node tools/lesson-frames.mjs prune)");
+  if (m.kit && entries.some((e) => e.geoKit !== null) && treeHash(m.kit.geoSources ?? [], root) !== m.kit.geoSourceHash) p(null, "stale-kit", "the geo kit's sources changed since its artifact was built: rebuild, or drop the entries that use it (prune)");
   const pilot = new Set(pilotSlugs(root));
   const loaders = fs.readFileSync(path.join(root, "src/demos/loaders.generated.ts"), "utf8");
   for (const [slug, e] of Object.entries(m.lessons ?? {})) {
@@ -167,6 +169,28 @@ export function problems(m, { root = ROOT, allowedOrigin = ALLOWED_ORIGIN } = {}
   if (JSON.stringify(read(CLIENT_SLUGS)) !== JSON.stringify(clientSlugs(m))) p(null, "client", `${CLIENT_SLUGS} is not the manifest's projection: re-run the tool`);
   if (JSON.stringify(read(CLIENT_FRAMES)) !== JSON.stringify(clientFrames(m))) p(null, "client", `${CLIENT_FRAMES} is not the manifest's projection: re-run the tool`);
   return out;
+}
+
+/**
+ * What prune drops (W-2105): entries that are stale or not published, not in the pilot list, or without an in-app
+ * fallback; with a stale kit, every entry (each one names it); with a stale geo kit, every entry that uses it. Dropping,
+ * not rebuilding: a dropped lesson renders in-app, and a rebuild needs an artifact deploy (release-manager's) before
+ * its frames serve. Rebuild with `node tools/lesson-frames.mjs build`. Pure: returns the pruned copy and the reasons.
+ */
+export function pruneManifest(m, { root = ROOT } = {}) {
+  const x = structuredClone(m);
+  const ps = problems(m, { root });
+  const why = new Map();
+  const add = (slug, rule) => why.set(slug, [...(why.get(slug) ?? []), rule]);
+  for (const p of ps) if (p.slug && ["stale", "published", "pilot", "fallback"].includes(p.rule)) add(p.slug, p.rule);
+  const kitStale = !!m.kit && treeHash(m.kit.sources ?? [], root) !== m.kit.sourceHash;
+  const geoStale = !!m.kit && treeHash(m.kit.geoSources ?? [], root) !== m.kit.geoSourceHash;
+  for (const [slug, e] of Object.entries(m.lessons ?? {})) {
+    if (kitStale) add(slug, "stale-kit");
+    else if (geoStale && e.geoKit !== null) add(slug, "stale-kit (geo)");
+  }
+  for (const s of why.keys()) delete x.lessons[s];
+  return { manifest: x, dropped: [...why].map(([slug, rules]) => ({ slug, rules })), kitStale, geoStale };
 }
 
 // ---------------------------------------------------------------- which problems block (O1, W-2104)

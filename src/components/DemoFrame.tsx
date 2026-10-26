@@ -56,6 +56,7 @@ export default function DemoFrame({ slug, fallback: Fallback }: { slug: string; 
           }
           return;
         case "phase":
+          // The host's useRevealFit (src/kit/reveal-fit.ts) sees this data-phase change, finds no [data-testid="lesson"] in the host document, and does nothing: intended, the frame fits its own reveal (review R5).
           iframe.dataset.phase = a.phase;
           card?.setAttribute("data-frame-phase", a.phase);
           return;

@@ -8,7 +8,8 @@
 //        overwritten), writes the manifest and its two client projections, and --out/vercel.json (the origin's headers).
 //        The manifest always names the allow-listed origin; a local origin is only for a scratch copy (--origin, --manifest-dir).
 //   node tools/lesson-frames.mjs check            the gate's rules (exit 1 on any problem)
-//   node tools/lesson-frames.mjs prune            drop entries that are stale or no longer published (then commit)
+//   node tools/lesson-frames.mjs prune            drop entries that are stale or no longer published, and with a stale kit every
+//        entry that uses it (then commit); it never rebuilds
 //   node tools/lesson-frames.mjs serve --dir=<out> [--port=4801] [--frame-ancestors=http://localhost:3000] [--log]
 //        a local artifact origin with the same headers (development and QA only)
 //   node tools/lesson-frames.mjs check-origin [--origin=<url>] [--frame-ancestors=...]
@@ -32,6 +33,7 @@ import {
   originVercelJson,
   pilotSlugs,
   problems,
+  pruneManifest,
   readManifest,
   sha256,
   writeManifest,
@@ -108,11 +110,17 @@ function check() {
 }
 
 function prune() {
-  const m = readManifest();
-  const drop = new Set(problems(m).filter((p) => p.slug && ["stale", "published", "pilot", "fallback"].includes(p.rule)).map((p) => p.slug));
-  for (const s of drop) delete m.lessons[s];
-  writeManifest(m);
-  console.log(drop.size ? `lesson-frames prune: dropped ${[...drop].join(", ")} (they render in-app); commit the three files` : "lesson-frames prune: nothing to drop");
+  const { manifest, dropped, kitStale, geoStale } = pruneManifest(readManifest());
+  writeManifest(manifest);
+  if (kitStale) console.log("lesson-frames prune: the kit's sources changed since its artifact was built, so every entry that names it is dropped");
+  else if (geoStale) console.log("lesson-frames prune: the geo kit's sources changed since its artifact was built, so every entry that uses it is dropped");
+  for (const d of dropped) console.log(`  dropped ${d.slug}: ${d.rules.join(", ")}`);
+  console.log(
+    dropped.length
+      ? `lesson-frames prune: dropped ${dropped.length}, ${Object.keys(manifest.lessons).length} framed (the dropped render in-app); commit the three files` +
+          (kitStale || geoStale ? "; to frame them again, rebuild (node tools/lesson-frames.mjs build) and deploy the artifacts" : "")
+      : "lesson-frames prune: nothing to drop",
+  );
 }
 
 function serve() {

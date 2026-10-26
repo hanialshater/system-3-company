@@ -5,7 +5,7 @@
 // Scope (O1, company/decisions/2026-10-26-lesson-frames-gate-scope.md): freshness blocks flag-on builds, at the build.
 import assert from "node:assert/strict";
 import test from "node:test";
-import { ALLOWED_ORIGIN, FRESHNESS_RULES, HEX64, blocking, flagOnBuildRefusal, framesOn, pilotSlugs, problems, readManifest } from "../../tools/lib/lesson-frames.mjs";
+import { ALLOWED_ORIGIN, FRESHNESS_RULES, HEX64, blocking, clientFrames, clientSlugs, flagOnBuildRefusal, framesOn, pilotSlugs, problems, pruneManifest, readManifest, treeHash } from "../../tools/lib/lesson-frames.mjs";
 
 const m = readManifest();
 const clone = () => structuredClone(m);
@@ -68,6 +68,52 @@ test("a stale kit is caught", () => {
   const x = clone();
   x.kit.sourceHash = "0".repeat(64);
   assert.ok(rules(problems(x)).includes("-:stale-kit"));
+});
+// W-2105: after a kit change, prune used to say "nothing to drop" while a flag-on build still refused the manifest.
+// fresh(): the committed manifest with every hash re-read from today's tree and every unpublishable entry removed, so
+// these tests do not depend on how far main has moved since the artifacts were built. Outside the two projections
+// (which prune rewrites on disk), a pruned manifest must have no problem at all, so a flag-on build accepts it.
+const fresh = () => {
+  const x = clone();
+  x.kit.sourceHash = treeHash(x.kit.sources);
+  x.kit.geoSourceHash = treeHash(x.kit.geoSources);
+  for (const e of Object.values(x.lessons)) e.sourceHash = treeHash(e.sources);
+  for (const s of new Set(problems(x).filter((p) => p.slug).map((p) => p.slug))) delete x.lessons[s];
+  return x;
+};
+const unprojected = (ps) => ps.filter((p) => p.rule !== "client");
+test("prune with a stale kit drops every entry, and the pruned manifest passes a flag-on build's rules", () => {
+  const x = fresh();
+  assert.ok(Object.keys(x.lessons).length > 0);
+  x.kit.sourceHash = "0".repeat(64);
+  assert.ok(rules(problems(x)).includes("-:stale-kit"));
+  const r = pruneManifest(x);
+  assert.equal(r.kitStale, true);
+  assert.deepEqual(r.dropped.map((d) => d.slug).sort(), Object.keys(x.lessons).sort());
+  assert.ok(r.dropped.every((d) => d.rules.includes("stale-kit")));
+  assert.deepEqual(Object.keys(r.manifest.lessons), []);
+  assert.deepEqual(unprojected(problems(r.manifest)), [], "an empty manifest with a stale kit serves nothing and must not refuse");
+  assert.deepEqual(clientSlugs(r.manifest).slugs, []);
+  assert.deepEqual(clientFrames(r.manifest).frames, {});
+  assert.ok(Object.keys(x.lessons).length > 0, "prune does not mutate its input");
+});
+test("prune with a stale geo kit drops only the entries that use it", () => {
+  const x = fresh();
+  x.kit.geoSourceHash = "0".repeat(64);
+  const geo = Object.keys(x.lessons).filter((s) => x.lessons[s].geoKit !== null);
+  const r = pruneManifest(x);
+  assert.equal(r.kitStale, false);
+  assert.deepEqual(r.dropped.map((d) => d.slug).sort(), geo.sort());
+  assert.deepEqual(unprojected(problems(r.manifest)), []);
+});
+test("prune of a fresh manifest drops nothing; one stale lesson drops only that lesson", () => {
+  const x = fresh();
+  assert.deepEqual(pruneManifest(x).dropped, []);
+  const one = Object.keys(x.lessons)[0];
+  x.lessons[one].sourceHash = "0".repeat(64);
+  const r = pruneManifest(x);
+  assert.deepEqual(r.dropped, [{ slug: one, rules: ["stale"] }]);
+  assert.deepEqual(unprojected(problems(r.manifest)), []);
 });
 test("a source file that disappears makes the slug stale", () => {
   const x = clone();
