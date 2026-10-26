@@ -1,3 +1,52 @@
+## 2026-10-26 · principal-engineer-ops (Rhea) · W-2101: both lesson-frames readiness records ruled; the Next security deploy is approved with conditions
+
+- **Changed:**
+  - On `feat/lesson-frames-pilot`, commit `ca6cb00b1` (records only):
+    - `company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md` is **approved with conditions U1 to U6**, for one production deploy of exactly `80c847c5527c02e7b1926f8879891ef2d4169486`.
+    - `company/engineering/readiness/2026-10-26-lesson-frames-pilot.md` is **approved with conditions M-a to M-e** for the flag-off merge of `3ef3619ca`, and D1 to D4 for the first flag-off production deploy that carries it. **Flag-on (preview or production) is refused for now.** It comes back as an addendum.
+  - On main:
+    - risks R-031 (Next advisories on production), R-032 (`zod` high), R-033 (silent frame failure, the record's R-new-1) and R-034 (the staleness gate, R-new-2);
+    - board W-2111 (production frame-error meter, platform-engineer);
+    - W-2101 done.
+  - Nothing merged, nothing deployed, no `[deploy]` anywhere.
+- **Evidence (mine):**
+  - **Build.** Built `80c847c55` in my own worktree, on a tree equal to its lockfile (the 16.4.3 tarballs' sha512 equal to the lockfile integrity): exit 0, 164 s, `Next.js 16.4.3`, no SecurityFatalError, 1,646 `/d/*`.
+  - **Served locally.** `/`, `/d/flatten-the-cube-to-a-dot`, `/d/euclid-three-steps`, `/history` and `/hq` returned 200; an unknown `/d` slug returned 404. `/api/events`: dropped body 204, `Origin: null` 403, `GET` 405, a valid beacon logged one line. `feed.spec` 10/10; `contract.spec` on cube and euclid 4/4.
+  - **Pilot suite.** `test:lesson-frames` at `3ef3619ca`: 28 pass, 1 skip.
+- **Believe:**
+  - About 90% that the security deploy changes the app only by Next 16.4.3 plus HQ content. About 70% that no production-only runtime difference exists; no preview has run, so the cover is the U3 smoke and the rollback.
+  - **Correction to the code review:** HQ is **on** in production (`HQ_PUBLIC=1`; `/hq` 200 today), so the deploy also changes what `/hq` shows (the F-54 org via `tools/org/roles.mjs`, and newer records). That is T3 and not a blocker.
+- **Next:**
+  - chief-of-staff (W-2108): the founder ask names the SHA `80c847c55` **and** pre-asks the rollback to `dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU` (r22) if a U3 check fails (U4).
+  - release-manager (W-2107): deploy exactly that SHA, run the U3 smoke list in the record, and write the r23 deployment record.
+  - After that, main merges `80c847c55` alone, and then the pilot merges under M-a to M-e (W-2105 first).
+- **Blocked:**
+  - Pilot flag-on: C5 (W-2095), C6, AMD-018 (W-2096, W-2109), W-2103, W-2106, W-2110 and W-2111.
+  - I did not run `npm audit` (the registry ran at about 2 KB/s on this host) or the `test:*` suites, so I rely on the code review's R2, R6 and R7 for those.
+
+## 2026-10-26 · principal-engineer (Kenji) · Lesson frames code review (W-2097) and O1 ruled (W-2104); Next fix to ship alone
+
+- **Changed:**
+  - New review record `company/engineering/reviews/2026-10-26-lesson-frames-code-review.md`, findings R1-R14 written before the builder's account.
+  - New decision `company/decisions/2026-10-26-lesson-frames-gate-scope.md` (O1).
+  - Corrections section added to `company/engineering/reviews/2026-10-25-content-hub-production-review.md`; all four builder corrections accepted.
+  - On `feat/lesson-frames-pilot`: one commit, `3ef3619ca`. The freshness rules now block flag-on builds only, in `next.config.mjs`; the structural rules still block `verify`.
+  - Board: W-2097 and W-2104 done. W-2101 to W-2104 copied from the branch so IDs do not fork. New W-2105 to W-2110.
+  - Nothing merged to main, nothing deployed, no `[deploy]` anywhere.
+- **Believe:**
+  - The flag-off merge is code-approved at `3ef3619ca`, subject to principal-engineer-ops' readiness (W-2101) and W-2105. High confidence, about 90%. The evidence:
+    - no frame code in a flag-off `.next/static`;
+    - the `DemoCard` change is a verbatim move;
+    - no protected path is touched;
+    - `verify`'s 24 failing tests and `check`'s 810 errors are identical on main;
+    - a 6-lesson QA sample plus `feed.spec` pass.
+  - The `zod` high is pre-existing on main (W-2102). It is not a merge blocker.
+- **Next:**
+  - The Next security fix ships **alone and soon**, as production commit `80c847c5527c02e7b1926f8879891ef2d4169486`. Against live `4d3301270`, its app changes only in `package.json` and `package-lock.json`.
+  - Order: principal-engineer-ops approves the upgrade readiness (W-2101), then the founder approves via chief-of-staff (W-2108), then release-manager deploys (W-2107). After that, main merges `80c847c55` alone. W-2067 (mine, the SecurityFatalError nudge) closes with that deploy.
+- **Blocked:**
+  - Production flag-on waits on C5, C6, AMD-018 (W-2109), W-2103 and W-2106. W-2106: the kit's hash covers `globals.css`, so every CSS commit refuses flag-on builds until the artifacts are rebuilt.
+
 ## 2026-10-26 · platform-engineer (Noor) · Lesson frames pilot C1-C4 and the Next upgrade (C8), on branch `feat/lesson-frames-pilot`; not merged, not deployed
 
 - **Changed (branch only, pushed to origin; main untouched):**

@@ -813,6 +813,110 @@
       ],
       "opened": "2026-10-16",
       "lastReviewed": "2026-10-16"
+    },
+    {
+      "id": "R-031",
+      "title": "Production runs Next 16.4.0, inside three next advisories (two RCE)",
+      "description": "Live production (r22, 4d3301270, dpl_EX98aXW1PJvoKsQPtuHVQV7fLvTU) runs next 16.4.0. npm audit --omit=dev puts it in the 16.0.0 to 16.4.0 range of GHSA-2464-fhr4-w9xw (image optimizer SVG RCE), GHSA-673q-mjm6-r5xr (use cache RCE) and GHSA-p3m5-59mp-jv5r (Server Actions DoS) (code review 2026-10-26, R2). The app uses no next/image, \"use cache\" or \"use server\" (review), so likelihood is 2, not 4; nobody has shown the advisories unreachable, so it is not 1. Impact 4: a server-side exploit on the learner-facing host. The fix (80c847c55, Next 16.4.3, nothing else in src/) is built and reviewed but not deployed. The content hub demo host system3-content-hub-demo also runs 16.4.0 (W-2098). Closes when the 80c847c55 production deploy is READY and smoked, and W-2098 is done.",
+      "category": "security",
+      "likelihood": 2,
+      "impact": 4,
+      "owner": "platform-engineer",
+      "mitigation": {
+        "summary": "Deploy 80c847c55 alone (readiness 2026-10-26-next-16-4-3-upgrade.md on feat/lesson-frames-pilot, approved with conditions by principal-engineer-ops; W-2107), after the founder approves that deploy (W-2108). Upgrade or decommission the demo host (W-2098).",
+        "board": [
+          "W-2107",
+          "W-2108",
+          "W-2098"
+        ],
+        "reality": "paper",
+        "paperOnly": "The fix exists as a commit; production and the demo host still run 16.4.0 until the deploys."
+      },
+      "status": "mitigating",
+      "tier": "feed-and-lesson-runtime (T1)",
+      "links": [
+        "company/engineering/reviews/2026-10-26-lesson-frames-code-review.md",
+        "company/engineering/reviews/2026-10-25-content-hub-production-review.md",
+        "company/ops/deployments/2026-10-25-r22-production.json"
+      ],
+      "opened": "2026-10-26",
+      "lastReviewed": "2026-10-26"
+    },
+    {
+      "id": "R-032",
+      "title": "zod 4.1.11 (high, GHSA-mrhx-c7xc-m3w5) on the auth path via better-auth",
+      "description": "npm audit --omit=dev on main and on 80c847c55 reports zod 4.1.11 (< 4.6.6, high), pulled in by better-auth/better-call (code review 2026-10-26, R2). It is on main today and not introduced by the Next upgrade. Likelihood 2: production has no accounts variables, so the auth routes are off for learners (R-028). Impact 3 while accounts are off; it rises with accounts go-live. Principal-engineer-ops has not read the advisory text; the scores rest on the audit line and the accounts state.",
+      "category": "security",
+      "likelihood": 2,
+      "impact": 3,
+      "owner": "backend-engineer",
+      "mitigation": {
+        "summary": "Its own change and its own deploy (W-2102), not riding with the Next fix; re-score at accounts go-live.",
+        "board": [
+          "W-2102"
+        ],
+        "reality": "paper",
+        "paperOnly": "No change exists yet."
+      },
+      "status": "open",
+      "tier": "auth-and-progress-db (T1)",
+      "links": [
+        "company/engineering/reviews/2026-10-26-lesson-frames-code-review.md"
+      ],
+      "opened": "2026-10-26",
+      "lastReviewed": "2026-10-26"
+    },
+    {
+      "id": "R-033",
+      "title": "A framed lesson fails silently in production: no meter for never-ready or refused progress",
+      "description": "Readiness record 2026-10-26-lesson-frames-pilot.md R-new-1 (feat/lesson-frames-pilot). With NEXT_PUBLIC_LESSON_FRAMES=pilot-50, DemoFrame logs a refused bridge message and a frame that never sends ready only outside production. A learner sees a blank card or finishes a framed lesson whose completion is not recorded, and nobody learns of it. Likelihood 3 once the flag is on (a second origin, a new bridge, 42 of 50 pilot lessons changed in a week); 1 while the flag is off, which is the only state approved. Impact 3: lost completions and blank cards for up to 50 lessons, silent.",
+      "category": "ux",
+      "likelihood": 3,
+      "impact": 3,
+      "owner": "platform-engineer",
+      "mitigation": {
+        "summary": "A production frame-error meter before production flag-on (W-2111); C6/C7 runs and the frame QA copy before it (W-2100, W-2096). Flag-on production is not approved in the readiness record until W-2111 is done.",
+        "board": [
+          "W-2111"
+        ],
+        "reality": "paper",
+        "paperOnly": "No meter exists; the flag is off."
+      },
+      "status": "open",
+      "tier": "feed-and-lesson-runtime (T1)",
+      "links": [
+        "company/engineering/reviews/2026-10-26-lesson-frames-code-review.md",
+        "company/engineering/reviews/2026-10-25-content-hub-production-review.md"
+      ],
+      "opened": "2026-10-26",
+      "lastReviewed": "2026-10-26"
+    },
+    {
+      "id": "R-034",
+      "title": "The lesson-frames staleness gate blocks deploys",
+      "description": "Readiness record R-new-2 and objection O1: as first built, tests/lesson-frames failed npm run verify whenever a pilot lesson or the kit sources changed, and 42 of 50 pilot lessons and globals.css (18 commits in 15 days) change often (code review R14). O1 was ruled (company/decisions/2026-10-26-lesson-frames-gate-scope.md) and coded at 3ef3619ca: freshness rules block only flag-on builds, in next.config.mjs. Residual: every flag-on build is refused after any globals.css or pilot-lesson change until prune or rebuild (W-2106, W-2110). Likelihood 4 at flag-on, impact 2 (a delayed deploy, no learner harm).",
+      "category": "operational",
+      "likelihood": 4,
+      "impact": 2,
+      "owner": "platform-engineer",
+      "mitigation": {
+        "summary": "O1 scoping at 3ef3619ca (flag-off deploys unaffected); kit sourceHash decoupled from all of globals.css (W-2106); a runbook step for flag-on: prune or rebuild, then commit (W-2110); prune handles stale-kit (W-2105).",
+        "board": [
+          "W-2105",
+          "W-2106",
+          "W-2110"
+        ],
+        "reality": "partial",
+        "paperOnly": "The O1 scoping is on the branch, not main; W-2105, W-2106 and W-2110 are not done."
+      },
+      "status": "mitigating",
+      "tier": "ci-and-deploy (T1)",
+      "links": [
+        "company/engineering/reviews/2026-10-26-lesson-frames-code-review.md",
+        "company/decisions/2026-10-26-lesson-frames-gate-scope.md"
+      ],
+      "opened": "2026-10-26",
+      "lastReviewed": "2026-10-26"
     }
   ]
 }

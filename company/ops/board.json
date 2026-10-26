@@ -26752,10 +26752,11 @@
       "id": "W-2097",
       "title": "Content hub launch: code review of the integration branch (C10; company/engineering/reviews/2026-10-25-content-hub-production-review.md)",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-25",
-      "links": []
+      "links": [],
+      "updated": "2026-10-26"
     },
     {
       "id": "W-2098",
@@ -26788,10 +26789,11 @@
       "id": "W-2101",
       "title": "Content hub launch: approve or refuse two tier-2 readiness records on branch feat/lesson-frames-pilot: company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md (C8) and company/engineering/readiness/2026-10-26-lesson-frames-pilot.md (C1-C4); write the register lines they propose (Next advisories closed by 16.4.3, zod high open, R-new-1 silent frame failure, R-new-2 staleness gate blocks deploys)",
       "owner": "principal-engineer-ops",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-26",
-      "links": []
+      "links": [],
+      "updated": "2026-10-26"
     },
     {
       "id": "W-2102",
@@ -26815,6 +26817,70 @@
       "id": "W-2104",
       "title": "Lesson frames objection O1: the review's staleness gate (tests/lesson-frames, in verify) fails every deploy, flag off included, once a pilot lesson or the kit sources change after the manifest is built (42 of 50 pilot lessons changed in the week to 2026-10-25). Keep it and add 'node tools/lesson-frames.mjs prune' to the deploy runbook, or scope the gate to flag-on builds (company/engineering/readiness/2026-10-26-lesson-frames-pilot.md item 1; company/ops/progress.md top entry)",
       "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": [],
+      "updated": "2026-10-26"
+    },
+    {
+      "id": "W-2105",
+      "title": "Lesson frames code review items (W-2097): (1) tools/lesson-frames.mjs prune ignores stale-kit, so after a kit-source change it reports 'nothing to drop' and a flag-on build still refuses; make prune say so (or empty the manifest) and test it; (2) one comment line in DemoFrame/reveal-fit that the host's useRevealFit sees the iframe's data-phase and is a no-op there (R5); on feat/lesson-frames-pilot, before merge (company/engineering/reviews/2026-10-26-lesson-frames-code-review.md)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2106",
+      "title": "Lesson frames before production flag-on: the kit sourceHash covers all of src/app/globals.css (18 commits in 15 days), so every globals.css commit refuses flag-on builds until a kit rebuild and an artifact deploy; decouple the frame CSS or judge kit staleness on built bytes (company/decisions/2026-10-26-lesson-frames-gate-scope.md, objection 2)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2107",
+      "title": "Next 16.4.3 security deploy, on its own, ahead of the pilot: production deploy of exactly 80c847c5527c02e7b1926f8879891ef2d4169486 (live 4d3301270 + records + package.json/package-lock.json Next 16.4.0->16.4.3), only after principal-engineer-ops approves company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md and the founder approves that deploy; then main takes it by merging 80c847c55 alone (company/engineering/reviews/2026-10-26-lesson-frames-code-review.md, 'The Next security fix')",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2108",
+      "title": "Founder ask: approve the production deploy of commit 80c847c55 (Next 16.4.0 -> 16.4.3 only; clears three next critical advisories on today's production; no app source change) ahead of the lesson frames pilot (company/engineering/reviews/2026-10-26-lesson-frames-code-review.md)",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2109",
+      "title": "AMD-018 part (d) companion diff: build on feat/lesson-frames-pilot 3ef3619ca, where tests/lesson-frames freshness rules block flag-on builds only (company/decisions/2026-10-26-lesson-frames-gate-scope.md); rule whether the new frame-QA-record admission rule is freshness (flag-on only, recommended) or structural",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2110",
+      "title": "Deploy runbook, flag-on steps for NEXT_PUBLIC_LESSON_FRAMES: a flag-on build refuses a stale manifest (next.config.mjs); fix with node tools/lesson-frames.mjs prune or a rebuild plus artifact deploy, then commit, before the preview or production build (company/decisions/2026-10-26-lesson-frames-gate-scope.md, item 4)",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2111",
+      "title": "Lesson frames before production flag-on (R-033, readiness 2026-10-26-lesson-frames-pilot.md R-new-1): a production meter for a framed lesson that never sends ready or whose progress/track message the host refuses (DemoFrame logs refusals only outside production). A frame-error count in ops-health or the events intake, with a stated alert line; principal-engineer-ops reads it at the ops review",
+      "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-26",
