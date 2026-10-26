@@ -26787,10 +26787,11 @@
       "id": "W-2101",
       "title": "Content hub launch: approve or refuse two tier-2 readiness records on branch feat/lesson-frames-pilot: company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md (C8) and company/engineering/readiness/2026-10-26-lesson-frames-pilot.md (C1-C4); write the register lines they propose (Next advisories closed by 16.4.3, zod high open, R-new-1 silent frame failure, R-new-2 staleness gate blocks deploys)",
       "owner": "principal-engineer-ops",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-26",
-      "links": []
+      "links": [],
+      "updated": "2026-10-26"
     },
     {
       "id": "W-2102",
@@ -26869,6 +26870,15 @@
       "id": "W-2110",
       "title": "Deploy runbook, flag-on steps for NEXT_PUBLIC_LESSON_FRAMES: a flag-on build refuses a stale manifest (next.config.mjs); fix with node tools/lesson-frames.mjs prune or a rebuild plus artifact deploy, then commit, before the preview or production build (company/decisions/2026-10-26-lesson-frames-gate-scope.md, item 4)",
       "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2111",
+      "title": "Lesson frames before production flag-on (R-033, readiness 2026-10-26-lesson-frames-pilot.md R-new-1): a production meter for a framed lesson that never sends ready or whose progress/track message the host refuses (DemoFrame logs refusals only outside production). A frame-error count in ops-health or the events intake, with a stated alert line; principal-engineer-ops reads it at the ops review",
+      "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-26",
