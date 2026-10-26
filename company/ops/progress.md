@@ -1,3 +1,9 @@
+## 2026-10-26 · final source batch · 100 drafts and recall audit
+
+Implemented the last 100 probability-list entries. The complete stack covers all 500 behavioral and 1,000 probability IDs exactly once. Bounded finite illustrations do not certify the richer suggested simulator, historical claim, learning benefit or novelty. All 1,500 lessons remain drafts with unverified claims and empty evidence.
+
+Validation: final-batch 442 arithmetic/schema/state assertions, 13,841 coverage/relationship/recall/source-hash checks and TypeScript pass. Audited all 600 older continuation recalls: two duplicated a displayed case and are corrected; one long top-p chart label is shortened. These three lessons have version 2; all 600 now record recall inputs. W-2037 is done; implementation queue W-2033 and final review W-2040 are in review. Company check retains the identical 811 errors/four warnings. Full verify retains inherited publication failures. Production build and browser checks for batches06–08 will be recorded after completion; interrupted runs are not passes. No independent approval, merge or deploy.
+
 ## 2026-10-25 · source batch 07 · 200 sequential and survival drafts
 
 Implemented exactly 200 probability-list entries (remaining ledger positions 600–799). These are bounded numerical illustrations with source-specific boundaries; richer simulations suggested by the source list are not asserted to be complete. All lessons remain draft, claims unverified, evidence empty. No independent review or novelty certification is claimed.

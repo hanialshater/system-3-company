@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0921", "title": "Take one epidemic state step", "op": "sir", "labels": ["S", "I", "Beta", "Gamma", "DT"], "outputs": ["NextI", "NextS", "NextR"], "a": [0.99, 0.01, 0.4, 0.1, 0.1], "b": [0.99, 0.01, 0.1, 0.1, 0.1], "question": "A normalized toy SIR population has susceptible S 0.99, infected I 0.01, Beta 0.4, Gamma 0.1. Take one Euler step DT 0.1. What next infected share results?", "questionTemplate": "A normalized toy SIR population has susceptible S {S}, infected I {I}, Beta {Beta}, Gamma {Gamma}. Take one Euler step DT {DT}. What next infected share results?", "explain": "New infections and recoveries change the infected stock in opposite directions. A single small deterministic step is not an epidemic forecast.", "lens": "the transmission term in a normalized SIR update", "kind": "bars", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

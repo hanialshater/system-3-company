@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0941",
+  "title": "Add two rotating vectors",
+  "hook": "Two stated cases: explore the higher harmonic in a finite epicycle trace.",
+  "domain": "probability",
+  "concept": "cp-source-0941",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the higher harmonic in a finite epicycle trace affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines X, regardless of the stated inputs.",
+  "objective": "Compare the higher harmonic in a finite epicycle trace in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0941.predict",
+      "text": "At Time 0.2, a unit circle plus Amplitude 0 circle rotating at Harmonic 3 gives what x coordinate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.reveal.0",
+      "text": "The retained results are Amplitude=0; X=0.309 and Amplitude=0.4; X=-0.015.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.reveal.1",
+      "text": "Adding rotating vectors creates a parametric trace. Two circles illustrate composition rather than reconstructing an arbitrary drawing. This comparison isolates the higher harmonic in a finite epicycle trace.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.case.0.witness",
+      "text": "Amplitude=0; X=0.309",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Time\",0.2],[\"Harmonic\",3],[\"Amplitude\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.041666666666666664,\"y\":0.9659258262890683},{\"x\":0.08333333333333333,\"y\":0.8660254037844387},{\"x\":0.125,\"y\":0.7071067811865476},{\"x\":0.16666666666666666,\"y\":0.5000000000000001},{\"x\":0.20833333333333334,\"y\":0.25881904510252074},{\"x\":0.25,\"y\":6.123233995736766e-17},{\"x\":0.2916666666666667,\"y\":-0.25881904510252085},{\"x\":0.3333333333333333,\"y\":-0.4999999999999998},{\"x\":0.375,\"y\":-0.7071067811865475},{\"x\":0.4166666666666667,\"y\":-0.8660254037844387},{\"x\":0.4583333333333333,\"y\":-0.9659258262890682},{\"x\":0.5,\"y\":-1},{\"x\":0.5416666666666666,\"y\":-0.9659258262890684},{\"x\":0.5833333333333334,\"y\":-0.8660254037844386},{\"x\":0.625,\"y\":-0.7071067811865477},{\"x\":0.6666666666666666,\"y\":-0.5000000000000004},{\"x\":0.7083333333333334,\"y\":-0.25881904510252063},{\"x\":0.75,\"y\":-1.8369701987210297e-16},{\"x\":0.7916666666666666,\"y\":0.2588190451025203},{\"x\":0.8333333333333334,\"y\":0.5000000000000001},{\"x\":0.875,\"y\":0.7071067811865474},{\"x\":0.9166666666666666,\"y\":0.8660254037844384},{\"x\":0.9583333333333334,\"y\":0.9659258262890683},{\"x\":1,\"y\":1}],\"xLabel\":\"Time\",\"yLabel\":\"X\"},\"metrics\":[{\"label\":\"X\",\"value\":\"0.309\"},{\"label\":\"Amplitude\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.case.1.witness",
+      "text": "Amplitude=0.4; X=-0.015",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Time\",0.2],[\"Harmonic\",3],[\"Amplitude\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1.4},{\"x\":0.041666666666666664,\"y\":1.2487685387636873},{\"x\":0.08333333333333333,\"y\":0.8660254037844387},{\"x\":0.125,\"y\":0.42426406871192857},{\"x\":0.16666666666666666,\"y\":0.10000000000000009},{\"x\":0.20833333333333334,\"y\":-0.024023667372098323},{\"x\":0.25,\"y\":-1.224646799147353e-17},{\"x\":0.2916666666666667,\"y\":0.0240236673720981},{\"x\":0.3333333333333333,\"y\":-0.09999999999999976},{\"x\":0.375,\"y\":-0.4242640687119284},{\"x\":0.4166666666666667,\"y\":-0.8660254037844386},{\"x\":0.4583333333333333,\"y\":-1.2487685387636869},{\"x\":0.5,\"y\":-1.4},{\"x\":0.5416666666666666,\"y\":-1.2487685387636878},{\"x\":0.5833333333333334,\"y\":-0.8660254037844388},{\"x\":0.625,\"y\":-0.42426406871192907},{\"x\":0.6666666666666666,\"y\":-0.10000000000000042},{\"x\":0.7083333333333334,\"y\":0.024023667372098267},{\"x\":0.75,\"y\":3.6739403974420613e-17},{\"x\":0.7916666666666666,\"y\":-0.024023667372098323},{\"x\":0.8333333333333334,\"y\":0.10000000000000009},{\"x\":0.875,\"y\":0.4242640687119284},{\"x\":0.9166666666666666,\"y\":0.8660254037844374},{\"x\":0.9583333333333334,\"y\":1.2487685387636869},{\"x\":1,\"y\":1.4}],\"xLabel\":\"Time\",\"yLabel\":\"X\"},\"metrics\":[{\"label\":\"X\",\"value\":\"-0.015\"},{\"label\":\"Amplitude\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0941.recall",
+      "text": "At Time 0.3, a unit circle plus Amplitude 0 circle rotating at Harmonic 3 gives what x coordinate? Answer -0.309.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0941/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #941. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At Time 0.3, a unit circle plus Amplitude 0 circle rotating at Harmonic 3 gives what x coordinate?",
+    "options": [
+      "-0.309",
+      "-0.433",
+      "-0.185"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives X -0.309 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0941",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-941"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 941,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **941. Draw with circles** \\[Slider\\]: trace any shape with your finger; a chain of rotating circles (epicycles) redraws it, sharper with each added circle.",
+    "modelBoundary": "the higher harmonic in a finite epicycle trace",
+    "recallInputs": [
+      0.30000000000000004,
+      3,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

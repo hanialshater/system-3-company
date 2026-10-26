@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0958",
+  "title": "Uncorrelated increments have flat power",
+  "hook": "Two stated cases: explore the frequency-invariant spectrum of a stipulated white process.",
+  "domain": "probability",
+  "concept": "cp-source-0958",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the frequency-invariant spectrum of a stipulated white process affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Power, regardless of the stated inputs.",
+  "objective": "Compare the frequency-invariant spectrum of a stipulated white process in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0958.predict",
+      "text": "A toy AR(1) has innovation Variance 1, coefficient Rho 0. What spectral density per cycle occurs at Frequency 0.1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.reveal.0",
+      "text": "The retained results are Frequency=0.1; Power=1 and Frequency=0.4; Power=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.reveal.1",
+      "text": "The autocovariance sequence and spectrum encode the same second-order structure for this stationary model. This comparison isolates the frequency-invariant spectrum of a stipulated white process.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.case.0.witness",
+      "text": "Frequency=0.1; Power=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Variance\",1],[\"Rho\",0],[\"Frequency\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.020833333333333332,\"y\":1},{\"x\":0.041666666666666664,\"y\":1},{\"x\":0.0625,\"y\":1},{\"x\":0.08333333333333333,\"y\":1},{\"x\":0.10416666666666667,\"y\":1},{\"x\":0.125,\"y\":1},{\"x\":0.14583333333333334,\"y\":1},{\"x\":0.16666666666666666,\"y\":1},{\"x\":0.1875,\"y\":1},{\"x\":0.20833333333333334,\"y\":1},{\"x\":0.22916666666666666,\"y\":1},{\"x\":0.25,\"y\":1},{\"x\":0.2708333333333333,\"y\":1},{\"x\":0.2916666666666667,\"y\":1},{\"x\":0.3125,\"y\":1},{\"x\":0.3333333333333333,\"y\":1},{\"x\":0.3541666666666667,\"y\":1},{\"x\":0.375,\"y\":1},{\"x\":0.3958333333333333,\"y\":1},{\"x\":0.4166666666666667,\"y\":1},{\"x\":0.4375,\"y\":1},{\"x\":0.4583333333333333,\"y\":1},{\"x\":0.4791666666666667,\"y\":1},{\"x\":0.5,\"y\":1}],\"xLabel\":\"Frequency\",\"yLabel\":\"Power\"},\"metrics\":[{\"label\":\"Power\",\"value\":\"1\"},{\"label\":\"Frequency\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.case.1.witness",
+      "text": "Frequency=0.4; Power=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Variance\",1],[\"Rho\",0],[\"Frequency\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.020833333333333332,\"y\":1},{\"x\":0.041666666666666664,\"y\":1},{\"x\":0.0625,\"y\":1},{\"x\":0.08333333333333333,\"y\":1},{\"x\":0.10416666666666667,\"y\":1},{\"x\":0.125,\"y\":1},{\"x\":0.14583333333333334,\"y\":1},{\"x\":0.16666666666666666,\"y\":1},{\"x\":0.1875,\"y\":1},{\"x\":0.20833333333333334,\"y\":1},{\"x\":0.22916666666666666,\"y\":1},{\"x\":0.25,\"y\":1},{\"x\":0.2708333333333333,\"y\":1},{\"x\":0.2916666666666667,\"y\":1},{\"x\":0.3125,\"y\":1},{\"x\":0.3333333333333333,\"y\":1},{\"x\":0.3541666666666667,\"y\":1},{\"x\":0.375,\"y\":1},{\"x\":0.3958333333333333,\"y\":1},{\"x\":0.4166666666666667,\"y\":1},{\"x\":0.4375,\"y\":1},{\"x\":0.4583333333333333,\"y\":1},{\"x\":0.4791666666666667,\"y\":1},{\"x\":0.5,\"y\":1}],\"xLabel\":\"Frequency\",\"yLabel\":\"Power\"},\"metrics\":[{\"label\":\"Power\",\"value\":\"1\"},{\"label\":\"Frequency\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0958.recall",
+      "text": "A toy AR(1) has innovation Variance 2, coefficient Rho 0. What spectral density per cycle occurs at Frequency 0.1? Answer 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0958/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #958. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy AR(1) has innovation Variance 2, coefficient Rho 0. What spectral density per cycle occurs at Frequency 0.1?",
+    "options": [
+      "1.2",
+      "2.8",
+      "2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Power 2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0958",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-958"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 958,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **958. No cycles in returns** \\[Gotcha\\]: the spectrum of daily stock returns is nearly flat; \"market cycles\" mostly vanish.",
+    "modelBoundary": "the frequency-invariant spectrum of a stipulated white process",
+    "recallInputs": [
+      2,
+      0,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

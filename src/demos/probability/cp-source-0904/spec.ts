@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0904", "title": "A model plus a weighted residual", "op": "drsample", "labels": ["Target", "Behavior", "Reward", "Model"], "outputs": ["Estimate"], "a": [0.8, 0.4, 1.0, 0.5], "b": [0.8, 0.8, 1.0, 0.5], "question": "A single-action toy has Target 0.8, Behavior 0.4, Reward 1, outcome Model 0.5. What model-plus-weighted-residual estimate results?", "questionTemplate": "A single-action toy has Target {Target}, Behavior {Behavior}, Reward {Reward}, outcome Model {Model}. What model-plus-weighted-residual estimate results?", "explain": "This one-action augmentation exposes the residual correction. Double robustness requires the full target action average and identification assumptions.", "lens": "the residual correction in a single-action evaluation ingredient", "kind": "bars", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

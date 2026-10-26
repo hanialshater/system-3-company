@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0979",
+  "title": "A random-matrix limit has a shape",
+  "hook": "Two stated cases: explore the limiting semicircle density at two coordinates.",
+  "domain": "probability",
+  "concept": "cp-source-0979",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the limiting semicircle density at two coordinates affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Density, regardless of the stated inputs.",
+  "objective": "Compare the limiting semicircle density at two coordinates in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0979.predict",
+      "text": "A stipulated semicircle law has scale Sigma 1. What limiting density occurs at X 0?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.reveal.0",
+      "text": "The retained results are X=0; Density=0.318 and X=1.5; Density=0.211.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.reveal.1",
+      "text": "The density describes a large-matrix limit under suitable normalization and assumptions. It is not an exact finite-matrix eigenvalue histogram. This comparison isolates the limiting semicircle density at two coordinates.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.case.0.witness",
+      "text": "X=0; Density=0.318",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",0],[\"Sigma\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":0},{\"x\":-2.75,\"y\":0},{\"x\":-2.5,\"y\":0},{\"x\":-2.25,\"y\":0},{\"x\":-2,\"y\":0},{\"x\":-1.75,\"y\":0.15410111101537496},{\"x\":-1.5,\"y\":0.2105421996738962},{\"x\":-1.25,\"y\":0.24848057526102435},{\"x\":-1,\"y\":0.27566444771089604},{\"x\":-0.75,\"y\":0.29508116204297763},{\"x\":-0.5,\"y\":0.30820222203074993},{\"x\":-0.25,\"y\":0.3158132995108443},{\"x\":0,\"y\":0.3183098861837907},{\"x\":0.25,\"y\":0.3158132995108443},{\"x\":0.5,\"y\":0.30820222203074993},{\"x\":0.75,\"y\":0.29508116204297763},{\"x\":1,\"y\":0.27566444771089604},{\"x\":1.25,\"y\":0.24848057526102435},{\"x\":1.5,\"y\":0.2105421996738962},{\"x\":1.75,\"y\":0.15410111101537496},{\"x\":2,\"y\":0},{\"x\":2.25,\"y\":0},{\"x\":2.5,\"y\":0},{\"x\":2.75,\"y\":0},{\"x\":3,\"y\":0}],\"xLabel\":\"X\",\"yLabel\":\"Density\"},\"metrics\":[{\"label\":\"Density\",\"value\":\"0.318\"},{\"label\":\"X\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.case.1.witness",
+      "text": "X=1.5; Density=0.211",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",1.5],[\"Sigma\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":0},{\"x\":-2.75,\"y\":0},{\"x\":-2.5,\"y\":0},{\"x\":-2.25,\"y\":0},{\"x\":-2,\"y\":0},{\"x\":-1.75,\"y\":0.15410111101537496},{\"x\":-1.5,\"y\":0.2105421996738962},{\"x\":-1.25,\"y\":0.24848057526102435},{\"x\":-1,\"y\":0.27566444771089604},{\"x\":-0.75,\"y\":0.29508116204297763},{\"x\":-0.5,\"y\":0.30820222203074993},{\"x\":-0.25,\"y\":0.3158132995108443},{\"x\":0,\"y\":0.3183098861837907},{\"x\":0.25,\"y\":0.3158132995108443},{\"x\":0.5,\"y\":0.30820222203074993},{\"x\":0.75,\"y\":0.29508116204297763},{\"x\":1,\"y\":0.27566444771089604},{\"x\":1.25,\"y\":0.24848057526102435},{\"x\":1.5,\"y\":0.2105421996738962},{\"x\":1.75,\"y\":0.15410111101537496},{\"x\":2,\"y\":0},{\"x\":2.25,\"y\":0},{\"x\":2.5,\"y\":0},{\"x\":2.75,\"y\":0},{\"x\":3,\"y\":0}],\"xLabel\":\"X\",\"yLabel\":\"Density\"},\"metrics\":[{\"label\":\"Density\",\"value\":\"0.211\"},{\"label\":\"X\",\"value\":\"1.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0979.recall",
+      "text": "A stipulated semicircle law has scale Sigma 1. What limiting density occurs at X 1? Answer 0.276.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0979/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #979. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stipulated semicircle law has scale Sigma 1. What limiting density occurs at X 1?",
+    "options": [
+      "0.165",
+      "0.386",
+      "0.276"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Density 0.276 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0979",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-979"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 979,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **979. Semicircle law** \\[Slider\\]: eigenvalues of a large random symmetric matrix pile up in a semicircle.",
+    "modelBoundary": "the limiting semicircle density at two coordinates",
+    "recallInputs": [
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

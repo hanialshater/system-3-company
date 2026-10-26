@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0949",
+  "title": "A long cycle has a low frequency",
+  "hook": "Two stated cases: explore a stipulated cycle frequency without a sunspot-data fit.",
+  "domain": "probability",
+  "concept": "cp-source-0949",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a stipulated cycle frequency without a sunspot-data fit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Signal, regardless of the stated inputs.",
+  "objective": "Compare a stipulated cycle frequency without a sunspot-data fit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0949.predict",
+      "text": "A toy sine tone has Frequency 0.09, Amplitude 1. What sample value occurs at Time 0.1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.reveal.0",
+      "text": "The retained results are Frequency=0.09; Signal=0.057 and Frequency=0.18; Signal=0.113.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.reveal.1",
+      "text": "A pure sinusoid has a specified frequency and phase. This finite waveform does not record or analyze a microphone. This comparison isolates a stipulated cycle frequency without a sunspot-data fit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.case.0.witness",
+      "text": "Frequency=0.09; Signal=0.057",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",0.09],[\"Time\",0.1],[\"Amplitude\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.02355976483361015},{\"x\":0.08333333333333333,\"y\":0.04710645070964266},{\"x\":0.125,\"y\":0.07062698593116669},{\"x\":0.16666666666666666,\"y\":0.09410831331851431},{\"x\":0.20833333333333334,\"y\":0.11753739745783766},{\"x\":0.25,\"y\":0.14090123193758267},{\"x\":0.2916666666666667,\"y\":0.16418684656886295},{\"x\":0.3333333333333333,\"y\":0.1873813145857246},{\"x\":0.375,\"y\":0.21047175982130567},{\"x\":0.4166666666666667,\"y\":0.23344536385590542},{\"x\":0.4583333333333333,\"y\":0.2562893731329966},{\"x\":0.5,\"y\":0.2789911060392293},{\"x\":0.5416666666666666,\"y\":0.30153795994449567},{\"x\":0.5833333333333334,\"y\":0.3239174181981494},{\"x\":0.625,\"y\":0.34611705707749296},{\"x\":0.6666666666666666,\"y\":0.3681245526846779},{\"x\":0.7083333333333334,\"y\":0.38992768778818826},{\"x\":0.75,\"y\":0.4115143586051088},{\"x\":0.7916666666666666,\"y\":0.43287258152041397},{\"x\":0.8333333333333334,\"y\":0.4539904997395468},{\"x\":0.875,\"y\":0.4748563898705946},{\"x\":0.9166666666666666,\"y\":0.4954586684324075},{\"x\":0.9583333333333334,\"y\":0.5157858982850475},{\"x\":1,\"y\":0.5358267949789967}],\"xLabel\":\"Time\",\"yLabel\":\"Signal\"},\"metrics\":[{\"label\":\"Signal\",\"value\":\"0.057\"},{\"label\":\"Frequency\",\"value\":\"0.09\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.case.1.witness",
+      "text": "Frequency=0.18; Signal=0.113",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",0.18],[\"Time\",0.1],[\"Amplitude\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.04710645070964266},{\"x\":0.08333333333333333,\"y\":0.09410831331851431},{\"x\":0.125,\"y\":0.14090123193758267},{\"x\":0.16666666666666666,\"y\":0.1873813145857246},{\"x\":0.20833333333333334,\"y\":0.23344536385590542},{\"x\":0.25,\"y\":0.2789911060392293},{\"x\":0.2916666666666667,\"y\":0.3239174181981494},{\"x\":0.3333333333333333,\"y\":0.3681245526846779},{\"x\":0.375,\"y\":0.4115143586051088},{\"x\":0.4166666666666667,\"y\":0.4539904997395468},{\"x\":0.4583333333333333,\"y\":0.4954586684324075},{\"x\":0.5,\"y\":0.5358267949789967},{\"x\":0.5416666666666666,\"y\":0.5750052520432786},{\"x\":0.5833333333333334,\"y\":0.6129070536529765},{\"x\":0.625,\"y\":0.6494480483301837},{\"x\":0.6666666666666666,\"y\":0.6845471059286886},{\"x\":0.7083333333333334,\"y\":0.7181262977631888},{\"x\":0.75,\"y\":0.7501110696304596},{\"x\":0.7916666666666666,\"y\":0.7804304073383297},{\"x\":0.8333333333333334,\"y\":0.8090169943749475},{\"x\":0.875,\"y\":0.8358073613682703},{\"x\":0.9166666666666666,\"y\":0.8607420270039435},{\"x\":0.9583333333333334,\"y\":0.8837656300886935},{\"x\":1,\"y\":0.9048270524660196}],\"xLabel\":\"Time\",\"yLabel\":\"Signal\"},\"metrics\":[{\"label\":\"Signal\",\"value\":\"0.113\"},{\"label\":\"Frequency\",\"value\":\"0.18\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0949.recall",
+      "text": "A toy sine tone has Frequency 0.19, Amplitude 1. What sample value occurs at Time 0.1? Answer 0.119.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0949/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #949. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sine tone has Frequency 0.19, Amplitude 1. What sample value occurs at Time 0.1?",
+    "options": [
+      "0.019",
+      "0.219",
+      "0.119"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Signal 0.119 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0949",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-949"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 949,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **949. Sunspots** \\[Story\\]: the spectrum of centuries of sunspot counts shows a strong peak near 11 years.",
+    "modelBoundary": "a stipulated cycle frequency without a sunspot-data fit",
+    "recallInputs": [
+      0.19,
+      0.1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

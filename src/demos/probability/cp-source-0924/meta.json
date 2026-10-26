@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0924",
+  "title": "A threshold is not a final case count",
+  "hook": "Two stated cases: explore the critical immune share rather than epidemic overshoot.",
+  "domain": "probability",
+  "concept": "cp-source-0924",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the critical immune share rather than epidemic overshoot affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Threshold, regardless of the stated inputs.",
+  "objective": "Compare the critical immune share rather than epidemic overshoot in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0924.predict",
+      "text": "In a homogeneous toy transmission model with R0 3 and perfect immunity, what immune share makes effective reproduction at most one?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.reveal.0",
+      "text": "The retained results are R0=3; Threshold=0.667 and R0=5; Threshold=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.reveal.1",
+      "text": "The threshold uses homogeneous mixing and perfect protection. It is not the final epidemic size or a current vaccination recommendation. This comparison isolates the critical immune share rather than epidemic overshoot.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.case.0.witness",
+      "text": "R0=3; Threshold=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"R0\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Threshold\",\"value\":0.6666666666666667}]},\"metrics\":[{\"label\":\"Threshold\",\"value\":\"0.667\"},{\"label\":\"R0\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.case.1.witness",
+      "text": "R0=5; Threshold=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"R0\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Threshold\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Threshold\",\"value\":\"0.8\"},{\"label\":\"R0\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0924.recall",
+      "text": "In a homogeneous toy transmission model with R0 4 and perfect immunity, what immune share makes effective reproduction at most one? Answer 0.75.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0924/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #924. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a homogeneous toy transmission model with R0 4 and perfect immunity, what immune share makes effective reproduction at most one?",
+    "options": [
+      "0.45",
+      "0.75",
+      "1.05"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Threshold 0.75 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0924",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-924"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 924,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **924. Overshoot** \\[Gotcha\\]: an unchecked epidemic infects far more people than the herd-immunity threshold.",
+    "modelBoundary": "the critical immune share rather than epidemic overshoot",
+    "recallInputs": [
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

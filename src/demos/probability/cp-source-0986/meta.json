@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0986",
+  "title": "A barrier makes escape much slower",
+  "hook": "Two stated cases: explore the exponential barrier-to-noise ratio with unit prefactor.",
+  "domain": "probability",
+  "concept": "cp-source-0986",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the exponential barrier-to-noise ratio with unit prefactor affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines TimeScale, regardless of the stated inputs.",
+  "objective": "Compare the exponential barrier-to-noise ratio with unit prefactor in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0986.predict",
+      "text": "A toy escape-time scale is exp(Barrier 2/Noise 1), with prefactor one. What scale results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.reveal.0",
+      "text": "The retained results are Barrier=2; TimeScale=7.389 and Barrier=4; TimeScale=54.598.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.reveal.1",
+      "text": "The stipulated exponential captures strong barrier sensitivity. A physical escape-time approximation also needs a justified prefactor and regime. This comparison isolates the exponential barrier-to-noise ratio with unit prefactor.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.case.0.witness",
+      "text": "Barrier=2; TimeScale=7.389",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Barrier\",2],[\"Noise\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"TimeScale\",\"value\":7.38905609893065}]},\"metrics\":[{\"label\":\"TimeScale\",\"value\":\"7.389\"},{\"label\":\"Barrier\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.case.1.witness",
+      "text": "Barrier=4; TimeScale=54.598",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Barrier\",4],[\"Noise\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"TimeScale\",\"value\":54.598150033144236}]},\"metrics\":[{\"label\":\"TimeScale\",\"value\":\"54.598\"},{\"label\":\"Barrier\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0986.recall",
+      "text": "A toy escape-time scale is exp(Barrier 3/Noise 1), with prefactor one. What scale results? Answer 20.086.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0986/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #986. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy escape-time scale is exp(Barrier 3/Noise 1), with prefactor one. What scale results?",
+    "options": [
+      "20.086",
+      "12.051",
+      "28.12"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives TimeScale 20.086 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0986",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-986"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 986,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **986. Escaping a well** \\[Slider\\]: a noisy particle eventually hops over an energy barrier; escape time grows exponentially with barrier height.",
+    "modelBoundary": "the exponential barrier-to-noise ratio with unit prefactor",
+    "recallInputs": [
+      3,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

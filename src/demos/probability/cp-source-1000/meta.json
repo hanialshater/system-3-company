@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-1000",
+  "title": "Early jackpots inflate count variance",
+  "hook": "Two stated cases for early jackpots inflate count variance.",
+  "domain": "probability",
+  "concept": "cp-source-1000",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the clone-size variance in a compound mutation-count illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the clone-size variance in a compound mutation-count illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-1000.predict",
+      "text": "Independent toy claims arrive at Poisson Rate 1 for Time 1; sizes have Mean 10, Variance 0. What is expected total payout?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.reveal.0",
+      "text": "The retained results are Variance=0; Expected=10 and Variance=1,000; Expected=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.reveal.1",
+      "text": "Both claim-count randomness and size variability enter the total variance. The model assumes independent identically distributed sizes, independent of arrivals. This comparison isolates the clone-size variance in a compound mutation-count illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.case.0.witness",
+      "text": "Variance=0; Expected=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",1],[\"Time\",1],[\"Mean\",10],[\"Variance\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":10},{\"label\":\"SD\",\"value\":10}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"10\"},{\"label\":\"Variance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.case.1.witness",
+      "text": "Variance=1,000; Expected=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",1],[\"Time\",1],[\"Mean\",10],[\"Variance\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":10},{\"label\":\"SD\",\"value\":33.166247903554}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"10\"},{\"label\":\"Variance\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-1000.recall",
+      "text": "Independent toy claims arrive at Poisson Rate 2 for Time 1; sizes have Mean 10, Variance 0. What is expected total payout? Answer 20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-1000/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #1000. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent toy claims arrive at Poisson Rate 2 for Time 1; sizes have Mean 10, Variance 0. What is expected total payout?",
+    "options": [
+      "12",
+      "28",
+      "20"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected 20 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-1000",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-1000"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 1000,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **1000. The jackpot experiment** \\[Story\\]: highly variable mutant counts across bacterial cultures showed mutations arise at random before selection, not in response to it (Luria & Delbrück, 1943).",
+    "modelBoundary": "the clone-size variance in a compound mutation-count illustration",
+    "recallInputs": [
+      2,
+      1,
+      10,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

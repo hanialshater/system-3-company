@@ -94,7 +94,7 @@
     },
     {
       "id": "probability.cp-source-0038.recall",
-      "text": "A toy generator updates x as (A 5 × x + C 3) modulo 97, starting at Seed 8. What is the next state? Answer 43.",
+      "text": "A toy generator updates x as (A 6 × x + C 3) modulo 97, starting at Seed 7. What is the next state? Answer 45.",
       "support": "derivation",
       "source": "src/demos/probability/cp-source-0038/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #38. Empirical source remains unverified.",
       "status": "unverified"
@@ -102,14 +102,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A toy generator updates x as (A 5 × x + C 3) modulo 97, starting at Seed 8. What is the next state?",
+    "question": "A toy generator updates x as (A 6 × x + C 3) modulo 97, starting at Seed 7. What is the next state?",
     "options": [
-      "43",
-      "25.8",
-      "60.2"
+      "45",
+      "27",
+      "63"
     ],
     "answer": 0,
-    "why": "The same explicit rule gives Next 43 for the changed inputs. This is a new numerical case."
+    "why": "The same explicit rule gives Next 45 for the changed inputs. This is a new numerical case."
   },
   "evidence": {
     "qa": [],
@@ -117,7 +117,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:cp-source-0038",
     "also": [],
@@ -142,6 +142,12 @@
     "sourceEntryOriginal": "- **38. Seeds** \\[Slider\\]: set a pseudo-random seed and the \"random\" sequence repeats exactly.",
     "modelBoundary": "a deterministic generator recurrence",
     "sourceVerification": "unverified; not a replication",
-    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      7,
+      6,
+      3,
+      97
+    ]
   }
 }

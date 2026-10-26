@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0911",
+  "title": "Incrementality needs a counterfactual",
+  "hook": "Two stated cases: explore the purchases assumed to occur without recommendations.",
+  "domain": "probability",
+  "concept": "cp-source-0911",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the purchases assumed to occur without recommendations affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Effect, regardless of the stated inputs.",
+  "objective": "Compare the purchases assumed to occur without recommendations in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0911.predict",
+      "text": "In a toy structural model the same unit has outcome 100 without treatment and 110 with treatment. What individual effect is with minus without?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.reveal.0",
+      "text": "The retained results are Without=100; Effect=10 and Without=50; Effect=60.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.reveal.1",
+      "text": "The two potential outcomes are defined in the model, although only one would be observed for a unit in an ordinary trial. This comparison isolates the purchases assumed to occur without recommendations.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.case.0.witness",
+      "text": "Without=100; Effect=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Without\",100],[\"With\",110]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Effect\",\"value\":10}]},\"metrics\":[{\"label\":\"Effect\",\"value\":\"10\"},{\"label\":\"Without\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.case.1.witness",
+      "text": "Without=50; Effect=60",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Without\",50],[\"With\",110]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Effect\",\"value\":60}]},\"metrics\":[{\"label\":\"Effect\",\"value\":\"60\"},{\"label\":\"Without\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0911.recall",
+      "text": "In a toy structural model the same unit has outcome 101 without treatment and 110 with treatment. What individual effect is with minus without? Answer 9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0911/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #911. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy structural model the same unit has outcome 101 without treatment and 110 with treatment. What individual effect is with minus without?",
+    "options": [
+      "9",
+      "5.4",
+      "12.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Effect 9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0911",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-911"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 911,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **911. Would they have bought anyway?** \\[Story\\]: much of the traffic from recommendations would have reached those products anyway (Sharma, Hofman & Watts, 2015).",
+    "modelBoundary": "the purchases assumed to occur without recommendations",
+    "recallInputs": [
+      101,
+      110
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

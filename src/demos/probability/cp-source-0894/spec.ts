@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0894", "title": "Feedback changes a lagged association", "op": "lagged", "labels": ["Direct", "Carry", "PreviousGap"], "outputs": ["ObservedGap"], "a": [1.0, 0.0, 3.0], "b": [1.0, 0.8, 3.0], "question": "A toy current outcome gap combines Direct 1 and carryover coefficient 0 times previous-exposure gap 3. What gap is observed?", "questionTemplate": "A toy current outcome gap combines Direct {Direct} and carryover coefficient {Carry} times previous-exposure gap {PreviousGap}. What gap is observed?", "explain": "A lag can contaminate a current-period contrast. Timing and washout assumptions matter before calling the observed gap a direct effect.", "lens": "the feedback carryover term rather than causal identification by prediction", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

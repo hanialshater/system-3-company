@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0974",
+  "title": "Local tile order changes entropy",
+  "hook": "Two stated cases for local tile order changes entropy.",
+  "domain": "probability",
+  "concept": "cp-source-0974",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a binary orientation uncertainty rather than an Aztec-diamond sampler affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bits, regardless of the stated inputs.",
+  "objective": "Compare a binary orientation uncertainty rather than an Aztec-diamond sampler in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0974.predict",
+      "text": "A binary toy answer is yes with probability 0.5. What is its entropy in bits?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.reveal.0",
+      "text": "The retained results are P=0.5; Bits=1 and P=0.99; Bits=0.081.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.reveal.1",
+      "text": "Balanced binary outcomes maximize the expected information of one answer. A rare answer is individually surprising but contributes little average probability mass. This comparison isolates a binary orientation uncertainty rather than an Aztec-diamond sampler.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.case.0.witness",
+      "text": "P=0.5; Bits=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":1}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"1\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.case.1.witness",
+      "text": "P=0.99; Bits=0.081",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.99]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":0.08079313589591124}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"0.081\"},{\"label\":\"P\",\"value\":\"0.99\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0974.recall",
+      "text": "A binary toy answer is yes with probability 0.4. What is its entropy in bits? Answer 0.971.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0974/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #974. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A binary toy answer is yes with probability 0.4. What is its entropy in bits?",
+    "options": [
+      "0.971",
+      "0.583",
+      "1.359"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Bits 0.971 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0974",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-974"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 974,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **974. Arctic circle** \\[Slider\\]: random domino tilings of an Aztec diamond freeze into order outside a circle and stay chaotic inside.",
+    "modelBoundary": "a binary orientation uncertainty rather than an Aztec-diamond sampler",
+    "recallInputs": [
+      0.4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-1000", "title": "Early jackpots inflate count variance", "op": "compoundpoisson", "labels": ["Rate", "Time", "Mean", "Variance"], "outputs": ["Expected", "SD"], "a": [1.0, 1.0, 10.0, 0.0], "b": [1.0, 1.0, 10.0, 1000.0], "question": "Independent toy claims arrive at Poisson Rate 1 for Time 1; sizes have Mean 10, Variance 0. What is expected total payout?", "questionTemplate": "Independent toy claims arrive at Poisson Rate {Rate} for Time {Time}; sizes have Mean {Mean}, Variance {Variance}. What is expected total payout?", "explain": "Both claim-count randomness and size variability enter the total variance. The model assumes independent identically distributed sizes, independent of arrivals.", "lens": "the clone-size variance in a compound mutation-count illustration", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

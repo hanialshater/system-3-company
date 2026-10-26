@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0904",
+  "title": "A model plus a weighted residual",
+  "hook": "Two stated cases for a model plus a weighted residual.",
+  "domain": "probability",
+  "concept": "cp-source-0904",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the residual correction in a single-action evaluation ingredient affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the residual correction in a single-action evaluation ingredient in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0904.predict",
+      "text": "A single-action toy has Target 0.8, Behavior 0.4, Reward 1, outcome Model 0.5. What model-plus-weighted-residual estimate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.reveal.0",
+      "text": "The retained results are Behavior=0.4; Estimate=1.5 and Behavior=0.8; Estimate=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.reveal.1",
+      "text": "This one-action augmentation exposes the residual correction. Double robustness requires the full target action average and identification assumptions. This comparison isolates the residual correction in a single-action evaluation ingredient.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.case.0.witness",
+      "text": "Behavior=0.4; Estimate=1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",0.8],[\"Behavior\",0.4],[\"Reward\",1],[\"Model\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":1.5}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"1.5\"},{\"label\":\"Behavior\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.case.1.witness",
+      "text": "Behavior=0.8; Estimate=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",0.8],[\"Behavior\",0.8],[\"Reward\",1],[\"Model\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":1}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"1\"},{\"label\":\"Behavior\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0904.recall",
+      "text": "A single-action toy has Target 0.9, Behavior 0.4, Reward 1, outcome Model 0.5. What model-plus-weighted-residual estimate results? Answer 1.625.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0904/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #904. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A single-action toy has Target 0.9, Behavior 0.4, Reward 1, outcome Model 0.5. What model-plus-weighted-residual estimate results?",
+    "options": [
+      "0.975",
+      "2.275",
+      "1.625"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Estimate 1.625 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0904",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-904"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 904,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **904. Doubly robust OPE** \\[Slider\\]: combine a reward model with importance weights; either being right is enough.",
+    "modelBoundary": "the residual correction in a single-action evaluation ingredient",
+    "recallInputs": [
+      0.9,
+      0.4,
+      1,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

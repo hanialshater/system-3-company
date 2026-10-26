@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0981",
+  "title": "Volatility subtracts from log growth",
+  "hook": "Two stated cases: explore the quadratic-variation correction in a geometric diffusion.",
+  "domain": "probability",
+  "concept": "cp-source-0981",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the quadratic-variation correction in a geometric diffusion affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines LogDrift, regardless of the stated inputs.",
+  "objective": "Compare the quadratic-variation correction in a geometric diffusion in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0981.predict",
+      "text": "A toy geometric Brownian model has arithmetic Drift 0.1 and volatility Sigma 0.1. What drift does its log have?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.reveal.0",
+      "text": "The retained results are Sigma=0.1; LogDrift=0.095 and Sigma=0.5; LogDrift=-0.025.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.reveal.1",
+      "text": "The quadratic-variation correction subtracts half the squared volatility. This is an assumed diffusion model rather than a return forecast. This comparison isolates the quadratic-variation correction in a geometric diffusion.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.case.0.witness",
+      "text": "Sigma=0.1; LogDrift=0.095",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Drift\",0.1],[\"Sigma\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"LogDrift\",\"value\":0.095}]},\"metrics\":[{\"label\":\"LogDrift\",\"value\":\"0.095\"},{\"label\":\"Sigma\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.case.1.witness",
+      "text": "Sigma=0.5; LogDrift=-0.025",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Drift\",0.1],[\"Sigma\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"LogDrift\",\"value\":-0.024999999999999994}]},\"metrics\":[{\"label\":\"LogDrift\",\"value\":\"-0.025\"},{\"label\":\"Sigma\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0981.recall",
+      "text": "A toy geometric Brownian model has arithmetic Drift 0.2 and volatility Sigma 0.1. What drift does its log have? Answer 0.195.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0981/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #981. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy geometric Brownian model has arithmetic Drift 0.2 and volatility Sigma 0.1. What drift does its log have?",
+    "options": [
+      "0.095",
+      "0.195",
+      "0.295"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives LogDrift 0.195 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0981",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-981"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 981,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **981. Itô's correction** \\[Slider\\]: the average growth of a volatile asset falls below its expected return by half the variance.",
+    "modelBoundary": "the quadratic-variation correction in a geometric diffusion",
+    "recallInputs": [
+      0.2,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

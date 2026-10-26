@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0957",
+  "title": "Products of transforms approach a bell",
+  "hook": "Two stated cases: explore the standardized independent coin-sum characteristic function.",
+  "domain": "probability",
+  "concept": "cp-source-0957",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the standardized independent coin-sum characteristic function affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Characteristic, regardless of the stated inputs.",
+  "objective": "Compare the standardized independent coin-sum characteristic function in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0957.predict",
+      "text": "Sum N 2 independent symmetric ±1 variables and divide by sqrt(N). At Frequency 1, what real characteristic function results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.reveal.0",
+      "text": "The retained results are N=2; Characteristic=0.578 and N=100; Characteristic=0.606.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.reveal.1",
+      "text": "Independence multiplies characteristic functions. The standardized coin-sum expression approaches exp(-t²/2) at each fixed t. This comparison isolates the standardized independent coin-sum characteristic function.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.case.0.witness",
+      "text": "N=2; Characteristic=0.578",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",2],[\"Frequency\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":0.2736690713538237},{\"x\":-2.75,\"y\":0.13330284038330803},{\"x\":-2.5,\"y\":0.038298269129781855},{\"x\":-2.25,\"y\":0.00040773941497988786},{\"x\":-2,\"y\":0.02431843593707632},{\"x\":-1.75,\"y\":0.10707252591556822},{\"x\":-1.5,\"y\":0.23843305285557218},{\"x\":-1.25,\"y\":0.40215028215449233},{\"x\":-1,\"y\":0.5779718473826873},{\"x\":-0.75,\"y\":0.7441480354495874},{\"x\":-0.5,\"y\":0.8801222985378151},{\"x\":-0.25,\"y\":0.9690741675198644},{\"x\":0,\"y\":1},{\"x\":0.25,\"y\":0.9690741675198644},{\"x\":0.5,\"y\":0.8801222985378151},{\"x\":0.75,\"y\":0.7441480354495874},{\"x\":1,\"y\":0.5779718473826873},{\"x\":1.25,\"y\":0.40215028215449233},{\"x\":1.5,\"y\":0.23843305285557218},{\"x\":1.75,\"y\":0.10707252591556822},{\"x\":2,\"y\":0.02431843593707632},{\"x\":2.25,\"y\":0.00040773941497988786},{\"x\":2.5,\"y\":0.038298269129781855},{\"x\":2.75,\"y\":0.13330284038330803},{\"x\":3,\"y\":0.2736690713538237}],\"xLabel\":\"Frequency\",\"yLabel\":\"Characteristic\"},\"metrics\":[{\"label\":\"Characteristic\",\"value\":\"0.578\"},{\"label\":\"N\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.case.1.witness",
+      "text": "N=100; Characteristic=0.606",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Frequency\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":0.010366606082584613},{\"x\":-2.75,\"y\":0.02171193305921235},{\"x\":-2.5,\"y\":0.042506208781427086},{\"x\":-2.25,\"y\":0.07785553755653095},{\"x\":-2,\"y\":0.1335235642822216},{\"x\":-1.75,\"y\":0.2145676548247556},{\"x\":-1.5,\"y\":0.32327748539173184},{\"x\":-1.25,\"y\":0.4568989526426138},{\"x\":-1,\"y\":0.6060240772154051},{\"x\":-0.75,\"y\":0.7546402992760458},{\"x\":-0.5,\"y\":0.8824509097372678},{\"x\":-0.25,\"y\":0.9692300788994405},{\"x\":0,\"y\":1},{\"x\":0.25,\"y\":0.9692300788994405},{\"x\":0.5,\"y\":0.8824509097372678},{\"x\":0.75,\"y\":0.7546402992760458},{\"x\":1,\"y\":0.6060240772154051},{\"x\":1.25,\"y\":0.4568989526426138},{\"x\":1.5,\"y\":0.32327748539173184},{\"x\":1.75,\"y\":0.2145676548247556},{\"x\":2,\"y\":0.1335235642822216},{\"x\":2.25,\"y\":0.07785553755653095},{\"x\":2.5,\"y\":0.042506208781427086},{\"x\":2.75,\"y\":0.02171193305921235},{\"x\":3,\"y\":0.010366606082584613}],\"xLabel\":\"Frequency\",\"yLabel\":\"Characteristic\"},\"metrics\":[{\"label\":\"Characteristic\",\"value\":\"0.606\"},{\"label\":\"N\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0957.recall",
+      "text": "Sum N 3 independent symmetric ±1 variables and divide by sqrt(N). At Frequency 1, what real characteristic function results? Answer 0.588.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0957/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #957. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Sum N 3 independent symmetric ±1 variables and divide by sqrt(N). At Frequency 1, what real characteristic function results?",
+    "options": [
+      "0.353",
+      "0.588",
+      "0.824"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Characteristic 0.588 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0957",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-957"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 957,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **957. Why sums become bells** \\[Slider\\]: adding random variables multiplies their Fourier transforms, which squeezes them toward a Gaussian.",
+    "modelBoundary": "the standardized independent coin-sum characteristic function",
+    "recallInputs": [
+      3,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

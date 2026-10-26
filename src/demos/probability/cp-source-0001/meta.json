@@ -94,7 +94,7 @@
     },
     {
       "id": "probability.cp-source-0001.recall",
-      "text": "A toy prize is uniform over 4 doors. A knowledgeable host always reveals all but one unchosen goat door. What is the win probability if you switch? Answer 0.75.",
+      "text": "A toy prize is uniform over 5 doors. A knowledgeable host always reveals all but one unchosen goat door. What is the win probability if you switch? Answer 0.8.",
       "support": "derivation",
       "source": "src/demos/probability/cp-source-0001/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #1. Empirical source remains unverified.",
       "status": "unverified"
@@ -102,14 +102,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A toy prize is uniform over 4 doors. A knowledgeable host always reveals all but one unchosen goat door. What is the win probability if you switch?",
+    "question": "A toy prize is uniform over 5 doors. A knowledgeable host always reveals all but one unchosen goat door. What is the win probability if you switch?",
     "options": [
-      "0.45",
-      "1.05",
-      "0.75"
+      "0.48",
+      "1.12",
+      "0.8"
     ],
     "answer": 2,
-    "why": "The same explicit rule gives Switch 0.75 for the changed inputs. This is a new numerical case."
+    "why": "The same explicit rule gives Switch 0.8 for the changed inputs. This is a new numerical case."
   },
   "evidence": {
     "qa": [],
@@ -117,7 +117,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:cp-source-0001",
     "also": [],
@@ -142,6 +142,9 @@
     "sourceEntryOriginal": "- **1. Monty Hall** \\[Predict\\]: pick a door, the host opens a goat, stay or switch? Auto-play 1,000 rounds; switching wins about 2/3.",
     "modelBoundary": "the knowledgeable host protocol",
     "sourceVerification": "unverified; not a replication",
-    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      5
+    ]
   }
 }

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0951",
+  "title": "Removing detail attenuates coefficients",
+  "hook": "Two stated cases for removing detail attenuates coefficients.",
+  "domain": "probability",
+  "concept": "cp-source-0951",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a frequency attenuation ingredient rather than a JPEG implementation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gain, regardless of the stated inputs.",
+  "objective": "Compare a frequency attenuation ingredient rather than a JPEG implementation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0951.predict",
+      "text": "A normalized Gaussian blur has spatial Width 0.1. At Frequency 3, what Fourier amplitude gain results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.reveal.0",
+      "text": "The retained results are Width=0.1; Gain=0.169 and Width=0.3; Gain=1.14e-7.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.reveal.1",
+      "text": "Convolution by a Gaussian attenuates high frequencies more strongly. This is its continuous transfer function rather than a compressed image codec. This comparison isolates a frequency attenuation ingredient rather than a JPEG implementation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.case.0.witness",
+      "text": "Width=0.1; Gain=0.169",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",3],[\"Width\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.20833333333333334,\"y\":0.9914692303564672},{\"x\":0.4166666666666667,\"y\":0.9663110876322262},{\"x\":0.625,\"y\":0.925791451203618},{\"x\":0.8333333333333334,\"y\":0.8719023555668897},{\"x\":1.0416666666666667,\"y\":0.8071997470681238},{\"x\":1.25,\"y\":0.7346029443286333},{\"x\":1.4583333333333333,\"y\":0.657177662924124},{\"x\":1.6666666666666667,\"y\":0.5779248964927292},{\"x\":1.875,\"y\":0.4995954742835464},{\"x\":2.0833333333333335,\"y\":0.4245453305643795},{\"x\":2.2916666666666665,\"y\":0.3546403304656561},{\"x\":2.5,\"y\":0.2912129332140208},{\"x\":2.7083333333333335,\"y\":0.23506700603332406},{\"x\":2.9166666666666665,\"y\":0.18652247708929984},{\"x\":3.125,\"y\":0.1454886634865615},{\"x\":3.3333333333333335,\"y\":0.11155412024665466},{\"x\":3.5416666666666665,\"y\":0.08408152078633657},{\"x\":3.75,\"y\":0.062297982470988854},{\"x\":3.9583333333333335,\"y\":0.04537387680683254},{\"x\":4.166666666666667,\"y\":0.03248600256913788},{\"x\":4.375,\"y\":0.022863627845760348},{\"x\":4.583333333333333,\"y\":0.01581803353480203},{\"x\":4.791666666666667,\"y\":0.010757672599957784},{\"x\":5,\"y\":0.007191883355826361}],\"xLabel\":\"Frequency\",\"yLabel\":\"Gain\"},\"metrics\":[{\"label\":\"Gain\",\"value\":\"0.169\"},{\"label\":\"Width\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.case.1.witness",
+      "text": "Width=0.3; Gain=1.14e-7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",3],[\"Width\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.20833333333333334,\"y\":0.925791451203618},{\"x\":0.4166666666666667,\"y\":0.7346029443286334},{\"x\":0.625,\"y\":0.49959547428354645},{\"x\":0.8333333333333334,\"y\":0.29121293321402086},{\"x\":1.0416666666666667,\"y\":0.1454886634865615},{\"x\":1.25,\"y\":0.06229798247098888},{\"x\":1.4583333333333333,\"y\":0.02286362784576037},{\"x\":1.6666666666666667,\"y\":0.007191883355826368},{\"x\":1.875,\"y\":0.0019389493300494996},{\"x\":2.0833333333333335,\"y\":0.00044803982323466773},{\"x\":2.2916666666666665,\"y\":0.00008873462266168924},{\"x\":2.5,\"y\":0.000015062460769587162},{\"x\":2.7083333333333335,\"y\":0.000002191417286186002},{\"x\":2.9166666666666665,\"y\":2.73262835051134e-7},{\"x\":3.125,\"y\":2.92053482180879e-8},{\"x\":3.3333333333333335,\"y\":2.675287991074243e-9},{\"x\":3.5416666666666665,\"y\":2.1004145775078e-10},{\"x\":3.75,\"y\":1.4134024499931485e-11},{\"x\":3.9583333333333335,\"y\":8.151790093225533e-13},{\"x\":4.166666666666667,\"y\":4.029642041290343e-14},{\"x\":4.375,\"y\":1.7072860112733382e-15},{\"x\":4.583333333333333,\"y\":6.199725018915464e-17},{\"x\":4.791666666666667,\"y\":1.929589401633531e-18},{\"x\":5,\"y\":5.1473501844963655e-20}],\"xLabel\":\"Frequency\",\"yLabel\":\"Gain\"},\"metrics\":[{\"label\":\"Gain\",\"value\":\"1.14e-7\"},{\"label\":\"Width\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0951.recall",
+      "text": "A normalized Gaussian blur has spatial Width 0.1. At Frequency 4, what Fourier amplitude gain results? Answer 0.042.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0951/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #951. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A normalized Gaussian blur has spatial Width 0.1. At Frequency 4, what Fourier amplitude gain results?",
+    "options": [
+      "-0.058",
+      "0.042",
+      "0.142"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gain 0.042 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0951",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-951"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 951,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **951. JPEG** \\[Slider\\]: discard high-frequency DCT coefficients and watch file size drop and blocks appear.",
+    "modelBoundary": "a frequency attenuation ingredient rather than a JPEG implementation",
+    "recallInputs": [
+      4,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

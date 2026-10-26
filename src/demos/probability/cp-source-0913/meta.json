@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0913",
+  "title": "A slate probability combines choices",
+  "hook": "Two stated cases: explore the conditional product in a two-position slate ingredient.",
+  "domain": "probability",
+  "concept": "cp-source-0913",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the conditional product in a two-position slate ingredient affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Joint, regardless of the stated inputs.",
+  "objective": "Compare the conditional product in a two-position slate ingredient in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0913.predict",
+      "text": "A toy event has probability 0.8; conditional on it, an additional property occurs with probability 0.5. What is the joint probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.reveal.0",
+      "text": "The retained results are First=0.8; Joint=0.4 and First=0.4; Joint=0.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.reveal.1",
+      "text": "The conjunction occupies only part of the original event. Adding a condition cannot make the same event more probable. This comparison isolates the conditional product in a two-position slate ingredient.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.case.0.witness",
+      "text": "First=0.8; Joint=0.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.8],[\"Conditional\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":0.4}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"0.4\"},{\"label\":\"First\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.case.1.witness",
+      "text": "First=0.4; Joint=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.4],[\"Conditional\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"0.2\"},{\"label\":\"First\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0913.recall",
+      "text": "A toy event has probability 0.64; conditional on it, an additional property occurs with probability 0.5. What is the joint probability? Answer 0.32.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0913/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #913. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy event has probability 0.64; conditional on it, an additional property occurs with probability 0.5. What is the joint probability?",
+    "options": [
+      "0.192",
+      "0.448",
+      "0.32"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Joint 0.32 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0913",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-913"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 913,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **913. Whole-slate evaluation** \\[Slider\\]: estimate a page of recommendations' value without enumerating every combination.",
+    "modelBoundary": "the conditional product in a two-position slate ingredient",
+    "recallInputs": [
+      0.6400000000000001,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

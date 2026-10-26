@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0999",
+  "title": "A proposed fold has an energy ratio",
+  "hook": "Two stated cases: explore the Metropolis acceptance ingredient for a quadratic toy energy.",
+  "domain": "probability",
+  "concept": "cp-source-0999",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Metropolis acceptance ingredient for a quadratic toy energy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Acceptance, regardless of the stated inputs.",
+  "objective": "Compare the Metropolis acceptance ingredient for a quadratic toy energy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0999.predict",
+      "text": "A symmetric toy Metropolis proposal moves from 2 to 1 under a standard-normal target. What is acceptance probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.reveal.0",
+      "text": "The retained results are Current=2 Proposed=1; Acceptance=1 and Current=1 Proposed=2; Acceptance=0.223.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.reveal.1",
+      "text": "Acceptance compares target densities because proposal terms cancel here. High acceptance alone does not establish rapid exploration. This comparison isolates the Metropolis acceptance ingredient for a quadratic toy energy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.case.0.witness",
+      "text": "Current=2 Proposed=1; Acceptance=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Current\",2],[\"Proposed\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":1}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"1\"},{\"label\":\"Current\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.case.1.witness",
+      "text": "Current=1 Proposed=2; Acceptance=0.223",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Current\",1],[\"Proposed\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.22313016014842982}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"0.223\"},{\"label\":\"Current\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0999.recall",
+      "text": "A symmetric toy Metropolis proposal moves from 2 to 3 under a standard-normal target. What is acceptance probability? Answer 0.082.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0999/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #999. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A symmetric toy Metropolis proposal moves from 2 to 3 under a standard-normal target. What is acceptance probability?",
+    "options": [
+      "-0.018",
+      "0.082",
+      "0.182"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Acceptance 0.082 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0999",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-999"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 999,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **999. Folding landscape** \\[Slider\\]: a protein chain explores an energy landscape with Monte Carlo moves, finding its folded shape.",
+    "modelBoundary": "the Metropolis acceptance ingredient for a quadratic toy energy",
+    "recallInputs": [
+      2,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

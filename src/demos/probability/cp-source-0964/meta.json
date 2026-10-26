@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0964",
+  "title": "A shorter ruler measures more length",
+  "hook": "Two stated cases: explore the idealized fractal measurement scale.",
+  "domain": "probability",
+  "concept": "cp-source-0964",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the idealized fractal measurement scale affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Length, regardless of the stated inputs.",
+  "objective": "Compare the idealized fractal measurement scale in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0964.predict",
+      "text": "A stipulated fractal measurement rule gives Length=Base 10×Ruler 1^(1-Dimension 1.3). What measured length results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.reveal.0",
+      "text": "The retained results are Ruler=1; Length=10 and Ruler=0.1; Length=19.953.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.reveal.1",
+      "text": "A finer ruler raises measured length when dimension exceeds one. Real coastlines have finite scales where this idealization stops. This comparison isolates the idealized fractal measurement scale.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.case.0.witness",
+      "text": "Ruler=1; Length=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ruler\",1],[\"Dimension\",1.3],[\"Base\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.01,\"y\":39.810717055349734},{\"x\":0.051250000000000004,\"y\":24.383263901527403},{\"x\":0.0925,\"y\":20.42478436597992},{\"x\":0.13374999999999998,\"y\":18.285711471388527},{\"x\":0.17500000000000002,\"y\":16.868970758178254},{\"x\":0.21625000000000003,\"y\":15.831175564443454},{\"x\":0.25749999999999995,\"y\":15.023351550985456},{\"x\":0.29875,\"y\":14.368374063610057},{\"x\":0.34,\"y\":13.821536497180482},{\"x\":0.38125000000000003,\"y\":13.35478941668521},{\"x\":0.42250000000000004,\"y\":12.949469766681839},{\"x\":0.46375000000000005,\"y\":12.592583033638709},{\"x\":0.5049999999999999,\"y\":12.274748048703703},{\"x\":0.54625,\"y\":11.988989090497284},{\"x\":0.5875,\"y\":11.72998991475923},{\"x\":0.62875,\"y\":11.493613810144868},{\"x\":0.67,\"y\":11.276583996019937},{\"x\":0.7112499999999999,\"y\":11.076264450939703},{\"x\":0.7525000000000001,\"y\":10.890505751586385},{\"x\":0.79375,\"y\":10.717534211778844},{\"x\":0.8350000000000001,\"y\":10.555870590486116},{\"x\":0.87625,\"y\":10.404269442094801},{\"x\":0.9175000000000001,\"y\":10.261673162457702},{\"x\":0.95875,\"y\":10.127176682592067},{\"x\":0.9999999999999999,\"y\":10}],\"xLabel\":\"Ruler\",\"yLabel\":\"Length\"},\"metrics\":[{\"label\":\"Length\",\"value\":\"10\"},{\"label\":\"Ruler\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.case.1.witness",
+      "text": "Ruler=0.1; Length=19.953",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ruler\",0.1],[\"Dimension\",1.3],[\"Base\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.01,\"y\":39.810717055349734},{\"x\":0.051250000000000004,\"y\":24.383263901527403},{\"x\":0.0925,\"y\":20.42478436597992},{\"x\":0.13374999999999998,\"y\":18.285711471388527},{\"x\":0.17500000000000002,\"y\":16.868970758178254},{\"x\":0.21625000000000003,\"y\":15.831175564443454},{\"x\":0.25749999999999995,\"y\":15.023351550985456},{\"x\":0.29875,\"y\":14.368374063610057},{\"x\":0.34,\"y\":13.821536497180482},{\"x\":0.38125000000000003,\"y\":13.35478941668521},{\"x\":0.42250000000000004,\"y\":12.949469766681839},{\"x\":0.46375000000000005,\"y\":12.592583033638709},{\"x\":0.5049999999999999,\"y\":12.274748048703703},{\"x\":0.54625,\"y\":11.988989090497284},{\"x\":0.5875,\"y\":11.72998991475923},{\"x\":0.62875,\"y\":11.493613810144868},{\"x\":0.67,\"y\":11.276583996019937},{\"x\":0.7112499999999999,\"y\":11.076264450939703},{\"x\":0.7525000000000001,\"y\":10.890505751586385},{\"x\":0.79375,\"y\":10.717534211778844},{\"x\":0.8350000000000001,\"y\":10.555870590486116},{\"x\":0.87625,\"y\":10.404269442094801},{\"x\":0.9175000000000001,\"y\":10.261673162457702},{\"x\":0.95875,\"y\":10.127176682592067},{\"x\":0.9999999999999999,\"y\":10}],\"xLabel\":\"Ruler\",\"yLabel\":\"Length\"},\"metrics\":[{\"label\":\"Length\",\"value\":\"19.953\"},{\"label\":\"Ruler\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0964.recall",
+      "text": "A stipulated fractal measurement rule gives Length=Base 10×Ruler 2^(1-Dimension 1.3). What measured length results? Answer 8.123.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0964/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #964. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stipulated fractal measurement rule gives Length=Base 10×Ruler 2^(1-Dimension 1.3). What measured length results?",
+    "options": [
+      "4.874",
+      "11.372",
+      "8.123"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Length 8.123 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0964",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-964"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 964,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **964. How long is a coastline?** \\[Gotcha\\]: measure with a shorter ruler and the coastline gets longer, without limit.",
+    "modelBoundary": "the idealized fractal measurement scale",
+    "recallInputs": [
+      2,
+      1.3,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

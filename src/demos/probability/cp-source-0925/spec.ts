@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0925", "title": "Offspring variance changes total spread", "op": "compoundpoisson", "labels": ["Rate", "Time", "Mean", "Variance"], "outputs": ["Expected", "SD"], "a": [2.0, 1.0, 1.0, 1.0], "b": [2.0, 1.0, 1.0, 20.0], "question": "Independent toy claims arrive at Poisson Rate 2 for Time 1; sizes have Mean 1, Variance 1. What is expected total payout?", "questionTemplate": "Independent toy claims arrive at Poisson Rate {Rate} for Time {Time}; sizes have Mean {Mean}, Variance {Variance}. What is expected total payout?", "explain": "Both claim-count randomness and size variability enter the total variance. The model assumes independent identically distributed sizes, independent of arrivals.", "lens": "the offspring-size variance in a compound transmission count", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

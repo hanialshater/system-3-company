@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0929", "title": "Tracing back oversamples prolific cases", "op": "sizebias", "labels": ["ValueA", "CountA", "ValueB", "CountB"], "outputs": ["Weighted", "Ordinary"], "a": [1.0, 90.0, 10.0, 10.0], "b": [1.0, 90.0, 30.0, 10.0], "question": "A toy population has 90 units of size 1 and 10 of size 10. Sampling units proportional to size, what mean size is seen?", "questionTemplate": "A toy population has {CountA} units of size {ValueA} and {CountB} of size {ValueB}. Sampling units proportional to size, what mean size is seen?", "explain": "Size-weighted sampling overrepresents large units. Compare it with the ordinary mean over units before interpreting an apparent paradox.", "lens": "the size bias from following a random transmission link", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0915", "title": "Known preferences benchmark a policy", "op": "contextpolicy", "labels": ["Share", "AA", "AB", "BA", "BB"], "outputs": ["Gain", "Personalized", "Global"], "a": [0.5, 0.9, 0.1, 0.1, 0.9], "b": [0.5, 0.9, 0.1, 0.8, 0.2], "question": "Type A share 0.5 has rewards AA/AB=0.9/0.1; type B has BA/BB=0.1/0.9. What is the gain from best-by-type over best-global choice?", "questionTemplate": "Type A share {Share} has rewards AA/AB={AA}/{AB}; type B has BA/BB={BA}/{BB}. What is the gain from best-by-type over best-global choice?", "explain": "Known heterogeneous rewards can favor a personalized policy. Learning these rewards and evaluating a policy require additional data.", "lens": "the reward heterogeneity of two synthetic user types", "kind": "bars", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

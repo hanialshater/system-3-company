@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0995",
+  "title": "A rate returns toward its center",
+  "hook": "Two stated cases: explore the conditional mean of a stipulated Vasicek-type rate.",
+  "domain": "probability",
+  "concept": "cp-source-0995",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the conditional mean of a stipulated Vasicek-type rate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the conditional mean of a stipulated Vasicek-type rate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0995.predict",
+      "text": "A toy Ornstein-Uhlenbeck process has long-run Mean 0.03, Start 0.1, reversion K 1, diffusion Sigma 0.02. What is expected level at Time 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.reveal.0",
+      "text": "The retained results are Time=1; Expected=0.056 and Time=5; Expected=0.03.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.reveal.1",
+      "text": "The conditional mean returns toward the center while stochastic variance grows toward its stationary level. A mean curve is not a realized sample path. This comparison isolates the conditional mean of a stipulated Vasicek-type rate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.case.0.witness",
+      "text": "Time=1; Expected=0.056",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0.03],[\"Start\",0.1],[\"K\",1],[\"Sigma\",0.02],[\"Time\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":0.055751560882000964},{\"label\":\"Variance\",\"value\":0.00017293294335267746}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"0.056\"},{\"label\":\"Time\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.case.1.witness",
+      "text": "Time=5; Expected=0.03",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0.03],[\"Start\",0.1],[\"K\",1],[\"Sigma\",0.02],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":0.03047165628993598},{\"label\":\"Variance\",\"value\":0.00019999092001404752}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"0.03\"},{\"label\":\"Time\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0995.recall",
+      "text": "A toy Ornstein-Uhlenbeck process has long-run Mean 0.13, Start 0.1, reversion K 1, diffusion Sigma 0.02. What is expected level at Time 1? Answer 0.119.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0995/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #995. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Ornstein-Uhlenbeck process has long-run Mean 0.13, Start 0.1, reversion K 1, diffusion Sigma 0.02. What is expected level at Time 1?",
+    "options": [
+      "0.119",
+      "0.019",
+      "0.219"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Expected 0.119 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0995",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-995"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 995,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **995. Interest-rate paths** \\[Slider\\]: a mean-reverting Vasicek model fans out possible future rates.",
+    "modelBoundary": "the conditional mean of a stipulated Vasicek-type rate",
+    "recallInputs": [
+      0.13,
+      0.1,
+      1,
+      0.02,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
