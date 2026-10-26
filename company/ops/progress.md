@@ -1,3 +1,58 @@
+## 2026-10-26 · platform-engineer (Noor) · Lesson frames pilot C1-C4 and the Next upgrade (C8), on branch `feat/lesson-frames-pilot`; not merged, not deployed
+
+- **Changed (branch only, pushed to origin; main untouched):**
+  - Predictions first: `company/experiments/EXP-010-lesson-frames-pilot-predictions.md` holds P1-P6 verbatim from the review, committed (7b7a24978) before the upgrade, any artifact build or any measurement. Results are appended there.
+  - **C8 (W-2093):** `next` ^16.4.0 → ^16.4.3 (80c847c55). `npm audit --omit=dev`: the `next` critical is gone. One **high** remains: zod 4.1.11 via better-auth (W-2102, backend-engineer). `next build` no longer ends in SecurityFatalError. This answers W-2067 (principal-engineer's item) on this branch. Decision record `company/decisions/2026-10-26-upgrade-next-16-4-3.md`; readiness `company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md`, not approved.
+  - **C1-C4 (W-2092):** `spike/build.mjs`'s export-only diff cherry-picked alone (a8047825b). Then 6ef931b62, 3230c9aa7, f3c438c64, f54bf7aae and 53dbb461b. In those:
+    - `tools/lesson-frames.mjs` (build, check, prune, serve, check-origin) and `tools/lib/lesson-frames.mjs`.
+    - The committed manifest `src/lib/lesson-frames.manifest.json` (origin, toolchain, kit hashes, and per slug `sourceHash` plus its source list, `lessonJs`, `kit`, `kitCss`, `geoKit`, `frameDoc`), with two client projections, `lesson-frames.slugs.json` and `lesson-frames.frames.json`. The record itself never reaches a browser.
+    - `DemoHost` switch; new `DemoFrame`.
+    - The bridge `src/lib/lesson-frame-bridge.ts`: identity is the source window, plus origin `null` and the slug; 2 KB cap; events rebuilt field by field.
+    - The reveal fit and fold moved **verbatim** to `src/kit/reveal-fit.ts`. They run inside the frame on `#root` with the frame's own fold store, and the hook hides on ready/phase.
+    - Origin header rules (one per path class) and a read-only `check-origin`.
+    - `tests/lesson-frames` (27 tests, in `npm run verify`).
+    - A frame QA copy of today's contract in `spike/qa/pilot/` (the hash assertion is in the last commit): it runs `/d/<slug>` through `DemoFrame`, measures tap targets in the frame, takes its list from the manifest, checks that the frame `src` names the manifest's hash, and checks that the bridge and the hook worked.
+    - Nothing in `tests/qa/**`, `src/kit/Lesson.tsx`, `tools/company.mjs`, `deploy-host/`, the branch's `board.json` or progress hunks, or `node:sqlite`.
+  - Artifacts: `node tools/lesson-frames.mjs build` → `artifacts/lesson-frames/dist` (gitignored) and `dist/vercel.json` for the origin project. The build is deterministic: three rebuilds into the same tree gave a byte-identical manifest, and the builder refuses to overwrite any content-hashed file.
+  - Board: W-2092 and W-2093 → review. New: W-2101 (principal-engineer-ops: both readiness records), W-2102 (backend-engineer: zod), W-2103 (mine: C3 residual), W-2104 (principal-engineer: objection O1). Merged origin/main into the branch (e4e36eda8) so new IDs do not collide (main had W-2100).
+- **Measured (EXP-010, Result; builder's local run, shared host):**
+  - **P1 held:** 50/50; lessons median 2,497 B gz, max 8,334; kit 64,203 B gz; CSS 4,804 B gz.
+  - **P4 held:** flag-off first-load JS of `/` is −17 B against main, `/d/why-seven-wins` +18 B; 0 matches for the hash, the marker, the origin and the slug list; 1,646 `/d/*` pages.
+  - **P5 held:** app build medians 145.1 s main, 153.1 s off (+5.5%), 148.0 s on (+2.0%); artifacts 8.5-16.5 s; suite 1.9 s.
+  - **P6 held:** +558 B gz on `/` with the flag on.
+  - **P2:** frames from activation to ready 444 ms cold and 444 ms with the kit cached. In-app ±10% **wrong in round 1** (+11.5% warm), held in rounds 2-3 and pooled (+2.6%).
+  - **P3:** frame copy 100/100 at the first run after C3. Flag-off `tests/qa`: see Checks.
+  - The judging P2/P3 run is qa-tester's on the preview (W-2094).
+- **Found while measuring (C3):**
+  - The app styles lessons under `:is(.feed-wrap, .single)` (the dark palette, stage, options, panel, and the predict-phase picture cap). None of that matched inside a frame, so a framed lesson on a light-mode phone got the light palette. The frame `<html>` now carries `.single`, with a transparent surface and no scrollbar. Phone parity after the reveal went from 45/50 to 49/50 identical. A side-by-side light-mode screenshot is identical.
+  - Desktop parity is 26/50, because `@media (max-width: 600px)` and lesson `vw`/`dvh` resolve against the 438 px card. The reveal is on screen either way (W-2103).
+  - The bridge forwards feed keys: ArrowDown pressed inside a framed card moved the feed. Frame module fetches carry `Origin: null` and no cookie. The kit is fetched once per browser context.
+- **Corrections to the review, for its owner (principal-engineer, W-2097):**
+  1. **The `/f/*` header CSP as written would block every frame.** It sets `default-src 'none'` with no `script-src`; both policies apply, and the import map is an inline script. The header now has `script-src 'self' 'unsafe-inline'`, `style-src 'self'`, `img-src 'self' data:` and `font-src 'self'`. Each frame's meta CSP still pins its one import map by hash. Privacy-reviewer should rule on it (C5, W-2095).
+  2. F7 says 7 functions and 1 constant. The branch's diff exports 5 functions and 1 constant. I also exported `buildLessons`, and `webpackConfig` now records each compilation's repo sources (that is how `sourceHash` is defined).
+  3. "phase sets `data-phase` on the card": I used `data-frame-phase` and `data-frame-ready` on `.card-shell`, so no host selector that looks for a lesson's `data-phase` matches the card.
+  4. `sourceHash` covers the files webpack compiled from `src/` plus `meta.json`. `package.json` and the loaders are toolchain, recorded rather than gated. A stale **kit** (its sources changed) also fails the gate.
+- **Objection O1 (W-2104, principal-engineer decides):** the review's staleness gate fails `npm run verify`, so it fails **every deploy, flag off included**, once a pilot lesson or the kit sources change after the manifest was built. 42 of the 50 changed in the week to 2026-10-25, and `globals.css` changed 4 times. The fix each time is `node tools/lesson-frames.mjs prune` (or a rebuild), then a commit. I built it as the review specifies. My view: scope the failure to builds with the flag on, or make prune a runbook step. Builders should not meet this plumbing.
+- **Checks:**
+  - `npm run check`: 810 errors and 5 warnings, the same set as the baseline. None names a file of mine.
+  - Suites: test:deploy, books, kit, eval, lesson-frames (27/27), accounts, dispatch, mailbox, memory, metrics and main-feed pass. test:publish (2), lifehacks (1), algorithms (5), hq (9), platform (1), settings (1) and dims (4) fail with the **identical** `not ok` sets at base `83127c23f` (detached worktree, same commands), so all are pre-existing.
+  - `typecheck` pass. `build` pass (no SecurityFatalError). `npm run verify` itself stops at `check`'s pre-existing errors, so I ran every step on its own.
+  - QA (`tests/qa` unchanged, final flag-off build, run in batches): contract 3,290/3,292, feed 10/10. The only failure is draft `history-luanda-kinshasa-1880-1960` (a click timeout, both viewports), and it fails the same way on a build of `83127c23f`. A first single run was lost when the shared disk filled: contract.spec writes 3 screenshots per test into `artifacts/qa`, so delete them between batches.
+  - Frame copy: 100/100, including a frame-hash assertion that fails when a manifest hash is changed.
+- **Believe:**
+  - High (about 90%) that flag off is today's app: measured on the final build, and the DemoCard change is a verbatim move.
+  - High that C2 is right in unit tests and in a browser: 100/100 runs with progress and five event types reaching the host's storage.
+  - Medium (about 70%) that the frame path is ready for a preview: desktop parity (W-2103) and real phones (C6) are untested. My local P2/P3 numbers are not the judging run.
+- **Next:**
+  - principal-engineer: code review of the branch (C10, W-2097) and the O1 call (W-2104).
+  - principal-engineer-ops: both readiness records (W-2101).
+  - privacy-reviewer: C5 (W-2095), including the header CSP above and SPIKE-001's 19 probes on the preview.
+  - qa-tester: W-2094, and W-2100 may adopt `spike/qa/pilot/` instead of fixing the old `spike/qa/contract-frame.spec.ts`, which still has D1.
+  - evaluation-steward: the AMD-018 companion diff against `DemoFrame` (W-087).
+  - release-manager: the artifact deploy of `artifacts/lesson-frames/dist` with its `vercel.json` (add the preview alias with `--frame-ancestors`) and the preview, each with the founder's approval (C9, W-2098).
+  - Me: W-2103.
+- **Blocked:** merge waits on C10 and W-2101. Production flag-on waits on C5, C6, and AMD-018 parts (a), (b) and (d) ratified (the steward's C7 ruling, `c8c5f225f`). Nothing here deploys.
+
 ## 2026-10-25 · evaluation-steward · C7 ruled (W-2096): the frame QA copy is not enough for production flag-on; AMD-018 (W-087) drafted, not ratified
 
 - **Changed:** ruling `company/decisions/2026-10-25-w2096-frame-qa-evidence.md`; amendment draft `company/constitution/amendments/AMD-018-qa-contract-through-frames.md` (status proposed) and its README row. Board: W-2096 done, W-087 doing, new W-2100 (qa-tester: fix D1 in the copy before the preview run). No protected path was touched. No deploy.

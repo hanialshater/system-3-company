@@ -26704,21 +26704,21 @@
       "id": "W-2092",
       "title": "Content hub launch (founder 2026-10-25 'work on it and launch it'): C1-C4 from company/engineering/reviews/2026-10-25-content-hub-production-review.md — the frame manifest + DemoFrame behind NEXT_PUBLIC_LESSON_FRAMES=pilot-50 (flag off = today), progress/events bridge (C2), reveal-fit/fold/hook inside the frame (C3), tests/lesson-frames gate suite; on a branch from main, predictions P1-P6 first",
       "owner": "platform-engineer",
-      "state": "doing",
+      "state": "review",
       "domain": null,
       "created": "2026-10-25",
       "links": [],
-      "updated": "2026-10-25"
+      "updated": "2026-10-26"
     },
     {
       "id": "W-2093",
       "title": "Next.js upgrade off 16.4.0 (critical advisories, npm audit --omit=dev; company/engineering/reviews/2026-10-25-content-hub-production-review.md F8/C8), before any artifact build; with principal-engineer-ops readiness record",
       "owner": "platform-engineer",
-      "state": "doing",
+      "state": "review",
       "domain": null,
       "created": "2026-10-25",
       "links": [],
-      "updated": "2026-10-25"
+      "updated": "2026-10-26"
     },
     {
       "id": "W-2094",
@@ -26782,6 +26782,42 @@
       "state": "next",
       "domain": null,
       "created": "2026-10-25",
+      "links": []
+    },
+    {
+      "id": "W-2101",
+      "title": "Content hub launch: approve or refuse two tier-2 readiness records on branch feat/lesson-frames-pilot: company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md (C8) and company/engineering/readiness/2026-10-26-lesson-frames-pilot.md (C1-C4); write the register lines they propose (Next advisories closed by 16.4.3, zod high open, R-new-1 silent frame failure, R-new-2 staleness gate blocks deploys)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2102",
+      "title": "npm audit --omit=dev after Next 16.4.3: zod 4.1.11 (<4.6.6, GHSA-mrhx-c7xc-m3w5, high) via better-auth/better-call on the auth path; bump or record why not (company/decisions/2026-10-26-upgrade-next-16-4-3.md on feat/lesson-frames-pilot)",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2103",
+      "title": "Lesson frames C3 residual: inside a frame @media (max-width: 600px) and lesson vw/dvh resolve against the card, not the window; desktop parity 26/50 after the reveal (phone 49/50). Decide before production flag-on: a host-narrow attribute plus a build-time rewrite of the kit CSS media blocks, or accept (company/experiments/EXP-010-lesson-frames-pilot-predictions.md, Result)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
+      "links": []
+    },
+    {
+      "id": "W-2104",
+      "title": "Lesson frames objection O1: the review's staleness gate (tests/lesson-frames, in verify) fails every deploy, flag off included, once a pilot lesson or the kit sources change after the manifest is built (42 of 50 pilot lessons changed in the week to 2026-10-25). Keep it and add 'node tools/lesson-frames.mjs prune' to the deploy runbook, or scope the gate to flag-on builds (company/engineering/readiness/2026-10-26-lesson-frames-pilot.md item 1; company/ops/progress.md top entry)",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-26",
       "links": []
     }
   ]

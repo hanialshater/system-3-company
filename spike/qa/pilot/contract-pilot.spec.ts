@@ -7,8 +7,8 @@
 //   - every lesson locator goes through page.frameLocator(...) (`f.locator` for `page.locator`), including the
 //     tap-target check (the SPIKE-001 copy measured it on the host page, where it found nothing);
 //   - the overflow check runs in the frame and on the host;
-//   - added at the end, marked "pilot:": the bridge carried progress and events to the host's real storage
-//     (C2), and the card's hook is hidden once the frame is ready (C3);
+//   - added, marked "pilot:": the frame is sandboxed and its src names the manifest's frameDoc (after goto); the
+//     bridge carried progress and events to the host's real storage (C2), and the card's hook hid (C3) (at the end);
 //   - screenshots go to artifacts/qa-frames/.
 // `diff tests/qa/contract.spec.ts spike/qa/pilot/contract-pilot.spec.ts` shows the whole change.
 //
@@ -59,6 +59,11 @@ for (const lesson of lessons()) {
       });
 
       await page.goto(`/d/${lesson.slug}`);
+      // pilot: the frame is the one the manifest serves (AMD-018 (b).1 as the steward's ruling words it): sandboxed,
+      // and its src names this slug's frameDoc hash.
+      const frameEl = page.locator(`iframe[data-slug="${lesson.slug}"]`);
+      await expect(frameEl, "pilot: sandboxed frame").toHaveAttribute("sandbox", "allow-scripts");
+      expect(await frameEl.getAttribute("src"), "pilot: frame src names the manifest's frameDoc").toMatch(new RegExp(`/f/${manifest.lessons[lesson.slug].frameDoc}\\.html#`));
       const f = page.frameLocator(`iframe[data-slug="${lesson.slug}"]`);
       const lessonEl = f.locator('[data-testid="lesson"]');
       await expect(lessonEl, "lesson renders").toBeVisible({ timeout: 15_000 });
