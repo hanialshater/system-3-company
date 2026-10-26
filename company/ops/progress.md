@@ -1,3 +1,10 @@
+## 2026-10-26 · principal-engineer (Kenji) · M2 re-check: W2-C1 met at 6f4f1b6cf, W-2105 approved and done
+
+- **Changed:** "M2 re-check" appended to `company/engineering/reviews/2026-10-26-lesson-frames-code-review.md`. W-2105 moved to done.
+- **Believe:** high (about 90%). The gate suite passes in all 6 states (committed, pruned-empty with the kit stale, pruned-empty with the kit fresh; each with the flag off and on). It still fails flag-on on a stale lesson, and both mutants are caught.
+- **Next:** the merge waits on M-a (the security deploy first) and M-c (verify on the merged SHA). W-2106 and W-2103 come before production flag-on.
+- **Blocked:** nothing on M2.
+
 ## 2026-10-26 · principal-engineer (Kenji) · M2: W-2105 read code-first; changes needed (one condition, W2-C1)
 
 - **Changed:** "M2: W-2105" section appended to `company/engineering/reviews/2026-10-26-lesson-frames-code-review.md`. W-2105 moved back to doing (platform-engineer).

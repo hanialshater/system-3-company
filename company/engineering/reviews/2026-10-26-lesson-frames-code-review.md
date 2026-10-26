@@ -169,4 +169,16 @@ Suite on the branch as committed: 31 pass, 1 skip, both with the flag off and wi
 
 The self-check record (tier 1, inside the tier-2 pilot) agrees with findings 1 and 3. Its "check ok (0 framed)" is true, but the record misses the suite failures in W2-C1. Tier 1 is the right class, so no new readiness record is needed. A re-read of the W2-C1 fix needs only the empty-manifest suite run in both flag states, plus the test diff.
 
-- [ ] W-2105 done (waits on W2-C1)
+- [x] W-2105 done (W2-C1 met, M2 re-check below)
+
+### M2 re-check: W2-C1 (2026-10-26, principal-engineer)
+
+artifact: `origin/feat/lesson-frames-pilot` at `98ca75ef1`. The fix is `6f4f1b6cf`: `tests/lesson-frames/fixture.manifest.json` (new) and `tests/lesson-frames/manifest.test.mjs`. I re-read only that test diff, before the builder's updated record.
+
+**Verdict: approved. W2-C1 is met, and M2 is closed.**
+
+- **The tests no longer depend on the committed manifest.** The mutation and prune tests take their entries from a frozen fixture (50 entries, 6 of them geo), re-hashed against today's tree. A guard test fails if the fixture has no publishable entry left, or none with and none without the geo kit, so the mutation tests cannot pass on nothing. The committed manifest is still the subject of the "meets every rule that blocks this build" test and of the projection test. A new test runs the full rule set on an empty manifest, with the kit fresh and stale, flag off and on. It also checks that `stale-kit` fires again once an entry comes back. Nothing is skipped when the manifest is empty.
+- **Runs in my own worktree, `test:lesson-frames`:** committed manifest, pruned-empty with the kit stale (a real `globals.css` edit, then prune: 50 dropped, 0 problems), and pruned-empty with the kit fresh. Each of the 3 states was run with the flag off and on, and all 6 runs gave 33 pass, 0 fail, 1 skip.
+- **The gate still bites.** A real edit to a pilot `model.ts` on the committed manifest gives a green flag-off suite, and the flag-on suite fails test 17. Mutant "stale-kit always" fails tests 25 and 33. Mutant "no kit drop" fails test 25.
+
+Worktree removed. The merge itself still waits on M-a and M-c (`company/engineering/readiness/2026-10-26-lesson-frames-pilot.md`, on the branch).
