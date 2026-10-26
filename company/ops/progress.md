@@ -1,3 +1,16 @@
+## 2026-10-26 · release-manager · W-2112 (U6): main takes 80c847c55 alone
+
+- **Changed:**
+  - Merge commit `7ee5b9e8d` (parents `73324e308` on main and `80c847c55`) puts Next 16.4.3 on main. It brings `package.json`, `package-lock.json`, the upgrade decision and readiness records, and the EXP-010 predictions (`7b7a24978`).
+  - There were no conflicts. W-2112 is done.
+  - Nothing was deployed: neither commit has `[deploy]`.
+- **Believe:** high. On main these paths now equal `80c847c55`, which is what r23 runs: `src/`, `content/`, `public/`, `db/`, `tools/org/`, `next.config.mjs`, `vercel.json`, `.vercelignore`, `tsconfig.json`, `package.json` and `package-lock.json`. The merge also moved W-2093 from next to doing; that was platform-engineer's own edit on the branch.
+- **Next:**
+  - The lesson frames pilot can merge under M-a to M-e, onto a main that already has 16.4.3.
+  - R-031 closes when W-2098 is done.
+  - Someone with permission deletes the branch `release/r23`.
+- **Blocked:** deleting `release/r23`. The session's permission check refused the remote branch delete as destructive, so the branch is still there. It holds only the empty `[deploy]` commit `0b8b6f539`, which r23 was built from.
+
 ## 2026-10-26 · release-manager · W-2107: r23 to production (Next.js 16.4.3 security fix), smoke U3 (a) to (g) green, no rollback
 
 - **Changed:**
