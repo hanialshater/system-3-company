@@ -54,7 +54,9 @@ export function dashboard(root, { audit } = {}) {
   const links = [{ label: "Website", url: "https://system-3-company.vercel.app", kind: "website" }, { label: "Repository", url: "https://github.com/hanialshater/system-3-company", kind: "repo" }];
   const features = JSON.parse(read("company/features.json") || "{}").features ?? [];
   const releases = releasesOf(JSON.parse(read("company/ops/releases.json") || "{}"));
-  const out = { v: 1, id: "system-3-company", name: "System 3 Lessons", mission, owner: "founder", links, asks, budget: { unit: "tokens", approved, spent: total, spentCapped: capped, spentUncapped: total - capped, lines }, milestones: ms, kpis, features, releases };
+  // the company's logo (the dashboard contract's `logo`): company/logo.svg as a data URI, as Meta's dashboard tool does
+  const logoSvg = (() => { try { const b = fs.readFileSync(path.join(root, "company/logo.svg")); return b.length <= 65536 ? `data:image/svg+xml;base64,${b.toString("base64")}` : null; } catch { return null; } })();
+  const out = { v: 1, id: "system-3-company", name: "System 3 Lessons", mission, owner: "founder", logo: logoSvg, links, asks, budget: { unit: "tokens", approved, spent: total, spentCapped: capped, spentUncapped: total - capped, lines }, milestones: ms, kpis, features, releases };
   try { out.pipeline = pipelineCache.get(root) ?? pipelineCache.set(root, loadPipeline(root)).get(root); } catch {}
   if (audit) { try { out.principles = audit(root); } catch {} }
   return out;
