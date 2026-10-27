@@ -1,0 +1,64 @@
+{
+  "slug": "drift-a-chance-sample",
+  "title": "A sample changes the mix",
+  "hook": "Track a small population through one event.",
+  "domain": "life",
+  "concept": "drift-a-chance-sample",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "An allele is a variant of a gene."
+    ],
+    "doesNotKnow": [
+      "A chance sample can differ from its source population without either allele having a survival advantage. A different random sample could go the other way."
+    ]
+  },
+  "misconception": "Population size and allele frequency always change together.",
+  "objective": "Count allele frequency in a finite haploid population after a specified event.",
+  "claims": [
+    {
+      "id": "life.drift-a-chance-sample.c1",
+      "text": "Question, stage and explanation: In a haploid model, each dot is one individual with one A or a allele. Start with 5 A and 5 a. A chance sample selects exactly 4 A and 1 a individuals from the starting group. What fraction of the resulting group carries A? The resulting group has 4 A and 1 a, so its A frequency is 4 out of 5. A chance sample can differ from its source population without either allele having a survival advantage. A different random sample could go the other way. The diagram fixes this one outcome rather than predicting every real population.",
+      "support": "derivation",
+      "source": "Specified finite population; biological context: OpenStax https://openstax.org/books/biology-2e/pages/19-1-population-evolution",
+      "status": "unverified"
+    },
+    {
+      "id": "life.drift-a-chance-sample.c2",
+      "text": "Each dot stands for one haploid individual with one allele at this locus; colours do not imply actual organism colours.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.drift-a-chance-sample.c3",
+      "text": "Recall: If a haploid group has 4 A individuals and 1 a individuals, what fraction carry A? There are 5 individuals and 4 carry A.",
+      "support": "derivation",
+      "source": "Finite count defined by the question.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If a haploid group has 4 A individuals and 1 a individuals, what fraction carry A?",
+    "options": [
+      "4 of 5",
+      "1 of 5",
+      "4 of 6"
+    ],
+    "answer": 0,
+    "why": "There are 5 individuals and 4 carry A."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

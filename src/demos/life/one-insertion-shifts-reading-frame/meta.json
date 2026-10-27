@@ -1,0 +1,64 @@
+{
+  "slug": "one-insertion-shifts-reading-frame",
+  "title": "One extra letter shifts the groups",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "one-insertion-shifts-reading-frame",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "Inserting one base gives AUGAGAACCA. Reading from the same start produces AUG | AGA | ACC, with one trailing base; the reading frame after the insertion has shifted."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "Inserting one base gives AUGAGAACCA. Reading from the same start produces AUG | AGA | ACC, with one trailing base; the reading frame after the insertion has shifted.",
+  "claims": [
+    {
+      "id": "life.one-insertion-shifts-reading-frame.c1",
+      "text": "Question, answer, diagram and explanation: A message is read AUG | GAA | CCA. Insert A immediately after AUG. How are the next complete triplets grouped? Inserting one base gives AUGAGAACCA. Reading from the same start produces AUG | AGA | ACC, with one trailing base; the reading frame after the insertion has shifted.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-5-mutations",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-insertion-shifts-reading-frame.c2",
+      "text": "Recall: A single nucleotide is inserted into a coding region. What can happen to the downstream reading frame? An insertion of one nucleotide shifts downstream triplet grouping when the same reading start is used.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-5-mutations",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-insertion-shifts-reading-frame.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A single nucleotide is inserted into a coding region. What can happen to the downstream reading frame?",
+    "options": [
+      "It can shift",
+      "It always stays fixed",
+      "It reverses direction"
+    ],
+    "answer": 0,
+    "why": "An insertion of one nucleotide shifts downstream triplet grouping when the same reading start is used."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

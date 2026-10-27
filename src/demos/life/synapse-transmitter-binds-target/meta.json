@@ -1,0 +1,64 @@
+{
+  "slug": "synapse-transmitter-binds-target",
+  "title": "The message finds a receptor",
+  "hook": "Predict the next step, then trace the signal.",
+  "domain": "life",
+  "concept": "synapse-transmitter-binds-target",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Neurons have membranes and communicate using electrical and chemical signals."
+    ],
+    "doesNotKnow": [
+      "Neurotransmitter can cross the cleft and bind a compatible postsynaptic receptor. The resulting response depends on the receptor and cell."
+    ]
+  },
+  "misconception": "Neuronal signals and chemical synapses involve no ion movement.",
+  "objective": "Explain the specified step of neuronal signaling under the stated conditions.",
+  "claims": [
+    {
+      "id": "life.synapse-transmitter-binds-target.c1",
+      "text": "Question, diagram and reveal: After release at a chemical synapse, what can a neurotransmitter bind on the receiving cell? Neurotransmitter can cross the cleft and bind a compatible postsynaptic receptor. The resulting response depends on the receptor and cell.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/35-2-how-neurons-communicate",
+      "status": "unverified"
+    },
+    {
+      "id": "life.synapse-transmitter-binds-target.c2",
+      "text": "The diagrams are schematic, show only selected particles or steps, and do not represent actual particle trajectories or scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.synapse-transmitter-binds-target.c3",
+      "text": "Recall: Where is neurotransmitter released by a presynaptic vesicle? Vesicle fusion releases soluble neurotransmitter into the synaptic cleft.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/35-2-how-neurons-communicate",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Where is neurotransmitter released by a presynaptic vesicle?",
+    "options": [
+      "The synaptic cleft",
+      "The postsynaptic nucleus",
+      "A chromosome"
+    ],
+    "answer": 0,
+    "why": "Vesicle fusion releases soluble neurotransmitter into the synaptic cleft."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

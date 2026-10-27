@@ -1,0 +1,64 @@
+{
+  "slug": "glucose-carrier-down-gradient",
+  "title": "A carrier helps a sugar cross",
+  "hook": "Predict where the cargo ends up, then run the model.",
+  "domain": "life",
+  "concept": "glucose-carrier-down-gradient",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cells have a plasma membrane separating inside from outside."
+    ],
+    "doesNotKnow": [
+      "A glucose carrier can facilitate movement down a glucose concentration gradient without directly using ATP. Glc marks glucose and the purple shape represents a carrier; the selected particles are an illustration."
+    ]
+  },
+  "misconception": "Everything crosses a cell membrane by the same mechanism.",
+  "objective": "A glucose carrier can facilitate movement down a glucose concentration gradient without directly using ATP. Glc marks glucose and the purple shape represents a carrier; the selected particles are an illustration.",
+  "claims": [
+    {
+      "id": "life.glucose-carrier-down-gradient.c1",
+      "text": "Question, stage and reveal: In this model glucose is more concentrated outside than inside, and a suitable glucose carrier is present. Which direction is the initial net facilitated diffusion? A glucose carrier can facilitate movement down a glucose concentration gradient without directly using ATP. Glc marks glucose and the purple shape represents a carrier; the selected particles are an illustration.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-2-passive-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.glucose-carrier-down-gradient.c2",
+      "text": "Recall: What helps glucose cross a membrane in facilitated diffusion? Facilitated glucose diffusion uses a transport protein.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-2-passive-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.glucose-carrier-down-gradient.c3",
+      "text": "The diagram is schematic and represents only selected molecules, not trajectories or all particles.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What helps glucose cross a membrane in facilitated diffusion?",
+    "options": [
+      "A carrier protein",
+      "A ribosome",
+      "A DNA polymerase"
+    ],
+    "answer": 0,
+    "why": "Facilitated glucose diffusion uses a transport protein."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

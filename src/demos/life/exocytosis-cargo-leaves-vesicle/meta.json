@@ -1,0 +1,64 @@
+{
+  "slug": "exocytosis-cargo-leaves-vesicle",
+  "title": "Cargo leaves in a bubble",
+  "hook": "Predict where the cargo ends up, then run the model.",
+  "domain": "life",
+  "concept": "exocytosis-cargo-leaves-vesicle",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cells have a plasma membrane separating inside from outside."
+    ],
+    "doesNotKnow": [
+      "In exocytosis a vesicle fuses with the plasma membrane, releasing its soluble contents outside the cell. The orange dot is cargo and the ring in the starting picture is its vesicle; this is a simplified model."
+    ]
+  },
+  "misconception": "Everything crosses a cell membrane by the same mechanism.",
+  "objective": "In exocytosis a vesicle fuses with the plasma membrane, releasing its soluble contents outside the cell. The orange dot is cargo and the ring in the starting picture is its vesicle; this is a simplified model.",
+  "claims": [
+    {
+      "id": "life.exocytosis-cargo-leaves-vesicle.c1",
+      "text": "Question, stage and reveal: A vesicle inside a cell fuses with its plasma membrane during exocytosis. Where is its soluble cargo released? In exocytosis a vesicle fuses with the plasma membrane, releasing its soluble contents outside the cell. The orange dot is cargo and the ring in the starting picture is its vesicle; this is a simplified model.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-4-bulk-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.exocytosis-cargo-leaves-vesicle.c2",
+      "text": "Recall: What happens to the soluble contents of a vesicle during exocytosis? Fusion with the plasma membrane releases soluble vesicle contents outside.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-4-bulk-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.exocytosis-cargo-leaves-vesicle.c3",
+      "text": "The diagram is schematic and represents only selected molecules, not trajectories or all particles.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What happens to the soluble contents of a vesicle during exocytosis?",
+    "options": [
+      "They are released outside",
+      "They enter the nucleus",
+      "They become DNA"
+    ],
+    "answer": 0,
+    "why": "Fusion with the plasma membrane releases soluble vesicle contents outside."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

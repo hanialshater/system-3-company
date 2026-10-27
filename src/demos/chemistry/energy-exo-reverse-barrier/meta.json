@@ -1,0 +1,64 @@
+{
+  "slug": "energy-exo-reverse-barrier",
+  "title": "The reverse barrier",
+  "hook": "Compare two paths over an energy barrier.",
+  "domain": "chemistry",
+  "concept": "energy-exo-reverse-barrier",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A reaction can be shown as an energy profile."
+    ],
+    "doesNotKnow": [
+      "Activation barriers are measured relative to the starting side of a reaction."
+    ]
+  },
+  "misconception": "A catalyst changes the energy difference between reactants and products.",
+  "objective": "Read forward and reverse barriers and endpoint differences from a stipulated energy profile.",
+  "claims": [
+    {
+      "id": "chemistry.energy-exo-reverse-barrier.c1",
+      "text": "Question, diagram and explanation: In this one-step energy model, reactants are at 20 units, products at 10 units and the uncatalyzed peak at 50 units. What is the uncatalyzed reverse activation barrier? The uncatalyzed forward barrier is 50 − 20 = 30; the reverse barrier is 50 − 10 = 40. Product minus reactant energy is −10 units. The alternate peak at 35 gives a forward barrier of 15. The catalyst changes the path, not the endpoints in this model.",
+      "support": "derivation",
+      "source": "Values specified in the model; activation profile and catalysis: OpenStax https://openstax.org/books/chemistry-2e/pages/12-7-catalysis",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.energy-exo-reverse-barrier.c2",
+      "text": "The diagram is a one-step idealized energy profile in arbitrary units, not measured kinetic data.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.energy-exo-reverse-barrier.c3",
+      "text": "Recall: In a one-step energy profile, how do you calculate the forward activation barrier? The forward activation barrier is the peak energy relative to the reactant starting level.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/12-7-catalysis",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a one-step energy profile, how do you calculate the forward activation barrier?",
+    "options": [
+      "Peak energy minus reactant energy",
+      "Product energy minus peak energy",
+      "Reactant energy minus product energy"
+    ],
+    "answer": 0,
+    "why": "The forward activation barrier is the peak energy relative to the reactant starting level."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "immune-interferon-alerts-neighbours",
+  "title": "A warning between cells",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-interferon-alerts-neighbours",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "Interferons can signal neighboring cells to increase antiviral defenses. This response helps limit infection but does not guarantee complete protection."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-interferon-alerts-neighbours.c1",
+      "text": "Question, stage and reveal: A virus-infected cell releases interferons. What can those signals help neighboring cells do? Interferons can signal neighboring cells to increase antiviral defenses. This response helps limit infection but does not guarantee complete protection.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-1-innate-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-interferon-alerts-neighbours.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-interferon-alerts-neighbours.c3",
+      "text": "Recall: Which signal from an infected cell can help neighboring cells increase antiviral defenses? Interferons can trigger antiviral responses in neighboring cells.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-1-innate-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which signal from an infected cell can help neighboring cells increase antiviral defenses?",
+    "options": [
+      "Interferon",
+      "Hemoglobin",
+      "Cellulose"
+    ],
+    "answer": 0,
+    "why": "Interferons can trigger antiviral responses in neighboring cells."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "immune-neutrophil-engulfment",
+  "title": "A rapid phagocyte",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-neutrophil-engulfment",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "Neutrophils are abundant phagocytic white blood cells that can engulf and digest microbes. The diagram omits their many other interactions."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-neutrophil-engulfment.c1",
+      "text": "Question, stage and reveal: Which innate immune cell can engulf microbes and is abundant among circulating white blood cells? Neutrophils are abundant phagocytic white blood cells that can engulf and digest microbes. The diagram omits their many other interactions.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-1-innate-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-neutrophil-engulfment.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-neutrophil-engulfment.c3",
+      "text": "Recall: Can neutrophils engulf microbes? Neutrophils are phagocytic white blood cells.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-1-innate-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can neutrophils engulf microbes?",
+    "options": [
+      "Yes",
+      "No",
+      "Only if they are red blood cells"
+    ],
+    "answer": 0,
+    "why": "Neutrophils are phagocytic white blood cells."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

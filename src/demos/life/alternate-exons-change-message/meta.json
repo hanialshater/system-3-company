@@ -1,0 +1,64 @@
+{
+  "slug": "alternate-exons-change-message",
+  "title": "One transcript, two messages",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "alternate-exons-change-message",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "Alternative splicing can include or omit particular exons. Here, skipping exon B joins A to C, so one pre-mRNA can produce different mature RNA sequences."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "Alternative splicing can include or omit particular exons. Here, skipping exon B joins A to C, so one pre-mRNA can produce different mature RNA sequences.",
+  "claims": [
+    {
+      "id": "life.alternate-exons-change-message.c1",
+      "text": "Question, answer, diagram and explanation: A pre-mRNA has exons A, B and C. One splice pattern joins A–B–C; another skips B. What is the second message? Alternative splicing can include or omit particular exons. Here, skipping exon B joins A to C, so one pre-mRNA can produce different mature RNA sequences.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/16-5-eukaryotic-post-transcriptional-gene-regulation",
+      "status": "unverified"
+    },
+    {
+      "id": "life.alternate-exons-change-message.c2",
+      "text": "Recall: Can different exon combinations yield different mature RNA sequences? Alternative splicing can join exons in different combinations in eukaryotic RNA processing.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/16-5-eukaryotic-post-transcriptional-gene-regulation",
+      "status": "unverified"
+    },
+    {
+      "id": "life.alternate-exons-change-message.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can different exon combinations yield different mature RNA sequences?",
+    "options": [
+      "Yes",
+      "No",
+      "Only in bacteria"
+    ],
+    "answer": 0,
+    "why": "Alternative splicing can join exons in different combinations in eukaryotic RNA processing."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

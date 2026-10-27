@@ -1,0 +1,64 @@
+{
+  "slug": "gas-cooling-pressure-model",
+  "title": "Cooling a rigid vessel",
+  "hook": "Change one condition and watch the gas respond.",
+  "domain": "chemistry",
+  "concept": "gas-cooling-pressure-model",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A gas has pressure, volume, temperature and an amount."
+    ],
+    "doesNotKnow": [
+      "At fixed volume and gas amount, pressure is proportional to absolute temperature. Halving temperature from 600 K to 300 K halves pressure from 2 atm to 1 atm."
+    ]
+  },
+  "misconception": "Changing one gas variable always leaves the others unchanged.",
+  "objective": "Use the ideal gas law with the stated fixed conditions.",
+  "claims": [
+    {
+      "id": "chemistry.gas-cooling-pressure-model.c1",
+      "text": "Question, chart and reveal: An ideal gas in a rigid vessel is at 2 atm and 600 K. Its amount stays fixed and it cools to 300 K. What is its final pressure? At fixed volume and gas amount, pressure is proportional to absolute temperature. Halving temperature from 600 K to 300 K halves pressure from 2 atm to 1 atm.",
+      "support": "derivation",
+      "source": "PV = nRT under the stated fixed conditions; OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-cooling-pressure-model.c2",
+      "text": "Dots are schematic and not individual real gas molecules; the piston is an idealized representation and the model does not predict deviations from ideal behavior.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-cooling-pressure-model.c3",
+      "text": "Recall: At fixed volume and gas amount, what happens to ideal-gas pressure when kelvin temperature doubles? Pressure is proportional to absolute temperature at fixed volume and amount.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At fixed volume and gas amount, what happens to ideal-gas pressure when kelvin temperature doubles?",
+    "options": [
+      "It doubles",
+      "It halves",
+      "It stays fixed"
+    ],
+    "answer": 0,
+    "why": "Pressure is proportional to absolute temperature at fixed volume and amount."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

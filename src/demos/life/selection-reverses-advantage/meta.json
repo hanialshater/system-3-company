@@ -1,0 +1,64 @@
+{
+  "slug": "selection-reverses-advantage",
+  "title": "A different environment",
+  "hook": "Track a small population through one event.",
+  "domain": "life",
+  "concept": "selection-reverses-advantage",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "An allele is a variant of a gene."
+    ],
+    "doesNotKnow": [
+      "Here the relative survival outcome is reversed. Which variant is favoured can depend on the environment."
+    ]
+  },
+  "misconception": "Population size and allele frequency always change together.",
+  "objective": "Count allele frequency in a finite haploid population after a specified event.",
+  "claims": [
+    {
+      "id": "life.selection-reverses-advantage.c1",
+      "text": "Question, stage and explanation: In a haploid model, each dot is one individual with one A or a allele. Start with 6 A and 6 a. In this fixed example 3 of 6 A individuals and all 6 a individuals survive. What fraction of the resulting group carries A? The resulting group has 3 A and 6 a, so its A frequency is 3 out of 9. Here the relative survival outcome is reversed. Which variant is favoured can depend on the environment. The diagram fixes this one outcome rather than predicting every real population.",
+      "support": "derivation",
+      "source": "Specified finite population; biological context: OpenStax https://openstax.org/books/biology-2e/pages/19-1-population-evolution",
+      "status": "unverified"
+    },
+    {
+      "id": "life.selection-reverses-advantage.c2",
+      "text": "Each dot stands for one haploid individual with one allele at this locus; colours do not imply actual organism colours.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.selection-reverses-advantage.c3",
+      "text": "Recall: If a haploid group has 3 A individuals and 6 a individuals, what fraction carry A? There are 9 individuals and 3 carry A.",
+      "support": "derivation",
+      "source": "Finite count defined by the question.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If a haploid group has 3 A individuals and 6 a individuals, what fraction carry A?",
+    "options": [
+      "3 of 9",
+      "6 of 9",
+      "3 of 10"
+    ],
+    "answer": 0,
+    "why": "There are 9 individuals and 3 carry A."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

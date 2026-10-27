@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+const elements=[
+ ['hydrogen','H',1,1],['helium','He',2,4],['lithium','Li',3,7],['beryllium','Be',4,9],['boron','B',5,11],['carbon','C',6,12],['nitrogen','N',7,14],['oxygen','O',8,16],['fluorine','F',9,19],['neon','Ne',10,20],['sodium','Na',11,23],['magnesium','Mg',12,24],['aluminium','Al',13,27],['silicon','Si',14,28],['phosphorus','P',15,31],['sulfur','S',16,32],['chlorine','Cl',17,35],['argon','Ar',18,40],['potassium','K',19,39],['calcium','Ca',20,40]
+];
+const ions=[['lithium','Li',3,1],['sodium','Na',11,1],['potassium','K',19,1],['magnesium','Mg',12,2],['calcium','Ca',20,2],['aluminium','Al',13,3],['fluoride','F',9,-1],['chloride','Cl',17,-1],['oxide','O',8,-2],['sulfide','S',16,-2],['nitride','N',7,-3]];
+const template=fs.readFileSync('tools/science-visual-batch/atoms/template.txt','utf8');
+const cp='content/curriculum/chemistry.json',cur=JSON.parse(fs.readFileSync(cp));
+const sp='tools/science-visual-batch/slugs.json',slugs=JSON.parse(fs.readFileSync(sp));
+const source='OpenStax Chemistry 2e §2.3 https://openstax.org/books/chemistry-2e/pages/2-3-atomic-structure-and-symbolism';
+function add(c){
+ const correct=c.kind==='nucleus'?c.mass-c.z:c.z-c.charge;
+ const opts=correct===0?[0,1,2,3]:[correct,correct+1,correct-1,correct+2];
+ if(new Set(opts).size!==4)throw Error(c.slug);
+ const shift=c.z%4;const nums=opts.slice(shift).concat(opts.slice(0,shift));
+ const options=nums.map(n=>`${n} ${c.kind==='nucleus'?(n===1?'neutron':'neutrons'):(n===1?'electron':'electrons')}`);
+ const question=c.kind==='nucleus'?`A ${c.name}-${c.mass} atom has mass number ${c.mass} and atomic number ${c.z}. How many neutrons are in its nucleus?`:`A ${c.symbol} ion has ${c.z} protons and charge ${c.charge>0?'+':''}${c.charge}. How many electrons does this ion have?`;
+ const explanation=c.kind==='nucleus'?`The nucleus has ${c.z} protons and ${correct} neutrons. The mass number counts both: ${c.z} + ${correct} = ${c.mass}. The drawing is a counting model; nucleons are not arranged as a flat grid.`:`The nucleus has ${c.z} protons and the ion has ${correct} electrons. Proton charge minus electron charge gives ${c.z} − ${correct} = ${c.charge>0?'+':''}${c.charge}. The shells show counts, not electron paths.`;
+ const lesson={...c,question,options,answer:nums.indexOf(correct),correct,explanation};
+ const recall=c.kind==='nucleus'?{question:'An isotope has mass number 13 and atomic number 6. How many neutrons does it have?',options:['7','6','13'],answer:0,why:'Mass number is protons plus neutrons, so 13 − 6 = 7.'}:{question:'An ion has 8 protons and 10 electrons. What is its charge?',options:['−2','+2','0'],answer:0,why:'Eight positive charges and ten negative charges give a net charge of −2.'};
+ const meta={slug:c.slug,title:c.kind==='nucleus'?`${c.name[0].toUpperCase()+c.name.slice(1)} isotope puzzle`:`The ${c.name} ion puzzle`,hook:'Use the numbers to build the particle picture.',domain:'chemistry',concept:c.slug,status:'draft',durationSec:60,owner:{categoryManager:'cm-chemistry',builder:'demo-builder'},learner:{knows:['Atomic number counts protons.'],doesNotKnow:[c.kind==='nucleus'?'How to find neutron count from mass number.':'How charge relates proton count to electron count.']},misconception:c.kind==='nucleus'?'Mass number counts neutrons alone.':'Every ion has equal numbers of protons and electrons.',objective:c.kind==='nucleus'?'Calculate neutrons from atomic and mass numbers.':'Calculate electron count from proton count and charge.',claims:[{id:`chemistry.${c.slug}.c1`,text:`Question, stage and reveal: ${question} ${explanation}`,support:'derivation',source,status:'unverified'},{id:`chemistry.${c.slug}.c2`,text:c.kind==='nucleus'?'The drawing is schematic, not a spatial model of the nucleus.':'Concentric circles show a simplified shell count; they do not show actual electron trajectories.',support:'convention',source:'Modelling convention',status:'unverified'},{id:`chemistry.${c.slug}.c3`,text:`Recall: ${recall.question} ${recall.why}`,support:'derivation',source,status:'unverified'}],confidence:'',recall,evidence:{qa:[],simulatedLearner:[],pairwise:[],humanLearners:[]},version:1};
+ const out=`src/demos/chemistry/${c.slug}`;if(fs.existsSync(out))throw Error(`exists: ${c.slug}`);fs.mkdirSync(out,{recursive:true});fs.writeFileSync(`${out}/Demo.tsx`,template.replace('__CASE__',JSON.stringify(lesson,null,2)));fs.writeFileSync(`${out}/meta.json`,JSON.stringify(meta,null,2)+'\n');if(!cur.concepts.some(x=>x.id===c.slug))cur.concepts.push({id:c.slug,name:meta.title,level:'intro',demand:2,prerequisites:[]});if(!slugs.chemistry.includes(c.slug))slugs.chemistry.push(c.slug);
+}
+for(const [name,symbol,z,mass] of elements)add({slug:`${name}-${mass}-neutron-model`,kind:'nucleus',name,symbol,z,mass,charge:0});
+for(const [name,symbol,z,charge] of ions)add({slug:`${name}-ion-electron-model`,kind:'ion',name,symbol,z,mass:0,charge});
+fs.writeFileSync(cp,JSON.stringify(cur,null,2)+'\n');fs.writeFileSync(sp,JSON.stringify(slugs,null,2)+'\n');console.log('Built 20 isotope and 11 ion exercises');

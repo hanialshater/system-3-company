@@ -1,0 +1,64 @@
+{
+  "slug": "immune-inflammation-capillary-change",
+  "title": "A local alarm",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-inflammation-capillary-change",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "Histamine can promote dilation and increased permeability of nearby capillaries, helping immune cells and fluid reach the affected tissue."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-inflammation-capillary-change.c1",
+      "text": "Question, stage and reveal: In a local inflammatory response, histamine released by mast cells can affect nearby capillaries. Which effect can it promote? Histamine can promote dilation and increased permeability of nearby capillaries, helping immune cells and fluid reach the affected tissue.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-1-innate-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-inflammation-capillary-change.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-inflammation-capillary-change.c3",
+      "text": "Recall: What can histamine promote in nearby capillaries during inflammation? Histamine can promote capillary dilation and increased permeability.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-1-innate-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What can histamine promote in nearby capillaries during inflammation?",
+    "options": [
+      "Dilation and increased permeability",
+      "Conversion to bone",
+      "Permanent stopping of all blood flow"
+    ],
+    "answer": 0,
+    "why": "Histamine can promote capillary dilation and increased permeability."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

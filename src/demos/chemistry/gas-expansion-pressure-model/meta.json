@@ -1,0 +1,64 @@
+{
+  "slug": "gas-expansion-pressure-model",
+  "title": "A piston moves outward",
+  "hook": "Change one condition and watch the gas respond.",
+  "domain": "chemistry",
+  "concept": "gas-expansion-pressure-model",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A gas has pressure, volume, temperature and an amount."
+    ],
+    "doesNotKnow": [
+      "At fixed temperature and gas amount, PV is constant. Doubling volume from 1 L to 2 L halves pressure from 2 atm to 1 atm."
+    ]
+  },
+  "misconception": "Changing one gas variable always leaves the others unchanged.",
+  "objective": "Use the ideal gas law with the stated fixed conditions.",
+  "claims": [
+    {
+      "id": "chemistry.gas-expansion-pressure-model.c1",
+      "text": "Question, chart and reveal: An ideal gas starts at 2 atm and 1 L. At constant temperature and amount, the piston expands it to 2 L. What is its final pressure? At fixed temperature and gas amount, PV is constant. Doubling volume from 1 L to 2 L halves pressure from 2 atm to 1 atm.",
+      "support": "derivation",
+      "source": "PV = nRT under the stated fixed conditions; OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-expansion-pressure-model.c2",
+      "text": "Dots are schematic and not individual real gas molecules; the piston is an idealized representation and the model does not predict deviations from ideal behavior.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-expansion-pressure-model.c3",
+      "text": "Recall: In an ideal gas with temperature and amount fixed, what happens to pressure when volume is halved? At fixed temperature and amount, PV is constant.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In an ideal gas with temperature and amount fixed, what happens to pressure when volume is halved?",
+    "options": [
+      "It doubles",
+      "It halves",
+      "It stays fixed"
+    ],
+    "answer": 0,
+    "why": "At fixed temperature and amount, PV is constant."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

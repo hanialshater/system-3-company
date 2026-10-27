@@ -1,0 +1,64 @@
+{
+  "slug": "endocytosis-cargo-in-vesicle",
+  "title": "Cargo enters in a bubble",
+  "hook": "Predict where the cargo ends up, then run the model.",
+  "domain": "life",
+  "concept": "endocytosis-cargo-in-vesicle",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cells have a plasma membrane separating inside from outside."
+    ],
+    "doesNotKnow": [
+      "During endocytosis, part of the plasma membrane encloses material and forms an internal vesicle. The orange dot is cargo and the surrounding ring represents its vesicle; this diagram skips the intermediate membrane shapes."
+    ]
+  },
+  "misconception": "Everything crosses a cell membrane by the same mechanism.",
+  "objective": "During endocytosis, part of the plasma membrane encloses material and forms an internal vesicle. The orange dot is cargo and the surrounding ring represents its vesicle; this diagram skips the intermediate membrane shapes.",
+  "claims": [
+    {
+      "id": "life.endocytosis-cargo-in-vesicle.c1",
+      "text": "Question, stage and reveal: During endocytosis, a cell takes up outside material by reshaping its plasma membrane. Where is the material after the vesicle forms? During endocytosis, part of the plasma membrane encloses material and forms an internal vesicle. The orange dot is cargo and the surrounding ring represents its vesicle; this diagram skips the intermediate membrane shapes.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-4-bulk-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.endocytosis-cargo-in-vesicle.c2",
+      "text": "Recall: Where does cargo enclosed by an endocytic vesicle go? Endocytosis takes material into a vesicle inside the cell.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-4-bulk-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.endocytosis-cargo-in-vesicle.c3",
+      "text": "The diagram is schematic and represents only selected molecules, not trajectories or all particles.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Where does cargo enclosed by an endocytic vesicle go?",
+    "options": [
+      "Into the cell",
+      "Out of the cell",
+      "Into the nucleus"
+    ],
+    "answer": 0,
+    "why": "Endocytosis takes material into a vesicle inside the cell."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

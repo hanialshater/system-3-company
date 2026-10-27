@@ -1,0 +1,138 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+
+type Molecule = { label: string; atoms: string[] };
+type Case = { question: string; options: [string,string,string]; answer: number; before: Molecule[]; after: Molecule[]; equation: string; explanation: string };
+const lesson: Case = {
+  "question": "Complete combustion of methanol produces carbon dioxide and water. If 2 CH₃OH and 3 O₂ react completely to make only CO₂ and H₂O, how many H₂O molecules form?",
+  "options": [
+    "5 molecules",
+    "3 molecules",
+    "4 molecules"
+  ],
+  "answer": 2,
+  "before": [
+    {
+      "label": "CH₃OH",
+      "atoms": [
+        "C",
+        "H",
+        "H",
+        "H",
+        "H",
+        "O"
+      ]
+    },
+    {
+      "label": "CH₃OH",
+      "atoms": [
+        "C",
+        "H",
+        "H",
+        "H",
+        "H",
+        "O"
+      ]
+    },
+    {
+      "label": "O₂",
+      "atoms": [
+        "O",
+        "O"
+      ]
+    },
+    {
+      "label": "O₂",
+      "atoms": [
+        "O",
+        "O"
+      ]
+    },
+    {
+      "label": "O₂",
+      "atoms": [
+        "O",
+        "O"
+      ]
+    }
+  ],
+  "after": [
+    {
+      "label": "CO₂",
+      "atoms": [
+        "C",
+        "O",
+        "O"
+      ]
+    },
+    {
+      "label": "CO₂",
+      "atoms": [
+        "C",
+        "O",
+        "O"
+      ]
+    },
+    {
+      "label": "H₂O",
+      "atoms": [
+        "H",
+        "H",
+        "O"
+      ]
+    },
+    {
+      "label": "H₂O",
+      "atoms": [
+        "H",
+        "H",
+        "O"
+      ]
+    },
+    {
+      "label": "H₂O",
+      "atoms": [
+        "H",
+        "H",
+        "O"
+      ]
+    },
+    {
+      "label": "H₂O",
+      "atoms": [
+        "H",
+        "H",
+        "O"
+      ]
+    }
+  ],
+  "equation": "2 CH₃OH + 3 O₂ → 2 CO₂ + 4 H₂O",
+  "explanation": "The model gives 4 H₂O: 2 CH₃OH + 3 O₂ → 2 CO₂ + 4 H₂O. The 2 C, 8 H, 8 O atoms are present on both sides; atoms change partners, not identity."
+};
+const colors: Record<string,string> = { H: "#f2f5fb", C: "#70788b", N: "#7198e8", O: "#ed787b", S: "#e9c85a", Cl: "#77ca8c" };
+
+export default function Demo({ slug }: { slug: string }) {
+ const [built, setBuilt] = useState(false);
+ const molecules = built ? lesson.after : lesson.before;
+ const counts = molecules.flatMap(m => m.atoms).reduce<Record<string,number>>((a,e) => ({...a,[e]:(a[e]||0)+1}),{});
+ const countText = Object.entries(counts).sort().map(([e,n]) => `${n} ${e}`).join(" · ");
+ return <Lesson slug={slug} predict={{question:lesson.question,options:lesson.options,answer:lesson.answer}}
+   exploreHint="Rearrange the model atoms, then compare the counts."
+   reveal={() => <p>{lesson.explanation} In this particle model, each circle is one atom; groups are molecule counts, not a movie of the reaction or exact molecular shapes.</p>}>
+   {({locked,interact}) => <div>
+    <svg viewBox="0 0 360 210" className="stage-svg" role="img" aria-label={`${built ? "Products" : "Reactants"}: ${molecules.map(m=>m.label).join(", ")}. Atom totals: ${countText}.`}>
+     <text x="180" y="23" textAnchor="middle" fill="var(--fg)" fontSize="15" fontWeight="bold">{built ? "Products" : "Starting molecules"}</text>
+     {molecules.map((m,i) => { const x=34+(i%4)*90, y=65+Math.floor(i/4)*70; return <g key={i}>
+      <rect x={x-31} y={y-23} width="78" height="48" rx="12" fill="var(--bg-2)" stroke="var(--line)"/>
+      {m.atoms.map((e,j)=><g key={j}><circle cx={x-20+(j%4)*19} cy={y-10+Math.floor(j/4)*18} r="9.1" fill={colors[e]||"#9caabc"} stroke="#586378" strokeWidth=".7"/><text x={x-20+(j%4)*19} y={y-6+Math.floor(j/4)*18} textAnchor="middle" fontSize="12" fontWeight="bold" fill="#192131">{e}</text></g>)}
+      <text x={x+9} y={y+39} textAnchor="middle" fontSize="12" fill="var(--fg)">{m.label}</text>
+     </g>})}
+     <text x="180" y="204" textAnchor="middle" fontSize="13" fill="var(--fg)">{countText}</text>
+    </svg>
+    <Row><Control disabled={locked || built} onClick={()=>{setBuilt(true);interact();}}>Build the products</Control></Row>
+    <p style={{fontSize:"0.8rem",color:"var(--muted)",textAlign:"center",margin:"4px 0"}}>Circles are atoms · groups show molecule counts</p>
+   </div>}
+ </Lesson>;
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "titration-ph-equivalence",
+  "title": "A middle addition of base",
+  "hook": "Add base and watch the balance change.",
+  "domain": "chemistry",
+  "concept": "titration-ph-equivalence",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Strong acid and strong base react in a 1:1 acid–base ratio."
+    ],
+    "doesNotKnow": [
+      "How excess reagent and total volume determine pH in this ideal model."
+    ]
+  },
+  "misconception": "Equal volumes always imply equivalence, regardless of concentration.",
+  "objective": "Use stoichiometry and the stated ideal approximation to interpret a strong-acid/base titration.",
+  "claims": [
+    {
+      "id": "chemistry.titration-ph-equivalence.c1",
+      "text": "Question, chart and reveal: An ideal 10 mL sample of 0.100 M HCl is mixed with 10 mL of 0.100 M NaOH at 25 °C. Assume complete reaction, additive volumes and concentration-based pH. What is the approximate final pH? Initially there is 1.00 mmol acid; 10 mL of base adds 1.00 mmol hydroxide. Neither reactant is in stoichiometric excess. The final volume is 20 mL and the model pH is approximately 7.00. The model approximates activity by concentration.",
+      "support": "derivation",
+      "source": "Strong-acid/base stoichiometry and concentration approximation; OpenStax https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.titration-ph-equivalence.c2",
+      "text": "The beaker is a schematic model, not a laboratory procedure or literal particle count.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.titration-ph-equivalence.c3",
+      "text": "Recall: For this equal-molarity HCl–NaOH model, what addition makes acid and base amounts equal? 10 mL of 0.100 M base supplies 1.00 mmol hydroxide, equal to the original 1.00 mmol acid.",
+      "support": "derivation",
+      "source": "0.100 mol/L × 0.010 L = 0.001 mol; https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For this equal-molarity HCl–NaOH model, what addition makes acid and base amounts equal?",
+    "options": [
+      "10 mL base",
+      "5 mL base",
+      "15 mL base"
+    ],
+    "answer": 0,
+    "why": "10 mL of 0.100 M base supplies 1.00 mmol hydroxide, equal to the original 1.00 mmol acid."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

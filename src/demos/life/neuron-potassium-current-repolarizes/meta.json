@@ -1,0 +1,64 @@
+{
+  "slug": "neuron-potassium-current-repolarizes",
+  "title": "A positive current leaves",
+  "hook": "Predict the next step, then trace the signal.",
+  "domain": "life",
+  "concept": "neuron-potassium-current-repolarizes",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Neurons have membranes and communicate using electrical and chemical signals."
+    ],
+    "doesNotKnow": [
+      "Net outward positive charge makes the inside more negative relative to the outside, contributing to repolarization during a typical action potential."
+    ]
+  },
+  "misconception": "Neuronal signals and chemical synapses involve no ion movement.",
+  "objective": "Explain the specified step of neuronal signaling under the stated conditions.",
+  "claims": [
+    {
+      "id": "life.neuron-potassium-current-repolarizes.c1",
+      "text": "Question, diagram and reveal: In a simplified neuron model, positive potassium charge leaves and other currents are neglected. What happens initially to the inside voltage relative to outside? Net outward positive charge makes the inside more negative relative to the outside, contributing to repolarization during a typical action potential.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/35-2-how-neurons-communicate",
+      "status": "unverified"
+    },
+    {
+      "id": "life.neuron-potassium-current-repolarizes.c2",
+      "text": "The diagrams are schematic, show only selected particles or steps, and do not represent actual particle trajectories or scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.neuron-potassium-current-repolarizes.c3",
+      "text": "Recall: When positive charge moves into a cell, with other currents neglected, what happens to the inside voltage? Net entry of positive charge makes the inside less negative in this simplified model.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/35-2-how-neurons-communicate",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When positive charge moves into a cell, with other currents neglected, what happens to the inside voltage?",
+    "options": [
+      "It becomes less negative",
+      "It becomes more negative",
+      "It must stay unchanged"
+    ],
+    "answer": 0,
+    "why": "Net entry of positive charge makes the inside less negative in this simplified model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

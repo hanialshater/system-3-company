@@ -1,0 +1,64 @@
+{
+  "slug": "selection-a-survives-more-often",
+  "title": "A survival advantage",
+  "hook": "Track a small population through one event.",
+  "domain": "life",
+  "concept": "selection-a-survives-more-often",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "An allele is a variant of a gene."
+    ],
+    "doesNotKnow": [
+      "In this stipulated selection example, A individuals survive more often than a individuals. A survival advantage need not persist if conditions change."
+    ]
+  },
+  "misconception": "Population size and allele frequency always change together.",
+  "objective": "Count allele frequency in a finite haploid population after a specified event.",
+  "claims": [
+    {
+      "id": "life.selection-a-survives-more-often.c1",
+      "text": "Question, stage and explanation: In a haploid model, each dot is one individual with one A or a allele. Start with 6 A and 6 a. In this fixed example all 6 A individuals and 3 of 6 a individuals survive. What fraction of the resulting group carries A? The resulting group has 6 A and 3 a, so its A frequency is 6 out of 9. In this stipulated selection example, A individuals survive more often than a individuals. A survival advantage need not persist if conditions change. The diagram fixes this one outcome rather than predicting every real population.",
+      "support": "derivation",
+      "source": "Specified finite population; biological context: OpenStax https://openstax.org/books/biology-2e/pages/19-1-population-evolution",
+      "status": "unverified"
+    },
+    {
+      "id": "life.selection-a-survives-more-often.c2",
+      "text": "Each dot stands for one haploid individual with one allele at this locus; colours do not imply actual organism colours.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.selection-a-survives-more-often.c3",
+      "text": "Recall: If a haploid group has 6 A individuals and 3 a individuals, what fraction carry A? There are 9 individuals and 6 carry A.",
+      "support": "derivation",
+      "source": "Finite count defined by the question.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If a haploid group has 6 A individuals and 3 a individuals, what fraction carry A?",
+    "options": [
+      "6 of 9",
+      "3 of 9",
+      "6 of 10"
+    ],
+    "answer": 0,
+    "why": "There are 9 individuals and 6 carry A."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

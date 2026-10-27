@@ -1,0 +1,64 @@
+{
+  "slug": "migration-adds-a-alleles",
+  "title": "New arrivals change the mix",
+  "hook": "Track a small population through one event.",
+  "domain": "life",
+  "concept": "migration-adds-a-alleles",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "An allele is a variant of a gene."
+    ],
+    "doesNotKnow": [
+      "Migration can change allele frequencies when arrivals differ from the receiving population. This example fixes which individuals arrive."
+    ]
+  },
+  "misconception": "Population size and allele frequency always change together.",
+  "objective": "Count allele frequency in a finite haploid population after a specified event.",
+  "claims": [
+    {
+      "id": "life.migration-adds-a-alleles.c1",
+      "text": "Question, stage and explanation: In a haploid model, each dot is one individual with one A or a allele. Start with 4 A and 4 a. Three A individuals join the starting group and nobody leaves. What fraction of the resulting group carries A? The resulting group has 7 A and 4 a, so its A frequency is 7 out of 11. Migration can change allele frequencies when arrivals differ from the receiving population. This example fixes which individuals arrive. The diagram fixes this one outcome rather than predicting every real population.",
+      "support": "derivation",
+      "source": "Specified finite population; biological context: OpenStax https://openstax.org/books/biology-2e/pages/19-1-population-evolution",
+      "status": "unverified"
+    },
+    {
+      "id": "life.migration-adds-a-alleles.c2",
+      "text": "Each dot stands for one haploid individual with one allele at this locus; colours do not imply actual organism colours.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.migration-adds-a-alleles.c3",
+      "text": "Recall: If a haploid group has 7 A individuals and 4 a individuals, what fraction carry A? There are 11 individuals and 7 carry A.",
+      "support": "derivation",
+      "source": "Finite count defined by the question.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If a haploid group has 7 A individuals and 4 a individuals, what fraction carry A?",
+    "options": [
+      "7 of 11",
+      "4 of 11",
+      "7 of 12"
+    ],
+    "answer": 0,
+    "why": "There are 11 individuals and 7 carry A."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

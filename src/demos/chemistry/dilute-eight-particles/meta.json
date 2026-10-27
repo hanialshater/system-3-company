@@ -1,0 +1,64 @@
+{
+  "slug": "dilute-eight-particles",
+  "title": "Dilution with more solute",
+  "hook": "Keep the solute; change the space it occupies.",
+  "domain": "chemistry",
+  "concept": "dilute-eight-particles",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Concentration compares the amount of solute with the volume of solution."
+    ],
+    "doesNotKnow": [
+      "How changing volume with fixed solute changes average concentration."
+    ]
+  },
+  "misconception": "Adding water removes solute particles.",
+  "objective": "Relate concentration to the ratio of solute amount to solution volume in a particle model.",
+  "claims": [
+    {
+      "id": "chemistry.dilute-eight-particles.c1",
+      "text": "Question, stage and reveal: A model solution has 8 solute particles in 2 equal-volume compartments. You add water until the volume is 4 compartments, without losing solute. Once evenly mixed, how many particles per compartment on average? The same 8 particles occupy 4 equal compartments, so the average is 8 ÷ 4 = 2 per compartment. The dots are a counting model; real particles move and are not fixed in compartments.",
+      "support": "derivation",
+      "source": "OpenStax Chemistry 2e §3.3 https://openstax.org/books/chemistry-2e/pages/3-3-molarity",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.dilute-eight-particles.c2",
+      "text": "The compartments are equal-volume counting regions, not physical barriers; the particles represent a simplified evenly mixed model.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.dilute-eight-particles.c3",
+      "text": "When the amount of solute is unchanged, doubling the solution volume halves its concentration.",
+      "support": "source",
+      "source": "OpenStax Chemistry 2e §3.3 https://openstax.org/books/chemistry-2e/pages/3-3-molarity",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You double a solution’s volume by adding solvent, keeping all solute. What happens to its concentration?",
+    "options": [
+      "It halves",
+      "It doubles",
+      "It stays the same"
+    ],
+    "answer": 0,
+    "why": "Concentration is amount divided by volume; the same amount in twice the volume gives half the concentration."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
