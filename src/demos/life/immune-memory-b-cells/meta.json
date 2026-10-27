@@ -1,0 +1,64 @@
+{
+  "slug": "immune-memory-b-cells",
+  "title": "A response can leave memory",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-memory-b-cells",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "Some activated B cells become memory cells that can contribute to a faster response upon a later encounter with the relevant antigen. Protection varies by context."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-memory-b-cells.c1",
+      "text": "Question, stage and reveal: After an adaptive response, which B-cell descendants can support a faster response to a later encounter with the same antigen? Some activated B cells become memory cells that can contribute to a faster response upon a later encounter with the relevant antigen. Protection varies by context.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-memory-b-cells.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-memory-b-cells.c3",
+      "text": "Recall: Which B-cell descendant can support a faster later response to an antigen? Memory B cells can respond to a later encounter with the relevant antigen.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which B-cell descendant can support a faster later response to an antigen?",
+    "options": [
+      "Memory B cell",
+      "Red blood cell",
+      "Platelet"
+    ],
+    "answer": 0,
+    "why": "Memory B cells can respond to a later encounter with the relevant antigen."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "hardy-recessive-p90",
+  "title": "A rare recessive genotype",
+  "hook": "Predict the genotype mix from allele frequencies.",
+  "domain": "life",
+  "concept": "hardy-recessive-p90",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A and a are two alleles and their frequencies sum to one."
+    ],
+    "doesNotKnow": [
+      "How allele frequencies determine expected genotype frequencies in the stated ideal model."
+    ]
+  },
+  "misconception": "Allele frequency equals the frequency of its homozygous genotype.",
+  "objective": "Calculate or interpret genotype frequencies under Hardy–Weinberg assumptions.",
+  "claims": [
+    {
+      "id": "life.hardy-recessive-p90.c1",
+      "text": "Question, chart and reveal: In a large randomly mating population under Hardy–Weinberg assumptions, allele frequencies are p(A) = 0.9 and q(a) = 0.1. What percentage is expected to have genotype aa? The model gives AA = p² = 81%, Aa = 2pq = 18% and aa = q² = 1%. The requested aa frequency is 1%. These are ideal expectations, not a guarantee for a finite population.",
+      "support": "derivation",
+      "source": "Derived from p², 2pq and q² under the stated model; OpenStax https://openstax.org/books/biology-2e/pages/19-1-population-evolution",
+      "status": "unverified"
+    },
+    {
+      "id": "life.hardy-recessive-p90.c2",
+      "text": "Bars are idealized expected frequencies, not measurements or guarantees for a finite population.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.hardy-recessive-p90.c3",
+      "text": "Recall: Under the two-allele Hardy–Weinberg model, which expression is the expected heterozygote frequency? The two heterozygous combinations each contribute pq, so their sum is 2pq.",
+      "support": "derivation",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/19-1-population-evolution",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the two-allele Hardy–Weinberg model, which expression is the expected heterozygote frequency?",
+    "options": [
+      "2pq",
+      "p²",
+      "q²"
+    ],
+    "answer": 0,
+    "why": "The two heterozygous combinations each contribute pq, so their sum is 2pq."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

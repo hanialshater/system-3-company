@@ -1,0 +1,64 @@
+{
+  "slug": "gas-warming-volume-model",
+  "title": "A warm gas moves a piston",
+  "hook": "Change one condition and watch the gas respond.",
+  "domain": "chemistry",
+  "concept": "gas-warming-volume-model",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A gas has pressure, volume, temperature and an amount."
+    ],
+    "doesNotKnow": [
+      "At fixed pressure and gas amount, volume is proportional to absolute temperature. Doubling temperature from 300 K to 600 K doubles volume from 1 L to 2 L."
+    ]
+  },
+  "misconception": "Changing one gas variable always leaves the others unchanged.",
+  "objective": "Use the ideal gas law with the stated fixed conditions.",
+  "claims": [
+    {
+      "id": "chemistry.gas-warming-volume-model.c1",
+      "text": "Question, chart and reveal: An ideal gas at 300 K occupies 1 L. At constant pressure and amount, it is heated to 600 K. What is its final volume? At fixed pressure and gas amount, volume is proportional to absolute temperature. Doubling temperature from 300 K to 600 K doubles volume from 1 L to 2 L.",
+      "support": "derivation",
+      "source": "PV = nRT under the stated fixed conditions; OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-warming-volume-model.c2",
+      "text": "Dots are schematic and not individual real gas molecules; the piston is an idealized representation and the model does not predict deviations from ideal behavior.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-warming-volume-model.c3",
+      "text": "Recall: At fixed pressure and gas amount, what happens to ideal-gas volume when kelvin temperature doubles? Volume is proportional to absolute temperature at fixed pressure and amount.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At fixed pressure and gas amount, what happens to ideal-gas volume when kelvin temperature doubles?",
+    "options": [
+      "It doubles",
+      "It halves",
+      "It stays fixed"
+    ],
+    "answer": 0,
+    "why": "Volume is proportional to absolute temperature at fixed pressure and amount."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

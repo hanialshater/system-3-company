@@ -1,0 +1,64 @@
+{
+  "slug": "enzyme-rate-add-substrate",
+  "title": "Adding substrate",
+  "hook": "Move substrate and watch a model rate grow.",
+  "domain": "life",
+  "concept": "enzyme-rate-add-substrate",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Enzymes catalyse reactions and substrate concentration can affect the rate."
+    ],
+    "doesNotKnow": [
+      "At S = 2, v = 6 × 2/(2 + 2) = 3. The curve rises from 2 at S = 1 to 3 at S = 2."
+    ]
+  },
+  "misconception": "A rate is always proportional to substrate at every concentration.",
+  "objective": "Interpret a stated ideal enzyme-rate model at a fixed substrate level.",
+  "claims": [
+    {
+      "id": "life.enzyme-rate-add-substrate.c1",
+      "text": "Question, chart and reveal: In the model v = 6S/(2 + S), the rate at S = 1 is 2. What is the rate at S = 2? At S = 2, v = 6 × 2/(2 + 2) = 3. The curve rises from 2 at S = 1 to 3 at S = 2.",
+      "support": "derivation",
+      "source": "Substitute the stated parameters into v = Vmax S/(Km + S); enzyme context: OpenStax https://openstax.org/books/biology-2e/pages/6-5-enzymes",
+      "status": "unverified"
+    },
+    {
+      "id": "life.enzyme-rate-add-substrate.c2",
+      "text": "The chart is an idealized model in arbitrary units, not a fitted measurement or universal law for every enzyme.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.enzyme-rate-add-substrate.c3",
+      "text": "Recall: In the ideal model v = Vmax·S/(Km + S), what is v when S = Km? Substituting S = Km gives v = Vmax × Km/(2 Km) = Vmax/2.",
+      "support": "derivation",
+      "source": "Algebraic substitution into the model.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the ideal model v = Vmax·S/(Km + S), what is v when S = Km?",
+    "options": [
+      "Half Vmax",
+      "Zero",
+      "Twice Vmax"
+    ],
+    "answer": 0,
+    "why": "Substituting S = Km gives v = Vmax × Km/(2 Km) = Vmax/2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

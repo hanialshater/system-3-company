@@ -1,0 +1,64 @@
+{
+  "slug": "particle-sample-nitrogen-oxygen",
+  "title": "A box of gases",
+  "hook": "Look at the particles before naming the sample.",
+  "domain": "chemistry",
+  "concept": "particle-sample-nitrogen-oxygen",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Atoms of each element are represented by a chemical symbol."
+    ],
+    "doesNotKnow": [
+      "A pure element, a pure compound and a mixture differ by particle composition."
+    ]
+  },
+  "misconception": "A molecule containing several atoms must be a compound.",
+  "objective": "Classify a specified particle sample by type and composition.",
+  "claims": [
+    {
+      "id": "chemistry.particle-sample-nitrogen-oxygen.c1",
+      "text": "Question, stage and reveal: Each touching group represents one particle. Is this specified sample one pure element, one pure compound, or a mixture of substances? The model contains 2 N₂ and 2 O₂. The two different particle types represent a mixture of substances. Circles show atom counts, not molecular geometry.",
+      "support": "derivation",
+      "source": "Specified particle counts and chemical formulas; OpenStax https://openstax.org/books/chemistry-2e/pages/1-2-phases-and-classification-of-matter",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.particle-sample-nitrogen-oxygen.c2",
+      "text": "Atoms are shown as touching circles only to group particles; sizes and geometric arrangement are not molecular structures.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.particle-sample-nitrogen-oxygen.c3",
+      "text": "Recall: A sample contains only identical O₂ molecules. How is it classified? All molecules are the same substance and contain only oxygen atoms.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/1-2-phases-and-classification-of-matter",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A sample contains only identical O₂ molecules. How is it classified?",
+    "options": [
+      "A pure element",
+      "A pure compound",
+      "A mixture"
+    ],
+    "answer": 0,
+    "why": "All molecules are the same substance and contain only oxygen atoms."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

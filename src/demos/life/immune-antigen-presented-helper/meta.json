@@ -1,0 +1,64 @@
+{
+  "slug": "immune-antigen-presented-helper",
+  "title": "A fragment is displayed",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-antigen-presented-helper",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "CD4 helper T cells can recognize peptides displayed by MHC class II on antigen-presenting cells. Full activation also requires additional signals."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-antigen-presented-helper.c1",
+      "text": "Question, stage and reveal: An antigen-presenting cell displays a peptide on MHC class II. Which T-cell group can recognize that presentation through its receptor? CD4 helper T cells can recognize peptides displayed by MHC class II on antigen-presenting cells. Full activation also requires additional signals.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-antigen-presented-helper.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-antigen-presented-helper.c3",
+      "text": "Recall: Which T-cell group recognizes peptide presented on MHC class II? CD4 T cells can recognize peptide–MHC II complexes.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which T-cell group recognizes peptide presented on MHC class II?",
+    "options": [
+      "CD4 helper T cells",
+      "CD8 cytotoxic T cells",
+      "Red blood cells"
+    ],
+    "answer": 0,
+    "why": "CD4 T cells can recognize peptide–MHC II complexes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
