@@ -1,5 +1,7 @@
 # All1621 demos: push and deploy
 
+owner: founder (decision); chief-of-staff (record)
+
 class: deploy
 route: existing sourceowners → chief-of-staff integration/release-manager → existingVercelproductionproject
 
