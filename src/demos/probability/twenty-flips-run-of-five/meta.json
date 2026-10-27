@@ -43,10 +43,10 @@
       "id": "probability.twenty-flips-run-of-five.c2",
       "text": "Real sequence k on the stage is 20 flips from mulberry32(k), for k = 1, 2, 3, ... in order (seeds not chosen; not shown to the learner); Run 1,000 real adds the next 1,000, Simulate one adds one, and the stage draws the latest. The tally's share differs from 45.8% by sampling noise.",
       "support": "simulation",
-      "source": "model.ts sequence() and runMore(); Demo.tsx run(). Node 2026-10-14: seeds 1..1,000 give 475 with a run of 5+ (47.5%), bins (<=2,3,4,5,6,7,8+) = 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6%); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest run 5. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port of mulberry32 and sequence(): seeds 1..1,000 give 475 runs of 5+ (47.5%), bins 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6% after rounding); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest 5. runMore adds seeds n+1..n+count in order; the stage draws sequence(tally.n), the latest. Seeds are not chosen.",
-      "status": "unverified",
+      "source": "model.ts sequence() and runMore(); Demo.tsx run(). Node 2026-10-14: seeds 1..1,000 give 475 with a run of 5+ (47.5%), bins (<=2,3,4,5,6,7,8+) = 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6%); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest run 5. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own port of mulberry32 and sequence(): seeds 1..1,000 give 475 runs of 5+ (47.5%), bins 14, 219, 292, 217, 143, 61, 54; seeds 1..1,001 give 476 (47.6% after rounding); sequence 1,001 = HHHHTTTTTHHHTTTTTHTT, longest 5. runMore adds seeds n+1..n+count in order; the stage draws sequence(tally.n), the latest. Seeds are not chosen. | Independent fact-check 2026-10-27: company/reviews/twenty-flips-run-of-five/2026-10-27-fact-check-checks-first.md (probability.twenty-flips-run-of-five.c2); exact scope and derivation/source evidence recorded there.",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-27"
     },
     {
       "id": "probability.twenty-flips-run-of-five.c3",

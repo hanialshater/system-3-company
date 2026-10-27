@@ -74,10 +74,10 @@
       "id": "cs.sketch-the-counts.c6",
       "text": "A count-min sketch is a fixed table of shared counters. With nonnegative updates, its estimate cannot fall below the true count.",
       "support": "source",
-      "source": "Cormode and Muthukrishnan (2005), J. Algorithms 55(1): 58-75: the estimate is never below the true count and exceeds it by at most eps x N with probability at least 1 - delta. Seen in the reveal's closing line ('never too low and usually close'). Fact-checker simulation: 300 random hash sets, width 100, 4 rows, 2,000-item stream over 50 keys: 0 of 15,000 readings under the truth, 97.8% exact. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "unverified",
+      "source": "Cormode and Muthukrishnan (2005), J. Algorithms 55(1): 58-75: the estimate is never below the true count and exceeds it by at most eps x N with probability at least 1 - delta. Seen in the reveal's closing line ('never too low and usually close'). Fact-checker simulation: 300 random hash sets, width 100, 4 rows, 2,000-item stream over 50 keys: 0 of 15,000 readings under the truth, 97.8% exact. Added by fact-checker 2026-10-13; needs an independent check. | Independent fact-check 2026-10-27: company/reviews/sketch-the-counts/2026-10-27-fact-check-checks-first.md (cs.sketch-the-counts.c6); exact scope and derivation/source evidence recorded there.",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-27"
     }
   ],
   "confidence": "",
