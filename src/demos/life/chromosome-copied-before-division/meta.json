@@ -1,0 +1,64 @@
+{
+  "slug": "chromosome-copied-before-division",
+  "title": "Copied but not yet separated",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "chromosome-copied-before-division",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "Each chromosome is copied into two sister chromatids joined at a centromere. Before separation, this model has two chromosomes and four chromatids; each X stands for a duplicated chromosome."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "Each chromosome is copied into two sister chromatids joined at a centromere. Before separation, this model has two chromosomes and four chromatids; each X stands for a duplicated chromosome.",
+  "claims": [
+    {
+      "id": "life.chromosome-copied-before-division.c1",
+      "text": "Question, answer, diagram and explanation: A cell has two unreplicated chromosomes. After DNA replication, before sister chromatids separate, how many chromosomes and chromatids are there? Each chromosome is copied into two sister chromatids joined at a centromere. Before separation, this model has two chromosomes and four chromatids; each X stands for a duplicated chromosome.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle",
+      "status": "unverified"
+    },
+    {
+      "id": "life.chromosome-copied-before-division.c2",
+      "text": "Recall: After DNA replication and before chromatid separation, how many sister chromatids are in one duplicated chromosome? A duplicated chromosome has two sister chromatids before they separate.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle",
+      "status": "unverified"
+    },
+    {
+      "id": "life.chromosome-copied-before-division.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After DNA replication and before chromatid separation, how many sister chromatids are in one duplicated chromosome?",
+    "options": [
+      "Two",
+      "One",
+      "Four"
+    ],
+    "answer": 0,
+    "why": "A duplicated chromosome has two sister chromatids before they separate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

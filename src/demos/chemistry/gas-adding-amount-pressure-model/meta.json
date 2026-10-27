@@ -1,0 +1,64 @@
+{
+  "slug": "gas-adding-amount-pressure-model",
+  "title": "Adding gas to a rigid vessel",
+  "hook": "Change one condition and watch the gas respond.",
+  "domain": "chemistry",
+  "concept": "gas-adding-amount-pressure-model",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A gas has pressure, volume, temperature and an amount."
+    ],
+    "doesNotKnow": [
+      "At fixed volume and temperature, pressure is proportional to the gas amount. Doubling the amount doubles pressure from 1 atm to 2 atm."
+    ]
+  },
+  "misconception": "Changing one gas variable always leaves the others unchanged.",
+  "objective": "Use the ideal gas law with the stated fixed conditions.",
+  "claims": [
+    {
+      "id": "chemistry.gas-adding-amount-pressure-model.c1",
+      "text": "Question, chart and reveal: An ideal gas in a rigid vessel is at 1 atm. The gas amount doubles while volume and temperature remain fixed. What is its final pressure? At fixed volume and temperature, pressure is proportional to the gas amount. Doubling the amount doubles pressure from 1 atm to 2 atm.",
+      "support": "derivation",
+      "source": "PV = nRT under the stated fixed conditions; OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-adding-amount-pressure-model.c2",
+      "text": "Dots are schematic and not individual real gas molecules; the piston is an idealized representation and the model does not predict deviations from ideal behavior.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.gas-adding-amount-pressure-model.c3",
+      "text": "Recall: At fixed temperature and volume, what happens to ideal-gas pressure if gas amount doubles? Pressure is proportional to amount at fixed temperature and volume.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/9-summary",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At fixed temperature and volume, what happens to ideal-gas pressure if gas amount doubles?",
+    "options": [
+      "It doubles",
+      "It halves",
+      "It stays fixed"
+    ],
+    "answer": 0,
+    "why": "Pressure is proportional to amount at fixed temperature and volume."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "one-letter-changes-amino-acid",
+  "title": "One letter in a codon",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "one-letter-changes-amino-acid",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "GAA encodes glutamate and GUA encodes valine in the standard genetic code. This substitution changes one amino acid in this example."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "GAA encodes glutamate and GUA encodes valine in the standard genetic code. This substitution changes one amino acid in this example.",
+  "claims": [
+    {
+      "id": "life.one-letter-changes-amino-acid.c1",
+      "text": "Question, answer, diagram and explanation: In the standard genetic code, a codon changes from GAA to GUA. What happens to the encoded amino acid? GAA encodes glutamate and GUA encodes valine in the standard genetic code. This substitution changes one amino acid in this example.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-letter-changes-amino-acid.c2",
+      "text": "Recall: Which amino acid does GUA specify in the standard genetic code? GUA encodes valine in the standard genetic code.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.one-letter-changes-amino-acid.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which amino acid does GUA specify in the standard genetic code?",
+    "options": [
+      "Valine",
+      "Glutamate",
+      "Tyrosine"
+    ],
+    "answer": 0,
+    "why": "GUA encodes valine in the standard genetic code."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

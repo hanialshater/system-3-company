@@ -1,0 +1,60 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+
+type Panel={outside:string[];inside:string[];vesicleOutside?:boolean;vesicleInside?:boolean};
+type Model={question:string;options:[string,string,string];answer:number;before:Panel;after:Panel;protein:boolean;energy:boolean;button:string;explanation:string};
+const lesson:Model={
+  "question": "During endocytosis, a cell takes up outside material by reshaping its plasma membrane. Where is the material after the vesicle forms?",
+  "options": [
+    "Inside the cell in a vesicle",
+    "Outside the cell",
+    "Inside the nucleus"
+  ],
+  "answer": 0,
+  "before": {
+    "outside": [
+      "cargo"
+    ],
+    "inside": []
+  },
+  "after": {
+    "outside": [],
+    "inside": [
+      "cargo"
+    ],
+    "vesicleInside": true
+  },
+  "protein": false,
+  "energy": false,
+  "button": "Form the vesicle",
+  "explanation": "During endocytosis, part of the plasma membrane encloses material and forms an internal vesicle. The orange dot is cargo and the surrounding ring represents its vesicle; this diagram skips the intermediate membrane shapes."
+};
+const color:Record<string,string>={'O₂':'#8dc9ee',Glc:'#eab968',Na:'#8fb6ee',K:'#e38eaa',cargo:'#e6a86e'};
+function Side({items,y,vesicle}: {items:string[];y:number;vesicle?:boolean}) {return <g>{items.map((v,i)=>{const x=105+i*42;return <g key={i}>{vesicle&&<circle cx={x} cy={y} r="16" fill="none" stroke="#7e8aaf" strokeWidth="3"/>}<circle cx={x} cy={y} r="11" fill={color[v]||'#b2c4e3'} stroke="#56667e" strokeWidth="1"/><text x={x} y={y+4} fill="#1a2330" textAnchor="middle" fontSize="12" fontWeight="bold">{v==='cargo'?'●':v}</text></g>})}</g>}
+function Scene({model,y,title,protein,energy}: {model:Panel;y:number;title:string;protein:boolean;energy:boolean}) {return <g transform={`translate(0 ${y})`}>
+ <text x="8" y="13" fill="var(--fg)" fontWeight="bold" fontSize="12">{title}</text>
+ <text x="10" y="30" fill="var(--muted)" fontSize="11">outside</text><text x="10" y="73" fill="var(--muted)" fontSize="11">inside</text>
+ <rect x="72" y="34" width="220" height="12" fill="#9cc7ad" opacity=".6"/>
+ <path d="M72 34 H292 M72 46 H292" stroke="#5e927a" strokeWidth="2"/>
+ {protein && <rect x="180" y="29" width="27" height="22" rx="7" fill="#977ab9" stroke="#69528c" strokeWidth="2"/>}
+ {energy && <text x="215" y="44" fill="var(--fg)" fontSize="11">ATP → ADP</text>}
+ <Side items={model.outside} y={17} vesicle={model.vesicleOutside}/><Side items={model.inside} y={64} vesicle={model.vesicleInside}/>
+ </g>}
+export default function Demo({slug}:{slug:string}) {
+ const [done,setDone]=useState(false);
+ return <Lesson slug={slug} predict={{question:lesson.question,options:lesson.options,answer:lesson.answer}}
+  exploreHint="Run the model and compare the positions before and after."
+  reveal={()=><p>{lesson.explanation} This schematic shows selected particles only; it does not portray every molecule or the detailed motion during transport.</p>}>
+  {({locked,interact})=><div>
+   <svg viewBox="0 0 320 205" className="stage-svg" role="img" aria-label={`Before: outside ${lesson.before.outside.join(', ')||'none'}, inside ${lesson.before.inside.join(', ')||'none'}. ${done?`After: outside ${lesson.after.outside.join(', ')||'none'}, inside ${lesson.after.inside.join(', ')||'none'}.`:'After is hidden.'}`}>
+    <Scene model={lesson.before} y={2} title="Before" protein={lesson.protein} energy={lesson.energy}/>
+    <line x1="8" x2="312" y1="93" y2="93" stroke="var(--line)" strokeDasharray="4 4"/>
+    {done?<Scene model={lesson.after} y={99} title="After" protein={lesson.protein} energy={lesson.energy}/>:<text x="190" y="155" textAnchor="middle" fontSize="24" fill="var(--muted)">?</text>}
+   </svg>
+   <Row><Control disabled={locked||done} onClick={()=>{setDone(true);interact();}}>{lesson.button}</Control></Row>
+   <p style={{fontSize:'0.8rem',color:'var(--muted)',textAlign:'center',margin:'4px 0'}}>Cross-section model · particles not to scale</p>
+  </div>}
+ </Lesson>;
+}

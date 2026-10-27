@@ -1,0 +1,64 @@
+{
+  "slug": "immune-b-cell-plasma-antibodies",
+  "title": "A B cell changes jobs",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-b-cell-plasma-antibodies",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "Activated B cells can differentiate into plasma cells that secrete antibodies. Other descendants can become memory B cells."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-b-cell-plasma-antibodies.c1",
+      "text": "Question, stage and reveal: After appropriate activation, which differentiated B-cell type secretes large amounts of antibody? Activated B cells can differentiate into plasma cells that secrete antibodies. Other descendants can become memory B cells.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-b-cell-plasma-antibodies.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-b-cell-plasma-antibodies.c3",
+      "text": "Recall: Which activated B-cell descendant secretes antibodies? Plasma cells secrete antibodies.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which activated B-cell descendant secretes antibodies?",
+    "options": [
+      "Plasma cell",
+      "Red blood cell",
+      "Platelet"
+    ],
+    "answer": 0,
+    "why": "Plasma cells secrete antibodies."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

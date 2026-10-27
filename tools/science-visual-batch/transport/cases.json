@@ -1,0 +1,163 @@
+[
+  {
+    "slug": "oxygen-crosses-lipid-bilayer",
+    "title": "A gas crosses the membrane",
+    "question": "A model has more oxygen molecules outside a cell than inside. Oxygen can cross the lipid bilayer. What is the net direction initially?",
+    "options": [
+      "Into the cell",
+      "Out of the cell",
+      "No net movement"
+    ],
+    "before": {
+      "outside": [
+        "O₂",
+        "O₂",
+        "O₂",
+        "O₂"
+      ],
+      "inside": []
+    },
+    "after": {
+      "outside": [
+        "O₂",
+        "O₂"
+      ],
+      "inside": [
+        "O₂",
+        "O₂"
+      ]
+    },
+    "protein": false,
+    "button": "Let oxygen diffuse",
+    "explanation": "Oxygen can diffuse across the lipid bilayer. In this equal-volume example, the net movement starts from the higher concentration outside toward the lower concentration inside. The selected four particles illustrate a model, not a prediction for individual trajectories.",
+    "source": "https://openstax.org/books/biology-2e/pages/5-2-passive-transport",
+    "energy": false
+  },
+  {
+    "slug": "glucose-carrier-down-gradient",
+    "title": "A carrier helps a sugar cross",
+    "question": "In this model glucose is more concentrated outside than inside, and a suitable glucose carrier is present. Which direction is the initial net facilitated diffusion?",
+    "options": [
+      "Into the cell",
+      "Out of the cell",
+      "No net movement"
+    ],
+    "before": {
+      "outside": [
+        "Glc",
+        "Glc",
+        "Glc",
+        "Glc"
+      ],
+      "inside": []
+    },
+    "after": {
+      "outside": [
+        "Glc",
+        "Glc"
+      ],
+      "inside": [
+        "Glc",
+        "Glc"
+      ]
+    },
+    "protein": true,
+    "button": "Use the carrier",
+    "explanation": "A glucose carrier can facilitate movement down a glucose concentration gradient without directly using ATP. Glc marks glucose and the purple shape represents a carrier; the selected particles are an illustration.",
+    "source": "https://openstax.org/books/biology-2e/pages/5-2-passive-transport",
+    "energy": false
+  },
+  {
+    "slug": "sodium-potassium-pump-cycle",
+    "title": "Two ions, opposite directions",
+    "question": "In one normal sodium–potassium pump cycle powered by one ATP, how many sodium ions go out and potassium ions go in?",
+    "options": [
+      "3 sodium out, 2 potassium in",
+      "2 sodium out, 3 potassium in",
+      "3 sodium in, 2 potassium out"
+    ],
+    "before": {
+      "outside": [
+        "K",
+        "K"
+      ],
+      "inside": [
+        "Na",
+        "Na",
+        "Na"
+      ]
+    },
+    "after": {
+      "outside": [
+        "Na",
+        "Na",
+        "Na"
+      ],
+      "inside": [
+        "K",
+        "K"
+      ]
+    },
+    "protein": true,
+    "button": "Run one pump cycle",
+    "explanation": "The sodium–potassium ATPase uses ATP to move three sodium ions out and two potassium ions into the cell per cycle. The illustration shows only the five transported ions, not the entire concentrations on either side.",
+    "source": "https://openstax.org/books/biology-ap-courses/pages/5-3-active-transport",
+    "energy": true
+  },
+  {
+    "slug": "endocytosis-cargo-in-vesicle",
+    "title": "Cargo enters in a bubble",
+    "question": "During endocytosis, a cell takes up outside material by reshaping its plasma membrane. Where is the material after the vesicle forms?",
+    "options": [
+      "Inside the cell in a vesicle",
+      "Outside the cell",
+      "Inside the nucleus"
+    ],
+    "before": {
+      "outside": [
+        "cargo"
+      ],
+      "inside": []
+    },
+    "after": {
+      "outside": [],
+      "inside": [
+        "cargo"
+      ],
+      "vesicleInside": true
+    },
+    "protein": false,
+    "button": "Form the vesicle",
+    "explanation": "During endocytosis, part of the plasma membrane encloses material and forms an internal vesicle. The orange dot is cargo and the surrounding ring represents its vesicle; this diagram skips the intermediate membrane shapes.",
+    "source": "https://openstax.org/books/biology-2e/pages/5-4-bulk-transport",
+    "energy": false
+  },
+  {
+    "slug": "exocytosis-cargo-leaves-vesicle",
+    "title": "Cargo leaves in a bubble",
+    "question": "A vesicle inside a cell fuses with its plasma membrane during exocytosis. Where is its soluble cargo released?",
+    "options": [
+      "Outside the cell",
+      "Into the nucleus",
+      "Into another vesicle"
+    ],
+    "before": {
+      "outside": [],
+      "inside": [
+        "cargo"
+      ],
+      "vesicleInside": true
+    },
+    "after": {
+      "outside": [
+        "cargo"
+      ],
+      "inside": []
+    },
+    "protein": false,
+    "button": "Fuse the vesicle",
+    "explanation": "In exocytosis a vesicle fuses with the plasma membrane, releasing its soluble contents outside the cell. The orange dot is cargo and the ring in the starting picture is its vesicle; this is a simplified model.",
+    "source": "https://openstax.org/books/biology-2e/pages/5-4-bulk-transport",
+    "energy": false
+  }
+]

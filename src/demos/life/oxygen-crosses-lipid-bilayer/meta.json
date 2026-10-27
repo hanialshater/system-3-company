@@ -1,0 +1,64 @@
+{
+  "slug": "oxygen-crosses-lipid-bilayer",
+  "title": "A gas crosses the membrane",
+  "hook": "Predict where the cargo ends up, then run the model.",
+  "domain": "life",
+  "concept": "oxygen-crosses-lipid-bilayer",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cells have a plasma membrane separating inside from outside."
+    ],
+    "doesNotKnow": [
+      "Oxygen can diffuse across the lipid bilayer. In this equal-volume example, the net movement starts from the higher concentration outside toward the lower concentration inside. The selected four particles illustrate a model, not a prediction for individual trajectories."
+    ]
+  },
+  "misconception": "Everything crosses a cell membrane by the same mechanism.",
+  "objective": "Oxygen can diffuse across the lipid bilayer. In this equal-volume example, the net movement starts from the higher concentration outside toward the lower concentration inside. The selected four particles illustrate a model, not a prediction for individual trajectories.",
+  "claims": [
+    {
+      "id": "life.oxygen-crosses-lipid-bilayer.c1",
+      "text": "Question, stage and reveal: A model has more oxygen molecules outside a cell than inside. Oxygen can cross the lipid bilayer. What is the net direction initially? Oxygen can diffuse across the lipid bilayer. In this equal-volume example, the net movement starts from the higher concentration outside toward the lower concentration inside. The selected four particles illustrate a model, not a prediction for individual trajectories.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-2-passive-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.oxygen-crosses-lipid-bilayer.c2",
+      "text": "Recall: Does simple diffusion directly require ATP? Simple diffusion is passive; it does not directly consume ATP.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/5-2-passive-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.oxygen-crosses-lipid-bilayer.c3",
+      "text": "The diagram is schematic and represents only selected molecules, not trajectories or all particles.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does simple diffusion directly require ATP?",
+    "options": [
+      "No",
+      "Yes",
+      "Only for oxygen"
+    ],
+    "answer": 0,
+    "why": "Simple diffusion is passive; it does not directly consume ATP."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

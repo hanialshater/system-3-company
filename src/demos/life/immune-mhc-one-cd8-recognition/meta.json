@@ -1,0 +1,64 @@
+{
+  "slug": "immune-mhc-one-cd8-recognition",
+  "title": "An infected cell displays a clue",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-mhc-one-cd8-recognition",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "CD8 cytotoxic T cells can recognize peptides presented on MHC class I. Recognition and activation involve additional molecular interactions."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-mhc-one-cd8-recognition.c1",
+      "text": "Question, stage and reveal: A nucleated cell displays a peptide on MHC class I. Which T-cell group can recognize that peptide–MHC complex? CD8 cytotoxic T cells can recognize peptides presented on MHC class I. Recognition and activation involve additional molecular interactions.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-mhc-one-cd8-recognition.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-mhc-one-cd8-recognition.c3",
+      "text": "Recall: Which T-cell group recognizes peptide presented on MHC class I? CD8 T cells can recognize peptide–MHC I complexes.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which T-cell group recognizes peptide presented on MHC class I?",
+    "options": [
+      "CD8 cytotoxic T cells",
+      "CD4 helper T cells",
+      "Red blood cells"
+    ],
+    "answer": 0,
+    "why": "CD8 T cells can recognize peptide–MHC I complexes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

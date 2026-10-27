@@ -1,0 +1,64 @@
+{
+  "slug": "founder-group-is-not-average",
+  "title": "A few founders leave",
+  "hook": "Track a small population through one event.",
+  "domain": "life",
+  "concept": "founder-group-is-not-average",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "An allele is a variant of a gene."
+    ],
+    "doesNotKnow": [
+      "A small founder group can have a different allele frequency from the source population by chance. Its later evolution depends on further events."
+    ]
+  },
+  "misconception": "Population size and allele frequency always change together.",
+  "objective": "Count allele frequency in a finite haploid population after a specified event.",
+  "claims": [
+    {
+      "id": "life.founder-group-is-not-average.c1",
+      "text": "Question, stage and explanation: In a haploid model, each dot is one individual with one A or a allele. Start with 6 A and 4 a. Exactly 1 A and 3 a individuals found a new isolated population. What fraction of the resulting group carries A? The resulting group has 1 A and 3 a, so its A frequency is 1 out of 4. A small founder group can have a different allele frequency from the source population by chance. Its later evolution depends on further events. The diagram fixes this one outcome rather than predicting every real population.",
+      "support": "derivation",
+      "source": "Specified finite population; biological context: OpenStax https://openstax.org/books/biology-2e/pages/19-1-population-evolution",
+      "status": "unverified"
+    },
+    {
+      "id": "life.founder-group-is-not-average.c2",
+      "text": "Each dot stands for one haploid individual with one allele at this locus; colours do not imply actual organism colours.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.founder-group-is-not-average.c3",
+      "text": "Recall: If a haploid group has 1 A individuals and 3 a individuals, what fraction carry A? There are 4 individuals and 1 carry A.",
+      "support": "derivation",
+      "source": "Finite count defined by the question.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If a haploid group has 1 A individuals and 3 a individuals, what fraction carry A?",
+    "options": [
+      "1 of 4",
+      "3 of 4",
+      "1 of 5"
+    ],
+    "answer": 0,
+    "why": "There are 4 individuals and 1 carry A."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

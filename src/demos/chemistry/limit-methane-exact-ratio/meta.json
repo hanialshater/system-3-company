@@ -1,0 +1,64 @@
+{
+  "slug": "limit-methane-exact-ratio",
+  "title": "Methane and oxygen C",
+  "hook": "Count the particles and find what runs out.",
+  "domain": "chemistry",
+  "concept": "limit-methane-exact-ratio",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A balanced equation gives ratios of reactant and product particles."
+    ],
+    "doesNotKnow": [
+      "How unequal starting amounts determine a limiting reactant."
+    ]
+  },
+  "misconception": "The reactant with the smaller raw count is always limiting.",
+  "objective": "Find the limiting reactant from a balanced equation and stated starting counts.",
+  "claims": [
+    {
+      "id": "chemistry.limit-methane-exact-ratio.c1",
+      "text": "Question, diagram and explanation: In the particle model CH₄ + 2 O₂ → CO₂ + 2 H₂O, start with 2 CH₄ and 4 O₂ molecules. If complete reaction is possible, which reactant limits the products? The equation permits 2 complete reaction sets in this particle model. It forms 2 CO₂ and 4 H₂O and leaves 0 CH₄ and 0 O₂. Both reactants are consumed together in this exact ratio. Atom totals are conserved.",
+      "support": "derivation",
+      "source": "Specified particle counts and balanced equation; OpenStax https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.limit-methane-exact-ratio.c2",
+      "text": "The circles are atoms grouped for counting; shapes and trajectories are schematic, not molecular geometry or a reaction mechanism.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.limit-methane-exact-ratio.c3",
+      "text": "Recall: For 2 H₂ + O₂ → 2 H₂O, if 4 H₂ and 1 O₂ react completely, which limits the product? One O₂ uses two H₂, so O₂ runs out with two H₂ left over.",
+      "support": "derivation",
+      "source": "Count the balanced equation; OpenStax https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 2 H₂ + O₂ → 2 H₂O, if 4 H₂ and 1 O₂ react completely, which limits the product?",
+    "options": [
+      "O₂",
+      "H₂",
+      "Both run out together"
+    ],
+    "answer": 0,
+    "why": "One O₂ uses two H₂, so O₂ runs out with two H₂ left over."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

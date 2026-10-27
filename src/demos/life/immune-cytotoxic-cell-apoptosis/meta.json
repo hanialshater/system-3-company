@@ -1,0 +1,64 @@
+{
+  "slug": "immune-cytotoxic-cell-apoptosis",
+  "title": "A targeted cell is removed",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-cytotoxic-cell-apoptosis",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "Activated cytotoxic T cells can induce apoptosis in appropriately recognized infected cells, limiting some intracellular infections."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-cytotoxic-cell-apoptosis.c1",
+      "text": "Question, stage and reveal: After recognizing an appropriate infected target, what can a cytotoxic T cell induce in that target? Activated cytotoxic T cells can induce apoptosis in appropriately recognized infected cells, limiting some intracellular infections.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-cytotoxic-cell-apoptosis.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-cytotoxic-cell-apoptosis.c3",
+      "text": "Recall: What can an activated cytotoxic T cell induce in an appropriately recognized target? Cytotoxic T cells can trigger programmed cell death in target cells.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What can an activated cytotoxic T cell induce in an appropriately recognized target?",
+    "options": [
+      "Apoptosis",
+      "Photosynthesis",
+      "Antibody secretion"
+    ],
+    "answer": 0,
+    "why": "Cytotoxic T cells can trigger programmed cell death in target cells."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

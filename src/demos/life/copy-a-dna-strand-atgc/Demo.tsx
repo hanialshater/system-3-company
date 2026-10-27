@@ -1,0 +1,77 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+
+type Lane = { label:string; tokens:string[] };
+type Case = { question:string; options:[string,string,string]; answer:number; before:Lane[]; after:Lane[]; button:string; explanation:string };
+const lesson: Case = {
+  "question": "A DNA strand reads 5′–A T G C–3′. What is its complementary strand written in the opposite direction, 3′ to 5′?",
+  "options": [
+    "3′–T A C G–5′",
+    "3′–A T G C–5′",
+    "3′–U A C G–5′"
+  ],
+  "answer": 0,
+  "before": [
+    {
+      "label": "DNA 5′→3′",
+      "tokens": [
+        "A",
+        "T",
+        "G",
+        "C"
+      ]
+    }
+  ],
+  "after": [
+    {
+      "label": "DNA 5′→3′",
+      "tokens": [
+        "A",
+        "T",
+        "G",
+        "C"
+      ]
+    },
+    {
+      "label": "DNA 3′→5′",
+      "tokens": [
+        "T",
+        "A",
+        "C",
+        "G"
+      ]
+    }
+  ],
+  "button": "Pair the bases",
+  "explanation": "A pairs with T, and G pairs with C. The complementary strand runs antiparallel, so 5′–A T G C–3′ pairs with 3′–T A C G–5′."
+};
+const colors:Record<string,string> = { A:'#f3c767', U:'#e58a8d', T:'#e58a8d', C:'#86bae9', G:'#a7d896', 'old':'#8eb2ed', 'new':'#f1c55d', 'STOP':'#ee9e98', 'intron':'#d3d6dd' };
+function Lanes({lanes,start}: {lanes:Lane[];start:number}) {
+ return <g>{lanes.map((row,i)=><g key={i} transform={`translate(0 ${start+i*35})`}>
+  <text x="9" y="20" fill="var(--fg)" fontSize="13" fontWeight="600">{row.label}</text>
+  {row.tokens.map((token,j)=>{const width=45;const x=105+j*width; return <g key={j}>
+   <rect x={x} y="1" width="41" height="27" rx="6" fill={colors[token]||'#c0cee5'} stroke="#596b84" strokeWidth="1"/>
+   <text x={x+20.5} y="19" fill="#172033" fontSize="12" textAnchor="middle" fontWeight="bold">{token}</text>
+  </g>})}
+ </g>)}</g>;
+}
+export default function Demo({slug}:{slug:string}) {
+ const [applied,setApplied]=useState(false);
+ return <Lesson slug={slug} predict={{question:lesson.question,options:lesson.options,answer:lesson.answer}}
+  exploreHint="Apply the step and compare the two labelled rows."
+  reveal={()=><p>{lesson.explanation} The coloured tiles are a simplified sequence model, not a scale drawing of molecules.</p>}>
+  {({locked,interact})=><div>
+    <svg viewBox="0 0 360 230" className="stage-svg" role="img" aria-label={`Before: ${lesson.before.map(r=>r.label+' '+r.tokens.join(' ')).join('; ')}. ${applied ? 'After: '+lesson.after.map(r=>r.label+' '+r.tokens.join(' ')).join('; ') : 'Outcome hidden.'}`}>
+      <text x="9" y="17" fill="var(--muted)" fontSize="12">BEFORE</text>
+      <Lanes lanes={lesson.before} start={22}/>
+      <line x1="15" x2="345" y1="116" y2="116" stroke="var(--line)" strokeWidth="2" strokeDasharray="4 4"/>
+      <text x="9" y="135" fill="var(--muted)" fontSize="12">AFTER</text>
+      {applied ? <Lanes lanes={lesson.after} start={139}/> : <text x="180" y="182" textAnchor="middle" fontSize="24" fill="var(--muted)">?</text>}
+    </svg>
+    <Row><Control disabled={locked || applied} onClick={()=>{setApplied(true);interact();}}>{lesson.button}</Control></Row>
+    <p style={{fontSize:'0.8rem',color:'var(--muted)',textAlign:'center',margin:'4px 0'}}>Schematic model · not to scale</p>
+  </div>}
+ </Lesson>;
+}

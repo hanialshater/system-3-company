@@ -1,0 +1,31 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+type Model={question:string;options:string[];answer:number;topology:'balanced'|'ladder';highlight:number[];explanation:string};
+const lesson:Model={
+  "question": "In this rooted tree, which tip shares the most recent common ancestor with C?",
+  "options": [
+    "A",
+    "B",
+    "D"
+  ],
+  "answer": 2,
+  "topology": "ladder",
+  "highlight": [
+    4,
+    5
+  ],
+  "explanation": "C and D share N2; the other tips join their lineage at older branch points. The diagram is a hypothetical relationship, not a dated tree or a claim that one living tip descended from another."
+};
+const balanced=[[24,102],[100,54],[100,150],[270,24],[270,74],[270,124],[270,174]],ladder=[[24,95],[100,120],[178,147],[270,24],[270,73],[270,125],[270,174]];
+const edgesBalanced=[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]],edgesLadder=[[0,3],[0,1],[1,4],[1,2],[2,5],[2,6]];
+export default function Demo({slug}:{slug:string}){
+ const [shown,setShown]=useState(false),points=lesson.topology==='balanced'?balanced:ladder,edges=lesson.topology==='balanced'?edgesBalanced:edgesLadder;
+ return <Lesson slug={slug} predict={{question:lesson.question,options:lesson.options,answer:lesson.answer}} exploreHint="Trace the relevant paths through the forks." reveal={()=><p>{lesson.explanation}</p>}>
+ {({locked,interact})=><div><svg viewBox="0 0 320 205" className="stage-svg" role="img" aria-label={`Rooted tree: ${edges.map(([a,b])=>`${['R','N1','N2','A','B','C','D'][a]} to ${['R','N1','N2','A','B','C','D'][b]}`).join('; ')}. ${shown?'Relevant paths highlighted.':''}`}>
+ {edges.map(([a,b],i)=><line key={i} x1={points[a][0]} y1={points[a][1]} x2={points[b][0]} y2={points[b][1]} stroke={shown&&lesson.highlight.includes(i)?'#e9bd54':'#8ca4b5'} strokeWidth={shown&&lesson.highlight.includes(i)?4:2}/>)}
+ {points.map(([px,py],i)=><g key={i}><circle cx={px} cy={py} r={i<3?7:11} fill={i<3?'#e8c273':'#b3d5c3'} stroke="#455b69"/><text x={i<3?px+9:px+16} y={py+4} fill="var(--fg)" fontSize="13" fontWeight="bold">{['R','N1','N2','A','B','C','D'][i]}</text></g>)}
+ </svg><Row><Control disabled={locked||shown} onClick={()=>{setShown(true);interact();}}>Trace the paths</Control></Row><p style={{fontSize:'0.8rem',color:'var(--muted)',textAlign:'center',margin:'4px 0'}}>Root at left · branch lengths not to scale</p></div>}
+ </Lesson>;
+}

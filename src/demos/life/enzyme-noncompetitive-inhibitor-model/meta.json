@@ -1,0 +1,64 @@
+{
+  "slug": "enzyme-noncompetitive-inhibitor-model",
+  "title": "A noncompetitive inhibitor",
+  "hook": "Move substrate and watch a model rate grow.",
+  "domain": "life",
+  "concept": "enzyme-noncompetitive-inhibitor-model",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Enzymes catalyse reactions and substrate concentration can affect the rate."
+    ],
+    "doesNotKnow": [
+      "At S = 2, A is 4 and B is 2. In this ideal pure noncompetitive model Vmax changes while Km stays fixed."
+    ]
+  },
+  "misconception": "A rate is always proportional to substrate at every concentration.",
+  "objective": "Interpret a stated ideal enzyme-rate model at a fixed substrate level.",
+  "claims": [
+    {
+      "id": "life.enzyme-noncompetitive-inhibitor-model.c1",
+      "text": "Question, chart and reveal: In this ideal pure noncompetitive model, A has Vmax = 8 and B has Vmax = 4; both have Km = 2. At S = 2, which rate is higher? At S = 2, A is 4 and B is 2. In this ideal pure noncompetitive model Vmax changes while Km stays fixed.",
+      "support": "derivation",
+      "source": "Substitute the stated parameters into v = Vmax S/(Km + S); enzyme context: OpenStax https://openstax.org/books/biology-2e/pages/6-5-enzymes",
+      "status": "unverified"
+    },
+    {
+      "id": "life.enzyme-noncompetitive-inhibitor-model.c2",
+      "text": "The chart is an idealized model in arbitrary units, not a fitted measurement or universal law for every enzyme.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.enzyme-noncompetitive-inhibitor-model.c3",
+      "text": "Recall: In the ideal model v = Vmax·S/(Km + S), what is v when S = Km? Substituting S = Km gives v = Vmax × Km/(2 Km) = Vmax/2.",
+      "support": "derivation",
+      "source": "Algebraic substitution into the model.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the ideal model v = Vmax·S/(Km + S), what is v when S = Km?",
+    "options": [
+      "Half Vmax",
+      "Zero",
+      "Twice Vmax"
+    ],
+    "answer": 0,
+    "why": "Substituting S = Km gives v = Vmax × Km/(2 Km) = Vmax/2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

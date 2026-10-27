@@ -1,0 +1,64 @@
+{
+  "slug": "ph-from-hydronium-concentration",
+  "title": "A logarithmic acidity scale",
+  "hook": "Predict the result, then reveal the model.",
+  "domain": "chemistry",
+  "concept": "ph-from-hydronium-concentration",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Symbols can represent chemical substances or states."
+    ],
+    "doesNotKnow": [
+      "Using the concentration approximation in the question, −log₁₀(10⁻³) = 3. Strictly, thermodynamic pH uses hydronium activity rather than raw concentration."
+    ]
+  },
+  "misconception": "The process produces a different result from the one shown.",
+  "objective": "Explain the illustrated −log₁₀ step.",
+  "claims": [
+    {
+      "id": "chemistry.ph-from-hydronium-concentration.c1",
+      "text": "Question, diagram and explanation: For a dilute ideal solution with hydronium concentration 0.001 mol/L, using pH = −log₁₀[H₃O⁺], what is the pH? Using the concentration approximation in the question, −log₁₀(10⁻³) = 3. Strictly, thermodynamic pH uses hydronium activity rather than raw concentration.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-from-hydronium-concentration.c2",
+      "text": "The circles are symbolic labels, not molecular structures, and the model omits other conditions or intermediate steps.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ph-from-hydronium-concentration.c3",
+      "text": "Recall: In the illustrated −log₁₀ example, what is the shown result of [H₃O⁺] = 10⁻³? Using the concentration approximation in the question, −log₁₀(10⁻³) = 3. Strictly, thermodynamic pH uses hydronium activity rather than raw concentration.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the illustrated −log₁₀ example, what is the shown result of [H₃O⁺] = 10⁻³?",
+    "options": [
+      "pH = 3",
+      "[H₃O⁺] = 10⁻³",
+      "No result"
+    ],
+    "answer": 0,
+    "why": "Using the concentration approximation in the question, −log₁₀(10⁻³) = 3. Strictly, thermodynamic pH uses hydronium activity rather than raw concentration."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

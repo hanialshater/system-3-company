@@ -1,0 +1,64 @@
+{
+  "slug": "immune-helper-cytokine-b-cell",
+  "title": "A helper signal",
+  "hook": "Predict the interaction and trace one immune step.",
+  "domain": "life",
+  "concept": "immune-helper-cytokine-b-cell",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The immune system includes cells and signaling molecules."
+    ],
+    "doesNotKnow": [
+      "Helper T-cell signals can support activation and proliferation of appropriately stimulated B cells. The diagram omits the required antigen recognition and other interactions."
+    ]
+  },
+  "misconception": "The immune response consists of one cell acting alone.",
+  "objective": "Explain the stated interaction in a simplified immune response.",
+  "claims": [
+    {
+      "id": "life.immune-helper-cytokine-b-cell.c1",
+      "text": "Question, stage and reveal: When a B cell receives the appropriate antigen and helper-T-cell signals, what can those signals help it do? Helper T-cell signals can support activation and proliferation of appropriately stimulated B cells. The diagram omits the required antigen recognition and other interactions.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-helper-cytokine-b-cell.c2",
+      "text": "Icons show one selected interaction rather than all required signals, and are not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.immune-helper-cytokine-b-cell.c3",
+      "text": "Recall: Which immune cell can helper T-cell signals support during an appropriate antibody response? Helper T-cell signals can support appropriately stimulated B cells.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which immune cell can helper T-cell signals support during an appropriate antibody response?",
+    "options": [
+      "B cell",
+      "Red blood cell",
+      "Platelet"
+    ],
+    "answer": 0,
+    "why": "Helper T-cell signals can support appropriately stimulated B cells."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
