@@ -1,0 +1,12 @@
+.player { background:#0D0F14; color:#F1F1F3; }
+.nav { position:fixed; z-index:40; height:56px; left:0; right:0; top:0; display:flex; align-items:center; justify-content:space-between; padding:0 18px; gap:12px; background:#0D0F14f5; border-bottom:1px solid #ffffff12; }
+.nav>a { min-height:44px; display:flex; align-items:center; text-decoration:none; font-size:13px; color:#D9F56A; font-weight:700; }
+.nav>span { font-size:12px; text-align:center; line-height:1.4; }.nav small { display:block; font-size:9px; color:#B2BBC3; }
+.nav>div { display:flex; }.nav button { min-width:44px; min-height:44px; border:0; background:none; color:#FFFDF5; font-size:22px; cursor:pointer; }.nav button:disabled { opacity:.25; cursor:default; }
+.scroll { height:100dvh; overflow-y:auto; scroll-snap-type:y mandatory; scrollbar-width:none; }.scroll::-webkit-scrollbar { display:none; }
+.scroll:focus-visible { outline:2px solid #D9F56A; outline-offset:-3px; }
+.scroll :global(.slot-screen) { padding-bottom:max(10px,env(safe-area-inset-bottom)); }
+.placeholder { display:grid; place-items:center; font-size:20px; }
+.finish { flex-direction:column; align-items:center; text-align:center; color:#FFFDF5; gap:20px; }.finish h1 { font-family:Georgia,serif; font-size:36px; font-weight:500; }.finish a { color:#D9F56A; min-height:44px; padding:12px; }
+@media(max-width:600px) { .nav { padding:0 12px; gap:5px; }.nav>a { font-size:12px; }.nav>span { font-size:10px; max-width:125px; }.nav button { min-width:44px; }.scroll :global(.slot-screen) { padding-left:0; padding-right:0; } }
+@media(prefers-reduced-motion:reduce) { .scroll { scroll-behavior:auto; } }

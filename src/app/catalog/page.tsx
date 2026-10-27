@@ -36,6 +36,7 @@ export default function Catalog() {
           S3
         </Link>
         <span className="muted small">The map: what we teach, and what we do not teach yet</span>
+        <Link className="brand-link" href="/learn/world">Explore the world ↗</Link>
         <Link className="brand-link" href="/">
           Feed
         </Link>
