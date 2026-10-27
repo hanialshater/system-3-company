@@ -1,0 +1,66 @@
+{
+  "slug": "scale-momentum-mass",
+  "title": "A heavier moving object",
+  "hook": "Change mass and predict momentum magnitude.",
+  "domain": "physics",
+  "concept": "scaling-momentum-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "mass",
+      "momentum magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "p = mv"
+    ]
+  },
+  "misconception": "momentum magnitude stays fixed when mass doubles.",
+  "objective": "Apply p = mv to compare momentum magnitude when mass changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-momentum-mass.model",
+      "text": "With a fixed speed along the same line, p = mv. When mass doubles, momentum magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model p = mv; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a fixed speed along the same line, with a nonzero initial result. If mass triples from a positive value, what is the multiplier on momentum magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply p = mv under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-momentum-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

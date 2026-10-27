@@ -1,0 +1,64 @@
+{
+  "slug": "escape-speed-four-radii",
+  "title": "How does escape speed change?",
+  "hook": "Launch from farther away from a spherical planet.",
+  "domain": "physics",
+  "concept": "escape-speed-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "Escape speed is proportional to the inverse square root of distance: v_escape = sqrt(2GM/r). Four times the distance reduces the threshold to half."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "Escape speed is proportional to the inverse square root of distance: v_escape = sqrt(2GM/r). Four times the distance reduces the threshold to half.",
+  "claims": [
+    {
+      "id": "physics.escape-speed-four-radii.model",
+      "text": "Escape speed is proportional to the inverse square root of distance: v_escape = sqrt(2GM/r). Four times the distance reduces the threshold to half. Newtonian idealization: spherical mass, no drag or other gravitating bodies, and enough energy to reach infinity with zero remaining speed.",
+      "support": "derivation",
+      "source": "Energy balance v_escape = sqrt(2GM/r). sqrt(1/4)=1/2.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At nine times the distance from the centre of the same spherical planet, the ideal escape speed is what fraction?",
+    "options": [
+      "1/9",
+      "1/3",
+      "3"
+    ],
+    "answer": 1,
+    "why": "Escape speed varies as 1/sqrt(r); sqrt(9)=3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:escape-speed-radius",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

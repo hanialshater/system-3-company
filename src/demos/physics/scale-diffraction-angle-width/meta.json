@@ -1,0 +1,66 @@
+{
+  "slug": "scale-diffraction-angle-width",
+  "title": "Change the diffraction slit",
+  "hook": "Change slit width and predict small-angle first-minimum angle.",
+  "domain": "physics",
+  "concept": "scaling-diffraction-angle-width",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "slit width",
+      "small-angle first-minimum angle",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "θ ≈ λ/a"
+    ]
+  },
+  "misconception": "small-angle first-minimum angle doubles when slit width doubles, regardless of the stated relationship.",
+  "objective": "Apply θ ≈ λ/a to compare small-angle first-minimum angle when slit width changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-diffraction-angle-width.model",
+      "text": "With a single slit in the small-angle limit with fixed wavelength, θ ≈ λ/a. When slit width doubles, small-angle first-minimum angle becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model θ ≈ λ/a; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a single slit in the small-angle limit with fixed wavelength, with a nonzero initial result. If slit width triples from a positive value, what is the multiplier on small-angle first-minimum angle?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply θ ≈ λ/a under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-diffraction-angle-width",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

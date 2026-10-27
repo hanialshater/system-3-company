@@ -1,0 +1,66 @@
+{
+  "slug": "scale-string-wave-density",
+  "title": "A heavier string",
+  "hook": "Change linear mass density and predict wave speed.",
+  "domain": "physics",
+  "concept": "scaling-string-wave-density",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "linear mass density",
+      "wave speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v = √(T/μ)"
+    ]
+  },
+  "misconception": "wave speed doubles when linear mass density doubles, regardless of the stated relationship.",
+  "objective": "Apply v = √(T/μ) to compare wave speed when linear mass density changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-string-wave-density.model",
+      "text": "With a taut flexible string under fixed tension, v = √(T/μ). When linear mass density doubles, wave speed becomes 1/√2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v = √(T/μ); scaling exponent -0.5. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a taut flexible string under fixed tension, with a nonzero initial result. If linear mass density triples from a positive value, what is the multiplier on wave speed?",
+    "options": [
+      "×1/√3",
+      "×1/3",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply v = √(T/μ) under the same assumptions: the multiplier is 1/√3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-string-wave-density",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

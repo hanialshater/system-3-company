@@ -1,0 +1,64 @@
+{
+  "slug": "moving-length-six-tenths",
+  "title": "How long is the passing ship?",
+  "hook": "Measure both ends at the same time in your frame.",
+  "domain": "physics",
+  "concept": "special-relativity-length-contraction",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "Length along the direction of motion is L = L₀ / gamma. At 0.6c, gamma = 1.25, so 100 m / 1.25 = 80 m."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "Length along the direction of motion is L = L₀ / gamma. At 0.6c, gamma = 1.25, so 100 m / 1.25 = 80 m.",
+  "claims": [
+    {
+      "id": "physics.moving-length-six-tenths.model",
+      "text": "Length along the direction of motion is L = L₀ / gamma. At 0.6c, gamma = 1.25, so 100 m / 1.25 = 80 m. Special relativity; the endpoints are measured simultaneously in the observer's inertial frame. Transverse dimensions are unaffected.",
+      "support": "derivation",
+      "source": "Lorentz contraction L=L0 sqrt(1-v²/c²); sqrt(1-0.6²)=0.8.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 50 m object moves lengthwise at 0.6c. What length is measured in the observer's rest frame?",
+    "options": [
+      "40 m",
+      "50 m",
+      "62.5 m"
+    ],
+    "answer": 0,
+    "why": "At 0.6c multiply the rest length by 0.8: 50 × 0.8 = 40 m."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:special-relativity-length-contraction",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

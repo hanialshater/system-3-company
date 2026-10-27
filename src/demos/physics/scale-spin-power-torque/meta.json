@@ -1,0 +1,66 @@
+{
+  "slug": "scale-spin-power-torque",
+  "title": "Powering the spinning axle",
+  "hook": "Change torque and predict mechanical power.",
+  "domain": "physics",
+  "concept": "scaling-spin-power-torque",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "torque",
+      "mechanical power",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "P = τω"
+    ]
+  },
+  "misconception": "mechanical power stays fixed when torque doubles.",
+  "objective": "Apply P = τω to compare mechanical power when torque changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-spin-power-torque.model",
+      "text": "With rotation at fixed angular speed with torque along the axis, P = τω. When torque doubles, mechanical power becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model P = τω; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider rotation at fixed angular speed with torque along the axis, with a nonzero initial result. If torque triples from a positive value, what is the multiplier on mechanical power?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply P = τω under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-spin-power-torque",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-point-source-intensity-power",
+  "title": "A stronger point source",
+  "hook": "Change source power and predict intensity.",
+  "domain": "physics",
+  "concept": "scaling-point-source-intensity-power",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "source power",
+      "intensity",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "I = P/(4πr²)"
+    ]
+  },
+  "misconception": "intensity stays fixed when source power doubles.",
+  "objective": "Apply I = P/(4πr²) to compare intensity when source power changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-point-source-intensity-power.model",
+      "text": "With an isotropic point source in a lossless medium at fixed distance, I = P/(4πr²). When source power doubles, intensity becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model I = P/(4πr²); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an isotropic point source in a lossless medium at fixed distance, with a nonzero initial result. If source power triples from a positive value, what is the multiplier on intensity?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply I = P/(4πr²) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-point-source-intensity-power",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

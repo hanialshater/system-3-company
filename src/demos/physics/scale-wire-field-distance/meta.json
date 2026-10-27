@@ -1,0 +1,66 @@
+{
+  "slug": "scale-wire-field-distance",
+  "title": "Move away from the wire",
+  "hook": "Change perpendicular distance and predict magnetic-field magnitude.",
+  "domain": "physics",
+  "concept": "scaling-wire-field-distance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "perpendicular distance",
+      "magnetic-field magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "B = μ₀I/(2πr)"
+    ]
+  },
+  "misconception": "magnetic-field magnitude doubles when perpendicular distance doubles, regardless of the stated relationship.",
+  "objective": "Apply B = μ₀I/(2πr) to compare magnetic-field magnitude when perpendicular distance changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-wire-field-distance.model",
+      "text": "With an ideal long straight wire in vacuum carrying fixed current, B = μ₀I/(2πr). When perpendicular distance doubles, magnetic-field magnitude becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model B = μ₀I/(2πr); scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal long straight wire in vacuum carrying fixed current, with a nonzero initial result. If perpendicular distance triples from a positive value, what is the multiplier on magnetic-field magnitude?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply B = μ₀I/(2πr) under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:scaling-wire-field-distance",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

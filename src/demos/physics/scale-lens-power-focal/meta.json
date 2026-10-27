@@ -1,0 +1,66 @@
+{
+  "slug": "scale-lens-power-focal",
+  "title": "A lens and its focal length",
+  "hook": "Change focal length and predict lens optical power.",
+  "domain": "physics",
+  "concept": "scaling-lens-power-focal",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "focal length",
+      "lens optical power",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "D = 1/f"
+    ]
+  },
+  "misconception": "lens optical power doubles when focal length doubles, regardless of the stated relationship.",
+  "objective": "Apply D = 1/f to compare lens optical power when focal length changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-lens-power-focal.model",
+      "text": "With a thin lens in air with focal length measured in metres, D = 1/f. When focal length doubles, lens optical power becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model D = 1/f; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a thin lens in air with focal length measured in metres, with a nonzero initial result. If focal length triples from a positive value, what is the multiplier on lens optical power?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply D = 1/f under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-lens-power-focal",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

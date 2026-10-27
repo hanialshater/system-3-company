@@ -1,0 +1,66 @@
+{
+  "slug": "scale-electric-work-charge",
+  "title": "Move more charge across a voltage",
+  "hook": "Change charge magnitude and predict electric-work magnitude.",
+  "domain": "physics",
+  "concept": "scaling-electric-work-charge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "charge magnitude",
+      "electric-work magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "work magnitude = abs(qΔV)"
+    ]
+  },
+  "misconception": "electric-work magnitude stays fixed when charge magnitude doubles.",
+  "objective": "Apply work magnitude = abs(qΔV) to compare electric-work magnitude when charge magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-electric-work-charge.model",
+      "text": "With a fixed electric potential difference, work magnitude = abs(qΔV). When charge magnitude doubles, electric-work magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model work magnitude = abs(qΔV); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a fixed electric potential difference, with a nonzero initial result. If charge magnitude triples from a positive value, what is the multiplier on electric-work magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply work magnitude = abs(qΔV) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-electric-work-charge",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

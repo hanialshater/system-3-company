@@ -1,0 +1,66 @@
+{
+  "slug": "scale-flow-rate-area",
+  "title": "A wider opening at the same speed",
+  "hook": "Change cross-sectional area and predict volume-flow rate.",
+  "domain": "physics",
+  "concept": "scaling-flow-rate-area",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "cross-sectional area",
+      "volume-flow rate",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q = Av"
+    ]
+  },
+  "misconception": "volume-flow rate stays fixed when cross-sectional area doubles.",
+  "objective": "Apply Q = Av to compare volume-flow rate when cross-sectional area changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-flow-rate-area.model",
+      "text": "With uniform fluid speed held fixed across the opening, Q = Av. When cross-sectional area doubles, volume-flow rate becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q = Av; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider uniform fluid speed held fixed across the opening, with a nonzero initial result. If cross-sectional area triples from a positive value, what is the multiplier on volume-flow rate?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Q = Av under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-flow-rate-area",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

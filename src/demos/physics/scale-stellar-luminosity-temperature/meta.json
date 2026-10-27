@@ -1,0 +1,66 @@
+{
+  "slug": "scale-stellar-luminosity-temperature",
+  "title": "A hotter star of equal size",
+  "hook": "Change absolute surface temperature and predict ideal blackbody luminosity.",
+  "domain": "physics",
+  "concept": "scaling-stellar-luminosity-temperature",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "absolute surface temperature",
+      "ideal blackbody luminosity",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "L = 4πR²σT⁴"
+    ]
+  },
+  "misconception": "ideal blackbody luminosity doubles when absolute surface temperature doubles, regardless of the stated relationship.",
+  "objective": "Apply L = 4πR²σT⁴ to compare ideal blackbody luminosity when absolute surface temperature changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-stellar-luminosity-temperature.model",
+      "text": "With a spherical blackbody with fixed radius, L = 4πR²σT⁴. When absolute surface temperature doubles, ideal blackbody luminosity becomes 16 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model L = 4πR²σT⁴; scaling exponent 4. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a spherical blackbody with fixed radius, with a nonzero initial result. If absolute surface temperature triples from a positive value, what is the multiplier on ideal blackbody luminosity?",
+    "options": [
+      "×9",
+      "×27",
+      "×81"
+    ],
+    "answer": 2,
+    "why": "Apply L = 4πR²σT⁴ under the same assumptions: the multiplier is 81."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-stellar-luminosity-temperature",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

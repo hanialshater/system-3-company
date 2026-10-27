@@ -1,0 +1,66 @@
+{
+  "slug": "scale-capillary-rise-radius",
+  "title": "Water climbing a thin tube",
+  "hook": "Change tube radius and predict capillary-rise height.",
+  "domain": "physics",
+  "concept": "scaling-capillary-rise-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "tube radius",
+      "capillary-rise height",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "h = 2γ cosθ/(ρgr)"
+    ]
+  },
+  "misconception": "capillary-rise height doubles when tube radius doubles, regardless of the stated relationship.",
+  "objective": "Apply h = 2γ cosθ/(ρgr) to compare capillary-rise height when tube radius changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-capillary-rise-radius.model",
+      "text": "With fixed surface tension density gravity and contact angle with a wetting liquid, h = 2γ cosθ/(ρgr). When tube radius doubles, capillary-rise height becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model h = 2γ cosθ/(ρgr); scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider fixed surface tension density gravity and contact angle with a wetting liquid, with a nonzero initial result. If tube radius triples from a positive value, what is the multiplier on capillary-rise height?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply h = 2γ cosθ/(ρgr) under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-capillary-rise-radius",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-electric-force-field",
+  "title": "A stronger electric field",
+  "hook": "Change electric-field magnitude and predict electric-force magnitude.",
+  "domain": "physics",
+  "concept": "scaling-electric-force-field",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "electric-field magnitude",
+      "electric-force magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "F = abs(q)E"
+    ]
+  },
+  "misconception": "electric-force magnitude stays fixed when electric-field magnitude doubles.",
+  "objective": "Apply F = abs(q)E to compare electric-force magnitude when electric-field magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-electric-force-field.model",
+      "text": "With a fixed test-charge magnitude, F = abs(q)E. When electric-field magnitude doubles, electric-force magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model F = abs(q)E; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a fixed test-charge magnitude, with a nonzero initial result. If electric-field magnitude triples from a positive value, what is the multiplier on electric-force magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply F = abs(q)E under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-electric-force-field",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

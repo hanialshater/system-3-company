@@ -1,0 +1,66 @@
+{
+  "slug": "scale-particle-momentum-kinetic",
+  "title": "Kinetic energy and momentum",
+  "hook": "Change kinetic energy and predict momentum magnitude.",
+  "domain": "physics",
+  "concept": "scaling-particle-momentum-kinetic",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "kinetic energy",
+      "momentum magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "p = √(2mK)"
+    ]
+  },
+  "misconception": "momentum magnitude doubles when kinetic energy doubles, regardless of the stated relationship.",
+  "objective": "Apply p = √(2mK) to compare momentum magnitude when kinetic energy changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-particle-momentum-kinetic.model",
+      "text": "With a nonrelativistic particle of fixed mass, p = √(2mK). When kinetic energy doubles, momentum magnitude becomes √2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model p = √(2mK); scaling exponent 0.5. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a nonrelativistic particle of fixed mass, with a nonzero initial result. If kinetic energy triples from a positive value, what is the multiplier on momentum magnitude?",
+    "options": [
+      "×√3",
+      "×3",
+      "×1/3"
+    ],
+    "answer": 0,
+    "why": "Apply p = √(2mK) under the same assumptions: the multiplier is √3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-particle-momentum-kinetic",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

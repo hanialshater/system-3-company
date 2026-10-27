@@ -1,0 +1,66 @@
+{
+  "slug": "scale-rc-time-resistance",
+  "title": "Resistance and the RC response",
+  "hook": "Change resistance and predict RC time constant.",
+  "domain": "physics",
+  "concept": "scaling-rc-time-resistance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "resistance",
+      "RC time constant",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "τ = RC"
+    ]
+  },
+  "misconception": "RC time constant stays fixed when resistance doubles.",
+  "objective": "Apply τ = RC to compare RC time constant when resistance changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-rc-time-resistance.model",
+      "text": "With an ideal RC circuit with fixed capacitance, τ = RC. When resistance doubles, RC time constant becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model τ = RC; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal RC circuit with fixed capacitance, with a nonzero initial result. If resistance triples from a positive value, what is the multiplier on RC time constant?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply τ = RC under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-rc-time-resistance",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-parallel-field-voltage",
+  "title": "More voltage between plates",
+  "hook": "Change voltage magnitude and predict electric-field magnitude.",
+  "domain": "physics",
+  "concept": "scaling-parallel-field-voltage",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "voltage magnitude",
+      "electric-field magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "E = abs(V)/d"
+    ]
+  },
+  "misconception": "electric-field magnitude stays fixed when voltage magnitude doubles.",
+  "objective": "Apply E = abs(V)/d to compare electric-field magnitude when voltage magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-parallel-field-voltage.model",
+      "text": "With ideal parallel plates at fixed separation ignoring edge effects, E = abs(V)/d. When voltage magnitude doubles, electric-field magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model E = abs(V)/d; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider ideal parallel plates at fixed separation ignoring edge effects, with a nonzero initial result. If voltage magnitude triples from a positive value, what is the multiplier on electric-field magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply E = abs(V)/d under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-parallel-field-voltage",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-magnetic-force-charge",
+  "title": "A larger charge in a magnetic field",
+  "hook": "Change charge magnitude and predict magnetic-force magnitude.",
+  "domain": "physics",
+  "concept": "scaling-magnetic-force-charge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "charge magnitude",
+      "magnetic-force magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "F = abs(q)vB"
+    ]
+  },
+  "misconception": "magnetic-force magnitude stays fixed when charge magnitude doubles.",
+  "objective": "Apply F = abs(q)vB to compare magnetic-force magnitude when charge magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-magnetic-force-charge.model",
+      "text": "With a particle with fixed speed moving perpendicular to a fixed uniform magnetic field, F = abs(q)vB. When charge magnitude doubles, magnetic-force magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model F = abs(q)vB; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a particle with fixed speed moving perpendicular to a fixed uniform magnetic field, with a nonzero initial result. If charge magnitude triples from a positive value, what is the multiplier on magnetic-force magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply F = abs(q)vB under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-magnetic-force-charge",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

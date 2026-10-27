@@ -1,0 +1,66 @@
+{
+  "slug": "scale-decay-activity-constant",
+  "title": "A faster decay constant",
+  "hook": "Change decay constant and predict expected activity.",
+  "domain": "physics",
+  "concept": "scaling-decay-activity-constant",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "decay constant",
+      "expected activity",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "activity = λN"
+    ]
+  },
+  "misconception": "expected activity stays fixed when decay constant doubles.",
+  "objective": "Apply activity = λN to compare expected activity when decay constant changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-decay-activity-constant.model",
+      "text": "With a radioactive population with fixed number of undecayed nuclei, activity = λN. When decay constant doubles, expected activity becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model activity = λN; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a radioactive population with fixed number of undecayed nuclei, with a nonzero initial result. If decay constant triples from a positive value, what is the multiplier on expected activity?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply activity = λN under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-decay-activity-constant",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

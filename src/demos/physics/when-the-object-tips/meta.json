@@ -1,0 +1,64 @@
+{
+  "slug": "when-the-object-tips",
+  "title": "When does it start to tip?",
+  "hook": "Shift the centre of mass toward the edge of the base.",
+  "domain": "physics",
+  "concept": "tipping-base-of-support",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "The weight acts downward through the centre of mass. Once that line falls outside the base, its turning effect about the edge tends to rotate the object over."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "The weight acts downward through the centre of mass. Once that line falls outside the base, its turning effect about the edge tends to rotate the object over.",
+  "claims": [
+    {
+      "id": "physics.when-the-object-tips.model",
+      "text": "The weight acts downward through the centre of mass. Once that line falls outside the base, its turning effect about the edge tends to rotate the object over. Rigid object, level surface, and no other support or restraint. At the edge itself the idealized tipping moment is zero.",
+      "support": "derivation",
+      "source": "Static torque about the support edge: gravitational moment is weight times the horizontal offset of the centre of mass from that edge.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A tall box leans while its centre of mass is still directly above its base. Does gravity alone necessarily tip it over the edge?",
+    "options": [
+      "Yes",
+      "No",
+      "Only if it is heavy"
+    ],
+    "answer": 1,
+    "why": "In the ideal model, gravity's line of action still falls within the support base."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:tipping-base-of-support",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

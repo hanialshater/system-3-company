@@ -1,0 +1,64 @@
+{
+  "slug": "crossed-filters-middle-angle",
+  "title": "Add a filter, get more light?",
+  "hook": "Two crossed filters block light. Add a third between them.",
+  "domain": "physics",
+  "concept": "polariser-third-filter",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "The first filter passes 50. The middle passes half of that, and the last passes half again: 100 × ½ × ½ × ½ = 12.5. The middle filter changes the polarization direction."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "The first filter passes 50. The middle passes half of that, and the last passes half again: 100 × ½ × ½ × ½ = 12.5. The middle filter changes the polarization direction.",
+  "claims": [
+    {
+      "id": "physics.crossed-filters-middle-angle.model",
+      "text": "The first filter passes 50. The middle passes half of that, and the last passes half again: 100 × ½ × ½ × ½ = 12.5. The middle filter changes the polarization direction. Ideal polarizers and unpolarized input; real filters absorb additional light.",
+      "support": "derivation",
+      "source": "Malus's law, I_out = I_in cos²(angle); an ideal polarizer transmits half the intensity of unpolarized incident light.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ideal unpolarized light has intensity 80. After a polarizer and a second at 45° to it, what intensity emerges?",
+    "options": [
+      "20",
+      "40",
+      "0"
+    ],
+    "answer": 0,
+    "why": "The first passes 40; the second passes half of that, 20."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:polariser-third-filter",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

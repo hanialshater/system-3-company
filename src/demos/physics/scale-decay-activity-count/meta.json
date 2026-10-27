@@ -1,0 +1,66 @@
+{
+  "slug": "scale-decay-activity-count",
+  "title": "More radioactive nuclei",
+  "hook": "Change number of undecayed nuclei and predict expected activity.",
+  "domain": "physics",
+  "concept": "scaling-decay-activity-count",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "number of undecayed nuclei",
+      "expected activity",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "activity = λN"
+    ]
+  },
+  "misconception": "expected activity stays fixed when number of undecayed nuclei doubles.",
+  "objective": "Apply activity = λN to compare expected activity when number of undecayed nuclei changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-decay-activity-count.model",
+      "text": "With a radioactive isotope with fixed decay constant, activity = λN. When number of undecayed nuclei doubles, expected activity becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model activity = λN; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a radioactive isotope with fixed decay constant, with a nonzero initial result. If number of undecayed nuclei triples from a positive value, what is the multiplier on expected activity?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply activity = λN under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-decay-activity-count",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

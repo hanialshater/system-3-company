@@ -1,0 +1,66 @@
+{
+  "slug": "scale-point-source-intensity-distance",
+  "title": "Sound spreads in three dimensions",
+  "hook": "Change distance from the source and predict intensity.",
+  "domain": "physics",
+  "concept": "scaling-point-source-intensity-distance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "distance from the source",
+      "intensity",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "I = P/(4πr²)"
+    ]
+  },
+  "misconception": "intensity doubles when distance from the source doubles, regardless of the stated relationship.",
+  "objective": "Apply I = P/(4πr²) to compare intensity when distance from the source changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-point-source-intensity-distance.model",
+      "text": "With an isotropic point source in a lossless medium with fixed power, I = P/(4πr²). When distance from the source doubles, intensity becomes ¼ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model I = P/(4πr²); scaling exponent -2. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an isotropic point source in a lossless medium with fixed power, with a nonzero initial result. If distance from the source triples from a positive value, what is the multiplier on intensity?",
+    "options": [
+      "×1/9",
+      "×1/3",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply I = P/(4πr²) under the same assumptions: the multiplier is 1/9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-point-source-intensity-distance",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

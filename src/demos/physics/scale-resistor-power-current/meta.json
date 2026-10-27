@@ -1,0 +1,66 @@
+{
+  "slug": "scale-resistor-power-current",
+  "title": "Current and resistor power",
+  "hook": "Change current magnitude and predict resistor power.",
+  "domain": "physics",
+  "concept": "scaling-resistor-power-current",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "current magnitude",
+      "resistor power",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "P = I²R"
+    ]
+  },
+  "misconception": "resistor power doubles when current magnitude doubles, regardless of the stated relationship.",
+  "objective": "Apply P = I²R to compare resistor power when current magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-resistor-power-current.model",
+      "text": "With an ohmic resistor with fixed resistance, P = I²R. When current magnitude doubles, resistor power becomes 4 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model P = I²R; scaling exponent 2. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ohmic resistor with fixed resistance, with a nonzero initial result. If current magnitude triples from a positive value, what is the multiplier on resistor power?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 2,
+    "why": "Apply P = I²R under the same assumptions: the multiplier is 9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-resistor-power-current",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-capacitor-permittivity",
+  "title": "Change the dielectric",
+  "hook": "Change dielectric permittivity and predict capacitance.",
+  "domain": "physics",
+  "concept": "scaling-capacitor-permittivity",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "dielectric permittivity",
+      "capacitance",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "C = εA/d"
+    ]
+  },
+  "misconception": "capacitance stays fixed when dielectric permittivity doubles.",
+  "objective": "Apply C = εA/d to compare capacitance when dielectric permittivity changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-capacitor-permittivity.model",
+      "text": "With ideal parallel plates with fixed area and separation ignoring edge effects, C = εA/d. When dielectric permittivity doubles, capacitance becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model C = εA/d; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider ideal parallel plates with fixed area and separation ignoring edge effects, with a nonzero initial result. If dielectric permittivity triples from a positive value, what is the multiplier on capacitance?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply C = εA/d under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-capacitor-permittivity",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

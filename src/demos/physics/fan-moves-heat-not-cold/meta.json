@@ -1,0 +1,64 @@
+{
+  "slug": "fan-moves-heat-not-cold",
+  "title": "Does a fan make air colder?",
+  "hook": "A fan blows across a warm surface.",
+  "domain": "physics",
+  "concept": "fan-cools-you-not-room",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "The faster flow removes warm air next to the surface and increases convective heat transfer. A fan can cool a person without lowering the room's air temperature."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "The faster flow removes warm air next to the surface and increases convective heat transfer. A fan can cool a person without lowering the room's air temperature.",
+  "claims": [
+    {
+      "id": "physics.fan-moves-heat-not-cold.model",
+      "text": "The faster flow removes warm air next to the surface and increases convective heat transfer. A fan can cool a person without lowering the room's air temperature. Illustrative heat-flow values; actual cooling depends on airflow, humidity, temperatures, and evaporation. A running fan also adds its own electrical energy as heat.",
+      "support": "derivation",
+      "source": "Convective heat-transfer model Q-dot = h A (T_surface − T_air); increased airflow can increase h while air temperature remains fixed. 20 W and 60 W are hypothetical.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fan blows air at unchanged room temperature across a warm mug. Which may increase?",
+    "options": [
+      "Convective heat transfer",
+      "The room's supply of cold",
+      "The mug's initial temperature"
+    ],
+    "answer": 0,
+    "why": "Moving air can increase convection without changing the incoming air temperature."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "physics:fan-cools-you-not-room",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

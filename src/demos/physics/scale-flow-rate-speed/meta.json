@@ -1,0 +1,66 @@
+{
+  "slug": "scale-flow-rate-speed",
+  "title": "Faster through one opening",
+  "hook": "Change fluid speed and predict volume-flow rate.",
+  "domain": "physics",
+  "concept": "scaling-flow-rate-speed",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fluid speed",
+      "volume-flow rate",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q = Av"
+    ]
+  },
+  "misconception": "volume-flow rate stays fixed when fluid speed doubles.",
+  "objective": "Apply Q = Av to compare volume-flow rate when fluid speed changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-flow-rate-speed.model",
+      "text": "With uniform flow across a fixed cross-sectional area, Q = Av. When fluid speed doubles, volume-flow rate becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q = Av; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider uniform flow across a fixed cross-sectional area, with a nonzero initial result. If fluid speed triples from a positive value, what is the multiplier on volume-flow rate?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Q = Av under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-flow-rate-speed",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

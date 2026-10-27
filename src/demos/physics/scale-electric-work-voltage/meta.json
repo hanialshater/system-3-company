@@ -1,0 +1,66 @@
+{
+  "slug": "scale-electric-work-voltage",
+  "title": "Move charge across more voltage",
+  "hook": "Change potential-difference magnitude and predict electric-work magnitude.",
+  "domain": "physics",
+  "concept": "scaling-electric-work-voltage",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "potential-difference magnitude",
+      "electric-work magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "work magnitude = abs(qΔV)"
+    ]
+  },
+  "misconception": "electric-work magnitude stays fixed when potential-difference magnitude doubles.",
+  "objective": "Apply work magnitude = abs(qΔV) to compare electric-work magnitude when potential-difference magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-electric-work-voltage.model",
+      "text": "With a fixed charge magnitude, work magnitude = abs(qΔV). When potential-difference magnitude doubles, electric-work magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model work magnitude = abs(qΔV); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a fixed charge magnitude, with a nonzero initial result. If potential-difference magnitude triples from a positive value, what is the multiplier on electric-work magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply work magnitude = abs(qΔV) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-electric-work-voltage",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

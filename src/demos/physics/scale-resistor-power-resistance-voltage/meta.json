@@ -1,0 +1,66 @@
+{
+  "slug": "scale-resistor-power-resistance-voltage",
+  "title": "Resistance at fixed voltage",
+  "hook": "Change resistance and predict resistor power.",
+  "domain": "physics",
+  "concept": "scaling-resistor-power-resistance-voltage",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "resistance",
+      "resistor power",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "P = V²/R"
+    ]
+  },
+  "misconception": "resistor power doubles when resistance doubles, regardless of the stated relationship.",
+  "objective": "Apply P = V²/R to compare resistor power when resistance changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-resistor-power-resistance-voltage.model",
+      "text": "With an ohmic resistor with fixed voltage magnitude, P = V²/R. When resistance doubles, resistor power becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model P = V²/R; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ohmic resistor with fixed voltage magnitude, with a nonzero initial result. If resistance triples from a positive value, what is the multiplier on resistor power?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply P = V²/R under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-resistor-power-resistance-voltage",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

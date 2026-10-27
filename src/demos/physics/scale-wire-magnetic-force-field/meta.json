@@ -1,0 +1,66 @@
+{
+  "slug": "scale-wire-magnetic-force-field",
+  "title": "A stronger field on a wire",
+  "hook": "Change magnetic-field magnitude and predict force magnitude on the wire.",
+  "domain": "physics",
+  "concept": "scaling-wire-magnetic-force-field",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "magnetic-field magnitude",
+      "force magnitude on the wire",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "F = BIL"
+    ]
+  },
+  "misconception": "force magnitude on the wire stays fixed when magnetic-field magnitude doubles.",
+  "objective": "Apply F = BIL to compare force magnitude on the wire when magnetic-field magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-wire-magnetic-force-field.model",
+      "text": "With a straight wire of fixed length carrying fixed current perpendicular to the field, F = BIL. When magnetic-field magnitude doubles, force magnitude on the wire becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model F = BIL; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a straight wire of fixed length carrying fixed current perpendicular to the field, with a nonzero initial result. If magnetic-field magnitude triples from a positive value, what is the multiplier on force magnitude on the wire?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply F = BIL under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-wire-magnetic-force-field",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

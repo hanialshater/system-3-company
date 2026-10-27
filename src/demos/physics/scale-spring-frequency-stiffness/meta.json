@@ -1,0 +1,66 @@
+{
+  "slug": "scale-spring-frequency-stiffness",
+  "title": "Stiffness and spring frequency",
+  "hook": "Change spring stiffness and predict oscillation frequency.",
+  "domain": "physics",
+  "concept": "scaling-spring-frequency-stiffness",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "spring stiffness",
+      "oscillation frequency",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "f = (1/2π)√(k/m)"
+    ]
+  },
+  "misconception": "oscillation frequency doubles when spring stiffness doubles, regardless of the stated relationship.",
+  "objective": "Apply f = (1/2π)√(k/m) to compare oscillation frequency when spring stiffness changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-spring-frequency-stiffness.model",
+      "text": "With an ideal mass–spring oscillator with fixed mass, f = (1/2π)√(k/m). When spring stiffness doubles, oscillation frequency becomes √2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model f = (1/2π)√(k/m); scaling exponent 0.5. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal mass–spring oscillator with fixed mass, with a nonzero initial result. If spring stiffness triples from a positive value, what is the multiplier on oscillation frequency?",
+    "options": [
+      "×√3",
+      "×3",
+      "×1/3"
+    ],
+    "answer": 0,
+    "why": "Apply f = (1/2π)√(k/m) under the same assumptions: the multiplier is √3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-spring-frequency-stiffness",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

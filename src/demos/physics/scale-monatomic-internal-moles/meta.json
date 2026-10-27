@@ -1,0 +1,66 @@
+{
+  "slug": "scale-monatomic-internal-moles",
+  "title": "More monatomic gas",
+  "hook": "Change amount of gas and predict internal energy.",
+  "domain": "physics",
+  "concept": "scaling-monatomic-internal-moles",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "amount of gas",
+      "internal energy",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "U = 3nRT/2"
+    ]
+  },
+  "misconception": "internal energy stays fixed when amount of gas doubles.",
+  "objective": "Apply U = 3nRT/2 to compare internal energy when amount of gas changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-monatomic-internal-moles.model",
+      "text": "With a monatomic ideal gas at fixed absolute temperature, U = 3nRT/2. When amount of gas doubles, internal energy becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model U = 3nRT/2; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a monatomic ideal gas at fixed absolute temperature, with a nonzero initial result. If amount of gas triples from a positive value, what is the multiplier on internal energy?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply U = 3nRT/2 under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-monatomic-internal-moles",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

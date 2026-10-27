@@ -1,0 +1,64 @@
+{
+  "slug": "half-life-two-steps",
+  "title": "What remains after two half-lives?",
+  "hook": "Watch an expected radioactive population shrink.",
+  "domain": "physics",
+  "concept": "radioactive-half-life-expected",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "Each half-life halves the expected number still present. From 100 to 50, then from 50 to 25."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "Each half-life halves the expected number still present. From 100 to 50, then from 50 to 25.",
+  "claims": [
+    {
+      "id": "physics.half-life-two-steps.model",
+      "text": "Each half-life halves the expected number still present. From 100 to 50, then from 50 to 25. The dots represent expected counts, not a prediction of exactly which nuclei decay. Individual decay is random.",
+      "support": "derivation",
+      "source": "Radioactive decay expectation N(t)=N0(1/2)^(t/t_half). N0=100 and t=2t_half gives 25.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A large radioactive sample has an expected 80 nuclei remaining now. What is its expected count one half-life later?",
+    "options": [
+      "20",
+      "40",
+      "80"
+    ],
+    "answer": 1,
+    "why": "One half-life halves the expected count: 80/2 = 40."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:radioactive-half-life-expected",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

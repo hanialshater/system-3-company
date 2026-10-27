@@ -1,0 +1,66 @@
+{
+  "slug": "scale-stellar-flux-luminosity",
+  "title": "A more luminous distant star",
+  "hook": "Change source luminosity and predict observed flux.",
+  "domain": "physics",
+  "concept": "scaling-stellar-flux-luminosity",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "source luminosity",
+      "observed flux",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "flux = L/(4πd²)"
+    ]
+  },
+  "misconception": "observed flux stays fixed when source luminosity doubles.",
+  "objective": "Apply flux = L/(4πd²) to compare observed flux when source luminosity changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-stellar-flux-luminosity.model",
+      "text": "With an isotropic source at fixed distance in empty non-expanding space, flux = L/(4πd²). When source luminosity doubles, observed flux becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model flux = L/(4πd²); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an isotropic source at fixed distance in empty non-expanding space, with a nonzero initial result. If source luminosity triples from a positive value, what is the multiplier on observed flux?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply flux = L/(4πd²) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-stellar-flux-luminosity",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}
