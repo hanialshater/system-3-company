@@ -1,0 +1,64 @@
+{
+  "slug": "gravity-farther-from-centre",
+  "title": "Four times farther: how much gravity?",
+  "hook": "Move a spacecraft farther from a spherical planet.",
+  "domain": "physics",
+  "concept": "gravity-distance-square",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "Outside a spherical mass, gravitational acceleration is GM/r². Four times the distance gives 4² = 16 times the denominator, so the acceleration is one sixteenth."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "Outside a spherical mass, gravitational acceleration is GM/r². Four times the distance gives 4² = 16 times the denominator, so the acceleration is one sixteenth.",
+  "claims": [
+    {
+      "id": "physics.gravity-farther-from-centre.model",
+      "text": "Outside a spherical mass, gravitational acceleration is GM/r². Four times the distance gives 4² = 16 times the denominator, so the acceleration is one sixteenth. Spherical planet, outside its surface; ignore other gravitating bodies. Distance is measured from the centre.",
+      "support": "derivation",
+      "source": "Newtonian gravitational field g = GM/r² outside a spherically symmetric mass.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At twice the distance from the centre of a spherical planet, what is its gravitational acceleration relative to before?",
+    "options": [
+      "One half",
+      "One quarter",
+      "Twice as large"
+    ],
+    "answer": 1,
+    "why": "g scales as 1/r², so doubling distance gives one quarter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:gravity-distance-square",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

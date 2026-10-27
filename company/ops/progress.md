@@ -1,3 +1,11 @@
+## 2026-10-27 · chief-of-staff · physics batch in PR 28, 18 of 250 drafted
+
+- **Changed:** Added 17 draft lessons to the initial inclined-orbit prototype: ten previously uncovered physics curriculum concepts and seven modern-physics / orbital concepts. Shared diagrams are in `src/lib/physics/PhysicsCase.tsx`; the 3D orbit is an orthographic projection in `src/demos/physics/inclined-orbit-projection/`. Board W-2115 tracks the remaining 232.
+- **Checks:** TypeScript and production build pass. Arithmetic spot checks cover the filter, rope, engine, round-trip speed, and biceps examples. `npm run check` reports the same 810 errors and five warnings as the baseline; `npm run verify` stops at the two existing publication-readiness failures. No browser walkthrough or phone-fit review was run. Claims remain unverified.
+- **Believe:** the lessons are mechanically assembled and mathematically plausible, not independently checked or learner-validated. Shared two-case stages may need pedagogical revision.
+- **Next:** Build the remaining 232 in this same PR; route every lesson through independent fact-check, learner review and phone QA. Continue with additional 3D interactions where they make the physics easier to understand.
+- **Blocked:** Full verify by the existing publication failures; browser QA by unavailable browser binaries.
+
 ## 2026-10-26 · platform-engineer (Noor) · Lesson frames pilot merged into main with the flag off: merge `813e2aa55` (M-b to M-e); not deployed
 
 - **Changed:** `feat/lesson-frames-pilot` (`98ca75ef1`, approved code at `6f4f1b6cf`) merged into main `7d9893716` as merge commit `813e2aa559eb7a6e5544209ce4571470d8fd20f7`, no `[deploy]` (M-b). `board.json`: both sides kept, no duplicate ids (2,062 items): main's W-2105 (done), W-2107, W-2108, W-2112, W-2113; the branch's W-2092/W-2093, now moved to done. `progress.md`: all entries, newest first. The merge brings no `package-lock.json` change (main already has 16.4.3 from `7ee5b9e8d`); the `package.json` hunk is only the two script lines (`test:lesson-frames` and its place in `verify`).

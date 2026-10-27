@@ -1,0 +1,64 @@
+{
+  "slug": "biceps-small-lever",
+  "title": "Why does your muscle pull harder?",
+  "hook": "The load and the muscle pull at very different distances from your elbow.",
+  "domain": "physics",
+  "concept": "muscle-lever-force",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "Balance the turning effects: 20 N × 30 cm = muscle force × 4 cm. The muscle needs 150 N because its moment arm is much shorter."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "Balance the turning effects: 20 N × 30 cm = muscle force × 4 cm. The muscle needs 150 N because its moment arm is much shorter.",
+  "claims": [
+    {
+      "id": "physics.biceps-small-lever.model",
+      "text": "Balance the turning effects: 20 N × 30 cm = muscle force × 4 cm. The muscle needs 150 N because its moment arm is much shorter. Static, perpendicular forces; arm weight and other muscles are ignored.",
+      "support": "derivation",
+      "source": "Torque equilibrium: F_m × 4 cm = 20 N × r. For r=10 cm F_m=50 N; for r=30 cm F_m=150 N.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 10 N load is 20 cm from the pivot. A muscle pulls at 5 cm, perpendicular to the lever. What force balances it?",
+    "options": [
+      "10 N",
+      "20 N",
+      "40 N"
+    ],
+    "answer": 2,
+    "why": "10 × 20 / 5 = 40 N."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:muscle-lever-force",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

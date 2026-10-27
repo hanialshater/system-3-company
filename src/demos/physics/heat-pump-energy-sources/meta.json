@@ -1,0 +1,64 @@
+{
+  "slug": "heat-pump-energy-sources",
+  "title": "Where did the extra heat come from?",
+  "hook": "One unit of electricity delivers three units of heat indoors.",
+  "domain": "physics",
+  "concept": "heat-pump-moves-heat",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "The pump moves heat from outside and adds the energy it consumes: 2 kWh from outside plus 1 kWh of electricity makes 3 kWh delivered indoors."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "The pump moves heat from outside and adds the energy it consumes: 2 kWh from outside plus 1 kWh of electricity makes 3 kWh delivered indoors.",
+  "claims": [
+    {
+      "id": "physics.heat-pump-energy-sources.model",
+      "text": "The pump moves heat from outside and adds the energy it consumes: 2 kWh from outside plus 1 kWh of electricity makes 3 kWh delivered indoors. Illustrative constant coefficient of performance of 3. Actual performance varies with operating conditions.",
+      "support": "derivation",
+      "source": "Energy balance Q_hot = Q_cold + W; illustrative heating COP Q_hot/W = 3.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A heat pump uses 2 kWh of electricity and delivers 8 kWh indoors. How much heat did it take from outside?",
+    "options": [
+      "2 kWh",
+      "6 kWh",
+      "10 kWh"
+    ],
+    "answer": 1,
+    "why": "8 − 2 = 6 kWh comes from outside in this idealized energy balance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:heat-pump-moves-heat",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "equal-trip-average-speed",
+  "title": "Why isn't the average 45 km/h?",
+  "hook": "A slow outward leg and a fast return cover equal distances.",
+  "domain": "physics",
+  "concept": "average-speed-round-trip",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "The outward trip takes 2 h and the return takes 1 h. Divide the full 120 km by the full 3 h: 40 km/h. You spend longer at the slower speed."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "The outward trip takes 2 h and the return takes 1 h. Divide the full 120 km by the full 3 h: 40 km/h. You spend longer at the slower speed.",
+  "claims": [
+    {
+      "id": "physics.equal-trip-average-speed.model",
+      "text": "The outward trip takes 2 h and the return takes 1 h. Divide the full 120 km by the full 3 h: 40 km/h. You spend longer at the slower speed. Each leg has constant speed; stops and acceleration are excluded.",
+      "support": "derivation",
+      "source": "Average speed = total distance / total time; 120/(60/30+60/60)=40 km/h.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You travel 20 km at 20 km/h and 20 km at 40 km/h. What is your average speed?",
+    "options": [
+      "About 26.7 km/h",
+      "30 km/h",
+      "40 km/h"
+    ],
+    "answer": 0,
+    "why": "40 km divided by 1.5 h is about 26.7 km/h."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:average-speed-round-trip",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "hot-cold-engine-limit",
+  "title": "Where must the rest of the heat go?",
+  "hook": "A heat engine runs between a hot and a cold reservoir.",
+  "domain": "physics",
+  "concept": "heat-engine-limit",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "For an ideal reversible engine the maximum efficiency is 1 − T_cold / T_hot. At 600 K and 300 K, at most half the input heat becomes work; the rest is rejected to the cold reservoir."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "For an ideal reversible engine the maximum efficiency is 1 − T_cold / T_hot. At 600 K and 300 K, at most half the input heat becomes work; the rest is rejected to the cold reservoir.",
+  "claims": [
+    {
+      "id": "physics.hot-cold-engine-limit.model",
+      "text": "For an ideal reversible engine the maximum efficiency is 1 − T_cold / T_hot. At 600 K and 300 K, at most half the input heat becomes work; the rest is rejected to the cold reservoir. Temperatures must be absolute. Real engines have additional losses and perform below this ideal bound.",
+      "support": "derivation",
+      "source": "Carnot bound eta <= 1 - T_c/T_h. 1-450/600=0.25; 1-300/600=0.5.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An ideal reversible engine runs between 800 K and 600 K. What is its maximum efficiency?",
+    "options": [
+      "25%",
+      "75%",
+      "100%"
+    ],
+    "answer": 0,
+    "why": "1 − 600/800 = 0.25."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:heat-engine-limit",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

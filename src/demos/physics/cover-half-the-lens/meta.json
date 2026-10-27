@@ -1,0 +1,64 @@
+{
+  "slug": "cover-half-the-lens",
+  "title": "Does half a lens make half a picture?",
+  "hook": "Cover the top half of a camera lens.",
+  "domain": "physics",
+  "concept": "lens-whole-image",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "Light from each object point can reach the image through different parts of the lens. Covering half blocks some rays from each point; it does not select half the picture."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "Light from each object point can reach the image through different parts of the lens. Covering half blocks some rays from each point; it does not select half the picture.",
+  "claims": [
+    {
+      "id": "physics.cover-half-the-lens.model",
+      "text": "Light from each object point can reach the image through different parts of the lens. Covering half blocks some rays from each point; it does not select half the picture. Ideal geometric optics: a focused image, uniform illumination, and diffraction neglected.",
+      "support": "derivation",
+      "source": "Thin-lens geometric optics: rays from each object point through different lens positions converge at the conjugate image point.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You partly cover a focused projector lens. In the geometric-optics model, what happens to the screen picture?",
+    "options": [
+      "The whole picture dims",
+      "Its left half vanishes",
+      "Its size doubles"
+    ],
+    "answer": 0,
+    "why": "Each part of the lens contributes light to the whole focused image."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:lens-whole-image",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

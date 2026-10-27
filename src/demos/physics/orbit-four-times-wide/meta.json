@@ -1,0 +1,64 @@
+{
+  "slug": "orbit-four-times-wide",
+  "title": "Four times the orbit radius: how long?",
+  "hook": "A larger orbit takes a different time to complete.",
+  "domain": "physics",
+  "concept": "circular-orbit-period-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "For circular orbits around the same mass, period is proportional to radius to the power 3/2. The radius grows by 4, so the period grows by 4^(3/2) = 8."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "For circular orbits around the same mass, period is proportional to radius to the power 3/2. The radius grows by 4, so the period grows by 4^(3/2) = 8.",
+  "claims": [
+    {
+      "id": "physics.orbit-four-times-wide.model",
+      "text": "For circular orbits around the same mass, period is proportional to radius to the power 3/2. The radius grows by 4, so the period grows by 4^(3/2) = 8. Circular Keplerian orbits around the same dominant spherical mass, with orbital radius measured from its centre.",
+      "support": "derivation",
+      "source": "T = 2 pi sqrt(r³/(GM)); T(4r)/T(r) = 4^(3/2) = 8.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If a circular orbit's radius increases by a factor of 9 around the same central mass, how does its period change?",
+    "options": [
+      "9 times",
+      "18 times",
+      "27 times"
+    ],
+    "answer": 2,
+    "why": "9^(3/2) = 27."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:circular-orbit-period-radius",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}
