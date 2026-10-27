@@ -71,7 +71,7 @@ export function Diagram({ kind, changed }: { kind: PhysicsCase["diagram"]; chang
     </g>)}
   </svg>;
   if (kind === "balance") return <svg viewBox="0 0 300 140" className="stage-svg" role="img" aria-label="Centre of mass moves relative to the support edge">
-    <path d="M70 110 H230 M100 110 V50 H200 V110" fill="none" stroke="var(--muted)" strokeWidth="3"/>
+    <path d="M70 110 H200 M100 110 V50 H240 V110 H100" fill="none" stroke="var(--muted)" strokeWidth="3"/>
     <circle cx={changed?215:170} cy="65" r="7" fill="var(--domain)"/>
     <line x1={changed?215:170} y1="65" x2={changed?215:170} y2="110" stroke="var(--domain)" strokeDasharray="4 3"/>
     <line x1="200" y1="105" x2="200" y2="120" stroke="var(--fg)" strokeWidth="3"/>

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-terminal-stokes-radius",
+  "title": "A larger settling bead",
+  "hook": "Change sphere radius and predict terminal speed.",
+  "domain": "physics",
+  "concept": "scaling-terminal-stokes-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "sphere radius",
+      "terminal speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v_t = 2Δρgr²/(9η)"
+    ]
+  },
+  "misconception": "terminal speed doubles when sphere radius doubles, regardless of the stated relationship.",
+  "objective": "Apply v_t = 2Δρgr²/(9η) to compare terminal speed when sphere radius changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-terminal-stokes-radius.model",
+      "text": "With a small sphere denser than the fluid in Stokes flow with fixed fluid viscosity and density difference, v_t = 2Δρgr²/(9η). When sphere radius doubles, terminal speed becomes 4 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v_t = 2Δρgr²/(9η); scaling exponent 2. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a small sphere denser than the fluid in Stokes flow with fixed fluid viscosity and density difference, with a nonzero initial result. If sphere radius triples from a positive value, what is the multiplier on terminal speed?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 2,
+    "why": "Apply v_t = 2Δρgr²/(9η) under the same assumptions: the multiplier is 9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-terminal-stokes-radius",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

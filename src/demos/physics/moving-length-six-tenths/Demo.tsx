@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
 import { Diagram, type PhysicsCase } from "@/lib/physics/PhysicsCase";
+import styles from "@/lib/physics/physics.module.css";
 
 const lesson: PhysicsCase = {
   "question": "A spacecraft is 100 m long in its own rest frame. It passes you at 0.6c. What length do you measure along its direction of motion?",
@@ -31,7 +32,7 @@ export default function Demo({ slug }: { slug: string }) {
     {({ locked, interact }) => <div>
       <Diagram kind={lesson.diagram} changed={changed}/>
       <p aria-live="polite">{locked ? "Make a prediction to explore." : changed ? lesson.after : lesson.before}</p>
-      <Control disabled={locked || changed} onClick={() => { setChanged(true); interact(); }}>Try the second case</Control>
+      <Control className={styles.tap} disabled={locked || changed} onClick={() => { setChanged(true); interact(); }}>Try the second case</Control>
     </div>}
   </Lesson>;
 }

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-point-potential-charge",
+  "title": "Potential from a larger charge",
+  "hook": "Change source charge magnitude and predict electric-potential magnitude.",
+  "domain": "physics",
+  "concept": "scaling-point-potential-charge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "source charge magnitude",
+      "electric-potential magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "potential magnitude = kabs(q)/r"
+    ]
+  },
+  "misconception": "electric-potential magnitude stays fixed when source charge magnitude doubles.",
+  "objective": "Apply potential magnitude = kabs(q)/r to compare electric-potential magnitude when source charge magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-point-potential-charge.model",
+      "text": "With a point charge at fixed distance with zero potential at infinity, potential magnitude = kabs(q)/r. When source charge magnitude doubles, electric-potential magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model potential magnitude = kabs(q)/r; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a point charge at fixed distance with zero potential at infinity, with a nonzero initial result. If source charge magnitude triples from a positive value, what is the multiplier on electric-potential magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply potential magnitude = kabs(q)/r under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-point-potential-charge",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

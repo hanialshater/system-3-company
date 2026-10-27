@@ -1,0 +1,66 @@
+{
+  "slug": "scale-flow-radius-laminar",
+  "title": "A slightly wider tiny tube",
+  "hook": "Change tube radius and predict laminar volume-flow rate.",
+  "domain": "physics",
+  "concept": "scaling-flow-radius-laminar",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "tube radius",
+      "laminar volume-flow rate",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q = πΔPr⁴/(8ηL)"
+    ]
+  },
+  "misconception": "laminar volume-flow rate doubles when tube radius doubles, regardless of the stated relationship.",
+  "objective": "Apply Q = πΔPr⁴/(8ηL) to compare laminar volume-flow rate when tube radius changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-flow-radius-laminar.model",
+      "text": "With ideal Poiseuille flow with fixed pressure drop viscosity and length, Q = πΔPr⁴/(8ηL). When tube radius doubles, laminar volume-flow rate becomes 16 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q = πΔPr⁴/(8ηL); scaling exponent 4. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider ideal Poiseuille flow with fixed pressure drop viscosity and length, with a nonzero initial result. If tube radius triples from a positive value, what is the multiplier on laminar volume-flow rate?",
+    "options": [
+      "×9",
+      "×27",
+      "×81"
+    ],
+    "answer": 2,
+    "why": "Apply Q = πΔPr⁴/(8ηL) under the same assumptions: the multiplier is 81."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-flow-radius-laminar",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

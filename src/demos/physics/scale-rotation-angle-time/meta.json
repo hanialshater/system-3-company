@@ -1,0 +1,66 @@
+{
+  "slug": "scale-rotation-angle-time",
+  "title": "A steady spinning wheel",
+  "hook": "Change elapsed time and predict angle turned.",
+  "domain": "physics",
+  "concept": "scaling-rotation-angle-time",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "elapsed time",
+      "angle turned",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Δθ = ωΔt"
+    ]
+  },
+  "misconception": "angle turned stays fixed when elapsed time doubles.",
+  "objective": "Apply Δθ = ωΔt to compare angle turned when elapsed time changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-rotation-angle-time.model",
+      "text": "With a wheel rotating at constant angular speed, Δθ = ωΔt. When elapsed time doubles, angle turned becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Δθ = ωΔt; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a wheel rotating at constant angular speed, with a nonzero initial result. If elapsed time triples from a positive value, what is the multiplier on angle turned?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Δθ = ωΔt under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-rotation-angle-time",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

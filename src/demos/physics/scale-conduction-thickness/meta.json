@@ -1,0 +1,66 @@
+{
+  "slug": "scale-conduction-thickness",
+  "title": "A thicker conducting wall",
+  "hook": "Change wall thickness and predict conducted heat rate.",
+  "domain": "physics",
+  "concept": "scaling-conduction-thickness",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "wall thickness",
+      "conducted heat rate",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q̇ = kAΔT/L"
+    ]
+  },
+  "misconception": "conducted heat rate doubles when wall thickness doubles, regardless of the stated relationship.",
+  "objective": "Apply Q̇ = kAΔT/L to compare conducted heat rate when wall thickness changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-conduction-thickness.model",
+      "text": "With steady one-dimensional conduction with fixed area conductivity and temperature difference, Q̇ = kAΔT/L. When wall thickness doubles, conducted heat rate becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q̇ = kAΔT/L; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider steady one-dimensional conduction with fixed area conductivity and temperature difference, with a nonzero initial result. If wall thickness triples from a positive value, what is the multiplier on conducted heat rate?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply Q̇ = kAΔT/L under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-conduction-thickness",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-point-field-charge",
+  "title": "A larger source charge",
+  "hook": "Change source charge magnitude and predict electric-field magnitude.",
+  "domain": "physics",
+  "concept": "scaling-point-field-charge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "source charge magnitude",
+      "electric-field magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "E = kabs(q)/r²"
+    ]
+  },
+  "misconception": "electric-field magnitude stays fixed when source charge magnitude doubles.",
+  "objective": "Apply E = kabs(q)/r² to compare electric-field magnitude when source charge magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-point-field-charge.model",
+      "text": "With a point charge observed at fixed distance in the same medium, E = kabs(q)/r². When source charge magnitude doubles, electric-field magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model E = kabs(q)/r²; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a point charge observed at fixed distance in the same medium, with a nonzero initial result. If source charge magnitude triples from a positive value, what is the multiplier on electric-field magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply E = kabs(q)/r² under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-point-field-charge",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

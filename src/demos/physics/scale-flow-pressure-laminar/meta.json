@@ -1,0 +1,66 @@
+{
+  "slug": "scale-flow-pressure-laminar",
+  "title": "More pressure through a tube",
+  "hook": "Change pressure difference and predict laminar volume-flow rate.",
+  "domain": "physics",
+  "concept": "scaling-flow-pressure-laminar",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "pressure difference",
+      "laminar volume-flow rate",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q = πΔPr⁴/(8ηL)"
+    ]
+  },
+  "misconception": "laminar volume-flow rate stays fixed when pressure difference doubles.",
+  "objective": "Apply Q = πΔPr⁴/(8ηL) to compare laminar volume-flow rate when pressure difference changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-flow-pressure-laminar.model",
+      "text": "With ideal Poiseuille flow with fixed radius viscosity and tube length, Q = πΔPr⁴/(8ηL). When pressure difference doubles, laminar volume-flow rate becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q = πΔPr⁴/(8ηL); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider ideal Poiseuille flow with fixed radius viscosity and tube length, with a nonzero initial result. If pressure difference triples from a positive value, what is the multiplier on laminar volume-flow rate?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Q = πΔPr⁴/(8ηL) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-flow-pressure-laminar",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Slider } from "@/kit/controls";
+import styles from "@/lib/physics/physics.module.css";
 
 // Orthographic projection of a circular orbit tilted about its horizontal axis.
 // The tilt changes its appearance, not its radius or constant orbital speed.
@@ -22,13 +23,13 @@ export default function InclinedOrbitProjection({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A spacecraft travels at constant speed in a circular orbit. You tilt its orbital plane, keeping the same circular orbit. It now looks oval from above. What happens to its speed?",
-        options: ["It increases", "It stays the same", "It decreases"],
+        question: "An orbit looks oval from above. What can you conclude about the path's actual shape in space?",
+        options: ["It must be elliptical", "It may be circular or elliptical", "It cannot be either"],
         answer: 1,
       }}
-      exploreHint="Tilt the orbit and compare its apparent shape with the unchanged circular reference."
+      exploreHint="Tilt a circular orbit and compare its apparent shape with the unchanged circular reference."
       minInteractions={1}
-      reveal={() => <><p>At {tilt}° the tilted circle appears {Math.round(100 * Math.cos(tilt * Math.PI / 180))}% as tall as the reference. Its actual radius and speed remain fixed in this model.</p><p>The camera uses an orthographic projection: the apparent height is multiplied by cos(tilt). A projected oval alone does not show that the actual path is elliptical.</p></>}
+      reveal={() => <><p>At {tilt}° the tilted circle appears {Math.round(100 * Math.cos(tilt * Math.PI / 180))}% as tall as the reference. Its actual shape is still circular.</p><p>The camera uses an orthographic projection: the apparent height is multiplied by cos(tilt). A projected oval alone does not tell you whether the actual path is circular or elliptical.</p></>}
     >
       {({ locked, interact }) => <div>
         <svg viewBox="0 0 300 200" className="stage-svg" role="img" aria-label={`Top view of an orbit tilted ${tilt} degrees. The orange projected circle appears ${Math.round(100 * Math.cos(tilt * Math.PI / 180))} percent as tall as the grey reference circle.`}>
@@ -38,7 +39,7 @@ export default function InclinedOrbitProjection({ slug }: { slug: string }) {
           <circle cx={dot.x} cy={dot.y} r="6" fill="var(--domain)" />
         </svg>
         <p>Apparent height: {Math.round(100 * Math.cos(tilt * Math.PI / 180))}%</p>
-        <Slider label="Tilt" value={tilt} min={0} max={60} step={30} disabled={locked} format={v => `${v}°`} onChange={v => { setTilt(v); interact(); }} />
+        <div className={styles.sliderTouch}><Slider label="Tilt" value={tilt} min={0} max={60} step={30} disabled={locked} format={v => `${v}°`} onChange={v => { setTilt(v); interact(); }} /></div>
       </div>}
     </Lesson>
   );

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-buoyancy-volume",
+  "title": "Move more water aside",
+  "hook": "Change submerged volume and predict buoyant force.",
+  "domain": "physics",
+  "concept": "scaling-buoyancy-volume",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "submerged volume",
+      "buoyant force",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "F_b = ρgV"
+    ]
+  },
+  "misconception": "buoyant force stays fixed when submerged volume doubles.",
+  "objective": "Apply F_b = ρgV to compare buoyant force when submerged volume changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-buoyancy-volume.model",
+      "text": "With a body immersed in the same fluid under fixed gravity, F_b = ρgV. When submerged volume doubles, buoyant force becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model F_b = ρgV; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a body immersed in the same fluid under fixed gravity, with a nonzero initial result. If submerged volume triples from a positive value, what is the multiplier on buoyant force?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply F_b = ρgV under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-buoyancy-volume",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

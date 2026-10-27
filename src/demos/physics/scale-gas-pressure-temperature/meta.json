@@ -1,0 +1,66 @@
+{
+  "slug": "scale-gas-pressure-temperature",
+  "title": "Warm a sealed rigid vessel",
+  "hook": "Change absolute temperature and predict ideal-gas pressure.",
+  "domain": "physics",
+  "concept": "scaling-gas-pressure-temperature",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "absolute temperature",
+      "ideal-gas pressure",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "P = nRT/V"
+    ]
+  },
+  "misconception": "ideal-gas pressure stays fixed when absolute temperature doubles.",
+  "objective": "Apply P = nRT/V to compare ideal-gas pressure when absolute temperature changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-gas-pressure-temperature.model",
+      "text": "With a fixed quantity of ideal gas at fixed volume, P = nRT/V. When absolute temperature doubles, ideal-gas pressure becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model P = nRT/V; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a fixed quantity of ideal gas at fixed volume, with a nonzero initial result. If absolute temperature triples from a positive value, what is the multiplier on ideal-gas pressure?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply P = nRT/V under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-gas-pressure-temperature",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

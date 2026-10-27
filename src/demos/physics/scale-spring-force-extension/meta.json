@@ -1,0 +1,66 @@
+{
+  "slug": "scale-spring-force-extension",
+  "title": "The stretching spring",
+  "hook": "Change extension and predict spring restoring-force magnitude.",
+  "domain": "physics",
+  "concept": "scaling-spring-force-extension",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "extension",
+      "spring restoring-force magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "F = kx"
+    ]
+  },
+  "misconception": "spring restoring-force magnitude stays fixed when extension doubles.",
+  "objective": "Apply F = kx to compare spring restoring-force magnitude when extension changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-spring-force-extension.model",
+      "text": "With an ideal spring with fixed stiffness, F = kx. When extension doubles, spring restoring-force magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model F = kx; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal spring with fixed stiffness, with a nonzero initial result. If extension triples from a positive value, what is the multiplier on spring restoring-force magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply F = kx under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-spring-force-extension",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

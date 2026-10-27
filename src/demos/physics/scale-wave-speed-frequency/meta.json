@@ -1,0 +1,66 @@
+{
+  "slug": "scale-wave-speed-frequency",
+  "title": "Frequency and wave speed",
+  "hook": "Change frequency and predict wave speed.",
+  "domain": "physics",
+  "concept": "scaling-wave-speed-frequency",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "frequency",
+      "wave speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v = fλ"
+    ]
+  },
+  "misconception": "wave speed stays fixed when frequency doubles.",
+  "objective": "Apply v = fλ to compare wave speed when frequency changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-wave-speed-frequency.model",
+      "text": "With ideal waves in different media whose wavelength is held fixed, v = fλ. When frequency doubles, wave speed becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v = fλ; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider ideal waves in different media whose wavelength is held fixed, with a nonzero initial result. If frequency triples from a positive value, what is the multiplier on wave speed?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply v = fλ under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-wave-speed-frequency",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

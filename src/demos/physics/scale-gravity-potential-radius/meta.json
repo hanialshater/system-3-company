@@ -1,0 +1,66 @@
+{
+  "slug": "scale-gravity-potential-radius",
+  "title": "Climb out of gravity's well",
+  "hook": "Change distance from the centre and predict gravitational-potential magnitude.",
+  "domain": "physics",
+  "concept": "scaling-gravity-potential-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "distance from the centre",
+      "gravitational-potential magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "potential magnitude = GM/r"
+    ]
+  },
+  "misconception": "gravitational-potential magnitude doubles when distance from the centre doubles, regardless of the stated relationship.",
+  "objective": "Apply potential magnitude = GM/r to compare gravitational-potential magnitude when distance from the centre changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-gravity-potential-radius.model",
+      "text": "With a fixed spherical mass with potential set to zero at infinity, potential magnitude = GM/r. When distance from the centre doubles, gravitational-potential magnitude becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model potential magnitude = GM/r; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a fixed spherical mass with potential set to zero at infinity, with a nonzero initial result. If distance from the centre triples from a positive value, what is the multiplier on gravitational-potential magnitude?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply potential magnitude = GM/r under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-gravity-potential-radius",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

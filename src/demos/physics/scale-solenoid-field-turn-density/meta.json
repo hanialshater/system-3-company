@@ -1,0 +1,66 @@
+{
+  "slug": "scale-solenoid-field-turn-density",
+  "title": "Wind more turns per metre",
+  "hook": "Change turn density and predict interior magnetic-field magnitude.",
+  "domain": "physics",
+  "concept": "scaling-solenoid-field-turn-density",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "turn density",
+      "interior magnetic-field magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "B = μ₀nI"
+    ]
+  },
+  "misconception": "interior magnetic-field magnitude stays fixed when turn density doubles.",
+  "objective": "Apply B = μ₀nI to compare interior magnetic-field magnitude when turn density changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-solenoid-field-turn-density.model",
+      "text": "With an ideal long solenoid with fixed current, B = μ₀nI. When turn density doubles, interior magnetic-field magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model B = μ₀nI; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal long solenoid with fixed current, with a nonzero initial result. If turn density triples from a positive value, what is the multiplier on interior magnetic-field magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply B = μ₀nI under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-solenoid-field-turn-density",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

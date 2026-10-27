@@ -1,0 +1,66 @@
+{
+  "slug": "scale-telescope-magnification-eyepiece",
+  "title": "Change the telescope eyepiece",
+  "hook": "Change eyepiece focal length and predict angular magnification magnitude.",
+  "domain": "physics",
+  "concept": "scaling-telescope-magnification-eyepiece",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "eyepiece focal length",
+      "angular magnification magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "magnification magnitude = f_objective/f_eyepiece"
+    ]
+  },
+  "misconception": "angular magnification magnitude doubles when eyepiece focal length doubles, regardless of the stated relationship.",
+  "objective": "Apply magnification magnitude = f_objective/f_eyepiece to compare angular magnification magnitude when eyepiece focal length changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-telescope-magnification-eyepiece.model",
+      "text": "With an ideal astronomical telescope with fixed objective focal length, magnification magnitude = f_objective/f_eyepiece. When eyepiece focal length doubles, angular magnification magnitude becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model magnification magnitude = f_objective/f_eyepiece; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal astronomical telescope with fixed objective focal length, with a nonzero initial result. If eyepiece focal length triples from a positive value, what is the multiplier on angular magnification magnitude?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply magnification magnitude = f_objective/f_eyepiece under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-telescope-magnification-eyepiece",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

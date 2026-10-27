@@ -1,0 +1,66 @@
+{
+  "slug": "scale-double-slit-fringe-screen",
+  "title": "Move the screen away",
+  "hook": "Change screen distance and predict fringe spacing.",
+  "domain": "physics",
+  "concept": "scaling-double-slit-fringe-screen",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "screen distance",
+      "fringe spacing",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Δy ≈ λL/d"
+    ]
+  },
+  "misconception": "fringe spacing stays fixed when screen distance doubles.",
+  "objective": "Apply Δy ≈ λL/d to compare fringe spacing when screen distance changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-double-slit-fringe-screen.model",
+      "text": "With two narrow slits in the small-angle limit with fixed wavelength and slit separation, Δy ≈ λL/d. When screen distance doubles, fringe spacing becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Δy ≈ λL/d; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider two narrow slits in the small-angle limit with fixed wavelength and slit separation, with a nonzero initial result. If screen distance triples from a positive value, what is the multiplier on fringe spacing?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Δy ≈ λL/d under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-double-slit-fringe-screen",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-gas-rms-temperature",
+  "title": "Molecular speeds in a gas",
+  "hook": "Change absolute temperature and predict root-mean-square molecular speed.",
+  "domain": "physics",
+  "concept": "scaling-gas-rms-temperature",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "absolute temperature",
+      "root-mean-square molecular speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v_rms = √(3kT/m)"
+    ]
+  },
+  "misconception": "root-mean-square molecular speed doubles when absolute temperature doubles, regardless of the stated relationship.",
+  "objective": "Apply v_rms = √(3kT/m) to compare root-mean-square molecular speed when absolute temperature changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-gas-rms-temperature.model",
+      "text": "With an ideal gas with fixed molecular mass, v_rms = √(3kT/m). When absolute temperature doubles, root-mean-square molecular speed becomes √2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v_rms = √(3kT/m); scaling exponent 0.5. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal gas with fixed molecular mass, with a nonzero initial result. If absolute temperature triples from a positive value, what is the multiplier on root-mean-square molecular speed?",
+    "options": [
+      "×√3",
+      "×3",
+      "×1/3"
+    ],
+    "answer": 0,
+    "why": "Apply v_rms = √(3kT/m) under the same assumptions: the multiplier is √3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-gas-rms-temperature",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

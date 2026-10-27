@@ -1,0 +1,66 @@
+{
+  "slug": "scale-wire-stretch-length",
+  "title": "A longer elastic wire",
+  "hook": "Change original wire length and predict extension.",
+  "domain": "physics",
+  "concept": "scaling-wire-stretch-length",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "original wire length",
+      "extension",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "ΔL = FL/(AY)"
+    ]
+  },
+  "misconception": "extension stays fixed when original wire length doubles.",
+  "objective": "Apply ΔL = FL/(AY) to compare extension when original wire length changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-wire-stretch-length.model",
+      "text": "With a uniform wire under fixed tension area and Young modulus in the linear regime, ΔL = FL/(AY). When original wire length doubles, extension becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model ΔL = FL/(AY); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a uniform wire under fixed tension area and Young modulus in the linear regime, with a nonzero initial result. If original wire length triples from a positive value, what is the multiplier on extension?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply ΔL = FL/(AY) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-wire-stretch-length",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

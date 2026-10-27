@@ -1,0 +1,66 @@
+{
+  "slug": "scale-orbit-magnetic-charge",
+  "title": "Change the particle's charge",
+  "hook": "Change charge magnitude and predict circular-orbit radius.",
+  "domain": "physics",
+  "concept": "scaling-orbit-magnetic-charge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "charge magnitude",
+      "circular-orbit radius",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "r = mv/(abs(q)B)"
+    ]
+  },
+  "misconception": "circular-orbit radius doubles when charge magnitude doubles, regardless of the stated relationship.",
+  "objective": "Apply r = mv/(abs(q)B) to compare circular-orbit radius when charge magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-orbit-magnetic-charge.model",
+      "text": "With a nonrelativistic particle at fixed mass and speed moving perpendicular to a fixed uniform magnetic field, r = mv/(abs(q)B). When charge magnitude doubles, circular-orbit radius becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model r = mv/(abs(q)B); scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a nonrelativistic particle at fixed mass and speed moving perpendicular to a fixed uniform magnetic field, with a nonzero initial result. If charge magnitude triples from a positive value, what is the multiplier on circular-orbit radius?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply r = mv/(abs(q)B) under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-orbit-magnetic-charge",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-flow-length-laminar",
+  "title": "The longer narrow tube",
+  "hook": "Change tube length and predict laminar volume-flow rate.",
+  "domain": "physics",
+  "concept": "scaling-flow-length-laminar",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "tube length",
+      "laminar volume-flow rate",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q = πΔPr⁴/(8ηL)"
+    ]
+  },
+  "misconception": "laminar volume-flow rate doubles when tube length doubles, regardless of the stated relationship.",
+  "objective": "Apply Q = πΔPr⁴/(8ηL) to compare laminar volume-flow rate when tube length changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-flow-length-laminar.model",
+      "text": "With ideal Poiseuille flow with fixed pressure drop radius and viscosity, Q = πΔPr⁴/(8ηL). When tube length doubles, laminar volume-flow rate becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q = πΔPr⁴/(8ηL); scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider ideal Poiseuille flow with fixed pressure drop radius and viscosity, with a nonzero initial result. If tube length triples from a positive value, what is the multiplier on laminar volume-flow rate?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply Q = πΔPr⁴/(8ηL) under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-flow-length-laminar",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

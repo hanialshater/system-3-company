@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
 import { Diagram, type PhysicsCase } from "@/lib/physics/PhysicsCase";
+import styles from "@/lib/physics/physics.module.css";
 
 const lesson: PhysicsCase = {
   "question": "Unpolarized light of intensity 100 reaches two ideal crossed polarizers. If a third ideal polarizer is inserted between them at 45° to both, what intensity emerges?",
@@ -31,7 +32,7 @@ export default function Demo({ slug }: { slug: string }) {
     {({ locked, interact }) => <div>
       <Diagram kind={lesson.diagram} changed={changed}/>
       <p aria-live="polite">{locked ? "Make a prediction to explore." : changed ? lesson.after : lesson.before}</p>
-      <Control disabled={locked || changed} onClick={() => { setChanged(true); interact(); }}>Try the second case</Control>
+      <Control className={styles.tap} disabled={locked || changed} onClick={() => { setChanged(true); interact(); }}>Try the second case</Control>
     </div>}
   </Lesson>;
 }

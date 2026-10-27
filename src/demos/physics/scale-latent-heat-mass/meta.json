@@ -1,0 +1,66 @@
+{
+  "slug": "scale-latent-heat-mass",
+  "title": "Melt more ice",
+  "hook": "Change mass changing phase and predict heat needed for the phase change.",
+  "domain": "physics",
+  "concept": "scaling-latent-heat-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "mass changing phase",
+      "heat needed for the phase change",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q = mL"
+    ]
+  },
+  "misconception": "heat needed for the phase change stays fixed when mass changing phase doubles.",
+  "objective": "Apply Q = mL to compare heat needed for the phase change when mass changing phase changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-latent-heat-mass.model",
+      "text": "With fixed latent heat with the material at its phase-change temperature, Q = mL. When mass changing phase doubles, heat needed for the phase change becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q = mL; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider fixed latent heat with the material at its phase-change temperature, with a nonzero initial result. If mass changing phase triples from a positive value, what is the multiplier on heat needed for the phase change?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Q = mL under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-latent-heat-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

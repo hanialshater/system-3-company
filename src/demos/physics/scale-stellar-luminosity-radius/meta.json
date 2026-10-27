@@ -1,0 +1,66 @@
+{
+  "slug": "scale-stellar-luminosity-radius",
+  "title": "A larger star at equal temperature",
+  "hook": "Change stellar radius and predict ideal blackbody luminosity.",
+  "domain": "physics",
+  "concept": "scaling-stellar-luminosity-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "stellar radius",
+      "ideal blackbody luminosity",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "L = 4πR²σT⁴"
+    ]
+  },
+  "misconception": "ideal blackbody luminosity doubles when stellar radius doubles, regardless of the stated relationship.",
+  "objective": "Apply L = 4πR²σT⁴ to compare ideal blackbody luminosity when stellar radius changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-stellar-luminosity-radius.model",
+      "text": "With a spherical blackbody with fixed absolute surface temperature, L = 4πR²σT⁴. When stellar radius doubles, ideal blackbody luminosity becomes 4 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model L = 4πR²σT⁴; scaling exponent 2. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a spherical blackbody with fixed absolute surface temperature, with a nonzero initial result. If stellar radius triples from a positive value, what is the multiplier on ideal blackbody luminosity?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 2,
+    "why": "Apply L = 4πR²σT⁴ under the same assumptions: the multiplier is 9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-stellar-luminosity-radius",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

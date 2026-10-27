@@ -1,0 +1,66 @@
+{
+  "slug": "scale-work-force",
+  "title": "A stronger push over the same path",
+  "hook": "Change force and predict work done.",
+  "domain": "physics",
+  "concept": "scaling-work-force",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "force",
+      "work done",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "W = Fd"
+    ]
+  },
+  "misconception": "work done stays fixed when force doubles.",
+  "objective": "Apply W = Fd to compare work done when force changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-work-force.model",
+      "text": "With a constant force parallel to a fixed displacement, W = Fd. When force doubles, work done becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model W = Fd; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a constant force parallel to a fixed displacement, with a nonzero initial result. If force triples from a positive value, what is the multiplier on work done?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply W = Fd under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-work-force",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-convection-temperature",
+  "title": "A warmer surface in air",
+  "hook": "Change temperature difference and predict convective heat rate.",
+  "domain": "physics",
+  "concept": "scaling-convection-temperature",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "temperature difference",
+      "convective heat rate",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Q̇ = hAΔT"
+    ]
+  },
+  "misconception": "convective heat rate stays fixed when temperature difference doubles.",
+  "objective": "Apply Q̇ = hAΔT to compare convective heat rate when temperature difference changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-convection-temperature.model",
+      "text": "With fixed convection coefficient and surface area, Q̇ = hAΔT. When temperature difference doubles, convective heat rate becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Q̇ = hAΔT; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider fixed convection coefficient and surface area, with a nonzero initial result. If temperature difference triples from a positive value, what is the multiplier on convective heat rate?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Q̇ = hAΔT under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-convection-temperature",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

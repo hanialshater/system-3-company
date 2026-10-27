@@ -1,0 +1,66 @@
+{
+  "slug": "scale-solenoid-field-current",
+  "title": "More current in a solenoid",
+  "hook": "Change current magnitude and predict interior magnetic-field magnitude.",
+  "domain": "physics",
+  "concept": "scaling-solenoid-field-current",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "current magnitude",
+      "interior magnetic-field magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "B = μ₀nI"
+    ]
+  },
+  "misconception": "interior magnetic-field magnitude stays fixed when current magnitude doubles.",
+  "objective": "Apply B = μ₀nI to compare interior magnetic-field magnitude when current magnitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-solenoid-field-current.model",
+      "text": "With an ideal long solenoid with fixed turn density, B = μ₀nI. When current magnitude doubles, interior magnetic-field magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model B = μ₀nI; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal long solenoid with fixed turn density, with a nonzero initial result. If current magnitude triples from a positive value, what is the multiplier on interior magnetic-field magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply B = μ₀nI under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-solenoid-field-current",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

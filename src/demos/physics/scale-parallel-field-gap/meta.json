@@ -1,0 +1,66 @@
+{
+  "slug": "scale-parallel-field-gap",
+  "title": "Widen the plate gap",
+  "hook": "Change plate separation and predict electric-field magnitude.",
+  "domain": "physics",
+  "concept": "scaling-parallel-field-gap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "plate separation",
+      "electric-field magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "E = abs(V)/d"
+    ]
+  },
+  "misconception": "electric-field magnitude doubles when plate separation doubles, regardless of the stated relationship.",
+  "objective": "Apply E = abs(V)/d to compare electric-field magnitude when plate separation changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-parallel-field-gap.model",
+      "text": "With ideal parallel plates at fixed voltage ignoring edge effects, E = abs(V)/d. When plate separation doubles, electric-field magnitude becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model E = abs(V)/d; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider ideal parallel plates at fixed voltage ignoring edge effects, with a nonzero initial result. If plate separation triples from a positive value, what is the multiplier on electric-field magnitude?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply E = abs(V)/d under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-parallel-field-gap",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

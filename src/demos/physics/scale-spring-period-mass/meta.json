@@ -1,0 +1,66 @@
+{
+  "slug": "scale-spring-period-mass",
+  "title": "A heavier spring oscillator",
+  "hook": "Change attached mass and predict oscillation period.",
+  "domain": "physics",
+  "concept": "scaling-spring-period-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "attached mass",
+      "oscillation period",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "T = 2π√(m/k)"
+    ]
+  },
+  "misconception": "oscillation period doubles when attached mass doubles, regardless of the stated relationship.",
+  "objective": "Apply T = 2π√(m/k) to compare oscillation period when attached mass changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-spring-period-mass.model",
+      "text": "With an ideal horizontal spring with fixed stiffness, T = 2π√(m/k). When attached mass doubles, oscillation period becomes √2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model T = 2π√(m/k); scaling exponent 0.5. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal horizontal spring with fixed stiffness, with a nonzero initial result. If attached mass triples from a positive value, what is the multiplier on oscillation period?",
+    "options": [
+      "×√3",
+      "×3",
+      "×1/3"
+    ],
+    "answer": 0,
+    "why": "Apply T = 2π√(m/k) under the same assumptions: the multiplier is √3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-spring-period-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

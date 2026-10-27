@@ -1,0 +1,66 @@
+{
+  "slug": "scale-surface-gravity-mass",
+  "title": "A heavier planet of equal radius",
+  "hook": "Change planet mass and predict surface gravitational acceleration.",
+  "domain": "physics",
+  "concept": "scaling-surface-gravity-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "planet mass",
+      "surface gravitational acceleration",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "g = GM/R²"
+    ]
+  },
+  "misconception": "surface gravitational acceleration stays fixed when planet mass doubles.",
+  "objective": "Apply g = GM/R² to compare surface gravitational acceleration when planet mass changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-surface-gravity-mass.model",
+      "text": "With a spherically symmetric planet with fixed radius, g = GM/R². When planet mass doubles, surface gravitational acceleration becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model g = GM/R²; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a spherically symmetric planet with fixed radius, with a nonzero initial result. If planet mass triples from a positive value, what is the multiplier on surface gravitational acceleration?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply g = GM/R² under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-surface-gravity-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

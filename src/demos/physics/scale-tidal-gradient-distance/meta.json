@@ -1,0 +1,66 @@
+{
+  "slug": "scale-tidal-gradient-distance",
+  "title": "The distance to a tidal source",
+  "hook": "Change distance to the source and predict leading tidal acceleration difference.",
+  "domain": "physics",
+  "concept": "scaling-tidal-gradient-distance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "distance to the source",
+      "leading tidal acceleration difference",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "tidal acceleration difference ≈ 2GMℓ/r³"
+    ]
+  },
+  "misconception": "leading tidal acceleration difference doubles when distance to the source doubles, regardless of the stated relationship.",
+  "objective": "Apply tidal acceleration difference ≈ 2GMℓ/r³ to compare leading tidal acceleration difference when distance to the source changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-tidal-gradient-distance.model",
+      "text": "With a small fixed separation much shorter than the distance from a fixed point-mass source, tidal acceleration difference ≈ 2GMℓ/r³. When distance to the source doubles, leading tidal acceleration difference becomes ⅛ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model tidal acceleration difference ≈ 2GMℓ/r³; scaling exponent -3. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a small fixed separation much shorter than the distance from a fixed point-mass source, with a nonzero initial result. If distance to the source triples from a positive value, what is the multiplier on leading tidal acceleration difference?",
+    "options": [
+      "×1/27",
+      "×1/9",
+      "×1/3"
+    ],
+    "answer": 0,
+    "why": "Apply tidal acceleration difference ≈ 2GMℓ/r³ under the same assumptions: the multiplier is 1/27."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-tidal-gradient-distance",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}
