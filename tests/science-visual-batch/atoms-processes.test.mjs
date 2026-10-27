@@ -104,3 +104,28 @@ test('digestive maps select the curated organ or route',()=>{
  const rows=JSON.parse(fs.readFileSync('tools/science-visual-batch/digestion/cases.json'));assert.equal(rows.length,15);
  for(const c of rows){const m=model('life',c.slug),meta=JSON.parse(fs.readFileSync(`src/demos/life/${c.slug}/meta.json`));assert.equal(m.context,c.context);assert.equal(m.target,c.target);assert.equal(m.options[m.answer],c.target);assert.ok(m.options.length<=4);assert.equal(meta.recall.options[meta.recall.answer],c.target);}
 });
+test('endocrine diagrams and recall sources match the curated hormone pathways',()=>{
+ const rows=JSON.parse(fs.readFileSync('tools/science-visual-batch/endocrine/cases.json'));assert.equal(rows.length,16);
+ for(const c of rows){const m=model('life',c.slug),meta=JSON.parse(fs.readFileSync(`src/demos/life/${c.slug}/meta.json`));assert.equal(m.options[m.answer],c.options[0],c.slug);assert.equal(m.from,c.from);assert.equal(m.to,c.to);assert.equal(m.hormone,c.hormone);assert.equal(meta.recall.options[meta.recall.answer],c.from);}
+});
+test('calorimetry models calculate signed heat and final temperature',()=>{
+ const names=slugs.chemistry.filter(s=>s.startsWith('heat-block-')||s.startsWith('cool-block-'));assert.equal(names.length,12);
+ for(const s of names){const m=model('chemistry',s),final=20+m.q/(m.m*m.c);assert.equal(m.options[m.answer],`${final} °C`,s);assert.ok(final>=10&&final<=30);assert.equal(Math.sign(m.q),s.startsWith('heat-')?1:-1);}
+});
+test('mass-to-mole examples divide by the given molar mass',()=>{
+ const names=slugs.chemistry.filter(s=>s.startsWith('moles-'));assert.equal(names.length,18);
+ for(const s of names){const m=model('chemistry',s);assert.equal(m.mass/m.molarMass,m.moles,s);assert.equal(m.options[m.answer],`${m.moles} mol`,s);assert.equal(new Set(m.options).size,3);}
+});
+test('neutral first-18 shell counts conserve electrons and identify the outer count',()=>{
+ const names=slugs.chemistry.filter(s=>s.startsWith('outer-shell-'));assert.equal(names.length,18);
+ for(const s of names){const m=model('chemistry',s),n=m.shells.at(-1);assert.equal(m.shells.reduce((a,b)=>a+b,0),m.atomicNumber,s);assert.deepEqual(m.shells,[Math.min(m.atomicNumber,2),Math.min(Math.max(m.atomicNumber-2,0),8),Math.max(m.atomicNumber-10,0)].filter(Boolean));assert.equal(parseInt(m.options[m.answer]),n);}
+});
+test('reaction quotients and yield percentages agree with displayed values',()=>{
+ const eq=slugs.chemistry.filter(s=>s.startsWith('equilibrium-k')),ys=slugs.chemistry.filter(s=>s.startsWith('percent-yield-'));assert.equal(eq.length,16);assert.equal(ys.length,15);
+ for(const s of eq){const m=model('chemistry',s);assert.equal(m.q,m.b/m.a);assert.equal(m.options[m.answer],m.q<m.k?'Net forward toward B':m.q>m.k?'Net reverse toward A':'No net reaction at equilibrium',s);}
+ for(const s of ys){const m=model('chemistry',s);assert.equal(m.actual/m.theoretical*100,m.percent,s);assert.equal(m.options[m.answer],`${m.percent}%`,s);assert.ok(m.actual<=m.theoretical);}
+});
+test('cell-cycle, plant and bacterial choices agree with each labeled model',()=>{
+ const families=[['cell-cycle-',16],['plant-feature-',28],['bacterium-',14]];
+ for(const [prefix,n] of families){const names=slugs.life.filter(s=>s.startsWith(prefix));assert.equal(names.length,n);for(const s of names){const m=model('life',s),meta=JSON.parse(fs.readFileSync(`src/demos/life/${s}/meta.json`));assert.equal(new Set(m.options).size,3,s);assert.equal(meta.recall.options[meta.recall.answer],prefix==='cell-cycle-'?m.phase:m.feature,s);const correct=prefix==='cell-cycle-'?(s.endsWith('-stage')?m.phase:m.event):prefix==='plant-feature-'?(s.endsWith('-identify')?m.feature:m.functionText):(s.endsWith('-identify')?m.feature:m.role);assert.equal(m.options[m.answer],correct,s);}}
+});
