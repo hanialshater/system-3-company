@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0806",
+  "title": "An honest report minimizes expected loss",
+  "hook": "Two stated cases: explore the reported probability under a stipulated belief.",
+  "domain": "probability",
+  "concept": "cp-source-0806",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reported probability under a stipulated belief affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Loss, regardless of the stated inputs.",
+  "objective": "Compare the reported probability under a stipulated belief in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0806.predict",
+      "text": "Your toy belief is 0.7; you report 0.7. What expected Brier loss follows under that belief?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.reveal.0",
+      "text": "The retained results are Report=0.7; Loss=0.21 and Report=0.5; Loss=0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.reveal.1",
+      "text": "Expected squared probability error is minimized by reporting the belief itself. The belief need not equal the true event rate. This comparison isolates the reported probability under a stipulated belief.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.case.0.witness",
+      "text": "Report=0.7; Loss=0.21",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Belief\",0.7],[\"Report\",0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.7},{\"x\":0.041666666666666664,\"y\":0.6434027777777778},{\"x\":0.08333333333333333,\"y\":0.5902777777777777},{\"x\":0.125,\"y\":0.5406249999999999},{\"x\":0.16666666666666666,\"y\":0.4944444444444445},{\"x\":0.20833333333333334,\"y\":0.451736111111111},{\"x\":0.25,\"y\":0.4125},{\"x\":0.2916666666666667,\"y\":0.37673611111111105},{\"x\":0.3333333333333333,\"y\":0.3444444444444445},{\"x\":0.375,\"y\":0.315625},{\"x\":0.4166666666666667,\"y\":0.2902777777777777},{\"x\":0.4583333333333333,\"y\":0.2684027777777778},{\"x\":0.5,\"y\":0.25},{\"x\":0.5416666666666666,\"y\":0.23506944444444444},{\"x\":0.5833333333333334,\"y\":0.2236111111111111},{\"x\":0.625,\"y\":0.215625},{\"x\":0.6666666666666666,\"y\":0.21111111111111114},{\"x\":0.7083333333333334,\"y\":0.21006944444444448},{\"x\":0.75,\"y\":0.21250000000000002},{\"x\":0.7916666666666666,\"y\":0.21840277777777778},{\"x\":0.8333333333333334,\"y\":0.22777777777777783},{\"x\":0.875,\"y\":0.24062500000000003},{\"x\":0.9166666666666666,\"y\":0.2569444444444444},{\"x\":0.9583333333333334,\"y\":0.2767361111111112},{\"x\":1,\"y\":0.30000000000000004}],\"xLabel\":\"Report\",\"yLabel\":\"Loss\"},\"metrics\":[{\"label\":\"Loss\",\"value\":\"0.21\"},{\"label\":\"Report\",\"value\":\"0.7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.case.1.witness",
+      "text": "Report=0.5; Loss=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Belief\",0.7],[\"Report\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.7},{\"x\":0.041666666666666664,\"y\":0.6434027777777778},{\"x\":0.08333333333333333,\"y\":0.5902777777777777},{\"x\":0.125,\"y\":0.5406249999999999},{\"x\":0.16666666666666666,\"y\":0.4944444444444445},{\"x\":0.20833333333333334,\"y\":0.451736111111111},{\"x\":0.25,\"y\":0.4125},{\"x\":0.2916666666666667,\"y\":0.37673611111111105},{\"x\":0.3333333333333333,\"y\":0.3444444444444445},{\"x\":0.375,\"y\":0.315625},{\"x\":0.4166666666666667,\"y\":0.2902777777777777},{\"x\":0.4583333333333333,\"y\":0.2684027777777778},{\"x\":0.5,\"y\":0.25},{\"x\":0.5416666666666666,\"y\":0.23506944444444444},{\"x\":0.5833333333333334,\"y\":0.2236111111111111},{\"x\":0.625,\"y\":0.215625},{\"x\":0.6666666666666666,\"y\":0.21111111111111114},{\"x\":0.7083333333333334,\"y\":0.21006944444444448},{\"x\":0.75,\"y\":0.21250000000000002},{\"x\":0.7916666666666666,\"y\":0.21840277777777778},{\"x\":0.8333333333333334,\"y\":0.22777777777777783},{\"x\":0.875,\"y\":0.24062500000000003},{\"x\":0.9166666666666666,\"y\":0.2569444444444444},{\"x\":0.9583333333333334,\"y\":0.2767361111111112},{\"x\":1,\"y\":0.30000000000000004}],\"xLabel\":\"Report\",\"yLabel\":\"Loss\"},\"metrics\":[{\"label\":\"Loss\",\"value\":\"0.25\"},{\"label\":\"Report\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0806.recall",
+      "text": "Your toy belief is 0.8; you report 0.7. What expected Brier loss follows under that belief? Answer 0.17.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0806/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #806. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Your toy belief is 0.8; you report 0.7. What expected Brier loss follows under that belief?",
+    "options": [
+      "0.17",
+      "0.07",
+      "0.27"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Loss 0.17 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0806",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-806"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 806,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **806. Honesty pays** \\[Slider\\]: under a proper scoring rule, reporting anything other than your true belief lowers your expected score.",
+    "modelBoundary": "the reported probability under a stipulated belief",
+    "recallInputs": [
+      0.7999999999999999,
+      0.7
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

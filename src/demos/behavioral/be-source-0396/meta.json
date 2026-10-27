@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0396",
+  "title": "Which worker attribute gets weight?",
+  "hook": "Two stated cases: explore the weighting rule for two applicant attributes.",
+  "domain": "behavioral",
+  "concept": "be-source-0396",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weighting rule for two applicant attributes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the weighting rule for two applicant attributes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0396.predict",
+      "text": "A toy estimate gives anchor 90 weight 0.8 and evidence 40 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.reveal.0",
+      "text": "The retained results are Weight=0.8; Estimate=80 and Weight=0.2; Estimate=50.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates the weighting rule for two applicant attributes.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.case.0.witness",
+      "text": "Weight=0.8; Estimate=80",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",90],[\"Evidence\",40],[\"Weight\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":80}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"80\"},{\"label\":\"Weight\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.case.1.witness",
+      "text": "Weight=0.2; Estimate=50",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",90],[\"Evidence\",40],[\"Weight\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":50}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"50\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0396.recall",
+      "text": "A toy estimate gives anchor 91 weight 0.8 and evidence 40 the remaining weight. What estimate results? Answer 80.8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0396/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 91 weight 0.8 and evidence 40 the remaining weight. What estimate results?",
+    "options": [
+      "48.48",
+      "80.8",
+      "113.12"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 80.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0396",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-396"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 396,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **396.** Managers on fixed pay favored socially connected workers; with performance pay, they favored able ones (Bandiera, Barankay & Rasul, 2009).",
+    "modelBoundary": "the weighting rule for two applicant attributes",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      91,
+      40,
+      0.8
+    ]
+  }
+}

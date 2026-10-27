@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0178",
+  "title": "A fair sample from a completed stream",
+  "hook": "Two stated cases: explore the reservoir's uniform final inclusion probability.",
+  "domain": "probability",
+  "concept": "cp-source-0178",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reservoir's uniform final inclusion probability affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the reservoir's uniform final inclusion probability in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0178.predict",
+      "text": "A correct toy reservoir keeps 10 items uniformly from a completed stream of 1000. What is each item’s inclusion probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.reveal.0",
+      "text": "The retained results are Items=1,000; Probability=0.01 and Items=10,000; Probability=0.001.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.reveal.1",
+      "text": "Uniform inclusion depends on the reservoir replacement rule, not on knowing the final stream length in advance. This comparison isolates the reservoir's uniform final inclusion probability.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.case.0.witness",
+      "text": "Items=1,000; Probability=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Items\",1000],[\"Kept\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.01}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.01\"},{\"label\":\"Items\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.case.1.witness",
+      "text": "Items=10,000; Probability=0.001",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Items\",10000],[\"Kept\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.001}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.001\"},{\"label\":\"Items\",\"value\":\"10,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0178.recall",
+      "text": "A correct toy reservoir keeps 11 items uniformly from a completed stream of 1,000. What is each item’s inclusion probability? Answer 0.011.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0178/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #178. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A correct toy reservoir keeps 11 items uniformly from a completed stream of 1,000. What is each item’s inclusion probability?",
+    "options": [
+      "-0.089",
+      "0.111",
+      "0.011"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.011 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0178",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-178"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 178,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **178. Reservoir sampling** \\[Slider\\]: pick a fair random sample from a stream without knowing its length.",
+    "modelBoundary": "the reservoir's uniform final inclusion probability",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1000,
+      11
+    ]
+  }
+}

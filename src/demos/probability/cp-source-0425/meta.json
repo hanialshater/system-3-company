@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0425",
+  "title": "Twelve null subgroups can mislead",
+  "hook": "Two stated cases: explore the subgroup-search multiplicity under a toy null.",
+  "domain": "probability",
+  "concept": "cp-source-0425",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the subgroup-search multiplicity under a toy null affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines FWER, regardless of the stated inputs.",
+  "objective": "Compare the subgroup-search multiplicity under a toy null in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0425.predict",
+      "text": "Run 12 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.reveal.0",
+      "text": "The retained results are Corrected=0; FWER=0.46 and Corrected=1; FWER=0.049.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.reveal.1",
+      "text": "This exact family calculation assumes independent null tests. Bonferroni’s union-bound guarantee can also be used without independence. This comparison isolates the subgroup-search multiplicity under a toy null.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.case.0.witness",
+      "text": "Corrected=0; FWER=0.46",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",12],[\"Alpha\",0.05],[\"Corrected\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.45963991233736334}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"0.46\"},{\"label\":\"Corrected\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.case.1.witness",
+      "text": "Corrected=1; FWER=0.049",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",12],[\"Alpha\",0.05],[\"Corrected\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.04886993281129881}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"0.049\"},{\"label\":\"Corrected\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0425.recall",
+      "text": "Run 13 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection? Answer 0.487.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0425/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #425. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Run 13 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+    "options": [
+      "0.487",
+      "0.292",
+      "0.681"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives FWER 0.487 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0425",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-425"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 425,
+    "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+    "sourceEntryOriginal": "- **425. Aspirin and star signs** \\[Story\\]: in the ISIS-2 trial, aspirin seemed not to help Geminis and Libras, a deliberate warning about subgroup fishing.",
+    "modelBoundary": "the subgroup-search multiplicity under a toy null",
+    "recallInputs": [
+      13,
+      0.05,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0688",
+  "title": "Choose a headline by reader type",
+  "hook": "Two stated cases: explore the reward heterogeneity available to a contextual policy.",
+  "domain": "probability",
+  "concept": "cp-source-0688",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reward heterogeneity available to a contextual policy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gain, regardless of the stated inputs.",
+  "objective": "Compare the reward heterogeneity available to a contextual policy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0688.predict",
+      "text": "Type A share 0.5 has rewards AA/AB=0.8/0.2; type B has BA/BB=0.2/0.8. What is the gain from best-by-type over best-global choice?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.reveal.0",
+      "text": "The retained results are Share=0.5; Gain=0.3 and Share=0.9; Gain=0.06.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.reveal.1",
+      "text": "Known heterogeneous rewards can favor a personalized policy. Learning these rewards and evaluating a policy require additional data. This comparison isolates the reward heterogeneity available to a contextual policy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.case.0.witness",
+      "text": "Share=0.5; Gain=0.3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"AA\",0.8],[\"AB\",0.2],[\"BA\",0.2],[\"BB\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":0.30000000000000004},{\"label\":\"Personalized\",\"value\":0.8},{\"label\":\"Global\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"0.3\"},{\"label\":\"Share\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.case.1.witness",
+      "text": "Share=0.9; Gain=0.06",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.9],[\"AA\",0.8],[\"AB\",0.2],[\"BA\",0.2],[\"BB\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":0.05999999999999994},{\"label\":\"Personalized\",\"value\":0.8},{\"label\":\"Global\",\"value\":0.7400000000000001}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"0.06\"},{\"label\":\"Share\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0688.recall",
+      "text": "Type A share 0.4 has rewards AA/AB=0.8/0.2; type B has BA/BB=0.2/0.8. What is the gain from best-by-type over best-global choice? Answer 0.24.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0688/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #688. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Type A share 0.4 has rewards AA/AB=0.8/0.2; type B has BA/BB=0.2/0.8. What is the gain from best-by-type over best-global choice?",
+    "options": [
+      "0.14",
+      "0.34",
+      "0.24"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gain 0.24 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0688",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-688"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 688,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceEntryOriginal": "- **688. Contextual bandit** \\[Slider\\]: pick headlines per reader type and watch personalized choices beat one global winner.",
+    "modelBoundary": "the reward heterogeneity available to a contextual policy",
+    "recallInputs": [
+      0.4,
+      0.8,
+      0.2,
+      0.2,
+      0.8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

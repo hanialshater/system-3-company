@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0703",
+  "title": "One Q-learning update",
+  "hook": "Two stated cases: explore the learning rate in a single value update.",
+  "domain": "probability",
+  "concept": "cp-source-0703",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the learning rate in a single value update affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Q, regardless of the stated inputs.",
+  "objective": "Compare the learning rate in a single value update in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0703.predict",
+      "text": "Toy Q 0 moves by Alpha 0.2 toward Reward 1+Gamma 0.9×Next 5. What updated Q results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.reveal.0",
+      "text": "The retained results are Alpha=0.2; Q=1.1 and Alpha=0.8; Q=4.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.reveal.1",
+      "text": "The sampled target changes a value estimate. Which continuation is supplied distinguishes different learning updates. This comparison isolates the learning rate in a single value update.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.case.0.witness",
+      "text": "Alpha=0.2; Q=1.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Q\",0],[\"Alpha\",0.2],[\"Reward\",1],[\"Gamma\",0.9],[\"Next\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Q\",\"value\":1.1},{\"label\":\"Target\",\"value\":5.5}]},\"metrics\":[{\"label\":\"Q\",\"value\":\"1.1\"},{\"label\":\"Alpha\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.case.1.witness",
+      "text": "Alpha=0.8; Q=4.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Q\",0],[\"Alpha\",0.8],[\"Reward\",1],[\"Gamma\",0.9],[\"Next\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Q\",\"value\":4.4},{\"label\":\"Target\",\"value\":5.5}]},\"metrics\":[{\"label\":\"Q\",\"value\":\"4.4\"},{\"label\":\"Alpha\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0703.recall",
+      "text": "Toy Q 1 moves by Alpha 0.2 toward Reward 1+Gamma 0.9×Next 5. What updated Q results? Answer 1.9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0703/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #703. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy Q 1 moves by Alpha 0.2 toward Reward 1+Gamma 0.9×Next 5. What updated Q results?",
+    "options": [
+      "1.14",
+      "2.66",
+      "1.9"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Q 1.9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0703",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-703"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 703,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **703. Q-learning in a maze** \\[Slider\\]: watch arrows on every square sharpen as the agent learns.",
+    "modelBoundary": "the learning rate in a single value update",
+    "recallInputs": [
+      1,
+      0.2,
+      1,
+      0.9,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

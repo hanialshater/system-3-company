@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0218",
+  "title": "A die constrained by its mean",
+  "hook": "Two stated cases: explore the mean constraint in an exponential maximum-entropy family.",
+  "domain": "probability",
+  "concept": "cp-source-0218",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mean constraint in an exponential maximum-entropy family affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Tilt, regardless of the stated inputs.",
+  "objective": "Compare the mean constraint in an exponential maximum-entropy family in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0218.predict",
+      "text": "On toy faces 1 through 6, use maximum-entropy probabilities proportional to exp(tilt×face), constrained to mean 4.5. What tilt solves the mean by bisection on [-10,10]?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.reveal.0",
+      "text": "The retained results are Mean=4.5; Tilt=0.371 and Mean=2.5; Tilt=-0.371.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.reveal.1",
+      "text": "A maximum-entropy distribution depends on the stated support and moment constraint. Changing that information changes the resulting least-committal model. This comparison isolates the mean constraint in an exponential maximum-entropy family.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.case.0.witness",
+      "text": "Mean=4.5; Tilt=0.371",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sides\",6],[\"Mean\",4.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tilt\",\"value\":0.3710489380810331}]},\"metrics\":[{\"label\":\"Tilt\",\"value\":\"0.371\"},{\"label\":\"Mean\",\"value\":\"4.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.case.1.witness",
+      "text": "Mean=2.5; Tilt=-0.371",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sides\",6],[\"Mean\",2.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tilt\",\"value\":-0.37104893808103323}]},\"metrics\":[{\"label\":\"Tilt\",\"value\":\"-0.371\"},{\"label\":\"Mean\",\"value\":\"2.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0218.recall",
+      "text": "On toy faces 1 through 7, use maximum-entropy probabilities proportional to exp(tilt×face), constrained to mean 4.5. What tilt solves the mean by bisection on [-10,10]? Answer 0.127.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0218/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #218. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On toy faces 1 through 7, use maximum-entropy probabilities proportional to exp(tilt×face), constrained to mean 4.5. What tilt solves the mean by bisection on [-10,10]?",
+    "options": [
+      "0.127",
+      "0.027",
+      "0.227"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Tilt 0.127 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0218",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-218"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 218,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **218. Maximum entropy die** \\[Slider\\]: if a die averages 4.5, what's the least-assuming distribution of its faces?",
+    "modelBoundary": "the mean constraint in an exponential maximum-entropy family",
+    "recallInputs": [
+      7,
+      4.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0516", "title": "Stops add overhead to an elevator round", "op": "elevator", "labels": ["Floors", "Stops", "PerFloor", "StopTime"], "outputs": ["RoundTime"], "a": [40.0, 20.0, 0.5, 10.0], "b": [40.0, 5.0, 0.5, 10.0], "question": "A toy elevator round travels up and down 40 floors at 0.5 time per floor and makes 20 stops of 10 each. What round time results?", "questionTemplate": "A toy elevator round travels up and down {Floors} floors at {PerFloor} time per floor and makes {Stops} stops of {StopTime} each. What round time results?", "explain": "Stop overhead and travel both enter this simple round. Dispatch interactions, passenger capacity and random demand are outside this timing model.", "lens": "the deterministic timing facet of floor zoning", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

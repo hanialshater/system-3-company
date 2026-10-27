@@ -1,0 +1,8 @@
+// Explicit finite illustration; not a simulated empirical response.
+export function compute(p:number[]):number[] {
+ if(p.length!==4 || p.some(v=>!Number.isFinite(v))) throw Error('Invalid numerical inputs');
+ if(p[0]<0||p[0]>p[1]||p[2]<=0||p[2]>=1||p[3]<=0||p[3]>=1)throw Error('Outside model domain');
+ const result:number[]=[Math.pow(p[3]/p[2],p[0])*Math.pow((1-p[3])/(1-p[2]),p[1]-p[0])];
+ if(result.some(v=>!Number.isFinite(v)||Math.abs(v)>1e15)) throw Error('Invalid result');
+ return result;
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0486",
+  "title": "A clinic before-after rate contrast",
+  "hook": "Two stated cases: explore the denominator in an illustrative infection-count comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0486",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the denominator in an illustrative infection-count comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the denominator in an illustrative infection-count comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0486.predict",
+      "text": "A toy comparison has 100/1000 in A and 20/1000 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.reveal.0",
+      "text": "The retained results are TotalA=1,000; Gap=8 and TotalA=2,000; Gap=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the denominator in an illustrative infection-count comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.case.0.witness",
+      "text": "TotalA=1,000; Gap=8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",100],[\"TotalA\",1000],[\"HitB\",20],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":8}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"8\"},{\"label\":\"TotalA\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.case.1.witness",
+      "text": "TotalA=2,000; Gap=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",100],[\"TotalA\",2000],[\"HitB\",20],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":3.0000000000000004}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"3\"},{\"label\":\"TotalA\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0486.recall",
+      "text": "A toy comparison has 101/1,000 in A and 20/1,000 in B. What is A minus B in percentage points? Answer 8.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0486/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #486. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 101/1,000 in A and 20/1,000 in B. What is A minus B in percentage points?",
+    "options": [
+      "4.86",
+      "8.1",
+      "11.34"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap 8.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0486",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-486"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 486,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **486. Semmelweis** \\[Story\\]: in 1847, handwashing with chlorinated lime cut deaths in his maternity clinic dramatically.",
+    "modelBoundary": "the denominator in an illustrative infection-count comparison",
+    "recallInputs": [
+      101,
+      1000,
+      20,
+      1000
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

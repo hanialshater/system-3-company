@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0984", "title": "An assumed smile changes model prices", "op": "blackscholes", "labels": ["Spot", "Strike", "Rate", "Sigma", "Time"], "outputs": ["Call"], "a": [100.0, 120.0, 0.03, 0.2, 1.0], "b": [100.0, 120.0, 0.03, 0.5, 1.0], "question": "A toy European call has Spot 100, Strike 120, rate 0.03, volatility Sigma 0.2, Time 1. Under the no-dividend constant-volatility Black-Scholes model, what price results?", "questionTemplate": "A toy European call has Spot {Spot}, Strike {Strike}, rate {Rate}, volatility Sigma {Sigma}, Time {Time}. Under the no-dividend constant-volatility Black-Scholes model, what price results?", "explain": "The model averages discounted risk-neutral payoffs under specific market assumptions. Its value is not a recommendation or a market quote.", "lens": "two supplied strike-specific volatilities rather than a market calibration", "kind": "bars", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

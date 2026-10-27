@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0182", "title": "A return percentage of what?", "op": "trust", "labels": ["Endowment", "Sent", "Multiplier", "Returned"], "outputs": ["Sender"], "a": [10.0, 5.0, 3.0, 0.37], "b": [10.0, 5.0, 3.0, 0.5], "question": "A toy sender has 10, sends 5, which is multiplied by 3; the recipient returns fraction 0.37 of that pot. What does the sender finish with?", "explain": "Sending and returning are two decisions. A multiplier creates surplus, but the sender’s payoff also depends on the return rule.", "lens": "the recipient pot as the return denominator", "kind": "timeline", "answerPosition": 2, "questionTemplate": "A toy sender has {Endowment}, sends {Sent}, which is multiplied by {Multiplier}; the recipient returns fraction {Returned} of that pot. What does the sender finish with?"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

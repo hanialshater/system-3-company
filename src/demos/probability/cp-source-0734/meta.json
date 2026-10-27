@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0734",
+  "title": "Lifetime variance changes what remains",
+  "hook": "Two stated cases: explore the length-bias ingredient rather than a universal Lindy law.",
+  "domain": "probability",
+  "concept": "cp-source-0734",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the length-bias ingredient rather than a universal Lindy law affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Residual, regardless of the stated inputs.",
+  "objective": "Compare the length-bias ingredient rather than a universal Lindy law in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0734.predict",
+      "text": "Inspect a stationary toy renewal process at a random time. Lifetimes have Mean 10, Variance 0. What is expected remaining life?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.reveal.0",
+      "text": "The retained results are Variance=0; Residual=5 and Variance=400; Residual=25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.reveal.1",
+      "text": "Long intervals are sampled more often at random times. The second moment affects residual wait even when the long-run renewal rate stays fixed. This comparison isolates the length-bias ingredient rather than a universal Lindy law.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.case.0.witness",
+      "text": "Variance=0; Residual=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"Variance\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Residual\",\"value\":5},{\"label\":\"Rate\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Residual\",\"value\":\"5\"},{\"label\":\"Variance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.case.1.witness",
+      "text": "Variance=400; Residual=25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"Variance\",400]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Residual\",\"value\":25},{\"label\":\"Rate\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Residual\",\"value\":\"25\"},{\"label\":\"Variance\",\"value\":\"400\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0734.recall",
+      "text": "Inspect a stationary toy renewal process at a random time. Lifetimes have Mean 11, Variance 0. What is expected remaining life? Answer 5.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0734/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #734. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Inspect a stationary toy renewal process at a random time. Lifetimes have Mean 11, Variance 0. What is expected remaining life?",
+    "options": [
+      "5.5",
+      "3.3",
+      "7.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Residual 5.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0734",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-734"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 734,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **734. Lindy effect** \\[Gotcha\\]: for some things, like books or technologies, longer survival so far predicts longer survival ahead.",
+    "modelBoundary": "the length-bias ingredient rather than a universal Lindy law",
+    "recallInputs": [
+      11,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

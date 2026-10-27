@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0691",
+  "title": "A known-arm discount benchmark",
+  "hook": "Two stated cases: explore the discount factor before uncertain-arm index calculation.",
+  "domain": "probability",
+  "concept": "cp-source-0691",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the discount factor before uncertain-arm index calculation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the discount factor before uncertain-arm index calculation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0691.predict",
+      "text": "A known toy arm pays Reward 1 forever with discount Gamma 0.5. What discounted value results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.reveal.0",
+      "text": "The retained results are Gamma=0.5; Value=2 and Gamma=0.9; Value=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.reveal.1",
+      "text": "This known-payoff benchmark has no exploration value. It is not a Gittins index for an uncertain arm. This comparison isolates the discount factor before uncertain-arm index calculation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.case.0.witness",
+      "text": "Gamma=0.5; Value=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reward\",1],[\"Gamma\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":2}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"2\"},{\"label\":\"Gamma\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.case.1.witness",
+      "text": "Gamma=0.9; Value=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reward\",1],[\"Gamma\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":10.000000000000002}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"10\"},{\"label\":\"Gamma\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0691.recall",
+      "text": "A known toy arm pays Reward 2 forever with discount Gamma 0.5. What discounted value results? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0691/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #691. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A known toy arm pays Reward 2 forever with discount Gamma 0.5. What discounted value results?",
+    "options": [
+      "2.4",
+      "5.6",
+      "4"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Value 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0691",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-691"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 691,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceEntryOriginal": "- **691. Gittins index** \\[Slider\\]: the exact optimal index for discounted bandits, compared with simple heuristics.",
+    "modelBoundary": "the discount factor before uncertain-arm index calculation",
+    "recallInputs": [
+      2,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

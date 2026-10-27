@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0124", "title": "Insurance and curved utility", "op": "logutility", "labels": ["Wealth", "Gain", "Loss", "P"], "outputs": ["Change"], "a": [1000.0, 20.0, 400.0, 0.95], "b": [100000.0, 20.0, 400.0, 0.95], "question": "A toy log-utility agent has wealth 1000, gains 20 with probability 0.95 and otherwise loses 400. What is expected log utility minus log current wealth?", "questionTemplate": "A toy log-utility agent has wealth {Wealth}, gains {Gain} with probability {P} and otherwise loses {Loss}. What is expected log utility minus log current wealth?", "explain": "Curvature, initial wealth and stakes jointly determine this model comparison. Log utility is an assumed rule, not a universal account of risk preferences.", "lens": "wealth-relative utility curvature in a stated model", "kind": "bars", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

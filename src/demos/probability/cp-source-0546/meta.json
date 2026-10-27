@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0546",
+  "title": "A random count of random claims",
+  "hook": "Two stated cases: explore claim-count and claim-size uncertainty.",
+  "domain": "probability",
+  "concept": "cp-source-0546",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How claim-count and claim-size uncertainty affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare claim-count and claim-size uncertainty in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0546.predict",
+      "text": "Independent toy claims arrive at Poisson Rate 2 for Time 10; sizes have Mean 100, Variance 400. What is expected total payout?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.reveal.0",
+      "text": "The retained results are Variance=400; Expected=2,000 and Variance=10,000; Expected=2,000.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.reveal.1",
+      "text": "Both claim-count randomness and size variability enter the total variance. The model assumes independent identically distributed sizes, independent of arrivals. This comparison isolates claim-count and claim-size uncertainty.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.case.0.witness",
+      "text": "Variance=400; Expected=2,000",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",2],[\"Time\",10],[\"Mean\",100],[\"Variance\",400]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":2000},{\"label\":\"SD\",\"value\":456.0701700396552}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2,000\"},{\"label\":\"Variance\",\"value\":\"400\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.case.1.witness",
+      "text": "Variance=10,000; Expected=2,000",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",2],[\"Time\",10],[\"Mean\",100],[\"Variance\",10000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":2000},{\"label\":\"SD\",\"value\":632.4555320336759}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2,000\"},{\"label\":\"Variance\",\"value\":\"10,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0546.recall",
+      "text": "Independent toy claims arrive at Poisson Rate 3 for Time 10; sizes have Mean 100, Variance 400. What is expected total payout? Answer 3,000.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0546/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #546. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent toy claims arrive at Poisson Rate 3 for Time 10; sizes have Mean 100, Variance 400. What is expected total payout?",
+    "options": [
+      "1,800",
+      "3,000",
+      "4,200"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Expected 3,000 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0546",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-546"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 546,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **546. Insurance claims** \\[Slider\\]: random claim times with random sizes; total payout builds in jumps.",
+    "modelBoundary": "claim-count and claim-size uncertainty",
+    "recallInputs": [
+      3,
+      10,
+      100,
+      400
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

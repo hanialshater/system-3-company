@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-price-you-paid",
+  "title": "The price you paid",
+  "hook": "Should your old purchase price change today's listing?",
+  "domain": "behavioral",
+  "concept": "be-the-price-you-paid",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish a seller's historical reference point from the current market offer."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish a seller's historical reference point from the current market offer.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-price-you-paid.inputs",
+      "text": "You paid €180k and receive a €160k offer. Relative to your purchase price, what is the gain or loss? Toy inputs A=[180, 160]; B=[140, 160].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-price-you-paid.trace",
+      "text": "Computed results: [[-20, 160, 180], [20, 160, 140]]. Labels: Gain €k, Offer €k, Paid €k.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-price-you-paid.reveal",
+      "text": "Changing the historical purchase price changes the seller’s reference-point gain. It does not change the current offer. These two quantities should remain separate when interpreting an asking price.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-price-you-paid.recall",
+      "text": "A new toy case uses Paid €k=140, Offer €k=160. What is Gain €k? Answer: 20.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Paid €k=140, Offer €k=160. What is Gain €k?",
+    "options": [
+      "26",
+      "20",
+      "14"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 20. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-price-you-paid",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-12"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 12,
+    "section": "1. Loss aversion & prospect theory",
+    "text": "Boston condo owners facing a nominal loss set higher asking prices and waited longer to sell (Genesove & Mayer, 2001).",
+    "pointer": "500-behavioral-economics-findings.md entry 12: Genesove & Mayer, 2001",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "square-root-wealth",
+  "meaningfulDifference": "Distinguish a seller's historical reference point from the current market offer."
+}

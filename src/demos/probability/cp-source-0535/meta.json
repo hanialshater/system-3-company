@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0535",
+  "title": "High priority consumes the spare service",
+  "hook": "Two stated cases: explore the residual capacity available to a low-priority fluid queue.",
+  "domain": "probability",
+  "concept": "cp-source-0535",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the residual capacity available to a low-priority fluid queue affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines LowBacklog, regardless of the stated inputs.",
+  "objective": "Compare the residual capacity available to a low-priority fluid queue in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0535.predict",
+      "text": "Toy high-priority arrivals use rate 95 of Capacity 100; low arrivals rate 20 get the remainder for Time 10. Starting empty, what low-priority fluid backlog accumulates?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.reveal.0",
+      "text": "The retained results are High=95; LowBacklog=150 and High=70; LowBacklog=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.reveal.1",
+      "text": "Priority can reserve nearly all capacity for one class. This fluid model illustrates starvation pressure rather than a full stochastic priority queue. This comparison isolates the residual capacity available to a low-priority fluid queue.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.case.0.witness",
+      "text": "High=95; LowBacklog=150",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"High\",95],[\"Low\",20],[\"Capacity\",100],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LowBacklog\",\"value\":150}]},\"metrics\":[{\"label\":\"LowBacklog\",\"value\":\"150\"},{\"label\":\"High\",\"value\":\"95\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.case.1.witness",
+      "text": "High=70; LowBacklog=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"High\",70],[\"Low\",20],[\"Capacity\",100],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LowBacklog\",\"value\":0}]},\"metrics\":[{\"label\":\"LowBacklog\",\"value\":\"0\"},{\"label\":\"High\",\"value\":\"70\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0535.recall",
+      "text": "Toy high-priority arrivals use rate 96 of Capacity 100; low arrivals rate 20 get the remainder for Time 10. Starting empty, what low-priority fluid backlog accumulates? Answer 160.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0535/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #535. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy high-priority arrivals use rate 96 of Capacity 100; low arrivals rate 20 get the remainder for Time 10. Starting empty, what low-priority fluid backlog accumulates?",
+    "options": [
+      "96",
+      "224",
+      "160"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives LowBacklog 160 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0535",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-535"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 535,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **535. Priority starvation** \\[Slider\\]: raise high-priority traffic and watch low-priority jobs never get served.",
+    "modelBoundary": "the residual capacity available to a low-priority fluid queue",
+    "recallInputs": [
+      96,
+      20,
+      100,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

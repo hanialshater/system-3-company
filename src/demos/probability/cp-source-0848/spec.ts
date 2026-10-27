@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0848", "title": "Geographic separation reduces leakage", "op": "spillover", "labels": ["Direct", "Spill", "TreatedNeighbors"], "outputs": ["Total"], "a": [0.0, 1.0, 5.0], "b": [0.0, 1.0, 0.0], "question": "A toy unit gets direct effect 0 plus Spill 1 per treated neighbor. With 5 treated neighbors, what total effect results?", "questionTemplate": "A toy unit gets direct effect {Direct} plus Spill {Spill} per treated neighbor. With {TreatedNeighbors} treated neighbors, what total effect results?", "explain": "With interference, exposure includes neighbors’ assignments. A single treatment indicator is insufficient to define every unit’s outcome.", "lens": "the cross-boundary exposure assumed in a geo design", "kind": "graph", "answerPosition": 2, "graph": "spillover"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

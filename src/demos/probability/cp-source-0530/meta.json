@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0530",
+  "title": "Less work at the same throughput",
+  "hook": "Two stated cases: explore compatible long-run WIP and throughput averages.",
+  "domain": "probability",
+  "concept": "cp-source-0530",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How compatible long-run WIP and throughput averages affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Cycle, regardless of the stated inputs.",
+  "objective": "Compare compatible long-run WIP and throughput averages in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0530.predict",
+      "text": "A stable toy system averages WIP 20 units and throughput 5 units per time. What mean cycle time follows?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.reveal.0",
+      "text": "The retained results are WIP=20; Cycle=4 and WIP=10; Cycle=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.reveal.1",
+      "text": "Little’s law relates compatible long-run averages. A transient backlog or mismatched system boundary need not satisfy a one-snapshot estimate. This comparison isolates compatible long-run WIP and throughput averages.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.case.0.witness",
+      "text": "WIP=20; Cycle=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WIP\",20],[\"Throughput\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Cycle\",\"value\":4}]},\"metrics\":[{\"label\":\"Cycle\",\"value\":\"4\"},{\"label\":\"WIP\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.case.1.witness",
+      "text": "WIP=10; Cycle=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WIP\",10],[\"Throughput\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Cycle\",\"value\":2}]},\"metrics\":[{\"label\":\"Cycle\",\"value\":\"2\"},{\"label\":\"WIP\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0530.recall",
+      "text": "A stable toy system averages WIP 21 units and throughput 5 units per time. What mean cycle time follows? Answer 4.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0530/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #530. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy system averages WIP 21 units and throughput 5 units per time. What mean cycle time follows?",
+    "options": [
+      "4.2",
+      "2.52",
+      "5.88"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Cycle 4.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0530",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-530"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 530,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **530. WIP limits** \\[Slider\\]: cap work in progress on a kanban board and watch cycle time fall.",
+    "modelBoundary": "compatible long-run WIP and throughput averages",
+    "recallInputs": [
+      21,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

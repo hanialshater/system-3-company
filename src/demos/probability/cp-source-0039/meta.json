@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0039",
+  "title": "A tiny excess over half",
+  "hook": "Two stated cases: explore the observed share versus the proposed coin model.",
+  "domain": "probability",
+  "concept": "cp-source-0039",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the observed share versus the proposed coin model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the observed share versus the proposed coin model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0039.predict",
+      "text": "A toy forecast claims probability 0.5; 508 of 1000 matched it. What is claimed probability minus observed share?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.reveal.0",
+      "text": "The retained results are Hits=508; Gap=-0.008 and Hits=500; Gap=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.reveal.1",
+      "text": "Calibration compares forecasts with repeated outcomes. One correct or incorrect outcome cannot settle a probability claim. This comparison isolates the observed share versus the proposed coin model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.case.0.witness",
+      "text": "Hits=508; Gap=-0.008",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.5],[\"Hits\",508],[\"Trials\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-0.008000000000000007}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-0.008\"},{\"label\":\"Hits\",\"value\":\"508\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.case.1.witness",
+      "text": "Hits=500; Gap=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.5],[\"Hits\",500],[\"Trials\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0\"},{\"label\":\"Hits\",\"value\":\"500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0039.recall",
+      "text": "A toy forecast claims probability 0.4; 508 of 1,000 matched it. What is claimed probability minus observed share? Answer -0.108.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0039/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #39. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy forecast claims probability 0.4; 508 of 1,000 matched it. What is claimed probability minus observed share?",
+    "options": [
+      "-0.208",
+      "-0.108",
+      "-0.008"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap -0.108 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0039",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-39"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 39,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **39. Coins have memory of their start** \\[Story\\]: in about 350,000 flips, coins landed on their starting side about 50.8% of the time (Bartoš et al., 2023).",
+    "modelBoundary": "the observed share versus the proposed coin model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.4,
+      508,
+      1000
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0332",
+  "title": "A prize-linked savings budget",
+  "hook": "Two stated cases: explore the expected prize cost per explicit account.",
+  "domain": "behavioral",
+  "concept": "be-source-0332",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the expected prize cost per explicit account affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the expected prize cost per explicit account in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0332.predict",
+      "text": "A toy policy reduces a loss by 1000 with probability 0.001 and costs 1. What is its expected cash gain minus cost?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.reveal.0",
+      "text": "The retained results are Probability=0.001; Net=0 and Probability=0.002; Net=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.reveal.1",
+      "text": "Expected cash value weights the avoided loss by its probability. Utility, liquidity and risk tolerance are separate assumptions. This comparison isolates the expected prize cost per explicit account.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.case.0.witness",
+      "text": "Probability=0.001; Net=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.001],[\"Reduction\",1000],[\"Cost\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":0}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"0\"},{\"label\":\"Probability\",\"value\":\"0.001\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.case.1.witness",
+      "text": "Probability=0.002; Net=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.002],[\"Reduction\",1000],[\"Cost\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":1}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"1\"},{\"label\":\"Probability\",\"value\":\"0.002\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0332.recall",
+      "text": "A toy policy reduces a loss by 1,000 with probability 8.00e-4 and costs 1. What is its expected cash gain minus cost? Answer -0.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0332/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #332. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy reduces a loss by 1,000 with probability 8.00e-4 and costs 1. What is its expected cash gain minus cost?",
+    "options": [
+      "-0.2",
+      "-0.3",
+      "-0.1"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Net -0.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0332",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-332"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 332,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **332.** Prize-linked savings accounts in South Africa raised savings and lowered lottery spending (Cole, Iverson & Tufano, 2022).",
+    "modelBoundary": "the expected prize cost per explicit account",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.0008,
+      1000,
+      1
+    ]
+  }
+}

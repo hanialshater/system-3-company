@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0191",
+  "title": "Three dropout predictions disagree",
+  "hook": "Two stated cases: explore the spread of repeated model predictions.",
+  "domain": "probability",
+  "concept": "cp-source-0191",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the spread of repeated model predictions affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the spread of repeated model predictions in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0191.predict",
+      "text": "Three toy model predictions are 0.1, 0.5, 0.9. What is their mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.reveal.0",
+      "text": "The retained results are A=0.1 C=0.9; Mean=0.5 and A=0.45 C=0.55; Mean=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.reveal.1",
+      "text": "Disagreement can be summarized by spread, but ensemble agreement does not establish accuracy or calibration. The models can share errors. This comparison isolates the spread of repeated model predictions.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.case.0.witness",
+      "text": "A=0.1 C=0.9; Mean=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.1],[\"B\",0.5],[\"C\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.5},{\"label\":\"SD\",\"value\":0.32659863237109044}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.5\"},{\"label\":\"A\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.case.1.witness",
+      "text": "A=0.45 C=0.55; Mean=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.45],[\"B\",0.5],[\"C\",0.55]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.5},{\"label\":\"SD\",\"value\":0.04082482904638631}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.5\"},{\"label\":\"A\",\"value\":\"0.45\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0191.recall",
+      "text": "Three toy model predictions are 0.2, 0.5, 0.9. What is their mean? Answer 0.533.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0191/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #191. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three toy model predictions are 0.2, 0.5, 0.9. What is their mean?",
+    "options": [
+      "0.533",
+      "0.32",
+      "0.747"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 0.533 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0191",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-191"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 191,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **191. Dropout uncertainty** \\[Slider\\]: run the same input through a network many times with dropout and see the spread.",
+    "modelBoundary": "the spread of repeated model predictions",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.2,
+      0.5,
+      0.9
+    ]
+  }
+}

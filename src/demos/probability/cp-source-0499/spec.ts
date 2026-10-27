@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0499", "title": "One-axis halo-location update", "op": "normalshrink", "labels": ["Prior", "Variance", "Measurement", "Noise"], "outputs": ["Mean", "Variance"], "a": [0.0, 4.0, 2.0, 0.25], "b": [0.0, 4.0, 2.0, 4.0], "question": "A toy normal prior has mean 0, variance 4; one normal measurement is 2 with noise variance 0.25. What is the posterior mean?", "questionTemplate": "A toy normal prior has mean {Prior}, variance {Variance}; one normal measurement is {Measurement} with noise variance {Noise}. What is the posterior mean?", "explain": "Precisions weight the prior and measurement. The variance calculation assumes the stated independent normal model.", "lens": "a normal measurement ingredient rather than full shear inference", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

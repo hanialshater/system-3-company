@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0509",
+  "title": "Bursts raise the variability factor",
+  "hook": "Two stated cases: explore arrival variability in a stated queueing approximation.",
+  "domain": "probability",
+  "concept": "cp-source-0509",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How arrival variability in a stated queueing approximation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare arrival variability in a stated queueing approximation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0509.predict",
+      "text": "A stable toy GI/G/1 queue has Arrival rate 0.8, mean service 1, squared coefficients of variation 1,1. What wait does Kingman’s approximation give?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.reveal.0",
+      "text": "The retained results are ArrivalSCV=1; Wait=4 and ArrivalSCV=4; Wait=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.reveal.1",
+      "text": "The approximation separates load and variability. It is a heavy-traffic approximation under renewal and service assumptions, not a universal exact queue formula. This comparison isolates arrival variability in a stated queueing approximation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.case.0.witness",
+      "text": "ArrivalSCV=1; Wait=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.8],[\"Mean\",1],[\"ArrivalSCV\",1],[\"ServiceSCV\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":4.000000000000001}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"4\"},{\"label\":\"ArrivalSCV\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.case.1.witness",
+      "text": "ArrivalSCV=4; Wait=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.8],[\"Mean\",1],[\"ArrivalSCV\",4],[\"ServiceSCV\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":10.000000000000002}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"10\"},{\"label\":\"ArrivalSCV\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0509.recall",
+      "text": "A stable toy GI/G/1 queue has Arrival rate 0.9, mean service 1, squared coefficients of variation 1,1. What wait does Kingman’s approximation give? Answer 9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0509/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #509. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy GI/G/1 queue has Arrival rate 0.9, mean service 1, squared coefficients of variation 1,1. What wait does Kingman’s approximation give?",
+    "options": [
+      "9",
+      "5.4",
+      "12.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Wait 9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0509",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-509"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 509,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **509. Bursty arrivals** \\[Slider\\]: same average arrival rate, but in bursts; the queue looks completely different.",
+    "modelBoundary": "arrival variability in a stated queueing approximation",
+    "recallInputs": [
+      0.9,
+      1,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

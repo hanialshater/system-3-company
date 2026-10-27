@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0274",
+  "title": "Home holdings and covariance",
+  "hook": "Two stated cases: explore the diversification channel under specified covariance.",
+  "domain": "behavioral",
+  "concept": "be-source-0274",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the diversification channel under specified covariance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare the diversification channel under specified covariance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0274.predict",
+      "text": "A toy portfolio puts weight 1 in an asset with SD 0.2, the rest in one with SD 0.2; correlation 0.2. What is portfolio SD?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.reveal.0",
+      "text": "The retained results are Weight=1; SD=0.2 and Weight=0.5; SD=0.155.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.reveal.1",
+      "text": "Covariance contributes to portfolio risk. Equal component risks do not imply equal portfolio risks when correlations or weights differ. This comparison isolates the diversification channel under specified covariance.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.case.0.witness",
+      "text": "Weight=1; SD=0.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",1],[\"SD1\",0.2],[\"SD2\",0.2],[\"Correlation\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"SD\",\"value\":0.2}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.2\"},{\"label\":\"Weight\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.case.1.witness",
+      "text": "Weight=0.5; SD=0.155",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.5],[\"SD1\",0.2],[\"SD2\",0.2],[\"Correlation\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"SD\",\"value\":0.15491933384829668}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.155\"},{\"label\":\"Weight\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0274.recall",
+      "text": "A toy portfolio puts weight 0.8 in an asset with SD 0.2, the rest in one with SD 0.2; correlation 0.2. What is portfolio SD? Answer 0.173.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0274/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #274. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy portfolio puts weight 0.8 in an asset with SD 0.2, the rest in one with SD 0.2; correlation 0.2. What is portfolio SD?",
+    "options": [
+      "0.073",
+      "0.273",
+      "0.173"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives SD 0.173 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0274",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-274"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 274,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **274.** Investors put most of their money in domestic stocks despite diversification gains abroad (French & Poterba, 1991).",
+    "modelBoundary": "the diversification channel under specified covariance",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.8,
+      0.2,
+      0.2,
+      0.2
+    ]
+  }
+}

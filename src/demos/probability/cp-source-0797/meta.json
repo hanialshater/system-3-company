@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0797",
+  "title": "A schedule changes retained signal",
+  "hook": "Two stated cases: explore the noising coefficient at a stipulated schedule time.",
+  "domain": "probability",
+  "concept": "cp-source-0797",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the noising coefficient at a stipulated schedule time affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Noisy, regardless of the stated inputs.",
+  "objective": "Compare the noising coefficient at a stipulated schedule time in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0797.predict",
+      "text": "For toy Data 1, realized standard-normal Noise 0.5, and Alpha 0.8, what is sqrt(Alpha)Data+sqrt(1-Alpha)Noise?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.reveal.0",
+      "text": "The retained results are Alpha=0.8; Noisy=1.118 and Alpha=0.2; Noisy=0.894.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.reveal.1",
+      "text": "This forward noising coordinate reduces signal weight as alpha falls. It is not a trained image diffusion model. This comparison isolates the noising coefficient at a stipulated schedule time.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.case.0.witness",
+      "text": "Alpha=0.8; Noisy=1.118",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Data\",1],[\"Noise\",0.5],[\"Alpha\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.5},{\"x\":0.041666666666666664,\"y\":0.693596650418212},{\"x\":0.08333333333333333,\"y\":0.7673886884729819},{\"x\":0.125,\"y\":0.8212605639400165},{\"x\":0.16666666666666666,\"y\":0.8646837550515014},{\"x\":0.20833333333333334,\"y\":0.9013137250889431},{\"x\":0.25,\"y\":0.9330127018922193},{\"x\":0.2916666666666667,\"y\":0.9608744306324083},{\"x\":0.3333333333333333,\"y\":0.9855985596534887},{\"x\":0.375,\"y\":1.007657143216842},{\"x\":0.4166666666666667,\"y\":1.0273785322808895},{\"x\":0.4583333333333333,\"y\":1.0449932364833237},{\"x\":0.5,\"y\":1.0606601717798214},{\"x\":0.5416666666666666,\"y\":1.0744816723871522},{\"x\":0.5833333333333334,\"y\":1.0865112280099247},{\"x\":0.625,\"y\":1.0967556328899921},{\"x\":0.6666666666666666,\"y\":1.105171715522539},{\"x\":0.7083333333333334,\"y\":1.111656273963834},{\"x\":0.75,\"y\":1.1160254037844386},{\"x\":0.7916666666666666,\"y\":1.1179742532964285},{\"x\":0.8333333333333334,\"y\":1.1169950744072084},{\"x\":0.875,\"y\":1.1121910419901222},{\"x\":0.9166666666666666,\"y\":1.1017646750537446},{\"x\":0.9583333333333334,\"y\":1.0810070829885265},{\"x\":1,\"y\":1}],\"xLabel\":\"Alpha\",\"yLabel\":\"Noisy\"},\"metrics\":[{\"label\":\"Noisy\",\"value\":\"1.118\"},{\"label\":\"Alpha\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.case.1.witness",
+      "text": "Alpha=0.2; Noisy=0.894",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Data\",1],[\"Noise\",0.5],[\"Alpha\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.5},{\"x\":0.041666666666666664,\"y\":0.693596650418212},{\"x\":0.08333333333333333,\"y\":0.7673886884729819},{\"x\":0.125,\"y\":0.8212605639400165},{\"x\":0.16666666666666666,\"y\":0.8646837550515014},{\"x\":0.20833333333333334,\"y\":0.9013137250889431},{\"x\":0.25,\"y\":0.9330127018922193},{\"x\":0.2916666666666667,\"y\":0.9608744306324083},{\"x\":0.3333333333333333,\"y\":0.9855985596534887},{\"x\":0.375,\"y\":1.007657143216842},{\"x\":0.4166666666666667,\"y\":1.0273785322808895},{\"x\":0.4583333333333333,\"y\":1.0449932364833237},{\"x\":0.5,\"y\":1.0606601717798214},{\"x\":0.5416666666666666,\"y\":1.0744816723871522},{\"x\":0.5833333333333334,\"y\":1.0865112280099247},{\"x\":0.625,\"y\":1.0967556328899921},{\"x\":0.6666666666666666,\"y\":1.105171715522539},{\"x\":0.7083333333333334,\"y\":1.111656273963834},{\"x\":0.75,\"y\":1.1160254037844386},{\"x\":0.7916666666666666,\"y\":1.1179742532964285},{\"x\":0.8333333333333334,\"y\":1.1169950744072084},{\"x\":0.875,\"y\":1.1121910419901222},{\"x\":0.9166666666666666,\"y\":1.1017646750537446},{\"x\":0.9583333333333334,\"y\":1.0810070829885265},{\"x\":1,\"y\":1}],\"xLabel\":\"Alpha\",\"yLabel\":\"Noisy\"},\"metrics\":[{\"label\":\"Noisy\",\"value\":\"0.894\"},{\"label\":\"Alpha\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0797.recall",
+      "text": "For toy Data 2, realized standard-normal Noise 0.5, and Alpha 0.8, what is sqrt(Alpha)Data+sqrt(1-Alpha)Noise? Answer 2.012.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0797/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #797. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For toy Data 2, realized standard-normal Noise 0.5, and Alpha 0.8, what is sqrt(Alpha)Data+sqrt(1-Alpha)Noise?",
+    "options": [
+      "2.012",
+      "1.207",
+      "2.817"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Noisy 2.012 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0797",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-797"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 797,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **797. Noise schedules** \\[Slider\\]: change how fast noise is added and see sample quality change.",
+    "modelBoundary": "the noising coefficient at a stipulated schedule time",
+    "recallInputs": [
+      2,
+      0.5,
+      0.8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

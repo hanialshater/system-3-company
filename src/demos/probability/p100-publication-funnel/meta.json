@@ -1,0 +1,161 @@
+{
+  "slug": "p100-publication-funnel",
+  "title": "Which studies reached the page?",
+  "hook": "Inspect every study, then inspect only the estimates that get displayed.",
+  "domain": "probability",
+  "concept": "p100-publication-funnel",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "hide studies with null results and the published average effect inflates."
+    ]
+  },
+  "misconception": "Treating publication funnel as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "hide studies with null results and the published average effect inflates.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-publication-funnel.predict",
+      "text": "Five equally weighted studies estimate −2,−1,0,1,2. If only estimates at least 1 are shown, what mean estimate is visible?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.reveal.0",
+      "text": "The visible literature retains mean 1.5; the complete set retains 0. The selection rule filters estimates, so the published average no longer represents all five studies.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.reveal.1",
+      "text": "This finite funnel demonstrates a mechanism, not a measured rate of publication bias. Real evidence synthesis must investigate selection, study precision and heterogeneity rather than assume every missing result is zero.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.recall",
+      "text": "Estimates are −1,0,1,2. Show only positive estimates. What visible mean remains? The visible estimates are 1 and 2, averaging 1.5; the complete mean is 0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.scenario.0.summary",
+      "text": "Visible mean 1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"-2\",\"value\":-2},{\"label\":\"-1\",\"value\":-1},{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":1},{\"label\":\"2\",\"value\":2}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Selective publication\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"1\",\"value\":1},{\"label\":\"2\",\"value\":2}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.scenario.1.summary",
+      "text": "Complete mean 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Studies\"],\"rows\":[[5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · All studies\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"-2\",\"value\":-2},{\"label\":\"-1\",\"value\":-1},{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":1},{\"label\":\"2\",\"value\":2}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-publication-funnel/spec.ts; exact finite illustration specified in manager numericCase: Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-publication-funnel.hook",
+      "text": "Inspect every study, then inspect only the estimates that get displayed.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-publication-funnel/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Estimates are −1,0,1,2. Show only positive estimates. What visible mean remains?",
+    "options": [
+      "0.5",
+      "1.0",
+      "1.5"
+    ],
+    "answer": 2,
+    "why": "The visible estimates are 1 and 2, averaging 1.5; the complete mean is 0.5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-publication-funnel",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "publication-bias"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 317,
+    "sourceSection": "16. Selection bias, colliders & survivorship",
+    "sourceTitle": "Publication funnel",
+    "sourceText": "hide studies with null results and the published average effect inflates.",
+    "sourceEntryOriginal": "- **317. Publication funnel** \\[Slider\\]: hide studies with null results and the published average effect inflates.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-drunkard-streak-and-rate",
+    "difference": "New teaching boundary: Publication funnel. Existing boundary: Recognize that one mean cannot identify the underlying group distribution.",
+    "numericCase": "Five study effect estimates [-2,-1,0,1,2] with equal weight. Publish only estimates>=1: visible mean1.5 vs complete mean0. Toggle hidden studies; no claim of a real literature frequency."
+  },
+  "modelAudit": {
+    "a": 1.5,
+    "b": 0
+  }
+}

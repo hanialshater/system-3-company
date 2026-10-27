@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0838",
+  "title": "Adaptive trial allocation changes yield",
+  "hook": "Two stated cases: explore the reward mix before adaptive-inference corrections.",
+  "domain": "probability",
+  "concept": "cp-source-0838",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reward mix before adaptive-inference corrections affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the reward mix before adaptive-inference corrections in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0838.predict",
+      "text": "A toy mixture puts fraction 0.5 at rate 0.8 and the remainder at rate 0.4. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.reveal.0",
+      "text": "The retained results are Weight=0.5; Rate=0.6 and Weight=0.9; Rate=0.76.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates the reward mix before adaptive-inference corrections.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.case.0.witness",
+      "text": "Weight=0.5; Rate=0.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.5],[\"RateA\",0.8],[\"RateB\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.6000000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.6\"},{\"label\":\"Weight\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.case.1.witness",
+      "text": "Weight=0.9; Rate=0.76",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.9],[\"RateA\",0.8],[\"RateB\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.7600000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.76\"},{\"label\":\"Weight\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0838.recall",
+      "text": "A toy mixture puts fraction 0.4 at rate 0.8 and the remainder at rate 0.4. What is its aggregate rate? Answer 0.56.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0838/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #838. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.4 at rate 0.8 and the remainder at rate 0.4. What is its aggregate rate?",
+    "options": [
+      "0.336",
+      "0.784",
+      "0.56"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rate 0.56 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0838",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-838"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 838,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **838. Ethics of adaptive allocation** \\[Split\\]: more patients get the better arm, but inference gets harder.",
+    "modelBoundary": "the reward mix before adaptive-inference corrections",
+    "recallInputs": [
+      0.4,
+      0.8,
+      0.4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

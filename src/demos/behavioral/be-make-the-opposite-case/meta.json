@@ -1,0 +1,103 @@
+{
+  "slug": "be-make-the-opposite-case",
+  "title": "Make the opposite case",
+  "hook": "What happens if you list reasons the suggested price could be wrong?",
+  "domain": "behavioral",
+  "concept": "be-make-the-opposite-case",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Contrast attending to an anchor with deliberately retrieving disconfirming evidence."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Contrast attending to an anchor with deliberately retrieving disconfirming evidence.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-make-the-opposite-case.inputs",
+      "text": "Your toy car estimate starts at €80. Two counterexamples are valued at €100 and €140. What is their mean? Toy inputs A=[80, 100, 140]; B=[80, 60, 100].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-make-the-opposite-case.trace",
+      "text": "Computed results: [[80, 120, 40], [80, 80, 0]]. Labels: Anchor €, Evidence mean €, Revision €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-make-the-opposite-case.reveal",
+      "text": "Retrieving different comparison evidence changes the computed mean while the original anchor stays fixed. The mechanism concerns which evidence enters the estimate; it is not proof that a warning removes anchoring.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-make-the-opposite-case.recall",
+      "text": "A new toy case uses Anchor €=80, Evidence 1 €=60, Evidence 2 €=100. What is Evidence mean €? Answer: 80.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Anchor €=80, Evidence 1 €=60, Evidence 2 €=100. What is Evidence mean €?",
+    "options": [
+      "104",
+      "80",
+      "56"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 80. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-make-the-opposite-case",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-32"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 32,
+    "section": "2. Anchoring",
+    "text": "Car experts' price estimates were anchored too; asking them to consider why the anchor was wrong reduced the bias (Mussweiler, Strack & Pfeiffer, 2000).",
+    "pointer": "500-behavioral-economics-findings.md entry 32: Mussweiler, Strack & Pfeiffer, 2000",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "wheel-number-pulls-guess",
+  "meaningfulDifference": "Contrast attending to an anchor with deliberately retrieving disconfirming evidence."
+}

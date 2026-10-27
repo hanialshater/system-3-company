@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0242",
+  "title": "Two clinical conditions in a toy set",
+  "hook": "Two stated cases: explore the probability of a subset rather than a stereotype.",
+  "domain": "behavioral",
+  "concept": "be-source-0242",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the probability of a subset rather than a stereotype affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Joint, regardless of the stated inputs.",
+  "objective": "Compare the probability of a subset rather than a stereotype in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0242.predict",
+      "text": "A toy event has probability 0.2; conditional on it, an additional property occurs with probability 0.5. What is the joint probability?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.reveal.0",
+      "text": "The retained results are Conditional=0.5; Joint=0.1 and Conditional=1; Joint=0.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.reveal.1",
+      "text": "The conjunction occupies only part of the original event. Adding a condition cannot make the same event more probable. This comparison isolates the probability of a subset rather than a stereotype.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.case.0.witness",
+      "text": "Conditional=0.5; Joint=0.1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.2],[\"Conditional\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"0.1\"},{\"label\":\"Conditional\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.case.1.witness",
+      "text": "Conditional=1; Joint=0.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.2],[\"Conditional\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"0.2\"},{\"label\":\"Conditional\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0242.recall",
+      "text": "A toy event has probability 0.16; conditional on it, an additional property occurs with probability 0.5. What is the joint probability? Answer 0.08.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0242/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #242. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy event has probability 0.16; conditional on it, an additional property occurs with probability 0.5. What is the joint probability?",
+    "options": [
+      "0.08",
+      "-0.02",
+      "0.18"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Joint 0.08 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0242",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-242"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 242,
+    "sourceSection": "13. Availability, representativeness & other heuristics",
+    "sourceEntryOriginal": "- **242.** Physicians made the same conjunction error with medical scenarios (Tversky & Kahneman, 1983).",
+    "modelBoundary": "the probability of a subset rather than a stereotype",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.16000000000000003,
+      0.5
+    ]
+  }
+}

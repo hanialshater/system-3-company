@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0213",
+  "title": "Three noisy copies and a majority",
+  "hook": "Two stated cases: explore independent correctness in a toy repetition channel.",
+  "domain": "probability",
+  "concept": "cp-source-0213",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How independent correctness in a toy repetition channel affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Tail, regardless of the stated inputs.",
+  "objective": "Compare independent correctness in a toy repetition channel in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0213.predict",
+      "text": "For 3 independent toy births with boy probability 0.8, what is the probability of strictly more than 1 boys?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.reveal.0",
+      "text": "The retained results are P=0.8; Tail=0.896 and P=0.6; Tail=0.648.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.reveal.1",
+      "text": "The binomial calculation counts every qualifying outcome. Smaller samples have more variable proportions; equal expected proportions do not mean equal tail probabilities. This comparison isolates independent correctness in a toy repetition channel.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.case.0.witness",
+      "text": "P=0.8; Tail=0.896",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",3],[\"P\",0.8],[\"Cut\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.8960000000000001}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.896\"},{\"label\":\"P\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.case.1.witness",
+      "text": "P=0.6; Tail=0.648",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",3],[\"P\",0.6],[\"Cut\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.648}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.648\"},{\"label\":\"P\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0213.recall",
+      "text": "For 4 independent toy births with boy probability 0.8, what is the probability of strictly more than 1 boys? Answer 0.973.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0213/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #213. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 4 independent toy births with boy probability 0.8, what is the probability of strictly more than 1 boys?",
+    "options": [
+      "0.584",
+      "0.973",
+      "1.362"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Tail 0.973 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0213",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-213"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 213,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **213. Noisy channel** \\[Slider\\]: add noise to a message and add repetition until it gets through.",
+    "modelBoundary": "independent correctness in a toy repetition channel",
+    "recallInputs": [
+      4,
+      0.8,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

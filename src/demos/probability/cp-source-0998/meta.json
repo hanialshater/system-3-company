@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0998",
+  "title": "More lineages merge sooner",
+  "hook": "Two stated cases: explore the pair count determining a neutral coalescent waiting time.",
+  "domain": "probability",
+  "concept": "cp-source-0998",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the pair count determining a neutral coalescent waiting time affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare the pair count determining a neutral coalescent waiting time in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0998.predict",
+      "text": "A toy diploid constant population has effective size 1000. With 2 ancestral lineages, what approximate generations until the next pair coalesces?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.reveal.0",
+      "text": "The retained results are Lineages=2; Wait=2,000 and Lineages=10; Wait=44.444.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.reveal.1",
+      "text": "The pairwise coalescent rate adds over possible pairs. This approximation assumes neutral ancestry and a suitable large-population limit. This comparison isolates the pair count determining a neutral coalescent waiting time.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.case.0.witness",
+      "text": "Lineages=2; Wait=2,000",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Lineages\",2],[\"Population\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Wait\",\"value\":2000}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"2,000\"},{\"label\":\"Lineages\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.case.1.witness",
+      "text": "Lineages=10; Wait=44.444",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Lineages\",10],[\"Population\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Wait\",\"value\":44.44444444444444}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"44.444\"},{\"label\":\"Lineages\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0998.recall",
+      "text": "A toy diploid constant population has effective size 1,000. With 3 ancestral lineages, what approximate generations until the next pair coalesces? Answer 666.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0998/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #998. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy diploid constant population has effective size 1,000. With 3 ancestral lineages, what approximate generations until the next pair coalesces?",
+    "options": [
+      "666.667",
+      "400",
+      "933.333"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Wait 666.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0998",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-998"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 998,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **998. The coalescent** \\[Slider\\]: trace sampled genes backward in time as their lineages merge into a family tree.",
+    "modelBoundary": "the pair count determining a neutral coalescent waiting time",
+    "recallInputs": [
+      3,
+      1000
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

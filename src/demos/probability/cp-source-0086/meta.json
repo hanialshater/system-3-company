@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0086",
+  "title": "An extreme parent-height score",
+  "hook": "Two stated cases: explore the regression coefficient in a stated height model.",
+  "domain": "probability",
+  "concept": "cp-source-0086",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the regression coefficient in a stated height model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ExpectedNext, regardless of the stated inputs.",
+  "objective": "Compare the regression coefficient in a stated height model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0086.predict",
+      "text": "A toy repeat-score model predicts Mean 170 plus Reliability 0.6 times the deviation of Observed 200. What is the expected next score?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.reveal.0",
+      "text": "The retained results are Reliability=0.6; ExpectedNext=188 and Reliability=1; ExpectedNext=200.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.reveal.1",
+      "text": "Selecting an extreme noisy score can be followed by a less extreme score without any intervention effect. This prediction rule is explicitly assumed. This comparison isolates the regression coefficient in a stated height model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.case.0.witness",
+      "text": "Reliability=0.6; ExpectedNext=188",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",170],[\"Observed\",200],[\"Reliability\",0.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":188}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"188\"},{\"label\":\"Reliability\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.case.1.witness",
+      "text": "Reliability=1; ExpectedNext=200",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",170],[\"Observed\",200],[\"Reliability\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":200}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"200\"},{\"label\":\"Reliability\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0086.recall",
+      "text": "A toy repeat-score model predicts Mean 171 plus Reliability 0.6 times the deviation of Observed 200. What is the expected next score? Answer 188.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0086/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #86. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy repeat-score model predicts Mean 171 plus Reliability 0.6 times the deviation of Observed 200. What is the expected next score?",
+    "options": [
+      "188.4",
+      "113.04",
+      "263.76"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives ExpectedNext 188.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0086",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-86"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 86,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **86. Galton's heights** \\[Slider\\]: very tall parents have tall kids, but less extreme ones.",
+    "modelBoundary": "the regression coefficient in a stated height model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      171,
+      200,
+      0.6
+    ]
+  }
+}

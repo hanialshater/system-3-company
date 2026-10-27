@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0608",
+  "title": "Keep the noise outside the parameters",
+  "hook": "Two stated cases: explore the fixed-noise reparameterized sample and its derivatives.",
+  "domain": "probability",
+  "concept": "cp-source-0608",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the fixed-noise reparameterized sample and its derivatives affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Sample, regardless of the stated inputs.",
+  "objective": "Compare the fixed-noise reparameterized sample and its derivatives in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0608.predict",
+      "text": "A toy normal sample is Mean 0+SD 1×fixed noise Epsilon 0.5. What sample results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.reveal.0",
+      "text": "The retained results are Mean=0; Sample=0.5 and Mean=2; Sample=2.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.reveal.1",
+      "text": "Holding the noise draw fixed exposes derivatives with respect to mean and scale. The noise distribution still defines the resulting sample distribution. This comparison isolates the fixed-noise reparameterized sample and its derivatives.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.case.0.witness",
+      "text": "Mean=0; Sample=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"SD\",1],[\"Epsilon\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Sample\",\"value\":0.5},{\"label\":\"GradMean\",\"value\":1},{\"label\":\"GradSD\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Sample\",\"value\":\"0.5\"},{\"label\":\"Mean\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.case.1.witness",
+      "text": "Mean=2; Sample=2.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",2],[\"SD\",1],[\"Epsilon\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Sample\",\"value\":2.5},{\"label\":\"GradMean\",\"value\":1},{\"label\":\"GradSD\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Sample\",\"value\":\"2.5\"},{\"label\":\"Mean\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0608.recall",
+      "text": "A toy normal sample is Mean 1+SD 1×fixed noise Epsilon 0.5. What sample results? Answer 1.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0608/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #608. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal sample is Mean 1+SD 1×fixed noise Epsilon 0.5. What sample results?",
+    "options": [
+      "1.5",
+      "0.9",
+      "2.1"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Sample 1.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0608",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-608"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 608,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **608. The reparameterization trick** \\[Slider\\]: move the randomness outside the parameters so gradients can flow through samples.",
+    "modelBoundary": "the fixed-noise reparameterized sample and its derivatives",
+    "recallInputs": [
+      1,
+      1,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

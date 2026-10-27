@@ -1,0 +1,164 @@
+{
+  "slug": "p100-random-terrain",
+  "title": "How rough should the terrain be?",
+  "hook": "How rough should the terrain be? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-random-terrain",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "a Gaussian random field becomes mountains; change its correlation length for rolling hills or jagged peaks."
+    ]
+  },
+  "misconception": "An RBF field has correlation exp(\u2212d\u00b2/(2\u2113\u00b2)). At distance 1, changing \u2113 from 0.2 to 3 changes correlation in which direction? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "a Gaussian random field becomes mountains; change its correlation length for rolling hills or jagged peaks.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-random-terrain.case",
+      "text": "An RBF field has correlation exp(\u2212d\u00b2/(2\u2113\u00b2)). At distance 1, changing \u2113 from 0.2 to 3 changes correlation in which direction? Options: Decreases; Unchanged; Increases. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: One-dimensionalGaussianfieldRBFcorrelationatdistance1withlengthscale.2,1,3: \u2248.00000372665,.606531,.945959. Usedisclosedfixednormalcoefficients to generate matched rough/smooth line samples; nofakeheightdata.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.recall",
+      "text": "In the same RBF model, a very short length scale makes correlation at fixed nonzero distance? The exponent becomes strongly negative.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.hook",
+      "text": "How rough should the terrain be? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c4",
+      "text": "At distance 1, the stipulated correlations are 3.73e-6 for length scale 0.2 and 0.946 for length scale 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c5",
+      "text": "Both reconstructions use the same disclosed coefficients [1,\u22121,0.5,\u22120.5,1] on sites \u22122 through 2, with Gaussian basis weights normalized by their squared sum. Longer scale spreads each coefficient farther. This deterministic basis toy illustrates smoothing; it is neither measured geography nor a claimed random Gaussian-field sample.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-random-terrain/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c7",
+      "text": "Correlation: 3.73e-6",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":-2,\"y\":1},{\"x\":-1,\"y\":-1},{\"x\":0,\"y\":0.5},{\"x\":1,\"y\":-0.5},{\"x\":2,\"y\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":-2,\"y\":0.999996273339884},{\"x\":-1.9,\"y\":0.9999545990397075},{\"x\":-1.8,\"y\":0.9994467627633219},{\"x\":-1.7,\"y\":0.9932395067548894},{\"x\":-1.6,\"y\":0.9148381103070137},{\"x\":-1.5,\"y\":4.9101296418271175e-12},{\"x\":-1.4,\"y\":-0.9148381102226557},{\"x\":-1.3,\"y\":-0.9932395057243356},{\"x\":-1.2,\"y\":-0.9994467502083276},{\"x\":-1.1,\"y\":-0.9999544460885006},{\"x\":-1,\"y\":-0.999994410006354},{\"x\":-0.8999999999999999,\"y\":-0.9999769931021985},{\"x\":-0.8,\"y\":-0.9997232797961104},{\"x\":-0.7,\"y\":-0.996608401720349},{\"x\":-0.6000000000000001,\"y\":-0.9557430332048289},{\"x\":-0.5,\"y\":-0.35355339058836366},{\"x\":-0.3999999999999999,\"y\":0.4165141320028275},{\"x\":-0.30000000000000004,\"y\":0.49325085532032525},{\"x\":-0.19999999999999996,\"y\":0.49944682668389045},{\"x\":-0.10000000000000009,\"y\":0.4999544466038124},{\"x\":0,\"y\":0.499994410013298},{\"x\":0.10000000000000009,\"y\":0.49997699361751013},{\"x\":0.20000000000000018,\"y\":0.4997233562716731},{\"x\":0.2999999999999998,\"y\":0.49661975131633834},{\"x\":0.3999999999999999,\"y\":0.4574190549849541},{\"x\":0.5,\"y\":1.9564096255223504e-17},{\"x\":0.6000000000000001,\"y\":-0.4574190549849541},{\"x\":0.7000000000000002,\"y\":-0.4966197513163384},{\"x\":0.7999999999999998,\"y\":-0.4997233562716731},{\"x\":0.8999999999999999,\"y\":-0.49997699361751013},{\"x\":1,\"y\":-0.499994410013298},{\"x\":1.1,\"y\":-0.4999544466038124},{\"x\":1.2000000000000002,\"y\":-0.49944682668389045},{\"x\":1.2999999999999998,\"y\":-0.49325085532032464},{\"x\":1.4,\"y\":-0.41651413200273424},{\"x\":1.5,\"y\":0.35355339059818386},{\"x\":1.6,\"y\":0.9557430333734516},{\"x\":1.7000000000000002,\"y\":0.996608403781456},{\"x\":1.7999999999999998,\"y\":0.9997233049060985},{\"x\":1.9,\"y\":0.9999772990045654},{\"x\":2,\"y\":0.99999813666647}]}. [{\"label\":\"Correlation\",\"value\":\"3.73e-6\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c10",
+      "text": "Correlation: 0.946",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":-2,\"y\":1},{\"x\":-1,\"y\":-1},{\"x\":0,\"y\":0.5},{\"x\":1,\"y\":-0.5},{\"x\":2,\"y\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-random-terrain.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":-2,\"y\":0.3207444523748994},{\"x\":-1.9,\"y\":0.3199734796289514},{\"x\":-1.8,\"y\":0.3193681638315536},{\"x\":-1.7,\"y\":0.31893088408317616},{\"x\":-1.6,\"y\":0.31866378910964954},{\"x\":-1.5,\"y\":0.31856878458715726},{\"x\":-1.4,\"y\":0.31864752118593426},{\"x\":-1.3,\"y\":0.3189013834492819},{\"x\":-1.2,\"y\":0.31933147962196634},{\"x\":-1.1,\"y\":0.3199386325378168},{\"x\":-1,\"y\":0.32072337167039205},{\"x\":-0.8999999999999999,\"y\":0.3216859264428951},{\"x\":-0.8,\"y\":0.3228262208841671},{\"x\":-0.7,\"y\":0.3241438697066443},{\"x\":-0.6000000000000001,\"y\":0.32563817586974364},{\"x\":-0.5,\"y\":0.3273081296784085},{\"x\":-0.3999999999999999,\"y\":0.3291524094517125},{\"x\":-0.30000000000000004,\"y\":0.3311693837806847},{\"x\":-0.19999999999999996,\"y\":0.3333571153781795},{\"x\":-0.10000000000000009,\"y\":0.33571336650691197},{\"x\":0,\"y\":0.33823560595504193},{\"x\":0.10000000000000009,\"y\":0.34092101751219855},{\"x\":0.20000000000000018,\"y\":0.3437665098828941},{\"x\":0.2999999999999998,\"y\":0.3467687279591814},{\"x\":0.3999999999999999,\"y\":0.3499240653604315},{\"x\":0.5,\"y\":0.3532286781354879},{\"x\":0.6000000000000001,\"y\":0.35667849951141795},{\"x\":0.7000000000000002,\"y\":0.3602692555638064},{\"x\":0.7999999999999998,\"y\":0.3639964816761459},{\"x\":0.8999999999999999,\"y\":0.3678555396504853},{\"x\":1,\"y\":0.3718416353281269},{\"x\":1.1,\"y\":0.3759498365778247},{\"x\":1.2000000000000002,\"y\":0.38017509150958473},{\"x\":1.2999999999999998,\"y\":0.3845122467747123},{\"x\":1.4,\"y\":0.38895606581706943},{\"x\":1.5,\"y\":0.39350124694643923},{\"x\":1.6,\"y\":0.3981424411122703},{\"x\":1.7000000000000002,\"y\":0.40287426926466585},{\"x\":1.7999999999999998,\"y\":0.40769133919911177},{\"x\":1.9,\"y\":0.412588261791835},{\"x\":2,\"y\":0.417559666543669}]}. [{\"label\":\"Correlation\",\"value\":\"0.946\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-random-terrain/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the same RBF model, a very short length scale makes correlation at fixed nonzero distance?",
+    "options": [
+      "Near zero",
+      "Exactly one",
+      "Negative"
+    ],
+    "answer": 0,
+    "why": "The exponent becomes strongly negative."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "probability:p100-random-terrain",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-961",
+      "curve"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 961,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceTitle": "Random terrain",
+    "sourceText": "a Gaussian random field becomes mountains; change its correlation length for rolling hills or jagged peaks.",
+    "sourceEntryOriginal": "- **961. Random terrain** \\[Slider\\]: a Gaussian random field becomes mountains; change its correlation length for rolling hills or jagged peaks.",
+    "numericCase": "One-dimensionalGaussianfieldRBFcorrelationatdistance1withlengthscale.2,1,3: \u2248.00000372665,.606531,.945959. Usedisclosedfixednormalcoefficients to generate matched rough/smooth line samples; nofakeheightdata.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/convolution-weight-sharing",
+    "difference": "New teaching boundary: Random terrain. Existing boundary: Recognize reuse of the same two coefficients across valid 1D cross-correlation windows.",
+    "implementationBoundary": "Deterministic Gaussian-basis reconstruction using disclosed coefficients [1,-1,0.5,-0.5,1] and sites [-2,-1,0,1,2]; kernel correlations computed exactly; no random terrain sample claimed."
+  },
+  "modelOutputs": [
+    3.7266531720786777e-06,
+    0.9459594689067654
+  ]
+}

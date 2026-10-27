@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0388",
+  "title": "Applications turn into offers",
+  "hook": "Two stated cases: explore search activity and conditional offer probabilities.",
+  "domain": "behavioral",
+  "concept": "be-source-0388",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How search activity and conditional offer probabilities affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Purchases, regardless of the stated inputs.",
+  "objective": "Compare search activity and conditional offer probabilities in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0388.predict",
+      "text": "Of 10 toy visitors, fraction 0.8 stop and fraction 0.2 of those buy. How many purchases are expected?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.reveal.0",
+      "text": "The retained results are Visitors=10; Purchases=1.6 and Visitors=20; Purchases=3.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.reveal.1",
+      "text": "More attention at the top of a funnel need not mean more final choices. Conditional conversion and reach jointly determine the result. This comparison isolates search activity and conditional offer probabilities.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.case.0.witness",
+      "text": "Visitors=10; Purchases=1.6",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visitors\",10],[\"Stop\",0.8],[\"Buy\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Purchases\",\"value\":1.6}]},\"metrics\":[{\"label\":\"Purchases\",\"value\":\"1.6\"},{\"label\":\"Visitors\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.case.1.witness",
+      "text": "Visitors=20; Purchases=3.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visitors\",20],[\"Stop\",0.8],[\"Buy\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Purchases\",\"value\":3.2}]},\"metrics\":[{\"label\":\"Purchases\",\"value\":\"3.2\"},{\"label\":\"Visitors\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0388.recall",
+      "text": "Of 11 toy visitors, fraction 0.8 stop and fraction 0.2 of those buy. How many purchases are expected? Answer 1.76.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0388/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Of 11 toy visitors, fraction 0.8 stop and fraction 0.2 of those buy. How many purchases are expected?",
+    "options": [
+      "1.056",
+      "2.464",
+      "1.76"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Purchases 1.76 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0388",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-388"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 388,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **388.** Helping job seekers write a concrete search plan raised applications and job offers in South Africa (Abel, Burger, Carranza & Piraino, 2019).",
+    "modelBoundary": "search activity and conditional offer probabilities",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      0.8,
+      0.2
+    ]
+  }
+}

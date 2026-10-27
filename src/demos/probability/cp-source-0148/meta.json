@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0148",
+  "title": "Delay grows near service capacity",
+  "hook": "Two stated cases: explore the load of a stated single-server queue.",
+  "domain": "probability",
+  "concept": "cp-source-0148",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the load of a stated single-server queue affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MeanTime, regardless of the stated inputs.",
+  "objective": "Compare the load of a stated single-server queue in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0148.predict",
+      "text": "A stable toy M/M/1 queue has Poisson arrival rate 8 and exponential service rate 10. What is mean time in the system?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.reveal.0",
+      "text": "The retained results are Arrival=8; MeanTime=0.5 and Arrival=9.5; MeanTime=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.reveal.1",
+      "text": "The gap between service and arrival rates controls this queue’s mean delay. Variability and the assumed queueing model matter. This comparison isolates the load of a stated single-server queue.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.case.0.witness",
+      "text": "Arrival=8; MeanTime=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",8],[\"Service\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanTime\",\"value\":0.5}]},\"metrics\":[{\"label\":\"MeanTime\",\"value\":\"0.5\"},{\"label\":\"Arrival\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.case.1.witness",
+      "text": "Arrival=9.5; MeanTime=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",9.5],[\"Service\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanTime\",\"value\":2}]},\"metrics\":[{\"label\":\"MeanTime\",\"value\":\"2\"},{\"label\":\"Arrival\",\"value\":\"9.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0148.recall",
+      "text": "A stable toy M/M/1 queue has Poisson arrival rate 9 and exponential service rate 10. What is mean time in the system? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0148/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #148. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/M/1 queue has Poisson arrival rate 9 and exponential service rate 10. What is mean time in the system?",
+    "options": [
+      "0.6",
+      "1.4",
+      "1"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives MeanTime 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0148",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-148"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 148,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **148. One line or many?** \\[Split\\]: a single shared queue cuts the worst waits compared with separate lines.",
+    "modelBoundary": "the load of a stated single-server queue",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      9,
+      10
+    ]
+  }
+}

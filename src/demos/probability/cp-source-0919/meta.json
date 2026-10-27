@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0919",
+  "title": "Allocate exposure toward a target",
+  "hook": "Two stated cases: explore the exposure share needed to match a stipulated merit target.",
+  "domain": "probability",
+  "concept": "cp-source-0919",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the exposure share needed to match a stipulated merit target affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HighWeight, regardless of the stated inputs.",
+  "objective": "Compare the exposure share needed to match a stipulated merit target in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0919.predict",
+      "text": "Mix toy values Low 0 and High 1 to obtain Target mean 0.5. What weight on High is required?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.reveal.0",
+      "text": "The retained results are Target=0.5; HighWeight=0.5 and Target=0.8; HighWeight=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.reveal.1",
+      "text": "Matching a mean can be solved algebraically when the target lies inside the support. Matching that moment does not guarantee every distributional or causal property. This comparison isolates the exposure share needed to match a stipulated merit target.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.case.0.witness",
+      "text": "Target=0.5; HighWeight=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",0.5],[\"Low\",0],[\"High\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HighWeight\",\"value\":0.5}]},\"metrics\":[{\"label\":\"HighWeight\",\"value\":\"0.5\"},{\"label\":\"Target\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.case.1.witness",
+      "text": "Target=0.8; HighWeight=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",0.8],[\"Low\",0],[\"High\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HighWeight\",\"value\":0.8}]},\"metrics\":[{\"label\":\"HighWeight\",\"value\":\"0.8\"},{\"label\":\"Target\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0919.recall",
+      "text": "Mix toy values Low 0 and High 1 to obtain Target mean 0.6. What weight on High is required? Answer 0.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0919/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #919. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Mix toy values Low 0 and High 1 to obtain Target mean 0.6. What weight on High is required?",
+    "options": [
+      "0.36",
+      "0.84",
+      "0.6"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives HighWeight 0.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0919",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-919"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 919,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **919. Fair exposure** \\[Slider\\]: allocate ranking attention in proportion to merit, not just to the top item.",
+    "modelBoundary": "the exposure share needed to match a stipulated merit target",
+    "recallInputs": [
+      0.6,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

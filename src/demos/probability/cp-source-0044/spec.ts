@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0044", "title": "A rare match is not a posterior", "op": "bayes", "labels": ["Prior", "Sensitivity", "FalsePositive"], "outputs": ["Posterior"], "a": [1e-06, 1.0, 1e-06], "b": [0.01, 1.0, 1e-06], "question": "A toy condition has prevalence 1e-06; a test catches fraction 1 of cases and flags fraction 1e-06 of noncases. Given a positive, what probability is a case?", "questionTemplate": "A toy condition has prevalence {Prior}; a test catches fraction {Sensitivity} of cases and flags fraction {FalsePositive} of noncases. Given a positive, what probability is a case?", "explain": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive.", "lens": "the prior odds behind a match likelihood", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0548",
+  "title": "Subcritical and supercritical lineages",
+  "hook": "Two stated cases: explore the eventual extinction fixed point.",
+  "domain": "probability",
+  "concept": "cp-source-0548",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the eventual extinction fixed point affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Extinction, regardless of the stated inputs.",
+  "objective": "Compare the eventual extinction fixed point in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0548.predict",
+      "text": "Each toy lineage independently has zero descendants with probability 0.6, two with 0.3, otherwise one. What is its eventual extinction probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.reveal.0",
+      "text": "The retained results are Zero=0.6 Two=0.3; Extinction=1 and Zero=0.4 Two=0.5; Extinction=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.reveal.1",
+      "text": "The smallest fixed point of the offspring generating function gives extinction. Growing mean population does not guarantee survival of every lineage. This comparison isolates the eventual extinction fixed point.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.case.0.witness",
+      "text": "Zero=0.6 Two=0.3; Extinction=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Zero\",0.6],[\"Two\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Extinction\",\"value\":1}]},\"metrics\":[{\"label\":\"Extinction\",\"value\":\"1\"},{\"label\":\"Zero\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.case.1.witness",
+      "text": "Zero=0.4 Two=0.5; Extinction=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Zero\",0.4],[\"Two\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Extinction\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Extinction\",\"value\":\"0.8\"},{\"label\":\"Zero\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0548.recall",
+      "text": "Each toy lineage independently has zero descendants with probability 0.2, two with 0.7, otherwise one. What is its eventual extinction probability? Answer 0.286.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0548/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #548. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each toy lineage independently has zero descendants with probability 0.2, two with 0.7, otherwise one. What is its eventual extinction probability?",
+    "options": [
+      "0.286",
+      "0.171",
+      "0.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Extinction 0.286 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0548",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-548"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 548,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **548. Extinction threshold** \\[Slider\\]: average offspring below 1 always dies out; just above 1 often still dies.",
+    "modelBoundary": "the eventual extinction fixed point",
+    "recallInputs": [
+      0.2,
+      0.7
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "slug": "p100-why-is-data-missing",
+  "title": "Which values went missing?",
+  "hook": "Hide the same number of salaries under two different selection rules.",
+  "domain": "probability",
+  "concept": "p100-why-is-data-missing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "random gaps vs gaps caused by the value itself give opposite biases."
+    ]
+  },
+  "misconception": "Treating why is data missing? as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "random gaps vs gaps caused by the value itself give opposite biases.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-why-is-data-missing.predict",
+      "text": "Five salaries are 20, 30, 40, 50, 60. If the two largest are missing, what mean is calculated from the visible salaries?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.reveal.0",
+      "text": "The retained means are 30 when large values are hidden and 40 when the two extremes are hidden. The full five-value mean is 40.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.reveal.1",
+      "text": "What disappears matters as much as how much disappears. This finite illustration compares two explicit selection rules; the balanced second rule is not a promise that random missingness is exactly unbiased in every sample.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.recall",
+      "text": "Data are 2, 4, 6, 8. Hide only 8. What mean remains? The visible mean is (2+4+6)/3=4, below the full mean 5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.scenario.0.summary",
+      "text": "Observed mean 30",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Full\"],\"rows\":[[20],[30],[40],[50],[60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Largest missing\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"20\",\"value\":20},{\"label\":\"30\",\"value\":30},{\"label\":\"40\",\"value\":40}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.scenario.1.summary",
+      "text": "Observed mean 40",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Missing\"],\"rows\":[[20],[60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Extremes missing\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"30\",\"value\":30},{\"label\":\"40\",\"value\":40},{\"label\":\"50\",\"value\":50}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-why-is-data-missing/spec.ts; exact finite illustration specified in manager numericCase: Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-why-is-data-missing.hook",
+      "text": "Hide the same number of salaries under two different selection rules.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-why-is-data-missing/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Data are 2, 4, 6, 8. Hide only 8. What mean remains?",
+    "options": [
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": 1,
+    "why": "The visible mean is (2+4+6)/3=4, below the full mean 5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-why-is-data-missing",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "missingness"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 250,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceTitle": "Why is data missing?",
+    "sourceText": "random gaps vs gaps caused by the value itself give opposite biases.",
+    "sourceEntryOriginal": "- **250. Why is data missing?** \\[Split\\]: random gaps vs gaps caused by the value itself give opposite biases.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/lh-discount-round-trip",
+    "difference": "New teaching boundary: Why is data missing?. Existing boundary: Explain why opposite percentage changes do not cancel.",
+    "numericCase": "Full salaries [20,30,40,50,60], mean 40. Remove 20 and 60 (mean 40), or remove 50 and 60 (mean 30). Show every missing slot and why missingness matters."
+  },
+  "modelAudit": {
+    "a": 30,
+    "b": 40,
+    "full": 40
+  }
+}

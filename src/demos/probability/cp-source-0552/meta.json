@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0552",
+  "title": "Rare long jumps change a bounded mean",
+  "hook": "Two stated cases: explore a finite jump-mixture facet rather than a stable Levy process.",
+  "domain": "probability",
+  "concept": "cp-source-0552",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a finite jump-mixture facet rather than a stable Levy process affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare a finite jump-mixture facet rather than a stable Levy process in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0552.predict",
+      "text": "A toy mixture puts fraction 0.01 at rate 100 and the remainder at rate 1. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.reveal.0",
+      "text": "The retained results are Weight=0.01; Rate=1.99 and Weight=0.1; Rate=10.9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates a finite jump-mixture facet rather than a stable Levy process.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.case.0.witness",
+      "text": "Weight=0.01; Rate=1.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.01],[\"RateA\",100],[\"RateB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":1.99}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"1.99\"},{\"label\":\"Weight\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.case.1.witness",
+      "text": "Weight=0.1; Rate=10.9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.1],[\"RateA\",100],[\"RateB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":10.9}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"10.9\"},{\"label\":\"Weight\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0552.recall",
+      "text": "A toy mixture puts fraction 0.008 at rate 100 and the remainder at rate 1. What is its aggregate rate? Answer 1.792.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0552/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #552. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.008 at rate 100 and the remainder at rate 1. What is its aggregate rate?",
+    "options": [
+      "1.075",
+      "1.792",
+      "2.509"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Rate 1.792 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0552",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-552"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 552,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **552. Lévy flight vs random walk** \\[Split\\]: a few huge jumps vs many small steps, the two styles of animal foraging.",
+    "modelBoundary": "a finite jump-mixture facet rather than a stable Levy process",
+    "recallInputs": [
+      0.008,
+      100,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

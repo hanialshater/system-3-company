@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0024",
+  "title": "Average the selected short sequences",
+  "hook": "Two stated cases: explore sequence-level averaging after heads.",
+  "domain": "probability",
+  "concept": "cp-source-0024",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How sequence-level averaging after heads affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MeanSelected, regardless of the stated inputs.",
+  "objective": "Compare sequence-level averaging after heads in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0024.predict",
+      "text": "Enumerate 4 independent flips with heads probability 0.5. Exclude sequences with no heads before the last position. Average each remaining sequence’s fraction of heads-after-heads. What results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.reveal.0",
+      "text": "The retained results are N=4; MeanSelected=0.405 and N=8; MeanSelected=0.433.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.reveal.1",
+      "text": "Equal weighting of sequence-level fractions differs from pooling all eligible transitions. The finite-sequence selection rule creates the contrast. This comparison isolates sequence-level averaging after heads.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.case.0.witness",
+      "text": "N=4; MeanSelected=0.405",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",4],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanSelected\",\"value\":0.4047619047619047}]},\"metrics\":[{\"label\":\"MeanSelected\",\"value\":\"0.405\"},{\"label\":\"N\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.case.1.witness",
+      "text": "N=8; MeanSelected=0.433",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",8],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanSelected\",\"value\":0.432508436445444}]},\"metrics\":[{\"label\":\"MeanSelected\",\"value\":\"0.433\"},{\"label\":\"N\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0024.recall",
+      "text": "Enumerate 5 independent flips with heads probability 0.5. Exclude sequences with no heads before the last position. Average each remaining sequence’s fraction of heads-after-heads. What results? Answer 0.408.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0024/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #24. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Enumerate 5 independent flips with heads probability 0.5. Exclude sequences with no heads before the last position. Average each remaining sequence’s fraction of heads-after-heads. What results?",
+    "options": [
+      "0.245",
+      "0.408",
+      "0.572"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives MeanSelected 0.408 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0024",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-24"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 24,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **24. Hot hand bias** \\[Gotcha\\]: in 4-flip sequences, the average share of heads after heads is about 40%, not 50%.",
+    "modelBoundary": "sequence-level averaging after heads",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      5,
+      0.5
+    ]
+  }
+}

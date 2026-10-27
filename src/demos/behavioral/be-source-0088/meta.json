@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0088",
+  "title": "An account people may decline",
+  "hook": "Two stated cases: explore the share reached by a commitment offer.",
+  "domain": "behavioral",
+  "concept": "be-source-0088",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the share reached by a commitment offer affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Added, regardless of the stated inputs.",
+  "objective": "Compare the share reached by a commitment offer in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0088.predict",
+      "text": "A toy program has 100 eligible units, uptake fraction 0.28, and added amount 81 per participant. What total is added?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.reveal.0",
+      "text": "The retained results are Uptake=0.28; Added=2,268 and Uptake=1; Added=8,100.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.reveal.1",
+      "text": "Separate the effect among participants from the share who participate. Scaling a program requires both pieces. This comparison isolates the share reached by a commitment offer.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.case.0.witness",
+      "text": "Uptake=0.28; Added=2,268",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",100],[\"Uptake\",0.28],[\"Increase\",81]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":2268.0000000000005}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"2,268\"},{\"label\":\"Uptake\",\"value\":\"0.28\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.case.1.witness",
+      "text": "Uptake=1; Added=8,100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",100],[\"Uptake\",1],[\"Increase\",81]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":8100}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"8,100\"},{\"label\":\"Uptake\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0088.recall",
+      "text": "A toy program has 101 eligible units, uptake fraction 0.28, and added amount 81 per participant. What total is added? Answer 2,290.68.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0088/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #88. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy program has 101 eligible units, uptake fraction 0.28, and added amount 81 per participant. What total is added?",
+    "options": [
+      "1,374.408",
+      "3,206.952",
+      "2,290.68"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Added 2,290.68 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0088",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-88"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 88,
+    "sourceSection": "5. Present bias & time preferences",
+    "sourceEntryOriginal": "- **88.** In the Philippines 28% took up a locked savings account, and their savings rose 81% after a year (Ashraf, Karlan & Yin, 2006).",
+    "modelBoundary": "the share reached by a commitment offer",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      0.28,
+      81
+    ]
+  }
+}

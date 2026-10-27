@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0584",
+  "title": "The starting state fades with steps",
+  "hook": "Two stated cases: explore the finite-time transient in a specified chain.",
+  "domain": "probability",
+  "concept": "cp-source-0584",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the finite-time transient in a specified chain affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines TV, regardless of the stated inputs.",
+  "objective": "Compare the finite-time transient in a specified chain in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0584.predict",
+      "text": "A toy two-state chain transitions 0→1 with A 0.2, 1→0 with B 0.3; initial P(1) 1. After 0 steps, what is total-variation distance from stationarity?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.reveal.0",
+      "text": "The retained results are Steps=0; TV=0.6 and Steps=100; TV=4.73e-31.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.reveal.1",
+      "text": "The nontrivial eigenvalue controls the transient distance in this two-state model. A stationary distribution can exist even when periodicity prevents convergence. This comparison isolates the finite-time transient in a specified chain.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.case.0.witness",
+      "text": "Steps=0; TV=0.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.2],[\"B\",0.3],[\"Start\",1],[\"Steps\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"TV\",\"value\":0.6},{\"label\":\"Gap\",\"value\":0.5}]},\"metrics\":[{\"label\":\"TV\",\"value\":\"0.6\"},{\"label\":\"Steps\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.case.1.witness",
+      "text": "Steps=100; TV=4.73e-31",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0.2],[\"B\",0.3],[\"Start\",1],[\"Steps\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"TV\",\"value\":4.733165431326071e-31},{\"label\":\"Gap\",\"value\":0.5}]},\"metrics\":[{\"label\":\"TV\",\"value\":\"4.73e-31\"},{\"label\":\"Steps\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0584.recall",
+      "text": "A toy two-state chain transitions 0→1 with A 0.3, 1→0 with B 0.3; initial P(1) 1. After 0 steps, what is total-variation distance from stationarity? Answer 0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0584/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #584. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy two-state chain transitions 0→1 with A 0.3, 1→0 with B 0.3; initial P(1) 1. After 0 steps, what is total-variation distance from stationarity?",
+    "options": [
+      "0.5",
+      "0.3",
+      "0.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives TV 0.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0584",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-584"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 584,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **584. Burn-in** \\[Predict\\]: start far away and guess when the chain has forgotten its starting point.",
+    "modelBoundary": "the finite-time transient in a specified chain",
+    "recallInputs": [
+      0.30000000000000004,
+      0.3,
+      1,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0898",
+  "title": "Remove a fixed baseline difference",
+  "hook": "Two stated cases: explore the time-invariant treated intercept removed by differencing.",
+  "domain": "probability",
+  "concept": "cp-source-0898",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the time-invariant treated intercept removed by differencing affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the time-invariant treated intercept removed by differencing in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0898.predict",
+      "text": "Toy treated outcomes move 10→15; controls move 20→22. What difference-in-differences results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.reveal.0",
+      "text": "The retained results are TBefore=10 TAfter=15; Estimate=3 and TBefore=100 TAfter=105; Estimate=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.reveal.1",
+      "text": "The arithmetic removes the control change. Interpreting it causally requires parallel untreated trends and other design assumptions. This comparison isolates the time-invariant treated intercept removed by differencing.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.case.0.witness",
+      "text": "TBefore=10 TAfter=15; Estimate=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",10],[\"TAfter\",15],[\"CBefore\",20],[\"CAfter\",22]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":3}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"3\"},{\"label\":\"TBefore\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.case.1.witness",
+      "text": "TBefore=100 TAfter=105; Estimate=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",100],[\"TAfter\",105],[\"CBefore\",20],[\"CAfter\",22]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":3}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"3\"},{\"label\":\"TBefore\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0898.recall",
+      "text": "Toy treated outcomes move 11→15; controls move 20→22. What difference-in-differences results? Answer 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0898/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #898. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy treated outcomes move 11→15; controls move 20→22. What difference-in-differences results?",
+    "options": [
+      "1.2",
+      "2.8",
+      "2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Estimate 2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0898",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-898"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 898,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **898. Fixed effects** \\[Slider\\]: per-unit intercepts remove all time-invariant confounders at once.",
+    "modelBoundary": "the time-invariant treated intercept removed by differencing",
+    "recallInputs": [
+      11,
+      15,
+      20,
+      22
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

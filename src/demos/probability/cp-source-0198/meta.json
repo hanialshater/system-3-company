@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0198",
+  "title": "Always negative still scores highly",
+  "hook": "Two stated cases: explore the rare-class base rate behind apparent accuracy.",
+  "domain": "probability",
+  "concept": "cp-source-0198",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the rare-class base rate behind apparent accuracy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Accuracy, regardless of the stated inputs.",
+  "objective": "Compare the rare-class base rate behind apparent accuracy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0198.predict",
+      "text": "A toy population has 990 negative and 10 positive cases. A classifier predicts negative for everyone. What accuracy does it achieve?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.reveal.0",
+      "text": "The retained results are Negative=990 Positive=10; Accuracy=0.99 and Negative=900 Positive=100; Accuracy=0.9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.reveal.1",
+      "text": "An always-negative classifier can have high accuracy while detecting no positive cases. The class base rate supplies the apparent success. This comparison isolates the rare-class base rate behind apparent accuracy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.case.0.witness",
+      "text": "Negative=990 Positive=10; Accuracy=0.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Negative\",990],[\"Positive\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.99},{\"label\":\"Recall\",\"value\":0}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.99\"},{\"label\":\"Negative\",\"value\":\"990\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.case.1.witness",
+      "text": "Negative=900 Positive=100; Accuracy=0.9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Negative\",900],[\"Positive\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.9},{\"label\":\"Recall\",\"value\":0}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.9\"},{\"label\":\"Negative\",\"value\":\"900\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0198.recall",
+      "text": "A toy population has 990 negative and 11 positive cases. A classifier predicts negative for everyone. What accuracy does it achieve? Answer 0.989.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0198/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #198. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has 990 negative and 11 positive cases. A classifier predicts negative for everyone. What accuracy does it achieve?",
+    "options": [
+      "0.593",
+      "0.989",
+      "1.385"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Accuracy 0.989 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0198",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-198"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 198,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **198. 99% accurate, useless** \\[Gotcha\\]: with 1% fraud, \"never fraud\" scores 99% accuracy and catches nothing.",
+    "modelBoundary": "the rare-class base rate behind apparent accuracy",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      990,
+      11
+    ]
+  }
+}

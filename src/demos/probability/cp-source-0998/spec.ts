@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0998", "title": "More lineages merge sooner", "op": "coalescent", "labels": ["Lineages", "Population"], "outputs": ["Wait"], "a": [2.0, 1000.0], "b": [10.0, 1000.0], "question": "A toy diploid constant population has effective size 1000. With 2 ancestral lineages, what approximate generations until the next pair coalesces?", "questionTemplate": "A toy diploid constant population has effective size {Population}. With {Lineages} ancestral lineages, what approximate generations until the next pair coalesces?", "explain": "The pairwise coalescent rate adds over possible pairs. This approximation assumes neutral ancestry and a suitable large-population limit.", "lens": "the pair count determining a neutral coalescent waiting time", "kind": "bars", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

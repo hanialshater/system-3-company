@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0664",
+  "title": "Fuse two independent scalar sensors",
+  "hook": "Two stated cases: explore the relative precisions of two stated sensor measurements.",
+  "domain": "probability",
+  "concept": "cp-source-0664",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the relative precisions of two stated sensor measurements affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the relative precisions of two stated sensor measurements in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0664.predict",
+      "text": "A toy normal prior has mean 0, variance 4; one normal measurement is 3 with noise variance 1. What is the posterior mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.reveal.0",
+      "text": "The retained results are Noise=1; Mean=2.4 and Noise=9; Mean=0.923.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.reveal.1",
+      "text": "Precisions weight the prior and measurement. The variance calculation assumes the stated independent normal model. This comparison isolates the relative precisions of two stated sensor measurements.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.case.0.witness",
+      "text": "Noise=1; Mean=2.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",3],[\"Noise\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":2.4},{\"label\":\"Variance\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"2.4\"},{\"label\":\"Noise\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.case.1.witness",
+      "text": "Noise=9; Mean=0.923",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",3],[\"Noise\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.923076923076923},{\"label\":\"Variance\",\"value\":2.769230769230769}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.923\"},{\"label\":\"Noise\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0664.recall",
+      "text": "A toy normal prior has mean 0, variance 5; one normal measurement is 3 with noise variance 1. What is the posterior mean? Answer 2.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0664/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #664. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal prior has mean 0, variance 5; one normal measurement is 3 with noise variance 1. What is the posterior mean?",
+    "options": [
+      "1.5",
+      "3.5",
+      "2.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 2.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0664",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-664"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 664,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **664. Sensor fusion** \\[Slider\\]: combine jumpy GPS with drifting motion sensors; together they beat either alone.",
+    "modelBoundary": "the relative precisions of two stated sensor measurements",
+    "recallInputs": [
+      0,
+      5,
+      3,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

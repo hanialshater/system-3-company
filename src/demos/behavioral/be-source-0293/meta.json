@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0293",
+  "title": "A price above the reference",
+  "hook": "Two stated cases: explore the sign of a price difference under a stated value rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0293",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sign of a price difference under a stated value rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the sign of a price difference under a stated value rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0293.predict",
+      "text": "An outcome is 12, its reference is 10, and negative differences count 2 times positive ones. What is its signed model value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.reveal.0",
+      "text": "The retained results are Outcome=12; Value=2 and Outcome=8; Value=-4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.reveal.1",
+      "text": "The same outcome changes sign when its reference crosses it. The reference is a stated assumption, not a measure of anyone’s feelings. This comparison isolates the sign of a price difference under a stated value rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.case.0.witness",
+      "text": "Outcome=12; Value=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcome\",12],[\"Reference\",10],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":12},{\"label\":\"Result\",\"value\":2}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"2\"},{\"label\":\"Outcome\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.case.1.witness",
+      "text": "Outcome=8; Value=-4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcome\",8],[\"Reference\",10],[\"Lambda\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":8},{\"label\":\"Result\",\"value\":-4}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"-4\"},{\"label\":\"Outcome\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0293.recall",
+      "text": "An outcome is 13, its reference is 10, and negative differences count 2 times positive ones. What is its signed model value? Answer 3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0293/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #293. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An outcome is 13, its reference is 10, and negative differences count 2 times positive ones. What is its signed model value?",
+    "options": [
+      "3",
+      "1.8",
+      "4.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Value 3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0293",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-293"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 293,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **293.** Shoppers react more to prices above their reference price than to equal prices below it (Kalyanaram & Winer, 1995).",
+    "modelBoundary": "the sign of a price difference under a stated value rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      13,
+      10,
+      2
+    ]
+  }
+}

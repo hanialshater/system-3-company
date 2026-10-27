@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0434",
+  "title": "A day is a mix of activities",
+  "hook": "Two stated cases: explore the time weights behind an average experience score.",
+  "domain": "behavioral",
+  "concept": "be-source-0434",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the time weights behind an average experience score affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the time weights behind an average experience score in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0434.predict",
+      "text": "A toy mixture puts fraction 0.2 at rate 2 and the remainder at rate 8. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.reveal.0",
+      "text": "The retained results are Weight=0.2; Rate=6.8 and Weight=0.6; Rate=4.4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates the time weights behind an average experience score.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.case.0.witness",
+      "text": "Weight=0.2; Rate=6.8",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.2],[\"RateA\",2],[\"RateB\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":6.800000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"6.8\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.case.1.witness",
+      "text": "Weight=0.6; Rate=4.4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.6],[\"RateA\",2],[\"RateB\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":4.4}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"4.4\"},{\"label\":\"Weight\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0434.recall",
+      "text": "A toy mixture puts fraction 0.16 at rate 2 and the remainder at rate 8. What is its aggregate rate? Answer 7.04.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0434/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #434. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.16 at rate 2 and the remainder at rate 8. What is its aggregate rate?",
+    "options": [
+      "7.04",
+      "4.224",
+      "9.856"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Rate 7.04 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0434",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-434"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 434,
+    "sourceSection": "22. Experience, memory & happiness",
+    "sourceEntryOriginal": "- **434.** Among daily activities, commuting was rated least pleasant and socializing among the most (Kahneman, Krueger, Schkade, Schwarz & Stone, 2004).",
+    "modelBoundary": "the time weights behind an average experience score",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.16000000000000003,
+      2,
+      8
+    ]
+  }
+}

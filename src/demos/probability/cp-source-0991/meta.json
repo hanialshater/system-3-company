@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0991",
+  "title": "Random atoms have a smooth mean decay",
+  "hook": "Two stated cases: explore the elapsed half-lives of independent decays.",
+  "domain": "probability",
+  "concept": "cp-source-0991",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the elapsed half-lives of independent decays affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the elapsed half-lives of independent decays in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0991.predict",
+      "text": "Independent toy decays start with Initial 1000 atoms and HalfLife 2. What expected survivors remain at Time 2?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.reveal.0",
+      "text": "The retained results are Time=2; Expected=500 and Time=4; Expected=250.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.reveal.1",
+      "text": "Independent random lifetimes produce a smooth expected population decay. Realized survivor counts still fluctuate. This comparison isolates the elapsed half-lives of independent decays.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.case.0.witness",
+      "text": "Time=2; Expected=500",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1000],[\"HalfLife\",2],[\"Time\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1000},{\"x\":0.4166666666666667,\"y\":865.5365610061431},{\"x\":0.8333333333333334,\"y\":749.1535384383408},{\"x\":1.25,\"y\":648.4197773255048},{\"x\":1.6666666666666667,\"y\":561.2310241546866},{\"x\":2.0833333333333335,\"y\":485.76597057680294},{\"x\":2.5,\"y\":420.44820762685725},{\"x\":2.9166666666666665,\"y\":363.9132957105469},{\"x\":3.3333333333333335,\"y\":314.9802624737183},{\"x\":3.75,\"y\":272.6269331663144},{\"x\":4.166666666666667,\"y\":235.96857817042334},{\"x\":4.583333333333333,\"y\":204.2394316551375},{\"x\":5,\"y\":176.7766952966369},{\"x\":5.416666666666667,\"y\":153.00669291308188},{\"x\":5.833333333333333,\"y\":132.43288679491192},{\"x\":6.25,\"y\":114.6255054005839},{\"x\":6.666666666666667,\"y\":99.21256574801247},{\"x\":7.083333333333333,\"y\":85.87210296613058},{\"x\":7.5,\"y\":74.32544468767007},{\"x\":7.916666666666667,\"y\":64.33138979021824},{\"x\":8.333333333333334,\"y\":55.6811698837712},{\"x\":8.75,\"y\":48.19408829399815},{\"x\":9.166666666666666,\"y\":41.71374544281358},{\"x\":9.583333333333334,\"y\":36.10477177725852},{\"x\":10,\"y\":31.25}],\"xLabel\":\"Time\",\"yLabel\":\"Expected\"},\"metrics\":[{\"label\":\"Expected\",\"value\":\"500\"},{\"label\":\"Time\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.case.1.witness",
+      "text": "Time=4; Expected=250",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1000],[\"HalfLife\",2],[\"Time\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1000},{\"x\":0.4166666666666667,\"y\":865.5365610061431},{\"x\":0.8333333333333334,\"y\":749.1535384383408},{\"x\":1.25,\"y\":648.4197773255048},{\"x\":1.6666666666666667,\"y\":561.2310241546866},{\"x\":2.0833333333333335,\"y\":485.76597057680294},{\"x\":2.5,\"y\":420.44820762685725},{\"x\":2.9166666666666665,\"y\":363.9132957105469},{\"x\":3.3333333333333335,\"y\":314.9802624737183},{\"x\":3.75,\"y\":272.6269331663144},{\"x\":4.166666666666667,\"y\":235.96857817042334},{\"x\":4.583333333333333,\"y\":204.2394316551375},{\"x\":5,\"y\":176.7766952966369},{\"x\":5.416666666666667,\"y\":153.00669291308188},{\"x\":5.833333333333333,\"y\":132.43288679491192},{\"x\":6.25,\"y\":114.6255054005839},{\"x\":6.666666666666667,\"y\":99.21256574801247},{\"x\":7.083333333333333,\"y\":85.87210296613058},{\"x\":7.5,\"y\":74.32544468767007},{\"x\":7.916666666666667,\"y\":64.33138979021824},{\"x\":8.333333333333334,\"y\":55.6811698837712},{\"x\":8.75,\"y\":48.19408829399815},{\"x\":9.166666666666666,\"y\":41.71374544281358},{\"x\":9.583333333333334,\"y\":36.10477177725852},{\"x\":10,\"y\":31.25}],\"xLabel\":\"Time\",\"yLabel\":\"Expected\"},\"metrics\":[{\"label\":\"Expected\",\"value\":\"250\"},{\"label\":\"Time\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0991.recall",
+      "text": "Independent toy decays start with Initial 1,001 atoms and HalfLife 2. What expected survivors remain at Time 2? Answer 500.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0991/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #991. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent toy decays start with Initial 1,001 atoms and HalfLife 2. What expected survivors remain at Time 2?",
+    "options": [
+      "300.3",
+      "700.7",
+      "500.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected 500.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0991",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-991"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 991,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **991. Half-life from chaos** \\[Predict\\]: each atom decays at random, yet the population halves on schedule.",
+    "modelBoundary": "the elapsed half-lives of independent decays",
+    "recallInputs": [
+      1001,
+      2,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

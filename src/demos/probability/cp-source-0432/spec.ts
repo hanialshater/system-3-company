@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0432", "title": "Paying people who already would buy", "op": "policyvalue", "labels": ["Baseline", "Uplift", "Cost", "People"], "outputs": ["Increment"], "a": [0.9, 0.0, 0.05, 100.0], "b": [0.9, 0.1, 0.05, 100.0], "question": "A toy unit has baseline purchase chance 0.9, causal revenue lift 0, and treatment cost 0.05. For 100 treated units, what incremental net value results?", "questionTemplate": "A toy unit has baseline purchase chance {Baseline}, causal revenue lift {Uplift}, and treatment cost {Cost}. For {People} treated units, what incremental net value results?", "explain": "Incremental value uses the change caused by treatment, not baseline purchase propensity. The model assumes the specified causal lift and common value units.", "lens": "the difference between baseline purchase and incremental lift", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

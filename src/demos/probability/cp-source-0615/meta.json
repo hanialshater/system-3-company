@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0615",
+  "title": "Measure one toy approximation error",
+  "hook": "Two stated cases for measure one toy approximation error.",
+  "domain": "probability",
+  "concept": "cp-source-0615",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Gaussian-family comparison rather than a measured inference race affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines KL, regardless of the stated inputs.",
+  "objective": "Compare the Gaussian-family comparison rather than a measured inference race in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0615.predict",
+      "text": "Q is toy Normal(0,0.5²), P standard normal. What is KL(Q||P) in nats?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.reveal.0",
+      "text": "The retained results are SD=0.5; KL=0.318 and SD=1; KL=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.reveal.1",
+      "text": "A Gaussian approximation can differ in location and scale. This exact family comparison does not evaluate approximation error for a non-Gaussian target. This comparison isolates the Gaussian-family comparison rather than a measured inference race.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.case.0.witness",
+      "text": "SD=0.5; KL=0.318",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"SD\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"KL\",\"value\":0.3181471805599453}]},\"metrics\":[{\"label\":\"KL\",\"value\":\"0.318\"},{\"label\":\"SD\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.case.1.witness",
+      "text": "SD=1; KL=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"SD\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"KL\",\"value\":0}]},\"metrics\":[{\"label\":\"KL\",\"value\":\"0\"},{\"label\":\"SD\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0615.recall",
+      "text": "Q is toy Normal(1,0.5²), P standard normal. What is KL(Q||P) in nats? Answer 0.818.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0615/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #615. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Q is toy Normal(1,0.5²), P standard normal. What is KL(Q||P) in nats?",
+    "options": [
+      "0.491",
+      "0.818",
+      "1.145"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives KL 0.818 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0615",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-615"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 615,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **615. Fast vs exact** \\[Split\\]: variational and Gibbs topic models race; one is faster, the other more accurate.",
+    "modelBoundary": "the Gaussian-family comparison rather than a measured inference race",
+    "recallInputs": [
+      1,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

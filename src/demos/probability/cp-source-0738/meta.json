@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0738",
+  "title": "Stretch a lifetime's clock",
+  "hook": "Two stated cases: explore the accelerated-time factor in one survival model.",
+  "domain": "probability",
+  "concept": "cp-source-0738",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the accelerated-time factor in one survival model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare the accelerated-time factor in one survival model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0738.predict",
+      "text": "A toy exponential Rate 0.2 has its lifetime multiplied by Stretch 1. What survival remains at Time 5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.reveal.0",
+      "text": "The retained results are Stretch=1; Survival=0.368 and Stretch=2; Survival=0.607.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.reveal.1",
+      "text": "Stretching time changes when a survival probability is reached. This one exponential model does not establish a general hazard-ratio interpretation. This comparison isolates the accelerated-time factor in one survival model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.case.0.witness",
+      "text": "Stretch=1; Survival=0.368",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.2],[\"Stretch\",1],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.4166666666666667,\"y\":0.9200444146293232},{\"x\":0.8333333333333334,\"y\":0.846481724890614},{\"x\":1.25,\"y\":0.7788007830714049},{\"x\":1.6666666666666667,\"y\":0.7165313105737892},{\"x\":2.0833333333333335,\"y\":0.6592406302004437},{\"x\":2.5,\"y\":0.6065306597126334},{\"x\":2.9166666666666665,\"y\":0.5580351457700471},{\"x\":3.3333333333333335,\"y\":0.513417119032592},{\"x\":3.75,\"y\":0.4723665527410147},{\"x\":4.166666666666667,\"y\":0.43459820850707814},{\"x\":4.583333333333333,\"y\":0.39984965434484737},{\"x\":5,\"y\":0.36787944117144233},{\"x\":5.416666666666667,\"y\":0.33846542510674216},{\"x\":5.833333333333333,\"y\":0.3114032239145977},{\"x\":6.25,\"y\":0.2865047968601901},{\"x\":6.666666666666667,\"y\":0.2635971381157267},{\"x\":7.083333333333333,\"y\":0.2425210746356487},{\"x\":7.5,\"y\":0.22313016014842982},{\"x\":7.916666666666667,\"y\":0.20528965757990925},{\"x\":8.333333333333334,\"y\":0.18887560283756177},{\"x\":8.75,\"y\":0.1737739434504451},{\"x\":9.166666666666666,\"y\":0.1598797460796939},{\"x\":9.583333333333334,\"y\":0.14709646739297677},{\"x\":10,\"y\":0.1353352832366127}],\"xLabel\":\"Time\",\"yLabel\":\"Survival\"},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.368\"},{\"label\":\"Stretch\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.case.1.witness",
+      "text": "Stretch=2; Survival=0.607",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.2],[\"Stretch\",2],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.4166666666666667,\"y\":0.9591894571091382},{\"x\":0.8333333333333334,\"y\":0.9200444146293232},{\"x\":1.25,\"y\":0.8824969025845955},{\"x\":1.6666666666666667,\"y\":0.846481724890614},{\"x\":2.0833333333333335,\"y\":0.8119363461506349},{\"x\":2.5,\"y\":0.7788007830714049},{\"x\":2.9166666666666665,\"y\":0.7470175003104325},{\"x\":3.3333333333333335,\"y\":0.7165313105737892},{\"x\":3.75,\"y\":0.6872892787909721},{\"x\":4.166666666666667,\"y\":0.6592406302004437},{\"x\":4.583333333333333,\"y\":0.6323366621862498},{\"x\":5,\"y\":0.6065306597126334},{\"x\":5.416666666666667,\"y\":0.5817778142098082},{\"x\":5.833333333333333,\"y\":0.5580351457700471},{\"x\":6.25,\"y\":0.5352614285189903},{\"x\":6.666666666666667,\"y\":0.513417119032592},{\"x\":7.083333333333333,\"y\":0.49246428767540973},{\"x\":7.5,\"y\":0.4723665527410147},{\"x\":7.916666666666667,\"y\":0.4530890172801689},{\"x\":8.333333333333334,\"y\":0.43459820850707814},{\"x\":8.75,\"y\":0.4168620196785084},{\"x\":9.166666666666666,\"y\":0.39984965434484737},{\"x\":9.583333333333334,\"y\":0.3835315728763106},{\"x\":10,\"y\":0.36787944117144233}],\"xLabel\":\"Time\",\"yLabel\":\"Survival\"},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.607\"},{\"label\":\"Stretch\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0738.recall",
+      "text": "A toy exponential Rate 0.3 has its lifetime multiplied by Stretch 1. What survival remains at Time 5? Answer 0.223.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0738/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #738. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy exponential Rate 0.3 has its lifetime multiplied by Stretch 1. What survival remains at Time 5?",
+    "options": [
+      "0.123",
+      "0.223",
+      "0.323"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Survival 0.223 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0738",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-738"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 738,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **738. Accelerated failure time** \\[Slider\\]: a factor that stretches or shrinks time itself, like heat aging a battery.",
+    "modelBoundary": "the accelerated-time factor in one survival model",
+    "recallInputs": [
+      0.30000000000000004,
+      1,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0507",
+  "title": "One fast server or two slower ones",
+  "hook": "Two stated cases: explore waiting and total time at equal total service capacity.",
+  "domain": "probability",
+  "concept": "cp-source-0507",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How waiting and total time at equal total service capacity affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare waiting and total time at equal total service capacity in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0507.predict",
+      "text": "A stable toy M/M/c queue has arrival rate 1.8, service rate 2 per server, 1 servers and wait threshold 1. What is mean waiting time before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.reveal.0",
+      "text": "The retained results are Service=2 Servers=1; Wait=4.5 and Service=1 Servers=2; Wait=4.263.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.reveal.1",
+      "text": "Pooling servers changes both waiting probability and delay. Erlang C assumes Poisson arrivals, exponential service, an infinite queue and no abandonment. This comparison isolates waiting and total time at equal total service capacity.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.case.0.witness",
+      "text": "Service=2 Servers=1; Wait=4.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",1.8],[\"Service\",2],[\"Servers\",1],[\"Threshold\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":4.500000000000001},{\"label\":\"Total\",\"value\":5.000000000000001},{\"label\":\"SLA\",\"value\":0.26314232222981626},{\"label\":\"Utilization\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"4.5\"},{\"label\":\"Service\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.case.1.witness",
+      "text": "Service=1 Servers=2; Wait=4.263",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",1.8],[\"Service\",1],[\"Servers\",2],[\"Threshold\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":4.263157894736843},{\"label\":\"Total\",\"value\":5.263157894736843},{\"label\":\"SLA\",\"value\":0.3019243052703523},{\"label\":\"Utilization\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"4.263\"},{\"label\":\"Service\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0507.recall",
+      "text": "A stable toy M/M/c queue has arrival rate 1.9, service rate 2 per server, 1 servers and wait threshold 1. What is mean waiting time before service? Answer 9.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0507/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #507. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/M/c queue has arrival rate 1.9, service rate 2 per server, 1 servers and wait threshold 1. What is mean waiting time before service?",
+    "options": [
+      "5.7",
+      "9.5",
+      "13.3"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Wait 9.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0507",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-507"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 507,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **507. One fast or two slow?** \\[Split\\]: one server at double speed vs two normal servers; compare waits and total time.",
+    "modelBoundary": "waiting and total time at equal total service capacity",
+    "recallInputs": [
+      1.9000000000000001,
+      2,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

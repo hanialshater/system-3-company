@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0378",
+  "title": "Deaths versus a modeled baseline",
+  "hook": "Two stated cases: explore the specified counterfactual baseline in an excess count.",
+  "domain": "probability",
+  "concept": "cp-source-0378",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the specified counterfactual baseline in an excess count affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Effect, regardless of the stated inputs.",
+  "objective": "Compare the specified counterfactual baseline in an excess count in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0378.predict",
+      "text": "In a toy structural model the same unit has outcome 100 without treatment and 130 with treatment. What individual effect is with minus without?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.reveal.0",
+      "text": "The retained results are Without=100; Effect=30 and Without=120; Effect=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.reveal.1",
+      "text": "The two potential outcomes are defined in the model, although only one would be observed for a unit in an ordinary trial. This comparison isolates the specified counterfactual baseline in an excess count.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.case.0.witness",
+      "text": "Without=100; Effect=30",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Without\",100],[\"With\",130]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Effect\",\"value\":30}]},\"metrics\":[{\"label\":\"Effect\",\"value\":\"30\"},{\"label\":\"Without\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.case.1.witness",
+      "text": "Without=120; Effect=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Without\",120],[\"With\",130]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Effect\",\"value\":10}]},\"metrics\":[{\"label\":\"Effect\",\"value\":\"10\"},{\"label\":\"Without\",\"value\":\"120\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0378.recall",
+      "text": "In a toy structural model the same unit has outcome 101 without treatment and 130 with treatment. What individual effect is with minus without? Answer 29.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0378/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #378. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy structural model the same unit has outcome 101 without treatment and 130 with treatment. What individual effect is with minus without?",
+    "options": [
+      "17.4",
+      "29",
+      "40.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Effect 29 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0378",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-378"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 378,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **378. Excess deaths** \\[Story\\]: pandemic death tolls were estimated by comparing actual deaths to a modeled no-pandemic baseline.",
+    "modelBoundary": "the specified counterfactual baseline in an excess count",
+    "recallInputs": [
+      101,
+      130
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

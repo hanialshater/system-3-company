@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0963",
+  "title": "The Hurst exponent changes scaling",
+  "hook": "Two stated cases: explore the Gaussian increment scale at a fixed distance.",
+  "domain": "probability",
+  "concept": "cp-source-0963",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Gaussian increment scale at a fixed distance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines IncrementSD, regardless of the stated inputs.",
+  "objective": "Compare the Gaussian increment scale at a fixed distance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0963.predict",
+      "text": "A unit-scale toy fractional Brownian increment over distance Scale 0.1 has Hurst exponent H 0.2. What increment SD results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.reveal.0",
+      "text": "The retained results are H=0.2; IncrementSD=0.631 and H=0.8; IncrementSD=0.158.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.reveal.1",
+      "text": "The power law specifies increment scaling. It describes a Gaussian process law rather than one rendered terrain. This comparison isolates the Gaussian increment scale at a fixed distance.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.case.0.witness",
+      "text": "H=0.2; IncrementSD=0.631",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Scale\",0.1],[\"H\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.01,\"y\":0.39810717055349726},{\"x\":0.051250000000000004,\"y\":0.5519996138829345},{\"x\":0.0925,\"y\":0.6211955651540176},{\"x\":0.13374999999999998,\"y\":0.6687422439698935},{\"x\":0.17500000000000002,\"y\":0.705679676106998},{\"x\":0.21625000000000003,\"y\":0.7361922194401409},{\"x\":0.25749999999999995,\"y\":0.7623518291760568},{\"x\":0.29875,\"y\":0.7853469886171772},{\"x\":0.34,\"y\":0.8059271442790801},{\"x\":0.38125000000000003,\"y\":0.8245974177668626},{\"x\":0.42250000000000004,\"y\":0.8417155348343195},{\"x\":0.46375000000000005,\"y\":0.8575447343092423},{\"x\":0.5049999999999999,\"y\":0.8722847415143374},{\"x\":0.54625,\"y\":0.8860909276357555},{\"x\":0.5875,\"y\":0.8990867018686658},{\"x\":0.62875,\"y\":0.9113718278207493},{\"x\":0.67,\"y\":0.923028180690743},{\"x\":0.7112499999999999,\"y\":0.9341238398392949},{\"x\":0.7525000000000001,\"y\":0.9447160654546711},{\"x\":0.79375,\"y\":0.9548535073095814},{\"x\":0.8350000000000001,\"y\":0.9645778728323593},{\"x\":0.87625,\"y\":0.973925206697228},{\"x\":0.9175000000000001,\"y\":0.9829268862200461},{\"x\":0.95875,\"y\":0.9916104054696504},{\"x\":0.9999999999999999,\"y\":1}],\"xLabel\":\"Scale\",\"yLabel\":\"IncrementSD\"},\"metrics\":[{\"label\":\"IncrementSD\",\"value\":\"0.631\"},{\"label\":\"H\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.case.1.witness",
+      "text": "H=0.8; IncrementSD=0.158",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Scale\",0.1],[\"H\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.01,\"y\":0.025118864315095798},{\"x\":0.051250000000000004,\"y\":0.09284426784194971},{\"x\":0.0925,\"y\":0.14890640756114507},{\"x\":0.13374999999999998,\"y\":0.20000231958730777},{\"x\":0.17500000000000002,\"y\":0.247987870311665},{\"x\":0.21625000000000003,\"y\":0.29374121905886713},{\"x\":0.25749999999999995,\"y\":0.33777055441488696},{\"x\":0.29875,\"y\":0.38040510033155256},{\"x\":0.34,\"y\":0.42187436223424096},{\"x\":0.38125000000000003,\"y\":0.462346827416079},{\"x\":0.42250000000000004,\"y\":0.5019510541446328},{\"x\":0.46375000000000005,\"y\":0.5407881145390666},{\"x\":0.5049999999999999,\"y\":0.5789393944038163},{\"x\":0.54625,\"y\":0.6164717219907554},{\"x\":0.5875,\"y\":0.6534408736987627},{\"x\":0.62875,\"y\":0.6898940485174444},{\"x\":0.67,\"y\":0.7258716624432954},{\"x\":0.7112499999999999,\"y\":0.7614086801621102},{\"x\":0.7525000000000001,\"y\":0.7965356232592893},{\"x\":0.79375,\"y\":0.8312793469612835},{\"x\":0.8350000000000001,\"y\":0.8656636478173914},{\"x\":0.87625,\"y\":0.8997097456503216},{\"x\":0.9175000000000001,\"y\":0.9334366704815122},{\"x\":0.95875,\"y\":0.9668615765946033},{\"x\":0.9999999999999999,\"y\":0.9999999999999999}],\"xLabel\":\"Scale\",\"yLabel\":\"IncrementSD\"},\"metrics\":[{\"label\":\"IncrementSD\",\"value\":\"0.158\"},{\"label\":\"H\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0963.recall",
+      "text": "A unit-scale toy fractional Brownian increment over distance Scale 0.2 has Hurst exponent H 0.2. What increment SD results? Answer 0.725.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0963/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #963. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A unit-scale toy fractional Brownian increment over distance Scale 0.2 has Hurst exponent H 0.2. What increment SD results?",
+    "options": [
+      "0.435",
+      "0.725",
+      "1.015"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives IncrementSD 0.725 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0963",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-963"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 963,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **963. Hurst exponent** \\[Slider\\]: fractional Brownian motion goes from rough to smooth as the exponent rises.",
+    "modelBoundary": "the Gaussian increment scale at a fixed distance",
+    "recallInputs": [
+      0.2,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

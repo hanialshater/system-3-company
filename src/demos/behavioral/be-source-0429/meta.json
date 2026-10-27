@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0429",
+  "title": "Two assumed adaptation rates",
+  "hook": "Two stated cases: explore the persistence parameter in a toy experience model.",
+  "domain": "behavioral",
+  "concept": "be-source-0429",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the persistence parameter in a toy experience model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the persistence parameter in a toy experience model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0429.predict",
+      "text": "Toy level is baseline 5 plus shock 3 times exp(-Decay 0.1 × Time 10). What level results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.reveal.0",
+      "text": "The retained results are Decay=0.1; Level=6.104 and Decay=0.5; Level=5.02.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.reveal.1",
+      "text": "An assumed fading shock produces adaptation toward the baseline. Real wellbeing need not follow this curve or recover fully. This comparison isolates the persistence parameter in a toy experience model.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.case.0.witness",
+      "text": "Decay=0.1; Level=6.104",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",5],[\"Shock\",3],[\"Decay\",0.1],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Level\",\"value\":6.103638323514327}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"6.104\"},{\"label\":\"Decay\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.case.1.witness",
+      "text": "Decay=0.5; Level=5.02",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",5],[\"Shock\",3],[\"Decay\",0.5],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Level\",\"value\":5.020213840997257}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"5.02\"},{\"label\":\"Decay\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0429.recall",
+      "text": "Toy level is baseline 6 plus shock 3 times exp(-Decay 0.1 × Time 10). What level results? Answer 7.104.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0429/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy level is baseline 6 plus shock 3 times exp(-Decay 0.1 × Time 10). What level results?",
+    "options": [
+      "4.262",
+      "7.104",
+      "9.945"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Level 7.104 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0429",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-429"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 429,
+    "sourceSection": "22. Experience, memory & happiness",
+    "sourceEntryOriginal": "- **429.** Spending on experiences brings more lasting happiness than spending on things (Van Boven & Gilovich, 2003).",
+    "modelBoundary": "the persistence parameter in a toy experience model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      6,
+      3,
+      0.1,
+      10
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0512",
+  "title": "The reserve scales with a square root",
+  "hook": "Two stated cases: explore the stated staffing-rule safety margin.",
+  "domain": "probability",
+  "concept": "cp-source-0512",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stated staffing-rule safety margin affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Servers, regardless of the stated inputs.",
+  "objective": "Compare the stated staffing-rule safety margin in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0512.predict",
+      "text": "A toy square-root staffing rule uses offered load 100 plus Z 2 times its square root, rounded up. What staffing count results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.reveal.0",
+      "text": "The retained results are Offered=100; Servers=120 and Offered=10,000; Servers=10,200.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.reveal.1",
+      "text": "This explicit rule scales a safety margin with square-root load. It does not guarantee a particular service level without a queueing model. This comparison isolates the stated staffing-rule safety margin.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.case.0.witness",
+      "text": "Offered=100; Servers=120",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offered\",100],[\"Z\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Servers\",\"value\":120}]},\"metrics\":[{\"label\":\"Servers\",\"value\":\"120\"},{\"label\":\"Offered\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.case.1.witness",
+      "text": "Offered=10,000; Servers=10,200",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offered\",10000],[\"Z\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Servers\",\"value\":10200}]},\"metrics\":[{\"label\":\"Servers\",\"value\":\"10,200\"},{\"label\":\"Offered\",\"value\":\"10,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0512.recall",
+      "text": "A toy square-root staffing rule uses offered load 101 plus Z 2 times its square root, rounded up. What staffing count results? Answer 122.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0512/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #512. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy square-root staffing rule uses offered load 101 plus Z 2 times its square root, rounded up. What staffing count results?",
+    "options": [
+      "122",
+      "73.2",
+      "170.8"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Servers 122 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0512",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-512"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 512,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **512. Square-root staffing** \\[Slider\\]: as call volume grows, the safety margin of extra agents grows only with its square root.",
+    "modelBoundary": "the stated staffing-rule safety margin",
+    "recallInputs": [
+      101,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

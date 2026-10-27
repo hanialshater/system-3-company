@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0135",
+  "title": "Action and inaction in one table",
+  "hook": "Two stated cases: explore the arithmetic before assigning blame.",
+  "domain": "behavioral",
+  "concept": "be-source-0135",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the arithmetic before assigning blame affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Difference, regardless of the stated inputs.",
+  "objective": "Compare the arithmetic before assigning blame in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0135.predict",
+      "text": "Across 1000 toy cases, action risk is 0.02 and inaction risk 0.04. How many fewer expected harms come with action?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.reveal.0",
+      "text": "The retained results are ActionRisk=0.02 InactionRisk=0.04; Difference=20 and ActionRisk=0.04 InactionRisk=0.02; Difference=-20.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.reveal.1",
+      "text": "Count both action and inaction using the same population. These are specified risks in a toy comparison. This comparison isolates the arithmetic before assigning blame.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.case.0.witness",
+      "text": "ActionRisk=0.02 InactionRisk=0.04; Difference=20",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",1000],[\"ActionRisk\",0.02],[\"InactionRisk\",0.04]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":20}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"20\"},{\"label\":\"ActionRisk\",\"value\":\"0.02\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.case.1.witness",
+      "text": "ActionRisk=0.04 InactionRisk=0.02; Difference=-20",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",1000],[\"ActionRisk\",0.04],[\"InactionRisk\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":-20}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"-20\"},{\"label\":\"ActionRisk\",\"value\":\"0.04\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0135.recall",
+      "text": "Across 1,001 toy cases, action risk is 0.02 and inaction risk 0.04. How many fewer expected harms come with action? Answer 20.02.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0135/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Across 1,001 toy cases, action risk is 0.02 and inaction risk 0.04. How many fewer expected harms come with action?",
+    "options": [
+      "12.012",
+      "20.02",
+      "28.028"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Difference 20.02 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0135",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-135"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 135,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **135.** Harm caused by action is judged worse than equal harm caused by inaction (Spranca, Minsk & Baron, 1991).",
+    "modelBoundary": "the arithmetic before assigning blame",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      0.02,
+      0.04
+    ]
+  }
+}

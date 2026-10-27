@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0372",
+  "title": "A bag tax and a bag bonus",
+  "hook": "Two stated cases: explore the final monetary consequence of each label.",
+  "domain": "behavioral",
+  "concept": "be-source-0372",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the final monetary consequence of each label affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the final monetary consequence of each label in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0372.predict",
+      "text": "A toy price starts at 1, subtracts discount 0, and adds surcharge 0.05. What is the final price?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.reveal.0",
+      "text": "The retained results are Discount=0 Surcharge=0.05; Final=1.05 and Discount=0.05 Surcharge=0; Final=0.95.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.reveal.1",
+      "text": "Compare final prices under the two labels. Fairness or preference judgments are not implied by equal arithmetic. This comparison isolates the final monetary consequence of each label.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.case.0.witness",
+      "text": "Discount=0 Surcharge=0.05; Final=1.05",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",1],[\"Discount\",0],[\"Surcharge\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":1.05}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"1.05\"},{\"label\":\"Discount\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.case.1.witness",
+      "text": "Discount=0.05 Surcharge=0; Final=0.95",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",1],[\"Discount\",0.05],[\"Surcharge\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":0.95}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"0.95\"},{\"label\":\"Discount\",\"value\":\"0.05\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0372.recall",
+      "text": "A toy price starts at 2, subtracts discount 0, and adds surcharge 0.05. What is the final price? Answer 2.05.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0372/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy price starts at 2, subtracts discount 0, and adds surcharge 0.05. What is the final price?",
+    "options": [
+      "1.23",
+      "2.05",
+      "2.87"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 2.05 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0372",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-372"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 372,
+    "sourceSection": "19. Public policy nudges: tax, energy, voting",
+    "sourceEntryOriginal": "- **372.** A 5-cent tax on disposable bags cut their use by over 40 points, while a 5-cent bonus for reusable bags had almost no effect (Homonoff, 2018).",
+    "modelBoundary": "the final monetary consequence of each label",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      2,
+      0,
+      0.05
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0383",
+  "title": "A toy neighboring-state comparison",
+  "hook": "Two stated cases: explore the control change in a two-period policy comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0383",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the control change in a two-period policy comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the control change in a two-period policy comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0383.predict",
+      "text": "Toy treated outcomes move 20→22; controls move 20→20. What difference-in-differences results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.reveal.0",
+      "text": "The retained results are CAfter=20; Estimate=2 and CAfter=24; Estimate=-2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.reveal.1",
+      "text": "The arithmetic removes the control change. Interpreting it causally requires parallel untreated trends and other design assumptions. This comparison isolates the control change in a two-period policy comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.case.0.witness",
+      "text": "CAfter=20; Estimate=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",20],[\"TAfter\",22],[\"CBefore\",20],[\"CAfter\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":2}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"2\"},{\"label\":\"CAfter\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.case.1.witness",
+      "text": "CAfter=24; Estimate=-2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",20],[\"TAfter\",22],[\"CBefore\",20],[\"CAfter\",24]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":-2}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"-2\"},{\"label\":\"CAfter\",\"value\":\"24\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0383.recall",
+      "text": "Toy treated outcomes move 21→22; controls move 20→20. What difference-in-differences results? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0383/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #383. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy treated outcomes move 21→22; controls move 20→20. What difference-in-differences results?",
+    "options": [
+      "1",
+      "0.6",
+      "1.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Estimate 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0383",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-383"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 383,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceEntryOriginal": "- **383. Minimum wage in New Jersey** \\[Story\\]: fast-food employment didn't fall after NJ raised its minimum wage, compared with Pennsylvania (Card & Krueger, 1994).",
+    "modelBoundary": "the control change in a two-period policy comparison",
+    "recallInputs": [
+      21,
+      22,
+      20,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

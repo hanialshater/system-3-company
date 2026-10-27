@@ -1,0 +1,27 @@
+// Relationships that should survive changed inputs, beyond fixture agreement.
+import assert from 'node:assert/strict';
+import {compute as grouped} from '../../src/demos/behavioral/be-source-0015/model.ts';
+import {compute as frames} from '../../src/demos/behavioral/be-source-0041/model.ts';
+import {compute as sunk} from '../../src/demos/behavioral/be-source-0106/model.ts';
+import {compute as hospital} from '../../src/demos/behavioral/be-source-0252/model.ts';
+import {compute as portfolio} from '../../src/demos/behavioral/be-source-0274/model.ts';
+import {compute as prices} from '../../src/demos/behavioral/be-source-0282/model.ts';
+import {compute as plan} from '../../src/demos/behavioral/be-source-0296/model.ts';
+import {compute as memory} from '../../src/demos/behavioral/be-source-0423/model.ts';
+import {compute as correlation} from '../../src/demos/behavioral/be-source-0500/model.ts';
+const near=(a,b)=>assert(Math.abs(a-b)<1e-10,`${a} != ${b}`);
+const separate=grouped([10,8,2,1]),combined=grouped([10,8,2,3]);
+near(separate[1],combined[1]);assert(separate[0]<combined[0]);
+const saved=frames([600,200,0]),lost=frames([600,200,1]);
+assert.deepEqual(saved.slice(1),lost.slice(1));near(saved[0]+lost[0],600);
+assert.deepEqual(sunk([30,15,0]),sunk([30,15,10000]));
+assert(hospital([15,.5,9])[0]>hospital([45,.5,27])[0]);
+assert(portfolio([.5,.2,.2,.2])[0]<portfolio([1,.2,.2,.2])[0]);
+near(portfolio([.5,.2,.2,1])[0],.2);
+near(prices([2.99,3])[0],prices([4,4.01])[0]);
+assert(prices([2.99,3])[1]>prices([4,4.01])[1]);
+assert(plan([50,2,10])[0]>0&&plan([50,2,30])[0]<0);
+near(memory([8,2,5,10])[0],memory([8,2,5,20])[0]);
+near(memory([8,2,5,20])[1],2*memory([8,2,5,10])[1]);
+near(correlation([.15])[0],2.25);
+console.log('14 behavioral model relationships pass.');

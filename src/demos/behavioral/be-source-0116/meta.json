@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0116",
+  "title": "The day the check arrives",
+  "hook": "Two stated cases: explore the cash remaining across a payment cycle.",
+  "domain": "behavioral",
+  "concept": "be-source-0116",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cash remaining across a payment cycle affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Remaining, regardless of the stated inputs.",
+  "objective": "Compare the cash remaining across a payment cycle in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0116.predict",
+      "text": "A toy budget starts with 900 and spends 30 per day for 10 days. What remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.reveal.0",
+      "text": "The retained results are Days=10; Remaining=600 and Days=20; Remaining=300.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.reveal.1",
+      "text": "The timing of an inflow and the rate of spending determine the remaining buffer. The schedule is an illustration, not observed household data. This comparison isolates the cash remaining across a payment cycle.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.case.0.witness",
+      "text": "Days=10; Remaining=600",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",900],[\"Days\",10],[\"Spend\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":900},{\"label\":\"5\",\"value\":750},{\"label\":\"10\",\"value\":600}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"600\"},{\"label\":\"Days\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.case.1.witness",
+      "text": "Days=20; Remaining=300",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",900],[\"Days\",20],[\"Spend\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":900},{\"label\":\"10\",\"value\":600},{\"label\":\"20\",\"value\":300}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"300\"},{\"label\":\"Days\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0116.recall",
+      "text": "A toy budget starts with 901 and spends 30 per day for 10 days. What remains? Answer 601.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0116/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #116. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy budget starts with 901 and spends 30 per day for 10 days. What remains?",
+    "options": [
+      "601",
+      "360.6",
+      "841.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Remaining 601 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0116",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-116"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 116,
+    "sourceSection": "6. Mental accounting",
+    "sourceEntryOriginal": "- **116.** Consumption jumps when Social Security checks arrive, though income was fully predictable (Stephens, 2003).",
+    "modelBoundary": "the cash remaining across a payment cycle",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      901,
+      10,
+      30
+    ]
+  }
+}

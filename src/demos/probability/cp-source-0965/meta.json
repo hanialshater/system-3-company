@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0965",
+  "title": "A walker reaches a growth boundary",
+  "hook": "Two stated cases: explore the one-dimensional hitting ingredient before aggregation.",
+  "domain": "probability",
+  "concept": "cp-source-0965",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-dimensional hitting ingredient before aggregation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the one-dimensional hitting ingredient before aggregation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0965.predict",
+      "text": "A fair toy unit-step walk starts at 0 and stops at -3 or +10. What is the probability of hitting the right boundary first?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.reveal.0",
+      "text": "The retained results are Left=3; Probability=0.231 and Left=7; Probability=0.412.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.reveal.1",
+      "text": "Both target and trap locations affect the hitting probability. This finite-interval walk is distinct from an unbounded Brownian first-passage problem. This comparison isolates the one-dimensional hitting ingredient before aggregation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.case.0.witness",
+      "text": "Left=3; Probability=0.231",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Left\",3],[\"Right\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.23076923076923078},{\"label\":\"Steps\",\"value\":30}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.231\"},{\"label\":\"Left\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.case.1.witness",
+      "text": "Left=7; Probability=0.412",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Left\",7],[\"Right\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.4117647058823529},{\"label\":\"Steps\",\"value\":70}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.412\"},{\"label\":\"Left\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0965.recall",
+      "text": "A fair toy unit-step walk starts at 0 and stops at -4 or +10. What is the probability of hitting the right boundary first? Answer 0.286.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0965/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #965. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fair toy unit-step walk starts at 0 and stops at -4 or +10. What is the probability of hitting the right boundary first?",
+    "options": [
+      "0.286",
+      "0.171",
+      "0.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 0.286 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0965",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-965"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 965,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **965. Growing snowflakes** \\[Slider\\]: random walkers stick on contact and grow branching, coral-like clusters.",
+    "modelBoundary": "the one-dimensional hitting ingredient before aggregation",
+    "recallInputs": [
+      4,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

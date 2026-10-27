@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0744",
+  "title": "A rarer return level lies higher",
+  "hook": "Two stated cases: explore the exceedance period in a stipulated exponential model.",
+  "domain": "probability",
+  "concept": "cp-source-0744",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the exceedance period in a stipulated exponential model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the exceedance period in a stipulated exponential model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0744.predict",
+      "text": "Independent annual toy levels are exponential with Rate 0.1. What threshold has annual exceedance probability 1/Period 100?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.reveal.0",
+      "text": "The retained results are Period=100; Level=46.052 and Period=1,000; Level=69.078.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.reveal.1",
+      "text": "A return period describes a yearly exceedance probability. It does not schedule one event every fixed number of years. This comparison isolates the exceedance period in a stipulated exponential model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.case.0.witness",
+      "text": "Period=100; Level=46.052",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Period\",100],[\"Rate\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Level\",\"value\":46.051701859880914}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"46.052\"},{\"label\":\"Period\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.case.1.witness",
+      "text": "Period=1,000; Level=69.078",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Period\",1000],[\"Rate\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Level\",\"value\":69.07755278982137}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"69.078\"},{\"label\":\"Period\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0744.recall",
+      "text": "Independent annual toy levels are exponential with Rate 0.1. What threshold has annual exceedance probability 1/Period 101? Answer 46.151.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0744/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #744. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent annual toy levels are exponential with Rate 0.1. What threshold has annual exceedance probability 1/Period 101?",
+    "options": [
+      "27.691",
+      "46.151",
+      "64.612"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Level 46.151 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0744",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-744"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 744,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **744. Return level plot** \\[Slider\\]: read off the 100-year and 1,000-year river levels, with widening uncertainty.",
+    "modelBoundary": "the exceedance period in a stipulated exponential model",
+    "recallInputs": [
+      101,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

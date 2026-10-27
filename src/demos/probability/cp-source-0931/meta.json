@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0931",
+  "title": "A behavior waits for enough exposure",
+  "hook": "Two stated cases for a behavior waits for enough exposure.",
+  "domain": "probability",
+  "concept": "cp-source-0931",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the minimum-exposure threshold in a binary activation ingredient affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Matched, regardless of the stated inputs.",
+  "objective": "Compare the minimum-exposure threshold in a binary activation ingredient in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0931.predict",
+      "text": "A toy pair has score gap 3; accept a match when gap is at most Tolerance 2. Is it retained (1) or rejected (0)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.reveal.0",
+      "text": "The retained results are Tolerance=2; Matched=0 and Tolerance=4; Matched=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.reveal.1",
+      "text": "A tighter caliper can improve closeness while excluding units. Retained pairs need not represent the original population. This comparison isolates the minimum-exposure threshold in a binary activation ingredient.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.case.0.witness",
+      "text": "Tolerance=2; Matched=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gap\",3],[\"Tolerance\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Matched\",\"value\":0}]},\"metrics\":[{\"label\":\"Matched\",\"value\":\"0\"},{\"label\":\"Tolerance\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.case.1.witness",
+      "text": "Tolerance=4; Matched=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gap\",3],[\"Tolerance\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Matched\",\"value\":1}]},\"metrics\":[{\"label\":\"Matched\",\"value\":\"1\"},{\"label\":\"Tolerance\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0931.recall",
+      "text": "A toy pair has score gap 3; accept a match when gap is at most Tolerance 3. Is it retained (1) or rejected (0)? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0931/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #931. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pair has score gap 3; accept a match when gap is at most Tolerance 3. Is it retained (1) or rejected (0)?",
+    "options": [
+      "0: no / blocked",
+      "1: yes / active"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Matched 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0931",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-931"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 931,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **931. Complex contagion** \\[Slider\\]: behaviors that need several exposures spread better through clustered networks (Centola, 2010).",
+    "modelBoundary": "the minimum-exposure threshold in a binary activation ingredient",
+    "recallInputs": [
+      3,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

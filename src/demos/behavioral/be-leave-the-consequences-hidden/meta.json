@@ -1,0 +1,103 @@
+{
+  "slug": "be-leave-the-consequences-hidden",
+  "title": "Leave the consequences hidden",
+  "hook": "Would you pay attention to how your choice affects the other player?",
+  "domain": "behavioral",
+  "concept": "be-leave-the-consequences-hidden",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish choosing under ignorance from choosing after learning the consequence."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish choosing under ignorance from choosing after learning the consequence.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-leave-the-consequences-hidden.inputs",
+      "text": "A toy recipient gets either two or eight units with equal probability, while the chooser has not learned which. What is the expected recipient payoff? Toy inputs A=[2, 8, 0.5]; B=[8, 8, 1].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-leave-the-consequences-hidden.trace",
+      "text": "Computed results: [[5, 2, 8], [8, 8, 8]]. Labels: Expected payoff, Low, High.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-leave-the-consequences-hidden.reveal",
+      "text": "Hidden consequences leave a range of possible recipient outcomes. Revealing a specific outcome changes information, even if the chooser’s own payment is fixed. The expected value is not a guarantee or a diagnosis of fairness.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-leave-the-consequences-hidden.recall",
+      "text": "A new toy case uses Outcome 1=8, Outcome 2=8, P(outcome 1)=1. What is Expected payoff? Answer: 8.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Outcome 1=8, Outcome 2=8, P(outcome 1)=1. What is Expected payoff?",
+    "options": [
+      "10.4",
+      "8",
+      "5.6"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 8. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-leave-the-consequences-hidden",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-170"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 170,
+    "section": "9. Fairness: ultimatum & dictator games",
+    "text": "When people could avoid learning how their choice affected others, fair choices roughly halved (Dana, Weber & Kuang, 2007).",
+    "pointer": "500-behavioral-economics-findings.md entry 170: Dana, Weber & Kuang, 2007",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "lowball-offer-should-pass",
+  "meaningfulDifference": "Distinguish choosing under ignorance from choosing after learning the consequence."
+}

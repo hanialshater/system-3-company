@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0605",
+  "title": "Curvature gives a local Gaussian scale",
+  "hook": "Two stated cases: explore the inverse-curvature approximation around one mode.",
+  "domain": "probability",
+  "concept": "cp-source-0605",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the inverse-curvature approximation around one mode affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Variance, regardless of the stated inputs.",
+  "objective": "Compare the inverse-curvature approximation around one mode in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0605.predict",
+      "text": "At toy mode 0, the negative log-posterior has positive curvature 2. What local Gaussian variance does the Laplace approximation use?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.reveal.0",
+      "text": "The retained results are Curvature=2; Variance=0.5 and Curvature=0.5; Variance=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.reveal.1",
+      "text": "Local curvature gives a Gaussian scale around one mode. Skewness, tails and other modes can make that local approximation inadequate globally. This comparison isolates the inverse-curvature approximation around one mode.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.case.0.witness",
+      "text": "Curvature=2; Variance=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mode\",0],[\"Curvature\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Variance\",\"value\":0.5},{\"label\":\"SD\",\"value\":0.7071067811865475}]},\"metrics\":[{\"label\":\"Variance\",\"value\":\"0.5\"},{\"label\":\"Curvature\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.case.1.witness",
+      "text": "Curvature=0.5; Variance=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mode\",0],[\"Curvature\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Variance\",\"value\":2},{\"label\":\"SD\",\"value\":1.414213562373095}]},\"metrics\":[{\"label\":\"Variance\",\"value\":\"2\"},{\"label\":\"Curvature\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0605.recall",
+      "text": "At toy mode 0, the negative log-posterior has positive curvature 3. What local Gaussian variance does the Laplace approximation use? Answer 0.333.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0605/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #605. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At toy mode 0, the negative log-posterior has positive curvature 3. What local Gaussian variance does the Laplace approximation use?",
+    "options": [
+      "0.333",
+      "0.2",
+      "0.467"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Variance 0.333 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0605",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-605"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 605,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **605. Laplace approximation** \\[Slider\\]: fit a parabola at the peak of the log-posterior; it works for round peaks, fails for skewed ones.",
+    "modelBoundary": "the inverse-curvature approximation around one mode",
+    "recallInputs": [
+      0,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

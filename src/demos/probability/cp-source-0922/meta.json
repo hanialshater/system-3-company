@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0922",
+  "title": "Fewer contacts slow an infected stock",
+  "hook": "Two stated cases for fewer contacts slow an infected stock.",
+  "domain": "probability",
+  "concept": "cp-source-0922",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the contact-rate parameter before computing a complete epidemic peak affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines NextI, regardless of the stated inputs.",
+  "objective": "Compare the contact-rate parameter before computing a complete epidemic peak in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0922.predict",
+      "text": "A normalized toy SIR population has susceptible S 0.8, infected I 0.1, Beta 0.6, Gamma 0.1. Take one Euler step DT 0.1. What next infected share results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.reveal.0",
+      "text": "The retained results are Beta=0.6; NextI=0.104 and Beta=0.2; NextI=0.101.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.reveal.1",
+      "text": "New infections and recoveries change the infected stock in opposite directions. A single small deterministic step is not an epidemic forecast. This comparison isolates the contact-rate parameter before computing a complete epidemic peak.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.case.0.witness",
+      "text": "Beta=0.6; NextI=0.104",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"S\",0.8],[\"I\",0.1],[\"Beta\",0.6],[\"Gamma\",0.1],[\"DT\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"NextI\",\"value\":0.1038},{\"label\":\"NextS\",\"value\":0.7952},{\"label\":\"NextR\",\"value\":0.10099999999999995}]},\"metrics\":[{\"label\":\"NextI\",\"value\":\"0.104\"},{\"label\":\"Beta\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.case.1.witness",
+      "text": "Beta=0.2; NextI=0.101",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"S\",0.8],[\"I\",0.1],[\"Beta\",0.2],[\"Gamma\",0.1],[\"DT\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"NextI\",\"value\":0.10060000000000001},{\"label\":\"NextS\",\"value\":0.7984},{\"label\":\"NextR\",\"value\":0.10099999999999995}]},\"metrics\":[{\"label\":\"NextI\",\"value\":\"0.101\"},{\"label\":\"Beta\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0922.recall",
+      "text": "A normalized toy SIR population has susceptible S 0.8, infected I 0.2, Beta 0.6, Gamma 0.1. Take one Euler step DT 0.1. What next infected share results? Answer 0.208.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0922/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #922. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A normalized toy SIR population has susceptible S 0.8, infected I 0.2, Beta 0.6, Gamma 0.1. Take one Euler step DT 0.1. What next infected share results?",
+    "options": [
+      "0.108",
+      "0.308",
+      "0.208"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives NextI 0.208 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0922",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-922"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 922,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **922. Flatten the curve** \\[Slider\\]: reduce contacts and the infection peak drops below hospital capacity.",
+    "modelBoundary": "the contact-rate parameter before computing a complete epidemic peak",
+    "recallInputs": [
+      0.8,
+      0.2,
+      0.6,
+      0.1,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

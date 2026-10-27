@@ -1,3 +1,51 @@
+## 2026-10-26 · final source batch · 100 drafts and recall audit
+
+Implemented the last 100 probability-list entries. The complete stack covers all 500 behavioral and 1,000 probability IDs exactly once. Bounded finite illustrations do not certify the richer suggested simulator, historical claim, learning benefit or novelty. All 1,500 lessons remain drafts with unverified claims and empty evidence.
+
+Validation: final-batch 442 arithmetic/schema/state assertions, 13,841 coverage/relationship/recall/source-hash checks and TypeScript pass. Audited all 600 older continuation recalls: two duplicated a displayed case and are corrected; one long top-p chart label is shortened. These three lessons have version 2; all 600 now record recall inputs. W-2037 is done; implementation queue W-2033 and final review W-2040 are in review. Company check retains the identical 811 errors/four warnings. Full verify retains inherited publication failures. Production build and browser checks for batches06–08 will be recorded after completion; interrupted runs are not passes. No independent approval, merge or deploy.
+
+## 2026-10-25 · source batch 07 · 200 sequential and survival drafts
+
+Implemented exactly 200 probability-list entries (remaining ledger positions 600–799). These are bounded numerical illustrations with source-specific boundaries; richer simulations suggested by the source list are not asserted to be complete. All lessons remain draft, claims unverified, evidence empty. No independent review or novelty certification is claimed.
+
+Validation: 938 cross-language arithmetic/schema/state assertions and 1,044 relationship, new-recall and draft-boundary checks pass. TypeScript and browser/build checks are recorded separately when completed. Company check retains 811 errors/four warnings; full verify stops at inherited publication failures. W-2039 tracks independent review. Implementation coverage reaches 1,400 of 1,500 entries; the last 100 remain, plus the earlier recall audit W-2037. No merge or deploy.
+
+## 2026-10-25 · source batch 06 · 200 process and inference drafts
+
+Implemented the next 200 source entries with explicit queueing, stochastic-process, sampler, pooling, GP and filtering models. 1,020 arithmetic/schema/state assertions and 434 relationship/fresh-recall checks pass. TypeScript passes with a 6 GiB Node heap after the default heap exhausted memory. Company check remains 811 errors/four warnings. This batch's build/browser validation is pending; independent approvals are not claimed.
+
+Saved completed batch05 evidence: 400 protected browser passes, 200 strict phone fits, final production build exit 0 and 2,645 pages. Batches02–04 have 1,200 browser passes and 600 strict phone fits recorded in continuation-series. Source/learner/overlap readiness remains open. Implementation coverage now reaches 1,200 supplied-list entries; 300 probability entries remain (200 then 100). Prior transfer-case audit W-2037 remains to be completed. No merge or deploy.
+
+## 2026-10-25 · source batch 05 · 200 information and inference drafts
+
+Implemented the next 200 remaining source entries, spanning information, testing, confounding, selection, counterfactual and experimental-design models. Exact curation and boundaries are in company/reviews/continuation-batch-05. All claims remain unverified and all lessons draft. No independent review is asserted.
+
+Validation: 956 arithmetic/schema/state assertions, 437 relationship/fresh-recall checks and TypeScript pass; inherited company diagnostics remain 811 errors/four warnings. The full verification retains publication failures. Production browser checks for batches 02–04 are running from their recorded snapshot; this batch's build and browser checks remain pending. Transfer generation now rejects either displayed input as recall; older continuation cases are queued for audit before completion.
+
+Source-list implementation coverage is now 500 behavioral plus 500 probability entries, 1,000 total; 500 probability entries remain (200, 200, 100). W-2033 remains doing; this batch and its review boundaries are recorded separately. No merge or deploy.
+
+## 2026-10-25 · source batch 04 · 200 probability drafts
+
+Implemented probability source entries 1–200 as explicit finite mini-labs. Manifest, original provenance, curation and fixtures are in company/reviews/continuation-batch-04. Validation: 854 arithmetic/schema/state assertions, 32 mathematical relationships and TypeScript pass. Company check remains 811 errors/four warnings; full verify retains publication failures. Build and browser validation remain pending after session interruption; no completed result is fabricated. No independent source or learner approval is claimed.
+
+Implementation progress against supplied lists: 500 behavioral and 300 probability entries are implemented across PR16, PR17, PR19 and this batch; 700 probability entries remain. W-2035 tracks this draft batch and W-2033 the remaining queue. Each new batch is at most 200, with a final 100 remainder. All new lessons remain drafts. No merge or deploy.
+
+## 2026-10-24 · remaining source demos · second continuation batch (200 behavioral drafts)
+
+Implemented batch 03 as exactly 200 additional behavioral source entries. Together with PR16 and PR17, this completes implementation coverage of the 500-entry behavioral list; independent source and learner approval remain open. Explicit curation, fixtures, unverified claim records and manifest live in company/reviews/continuation-batch-03. The single operator makes no independent review claim.
+
+Arithmetic/schema/state: 812 checks; 14 relationship checks; TypeScript pass. Company diagnostics are identical to the inherited 811 errors/four warnings. Build and browser validation pending. The remaining implementation queue is 900 probability entries in four batches of 200 and a final 100. W-2031/2032 track draft batches, W-2033 the remaining probability queue and W-2034 independent template review. No merge or deploy authorized.
+
+## 2026-10-24 · chief-of-staff · PR #16: 100 behavioral + 100 probability/causal demos
+
+Implemented exactly 200 new draft lessons from the two attached source lists: 100 behavioral (four per each of 25 sections) and 100 probability/causal (34 sections). PR: https://github.com/hanialshater/system-3-company/pull/16. Each has its own computed cases, original source provenance, curriculum entry and recall. Shared renderer has eight visual kinds and retained evidence through Reset; local wrappers render the actual kit Lesson and four controls. No new role, dependency version or protected path changed.
+
+Verification completed: exact 200-entry manifest/runtime checks; 500 behavioral fixture/state/provenance checks, 100 probability-A numerical assertions, 50 probability-B fixture tests, 12 engine regression tests, TypeScript, production build and all 400 phone/desktop contract cases (zero retries). Build has 1,845 lesson pages. `npm run check` remains the exact baseline 811 errors/four warnings (identity hash in validation.json); full verify stops at the same two existing publication tests. Strict phone fit passes all 200 at 390×844; 20 actual screenshots cover both domains and all eight visual kinds. All 27 completed supplemental Reset probes pass; that extra loop was interrupted and 173 were not run. The ordinary protected contract already exercises Reset last on every route. The QA report records three open content findings, routed to category managers as W-2029/W-2030.
+
+What I believe: high confidence in implementation counts, pure arithmetic fixtures, contract behavior and bounded engineering fixes; these checks do not establish learning or verify the supplied empirical findings. All 200 lessons are draft and all 1,601 claims remain unverified. Source verification, independent learner reviews, publication boundaries and shared-engine ops readiness remain open. The framework reported an existing Next.js security advisory; its supported build retry passed, and no upgrade was made in this content PR.
+
+Next: review PR #16, then the owning category managers route fact checks and independent learner reviews. The manager/source/engineering/QA records and reproducible manifest are under `company/reviews/behavioral-probability-200/`. No merge or deploy has been performed. GitHub publication used the authenticated connector; its initial cc61db3 commit has the exact tree8b484292 of local source422b1109, verified against the create-tree response.
+
 ## 2026-10-21 · history map illustrations · seven original SVGs (W-2025)
 
 Added ships, a Normandy landing craft, horse, camp, fire, crossed swords and castle illustrations. Eighteen stories select artwork by checkpoint; atlas previews use the same vector source. Placement avoids labels and geographic points. Camps are unlocated illustrative vignettes. Standalone reusable SVGs and their generator are included. No historical dates, routes or coordinates changed; changed lessons remain drafts with unverified art-convention claims and bumped versions.

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0886",
+  "title": "A noisy pretrend may look insignificant",
+  "hook": "Two stated cases: explore the standard error behind a pretrend diagnostic.",
+  "domain": "probability",
+  "concept": "cp-source-0886",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the standard error behind a pretrend diagnostic affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Z, regardless of the stated inputs.",
+  "objective": "Compare the standard error behind a pretrend diagnostic in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0886.predict",
+      "text": "A toy Estimate 0.2 has standard error SE 0.5; the null value is 0. What standardized contrast results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.reveal.0",
+      "text": "The retained results are SE=0.5; Z=0.4 and SE=0.05; Z=4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.reveal.1",
+      "text": "The same estimated contrast looks less precise with greater standard error. A test additionally needs a justified sampling distribution. This comparison isolates the standard error behind a pretrend diagnostic.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.case.0.witness",
+      "text": "SE=0.5; Z=0.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.2],[\"Null\",0],[\"SE\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Z\",\"value\":0.4}]},\"metrics\":[{\"label\":\"Z\",\"value\":\"0.4\"},{\"label\":\"SE\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.case.1.witness",
+      "text": "SE=0.05; Z=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.2],[\"Null\",0],[\"SE\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Z\",\"value\":4}]},\"metrics\":[{\"label\":\"Z\",\"value\":\"4\"},{\"label\":\"SE\",\"value\":\"0.05\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0886.recall",
+      "text": "A toy Estimate 0.3 has standard error SE 0.5; the null value is 0. What standardized contrast results? Answer 0.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0886/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #886. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Estimate 0.3 has standard error SE 0.5; the null value is 0. What standardized contrast results?",
+    "options": [
+      "0.36",
+      "0.84",
+      "0.6"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Z 0.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0886",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-886"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 886,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **886. Weak pre-trend tests** \\[Gotcha\\]: passing a pre-trend test often says little, because the test has low power (Roth, 2022).",
+    "modelBoundary": "the standard error behind a pretrend diagnostic",
+    "recallInputs": [
+      0.30000000000000004,
+      0,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

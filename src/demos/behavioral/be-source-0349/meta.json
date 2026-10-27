@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0349",
+  "title": "Attention is one funnel step",
+  "hook": "Two stated cases: explore attention versus the stated final action rate.",
+  "domain": "behavioral",
+  "concept": "be-source-0349",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How attention versus the stated final action rate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Purchases, regardless of the stated inputs.",
+  "objective": "Compare attention versus the stated final action rate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0349.predict",
+      "text": "Of 1000 toy visitors, fraction 0.8 stop and fraction 0.1 of those buy. How many purchases are expected?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.reveal.0",
+      "text": "The retained results are Stop=0.8 Buy=0.1; Purchases=80 and Stop=0.5 Buy=0.3; Purchases=150.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.reveal.1",
+      "text": "More attention at the top of a funnel need not mean more final choices. Conditional conversion and reach jointly determine the result. This comparison isolates attention versus the stated final action rate.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.case.0.witness",
+      "text": "Stop=0.8 Buy=0.1; Purchases=80",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visitors\",1000],[\"Stop\",0.8],[\"Buy\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Purchases\",\"value\":80}]},\"metrics\":[{\"label\":\"Purchases\",\"value\":\"80\"},{\"label\":\"Stop\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.case.1.witness",
+      "text": "Stop=0.5 Buy=0.3; Purchases=150",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visitors\",1000],[\"Stop\",0.5],[\"Buy\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Purchases\",\"value\":150}]},\"metrics\":[{\"label\":\"Purchases\",\"value\":\"150\"},{\"label\":\"Stop\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0349.recall",
+      "text": "Of 1,001 toy visitors, fraction 0.8 stop and fraction 0.1 of those buy. How many purchases are expected? Answer 80.08.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0349/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #349. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Of 1,001 toy visitors, fraction 0.8 stop and fraction 0.1 of those buy. How many purchases are expected?",
+    "options": [
+      "48.048",
+      "112.112",
+      "80.08"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Purchases 80.08 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0349",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-349"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 349,
+    "sourceSection": "18. Health behavior",
+    "sourceEntryOriginal": "- **349.** Graphic cigarette warnings outperform text-only warnings on attention and intentions to quit (Noar et al., 2016).",
+    "modelBoundary": "attention versus the stated final action rate",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      0.8,
+      0.1
+    ]
+  }
+}

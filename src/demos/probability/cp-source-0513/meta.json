@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0513",
+  "title": "A snapshot depends on its starting queue",
+  "hook": "Two stated cases: explore the transient starting state of a deterministic fluid queue.",
+  "domain": "probability",
+  "concept": "cp-source-0513",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the transient starting state of a deterministic fluid queue affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Backlog, regardless of the stated inputs.",
+  "objective": "Compare the transient starting state of a deterministic fluid queue in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0513.predict",
+      "text": "A toy fluid queue starts at 0; constant arrival rate 9 and capacity 10 run for Time 1. What backlog remains, reflected at zero?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.reveal.0",
+      "text": "The retained results are Initial=0; Backlog=0 and Initial=90; Backlog=89.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.reveal.1",
+      "text": "A persistent input-capacity gap accumulates work. This deterministic fluid approximation omits stochastic waiting-time variability. This comparison isolates the transient starting state of a deterministic fluid queue.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.case.0.witness",
+      "text": "Initial=0; Backlog=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",0],[\"Arrival\",9],[\"Capacity\",10],[\"Time\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"0.25\",\"value\":0},{\"label\":\"0.5\",\"value\":0},{\"label\":\"0.75\",\"value\":0},{\"label\":\"1\",\"value\":0}]},\"metrics\":[{\"label\":\"Backlog\",\"value\":\"0\"},{\"label\":\"Initial\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.case.1.witness",
+      "text": "Initial=90; Backlog=89",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",90],[\"Arrival\",9],[\"Capacity\",10],[\"Time\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":90},{\"label\":\"0.25\",\"value\":89.75},{\"label\":\"0.5\",\"value\":89.5},{\"label\":\"0.75\",\"value\":89.25},{\"label\":\"1\",\"value\":89}]},\"metrics\":[{\"label\":\"Backlog\",\"value\":\"89\"},{\"label\":\"Initial\",\"value\":\"90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0513.recall",
+      "text": "A toy fluid queue starts at 2; constant arrival rate 9 and capacity 10 run for Time 1. What backlog remains, reflected at zero? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0513/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #513. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fluid queue starts at 2; constant arrival rate 9 and capacity 10 run for Time 1. What backlog remains, reflected at zero?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Backlog 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0513",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-513"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 513,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **513. Warm-up period** \\[Predict\\]: an empty queue takes time to reach steady state; early measurements mislead.",
+    "modelBoundary": "the transient starting state of a deterministic fluid queue",
+    "recallInputs": [
+      2,
+      9,
+      10,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

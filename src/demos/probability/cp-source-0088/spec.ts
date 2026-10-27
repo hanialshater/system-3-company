@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0088", "title": "A city poll versus a country poll", "op": "pollse", "labels": ["P", "N", "Population"], "outputs": ["SE"], "a": [0.5, 1000.0, 1000000.0], "b": [0.5, 1000.0, 300000000.0], "question": "A simple random toy poll samples 1000 without replacement from population 1e+06 with proportion 0.5. What is the standard error of its proportion?", "questionTemplate": "A simple random toy poll samples {N} without replacement from population {Population} with proportion {P}. What is the standard error of its proportion?", "explain": "The finite-population correction depends on the sampling fraction. Large populations can have nearly equal sampling errors at the same sample size.", "lens": "the finite-population sampling fraction", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

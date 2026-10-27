@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0203",
+  "title": "Two percent of a household bill",
+  "hook": "Two stated cases: explore the baseline behind a relative energy change.",
+  "domain": "behavioral",
+  "concept": "be-source-0203",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the baseline behind a relative energy change affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the baseline behind a relative energy change in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0203.predict",
+      "text": "A toy baseline is 1000; it changes by -2 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.reveal.0",
+      "text": "The retained results are Baseline=1,000; Final=980 and Baseline=2,000; Final=1,960.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the baseline behind a relative energy change.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.case.0.witness",
+      "text": "Baseline=1,000; Final=980",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",1000],[\"Percent\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":980}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"980\"},{\"label\":\"Baseline\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.case.1.witness",
+      "text": "Baseline=2,000; Final=1,960",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",2000],[\"Percent\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":1960}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"1,960\"},{\"label\":\"Baseline\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0203.recall",
+      "text": "A toy baseline is 1,001; it changes by -2 percent. What is the final level? Answer 980.98.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0203/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #203. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 1,001; it changes by -2 percent. What is the final level?",
+    "options": [
+      "980.98",
+      "588.588",
+      "1,373.372"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 980.98 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0203",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-203"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 203,
+    "sourceSection": "11. Social norms & conformity",
+    "sourceEntryOriginal": "- **203.** Home Energy Reports comparing households to neighbors cut electricity use about 2% (Allcott, 2011).",
+    "modelBoundary": "the baseline behind a relative energy change",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      -2
+    ]
+  }
+}

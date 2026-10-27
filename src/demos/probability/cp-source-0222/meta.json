@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0222",
+  "title": "Many analysis paths add opportunities",
+  "hook": "Two stated cases: explore a union-bound ceiling rather than a fitted p-hacking simulator.",
+  "domain": "probability",
+  "concept": "cp-source-0222",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a union-bound ceiling rather than a fitted p-hacking simulator affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bound, regardless of the stated inputs.",
+  "objective": "Compare a union-bound ceiling rather than a fitted p-hacking simulator in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0222.predict",
+      "text": "There are 10 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.reveal.0",
+      "text": "The retained results are Tests=10; Bound=0.5 and Tests=2; Bound=0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.reveal.1",
+      "text": "The bound needs no independence but can be loose. Repeated looks at shared data require their own sequential-testing model. This comparison isolates a union-bound ceiling rather than a fitted p-hacking simulator.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.case.0.witness",
+      "text": "Tests=10; Bound=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",10],[\"Alpha\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bound\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Bound\",\"value\":\"0.5\"},{\"label\":\"Tests\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.case.1.witness",
+      "text": "Tests=2; Bound=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",2],[\"Alpha\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bound\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Bound\",\"value\":\"0.1\"},{\"label\":\"Tests\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0222.recall",
+      "text": "There are 11 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm? Answer 0.55.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0222/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #222. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "There are 11 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm?",
+    "options": [
+      "0.33",
+      "0.55",
+      "0.77"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Bound 0.55 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0222",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-222"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 222,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **222. p-hacking playground** \\[Slider\\]: drop outliers, add covariates, split subgroups until noise hits p < 0.05.",
+    "modelBoundary": "a union-bound ceiling rather than a fitted p-hacking simulator",
+    "recallInputs": [
+      11,
+      0.05
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

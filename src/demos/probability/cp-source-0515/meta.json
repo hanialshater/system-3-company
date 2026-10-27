@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0515",
+  "title": "A toy pooled-table capacity model",
+  "hook": "Two stated cases: explore steady Poisson arrivals rather than a reservation schedule.",
+  "domain": "probability",
+  "concept": "cp-source-0515",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How steady Poisson arrivals rather than a reservation schedule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare steady Poisson arrivals rather than a reservation schedule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0515.predict",
+      "text": "A stable toy M/M/c queue has arrival rate 9, service rate 1 per server, 10 servers and wait threshold 1. What is mean waiting time before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.reveal.0",
+      "text": "The retained results are Servers=10; Wait=0.669 and Servers=12; Wait=0.089.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.reveal.1",
+      "text": "Pooling servers changes both waiting probability and delay. Erlang C assumes Poisson arrivals, exponential service, an infinite queue and no abandonment. This comparison isolates steady Poisson arrivals rather than a reservation schedule.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.case.0.witness",
+      "text": "Servers=10; Wait=0.669",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",9],[\"Service\",1],[\"Servers\",10],[\"Threshold\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":0.6687315241076971},{\"label\":\"Total\",\"value\":1.668731524107697},{\"label\":\"SLA\",\"value\":0.7539874206175334},{\"label\":\"Utilization\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"0.669\"},{\"label\":\"Servers\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.case.1.witness",
+      "text": "Servers=12; Wait=0.089",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",9],[\"Service\",1],[\"Servers\",12],[\"Threshold\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":0.08867822815622083},{\"label\":\"Total\",\"value\":1.0886782281562208},{\"label\":\"SLA\",\"value\":0.9867549129761356},{\"label\":\"Utilization\",\"value\":0.75}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"0.089\"},{\"label\":\"Servers\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0515.recall",
+      "text": "A stable toy M/M/c queue has arrival rate 9, service rate 2 per server, 10 servers and wait threshold 1. What is mean waiting time before service? Answer 0.002.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0515/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #515. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/M/c queue has arrival rate 9, service rate 2 per server, 10 servers and wait threshold 1. What is mean waiting time before service?",
+    "options": [
+      "0.002",
+      "-0.098",
+      "0.102"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Wait 0.002 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0515",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-515"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 515,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **515. Restaurant tables** \\[Slider\\]: tune reservations vs walk-ins and see table turnover and waits.",
+    "modelBoundary": "steady Poisson arrivals rather than a reservation schedule",
+    "recallInputs": [
+      9,
+      2,
+      10,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0675", "title": "A hidden regime persists", "op": "chain", "labels": ["ToRain", "ToSun", "StartRain", "Steps"], "outputs": ["Rain"], "a": [0.05, 0.2, 0.0, 10.0], "b": [0.2, 0.2, 0.0, 10.0], "question": "A toy chain switches sun to rain with chance 0.05, rain to sun with 0.2; initial rain probability 0. What is rain probability after 10 steps?", "questionTemplate": "A toy chain switches sun to rain with chance {ToRain}, rain to sun with {ToSun}; initial rain probability {StartRain}. What is rain probability after {Steps} steps?", "explain": "Transition probabilities determine both the stationary share and how the initial condition fades. This formula is for the stated two-state chain.", "lens": "the transition rate in a two-regime model", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

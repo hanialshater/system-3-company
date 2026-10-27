@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0275",
+  "title": "Who enters the tournament?",
+  "hook": "Two stated cases: explore the denominator in descriptive participation rates.",
+  "domain": "behavioral",
+  "concept": "be-source-0275",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the denominator in descriptive participation rates affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the denominator in descriptive participation rates in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0275.predict",
+      "text": "A toy comparison has 73/100 in A and 35/100 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.reveal.0",
+      "text": "The retained results are TotalA=100; Gap=38 and TotalA=200; Gap=1.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the denominator in descriptive participation rates.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.case.0.witness",
+      "text": "TotalA=100; Gap=38",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",73],[\"TotalA\",100],[\"HitB\",35],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":38}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"38\"},{\"label\":\"TotalA\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.case.1.witness",
+      "text": "TotalA=200; Gap=1.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",73],[\"TotalA\",200],[\"HitB\",35],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":1.5000000000000013}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"1.5\"},{\"label\":\"TotalA\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0275.recall",
+      "text": "A toy comparison has 74/100 in A and 35/100 in B. What is A minus B in percentage points? Answer 39.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0275/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #275. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 74/100 in A and 35/100 in B. What is A minus B in percentage points?",
+    "options": [
+      "39",
+      "23.4",
+      "54.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap 39 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0275",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-275"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 275,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **275.** 73% of men but 35% of women chose to compete in a tournament, despite equal performance (Niederle & Vesterlund, 2007).",
+    "modelBoundary": "the denominator in descriptive participation rates",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      74,
+      100,
+      35,
+      100
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0051",
+  "title": "Register now or later",
+  "hook": "Two stated cases: explore the same price gap described from two bases.",
+  "domain": "behavioral",
+  "concept": "be-source-0051",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the same price gap described from two bases affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the same price gap described from two bases in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0051.predict",
+      "text": "A toy price starts at 120, subtracts discount 20, and adds surcharge 0. What is the final price?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.reveal.0",
+      "text": "The retained results are Base=120 Discount=20; Final=100 and Base=100 Discount=0; Final=120.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.reveal.1",
+      "text": "Compare final prices under the two labels. Fairness or preference judgments are not implied by equal arithmetic. This comparison isolates the same price gap described from two bases.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.case.0.witness",
+      "text": "Base=120 Discount=20; Final=100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",120],[\"Discount\",20],[\"Surcharge\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":100}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"100\"},{\"label\":\"Base\",\"value\":\"120\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.case.1.witness",
+      "text": "Base=100 Discount=0; Final=120",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",100],[\"Discount\",0],[\"Surcharge\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":120}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"120\"},{\"label\":\"Base\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0051.recall",
+      "text": "A toy price starts at 121, subtracts discount 20, and adds surcharge 0. What is the final price? Answer 101.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0051/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #51. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy price starts at 121, subtracts discount 20, and adds surcharge 0. What is the final price?",
+    "options": [
+      "60.6",
+      "101",
+      "141.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 101 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0051",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-51"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 51,
+    "sourceSection": "3. Framing",
+    "sourceEntryOriginal": "- **51.** Junior economists registered early for a conference more often when the late fee was framed as a penalty than when the early fee was a discount (Gächter, Orzen, Renner & Starmer, 2009).",
+    "modelBoundary": "the same price gap described from two bases",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      121,
+      20,
+      0
+    ]
+  }
+}

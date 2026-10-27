@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0422", "title": "A gentler ending changes the summary", "op": "peakend", "labels": ["Peak", "End", "Mean", "Duration"], "outputs": ["Memory", "Total"], "a": [8.0, 6.0, 5.0, 10.0], "b": [8.0, 2.0, 5.0, 12.0], "question": "A toy memory rule averages peak 8 and end 6. The actual experience has mean 5 and duration 10. What is the memory-rule score?", "questionTemplate": "A toy memory rule averages peak {Peak} and end {End}. The actual experience has mean {Mean} and duration {Duration}. What is the memory-rule score?", "explain": "The peak-end summary and the time-integrated total answer different questions. Changing duration alone changes total exposure while leaving this assumed summary fixed.", "lens": "the peak-end summary versus time-integrated discomfort", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

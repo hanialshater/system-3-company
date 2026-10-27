@@ -1,0 +1,161 @@
+{
+  "slug": "p100-intent-to-treat-vs-per-protocol",
+  "title": "Which group should count them?",
+  "hook": "An offer is randomized; accepting it is not. Which comparison survives?",
+  "domain": "probability",
+  "concept": "p100-intent-to-treat-vs-per-protocol",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "analyze by assignment or by who actually complied; only one stays unbiased."
+    ]
+  },
+  "misconception": "Treating intent-to-treat vs per-protocol as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "analyze by assignment or by who actually complied; only one stays unbiased.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.predict",
+      "text": "In each randomized arm, 40% are willing types with baseline 3 and 60% have baseline 0. Only willing offered people take treatment, which adds 5. What is the assignment effect?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.reveal.0",
+      "text": "Assignment retains a difference of 2; the selected taker comparison retains 8. The takers combine a treatment gain of 5 with a baseline advantage of 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.reveal.1",
+      "text": "Analyzing by randomized assignment preserves the randomized comparison and measures the offer’s effect. Comparing people who chose to comply changes the groups; it needs additional assumptions to recover a treatment effect.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.recall",
+      "text": "An offer reaches 25% of people and adds 8 for those reached, with no other effects. What is the assignment effect? The offer averages 0.25×8=2 across everyone assigned, under the stated uptake and exclusion assumptions.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.scenario.0.summary",
+      "text": "Assignment effect 2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Offer\",\"No offer\"],\"rows\":[[3.2,1.2000000000000002]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · By assignment\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Offer mean\",\"value\":3.2},{\"label\":\"No-offer mean\",\"value\":1.2000000000000002}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.scenario.1.summary",
+      "text": "Selected difference 8",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Type\",\"Takes\",\"Baseline\"],\"rows\":[[\"Willing\",1,3],[\"Other\",0,0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Selected takers\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Taker\",\"value\":8},{\"label\":\"Never-taker\",\"value\":0}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; exact finite illustration specified in manager numericCase: Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-intent-to-treat-vs-per-protocol.hook",
+      "text": "An offer is randomized; accepting it is not. Which comparison survives?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-intent-to-treat-vs-per-protocol/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An offer reaches 25% of people and adds 8 for those reached, with no other effects. What is the assignment effect?",
+    "options": [
+      "2",
+      "8",
+      "32"
+    ],
+    "answer": 0,
+    "why": "The offer averages 0.25×8=2 across everyone assigned, under the stated uptake and exclusion assumptions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-intent-to-treat-vs-per-protocol",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "compliance"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 331,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Intent-to-treat vs per-protocol",
+    "sourceText": "analyze by assignment or by who actually complied; only one stays unbiased.",
+    "sourceEntryOriginal": "- **331. Intent-to-treat vs per-protocol** \\[Split\\]: analyze by assignment or by who actually complied; only one stays unbiased.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/lh-pay-for-used-quantity",
+    "difference": "New teaching boundary: Intent-to-treat vs per-protocol. Existing boundary: Distinguish purchase unit price from cost per utilized unit.",
+    "numericCase": "Randomized assignment offer yes/no. In offer group4 take treatment(mean effect5),6 not; assignment effect2 across10. Per-protocol selected groups may differ baseline; show a baseline shift+3 creates naive per-protocol8."
+  },
+  "modelAudit": {
+    "a": 2,
+    "b": 8
+  }
+}

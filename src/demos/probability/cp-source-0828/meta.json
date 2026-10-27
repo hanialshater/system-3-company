@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0828",
+  "title": "A balanced question carries more entropy",
+  "hook": "Two stated cases: explore the outcome entropy ingredient of information-gain design.",
+  "domain": "probability",
+  "concept": "cp-source-0828",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the outcome entropy ingredient of information-gain design affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bits, regardless of the stated inputs.",
+  "objective": "Compare the outcome entropy ingredient of information-gain design in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0828.predict",
+      "text": "A binary toy answer is yes with probability 0.5. What is its entropy in bits?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.reveal.0",
+      "text": "The retained results are P=0.5; Bits=1 and P=0.9; Bits=0.469.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.reveal.1",
+      "text": "Balanced binary outcomes maximize the expected information of one answer. A rare answer is individually surprising but contributes little average probability mass. This comparison isolates the outcome entropy ingredient of information-gain design.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.case.0.witness",
+      "text": "P=0.5; Bits=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":1}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"1\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.case.1.witness",
+      "text": "P=0.9; Bits=0.469",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":0.4689955935892811}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"0.469\"},{\"label\":\"P\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0828.recall",
+      "text": "A binary toy answer is yes with probability 0.4. What is its entropy in bits? Answer 0.971.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0828/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #828. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A binary toy answer is yes with probability 0.4. What is its entropy in bits?",
+    "options": [
+      "0.583",
+      "0.971",
+      "1.359"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Bits 0.971 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0828",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-828"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 828,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **828. Most informative question** \\[Slider\\]: pick the next experiment that maximizes expected information gain.",
+    "modelBoundary": "the outcome entropy ingredient of information-gain design",
+    "recallInputs": [
+      0.4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

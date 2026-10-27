@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0531",
+  "title": "Retries can exceed available capacity",
+  "hook": "Two stated cases: explore the stipulated effective arrival rate after retries.",
+  "domain": "probability",
+  "concept": "cp-source-0531",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated effective arrival rate after retries affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Backlog, regardless of the stated inputs.",
+  "objective": "Compare the stipulated effective arrival rate after retries in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0531.predict",
+      "text": "A toy fluid queue starts at 0; constant arrival rate 120 and capacity 100 run for Time 10. What backlog remains, reflected at zero?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.reveal.0",
+      "text": "The retained results are Arrival=120; Backlog=200 and Arrival=80; Backlog=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.reveal.1",
+      "text": "A persistent input-capacity gap accumulates work. This deterministic fluid approximation omits stochastic waiting-time variability. This comparison isolates the stipulated effective arrival rate after retries.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.case.0.witness",
+      "text": "Arrival=120; Backlog=200",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",0],[\"Arrival\",120],[\"Capacity\",100],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"2.5\",\"value\":50},{\"label\":\"5\",\"value\":100},{\"label\":\"7.5\",\"value\":150},{\"label\":\"10\",\"value\":200}]},\"metrics\":[{\"label\":\"Backlog\",\"value\":\"200\"},{\"label\":\"Arrival\",\"value\":\"120\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.case.1.witness",
+      "text": "Arrival=80; Backlog=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",0],[\"Arrival\",80],[\"Capacity\",100],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"2.5\",\"value\":0},{\"label\":\"5\",\"value\":0},{\"label\":\"7.5\",\"value\":0},{\"label\":\"10\",\"value\":0}]},\"metrics\":[{\"label\":\"Backlog\",\"value\":\"0\"},{\"label\":\"Arrival\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0531.recall",
+      "text": "A toy fluid queue starts at 1; constant arrival rate 120 and capacity 100 run for Time 10. What backlog remains, reflected at zero? Answer 201.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0531/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #531. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fluid queue starts at 1; constant arrival rate 120 and capacity 100 run for Time 10. What backlog remains, reflected at zero?",
+    "options": [
+      "120.6",
+      "201",
+      "281.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Backlog 201 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0531",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-531"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 531,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **531. Retry storms** \\[Slider\\]: a brief slowdown triggers retries that keep the system overloaded long after the cause is gone.",
+    "modelBoundary": "the stipulated effective arrival rate after retries",
+    "recallInputs": [
+      1,
+      120,
+      100,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

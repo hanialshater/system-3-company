@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0554", "title": "Arrivals offset per-capita departures", "op": "immigration", "labels": ["Arrival", "Death", "Initial", "Time"], "outputs": ["Expected"], "a": [10.0, 0.2, 0.0, 10.0], "b": [10.0, 0.2, 0.0, 30.0], "question": "A toy population receives immigrants at rate 10; per-capita death rate 0.2; initial size 0. What is expected size at Time 10?", "questionTemplate": "A toy population receives immigrants at rate {Arrival}; per-capita death rate {Death}; initial size {Initial}. What is expected size at Time {Time}?", "explain": "Surviving initial members and surviving immigrants both contribute. The equilibrium mean is a model balance, not a guarantee about one realized population.", "lens": "the mean balance of an immigration-death model", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

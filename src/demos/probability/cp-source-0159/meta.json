@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0159",
+  "title": "An asymptotic giant-component equation",
+  "hook": "Two stated cases: explore the Poisson branching fixed point.",
+  "domain": "probability",
+  "concept": "cp-source-0159",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Poisson branching fixed point affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Fraction, regardless of the stated inputs.",
+  "objective": "Compare the Poisson branching fixed point in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0159.predict",
+      "text": "For a toy asymptotic Poisson random graph of MeanDegree 2, solve q=exp(-c(1-q)) from q=0 for 1,000 iterations. What giant-component fraction 1-q results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.reveal.0",
+      "text": "The retained results are MeanDegree=2; Fraction=0.797 and MeanDegree=0.5; Fraction=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.reveal.1",
+      "text": "This is the asymptotic Poisson fixed-point model. Finite graphs fluctuate, and other network models can have different thresholds. This comparison isolates the Poisson branching fixed point.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.case.0.witness",
+      "text": "MeanDegree=2; Fraction=0.797",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanDegree\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.7968121300200202}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.797\"},{\"label\":\"MeanDegree\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.case.1.witness",
+      "text": "MeanDegree=0.5; Fraction=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanDegree\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0\"},{\"label\":\"MeanDegree\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0159.recall",
+      "text": "For a toy asymptotic Poisson random graph of MeanDegree 3, solve q=exp(-c(1-q)) from q=0 for 1,000 iterations. What giant-component fraction 1-q results? Answer 0.94.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0159/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #159. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For a toy asymptotic Poisson random graph of MeanDegree 3, solve q=exp(-c(1-q)) from q=0 for 1,000 iterations. What giant-component fraction 1-q results?",
+    "options": [
+      "0.564",
+      "0.94",
+      "1.317"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Fraction 0.94 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0159",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-159"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 159,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **159. Giant component** \\[Slider\\]: add random links; at an average of one link per node, a giant cluster suddenly appears.",
+    "modelBoundary": "the Poisson branching fixed point",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      3
+    ]
+  }
+}

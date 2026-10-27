@@ -1,0 +1,161 @@
+{
+  "slug": "p100-diff-in-diff-animated",
+  "title": "What changed after the policy?",
+  "hook": "Both groups changed. Which part of the change is the policy contrast?",
+  "domain": "probability",
+  "concept": "p100-diff-in-diff-animated",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "two trend lines run in parallel; at the policy date one jumps, and the gap between the gaps is the effect."
+    ]
+  },
+  "misconception": "Treating diff-in-diff, animated as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "two trend lines run in parallel; at the policy date one jumps, and the gap between the gaps is the effect.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-diff-in-diff-animated.predict",
+      "text": "A control group goes 10→14 and treated group 12→21. Under a parallel-trends assumption, what is the difference-in-differences estimate?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.reveal.0",
+      "text": "Both retained cases give DiD 5. Adding the same post-period shock changes both group trends by the same amount, so it cancels in the difference of changes.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.reveal.1",
+      "text": "The arithmetic alone does not establish causation. Interpreting 5 as a policy effect requires the treated group’s untreated trend to match the control trend, without a competing treated-only shock.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.recall",
+      "text": "Control changes by 3 and treatment by 8. What is DiD? Subtract the control change from the treated change: 8−3=5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.scenario.0.summary",
+      "text": "DiD 5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Group\",\"Before\",\"After\"],\"rows\":[[\"C\",10,14],[\"T\",12,21]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Original case\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"C change\",\"value\":4},{\"label\":\"T change\",\"value\":9}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.scenario.1.summary",
+      "text": "DiD 5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Group\",\"Before\",\"After\"],\"rows\":[[\"C\",10,17],[\"T\",12,24]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Common shock\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"C change\",\"value\":7},{\"label\":\"T change\",\"value\":12}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-diff-in-diff-animated/spec.ts; exact finite illustration specified in manager numericCase: Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-diff-in-diff-animated.hook",
+      "text": "Both groups changed. Which part of the change is the policy contrast?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-diff-in-diff-animated/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Control changes by 3 and treatment by 8. What is DiD?",
+    "options": [
+      "3",
+      "5",
+      "11"
+    ],
+    "answer": 1,
+    "why": "Subtract the control change from the treated change: 8−3=5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-diff-in-diff-animated",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "did"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 381,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceTitle": "Diff-in-diff, animated",
+    "sourceText": "two trend lines run in parallel; at the policy date one jumps, and the gap between the gaps is the effect.",
+    "sourceEntryOriginal": "- **381. Diff-in-diff, animated** \\[Slider\\]: two trend lines run in parallel; at the policy date one jumps, and the gap between the gaps is the effect.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "history/history-xian-luoyang-200-700",
+    "difference": "New teaching boundary: Diff-in-diff, animated. Existing boundary: Han/Tang capital chronology and gaps between named dynasties",
+    "numericCase": "Control before/after 10→14, treated 12→21. Raw treated change9; control change4; difference-in-differences5. Add common shock+3 to both post outcomes; DiD remains5."
+  },
+  "modelAudit": {
+    "a": 5,
+    "b": 5
+  }
+}

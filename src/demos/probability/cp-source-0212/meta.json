@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0212",
+  "title": "Zero correlation can hide a function",
+  "hook": "Two stated cases: explore linear correlation versus deterministic dependence.",
+  "domain": "probability",
+  "concept": "cp-source-0212",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How linear correlation versus deterministic dependence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MutualBits, regardless of the stated inputs.",
+  "objective": "Compare linear correlation versus deterministic dependence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0212.predict",
+      "text": "Toy X is 0 with probability 0.333333, otherwise equally likely -1 or +1. Y=X². What is the mutual information in bits?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.reveal.0",
+      "text": "The retained results are ZeroShare=0.333; MutualBits=0.918 and ZeroShare=0.5; MutualBits=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.reveal.1",
+      "text": "Symmetry makes the linear correlation zero, while Y remains a deterministic function of X. Linear correlation does not capture every dependence. This comparison isolates linear correlation versus deterministic dependence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.case.0.witness",
+      "text": "ZeroShare=0.333; MutualBits=0.918",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ZeroShare\",0.3333333333333333]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MutualBits\",\"value\":0.9182958340544896},{\"label\":\"Correlation\",\"value\":0}]},\"metrics\":[{\"label\":\"MutualBits\",\"value\":\"0.918\"},{\"label\":\"ZeroShare\",\"value\":\"0.333\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.case.1.witness",
+      "text": "ZeroShare=0.5; MutualBits=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ZeroShare\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MutualBits\",\"value\":1},{\"label\":\"Correlation\",\"value\":0}]},\"metrics\":[{\"label\":\"MutualBits\",\"value\":\"1\"},{\"label\":\"ZeroShare\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0212.recall",
+      "text": "Toy X is 0 with probability 0.433, otherwise equally likely -1 or +1. Y=X². What is the mutual information in bits? Answer 0.987.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0212/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy X is 0 with probability 0.433, otherwise equally likely -1 or +1. Y=X². What is the mutual information in bits?",
+    "options": [
+      "0.987",
+      "0.592",
+      "1.382"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives MutualBits 0.987 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0212",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-212"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 212,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **212. Zero correlation, full dependence** \\[Gotcha\\]: y = x² has zero correlation with x, yet mutual information shows they're tied.",
+    "modelBoundary": "linear correlation versus deterministic dependence",
+    "recallInputs": [
+      0.43333333333333335
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

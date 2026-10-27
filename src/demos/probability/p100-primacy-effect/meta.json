@@ -1,0 +1,163 @@
+{
+  "slug": "p100-primacy-effect",
+  "title": "Will regular users adapt?",
+  "hook": "An explicit adaptation model treats new and returning users differently.",
+  "domain": "probability",
+  "concept": "p100-primacy-effect",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "regular users at first resist a better design because they're used to the old one."
+    ]
+  },
+  "misconception": "Treating primacy effect as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "regular users at first resist a better design because they're used to the old one.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-primacy-effect.predict",
+      "text": "Returning users follow the toy lift L(t)=5−15 exp(−t/3), in percentage points; new users stay at +5. What returning-user lift is expected on day 9?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.reveal.0",
+      "text": "Returning users retain day-nine lift 4.253 points; new users retain 5. The stipulated adaptation penalty starts large and then decays.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.reveal.1",
+      "text": "Early harm can coexist with later gains under this model. An observed early loss does not prove adaptation, though: persistent harm is a competing explanation that needs longer follow-up and an appropriate comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.recall",
+      "text": "An early returning-user loss becomes a later gain. Does that alone prove adaptation caused it? Time patterns can fit several mechanisms, including changing user mix or other concurrent changes.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.scenario.0.summary",
+      "text": "Day 9: 4.253pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Day0\",\"Day9\"],\"rows\":[[-10,4.253193974482041]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Returning users\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":-10},{\"label\":\"1\",\"value\":-5.74796965860684},{\"label\":\"3\",\"value\":-0.5181916175716346},{\"label\":\"6\",\"value\":2.9699707514508096},{\"label\":\"9\",\"value\":4.253193974482041}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.scenario.1.summary",
+      "text": "Day 9: 5pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"User type\"],\"rows\":[[\"New\"]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · New users\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":5},{\"label\":\"1\",\"value\":5},{\"label\":\"3\",\"value\":5},{\"label\":\"6\",\"value\":5},{\"label\":\"9\",\"value\":5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-primacy-effect/spec.ts; exact finite illustration specified in manager numericCase: Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-primacy-effect.hook",
+      "text": "An explicit adaptation model treats new and returning users differently.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-primacy-effect/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An early returning-user loss becomes a later gain. Does that alone prove adaptation caused it?",
+    "options": [
+      "No: alternative explanations remain",
+      "Yes: timing proves the cause",
+      "Yes: all losses are temporary"
+    ],
+    "answer": 0,
+    "why": "Time patterns can fit several mechanisms, including changing user mix or other concurrent changes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-primacy-effect",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "adaptation"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 336,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Primacy effect",
+    "sourceText": "regular users at first resist a better design because they're used to the old one.",
+    "sourceEntryOriginal": "- **336. Primacy effect** \\[Gotcha\\]: regular users at first resist a better design because they're used to the old one.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/asthma-looks-safe",
+    "difference": "New teaching boundary: Primacy effect. Existing boundary: The learner can explain that asthma patients died less in the records because they all got intensive care, so a model that ranks them lowest risk and sends them to the ward raises their deaths: prediction from past records is not the effect of changing care.",
+    "numericCase": "Returning user lift L(t)=5-15exp(-t/3)pp; new users always5pp. Returningday0=-10,day3≈-.518,day9≈4.253. Compare adaptation with persistent harm assumptions."
+  },
+  "modelAudit": {
+    "a": 4.253193974482041,
+    "b": 5,
+    "day0": -10,
+    "day3": -0.5181916175716346
+  }
+}

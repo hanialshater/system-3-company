@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0446",
+  "title": "Exclude fabricated field records",
+  "hook": "Two stated cases: explore the evidential consequence of excluding invalid records.",
+  "domain": "behavioral",
+  "concept": "be-source-0446",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the evidential consequence of excluding invalid records affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines RemainingMean, regardless of the stated inputs.",
+  "objective": "Compare the evidential consequence of excluding invalid records in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0446.predict",
+      "text": "A toy dataset totals 1000 over 100 records. Exclude 90 invalid records totaling 900. What is the remaining mean?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.reveal.0",
+      "text": "The retained results are RemovedSum=900 RemovedN=90; RemainingMean=10 and RemovedSum=0 RemovedN=0; RemainingMean=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.reveal.1",
+      "text": "Invalid data cannot be retained as evidence merely because they support a preferred story. This arithmetic illustrates exclusion, not a reconstruction of a retracted study. This comparison isolates the evidential consequence of excluding invalid records.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.case.0.witness",
+      "text": "RemovedSum=900 RemovedN=90; RemainingMean=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sum\",1000],[\"N\",100],[\"RemovedSum\",900],[\"RemovedN\",90]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RemainingMean\",\"value\":10}]},\"metrics\":[{\"label\":\"RemainingMean\",\"value\":\"10\"},{\"label\":\"RemovedSum\",\"value\":\"900\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.case.1.witness",
+      "text": "RemovedSum=0 RemovedN=0; RemainingMean=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sum\",1000],[\"N\",100],[\"RemovedSum\",0],[\"RemovedN\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RemainingMean\",\"value\":10}]},\"metrics\":[{\"label\":\"RemainingMean\",\"value\":\"10\"},{\"label\":\"RemovedSum\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0446.recall",
+      "text": "A toy dataset totals 1,001 over 100 records. Exclude 90 invalid records totaling 900. What is the remaining mean? Answer 10.1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0446/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #446. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy dataset totals 1,001 over 100 records. Exclude 90 invalid records totaling 900. What is the remaining mean?",
+    "options": [
+      "10.1",
+      "6.06",
+      "14.14"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives RemainingMean 10.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0446",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-446"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 446,
+    "sourceSection": "23. Honesty & dishonesty",
+    "sourceEntryOriginal": "- **446.** **\\[retracted\\]** A study reported that signing an honesty pledge at the top of a form reduced cheating (Shu, Mazar, Gino, Ariely & Bazerman, 2012); it was retracted in 2021 after its field data were shown to be fabricated.",
+    "modelBoundary": "the evidential consequence of excluding invalid records",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      100,
+      900,
+      90
+    ]
+  }
+}

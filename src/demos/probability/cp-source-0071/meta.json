@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0071",
+  "title": "How much does the top fifth hold?",
+  "hook": "Two stated cases: explore the Pareto shape behind concentration.",
+  "domain": "probability",
+  "concept": "cp-source-0071",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Pareto shape behind concentration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines WealthShare, regardless of the stated inputs.",
+  "objective": "Compare the Pareto shape behind concentration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0071.predict",
+      "text": "A toy Pareto distribution has shape Alpha 1.2 greater than 1. What fraction of total wealth is held by the top population share 0.2?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.reveal.0",
+      "text": "The retained results are Alpha=1.2; WealthShare=0.765 and Alpha=3; WealthShare=0.342.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.reveal.1",
+      "text": "The shape parameter controls concentration and requires a finite mean for this formula. It is a stated distribution, not an estimate of a country. This comparison isolates the Pareto shape behind concentration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.case.0.witness",
+      "text": "Alpha=1.2; WealthShare=0.765",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TopShare\",0.2],[\"Alpha\",1.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"WealthShare\",\"value\":0.76472449133173}]},\"metrics\":[{\"label\":\"WealthShare\",\"value\":\"0.765\"},{\"label\":\"Alpha\",\"value\":\"1.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.case.1.witness",
+      "text": "Alpha=3; WealthShare=0.342",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TopShare\",0.2],[\"Alpha\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"WealthShare\",\"value\":0.34199518933533934}]},\"metrics\":[{\"label\":\"WealthShare\",\"value\":\"0.342\"},{\"label\":\"Alpha\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0071.recall",
+      "text": "A toy Pareto distribution has shape Alpha 1.2 greater than 1. What fraction of total wealth is held by the top population share 0.3? Answer 0.818.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0071/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #71. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Pareto distribution has shape Alpha 1.2 greater than 1. What fraction of total wealth is held by the top population share 0.3?",
+    "options": [
+      "0.818",
+      "0.491",
+      "1.145"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives WealthShare 0.818 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0071",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-71"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 71,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **71. 80/20** \\[Slider\\]: tune a Pareto distribution and see what share of the top 20% owns.",
+    "modelBoundary": "the Pareto shape behind concentration",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.30000000000000004,
+      1.2
+    ]
+  }
+}

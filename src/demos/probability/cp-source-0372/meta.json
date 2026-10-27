@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0372",
+  "title": "A decision score crosses a threshold",
+  "hook": "Two stated cases for a decision score crosses a threshold.",
+  "domain": "probability",
+  "concept": "cp-source-0372",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated score rule rather than a causal fairness guarantee affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare the stipulated score rule rather than a causal fairness guarantee in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0372.predict",
+      "text": "A toy fitted line has Intercept -5, Slope 1; what does it predict at X 4?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.reveal.0",
+      "text": "The retained results are X=4; Prediction=-1 and X=6; Prediction=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates the stipulated score rule rather than a causal fairness guarantee.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.case.0.witness",
+      "text": "X=4; Prediction=-1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",-5],[\"Slope\",1],[\"X\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":-1}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"-1\"},{\"label\":\"X\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.case.1.witness",
+      "text": "X=6; Prediction=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",-5],[\"Slope\",1],[\"X\",6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":1}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"1\"},{\"label\":\"X\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0372.recall",
+      "text": "A toy fitted line has Intercept -4, Slope 1; what does it predict at X 4? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0372/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #372. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept -4, Slope 1; what does it predict at X 4?",
+    "options": [
+      "-0.1",
+      "0",
+      "0.1"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Prediction 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0372",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-372"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 372,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **372. What would flip the decision?** \\[Slider\\]: find the smallest change to an application that turns a loan denial into approval.",
+    "modelBoundary": "the stipulated score rule rather than a causal fairness guarantee",
+    "recallInputs": [
+      -4,
+      1,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

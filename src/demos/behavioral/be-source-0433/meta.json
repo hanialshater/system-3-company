@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0433",
+  "title": "The time spent commuting",
+  "hook": "Two stated cases: explore the weekly time budget behind a commute tradeoff.",
+  "domain": "behavioral",
+  "concept": "be-source-0433",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weekly time budget behind a commute tradeoff affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Remaining, regardless of the stated inputs.",
+  "objective": "Compare the weekly time budget behind a commute tradeoff in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0433.predict",
+      "text": "A toy budget starts with 168 and spends 2 per day for 5 days. What remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.reveal.0",
+      "text": "The retained results are Spend=2; Remaining=158 and Spend=0.5; Remaining=165.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.reveal.1",
+      "text": "The timing of an inflow and the rate of spending determine the remaining buffer. The schedule is an illustration, not observed household data. This comparison isolates the weekly time budget behind a commute tradeoff.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.case.0.witness",
+      "text": "Spend=2; Remaining=158",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",168],[\"Days\",5],[\"Spend\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":168},{\"label\":\"2.5\",\"value\":163},{\"label\":\"5\",\"value\":158}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"158\"},{\"label\":\"Spend\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.case.1.witness",
+      "text": "Spend=0.5; Remaining=165.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",168],[\"Days\",5],[\"Spend\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":168},{\"label\":\"2.5\",\"value\":166.75},{\"label\":\"5\",\"value\":165.5}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"165.5\"},{\"label\":\"Spend\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0433.recall",
+      "text": "A toy budget starts with 169 and spends 2 per day for 5 days. What remains? Answer 159.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0433/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #433. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy budget starts with 169 and spends 2 per day for 5 days. What remains?",
+    "options": [
+      "95.4",
+      "222.6",
+      "159"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Remaining 159 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0433",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-433"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 433,
+    "sourceSection": "22. Experience, memory & happiness",
+    "sourceEntryOriginal": "- **433.** People with long commutes report lower life satisfaction, not offset by higher pay or cheaper housing (Stutzer & Frey, 2008).",
+    "modelBoundary": "the weekly time budget behind a commute tradeoff",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      169,
+      5,
+      2
+    ]
+  }
+}

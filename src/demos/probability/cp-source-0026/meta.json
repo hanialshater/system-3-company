@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0026",
+  "title": "Random points leave empty cells",
+  "hook": "Two stated cases: explore gaps under independent uniform placement.",
+  "domain": "probability",
+  "concept": "cp-source-0026",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How gaps under independent uniform placement affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Empty, regardless of the stated inputs.",
+  "objective": "Compare gaps under independent uniform placement in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0026.predict",
+      "text": "Throw 20 independent toy points into 20 equally likely cells. What is the expected number of empty cells?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.reveal.0",
+      "text": "The retained results are Balls=20; Empty=7.17 and Balls=60; Empty=0.921.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.reveal.1",
+      "text": "Uniform independent placement still produces gaps and clusters. The expected empty-cell count is not a rule that every sample must meet. This comparison isolates gaps under independent uniform placement.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.case.0.witness",
+      "text": "Balls=20; Empty=7.17",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Balls\",20],[\"Bins\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Empty\",\"value\":7.169718448170838}]},\"metrics\":[{\"label\":\"Empty\",\"value\":\"7.17\"},{\"label\":\"Balls\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.case.1.witness",
+      "text": "Balls=60; Empty=0.921",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Balls\",60],[\"Bins\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Empty\",\"value\":0.921395979739039}]},\"metrics\":[{\"label\":\"Empty\",\"value\":\"0.921\"},{\"label\":\"Balls\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0026.recall",
+      "text": "Throw 21 independent toy points into 20 equally likely cells. What is the expected number of empty cells? Answer 6.811.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0026/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Throw 21 independent toy points into 20 equally likely cells. What is the expected number of empty cells?",
+    "options": [
+      "6.811",
+      "4.087",
+      "9.536"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Empty 6.811 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0026",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-26"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 26,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **26. Spot the random dots** \\[Split\\]: which pattern is random? Most pick the evenly spaced one; the clumpy one is random.",
+    "modelBoundary": "gaps under independent uniform placement",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      21,
+      20
+    ]
+  }
+}

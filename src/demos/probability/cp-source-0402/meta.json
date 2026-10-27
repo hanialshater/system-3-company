@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0402",
+  "title": "Count supported toy strata",
+  "hook": "Two stated cases: explore the observed treatment support within strata.",
+  "domain": "probability",
+  "concept": "cp-source-0402",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the observed treatment support within strata affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Supported, regardless of the stated inputs.",
+  "objective": "Compare the observed treatment support within strata in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0402.predict",
+      "text": "Two toy strata have treated/control counts 50/50 and 50/50. How many strata contain both treatment assignments?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.reveal.0",
+      "text": "The retained results are TLow=50 CHigh=50; Supported=2 and TLow=0 CHigh=0; Supported=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.reveal.1",
+      "text": "An observed comparison needs support for both assignments in the relevant strata. Modeling unsupported strata adds extrapolation assumptions rather than creating observed overlap. This comparison isolates the observed treatment support within strata.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.case.0.witness",
+      "text": "TLow=50 CHigh=50; Supported=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TLow\",50],[\"CLow\",50],[\"THigh\",50],[\"CHigh\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Supported\",\"value\":2}]},\"metrics\":[{\"label\":\"Supported\",\"value\":\"2\"},{\"label\":\"TLow\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.case.1.witness",
+      "text": "TLow=0 CHigh=0; Supported=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TLow\",0],[\"CLow\",50],[\"THigh\",50],[\"CHigh\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Supported\",\"value\":0}]},\"metrics\":[{\"label\":\"Supported\",\"value\":\"0\"},{\"label\":\"TLow\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0402.recall",
+      "text": "Two toy strata have treated/control counts 0/20 and 20/20. How many strata contain both treatment assignments? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0402/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #402. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy strata have treated/control counts 0/20 and 20/20. How many strata contain both treatment assignments?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Supported 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0402",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-402"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 402,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceEntryOriginal": "- **402. Overlap histograms** \\[Slider\\]: plot propensity scores for both groups; slide confounding up until the humps separate.",
+    "modelBoundary": "the observed treatment support within strata",
+    "recallInputs": [
+      0,
+      20,
+      20,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

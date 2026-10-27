@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0369",
+  "title": "A large reach with zero lift",
+  "hook": "Two stated cases for a large reach with zero lift.",
+  "domain": "behavioral",
+  "concept": "be-source-0369",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the difference between program reach and assumed incremental impact affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Added, regardless of the stated inputs.",
+  "objective": "Compare the difference between program reach and assumed incremental impact in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0369.predict",
+      "text": "A toy program has 800000 eligible units, uptake fraction 0.5, and added amount 0 per participant. What total is added?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.reveal.0",
+      "text": "The retained results are Increase=0; Added=0 and Increase=0.03; Added=12,000.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.reveal.1",
+      "text": "Separate the effect among participants from the share who participate. Scaling a program requires both pieces. This comparison isolates the difference between program reach and assumed incremental impact.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.case.0.witness",
+      "text": "Increase=0; Added=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",800000],[\"Uptake\",0.5],[\"Increase\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":0}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"0\"},{\"label\":\"Increase\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.case.1.witness",
+      "text": "Increase=0.03; Added=12,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",800000],[\"Uptake\",0.5],[\"Increase\",0.03]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":12000}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"12,000\"},{\"label\":\"Increase\",\"value\":\"0.03\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0369.recall",
+      "text": "A toy program has 800,000 eligible units, uptake fraction 0.5, and added amount 1 per participant. What total is added? Answer 400,000.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0369/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy program has 800,000 eligible units, uptake fraction 0.5, and added amount 1 per participant. What total is added?",
+    "options": [
+      "240,000",
+      "400,000",
+      "560,000"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Added 400,000 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0369",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-369"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 369,
+    "sourceSection": "19. Public policy nudges: tax, energy, voting",
+    "sourceEntryOriginal": "- **369.** **\\[contested\\]** National-scale texting and mail nudges about college aid reaching 800,000 students had no effect (Bird et al., 2021).",
+    "modelBoundary": "the difference between program reach and assumed incremental impact",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      800000,
+      0.5,
+      1
+    ]
+  }
+}

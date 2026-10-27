@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0404", "title": "A weighted unit changes its influence", "op": "ipweight", "labels": ["Propensity", "Treated"], "outputs": ["Weight"], "a": [0.2, 1.0], "b": [0.8, 1.0], "question": "A toy unit has treatment propensity 0.2. Treated 1=1 uses inverse treatment probability; 0 uses inverse control probability. What weight results?", "questionTemplate": "A toy unit has treatment propensity {Propensity}. Treated {Treated}=1 uses inverse treatment probability; 0 uses inverse control probability. What weight results?", "explain": "Rare observed assignments receive large weights. Weighting cannot recover comparisons with no overlap or fix unmeasured confounding by itself.", "lens": "the inverse assignment probability of an observed unit", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

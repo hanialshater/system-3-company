@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0650",
+  "title": "Expected improvement at one point",
+  "hook": "Two stated cases for expected improvement at one point.",
+  "domain": "probability",
+  "concept": "cp-source-0650",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How one acquisition function rather than a full optimizer comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Improvement, regardless of the stated inputs.",
+  "objective": "Compare one acquisition function rather than a full optimizer comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0650.predict",
+      "text": "A toy normal objective at one candidate has Mean 0.8, SD 0.2; current Best 1. What is expected positive improvement over the best?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.reveal.0",
+      "text": "The retained results are SD=0.2; Improvement=0.017 and SD=1; Improvement=0.307.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.reveal.1",
+      "text": "Expected improvement combines the chance and size of beating the current best. The normal predictive distribution and current best are explicit assumptions. This comparison isolates one acquisition function rather than a full optimizer comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.case.0.witness",
+      "text": "SD=0.2; Improvement=0.017",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0.8],[\"SD\",0.2],[\"Best\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Improvement\",\"value\":0.016663094117610792}]},\"metrics\":[{\"label\":\"Improvement\",\"value\":\"0.017\"},{\"label\":\"SD\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.case.1.witness",
+      "text": "SD=1; Improvement=0.307",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0.8],[\"SD\",1],[\"Best\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Improvement\",\"value\":0.3068946358633307}]},\"metrics\":[{\"label\":\"Improvement\",\"value\":\"0.307\"},{\"label\":\"SD\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0650.recall",
+      "text": "A toy normal objective at one candidate has Mean 0.9, SD 0.2; current Best 1. What is expected positive improvement over the best? Answer 0.04.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0650/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #650. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal objective at one candidate has Mean 0.9, SD 0.2; current Best 1. What is expected positive improvement over the best?",
+    "options": [
+      "0.04",
+      "-0.06",
+      "0.14"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Improvement 0.04 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0650",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-650"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 650,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **650. Acquisition functions** \\[Split\\]: expected improvement, upper confidence bound and probability of improvement pick different next points.",
+    "modelBoundary": "one acquisition function rather than a full optimizer comparison",
+    "recallInputs": [
+      0.9,
+      0.2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

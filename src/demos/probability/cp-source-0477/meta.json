@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0477",
+  "title": "A symptom updates a supplied prior",
+  "hook": "Two stated cases: explore one diagnostic-network update with stated likelihoods.",
+  "domain": "probability",
+  "concept": "cp-source-0477",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How one diagnostic-network update with stated likelihoods affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare one diagnostic-network update with stated likelihoods in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0477.predict",
+      "text": "A toy condition has prevalence 0.1; a test catches fraction 0.8 of cases and flags fraction 0.1 of noncases. Given a positive, what probability is a case?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.reveal.0",
+      "text": "The retained results are Prior=0.1; Posterior=0.471 and Prior=0.5; Posterior=0.889.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.reveal.1",
+      "text": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive. This comparison isolates one diagnostic-network update with stated likelihoods.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.case.0.witness",
+      "text": "Prior=0.1; Posterior=0.471",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.1],[\"Sensitivity\",0.8],[\"FalsePositive\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.47058823529411764}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.471\"},{\"label\":\"Prior\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.case.1.witness",
+      "text": "Prior=0.5; Posterior=0.889",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"Sensitivity\",0.8],[\"FalsePositive\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.888888888888889}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.889\"},{\"label\":\"Prior\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0477.recall",
+      "text": "A toy condition has prevalence 0.08; a test catches fraction 0.8 of cases and flags fraction 0.1 of noncases. Given a positive, what probability is a case? Answer 0.41.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0477/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #477. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy condition has prevalence 0.08; a test catches fraction 0.8 of cases and flags fraction 0.1 of noncases. Given a positive, what probability is a case?",
+    "options": [
+      "0.246",
+      "0.41",
+      "0.574"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 0.41 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0477",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-477"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 477,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **477. Diagnosis network** \\[Slider\\]: toggle symptoms and test results; posterior probabilities of diseases update.",
+    "modelBoundary": "one diagnostic-network update with stated likelihoods",
+    "recallInputs": [
+      0.08000000000000002,
+      0.8,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

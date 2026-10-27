@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0146",
+  "title": "A basket chosen all at once",
+  "hook": "Two stated cases: explore the menu composition of a planned basket.",
+  "domain": "behavioral",
+  "concept": "be-source-0146",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the menu composition of a planned basket affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines StockMoney, regardless of the stated inputs.",
+  "objective": "Compare the menu composition of a planned basket in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0146.predict",
+      "text": "A toy investor splits 10 equally across 3 stock funds and 2 bond funds. How much goes to stocks?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.reveal.0",
+      "text": "The retained results are Stocks=3 Bonds=2; StockMoney=6 and Stocks=1 Bonds=4; StockMoney=2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.reveal.1",
+      "text": "Equal allocation over menu items is not equal allocation over asset classes. The menu changes the resulting exposure. This comparison isolates the menu composition of a planned basket.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.case.0.witness",
+      "text": "Stocks=3 Bonds=2; StockMoney=6",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Stocks\",3],[\"Bonds\",2],[\"Budget\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"StockMoney\",\"value\":6}]},\"metrics\":[{\"label\":\"StockMoney\",\"value\":\"6\"},{\"label\":\"Stocks\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.case.1.witness",
+      "text": "Stocks=1 Bonds=4; StockMoney=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Stocks\",1],[\"Bonds\",4],[\"Budget\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"StockMoney\",\"value\":2}]},\"metrics\":[{\"label\":\"StockMoney\",\"value\":\"2\"},{\"label\":\"Stocks\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0146.recall",
+      "text": "A toy investor splits 10 equally across 4 stock funds and 2 bond funds. How much goes to stocks? Answer 6.667.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0146/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #146. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy investor splits 10 equally across 4 stock funds and 2 bond funds. How much goes to stocks?",
+    "options": [
+      "6.667",
+      "4",
+      "9.333"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives StockMoney 6.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0146",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-146"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 146,
+    "sourceSection": "8. Choice overload & complexity",
+    "sourceEntryOriginal": "- **146.** People choose more variety when picking several items in advance than one at a time (Simonson, 1990; Read & Loewenstein, 1995).",
+    "modelBoundary": "the menu composition of a planned basket",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      4,
+      2,
+      10
+    ]
+  }
+}

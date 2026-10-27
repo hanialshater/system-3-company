@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0707", "title": "Reward nudges an action probability", "op": "policygradient", "labels": ["P", "Action", "Reward", "Baseline", "Step"], "outputs": ["NewP", "Gradient"], "a": [0.5, 1.0, 2.0, 0.0, 0.5], "b": [0.5, 1.0, -2.0, 0.0, 0.5], "question": "For a toy Bernoulli policy P 0.5, observed Action 1, Reward 2, Baseline 0, Step 0.5, update its logit by Step×(Reward-Baseline)×(Action-P). What new P results?", "questionTemplate": "For a toy Bernoulli policy P {P}, observed Action {Action}, Reward {Reward}, Baseline {Baseline}, Step {Step}, update its logit by Step×(Reward-Baseline)×(Action-P). What new P results?", "explain": "A score-function step changes the action probability using centered reward. One stochastic step does not guarantee improvement.", "lens": "the reward sign in one score-function step", "kind": "bars", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

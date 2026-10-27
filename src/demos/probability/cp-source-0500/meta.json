@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0500",
+  "title": "One outcome does not judge a forecast",
+  "hook": "Two stated cases: explore repeated calibration versus a single realized election.",
+  "domain": "probability",
+  "concept": "cp-source-0500",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How repeated calibration versus a single realized election affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare repeated calibration versus a single realized election in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0500.predict",
+      "text": "A toy forecast claims probability 0.29; 29 of 100 matched it. What is claimed probability minus observed share?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.reveal.0",
+      "text": "The retained results are Hits=29 Trials=100; Gap=0 and Hits=1 Trials=1; Gap=-0.71.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.reveal.1",
+      "text": "Calibration compares forecasts with repeated outcomes. One correct or incorrect outcome cannot settle a probability claim. This comparison isolates repeated calibration versus a single realized election.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.case.0.witness",
+      "text": "Hits=29 Trials=100; Gap=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.29],[\"Hits\",29],[\"Trials\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0\"},{\"label\":\"Hits\",\"value\":\"29\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.case.1.witness",
+      "text": "Hits=1 Trials=1; Gap=-0.71",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.29],[\"Hits\",1],[\"Trials\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-0.71}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-0.71\"},{\"label\":\"Hits\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0500.recall",
+      "text": "A toy forecast claims probability 0.232; 29 of 100 matched it. What is claimed probability minus observed share? Answer -0.058.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0500/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #500. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy forecast claims probability 0.232; 29 of 100 matched it. What is claimed probability minus observed share?",
+    "options": [
+      "-0.058",
+      "-0.158",
+      "0.042"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap -0.058 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0500",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-500"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 500,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **500. A 29% chance happens** \\[Story\\]: forecasts giving Trump about a 29% chance in 2016 weren't \"wrong\" when he won; one-in-three events are common.",
+    "modelBoundary": "repeated calibration versus a single realized election",
+    "recallInputs": [
+      0.23199999999999998,
+      29,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

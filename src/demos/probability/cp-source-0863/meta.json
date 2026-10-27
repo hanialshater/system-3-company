@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0863",
+  "title": "A no-harm assumption tightens a bound",
+  "hook": "Two stated cases for a no-harm assumption tightens a bound.",
+  "domain": "probability",
+  "concept": "cp-source-0863",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the monotone-response restriction on a partial identification set affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Lower, regardless of the stated inputs.",
+  "objective": "Compare the monotone-response restriction on a partial identification set in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0863.predict",
+      "text": "Binary toy outcomes have treated Share 0.5, treated mean M1 0.7, control mean M0 0.3. Monotone 0=1 assumes no harmful effects. What lower ATE bound results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.reveal.0",
+      "text": "The retained results are Monotone=0; Lower=-0.3 and Monotone=1; Lower=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.reveal.1",
+      "text": "Unobserved counterfactual means range from zero to one. A no-harm assumption intersects these bounds with nonnegative effects; it must be justified. This comparison isolates the monotone-response restriction on a partial identification set.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.case.0.witness",
+      "text": "Monotone=0; Lower=-0.3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"M1\",0.7],[\"M0\",0.3],[\"Monotone\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Lower\",\"value\":-0.30000000000000004},{\"label\":\"Upper\",\"value\":0.7000000000000001}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"-0.3\"},{\"label\":\"Monotone\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.case.1.witness",
+      "text": "Monotone=1; Lower=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"M1\",0.7],[\"M0\",0.3],[\"Monotone\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Lower\",\"value\":0},{\"label\":\"Upper\",\"value\":0.7000000000000001}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"0\"},{\"label\":\"Monotone\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0863.recall",
+      "text": "Binary toy outcomes have treated Share 0.5, treated mean M1 0.8, control mean M0 0.3. Monotone 0=1 assumes no harmful effects. What lower ATE bound results? Answer -0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0863/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #863. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Binary toy outcomes have treated Share 0.5, treated mean M1 0.8, control mean M0 0.3. Monotone 0=1 assumes no harmful effects. What lower ATE bound results?",
+    "options": [
+      "-0.25",
+      "-0.35",
+      "-0.15"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Lower -0.25 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0863",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-863"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 863,
+    "sourceSection": "44. Advanced identification: front-door, bounds, transportability",
+    "sourceEntryOriginal": "- **863. Add an assumption** \\[Slider\\]: assume monotone effects and the bounds snap tighter.",
+    "modelBoundary": "the monotone-response restriction on a partial identification set",
+    "recallInputs": [
+      0.5,
+      0.7999999999999999,
+      0.3,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

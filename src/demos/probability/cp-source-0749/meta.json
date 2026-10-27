@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0749",
+  "title": "A common shock links crashes",
+  "hook": "Two stated cases: explore the common-shock component of joint tail risk.",
+  "domain": "probability",
+  "concept": "cp-source-0749",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the common-shock component of joint tail risk affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Conditional, regardless of the stated inputs.",
+  "objective": "Compare the common-shock component of joint tail risk in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0749.predict",
+      "text": "A toy common crash occurs with probability Shock 0; otherwise two crashes occur independently with IndependentP 0.01. Given one crash, what probability is the other?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.reveal.0",
+      "text": "The retained results are Shock=0; Conditional=0.01 and Shock=0.05; Conditional=0.842.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.reveal.1",
+      "text": "A common shock changes joint tail risk. This explicit mixture is not a Gaussian copula fit. This comparison isolates the common-shock component of joint tail risk.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.case.0.witness",
+      "text": "Shock=0; Conditional=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Shock\",0],[\"IndependentP\",0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Conditional\",\"value\":0.01},{\"label\":\"Marginal\",\"value\":0.01},{\"label\":\"Joint\",\"value\":0.0001}]},\"metrics\":[{\"label\":\"Conditional\",\"value\":\"0.01\"},{\"label\":\"Shock\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.case.1.witness",
+      "text": "Shock=0.05; Conditional=0.842",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Shock\",0.05],[\"IndependentP\",0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Conditional\",\"value\":0.8419327731092436},{\"label\":\"Marginal\",\"value\":0.059500000000000004},{\"label\":\"Joint\",\"value\":0.050095}]},\"metrics\":[{\"label\":\"Conditional\",\"value\":\"0.842\"},{\"label\":\"Shock\",\"value\":\"0.05\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0749.recall",
+      "text": "A toy common crash occurs with probability Shock 1; otherwise two crashes occur independently with IndependentP 0.01. Given one crash, what probability is the other? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0749/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #749. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy common crash occurs with probability Shock 1; otherwise two crashes occur independently with IndependentP 0.01. Given one crash, what probability is the other?",
+    "options": [
+      "1",
+      "0.6",
+      "1.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Conditional 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0749",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-749"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 749,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **749. Crisis correlations** \\[Slider\\]: assets that move independently day to day crash together in the tails.",
+    "modelBoundary": "the common-shock component of joint tail risk",
+    "recallInputs": [
+      1,
+      0.01
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

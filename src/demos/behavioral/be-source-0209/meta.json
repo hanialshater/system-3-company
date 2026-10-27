@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0209",
+  "title": "Two rates in a disorder study",
+  "hook": "Two stated cases: explore the distinction between a ratio and a percentage-point change.",
+  "domain": "behavioral",
+  "concept": "be-source-0209",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the distinction between a ratio and a percentage-point change affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the distinction between a ratio and a percentage-point change in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0209.predict",
+      "text": "A toy comparison has 69/100 in A and 33/100 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.reveal.0",
+      "text": "The retained results are HitA=69 HitB=33; Gap=36 and HitA=27 HitB=13; Gap=14.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the distinction between a ratio and a percentage-point change.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.case.0.witness",
+      "text": "HitA=69 HitB=33; Gap=36",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",69],[\"TotalA\",100],[\"HitB\",33],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":35.99999999999999}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"36\"},{\"label\":\"HitA\",\"value\":\"69\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.case.1.witness",
+      "text": "HitA=27 HitB=13; Gap=14",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",27],[\"TotalA\",100],[\"HitB\",13],[\"TotalB\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":14.000000000000002}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"14\"},{\"label\":\"HitA\",\"value\":\"27\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0209.recall",
+      "text": "A toy comparison has 70/100 in A and 33/100 in B. What is A minus B in percentage points? Answer 37.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0209/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #209. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 70/100 in A and 33/100 in B. What is A minus B in percentage points?",
+    "options": [
+      "37",
+      "22.2",
+      "51.8"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap 37 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0209",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-209"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 209,
+    "sourceSection": "11. Social norms & conformity",
+    "sourceEntryOriginal": "- **209.** Graffiti on a wall doubled littering from 33% to 69%, and visible disorder doubled theft of an envelope with money from 13% to 27% (Keizer, Lindenberg & Steg, 2008).",
+    "modelBoundary": "the distinction between a ratio and a percentage-point change",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      70,
+      100,
+      33,
+      100
+    ]
+  }
+}

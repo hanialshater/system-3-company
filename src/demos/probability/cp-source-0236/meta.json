@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0236",
+  "title": "Choose a hypothesis after the search",
+  "hook": "Two stated cases: explore the hidden search opportunity behind a selected pattern.",
+  "domain": "probability",
+  "concept": "cp-source-0236",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the hidden search opportunity behind a selected pattern affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bound, regardless of the stated inputs.",
+  "objective": "Compare the hidden search opportunity behind a selected pattern in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0236.predict",
+      "text": "There are 20 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.reveal.0",
+      "text": "The retained results are Tests=20; Bound=1 and Tests=1; Bound=0.05.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.reveal.1",
+      "text": "The bound needs no independence but can be loose. Repeated looks at shared data require their own sequential-testing model. This comparison isolates the hidden search opportunity behind a selected pattern.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.case.0.witness",
+      "text": "Tests=20; Bound=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",20],[\"Alpha\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bound\",\"value\":1}]},\"metrics\":[{\"label\":\"Bound\",\"value\":\"1\"},{\"label\":\"Tests\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.case.1.witness",
+      "text": "Tests=1; Bound=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",1],[\"Alpha\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bound\",\"value\":0.05}]},\"metrics\":[{\"label\":\"Bound\",\"value\":\"0.05\"},{\"label\":\"Tests\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0236.recall",
+      "text": "There are 3 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm? Answer 0.15.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0236/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #236. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "There are 3 opportunities, each with false-alarm probability at most 0.05. What union-bound ceiling applies to any false alarm?",
+    "options": [
+      "0.15",
+      "0.05",
+      "0.25"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Bound 0.15 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0236",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-236"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 236,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **236. HARKing** \\[Gotcha\\]: forming the hypothesis after seeing results makes any pattern look predicted.",
+    "modelBoundary": "the hidden search opportunity behind a selected pattern",
+    "recallInputs": [
+      3,
+      0.05
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

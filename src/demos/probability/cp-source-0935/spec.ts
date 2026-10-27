@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0935", "title": "A spreader can leave the active state", "op": "availability", "labels": ["Break", "Repair", "Start", "Time"], "outputs": ["Up"], "a": [0.2, 0.0, 1.0, 5.0], "b": [0.8, 0.0, 1.0, 5.0], "question": "A toy two-state continuous-time machine has breakdown rate 0.2, repair rate 0, initial up probability 1. What is up probability at Time 5?", "questionTemplate": "A toy two-state continuous-time machine has breakdown rate {Break}, repair rate {Repair}, initial up probability {Start}. What is up probability at Time {Time}?", "explain": "Repair and failure rates jointly determine availability and transient recovery. Independence and constant hazards are explicit model assumptions.", "lens": "the stipulated transition out of active spreading", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

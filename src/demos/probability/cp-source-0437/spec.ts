@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0437", "title": "A common ratio meets different baselines", "op": "interaction", "labels": ["Base", "RiskRatio", "HighBase"], "outputs": ["LowDifference", "HighDifference"], "a": [0.01, 0.5, 0.2], "b": [0.1, 0.5, 0.2], "question": "Two toy groups have baseline risks 0.01 and 0.2, sharing risk ratio 0.5. What is the first group’s treated-minus-baseline risk difference?", "questionTemplate": "Two toy groups have baseline risks {Base} and {HighBase}, sharing risk ratio {RiskRatio}. What is the first group’s treated-minus-baseline risk difference?", "explain": "A common risk ratio can coexist with different absolute risk differences. Interaction is a property of both the model and the chosen effect scale.", "lens": "the baseline-dependent absolute effect", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

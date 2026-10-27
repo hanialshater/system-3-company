@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0793",
+  "title": "A masked choice has probabilities",
+  "hook": "Two stated cases: explore the softmax temperature of two supplied candidates.",
+  "domain": "probability",
+  "concept": "cp-source-0793",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the softmax temperature of two supplied candidates affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ProbabilityA, regardless of the stated inputs.",
+  "objective": "Compare the softmax temperature of two supplied candidates in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0793.predict",
+      "text": "Two toy logits are 2 and 0, divided by positive Temperature 1 before softmax. What probability is assigned to A?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.reveal.0",
+      "text": "The retained results are Temperature=1; ProbabilityA=0.881 and Temperature=2; ProbabilityA=0.731.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.reveal.1",
+      "text": "Temperature changes sampling concentration while preserving logit order. It does not supply evidence that the scores are calibrated. This comparison isolates the softmax temperature of two supplied candidates.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.case.0.witness",
+      "text": "Temperature=1; ProbabilityA=0.881",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",2],[\"LogitB\",0],[\"Temperature\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.8807970779778823}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"0.881\"},{\"label\":\"Temperature\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.case.1.witness",
+      "text": "Temperature=2; ProbabilityA=0.731",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",2],[\"LogitB\",0],[\"Temperature\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.7310585786300049}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"0.731\"},{\"label\":\"Temperature\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0793.recall",
+      "text": "Two toy logits are 3 and 0, divided by positive Temperature 1 before softmax. What probability is assigned to A? Answer 0.953.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0793/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #793. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy logits are 3 and 0, divided by positive Temperature 1 before softmax. What probability is assigned to A?",
+    "options": [
+      "0.572",
+      "1.334",
+      "0.953"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives ProbabilityA 0.953 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0793",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-793"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 793,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **793. Fill the blank** \\[Predict\\]: guess the masked word, then see the model's probability over candidates.",
+    "modelBoundary": "the softmax temperature of two supplied candidates",
+    "recallInputs": [
+      3,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

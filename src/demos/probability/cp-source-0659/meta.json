@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0659",
+  "title": "One output informs a correlated output",
+  "hook": "Two stated cases: explore the cross-covariance in a two-output Gaussian update.",
+  "domain": "probability",
+  "concept": "cp-source-0659",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cross-covariance in a two-output Gaussian update affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the cross-covariance in a two-output Gaussian update in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0659.predict",
+      "text": "Two zero-mean toy normal outputs have variances 1,1, covariance 0.8. Observe the first at 2 with noise variance 0.1. What is the conditional target mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.reveal.0",
+      "text": "The retained results are Covariance=0.8; Mean=1.455 and Covariance=0; Mean=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.reveal.1",
+      "text": "Cross-covariance allows one output to inform another. The specified joint covariance must be valid and observation noise is assumed independent. This comparison isolates the cross-covariance in a two-output Gaussian update.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.case.0.witness",
+      "text": "Covariance=0.8; Mean=1.455",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Observation\",2],[\"ObsVar\",1],[\"TargetVar\",1],[\"Covariance\",0.8],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1.4545454545454546},{\"label\":\"Variance\",\"value\":0.4181818181818181}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1.455\"},{\"label\":\"Covariance\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.case.1.witness",
+      "text": "Covariance=0; Mean=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Observation\",2],[\"ObsVar\",1],[\"TargetVar\",1],[\"Covariance\",0],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0},{\"label\":\"Variance\",\"value\":1}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0\"},{\"label\":\"Covariance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0659.recall",
+      "text": "Two zero-mean toy normal outputs have variances 1,1, covariance 0.8. Observe the first at 3 with noise variance 0.1. What is the conditional target mean? Answer 2.182.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0659/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #659. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two zero-mean toy normal outputs have variances 1,1, covariance 0.8. Observe the first at 3 with noise variance 0.1. What is the conditional target mean?",
+    "options": [
+      "2.182",
+      "1.309",
+      "3.055"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 2.182 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0659",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-659"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 659,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **659. Several outputs at once** \\[Slider\\]: a multi-output GP lets sparse data in one series borrow from another.",
+    "modelBoundary": "the cross-covariance in a two-output Gaussian update",
+    "recallInputs": [
+      3,
+      1,
+      1,
+      0.8,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

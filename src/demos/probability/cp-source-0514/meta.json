@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0514",
+  "title": "Long states get more time exposure",
+  "hook": "Two stated cases: explore time-weighted observation rather than a general PASTA proof.",
+  "domain": "probability",
+  "concept": "cp-source-0514",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How time-weighted observation rather than a general PASTA proof affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weighted, regardless of the stated inputs.",
+  "objective": "Compare time-weighted observation rather than a general PASTA proof in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0514.predict",
+      "text": "A toy population has 1 units of size 2 and 1 of size 8. Sampling units proportional to size, what mean size is seen?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.reveal.0",
+      "text": "The retained results are ValueA=2 ValueB=8; Weighted=6.8 and ValueA=4 ValueB=4; Weighted=4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.reveal.1",
+      "text": "Size-weighted sampling overrepresents large units. Compare it with the ordinary mean over units before interpreting an apparent paradox. This comparison isolates time-weighted observation rather than a general PASTA proof.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.case.0.witness",
+      "text": "ValueA=2 ValueB=8; Weighted=6.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",2],[\"CountA\",1],[\"ValueB\",8],[\"CountB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":6.8},{\"label\":\"Ordinary\",\"value\":5}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"6.8\"},{\"label\":\"ValueA\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.case.1.witness",
+      "text": "ValueA=4 ValueB=4; Weighted=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",4],[\"CountA\",1],[\"ValueB\",4],[\"CountB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":4},{\"label\":\"Ordinary\",\"value\":4}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"4\"},{\"label\":\"ValueA\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0514.recall",
+      "text": "A toy population has 1 units of size 3 and 1 of size 8. Sampling units proportional to size, what mean size is seen? Answer 6.636.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0514/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #514. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has 1 units of size 3 and 1 of size 8. Sampling units proportional to size, what mean size is seen?",
+    "options": [
+      "3.982",
+      "9.291",
+      "6.636"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Weighted 6.636 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0514",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-514"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 514,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **514. PASTA** \\[Gotcha\\]: random arrivals see the average queue; scheduled arrivals, like booked appointments, don't.",
+    "modelBoundary": "time-weighted observation rather than a general PASTA proof",
+    "recallInputs": [
+      3,
+      1,
+      8,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

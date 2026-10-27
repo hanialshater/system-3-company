@@ -1,5 +1,7 @@
 # Changelog
 
+2026-10-24 · platform-engineer: Added isolated numerical trace geometry and state for the founder's 100 behavioral +100 causal/probability draft PR, with local per-lesson specs, two witnessed cases, saved evidence across Reset, eight visual families and focused validation/state tests. Existing kit and lesson engines unchanged. Tier-2 readiness remains pending independent review (`company/engineering/readiness/2026-10-24-mini-lab-engine.md`).
+
 2026-10-20 · personalization-engineer: Merged PR13 into default: explicit account-saved feed preferences, ordinary main-feed matching, profile edit/off/reset and export/delete, synthetic HQ and later-round admission tooling. AMD016 ratified; bounded exact candidate admitted. Compiled feature checks passed; inherited aggregate failures disclosed. Source only: no external schema/environment/deployment change. Receipt company/ops/delivery/2026-10-20-account-preferences-source.json.
 
 ## 2026-10-18: PR #8 merged into the default branch via PR #9 (merge a6333dd0); nothing deployed

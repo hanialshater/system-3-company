@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0233",
+  "title": "Hard questions and easy ones",
+  "hook": "Two stated cases: explore the direction of a calibration gap across difficulty.",
+  "domain": "behavioral",
+  "concept": "be-source-0233",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the direction of a calibration gap across difficulty affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the direction of a calibration gap across difficulty in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0233.predict",
+      "text": "A toy forecast claims probability 0.9; 6 of 10 matched it. What is claimed probability minus observed share?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.reveal.0",
+      "text": "The retained results are Claimed=0.9 Hits=6; Gap=0.3 and Claimed=0.6 Hits=9; Gap=-0.3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.reveal.1",
+      "text": "Calibration compares forecasts with repeated outcomes. One correct or incorrect outcome cannot settle a probability claim. This comparison isolates the direction of a calibration gap across difficulty.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.case.0.witness",
+      "text": "Claimed=0.9 Hits=6; Gap=0.3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.9],[\"Hits\",6],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0.30000000000000004}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0.3\"},{\"label\":\"Claimed\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.case.1.witness",
+      "text": "Claimed=0.6 Hits=9; Gap=-0.3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.6],[\"Hits\",9],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-0.30000000000000004}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-0.3\"},{\"label\":\"Claimed\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0233.recall",
+      "text": "A toy forecast claims probability 0.72; 6 of 10 matched it. What is claimed probability minus observed share? Answer 0.12.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0233/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #233. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy forecast claims probability 0.72; 6 of 10 matched it. What is claimed probability minus observed share?",
+    "options": [
+      "0.12",
+      "0.02",
+      "0.22"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap 0.12 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0233",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-233"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 233,
+    "sourceSection": "12. Overconfidence & self-assessment",
+    "sourceEntryOriginal": "- **233.** People are overconfident on hard questions and underconfident on easy ones (Lichtenstein & Fischhoff, 1977).",
+    "modelBoundary": "the direction of a calibration gap across difficulty",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.7200000000000001,
+      6,
+      10
+    ]
+  }
+}

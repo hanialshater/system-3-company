@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0453",
+  "title": "A policy changes the fitted response",
+  "hook": "Two stated cases: explore the assumed coefficient after people react to a policy.",
+  "domain": "probability",
+  "concept": "cp-source-0453",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed coefficient after people react to a policy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare the assumed coefficient after people react to a policy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0453.predict",
+      "text": "A toy fitted line has Intercept 0, Slope 2; what does it predict at X 5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.reveal.0",
+      "text": "The retained results are Slope=2; Prediction=10 and Slope=-1; Prediction=-5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates the assumed coefficient after people react to a policy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.case.0.witness",
+      "text": "Slope=2; Prediction=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Slope\",2],[\"X\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":10}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"10\"},{\"label\":\"Slope\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.case.1.witness",
+      "text": "Slope=-1; Prediction=-5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Slope\",-1],[\"X\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":-5}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"-5\"},{\"label\":\"Slope\",\"value\":\"-1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0453.recall",
+      "text": "A toy fitted line has Intercept 1, Slope 2; what does it predict at X 5? Answer 11.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0453/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 1, Slope 2; what does it predict at X 5?",
+    "options": [
+      "6.6",
+      "11",
+      "15.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Prediction 11 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0453",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-453"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 453,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **453. Lucas critique** \\[Gotcha\\]: relationships in past data change once people react to a new policy.",
+    "modelBoundary": "the assumed coefficient after people react to a policy",
+    "recallInputs": [
+      1,
+      2,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

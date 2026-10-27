@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0415",
+  "title": "The market adjusts slowly",
+  "hook": "Two stated cases: explore the adjustment speed in a stated price path.",
+  "domain": "behavioral",
+  "concept": "be-source-0415",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the adjustment speed in a stated price path affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the adjustment speed in a stated price path in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0415.predict",
+      "text": "Starting at 100, move fraction 0.1 of the remaining distance toward 80 for 1 steps. Where does the estimate finish?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.reveal.0",
+      "text": "The retained results are Steps=1; Estimate=98 and Steps=5; Estimate=91.81.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.reveal.1",
+      "text": "Each adjustment leaves a fraction of the original distance. Stopping after a small number of steps preserves dependence on the start. This comparison isolates the adjustment speed in a stated price path.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.case.0.witness",
+      "text": "Steps=1; Estimate=98",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",100],[\"Target\",80],[\"Steps\",1],[\"Fraction\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"1\",\"value\":98}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"98\"},{\"label\":\"Steps\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.case.1.witness",
+      "text": "Steps=5; Estimate=91.81",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",100],[\"Target\",80],[\"Steps\",5],[\"Fraction\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"1\",\"value\":98},{\"label\":\"2\",\"value\":96.2},{\"label\":\"3\",\"value\":94.58},{\"label\":\"4\",\"value\":93.122},{\"label\":\"5\",\"value\":91.8098}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"91.81\"},{\"label\":\"Steps\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0415.recall",
+      "text": "Starting at 101, move fraction 0.1 of the remaining distance toward 80 for 1 steps. Where does the estimate finish? Answer 98.9.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0415/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #415. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Starting at 101, move fraction 0.1 of the remaining distance toward 80 for 1 steps. Where does the estimate finish?",
+    "options": [
+      "59.34",
+      "138.46",
+      "98.9"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Estimate 98.9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0415",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-415"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 415,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **415.** The disposition effect among fund managers slows the reaction of prices to news (Frazzini, 2006).",
+    "modelBoundary": "the adjustment speed in a stated price path",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      80,
+      1,
+      0.1
+    ]
+  }
+}

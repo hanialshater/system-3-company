@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0225",
+  "title": "The count changes across repetitions",
+  "hook": "Two stated cases: explore the tail probability as realized data vary.",
+  "domain": "probability",
+  "concept": "cp-source-0225",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the tail probability as realized data vary affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Tail, regardless of the stated inputs.",
+  "objective": "Compare the tail probability as realized data vary in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0225.predict",
+      "text": "For 20 independent toy births with boy probability 0.5, what is the probability of strictly more than 14 boys?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.reveal.0",
+      "text": "The retained results are Cut=14; Tail=0.021 and Cut=10; Tail=0.412.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.reveal.1",
+      "text": "The binomial calculation counts every qualifying outcome. Smaller samples have more variable proportions; equal expected proportions do not mean equal tail probabilities. This comparison isolates the tail probability as realized data vary.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.case.0.witness",
+      "text": "Cut=14; Tail=0.021",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",20],[\"P\",0.5],[\"Cut\",14]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.020694732666015625}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.021\"},{\"label\":\"Cut\",\"value\":\"14\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.case.1.witness",
+      "text": "Cut=10; Tail=0.412",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",20],[\"P\",0.5],[\"Cut\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Tail\",\"value\":0.41190147399902344}]},\"metrics\":[{\"label\":\"Tail\",\"value\":\"0.412\"},{\"label\":\"Cut\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0225.recall",
+      "text": "For 21 independent toy births with boy probability 0.5, what is the probability of strictly more than 14 boys? Answer 0.039.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0225/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #225. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 21 independent toy births with boy probability 0.5, what is the probability of strictly more than 14 boys?",
+    "options": [
+      "-0.061",
+      "0.039",
+      "0.139"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Tail 0.039 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0225",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-225"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 225,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **225. Dance of the p-values** \\[Predict\\]: rerun the same real experiment 20 times; p jumps from 0.001 to 0.4.",
+    "modelBoundary": "the tail probability as realized data vary",
+    "recallInputs": [
+      21,
+      0.5,
+      14
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

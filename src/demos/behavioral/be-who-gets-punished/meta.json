@@ -1,0 +1,103 @@
+{
+  "slug": "be-who-gets-punished",
+  "title": "Who gets punished?",
+  "hook": "Could punishment harm cooperation if high contributors are targeted?",
+  "domain": "behavioral",
+  "concept": "be-who-gets-punished",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish punishment of free riders from punishment of cooperators."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish punishment of free riders from punishment of cooperators.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-who-gets-punished.inputs",
+      "text": "In a toy public-goods ledger, someone starts with twenty, contributes ten and receives a penalty of three. What remains in that private account? Toy inputs A=[20, 10, 3]; B=[20, 0, 3].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-gets-punished.trace",
+      "text": "Computed results: [[7, 10, 3], [17, 0, 3]]. Labels: Remaining, Contributed, Penalty.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-gets-punished.reveal",
+      "text": "The same penalty can target a contributor or a non-contributor. Their private balances make the distinction visible. Counting punishment alone therefore loses information about who was punished and what behavior it discourages.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-gets-punished.recall",
+      "text": "A new toy case uses Endowment=20, Contribution=0, Punishment=3. What is Remaining? Answer: 17.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Endowment=20, Contribution=0, Punishment=3. What is Remaining?",
+    "options": [
+      "22.1",
+      "17",
+      "11.9"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 17. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-who-gets-punished",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-185"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 185,
+    "section": "10. Trust, reciprocity & cooperation",
+    "text": "In some cities, players punish the cooperators, not just free riders, which wrecks cooperation (Herrmann, Thöni & Gächter, 2008).",
+    "pointer": "500-behavioral-economics-findings.md entry 185: Herrmann, Thöni & Gächter, 2008",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "free-rider-pot",
+  "meaningfulDifference": "Distinguish punishment of free riders from punishment of cooperators."
+}

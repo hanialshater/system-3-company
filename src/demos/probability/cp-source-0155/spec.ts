@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0155", "title": "Expected growth can hide extinction", "op": "birthdeath", "labels": ["Initial", "Birth", "Death", "Time"], "outputs": ["Mean"], "a": [10.0, 0.3, 0.2, 10.0], "b": [10.0, 0.1, 0.2, 10.0], "question": "A toy continuous-time branching population starts at 10; per-capita birth 0.3 and death 0.2 rates remain constant for Time 10. What is its expected population?", "questionTemplate": "A toy continuous-time branching population starts at {Initial}; per-capita birth {Birth} and death {Death} rates remain constant for Time {Time}. What is its expected population?", "explain": "Expected population follows a growth equation, while individual paths can go extinct. A growing mean is not a survival guarantee.", "lens": "the per-capita rates in a mean population model", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0484",
+  "title": "Money primes and larger studies",
+  "hook": "Two stated cases: explore the evidence mix behind a priming claim.",
+  "domain": "behavioral",
+  "concept": "be-source-0484",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the evidence mix behind a priming claim affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Pooled, regardless of the stated inputs.",
+  "objective": "Compare the evidence mix behind a priming claim in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0484.predict",
+      "text": "Toy visible studies average 0.4 across 1 equal-weight studies; missing studies average 0 across 12. What is the mean if all are included?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.reveal.0",
+      "text": "The retained results are MissingN=12; Pooled=0.031 and MissingN=1; Pooled=0.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.reveal.1",
+      "text": "Selection of studies can change a pooled estimate. Missing results here are explicit sensitivity assumptions, not recovered observations. This comparison isolates the evidence mix behind a priming claim.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.case.0.witness",
+      "text": "MissingN=12; Pooled=0.031",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.4],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.03076923076923077}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.031\"},{\"label\":\"MissingN\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.case.1.witness",
+      "text": "MissingN=1; Pooled=0.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.4],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.2\"},{\"label\":\"MissingN\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0484.recall",
+      "text": "Toy visible studies average 0.5 across 1 equal-weight studies; missing studies average 0 across 12. What is the mean if all are included? Answer 0.038.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0484/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #484. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy visible studies average 0.5 across 1 equal-weight studies; missing studies average 0 across 12. What is the mean if all are included?",
+    "options": [
+      "-0.062",
+      "0.138",
+      "0.038"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Pooled 0.038 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0484",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-484"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 484,
+    "sourceSection": "25. Famous findings that failed to replicate or shrank",
+    "sourceEntryOriginal": "- **484.** Exposure to images of money was said to make people more selfish (Vohs, Mead & Goode, 2006); large replications, including Many Labs, found no effect (Rohrer, Pashler & Harris, 2015).",
+    "modelBoundary": "the evidence mix behind a priming claim",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.5,
+      1,
+      0,
+      12
+    ]
+  }
+}

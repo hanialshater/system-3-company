@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0796",
+  "title": "High likelihood is a model statement",
+  "hook": "Two stated cases: explore the assigned density score rather than semantic familiarity.",
+  "domain": "probability",
+  "concept": "cp-source-0796",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assigned density score rather than semantic familiarity affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Nats, regardless of the stated inputs.",
+  "objective": "Compare the assigned density score rather than semantic familiarity in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0796.predict",
+      "text": "A specified toy outcome has model probability 0.01. What is its surprisal in nats, -log(probability)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.reveal.0",
+      "text": "The retained results are Probability=0.01; Nats=4.605 and Probability=0.1; Nats=2.303.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.reveal.1",
+      "text": "Low model probability produces a high anomaly score. That score does not establish fraud, danger or even that the model fits the current population. This comparison isolates the assigned density score rather than semantic familiarity.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.case.0.witness",
+      "text": "Probability=0.01; Nats=4.605",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Nats\",\"value\":4.605170185988091}]},\"metrics\":[{\"label\":\"Nats\",\"value\":\"4.605\"},{\"label\":\"Probability\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.case.1.witness",
+      "text": "Probability=0.1; Nats=2.303",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Nats\",\"value\":2.3025850929940455}]},\"metrics\":[{\"label\":\"Nats\",\"value\":\"2.303\"},{\"label\":\"Probability\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0796.recall",
+      "text": "A specified toy outcome has model probability 0.008. What is its surprisal in nats, -log(probability)? Answer 4.828.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0796/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #796. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A specified toy outcome has model probability 0.008. What is its surprisal in nats, -log(probability)?",
+    "options": [
+      "2.897",
+      "6.76",
+      "4.828"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Nats 4.828 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0796",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-796"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 796,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **796. Likelihood fooled** \\[Gotcha\\]: generative models can give higher likelihood to out-of-distribution images than to training-like ones (Nalisnick et al., 2019).",
+    "modelBoundary": "the assigned density score rather than semantic familiarity",
+    "recallInputs": [
+      0.008
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

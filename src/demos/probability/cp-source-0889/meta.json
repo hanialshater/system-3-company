@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0889",
+  "title": "A campaign gap needs a counterfactual",
+  "hook": "Two stated cases for a campaign gap needs a counterfactual.",
+  "domain": "probability",
+  "concept": "cp-source-0889",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied no-campaign prediction rather than fitted causal proof affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the supplied no-campaign prediction rather than fitted causal proof in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0889.predict",
+      "text": "A toy synthetic control uses weight 0.5 on donor A 10, remainder on donor B 12; actual outcome 16. What is actual minus synthetic?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.reveal.0",
+      "text": "The retained results are Actual=16; Gap=5 and Actual=12; Gap=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.reveal.1",
+      "text": "The weighted counterfactual is model-based. Pre-period fit and donor suitability matter before treating this gap as a causal estimate. This comparison isolates the supplied no-campaign prediction rather than fitted causal proof.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.case.0.witness",
+      "text": "Actual=16; Gap=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.5],[\"DonorA\",10],[\"DonorB\",12],[\"Actual\",16]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":5},{\"label\":\"Synthetic\",\"value\":11}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"5\"},{\"label\":\"Actual\",\"value\":\"16\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.case.1.witness",
+      "text": "Actual=12; Gap=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.5],[\"DonorA\",10],[\"DonorB\",12],[\"Actual\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":1},{\"label\":\"Synthetic\",\"value\":11}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"1\"},{\"label\":\"Actual\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0889.recall",
+      "text": "A toy synthetic control uses weight 0.4 on donor A 10, remainder on donor B 12; actual outcome 16. What is actual minus synthetic? Answer 4.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0889/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #889. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy synthetic control uses weight 0.4 on donor A 10, remainder on donor B 12; actual outcome 16. What is actual minus synthetic?",
+    "options": [
+      "2.88",
+      "6.72",
+      "4.8"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gap 4.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0889",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-889"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 889,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **889. CausalImpact** \\[Slider\\]: a Bayesian structural time series predicts the no-campaign path; the gap is the effect (Brodersen et al., 2015).",
+    "modelBoundary": "the supplied no-campaign prediction rather than fitted causal proof",
+    "recallInputs": [
+      0.4,
+      10,
+      12,
+      16
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

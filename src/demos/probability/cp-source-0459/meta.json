@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0459",
+  "title": "Anticipation contaminates the before",
+  "hook": "Two stated cases: explore the chosen pretreatment baseline in a contrast.",
+  "domain": "probability",
+  "concept": "cp-source-0459",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the chosen pretreatment baseline in a contrast affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the chosen pretreatment baseline in a contrast in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0459.predict",
+      "text": "Toy treated outcomes move 12→15; controls move 10→12. What difference-in-differences results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.reveal.0",
+      "text": "The retained results are TBefore=12; Estimate=1 and TBefore=10; Estimate=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.reveal.1",
+      "text": "The arithmetic removes the control change. Interpreting it causally requires parallel untreated trends and other design assumptions. This comparison isolates the chosen pretreatment baseline in a contrast.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.case.0.witness",
+      "text": "TBefore=12; Estimate=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",12],[\"TAfter\",15],[\"CBefore\",10],[\"CAfter\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":1}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"1\"},{\"label\":\"TBefore\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.case.1.witness",
+      "text": "TBefore=10; Estimate=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",10],[\"TAfter\",15],[\"CBefore\",10],[\"CAfter\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":3}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"3\"},{\"label\":\"TBefore\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0459.recall",
+      "text": "Toy treated outcomes move 13→15; controls move 10→12. What difference-in-differences results? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0459/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #459. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy treated outcomes move 13→15; controls move 10→12. What difference-in-differences results?",
+    "options": [
+      "-0.1",
+      "0",
+      "0.1"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0459",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-459"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 459,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **459. Anticipation** \\[Gotcha\\]: people change behavior before a policy starts, contaminating the \"before\" period.",
+    "modelBoundary": "the chosen pretreatment baseline in a contrast",
+    "recallInputs": [
+      13,
+      15,
+      10,
+      12
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

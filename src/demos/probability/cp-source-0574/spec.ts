@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0574", "title": "A two-note Markov melody", "op": "chain", "labels": ["ToRain", "ToSun", "StartRain", "Steps"], "outputs": ["Rain"], "a": [0.2, 0.8, 0.0, 10.0], "b": [0.8, 0.2, 0.0, 10.0], "question": "A toy chain switches sun to rain with chance 0.2, rain to sun with 0.8; initial rain probability 0. What is rain probability after 10 steps?", "questionTemplate": "A toy chain switches sun to rain with chance {ToRain}, rain to sun with {ToSun}; initial rain probability {StartRain}. What is rain probability after {Steps} steps?", "explain": "Transition probabilities determine both the stationary share and how the initial condition fades. This formula is for the stated two-state chain.", "lens": "the next-state mixture in a stipulated note-transition model", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

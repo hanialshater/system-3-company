@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0705",
+  "title": "A proxy reward favors circling",
+  "hook": "Two stated cases: explore the supplied loop continuation versus finishing reward.",
+  "domain": "probability",
+  "concept": "cp-source-0705",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied loop continuation versus finishing reward affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the supplied loop continuation versus finishing reward in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0705.predict",
+      "text": "A toy seller can take Offer 10 or discounted continuation 20×Gamma 0.9. What is the better expected value?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.reveal.0",
+      "text": "The retained results are Continuation=20; Value=18 and Continuation=5; Value=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.reveal.1",
+      "text": "Stopping compares the offer with a supplied continuation value. Computing that continuation is a separate dynamic-programming problem. This comparison isolates the supplied loop continuation versus finishing reward.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.case.0.witness",
+      "text": "Continuation=20; Value=18",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offer\",10],[\"Continuation\",20],[\"Gamma\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":18}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"18\"},{\"label\":\"Continuation\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.case.1.witness",
+      "text": "Continuation=5; Value=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offer\",10],[\"Continuation\",5],[\"Gamma\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":10}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"10\"},{\"label\":\"Continuation\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0705.recall",
+      "text": "A toy seller can take Offer 10 or discounted continuation 21×Gamma 0.9. What is the better expected value? Answer 18.9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0705/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #705. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller can take Offer 10 or discounted continuation 21×Gamma 0.9. What is the better expected value?",
+    "options": [
+      "11.34",
+      "18.9",
+      "26.46"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Value 18.9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0705",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-705"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 705,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **705. The spinning boat** \\[Story\\]: a boat-racing agent learned to circle forever collecting points instead of finishing (OpenAI, 2016).",
+    "modelBoundary": "the supplied loop continuation versus finishing reward",
+    "recallInputs": [
+      10,
+      21,
+      0.9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

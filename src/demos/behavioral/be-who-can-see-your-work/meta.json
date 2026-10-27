@@ -1,0 +1,110 @@
+{
+  "slug": "be-who-can-see-your-work",
+  "title": "Who can see your work?",
+  "hook": "Would a fast colleague have the same effect if they could not observe you?",
+  "domain": "behavioral",
+  "concept": "be-who-can-see-your-work",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 2,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate proximity to a productive peer from being visible to that peer."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate proximity to a productive peer from being visible to that peer.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-who-can-see-your-work.inputs",
+      "text": "In toy case A, the productive peer can see you but you cannot see the peer. Which visibility indicator is one? Toy inputs A=[1, 0, 5]; B=[0, 1, 5].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-can-see-your-work.trace",
+      "text": "Computed results: [[1, 0, 5], [0, 1, 5]]. Labels: Visible to peer, Peer visible, Distance.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-can-see-your-work.reveal",
+      "text": "Being close to a productive peer and being visible to that peer are different features. The two toy arrangements keep distance fixed and reverse visibility. That exposes the design distinction rather than assigning a productivity effect.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-can-see-your-work.recall",
+      "text": "A new toy case uses Peer sees you=0, You see peer=1, Distance m=5. What is Visible to peer? Answer: 0.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-who-can-see-your-work.diagram",
+      "text": "In the toy diagram, Me and Peer name the two actors. The sees arrow runs from the viewer to the person seen. Distance stays at 5 m in both cases.",
+      "support": "convention",
+      "source": "The two graph cases in spec.ts; short node names replace long indicator labels, with the same model inputs and output ledger.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Peer sees you=0, You see peer=1, Distance m=5. What is Visible to peer?",
+    "options": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-who-can-see-your-work",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-219"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 219,
+    "section": "11. Social norms & conformity",
+    "text": "Supermarket cashiers worked faster when a highly productive colleague could see them (Mas & Moretti, 2009).",
+    "pointer": "500-behavioral-economics-findings.md entry 219: Mas & Moretti, 2009",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "two-public-clues-break-the-herd",
+  "meaningfulDifference": "Separate proximity to a productive peer from being visible to that peer."
+}

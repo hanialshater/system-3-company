@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0640",
+  "title": "Rare ad clicks meet prior counts",
+  "hook": "Two stated cases: explore the conjugate predictive mean for a supplied campaign prior.",
+  "domain": "probability",
+  "concept": "cp-source-0640",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the conjugate predictive mean for a supplied campaign prior affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the conjugate predictive mean for a supplied campaign prior in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0640.predict",
+      "text": "A toy coin has Beta(2,98) prior and independent data of 1 wins and 9 losses. What is the posterior predictive win probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.reveal.0",
+      "text": "The retained results are Wins=1 Losses=9; Mean=0.027 and Wins=100 Losses=900; Mean=0.093.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.reveal.1",
+      "text": "Prior counts and observed counts add under this model. The posterior mean also gives the next-trial predictive probability. This comparison isolates the conjugate predictive mean for a supplied campaign prior.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.case.0.witness",
+      "text": "Wins=1 Losses=9; Mean=0.027",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",2],[\"Beta\",98],[\"Wins\",1],[\"Losses\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.02727272727272727}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.027\"},{\"label\":\"Wins\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.case.1.witness",
+      "text": "Wins=100 Losses=900; Mean=0.093",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",2],[\"Beta\",98],[\"Wins\",100],[\"Losses\",900]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.09272727272727273}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.093\"},{\"label\":\"Wins\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0640.recall",
+      "text": "A toy coin has Beta(3,98) prior and independent data of 1 wins and 9 losses. What is the posterior predictive win probability? Answer 0.036.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0640/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #640. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy coin has Beta(3,98) prior and independent data of 1 wins and 9 losses. What is the posterior predictive win probability?",
+    "options": [
+      "-0.064",
+      "0.136",
+      "0.036"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 0.036 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0640",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-640"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 640,
+    "sourceSection": "32. Hierarchical & multilevel models",
+    "sourceEntryOriginal": "- **640. Thousands of ads** \\[Slider\\]: estimate click-through for many ads with few impressions each by pooling within campaign.",
+    "modelBoundary": "the conjugate predictive mean for a supplied campaign prior",
+    "recallInputs": [
+      3,
+      98,
+      1,
+      9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0073",
+  "title": "Make a choice easier",
+  "hook": "Two stated cases: explore the action cost in an illustrative convenience nudge.",
+  "domain": "behavioral",
+  "concept": "be-source-0073",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the action cost in an illustrative convenience nudge affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Checks, regardless of the stated inputs.",
+  "objective": "Compare the action cost in an illustrative convenience nudge in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0073.predict",
+      "text": "A toy decision inspects 4 attributes for each of 5 options, spending 3 seconds per check. What total time is needed?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.reveal.0",
+      "text": "The retained results are Seconds=3; Checks=60 and Seconds=1; Checks=20.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.reveal.1",
+      "text": "Decision cost depends on both the number of options and the dimensions compared. A smaller interface can change this cost without removing alternatives. This comparison isolates the action cost in an illustrative convenience nudge.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.case.0.witness",
+      "text": "Seconds=3; Checks=60",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Options\",5],[\"Attributes\",4],[\"Seconds\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":5},{\"label\":\"Result\",\"value\":60}]},\"metrics\":[{\"label\":\"Checks\",\"value\":\"60\"},{\"label\":\"Seconds\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.case.1.witness",
+      "text": "Seconds=1; Checks=20",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Options\",5],[\"Attributes\",4],[\"Seconds\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":5},{\"label\":\"Result\",\"value\":20}]},\"metrics\":[{\"label\":\"Checks\",\"value\":\"20\"},{\"label\":\"Seconds\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0073.recall",
+      "text": "A toy decision inspects 4 attributes for each of 6 options, spending 3 seconds per check. What total time is needed? Answer 72.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0073/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #73. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy decision inspects 4 attributes for each of 6 options, spending 3 seconds per check. What total time is needed?",
+    "options": [
+      "43.2",
+      "100.8",
+      "72"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Checks 72 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0073",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-73"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 73,
+    "sourceSection": "4. Defaults & choice architecture",
+    "sourceEntryOriginal": "- **73.** Nudges that make healthy food more convenient work better than those that only inform (Cadario & Chandon, 2020).",
+    "modelBoundary": "the action cost in an illustrative convenience nudge",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      6,
+      4,
+      3
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0303",
+  "title": "Compensation and recorded support",
+  "hook": "Two stated cases: explore the denominator in observed support shares.",
+  "domain": "behavioral",
+  "concept": "be-source-0303",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the denominator in observed support shares affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the denominator in observed support shares in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0303.predict",
+      "text": "A toy comparison has 508/1000 in A and 246/1000 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.reveal.0",
+      "text": "The retained results are TotalA=1,000; Gap=26.2 and TotalA=2,000; Gap=0.8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the denominator in observed support shares.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.case.0.witness",
+      "text": "TotalA=1,000; Gap=26.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",508],[\"TotalA\",1000],[\"HitB\",246],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":26.200000000000003}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"26.2\"},{\"label\":\"TotalA\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.case.1.witness",
+      "text": "TotalA=2,000; Gap=0.8",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",508],[\"TotalA\",2000],[\"HitB\",246],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0.8000000000000007}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0.8\"},{\"label\":\"TotalA\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0303.recall",
+      "text": "A toy comparison has 509/1,000 in A and 246/1,000 in B. What is A minus B in percentage points? Answer 26.3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0303/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #303. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 509/1,000 in A and 246/1,000 in B. What is A minus B in percentage points?",
+    "options": [
+      "15.78",
+      "26.3",
+      "36.82"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap 26.3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0303",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-303"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 303,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **303.** Swiss residents' support for a local nuclear waste site fell from 50.8% to 24.6% when compensation was offered (Frey & Oberholzer-Gee, 1997).",
+    "modelBoundary": "the denominator in observed support shares",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      509,
+      1000,
+      246,
+      1000
+    ]
+  }
+}

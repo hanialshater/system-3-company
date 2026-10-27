@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0190",
+  "title": "High scores can be wrong often",
+  "hook": "Two stated cases: explore the gap between a model score and observed correctness.",
+  "domain": "probability",
+  "concept": "cp-source-0190",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the gap between a model score and observed correctness affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the gap between a model score and observed correctness in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0190.predict",
+      "text": "A toy forecast claims probability 0.99; 20 of 100 matched it. What is claimed probability minus observed share?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.reveal.0",
+      "text": "The retained results are Hits=20; Gap=0.79 and Hits=99; Gap=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.reveal.1",
+      "text": "Calibration compares forecasts with repeated outcomes. One correct or incorrect outcome cannot settle a probability claim. This comparison isolates the gap between a model score and observed correctness.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.case.0.witness",
+      "text": "Hits=20; Gap=0.79",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.99],[\"Hits\",20],[\"Trials\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0.79}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0.79\"},{\"label\":\"Hits\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.case.1.witness",
+      "text": "Hits=99; Gap=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Claimed\",0.99],[\"Hits\",99],[\"Trials\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0\"},{\"label\":\"Hits\",\"value\":\"99\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0190.recall",
+      "text": "A toy forecast claims probability 0.792; 20 of 100 matched it. What is claimed probability minus observed share? Answer 0.592.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0190/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #190. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy forecast claims probability 0.792; 20 of 100 matched it. What is claimed probability minus observed share?",
+    "options": [
+      "0.355",
+      "0.829",
+      "0.592"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gap 0.592 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0190",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-190"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 190,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **190. Confident and wrong** \\[Gotcha\\]: an image classifier labels random noise as a specific animal with 99% confidence.",
+    "modelBoundary": "the gap between a model score and observed correctness",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.792,
+      20,
+      100
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0726",
+  "title": "Compare two stipulated churn rates",
+  "hook": "Two stated cases: explore the constant monthly hazard in a plan comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0726",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the constant monthly hazard in a plan comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare the constant monthly hazard in a plan comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0726.predict",
+      "text": "A toy exponential waiting time has rate 0.1. What is the probability the wait exceeds 12?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.reveal.0",
+      "text": "The retained results are Rate=0.1; Survival=0.301 and Rate=0.03; Survival=0.698.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.reveal.1",
+      "text": "A constant hazard gives exponential survival and memorylessness. A real waiting process need not have a constant hazard. This comparison isolates the constant monthly hazard in a plan comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.case.0.witness",
+      "text": "Rate=0.1; Survival=0.301",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.1],[\"Time\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Survival\",\"value\":0.301194211912202},{\"label\":\"Mean\",\"value\":10}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.301\"},{\"label\":\"Rate\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.case.1.witness",
+      "text": "Rate=0.03; Survival=0.698",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.03],[\"Time\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Survival\",\"value\":0.697676326071031},{\"label\":\"Mean\",\"value\":33.333333333333336}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.698\"},{\"label\":\"Rate\",\"value\":\"0.03\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0726.recall",
+      "text": "A toy exponential waiting time has rate 0.2. What is the probability the wait exceeds 12? Answer 0.091.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0726/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #726. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy exponential waiting time has rate 0.2. What is the probability the wait exceeds 12?",
+    "options": [
+      "-0.009",
+      "0.091",
+      "0.191"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Survival 0.091 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0726",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-726"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 726,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **726. Churn by plan** \\[Slider\\]: survival curves for monthly vs annual subscribers diverge over a year.",
+    "modelBoundary": "the constant monthly hazard in a plan comparison",
+    "recallInputs": [
+      0.2,
+      12
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

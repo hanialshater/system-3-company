@@ -1,0 +1,162 @@
+{
+  "slug": "p100-ladder-of-causation",
+  "title": "Which question can data answer?",
+  "hook": "Ask about observation, intervention and a person’s alternative history.",
+  "domain": "probability",
+  "concept": "p100-ladder-of-causation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "association, intervention and counterfactual questions about the same scenario."
+    ]
+  },
+  "misconception": "Treating ladder of causation as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "association, intervention and counterfactual questions about the same scenario.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-ladder-of-causation.predict",
+      "text": "Wealth Z is equally common high/low; treatment T=Z. Purchase risks are .8/.2 by wealth and treatment has no effect. What happens to mean purchase probability if everyone is forced to T=1?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.reveal.0",
+      "text": "Forcing treatment retains purchase probability 50%; observing treated people retains 80%. In this stipulated world, treatment is only a wealth marker and has no outcome arrow.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.reveal.1",
+      "text": "Association describes who was treated; intervention replaces that selection rule. A counterfactual would additionally hold an individual’s upstream state fixed while changing treatment. Those are different questions even when they use the same variable names.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.recall",
+      "text": "A marker perfectly identifies a high-risk group but has no causal outcome path. Does changing only the marker necessarily change risk? A predictive association can come from an upstream common cause while the marker itself has no intervention effect.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.scenario.0.summary",
+      "text": "Forced-T purchase 50%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Wealth\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Buy\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Intervention question\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Wealth\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T=1\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Buy\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":false},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.scenario.1.summary",
+      "text": "Observed-T purchase 80%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Wealth\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Buy\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Association question\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"High wealth\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"T=1\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"Buy\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"0\",\"to\":\"2\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ladder-of-causation/spec.ts; exact finite illustration specified in manager numericCase: Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ladder-of-causation.hook",
+      "text": "Ask about observation, intervention and a person’s alternative history.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-ladder-of-causation/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A marker perfectly identifies a high-risk group but has no causal outcome path. Does changing only the marker necessarily change risk?",
+    "options": [
+      "No",
+      "Yes: prediction is causation",
+      "Yes: perfect markers force outcomes"
+    ],
+    "answer": 0,
+    "why": "A predictive association can come from an upstream common cause while the marker itself has no intervention effect."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-ladder-of-causation",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "causal-ladder"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 351,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Ladder of causation",
+    "sourceText": "association, intervention and counterfactual questions about the same scenario.",
+    "sourceEntryOriginal": "- **351. Ladder of causation** \\[Split\\]: association, intervention and counterfactual questions about the same scenario.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "math/pi-is-three-and-a-bit",
+    "difference": "New teaching boundary: Ladder of causation. Existing boundary: The learner can say that one turn of a wheel rolls its rim's length, about 3.14 times its width, the same ratio π for a 1 m and a ½ m wheel.",
+    "numericCase": "Observed group purchase rate80%, other20%; stipulated hidden wealth determines group and purchase, while treatment itself adds0. Association question80vs20, intervention20/80 averaged50vs50, individualcounterfactual unchanged. Display assumptions."
+  },
+  "modelAudit": {
+    "a": 0.5,
+    "b": 0.8,
+    "effect": 0
+  }
+}

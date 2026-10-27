@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0237",
+  "title": "Five percent is an input",
+  "hook": "Two stated cases: explore the chosen nominal threshold under a null model.",
+  "domain": "probability",
+  "concept": "cp-source-0237",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the chosen nominal threshold under a null model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines FWER, regardless of the stated inputs.",
+  "objective": "Compare the chosen nominal threshold under a null model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0237.predict",
+      "text": "Run 20 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.reveal.0",
+      "text": "The retained results are Alpha=0.05; FWER=0.642 and Alpha=0.01; FWER=0.182.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.reveal.1",
+      "text": "This exact family calculation assumes independent null tests. Bonferroni’s union-bound guarantee can also be used without independence. This comparison isolates the chosen nominal threshold under a null model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.case.0.witness",
+      "text": "Alpha=0.05; FWER=0.642",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",20],[\"Alpha\",0.05],[\"Corrected\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.6415140775914581}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"0.642\"},{\"label\":\"Alpha\",\"value\":\"0.05\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.case.1.witness",
+      "text": "Alpha=0.01; FWER=0.182",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",20],[\"Alpha\",0.01],[\"Corrected\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.18209306240276923}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"0.182\"},{\"label\":\"Alpha\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0237.recall",
+      "text": "Run 21 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection? Answer 0.659.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0237/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #237. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Run 21 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+    "options": [
+      "0.396",
+      "0.659",
+      "0.923"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives FWER 0.659 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0237",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-237"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 237,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **237. Why 0.05?** \\[Story\\]: the threshold traces largely to a convenient choice in Fisher's 1925 textbook.",
+    "modelBoundary": "the chosen nominal threshold under a null model",
+    "recallInputs": [
+      21,
+      0.05,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

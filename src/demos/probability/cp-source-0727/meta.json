@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0727",
+  "title": "A hazard ratio bends survival",
+  "hook": "Two stated cases: explore the proportional-hazard transformation of baseline survival.",
+  "domain": "probability",
+  "concept": "cp-source-0727",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the proportional-hazard transformation of baseline survival affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare the proportional-hazard transformation of baseline survival in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0727.predict",
+      "text": "Baseline survival is S0 0.8. A stipulated proportional hazard ratio is HR 1. What comparison survival S0^HR results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.reveal.0",
+      "text": "The retained results are HR=1; Survival=0.8 and HR=2; Survival=0.64.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.reveal.1",
+      "text": "A hazard ratio acts on cumulative hazard rather than subtracting a fixed survival probability. Proportionality is an assumption. This comparison isolates the proportional-hazard transformation of baseline survival.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.case.0.witness",
+      "text": "HR=1; Survival=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"S0\",0.8],[\"HR\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.8\"},{\"label\":\"HR\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.case.1.witness",
+      "text": "HR=2; Survival=0.64",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"S0\",0.8],[\"HR\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.6400000000000001}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.64\"},{\"label\":\"HR\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0727.recall",
+      "text": "Baseline survival is S0 0.9. A stipulated proportional hazard ratio is HR 1. What comparison survival S0^HR results? Answer 0.9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0727/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #727. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Baseline survival is S0 0.9. A stipulated proportional hazard ratio is HR 1. What comparison survival S0^HR results?",
+    "options": [
+      "0.54",
+      "1.26",
+      "0.9"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Survival 0.9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0727",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-727"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 727,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **727. Hazard ratios** \\[Slider\\]: set a Cox model's hazard ratio and watch one survival curve bend below the other.",
+    "modelBoundary": "the proportional-hazard transformation of baseline survival",
+    "recallInputs": [
+      0.9,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0487",
+  "title": "Frail children select into treatment",
+  "hook": "Two stated cases: explore baseline severity in a nonrandom treatment assignment.",
+  "domain": "probability",
+  "concept": "cp-source-0487",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How baseline severity in a nonrandom treatment assignment affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Slope, regardless of the stated inputs.",
+  "objective": "Compare baseline severity in a nonrandom treatment assignment in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0487.predict",
+      "text": "Standardized toy X and U have Corr 0.8; Y=Direct -1×X+Common 4×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.reveal.0",
+      "text": "The retained results are Do=0; Slope=2.2 and Do=1; Slope=-1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.reveal.1",
+      "text": "The common cause can change the observational slope without changing the intervention derivative. The causal conclusion follows the specified structural equations. This comparison isolates baseline severity in a nonrandom treatment assignment.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.case.0.witness",
+      "text": "Do=0; Slope=2.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",-1],[\"Common\",4],[\"Corr\",0.8],[\"Do\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"2.2\"},{\"label\":\"Do\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.case.1.witness",
+      "text": "Do=1; Slope=-1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",-1],[\"Common\",4],[\"Corr\",0.8],[\"Do\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":false},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"-1\"},{\"label\":\"Do\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0487.recall",
+      "text": "Standardized toy X and U have Corr 0.8; Y=Direct 0×X+Common 4×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results? Answer 3.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0487/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #487. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Standardized toy X and U have Corr 0.8; Y=Direct 0×X+Common 4×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+    "options": [
+      "1.92",
+      "4.48",
+      "3.2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Slope 3.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0487",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-487"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 487,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **487. The Lanarkshire milk experiment** \\[Story\\]: teachers swapped frailer kids into the milk group, ruining a 1930 trial of 20,000 children (Student, 1931).",
+    "modelBoundary": "baseline severity in a nonrandom treatment assignment",
+    "recallInputs": [
+      0,
+      4,
+      0.8,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

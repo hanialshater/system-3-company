@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0587",
+  "title": "A momentum step follows a potential",
+  "hook": "Two stated cases: explore the position and energy error of one harmonic leapfrog step.",
+  "domain": "probability",
+  "concept": "cp-source-0587",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the position and energy error of one harmonic leapfrog step affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines NewPosition, regardless of the stated inputs.",
+  "objective": "Compare the position and energy error of one harmonic leapfrog step in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0587.predict",
+      "text": "One toy leapfrog step uses harmonic potential q²/2, Position 1, Momentum 1, Step 0.1. What new position results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.reveal.0",
+      "text": "The retained results are Step=0.1; NewPosition=1.095 and Step=1; NewPosition=1.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.reveal.1",
+      "text": "A half momentum step, full position step and final half momentum step approximate Hamiltonian motion. The energy error still needs a correction in HMC. This comparison isolates the position and energy error of one harmonic leapfrog step.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.case.0.witness",
+      "text": "Step=0.1; NewPosition=1.095",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Position\",1],[\"Momentum\",1],[\"Step\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"NewPosition\",\"value\":1.095},{\"label\":\"EnergyError\",\"value\":0.0002487812500000519}]},\"metrics\":[{\"label\":\"NewPosition\",\"value\":\"1.095\"},{\"label\":\"Step\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.case.1.witness",
+      "text": "Step=1; NewPosition=1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Position\",1],[\"Momentum\",1],[\"Step\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"NewPosition\",\"value\":1.5},{\"label\":\"EnergyError\",\"value\":0.15625}]},\"metrics\":[{\"label\":\"NewPosition\",\"value\":\"1.5\"},{\"label\":\"Step\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0587.recall",
+      "text": "One toy leapfrog step uses harmonic potential q²/2, Position 2, Momentum 1, Step 0.1. What new position results? Answer 2.09.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0587/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #587. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One toy leapfrog step uses harmonic potential q²/2, Position 2, Momentum 1, Step 0.1. What new position results?",
+    "options": [
+      "2.09",
+      "1.254",
+      "2.926"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives NewPosition 2.09 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0587",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-587"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 587,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **587. Rolling marbles** \\[Slider\\]: HMC as a frictionless marble rolling across the negative log-density, with momentum.",
+    "modelBoundary": "the position and energy error of one harmonic leapfrog step",
+    "recallInputs": [
+      2,
+      1,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

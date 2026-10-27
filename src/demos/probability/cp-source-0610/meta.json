@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0610",
+  "title": "A simulator summary passes a tolerance",
+  "hook": "Two stated cases: explore the acceptance-distance ingredient of a toy ABC procedure.",
+  "domain": "probability",
+  "concept": "cp-source-0610",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the acceptance-distance ingredient of a toy ABC procedure affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Matched, regardless of the stated inputs.",
+  "objective": "Compare the acceptance-distance ingredient of a toy ABC procedure in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0610.predict",
+      "text": "A toy pair has score gap 0.1; accept a match when gap is at most Tolerance 0.2. Is it retained (1) or rejected (0)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.reveal.0",
+      "text": "The retained results are Gap=0.1; Matched=1 and Gap=0.3; Matched=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.reveal.1",
+      "text": "A tighter caliper can improve closeness while excluding units. Retained pairs need not represent the original population. This comparison isolates the acceptance-distance ingredient of a toy ABC procedure.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.case.0.witness",
+      "text": "Gap=0.1; Matched=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gap\",0.1],[\"Tolerance\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Matched\",\"value\":1}]},\"metrics\":[{\"label\":\"Matched\",\"value\":\"1\"},{\"label\":\"Gap\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.case.1.witness",
+      "text": "Gap=0.3; Matched=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gap\",0.3],[\"Tolerance\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Matched\",\"value\":0}]},\"metrics\":[{\"label\":\"Matched\",\"value\":\"0\"},{\"label\":\"Gap\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0610.recall",
+      "text": "A toy pair has score gap 0.3; accept a match when gap is at most Tolerance 0.2. Is it retained (1) or rejected (0)? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0610/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #610. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pair has score gap 0.3; accept a match when gap is at most Tolerance 0.2. Is it retained (1) or rejected (0)?",
+    "options": [
+      "0: no / blocked",
+      "1: yes / active"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Matched 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0610",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-610"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 610,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **610. Inference by simulation** \\[Slider\\]: approximate Bayesian computation simulates data and keeps parameters whose output matches.",
+    "modelBoundary": "the acceptance-distance ingredient of a toy ABC procedure",
+    "recallInputs": [
+      0.30000000000000004,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

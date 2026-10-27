@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0255",
+  "title": "A stated blend of crowd estimates",
+  "hook": "Two stated cases: explore the weights behind a pooled numerical guess.",
+  "domain": "probability",
+  "concept": "cp-source-0255",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weights behind a pooled numerical guess affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the weights behind a pooled numerical guess in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0255.predict",
+      "text": "A toy pooled estimate gives 100 weight 10 and another estimate 120 weight 1. What is the weighted mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.reveal.0",
+      "text": "The retained results are Weight=10; Mean=101.818 and Weight=1; Mean=110.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.reveal.1",
+      "text": "A pooled result depends on both estimates and their weights. A larger headline alone is not stronger evidence. This comparison isolates the weights behind a pooled numerical guess.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.case.0.witness",
+      "text": "Weight=10; Mean=101.818",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",100],[\"Weight\",10],[\"Other\",120]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":101.81818181818181}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"101.818\"},{\"label\":\"Weight\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.case.1.witness",
+      "text": "Weight=1; Mean=110",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",100],[\"Weight\",1],[\"Other\",120]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":110}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"110\"},{\"label\":\"Weight\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0255.recall",
+      "text": "A toy pooled estimate gives 101 weight 10 and another estimate 120 weight 1. What is the weighted mean? Answer 102.727.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0255/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #255. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pooled estimate gives 101 weight 10 and another estimate 120 weight 1. What is the weighted mean?",
+    "options": [
+      "61.636",
+      "102.727",
+      "143.818"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 102.727 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0255",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-255"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 255,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceEntryOriginal": "- **255. You vs the crowd** \\[Measure\\]: guess jellybeans in a jar; see how the crowd average beats most individuals.",
+    "modelBoundary": "the weights behind a pooled numerical guess",
+    "recallInputs": [
+      101,
+      10,
+      120
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

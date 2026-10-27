@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0251",
+  "title": "A small sample feels certain",
+  "hook": "Two stated cases: explore the sampling spread hidden by a point estimate.",
+  "domain": "behavioral",
+  "concept": "be-source-0251",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sampling spread hidden by a point estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare the sampling spread hidden by a point estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0251.predict",
+      "text": "For 10 independent toy Bernoulli observations with probability 0.5, what is the standard deviation of the sample proportion?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.reveal.0",
+      "text": "The retained results are N=10; SD=0.158 and N=1,000; SD=0.016.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.reveal.1",
+      "text": "Sampling spread depends on sample size as well as the underlying probability. This exact model assumes independent observations. This comparison isolates the sampling spread hidden by a point estimate.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.case.0.witness",
+      "text": "N=10; SD=0.158",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.15811388300841897}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.158\"},{\"label\":\"N\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.case.1.witness",
+      "text": "N=1,000; SD=0.016",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.015811388300841896}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.016\"},{\"label\":\"N\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0251.recall",
+      "text": "For 10 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion? Answer 0.155.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0251/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #251. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 10 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion?",
+    "options": [
+      "0.155",
+      "0.055",
+      "0.255"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives SD 0.155 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0251",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-251"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 251,
+    "sourceSection": "13. Availability, representativeness & other heuristics",
+    "sourceEntryOriginal": "- **251.** Researchers trust small samples too much, the \"law of small numbers\" (Tversky & Kahneman, 1971).",
+    "modelBoundary": "the sampling spread hidden by a point estimate",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.4,
+      10
+    ]
+  }
+}

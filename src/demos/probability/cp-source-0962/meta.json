@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0962",
+  "title": "A second octave adds finer variation",
+  "hook": "Two stated cases: explore the higher-frequency component in a terrain ingredient.",
+  "domain": "probability",
+  "concept": "cp-source-0962",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the higher-frequency component in a terrain ingredient affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines X, regardless of the stated inputs.",
+  "objective": "Compare the higher-frequency component in a terrain ingredient in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0962.predict",
+      "text": "At Time 0.2, a unit circle plus Amplitude 0 circle rotating at Harmonic 2 gives what x coordinate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.reveal.0",
+      "text": "The retained results are Harmonic=2 Amplitude=0; X=0.309 and Harmonic=8 Amplitude=0.3; X=0.066.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.reveal.1",
+      "text": "Adding rotating vectors creates a parametric trace. Two circles illustrate composition rather than reconstructing an arbitrary drawing. This comparison isolates the higher-frequency component in a terrain ingredient.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.case.0.witness",
+      "text": "Harmonic=2 Amplitude=0; X=0.309",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Time\",0.2],[\"Harmonic\",2],[\"Amplitude\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.041666666666666664,\"y\":0.9659258262890683},{\"x\":0.08333333333333333,\"y\":0.8660254037844387},{\"x\":0.125,\"y\":0.7071067811865476},{\"x\":0.16666666666666666,\"y\":0.5000000000000001},{\"x\":0.20833333333333334,\"y\":0.25881904510252074},{\"x\":0.25,\"y\":6.123233995736766e-17},{\"x\":0.2916666666666667,\"y\":-0.25881904510252085},{\"x\":0.3333333333333333,\"y\":-0.4999999999999998},{\"x\":0.375,\"y\":-0.7071067811865475},{\"x\":0.4166666666666667,\"y\":-0.8660254037844387},{\"x\":0.4583333333333333,\"y\":-0.9659258262890682},{\"x\":0.5,\"y\":-1},{\"x\":0.5416666666666666,\"y\":-0.9659258262890684},{\"x\":0.5833333333333334,\"y\":-0.8660254037844386},{\"x\":0.625,\"y\":-0.7071067811865477},{\"x\":0.6666666666666666,\"y\":-0.5000000000000004},{\"x\":0.7083333333333334,\"y\":-0.25881904510252063},{\"x\":0.75,\"y\":-1.8369701987210297e-16},{\"x\":0.7916666666666666,\"y\":0.2588190451025203},{\"x\":0.8333333333333334,\"y\":0.5000000000000001},{\"x\":0.875,\"y\":0.7071067811865474},{\"x\":0.9166666666666666,\"y\":0.8660254037844384},{\"x\":0.9583333333333334,\"y\":0.9659258262890683},{\"x\":1,\"y\":1}],\"xLabel\":\"Time\",\"yLabel\":\"X\"},\"metrics\":[{\"label\":\"X\",\"value\":\"0.309\"},{\"label\":\"Harmonic\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.case.1.witness",
+      "text": "Harmonic=8 Amplitude=0.3; X=0.066",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Time\",0.2],[\"Harmonic\",8],[\"Amplitude\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1.3},{\"x\":0.041666666666666664,\"y\":0.8159258262890684},{\"x\":0.08333333333333333,\"y\":0.7160254037844386},{\"x\":0.125,\"y\":1.0071067811865475},{\"x\":0.16666666666666666,\"y\":0.3500000000000003},{\"x\":0.20833333333333334,\"y\":0.1088190451025208},{\"x\":0.25,\"y\":0.30000000000000004},{\"x\":0.2916666666666667,\"y\":-0.408819045102521},{\"x\":0.3333333333333333,\"y\":-0.6500000000000002},{\"x\":0.375,\"y\":-0.4071067811865475},{\"x\":0.4166666666666667,\"y\":-1.0160254037844387},{\"x\":0.4583333333333333,\"y\":-1.1159258262890688},{\"x\":0.5,\"y\":-0.7},{\"x\":0.5416666666666666,\"y\":-1.1159258262890674},{\"x\":0.5833333333333334,\"y\":-1.0160254037844383},{\"x\":0.625,\"y\":-0.4071067811865477},{\"x\":0.6666666666666666,\"y\":-0.6499999999999995},{\"x\":0.7083333333333334,\"y\":-0.4088190451025204},{\"x\":0.75,\"y\":0.2999999999999998},{\"x\":0.7916666666666666,\"y\":0.10881904510252133},{\"x\":0.8333333333333334,\"y\":0.3500000000000003},{\"x\":0.875,\"y\":1.0071067811865473},{\"x\":0.9166666666666666,\"y\":0.7160254037844395},{\"x\":0.9583333333333334,\"y\":0.8159258262890685},{\"x\":1,\"y\":1.3}],\"xLabel\":\"Time\",\"yLabel\":\"X\"},\"metrics\":[{\"label\":\"X\",\"value\":\"0.066\"},{\"label\":\"Harmonic\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0962.recall",
+      "text": "At Time 0.3, a unit circle plus Amplitude 0 circle rotating at Harmonic 2 gives what x coordinate? Answer -0.309.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0962/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #962. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At Time 0.3, a unit circle plus Amplitude 0 circle rotating at Harmonic 2 gives what x coordinate?",
+    "options": [
+      "-0.309",
+      "-0.433",
+      "-0.185"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives X -0.309 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0962",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-962"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 962,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **962. Perlin landscapes** \\[Slider\\]: layer noise octaves to build game-style terrain and clouds.",
+    "modelBoundary": "the higher-frequency component in a terrain ingredient",
+    "recallInputs": [
+      0.30000000000000004,
+      2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

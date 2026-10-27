@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0268",
+  "title": "Fishing across a thousand variables",
+  "hook": "Two stated cases: explore the multiplicity of a stipulated correlation search.",
+  "domain": "probability",
+  "concept": "cp-source-0268",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the multiplicity of a stipulated correlation search affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines FWER, regardless of the stated inputs.",
+  "objective": "Compare the multiplicity of a stipulated correlation search in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0268.predict",
+      "text": "Run 1000 independent true-null tests. Nominal Alpha is 0.01; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.reveal.0",
+      "text": "The retained results are Tests=1,000; FWER=1 and Tests=10; FWER=0.096.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.reveal.1",
+      "text": "This exact family calculation assumes independent null tests. Bonferroni’s union-bound guarantee can also be used without independence. This comparison isolates the multiplicity of a stipulated correlation search.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.case.0.witness",
+      "text": "Tests=1,000; FWER=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",1000],[\"Alpha\",0.01],[\"Corrected\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.9999568287525893}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"1\"},{\"label\":\"Tests\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.case.1.witness",
+      "text": "Tests=10; FWER=0.096",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tests\",10],[\"Alpha\",0.01],[\"Corrected\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FWER\",\"value\":0.09561792499119559}]},\"metrics\":[{\"label\":\"FWER\",\"value\":\"0.096\"},{\"label\":\"Tests\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0268.recall",
+      "text": "Run 1,000 independent true-null tests. Nominal Alpha is 0.01; Corrected 1 means divide alpha by test count if 1, otherwise not. What is probability of any rejection? Answer 0.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0268/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #268. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Run 1,000 independent true-null tests. Nominal Alpha is 0.01; Corrected 1 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?",
+    "options": [
+      "-0.09",
+      "0.11",
+      "0.01"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives FWER 0.01 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0268",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-268"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 268,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceEntryOriginal": "- **268. Correlation fishing** \\[Slider\\]: scan 1,000 random variables and find a few with r above 0.9.",
+    "modelBoundary": "the multiplicity of a stipulated correlation search",
+    "recallInputs": [
+      1000,
+      0.01,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

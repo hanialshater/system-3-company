@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0835",
+  "title": "A local response slope guides a move",
+  "hook": "Two stated cases for a local response slope guides a move.",
+  "domain": "probability",
+  "concept": "cp-source-0835",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How one local directional slope before response-surface optimization affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare one local directional slope before response-surface optimization in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0835.predict",
+      "text": "A toy fitted line has Intercept 10, Slope 2; what does it predict at X 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.reveal.0",
+      "text": "The retained results are Slope=2; Prediction=12 and Slope=-2; Prediction=8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates one local directional slope before response-surface optimization.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.case.0.witness",
+      "text": "Slope=2; Prediction=12",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",10],[\"Slope\",2],[\"X\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":12}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"12\"},{\"label\":\"Slope\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.case.1.witness",
+      "text": "Slope=-2; Prediction=8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",10],[\"Slope\",-2],[\"X\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":8}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"8\"},{\"label\":\"Slope\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0835.recall",
+      "text": "A toy fitted line has Intercept 11, Slope 2; what does it predict at X 1? Answer 13.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0835/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #835. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 11, Slope 2; what does it predict at X 1?",
+    "options": [
+      "7.8",
+      "18.2",
+      "13"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Prediction 13 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0835",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-835"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 835,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **835. Response surface** \\[Slider\\]: climb toward the best settings of two factors with small designed experiments.",
+    "modelBoundary": "one local directional slope before response-surface optimization",
+    "recallInputs": [
+      11,
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

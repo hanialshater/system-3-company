@@ -1,0 +1,103 @@
+{
+  "slug": "be-par-or-birdie",
+  "title": "Par or birdie?",
+  "hook": "Does the same-length putt carry the same pressure?",
+  "domain": "behavioral",
+  "concept": "be-par-or-birdie",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate an observational scoring difference from a claim that pressure caused it."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate an observational scoring difference from a claim that pressure caused it.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-par-or-birdie.inputs",
+      "text": "In this toy scorecard, 92 of 100 par putts and 88 of 100 birdie putts succeed. What difference is observed? Toy inputs A=[92, 100, 88, 100]; B=[90, 100, 90, 100].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-par-or-birdie.trace",
+      "text": "Computed results: [[92, 88, 4.0000000000000036], [90, 90, 0]]. Labels: Par %, Birdie %, Gap pp.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-par-or-birdie.reveal",
+      "text": "The scorecard compares success rates, not randomly assigned pressure. Equal matched rates in B illustrate why an observed gap alone cannot identify its cause.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-par-or-birdie.recall",
+      "text": "A new toy case uses Par hits=90, Par tries=100, Birdie hits=90, Birdie tries=100. What is Gap pp? Answer: 0.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Par hits=90, Par tries=100, Birdie hits=90, Birdie tries=100. What is Gap pp?",
+    "options": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-par-or-birdie",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-8"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 8,
+    "section": "1. Loss aversion & prospect theory",
+    "text": "PGA pros sink par putts a few percentage points more often than equally long birdie putts, because missing par feels like a loss (Pope & Schweitzer, 2011).",
+    "pointer": "500-behavioral-economics-findings.md entry 8: Pope & Schweitzer, 2011",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "square-root-wealth",
+  "meaningfulDifference": "Separate an observational scoring difference from a claim that pressure caused it."
+}

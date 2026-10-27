@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0240",
+  "title": "False rejections in one hundred tests",
+  "hook": "Two stated cases: explore the expected count under a specified null rejection rate.",
+  "domain": "probability",
+  "concept": "cp-source-0240",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the expected count under a specified null rejection rate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Added, regardless of the stated inputs.",
+  "objective": "Compare the expected count under a specified null rejection rate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0240.predict",
+      "text": "A toy program has 100 eligible units, uptake fraction 0.05, and added amount 1 per participant. What total is added?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.reveal.0",
+      "text": "The retained results are Eligible=100; Added=5 and Eligible=1,000; Added=50.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.reveal.1",
+      "text": "Separate the effect among participants from the share who participate. Scaling a program requires both pieces. This comparison isolates the expected count under a specified null rejection rate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.case.0.witness",
+      "text": "Eligible=100; Added=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",100],[\"Uptake\",0.05],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":5}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"5\"},{\"label\":\"Eligible\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.case.1.witness",
+      "text": "Eligible=1,000; Added=50",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",1000],[\"Uptake\",0.05],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":50}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"50\"},{\"label\":\"Eligible\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0240.recall",
+      "text": "A toy program has 101 eligible units, uptake fraction 0.05, and added amount 1 per participant. What total is added? Answer 5.05.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0240/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #240. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy program has 101 eligible units, uptake fraction 0.05, and added amount 1 per participant. What total is added?",
+    "options": [
+      "3.03",
+      "5.05",
+      "7.07"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Added 5.05 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0240",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-240"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 240,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **240. A/A test** \\[Predict\\]: compare two identical versions 100 times; about 5 come out \"significant\".",
+    "modelBoundary": "the expected count under a specified null rejection rate",
+    "recallInputs": [
+      101,
+      0.05,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

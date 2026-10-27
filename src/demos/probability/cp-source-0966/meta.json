@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0966",
+  "title": "A perturbation can grow or decay",
+  "hook": "Two stated cases: explore one linearized mode before a reaction-diffusion pattern.",
+  "domain": "probability",
+  "concept": "cp-source-0966",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How one linearized mode before a reaction-diffusion pattern affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare one linearized mode before a reaction-diffusion pattern in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0966.predict",
+      "text": "A toy fitted line has Intercept 0, Slope 0.8; what does it predict at X 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.reveal.0",
+      "text": "The retained results are Slope=0.8; Prediction=0.8 and Slope=1.2; Prediction=1.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates one linearized mode before a reaction-diffusion pattern.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.case.0.witness",
+      "text": "Slope=0.8; Prediction=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Slope\",0.8],[\"X\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"0.8\"},{\"label\":\"Slope\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.case.1.witness",
+      "text": "Slope=1.2; Prediction=1.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",0],[\"Slope\",1.2],[\"X\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":1.2}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"1.2\"},{\"label\":\"Slope\",\"value\":\"1.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0966.recall",
+      "text": "A toy fitted line has Intercept 1, Slope 0.8; what does it predict at X 1? Answer 1.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0966/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #966. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 1, Slope 0.8; what does it predict at X 1?",
+    "options": [
+      "1.08",
+      "1.8",
+      "2.52"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Prediction 1.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0966",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-966"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 966,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **966. Turing patterns** \\[Slider\\]: noise plus reaction and diffusion produces spots and stripes like animal coats.",
+    "modelBoundary": "one linearized mode before a reaction-diffusion pattern",
+    "recallInputs": [
+      1,
+      0.8,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

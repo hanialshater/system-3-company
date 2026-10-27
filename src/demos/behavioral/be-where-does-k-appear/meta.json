@@ -1,0 +1,103 @@
+{
+  "slug": "be-where-does-k-appear",
+  "title": "Where does K appear?",
+  "hook": "Are words beginning with K easier to find than words with K third?",
+  "domain": "behavioral",
+  "concept": "be-where-does-k-appear",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate ease of retrieval from the frequency of the underlying class."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate ease of retrieval from the frequency of the underlying class.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-where-does-k-appear.inputs",
+      "text": "A toy list contains two words starting with K and four with K third. What is the true first-to-third count ratio? Toy inputs A=[2, 4, 2.5, 1]; B=[2, 4, 1, 1].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-where-does-k-appear.trace",
+      "text": "Computed results: [[5, 4, 0.5], [2, 4, 0.5]]. Labels: First retrieval, Third retrieval, Count ratio.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-where-does-k-appear.reveal",
+      "text": "Retrieval salience can rank classes differently from their actual counts in this toy rule. Removing that unequal salience restores the frequency ranking. Ease of recall is therefore a possible input to judgment, not a count of the population.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-where-does-k-appear.recall",
+      "text": "A new toy case uses K first count=2, K third count=4, First salience=1, Third salience=1. What is Count ratio? Answer: 0.5.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses K first count=2, K third count=4, First salience=1, Third salience=1. What is Count ratio?",
+    "options": [
+      "1.5",
+      "0.5",
+      "-0.5"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0.5. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-where-does-k-appear",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-245"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 245,
+    "section": "13. Availability, representativeness & other heuristics",
+    "text": "People think more words start with K than have K third, because first letters are easier to recall; the reverse is true (Tversky & Kahneman, 1973).",
+    "pointer": "500-behavioral-economics-findings.md entry 245: Tversky & Kahneman, 1973",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "more-detail-less-likely",
+  "meaningfulDifference": "Separate ease of retrieval from the frequency of the underlying class."
+}

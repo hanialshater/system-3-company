@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0973",
+  "title": "Small areas shrink toward a prior",
+  "hook": "Two stated cases: explore the sampling uncertainty in a toy area-rate estimate.",
+  "domain": "probability",
+  "concept": "cp-source-0973",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sampling uncertainty in a toy area-rate estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the sampling uncertainty in a toy area-rate estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0973.predict",
+      "text": "A toy normal prior has mean 5, variance 1; one normal measurement is 10 with noise variance 0.1. What is the posterior mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.reveal.0",
+      "text": "The retained results are Noise=0.1; Mean=9.545 and Noise=10; Mean=5.455.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.reveal.1",
+      "text": "Precisions weight the prior and measurement. The variance calculation assumes the stated independent normal model. This comparison isolates the sampling uncertainty in a toy area-rate estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.case.0.witness",
+      "text": "Noise=0.1; Mean=9.545",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",5],[\"Variance\",1],[\"Measurement\",10],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":9.545454545454545},{\"label\":\"Variance\",\"value\":0.09090909090909091}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"9.545\"},{\"label\":\"Noise\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.case.1.witness",
+      "text": "Noise=10; Mean=5.455",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",5],[\"Variance\",1],[\"Measurement\",10],[\"Noise\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":5.454545454545454},{\"label\":\"Variance\",\"value\":0.9090909090909091}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"5.455\"},{\"label\":\"Noise\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0973.recall",
+      "text": "A toy normal prior has mean 6, variance 1; one normal measurement is 10 with noise variance 0.1. What is the posterior mean? Answer 9.636.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0973/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #973. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal prior has mean 6, variance 1; one normal measurement is 10 with noise variance 0.1. What is the posterior mean?",
+    "options": [
+      "5.782",
+      "13.491",
+      "9.636"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 9.636 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0973",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-973"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 973,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **973. Smoothed crime map** \\[Slider\\]: Bayesian smoothing calms the noisy rates of small neighborhoods.",
+    "modelBoundary": "the sampling uncertainty in a toy area-rate estimate",
+    "recallInputs": [
+      6,
+      1,
+      10,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

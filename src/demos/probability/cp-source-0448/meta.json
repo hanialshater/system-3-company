@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0448",
+  "title": "Controls share some treated exposure",
+  "hook": "Two stated cases: explore contamination of a unit-level treatment contrast.",
+  "domain": "probability",
+  "concept": "cp-source-0448",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How contamination of a unit-level treatment contrast affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Total, regardless of the stated inputs.",
+  "objective": "Compare contamination of a unit-level treatment contrast in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0448.predict",
+      "text": "A toy unit gets direct effect 1 plus Spill -0.2 per treated neighbor. With 0 treated neighbors, what total effect results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.reveal.0",
+      "text": "The retained results are TreatedNeighbors=0; Total=1 and TreatedNeighbors=4; Total=0.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.reveal.1",
+      "text": "With interference, exposure includes neighbors’ assignments. A single treatment indicator is insufficient to define every unit’s outcome. This comparison isolates contamination of a unit-level treatment contrast.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.case.0.witness",
+      "text": "TreatedNeighbors=0; Total=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"Spill\",-0.2],[\"TreatedNeighbors\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"Neighbors\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"1\"},{\"label\":\"TreatedNeighbors\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.case.1.witness",
+      "text": "TreatedNeighbors=4; Total=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"Spill\",-0.2],[\"TreatedNeighbors\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"Neighbors\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"0.2\"},{\"label\":\"TreatedNeighbors\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0448.recall",
+      "text": "A toy unit gets direct effect 2 plus Spill -0.2 per treated neighbor. With 0 treated neighbors, what total effect results? Answer 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0448/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #448. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy unit gets direct effect 2 plus Spill -0.2 per treated neighbor. With 0 treated neighbors, what total effect results?",
+    "options": [
+      "1.2",
+      "2.8",
+      "2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Total 2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0448",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-448"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 448,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **448. Leaky A/B test** \\[Gotcha\\]: treated users share a feature with control friends, shrinking the measured effect.",
+    "modelBoundary": "contamination of a unit-level treatment contrast",
+    "recallInputs": [
+      2,
+      -0.2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

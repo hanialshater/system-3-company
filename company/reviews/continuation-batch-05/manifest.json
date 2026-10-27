@@ -1,0 +1,3807 @@
+{
+  "batch": "batch-05",
+  "count": 200,
+  "assertions": 956,
+  "entries": [
+    {
+      "slug": "cp-source-0201",
+      "domain": "probability",
+      "sourceEntryId": 201,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **201. Twenty questions** \\[Measure\\]: 20 yes/no questions can pin down one of about a million things, if each splits the options in half.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Twenty balanced questions",
+      "lens": "the maximum number of distinct answer strings",
+      "model": "capacity",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "ecde04c9c882df35856d1066906839a96c555d80dd7fb5520bc8f78a4b6ad6cd"
+    },
+    {
+      "slug": "cp-source-0202",
+      "domain": "probability",
+      "sourceEntryId": 202,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **202. Wordle opener** \\[Predict\\]: rank first guesses by how much information they reveal on average.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "One feedback split in a word game",
+      "lens": "the average information of a binary feedback partition",
+      "model": "binaryentropy",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "68ceae117f2c36508b0f366d999ca4acdd562425552eb6e7b617c16c9e967c32"
+    },
+    {
+      "slug": "cp-source-0203",
+      "domain": "probability",
+      "sourceEntryId": 203,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **203. Guess Who** \\[Predict\\]: \"Does your person wear glasses?\" vs a question that splits the board 50/50.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Ask the balanced board question",
+      "lens": "the expected information of a yes-no split",
+      "model": "binaryentropy",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "68bc81cc6f4f0d73c5d4ff41bed434aed69b4f95de423e2362f64de2fa6549bc"
+    },
+    {
+      "slug": "cp-source-0204",
+      "domain": "probability",
+      "sourceEntryId": 204,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **204. Bits of surprise** \\[Slider\\]: a 1-in-2 event carries 1 bit; a 1-in-1,000 event about 10 bits.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Bits in a surprising outcome",
+      "lens": "the logarithm of a specified event probability",
+      "model": "bitsurprise",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "911469c667e5d53e0f18f1cf69da2c9c96f7ade77c2febf052c7563722dba269"
+    },
+    {
+      "slug": "cp-source-0205",
+      "domain": "probability",
+      "sourceEntryId": 205,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **205. Password strength** \\[Measure\\]: type a password pattern and see its entropy and time-to-crack.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A uniform password model",
+      "lens": "the independence assumption behind password entropy",
+      "model": "passwordbits",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "dcf871617c83260b487bb1f0bdfe8922a08fe71426bb9071e1d0755a6db54ef0"
+    },
+    {
+      "slug": "cp-source-0206",
+      "domain": "probability",
+      "sourceEntryId": 206,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **206. Compress this** \\[Predict\\]: which compresses more, a random string or a song chorus?",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Repetition lowers source entropy",
+      "lens": "the entropy rate of a stated binary source",
+      "model": "binaryentropy",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "621250b0e1f40a78d20137b04948fe31bf69a9aba2480129190db36fb7faedf7"
+    },
+    {
+      "slug": "cp-source-0207",
+      "domain": "probability",
+      "sourceEntryId": 207,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **207. Build a Huffman code** \\[Slider\\]: give common letters short codes and watch the message shrink.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Give the frequent symbol fewer bits",
+      "lens": "frequency-weighted prefix-code length",
+      "model": "codeaverage",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "1b4ffcde212ed0024edbf41a94416f96edc8ebd10f5352bd8dded90eb682bb35"
+    },
+    {
+      "slug": "cp-source-0208",
+      "domain": "probability",
+      "sourceEntryId": 208,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **208. Morse is efficient** \\[Gotcha\\]: E, the most common English letter, gets the shortest code, a single dot.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A short code for the common symbol",
+      "lens": "the probability weight of a short code",
+      "model": "codeaverage",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "6582cbcac2ebc0d4932d18a36fca67d406f121449d8dee5c850096279bf27353"
+    },
+    {
+      "slug": "cp-source-0209",
+      "domain": "probability",
+      "sourceEntryId": 209,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **209. Guess the next letter** \\[Measure\\]: play Shannon's game; English carries only about 1 bit per letter.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A predictable next character",
+      "lens": "surprisal in a stated next-character model",
+      "model": "bitsurprise",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "3243532a94ccc554dc814313d0292a27ba16e62bdb6c9807d5eba50d4f34de1c"
+    },
+    {
+      "slug": "cp-source-0210",
+      "domain": "probability",
+      "sourceEntryId": 210,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **210. KL divergence** \\[Slider\\]: drag one distribution away from another and watch the \"surprise cost\" grow, unevenly in each direction.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Reverse the KL arguments",
+      "lens": "the weighting distribution in directional divergence",
+      "model": "binarykl",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "e89f208863b456bcb6f5cece899f7e3dd4f6e6acb00c6c4f14f1221f6b1d1aea"
+    },
+    {
+      "slug": "cp-source-0211",
+      "domain": "probability",
+      "sourceEntryId": 211,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **211. Cross-entropy loss** \\[Slider\\]: see why a confident wrong prediction is punished so much harder than a hesitant one.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Confident and wrong costs more",
+      "lens": "the probability assigned to the observed class",
+      "model": "logloss",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "aa843e85c7ed227ebb7db897d0cf4cb5357e7829d7e0396c56dea78346e253da"
+    },
+    {
+      "slug": "cp-source-0212",
+      "domain": "probability",
+      "sourceEntryId": 212,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **212. Zero correlation, full dependence** \\[Gotcha\\]: y = x² has zero correlation with x, yet mutual information shows they're tied.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Zero correlation can hide a function",
+      "lens": "linear correlation versus deterministic dependence",
+      "model": "squaredependence",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "fdc0439a5af9cb84e1000846f862a5baa7f04ec47dd4d3350dc8085c6c528a60"
+    },
+    {
+      "slug": "cp-source-0213",
+      "domain": "probability",
+      "sourceEntryId": 213,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **213. Noisy channel** \\[Slider\\]: add noise to a message and add repetition until it gets through.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Three noisy copies and a majority",
+      "lens": "independent correctness in a toy repetition channel",
+      "model": "binomtail",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "845ea4fb8454200e6374be64cedb6dc98e4ffb23cb3d2f514dec217576758515"
+    },
+    {
+      "slug": "cp-source-0214",
+      "domain": "probability",
+      "sourceEntryId": 214,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **214. Damaged QR code** \\[Predict\\]: cover more and more of a QR code; error correction keeps it readable up to about 30%.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Code distance sets an error bound",
+      "lens": "symbol errors rather than covered image area",
+      "model": "correctable",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "5beb3845be2bb64853aa86b7d94816ea637e5331f650e08bb84265539c872a36"
+    },
+    {
+      "slug": "cp-source-0215",
+      "domain": "probability",
+      "sourceEntryId": 215,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **215. Twelve coins** \\[Predict\\]: find the fake coin in 3 weighings; each weighing gives 3 outcomes, and 3³ = 27 ≥ 24 cases.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Three outcomes per weighing",
+      "lens": "the information capacity of a balance-scale answer",
+      "model": "capacity",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "5710a089925f88593a27a95ff0edd97cce4e343c4d5b342e110b792540110a18"
+    },
+    {
+      "slug": "cp-source-0216",
+      "domain": "probability",
+      "sourceEntryId": 216,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **216. 1,000 poisoned bottles** \\[Gotcha\\]: 10 tasters can find the one poisoned bottle using binary codes.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Binary labels for poisoned bottles",
+      "lens": "the number of binary taster-result patterns",
+      "model": "capacity",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "29385741b93797697b0eaa5db1a696389063f50962b4bab0bd04314bab78c5d1"
+    },
+    {
+      "slug": "cp-source-0217",
+      "domain": "probability",
+      "sourceEntryId": 217,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **217. How diverse is your week?** \\[Measure\\]: compute the entropy of your music, meals or commute routes.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A two-option week has an entropy",
+      "lens": "diversity under a stated two-category frequency model",
+      "model": "binaryentropy",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "f9d6a77b44cb8f0361b11062550a255a28444ff5264fca7cbcf83a92843fa6c5"
+    },
+    {
+      "slug": "cp-source-0218",
+      "domain": "probability",
+      "sourceEntryId": 218,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **218. Maximum entropy die** \\[Slider\\]: if a die averages 4.5, what's the least-assuming distribution of its faces?",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A die constrained by its mean",
+      "lens": "the mean constraint in an exponential maximum-entropy family",
+      "model": "maxent",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "e14b78d74ef0eefd99ea4c3c02841ca6785cd6b8ed12226878cacabedc3b6fd3"
+    },
+    {
+      "slug": "cp-source-0219",
+      "domain": "probability",
+      "sourceEntryId": 219,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **219. Is the test worth it?** \\[Slider\\]: see how much a test reduces your uncertainty about a diagnosis.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A test reduces average uncertainty",
+      "lens": "information averaged over positive and negative results",
+      "model": "testinfo",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "43959a9aa8c7dab52ed7a0cbe43a639a2206ba7f1d567fdaebd35db9a9509b20"
+    },
+    {
+      "slug": "cp-source-0220",
+      "domain": "probability",
+      "sourceEntryId": 220,
+      "sourceSection": "11. Information, entropy & surprise",
+      "sourceText": "- **220. Hash collisions** \\[Gotcha\\]: with N possible hashes, collisions start around √N items, the birthday paradox again.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A small hash space still collides",
+      "lens": "the birthday event in a finite uniform hash space",
+      "model": "birthday",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "d28d5e389ebd2b5b7a7f7a9066eccbf9c22a5c0e76ccad7f1ca70f963f19f654"
+    },
+    {
+      "slug": "cp-source-0221",
+      "domain": "probability",
+      "sourceEntryId": 221,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **221. Green jelly beans** \\[Gotcha\\]: test 20 colors against acne; one comes out \"significant\" by chance.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Twenty chances for a false discovery",
+      "lens": "family-wise error under independent null tests",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "42637fca17d8ac5a5a2499bf48b3944da04fd1cf7c993544b776f063beecfb75"
+    },
+    {
+      "slug": "cp-source-0222",
+      "domain": "probability",
+      "sourceEntryId": 222,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **222. p-hacking playground** \\[Slider\\]: drop outliers, add covariates, split subgroups until noise hits p < 0.05.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Many analysis paths add opportunities",
+      "lens": "a union-bound ceiling rather than a fitted p-hacking simulator",
+      "model": "uniontests",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "feea84e62b061aadc4a94ff897588d862c84d69fcebe9f2dba3fcafa1969e89d"
+    },
+    {
+      "slug": "cp-source-0223",
+      "domain": "probability",
+      "sourceEntryId": 223,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **223. Peeking** \\[Predict\\]: check an A/A test after every 100 users and stop at the first p < 0.05; false positives soar past 5%.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Repeated opportunities need a model",
+      "lens": "a conservative bound without assuming independent repeated looks",
+      "model": "uniontests",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "b001274adb306fd24e40cd67f9f1bff5280ecaebaa0dd8903f5bfef7b14b74dc"
+    },
+    {
+      "slug": "cp-source-0224",
+      "domain": "probability",
+      "sourceEntryId": 224,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **224. What does p mean?** \\[Split\\]: poll common definitions; most popular answers are wrong.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A p-value under a specified null",
+      "lens": "the null-tail event rather than probability of the null",
+      "model": "binomtail",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "0634198a399ac476f6dd4e0a7b656a78f73e3cf03debea24110a9c88f3028bf0"
+    },
+    {
+      "slug": "cp-source-0225",
+      "domain": "probability",
+      "sourceEntryId": 225,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **225. Dance of the p-values** \\[Predict\\]: rerun the same real experiment 20 times; p jumps from 0.001 to 0.4.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "The count changes across repetitions",
+      "lens": "the tail probability as realized data vary",
+      "model": "binomtail",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "928358fe0fa95bbdc4d8559e87edf76f70b3c7f73bc8f3dbc396bc966a0f3b94"
+    },
+    {
+      "slug": "cp-source-0226",
+      "domain": "probability",
+      "sourceEntryId": 226,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **226. Statistical power** \\[Slider\\]: shrink the sample and watch a real effect go undetected most of the time.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Power for a stated rejection rule",
+      "lens": "the detection probability under a specified alternative",
+      "model": "binomtail",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "6441ce424fa45336c3360ff44320d2e1423000a1253f9e7651a19d1182d7de69"
+    },
+    {
+      "slug": "cp-source-0227",
+      "domain": "probability",
+      "sourceEntryId": 227,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **227. Winner's curse** \\[Gotcha\\]: in small studies, the results that reach significance overstate the true effect.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Select only the large estimates",
+      "lens": "outcome-dependent inclusion in a toy study collection",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "f2bf7be9dc5bb07c928a5a13d4b387d36a9347b5501d7b85cd51318edc617961"
+    },
+    {
+      "slug": "cp-source-0228",
+      "domain": "probability",
+      "sourceEntryId": 228,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **228. Many tests at once** \\[Slider\\]: compare no correction, Bonferroni and false-discovery-rate control on 100 tests.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Bonferroni changes the threshold",
+      "lens": "the independent-test family rejection probability",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "95d16a12a85e92648308fae9d4af44900869ea3bc6c03e3bb13cdff112804536"
+    },
+    {
+      "slug": "cp-source-0229",
+      "domain": "probability",
+      "sourceEntryId": 229,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **229. Lady tasting tea** \\[Measure\\]: identify milk-first cups among 8; Fisher's original permutation test scores you.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Milk-first cups under random guessing",
+      "lens": "the fixed-margin tail of a random allocation",
+      "model": "hypergeom",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "ca037920d7c38daf2c6186e82c4fb4a71a74ed7c9e7e056031f98d6720dc1d3b"
+    },
+    {
+      "slug": "cp-source-0230",
+      "domain": "probability",
+      "sourceEntryId": 230,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **230. Forking paths** \\[Gotcha\\]: one dataset, many reasonable analysis choices, wildly different conclusions.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Forks create more possible analyses",
+      "lens": "the number of false-alarm opportunities",
+      "model": "uniontests",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "d25fbb5cf4b056700fefaef6828a164e5bfcab1a2996d446be52c3740a37aa35"
+    },
+    {
+      "slug": "cp-source-0231",
+      "domain": "probability",
+      "sourceEntryId": 231,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **231. The dead salmon** \\[Story\\]: an fMRI scan of a dead fish showed \"brain activity\" without multiple-comparison correction (Bennett et al., 2009).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Null voxels can still light up",
+      "lens": "multiple testing under an all-null toy scan",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "bf83c4815028b3d211d1b9b673308510c9a952926379eefade8c4b9317e67027"
+    },
+    {
+      "slug": "cp-source-0232",
+      "domain": "probability",
+      "sourceEntryId": 232,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **232. Significant but tiny** \\[Slider\\]: grow the sample to millions and a trivial effect becomes highly significant.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A tiny effect with a huge sample",
+      "lens": "the standard error behind statistical separation",
+      "model": "zscore",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "ba28cf1b9e432a2bbc8636c3d3b0b905569769e6aff9f611ce92c74590bf523a"
+    },
+    {
+      "slug": "cp-source-0233",
+      "domain": "probability",
+      "sourceEntryId": 233,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **233. Shuffle test** \\[Slider\\]: shuffle group labels thousands of times to see how unusual the real difference is.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Shuffle labels while keeping margins",
+      "lens": "the randomization distribution with fixed totals",
+      "model": "hypergeom",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a9acd809b0d5faaf8f266930f0f738aaaa72cf5d045481b8adde463954e0b134"
+    },
+    {
+      "slug": "cp-source-0234",
+      "domain": "probability",
+      "sourceEntryId": 234,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **234. Is your die fair?** \\[Measure\\]: roll 60 times and run a chi-square test on the counts.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Three pairs of die faces",
+      "lens": "the Pearson statistic for three grouped categories",
+      "model": "chi3",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "dfe9c14057a99975ba695f600d8977c664e7945c368a57d479da2af94014a771"
+    },
+    {
+      "slug": "cp-source-0235",
+      "domain": "probability",
+      "sourceEntryId": 235,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **235. One tail or two?** \\[Split\\]: the same data is significant under one choice and not the other.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "One tail versus two tails",
+      "lens": "the disjoint tail events included in a test",
+      "model": "tailcount",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "35564dd71b499c1c1bc3af1086f2c5f13f28f843062a8c8bcd7a0a034093abfd"
+    },
+    {
+      "slug": "cp-source-0236",
+      "domain": "probability",
+      "sourceEntryId": 236,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **236. HARKing** \\[Gotcha\\]: forming the hypothesis after seeing results makes any pattern look predicted.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Choose a hypothesis after the search",
+      "lens": "the hidden search opportunity behind a selected pattern",
+      "model": "uniontests",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "6f960365b324be9de762b4faae70210ac05f19cd741fc4ad3937a010767ef542"
+    },
+    {
+      "slug": "cp-source-0237",
+      "domain": "probability",
+      "sourceEntryId": 237,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **237. Why 0.05?** \\[Story\\]: the threshold traces largely to a convenient choice in Fisher's 1925 textbook.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Five percent is an input",
+      "lens": "the chosen nominal threshold under a null model",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "acdf758c29009b07922724b8d9dcfb0527e48c7408dbfecc03dcf38edb75a55d"
+    },
+    {
+      "slug": "cp-source-0238",
+      "domain": "probability",
+      "sourceEntryId": 238,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **238. Show the interval** \\[Slider\\]: two studies with the same p-value can have very different effect sizes and certainty.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "The same z score at different scales",
+      "lens": "the effect scale and interval width",
+      "model": "waldinterval",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "intervals"
+      ],
+      "specSha256": "6500346828ecf271590ed1da62be3981e85aaa0bc191bb8505d681297a8b472a"
+    },
+    {
+      "slug": "cp-source-0239",
+      "domain": "probability",
+      "sourceEntryId": 239,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **239. How many findings are true?** \\[Slider\\]: set prior odds and power; at low values most significant findings are false (Ioannidis, 2005).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "How many selected findings are true?",
+      "lens": "the prior share of true alternatives and test power",
+      "model": "bayes",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "2d1b54dbefa3cc3fbb4ad14c9929a30186bc173dc679258a81ef704763a07c30"
+    },
+    {
+      "slug": "cp-source-0240",
+      "domain": "probability",
+      "sourceEntryId": 240,
+      "sourceSection": "12. Hypothesis tests & p-value traps",
+      "sourceText": "- **240. A/A test** \\[Predict\\]: compare two identical versions 100 times; about 5 come out \"significant\".",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "False rejections in one hundred tests",
+      "lens": "the expected count under a specified null rejection rate",
+      "model": "uptake",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "bars"
+      ],
+      "specSha256": "9e4f49cb521b28b702e8ee15d4869f9e14cd491e31c4d02f2dfeb3f5013f3e85"
+    },
+    {
+      "slug": "cp-source-0242",
+      "domain": "probability",
+      "sourceEntryId": 242,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **242. Overfitting** \\[Slider\\]: raise polynomial degree; training error drops while new-data error explodes.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Training fit is not prediction error",
+      "lens": "bias and variance in an explicit error decomposition",
+      "model": "mse",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "bbe2c77359205e8fe65d77ad91575869b7ba5f8f3812cc097d3040bf88b528d5"
+    },
+    {
+      "slug": "cp-source-0243",
+      "domain": "probability",
+      "sourceEntryId": 243,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **243. Bias vs variance** \\[Split\\]: four dartboards: accurate, precise, both, neither.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Accuracy and precision contribute",
+      "lens": "squared bias versus sampling variance",
+      "model": "mse",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "fc777e4096d7533e1fb4f789206189929b45a292b18df2f9c5c43e8a360087cb"
+    },
+    {
+      "slug": "cp-source-0245",
+      "domain": "probability",
+      "sourceEntryId": 245,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **245. Cross-validation** \\[Predict\\]: pick the best model on held-out folds, then compare to the one that fit training data best.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Compare estimated new-data errors",
+      "lens": "the risk decomposition rather than training fit alone",
+      "model": "mse",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a3d3af0f9d08aaad58098f93feed99c17fb3926c11abc299a6a6f8a0f260ac4f"
+    },
+    {
+      "slug": "cp-source-0246",
+      "domain": "probability",
+      "sourceEntryId": 246,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **246. Ridge regression** \\[Slider\\]: increase the penalty and watch wild coefficients shrink toward zero.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A penalty shrinks one coefficient",
+      "lens": "the ridge denominator in a centered single-feature model",
+      "model": "ridge",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "dff5078b419a1bbe8ecd69516f6eb39891fc991f67abd2a93ac8b3c0155b39a1"
+    },
+    {
+      "slug": "cp-source-0247",
+      "domain": "probability",
+      "sourceEntryId": 247,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **247. One bad point** \\[Slider\\]: drag a single outlier and watch the least-squares line swing while a robust line holds.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "One point pulls the mean",
+      "lens": "the influence of an extreme observation",
+      "model": "outlier",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "1bb22a6d2379cb29cead1c04f7bd47c6951e4ac627cb1b83defaef5fac73242b"
+    },
+    {
+      "slug": "cp-source-0248",
+      "domain": "probability",
+      "sourceEntryId": 248,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **248. A billionaire walks in** \\[Gotcha\\]: the bar's average wealth skyrockets; the median barely moves.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "The billionaire changes the average",
+      "lens": "the mean and median of a fixed toy sample",
+      "model": "outlier",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "4a57a5abe01d0ff28acb5491979def3c3227a0fac9200d86d55ae10f3d6cbc2b"
+    },
+    {
+      "slug": "cp-source-0249",
+      "domain": "probability",
+      "sourceEntryId": 249,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **249. Fish in a lake** \\[Predict\\]: tag 50 fish, recapture 50, count tagged ones, estimate the total.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Tagged fish in the second sample",
+      "lens": "the recaptured tagged fraction under a closed-population model",
+      "model": "capture",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "7a5bdc407caa9f05291fa5850d82b70562fdf6c520e7fde7cedbb8c73b2dcd44"
+    },
+    {
+      "slug": "cp-source-0252",
+      "domain": "probability",
+      "sourceEntryId": 252,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **252. Women outrunning men by 2156** \\[Story\\]: extending sprint-record trends gave that forecast (Tatem et al., 2004), a lesson in extrapolation.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A straight trend beyond the data",
+      "lens": "the unsupported persistence of an extrapolated slope",
+      "model": "line",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "43a4b638fdad01ac4d71a5b31cb2f3f00776c1ab76dd5985c34818b7bd60ac72"
+    },
+    {
+      "slug": "cp-source-0253",
+      "domain": "probability",
+      "sourceEntryId": 253,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **253. Fermi estimates** \\[Measure\\]: estimate piano tuners in Berlin with ranges at each step and see the final uncertainty.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Multiply ranges in a Fermi estimate",
+      "lens": "positive-factor bounds rather than a confidence interval",
+      "model": "productrange",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "7edf83dca64b90b5ebe8181dd5434e297e53aeeb429d1cee9fd65ec356e61983"
+    },
+    {
+      "slug": "cp-source-0254",
+      "domain": "probability",
+      "sourceEntryId": 254,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **254. The ox at the fair** \\[Story\\]: the median of about 800 guesses was within 1% of the ox's weight (Galton, 1907).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A crowd estimate against a benchmark",
+      "lens": "the signed error of a stated aggregate guess",
+      "model": "percentile",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "scatter"
+      ],
+      "specSha256": "785d5a0d19fb4bf2fa4bc91942030a270526c9b3767c0c3048a6c251a20eb986"
+    },
+    {
+      "slug": "cp-source-0255",
+      "domain": "probability",
+      "sourceEntryId": 255,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **255. You vs the crowd** \\[Measure\\]: guess jellybeans in a jar; see how the crowd average beats most individuals.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A stated blend of crowd estimates",
+      "lens": "the weights behind a pooled numerical guess",
+      "model": "shrink",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "08d89a6867742793162336c8890801ca6c0ae64a651222a0714a1ec4e47d6cce"
+    },
+    {
+      "slug": "cp-source-0256",
+      "domain": "probability",
+      "sourceEntryId": 256,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **256. Stein's paradox** \\[Story\\]: shrinking each baseball player's early average toward the group mean predicted the season better (Efron & Morris, 1975).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Pull early averages toward the group",
+      "lens": "the evidence weight in a toy shrinkage estimator",
+      "model": "shrink",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "6dd865c229b18a801a553b849bcc6ee943c64c45195dade9787d631a1db8f9df"
+    },
+    {
+      "slug": "cp-source-0258",
+      "domain": "probability",
+      "sourceEntryId": 258,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **258. Bandwidth** \\[Slider\\]: the same data looks unimodal or bimodal depending on kernel bandwidth.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A bandwidth changes local information",
+      "lens": "the local sample-size facet of a smoothing tradeoff",
+      "model": "samplesd",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "0b9d05df83adfaade3dc6f10666108fc2ceb3be5759ce4052b1593f36df90ec7"
+    },
+    {
+      "slug": "cp-source-0259",
+      "domain": "probability",
+      "sourceEntryId": 259,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **259. Histogram bins lie** \\[Slider\\]: change bin width and a pattern appears or disappears.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Histogram counts need their widths",
+      "lens": "the count per unit bin width in a density display",
+      "model": "unitprice",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "5de862f91d12c404e8da6b5d01cfe4a64f938939f217c4b1d549ea51f137623c"
+    },
+    {
+      "slug": "cp-source-0260",
+      "domain": "probability",
+      "sourceEntryId": 260,
+      "sourceSection": "13. Estimation, fitting & uncertainty",
+      "sourceText": "- **260. Stacking errors** \\[Slider\\]: combine uncertain measurements and watch how errors add in quadrature.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Independent measurement errors combine",
+      "lens": "the addition of independent variances",
+      "model": "quadrature",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "e903c9924f3fe0f33aff0a6f08c037a0cb91a439aac9979cb0094174af47c9a9"
+    },
+    {
+      "slug": "cp-source-0261",
+      "domain": "probability",
+      "sourceEntryId": 261,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **261. Ice cream and drownings** \\[Gotcha\\]: both rise together; summer heat drives both.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A common summer cause",
+      "lens": "the common-cause path in a stipulated structural model",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "06ea676b1a545e63adb1b6f25d3cb5edaa4425a66cc0f0ac3bfc577de3ccef88"
+    },
+    {
+      "slug": "cp-source-0262",
+      "domain": "probability",
+      "sourceEntryId": 262,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **262. Nicolas Cage and pool drownings** \\[Gotcha\\]: two unrelated yearly series track each other closely by pure coincidence (Vigen).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Search enough unrelated series",
+      "lens": "the search opportunity behind a selected coincidence",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "d7a2107c89fc781457b2c0e8eb8963a32a1b46a70019c00e585666a38a73ba59"
+    },
+    {
+      "slug": "cp-source-0263",
+      "domain": "probability",
+      "sourceEntryId": 263,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **263. Chocolate and Nobel prizes** \\[Story\\]: countries eating more chocolate have more Nobel laureates per capita (Messerli, 2012).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A wealth proxy can predict both",
+      "lens": "the observational slope with a shared background cause",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "4e7970ee03d8e68bee30e44bc86207a7fd5c80aa039596d3ed87ec3fbee48184"
+    },
+    {
+      "slug": "cp-source-0264",
+      "domain": "probability",
+      "sourceEntryId": 264,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **264. Storks and babies** \\[Story\\]: European stork populations correlate with birth rates (Matthews, 2000).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Population size can drive both counts",
+      "lens": "the common scale factor behind two observed variables",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "dcecf26ab0aa15b25ef6b8320943757dad539cb4a604f843b38384ae324ee5b3"
+    },
+    {
+      "slug": "cp-source-0265",
+      "domain": "probability",
+      "sourceEntryId": 265,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **265. More firefighters, more damage** \\[Gotcha\\]: bigger fires bring more firefighters and more damage.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Severe fires bring both responses",
+      "lens": "the common severity cause and the intervention derivative",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "e875b8028c8ed3fefd0ce0832aab5a07a98dcabed971018c68a7fbde68c3187e"
+    },
+    {
+      "slug": "cp-source-0266",
+      "domain": "probability",
+      "sourceEntryId": 266,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **266. Shoe size and reading** \\[Gotcha\\]: in children, bigger feet predict better reading because both grow with age.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Age connects two childhood measures",
+      "lens": "the shared age path in a structural toy model",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "adca83568290819aba6569c16daa5ae0a9a730c0434a7ea05071f49b8418cdfd"
+    },
+    {
+      "slug": "cp-source-0267",
+      "domain": "probability",
+      "sourceEntryId": 267,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **267. Hospitals are deadly?** \\[Gotcha\\]: people in hospitals die more because sick people go to hospitals.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Sicker people select into hospital",
+      "lens": "selection by a common severity variable",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "788a701b1c81de0678f8450556fc9fe3d6216126c64b52379571e364978cff03"
+    },
+    {
+      "slug": "cp-source-0268",
+      "domain": "probability",
+      "sourceEntryId": 268,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **268. Correlation fishing** \\[Slider\\]: scan 1,000 random variables and find a few with r above 0.9.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Fishing across a thousand variables",
+      "lens": "the multiplicity of a stipulated correlation search",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "f7218592d6aae15f1a1408154b93bb578ce68dc26c35f5b088106a5ff42c5748"
+    },
+    {
+      "slug": "cp-source-0271",
+      "domain": "probability",
+      "sourceEntryId": 271,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **271. Coffee and heart disease** \\[Slider\\]: toggle smoking as a hidden variable and watch coffee's \"effect\" disappear.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A smoking confounder in a toy model",
+      "lens": "the open common-cause path before an intervention",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "9505dad8aeafa5f27cc39bf46b099869cd0d17b237628f37fbb51f9dc22b3826"
+    },
+    {
+      "slug": "cp-source-0272",
+      "domain": "probability",
+      "sourceEntryId": 272,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **272. Breakfast and weight** \\[Split\\]: half see the observational link, half see trial results; compare conclusions.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An observed breakfast association",
+      "lens": "the difference between observing and assigning a behavior",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "9fbc57ea0db17f7f4f2a1a89edc5656fa9fa3e6e99105b937abd8b14e0021e3e"
+    },
+    {
+      "slug": "cp-source-0273",
+      "domain": "probability",
+      "sourceEntryId": 273,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **273. Pirates and global warming** \\[Gotcha\\]: pirate numbers fell as temperatures rose, a classic parody chart.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Two trends can co-move without cause",
+      "lens": "a stipulated time trend rather than a causal link",
+      "model": "line",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "6d6ac07beb3a31b0029df52ead2b6f2cd5712f4ad64c5f38745ea6283ea48228"
+    },
+    {
+      "slug": "cp-source-0274",
+      "domain": "probability",
+      "sourceEntryId": 274,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **274. Shoes on in bed** \\[Gotcha\\]: sleeping in shoes predicts headaches; the hidden cause is a night of drinking.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A night out is a common cause",
+      "lens": "the common background event in an observational association",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "848e7d0548547e0230f3b5b0be4fa344aee44b011bee828fac18c363b00e4fc8"
+    },
+    {
+      "slug": "cp-source-0275",
+      "domain": "probability",
+      "sourceEntryId": 275,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **275. Guess the correlation** \\[Measure\\]: see scatterplots and guess r; get your accuracy score.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Translate a correlation carefully",
+      "lens": "the explained share in a simple linear regression",
+      "model": "rsquared",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "2c01da92c31203f31ac85cea368bc790827c4757f69c98d01795ae214819ffb6"
+    },
+    {
+      "slug": "cp-source-0277",
+      "domain": "probability",
+      "sourceEntryId": 277,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **277. Anscombe's quartet** \\[Gotcha\\]: four datasets with identical stats and totally different pictures.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A summary can miss one strange point",
+      "lens": "the sensitivity hidden by a single numerical summary",
+      "model": "outlier",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "5d867c64932a56e0f1ea78a2e123eeaadafcb7d1379b8e954db0f2f50683b900"
+    },
+    {
+      "slug": "cp-source-0278",
+      "domain": "probability",
+      "sourceEntryId": 278,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **278. Datasaurus** \\[Gotcha\\]: a dinosaur-shaped scatter shares its summary statistics with a dozen other shapes.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Different point clouds can share means",
+      "lens": "the insufficiency of a mean to determine a data shape",
+      "model": "dispersion",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a1b7a66fadb6fbabafe81ce939668d15b6ad75ca91a681cb65a86287045dd3f1"
+    },
+    {
+      "slug": "cp-source-0280",
+      "domain": "probability",
+      "sourceEntryId": 280,
+      "sourceSection": "14. Correlation vs causation",
+      "sourceText": "- **280. Rich states, rich voters** \\[Gotcha\\]: in the US, richer states lean Democratic while richer individuals lean Republican (Gelman, 2008).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Groups and people use different weights",
+      "lens": "aggregation across groups rather than individual causal inference",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "ae5b1edaa48d6363f97eb86da8f8b15541fb830f2371d167017a91d78d1bdeca"
+    },
+    {
+      "slug": "cp-source-0281",
+      "domain": "probability",
+      "sourceEntryId": 281,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **281. Kidney stones** \\[Story\\]: open surgery did better for both small and large stones, yet the other treatment looked better overall (Charig et al., 1986).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Stone size changes the treatment mix",
+      "lens": "unequal difficulty weights despite a stratum-level advantage",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "9f1629adf7039a1f3d97e2627824dae1338585ecee191a2abb40a2e29e6f745a"
+    },
+    {
+      "slug": "cp-source-0282",
+      "domain": "probability",
+      "sourceEntryId": 282,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **282. Berkeley admissions** \\[Story\\]: women had lower admission rates overall in 1973, but most departments admitted women at equal or higher rates.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Departments have different base rates",
+      "lens": "department composition behind an aggregate admission contrast",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "9b9aa3cbd5d825435c606041695e0626a4baf4c91204d96432039d0c97874c53"
+    },
+    {
+      "slug": "cp-source-0283",
+      "domain": "probability",
+      "sourceEntryId": 283,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **283. Jeter vs Justice** \\[Story\\]: Justice had the higher batting average in both 1995 and 1996; Jeter was higher over the two years combined.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Season weights flip a batting average",
+      "lens": "at-bat weights across seasons",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "f0256cd5a23958981f655507fca092ec8a9f3fc861a6ab40d0e5387098754c5d"
+    },
+    {
+      "slug": "cp-source-0284",
+      "domain": "probability",
+      "sourceEntryId": 284,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **284. COVID fatality by country** \\[Story\\]: Italy's case fatality was higher than China's overall but lower in every age group (von Kügelgen et al., 2021).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Age weights change a fatality average",
+      "lens": "the population age composition of a descriptive risk",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "10be671e119f58838dbada86061d619efaeeecf798403d70e8e195c97417eb6b"
+    },
+    {
+      "slug": "cp-source-0285",
+      "domain": "probability",
+      "sourceEntryId": 285,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **285. Build a Simpson** \\[Slider\\]: drag group sizes and rates until the overall comparison flips.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Build a composition reversal",
+      "lens": "group weights with unchanged within-group rates",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "7adb833ad1a059accd368a27a7c29b8a7661ca1e27a384eaede865a842480f51"
+    },
+    {
+      "slug": "cp-source-0286",
+      "domain": "probability",
+      "sourceEntryId": 286,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **286. Slopes that flip** \\[Slider\\]: within each group the trend is up; pooled, it points down.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A pooled contrast can reverse",
+      "lens": "the mixture component of a pooled comparison",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "409fa9212a1aea48310ca0223506e0098ccf1a93df0df0309e0eb35d104e74e9"
+    },
+    {
+      "slug": "cp-source-0287",
+      "domain": "probability",
+      "sourceEntryId": 287,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **287. Exercise and cholesterol** \\[Slider\\]: across ages, exercise seems to raise cholesterol; within each age group it lowers it.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Age mix can reverse a health contrast",
+      "lens": "the age-stratum weights before interpreting an aggregate",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a055d1d38c0e77daf74a496d7130fd1f4af62386bf5f261fae439c2ef77ac590"
+    },
+    {
+      "slug": "cp-source-0288",
+      "domain": "probability",
+      "sourceEntryId": 288,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **288. Which surgeon?** \\[Split\\]: one surgeon looks worse overall but is better for both low- and high-risk patients.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A surgeon's risk mix matters",
+      "lens": "case difficulty in a toy surgeon comparison",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "bdaaa1338a25ecb727d820cde00521311e1c837e93dcbdd9818f3f9fa49c4c78"
+    },
+    {
+      "slug": "cp-source-0290",
+      "domain": "probability",
+      "sourceEntryId": 290,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **290. Wages by education** \\[Story\\]: in the 2000s, the overall US median wage rose while it fell within every education group, as the workforce became more educated.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A more educated workforce changes a mean",
+      "lens": "composition changes despite declining component means",
+      "model": "mixture",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "bars"
+      ],
+      "specSha256": "c40729f063fdbda36a2e57fefeaf738ef0f30647bbac1377db2b6702256de700"
+    },
+    {
+      "slug": "cp-source-0291",
+      "domain": "probability",
+      "sourceEntryId": 291,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **291. Smokers survived longer?** \\[Story\\]: in the Whickham study, smokers had better 20-year survival overall, because they were younger (Appleton et al., 1996).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Younger smokers in an aggregate sample",
+      "lens": "age composition versus a stratum-level disadvantage",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "23aaafdb61343356ef5605a218d80214d684e15b87d2584d3f93ba20e886b06f"
+    },
+    {
+      "slug": "cp-source-0292",
+      "domain": "probability",
+      "sourceEntryId": 292,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **292. Lord's paradox** \\[Gotcha\\]: two reasonable analyses of the same diet data give opposite answers.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Baseline adjustment changes the contrast",
+      "lens": "the chosen pre-post comparison and identifying assumptions",
+      "model": "did",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "3133cc6f798c1d88f542228e5fa9cdcf34d1cd5d6b26586bcd44e6978b5fa65c"
+    },
+    {
+      "slug": "cp-source-0294",
+      "domain": "probability",
+      "sourceEntryId": 294,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **294. Ad performance by device** \\[Slider\\]: a campaign wins on mobile and desktop but loses overall.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Device mix changes an ad aggregate",
+      "lens": "mobile and desktop weights in a conversion comparison",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "c202e8e1d35d09bccb480294cb16e86c9167f280f9604b6f57c3f75547e5f3ed"
+    },
+    {
+      "slug": "cp-source-0295",
+      "domain": "probability",
+      "sourceEntryId": 295,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **295. Airline delays** \\[Story\\]: one airline had better on-time rates at every airport but worse overall, because of its hub's weather.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Airports have different delay risks",
+      "lens": "the airport composition behind on-time rates",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "19190586798a4705bddd6b96fa84ea66db522e3be3211d6f1ec9a7c5144ad54d"
+    },
+    {
+      "slug": "cp-source-0296",
+      "domain": "probability",
+      "sourceEntryId": 296,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **296. Birth-weight paradox** \\[Story\\]: among low-weight babies, those of smoking mothers had lower mortality, a selection artifact.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Select on a shared birth-weight cause",
+      "lens": "selection on a common consequence in a binary toy graph",
+      "model": "collider",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "3cb612077bc97157c1500719a1acf6067240d8b64fa70633a68c42a5e052d913"
+    },
+    {
+      "slug": "cp-source-0298",
+      "domain": "probability",
+      "sourceEntryId": 298,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **298. Average speed** \\[Gotcha\\]: 30 km/h out, 60 km/h back is an average of 40, not 45.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Equal distances at unequal speeds",
+      "lens": "time weighting of an out-and-back speed",
+      "model": "harmonic",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "70c7c30f381672c0915bcb9f8df8c4dd842b2a2201eb99db7066522f71eeb0db"
+    },
+    {
+      "slug": "cp-source-0300",
+      "domain": "probability",
+      "sourceEntryId": 300,
+      "sourceSection": "15. Simpson's paradox & aggregation",
+      "sourceText": "- **300. Vaccinated in hospital** \\[Story\\]: in Israel in 2021 many hospitalized patients were vaccinated, yet within each age group vaccines strongly protected.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Hospital counts need age composition",
+      "lens": "the strata weights behind a hospital-risk aggregate",
+      "model": "simpson",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "d8123e53e8aa185cbd89c56e969285367119e799ec9f5074015b3da584398574"
+    },
+    {
+      "slug": "cp-source-0301",
+      "domain": "probability",
+      "sourceEntryId": 301,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **301. Wald's bombers** \\[Story\\]: armor the spots *without* bullet holes on returning planes, because hits there brought planes down.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Only returning aircraft are counted",
+      "lens": "outcome-dependent survival into the observed sample",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "65a7533fa42c1e0759b64cc070aa78c59c27fd301b6e0a6124ddaf2294fec1ba"
+    },
+    {
+      "slug": "cp-source-0302",
+      "domain": "probability",
+      "sourceEntryId": 302,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **302. Berkson's paradox** \\[Gotcha\\]: among hospital patients, two unrelated diseases look negatively correlated.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Two diseases in a selected hospital",
+      "lens": "conditioning on a shared admission consequence",
+      "model": "collider",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "6c96b412f3568177ca4adb6b0a3ca9ad2c18cfa6e110fa4b2370c4ca27fd70e2"
+    },
+    {
+      "slug": "cp-source-0303",
+      "domain": "probability",
+      "sourceEntryId": 303,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **303. Attractive and mean?** \\[Gotcha\\]: if you only date people who are attractive or kind, looks and kindness seem opposed in your pool.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Select people who pass either screen",
+      "lens": "the selection rule creating an apparent tradeoff",
+      "model": "collider",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "b36fc7f9ebc7e16546359b3480465ae89a79640c2c9e03be94a4330b3fe87958"
+    },
+    {
+      "slug": "cp-source-0304",
+      "domain": "probability",
+      "sourceEntryId": 304,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **304. Collider slider** \\[Slider\\]: select only cases where X + Y is high and a fake negative correlation appears.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Condition on X or Y being high",
+      "lens": "the binary OR version of collider selection",
+      "model": "collider",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "77412f58954f3a9997518a1a9454eba916592ae35533ccf6cac29b4d195e240b"
+    },
+    {
+      "slug": "cp-source-0305",
+      "domain": "probability",
+      "sourceEntryId": 305,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **305. Talent vs fame** \\[Slider\\]: among famous actors, looks and acting skill appear unrelated or inversely related.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A fame threshold selects either cause",
+      "lens": "selection on a common consequence of two traits",
+      "model": "collider",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "6303108819f647223732a28d2f67cf17e5101c961c66e2f912557656e6b7728f"
+    },
+    {
+      "slug": "cp-source-0306",
+      "domain": "probability",
+      "sourceEntryId": 306,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **306. Dead funds vanish** \\[Gotcha\\]: average fund returns look better because closed, failed funds drop out of the data.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Failed funds leave the database",
+      "lens": "outcome-dependent inclusion in a fund-return average",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "1cfe851e7a281def7c0ea44a50fa9b9f0dc93d1c2e95447084fe285adb7a33b1"
+    },
+    {
+      "slug": "cp-source-0307",
+      "domain": "probability",
+      "sourceEntryId": 307,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **307. They built them better** \\[Gotcha\\]: old buildings seem sturdier because the flimsy ones already fell down.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "The weak buildings have disappeared",
+      "lens": "retention differences in a surviving-building sample",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "523133aa5312ffe701c392ae9d6762958c3bf2a68eb4f76be8352c6801bb7bf0"
+    },
+    {
+      "slug": "cp-source-0308",
+      "domain": "probability",
+      "sourceEntryId": 308,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **308. High-rise cats** \\[Story\\]: cats falling from higher floors seemed to survive better, partly because dead cats weren't taken to vets (Whitney & Mehlhaff, 1987).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A veterinary sample omits some outcomes",
+      "lens": "outcome-dependent inclusion in observed cases",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "5228bd5f5c23798e1d4863981c6666f0936ad53197634f08b1e5e27caecac813"
+    },
+    {
+      "slug": "cp-source-0309",
+      "domain": "probability",
+      "sourceEntryId": 309,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **309. Dropout billionaires** \\[Gotcha\\]: famous dropouts are memorable; the millions of dropouts who didn't get rich aren't.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Famous dropouts are a selected subset",
+      "lens": "the missing denominator of unsuccessful cases",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "abb3707e57e2ed7f3e4660e24261a526c5e37e683c19e671f9d18cd8bde7c60a"
+    },
+    {
+      "slug": "cp-source-0310",
+      "domain": "probability",
+      "sourceEntryId": 310,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **310. The 1936 Literary Digest poll** \\[Story\\]: 2.4 million responses predicted Landon; Roosevelt won a landslide. Sample size can't fix bias.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A huge poll still has the wrong mix",
+      "lens": "selection composition rather than sampling noise alone",
+      "model": "mixture",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "bars"
+      ],
+      "specSha256": "a2218cb735136f0c805461777ebafee639056a4d045940874079ce465d181fe0"
+    },
+    {
+      "slug": "cp-source-0312",
+      "domain": "probability",
+      "sourceEntryId": 312,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **312. Healthy worker effect** \\[Gotcha\\]: workers in a hazardous job can look healthier than the public, since the sick can't work.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Employment selects on underlying health",
+      "lens": "health-dependent inclusion in an employed sample",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "8d61b13c6d091abe907b22f2f611b866558104b0fd35de91ad0f788199f748e1"
+    },
+    {
+      "slug": "cp-source-0316",
+      "domain": "probability",
+      "sourceEntryId": 316,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **316. Do Oscar winners live longer?** \\[Story\\]: an early finding of extra years (Redelmeier & Singh, 2001) shrank after fixing immortal-time bias (Sylvestre et al., 2006).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Crediting guaranteed survival time",
+      "lens": "the time denominator before causal interpretation",
+      "model": "immortaltime",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "57c28ab7437c9726ee46c8b2ea059ca1d8486f8bdb38c9e5ec9eeb066ef65128"
+    },
+    {
+      "slug": "cp-source-0318",
+      "domain": "probability",
+      "sourceEntryId": 318,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **318. LinkedIn success stories** \\[Gotcha\\]: you see the founders who took the risk and won, not those who took it and lost.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Success stories omit unsuccessful risks",
+      "lens": "outcome-dependent visibility in a founder sample",
+      "model": "selectedmean",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "18fdcb40427b3c7ac63674180639ff56cb10b6eb7a90b7cb609e55d293708c90"
+    },
+    {
+      "slug": "cp-source-0320",
+      "domain": "probability",
+      "sourceEntryId": 320,
+      "sourceSection": "16. Selection bias, colliders & survivorship",
+      "sourceText": "- **320. Height in the NBA** \\[Gotcha\\]: among pros, height barely predicts scoring, since short players only make it with exceptional skill.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Either trait can pass a pro threshold",
+      "lens": "selection on a shared professional-entry consequence",
+      "model": "collider",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "beccc79eb639f764668365a0b7a6a7946e4d32bce295d6de61d35ec2d41f7c46"
+    },
+    {
+      "slug": "cp-source-0321",
+      "domain": "probability",
+      "sourceEntryId": 321,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **321. Doctor's choice vs coin flip** \\[Slider\\]: let doctors pick who gets treated and the effect is biased; flip a coin and it's right.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A clinician's choice is not assignment",
+      "lens": "the common severity path versus an intervention derivative",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "871becb1809c044888fe1caa2d9a1076e79920b9a2c522aa6a6ccc955b22ef06"
+    },
+    {
+      "slug": "cp-source-0322",
+      "domain": "probability",
+      "sourceEntryId": 322,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **322. Randomization balances the unseen** \\[Predict\\]: randomize 1,000 people and check a hidden trait; the groups match.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Random groups can differ by chance",
+      "lens": "expected balance rather than exact realized balance",
+      "model": "twosamplesd",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "23d4ba7c9c3e98b99905ca416edaca493a7c42d85a218f21dae5081eef18db93"
+    },
+    {
+      "slug": "cp-source-0323",
+      "domain": "probability",
+      "sourceEntryId": 323,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **323. How many users?** \\[Slider\\]: set baseline rate and effect size; see the sample size needed.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Precision has a sample-size price",
+      "lens": "the half-width target of a stated normal approximation",
+      "model": "samplesize",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "648c2c25a9621921ffcc2f4980c59862ceeff6b2a2a613130867dcae1627e91f"
+    },
+    {
+      "slug": "cp-source-0326",
+      "domain": "probability",
+      "sourceEntryId": 326,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **326. Placebo** \\[Split\\]: half get a \"focus booster\" sound, half a neutral one; compare self-rated focus.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Compare a toy placebo outcome",
+      "lens": "the spread behind a standardized mean contrast",
+      "model": "effect",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "bars"
+      ],
+      "specSha256": "79d676b40b5d11b267cdfc1a86ad602142a4ed1e0406eaf11e32c3becfe43508"
+    },
+    {
+      "slug": "cp-source-0327",
+      "domain": "probability",
+      "sourceEntryId": 327,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **327. Clever Hans** \\[Story\\]: a horse \"did arithmetic\" by reading its questioner's cues, until the questioner didn't know the answer.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A cue can drive the apparent skill",
+      "lens": "the hidden cue in a structural toy model",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "ddd03c8fd93c34c2cb32bf0643a04e9c9f5b71d57e6bfcdad0bc9fda94e92e9e"
+    },
+    {
+      "slug": "cp-source-0338",
+      "domain": "probability",
+      "sourceEntryId": 338,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **338. Test yourself** \\[Measure\\]: run an n-of-1 trial on coffee and sleep with randomized days.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Yesterday's treatment carries over",
+      "lens": "the prior-exposure imbalance in a current-day comparison",
+      "model": "lagged",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "be959149e2b3e09516d0074b364111709ec427d8a05417609ac48e06a00ba7f0"
+    },
+    {
+      "slug": "cp-source-0339",
+      "domain": "probability",
+      "sourceEntryId": 339,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **339. 41 shades of blue** \\[Story\\]: Google tested 41 blue tones for links to find the best-performing one.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Forty-one candidates create a family",
+      "lens": "the independent-null multiplicity baseline",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "17d03031f130bcbddfcba43538f1bac07a3dfdd63a9d37026f3a28aa6565bd0d"
+    },
+    {
+      "slug": "cp-source-0340",
+      "domain": "probability",
+      "sourceEntryId": 340,
+      "sourceSection": "17. Randomized experiments & A/B tests",
+      "sourceText": "- **340. The $100 million headline** \\[Story\\]: a small ad-title change at Bing, ignored for months, raised revenue about 12% (Kohavi & Thomke, 2017).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A small change on a revenue baseline",
+      "lens": "the base behind a relative revenue change",
+      "model": "growth",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "bars"
+      ],
+      "specSha256": "64ea29c0f4ed74a124d6558b150afbb83c9be221e83bf6bbebbf191010b584b0"
+    },
+    {
+      "slug": "cp-source-0341",
+      "domain": "probability",
+      "sourceEntryId": 341,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **341. Seeing vs doing** \\[Split\\]: a falling barometer predicts storms; forcing the needle down doesn't cause one.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Seeing a reading versus setting it",
+      "lens": "the observation-intervention distinction",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "731066e2be8dc7d633f1daed4c319a799bb84b65a6569995fdb84dadb546db7e"
+    },
+    {
+      "slug": "cp-source-0342",
+      "domain": "probability",
+      "sourceEntryId": 342,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **342. Build a DAG** \\[Slider\\]: drag arrows between variables and the app highlights which ones to adjust for.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Read a three-node causal path",
+      "lens": "conditioning on the middle node of a fork",
+      "model": "dsep",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "d41068c47faf5fbab9d84e04fd1fef08fde165601b2a4daebf32f865f0e2b67a"
+    },
+    {
+      "slug": "cp-source-0344",
+      "domain": "probability",
+      "sourceEntryId": 344,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **344. Fork, chain, collider** \\[Gotcha\\]: three tiny graphs; controlling for the middle node fixes one, breaks one, and blocks the effect in the third.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A collider behaves differently",
+      "lens": "conditioning on a collider rather than a noncollider",
+      "model": "dsep",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "85a6588e9dbf0e0a968ad9a03b109320a3ddc6a6ce65849a73f24026950c0f7f"
+    },
+    {
+      "slug": "cp-source-0345",
+      "domain": "probability",
+      "sourceEntryId": 345,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **345. d-separation game** \\[Measure\\]: given a graph, say whether two variables are independent; score your streak.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Which path stays active?",
+      "lens": "the d-connection test for one isolated chain",
+      "model": "dsep",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "07fa62a20b949c962254626673bebb0d505dbaf0777ef7b10656f641760795c5"
+    },
+    {
+      "slug": "cp-source-0347",
+      "domain": "probability",
+      "sourceEntryId": 347,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **347. Table 2 fallacy** \\[Gotcha\\]: in one regression, each coefficient answers a different causal question, or none.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A coefficient answers a partial question",
+      "lens": "the direct path versus the total intervention effect",
+      "model": "mediation",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "47c729044ffbcc8194d4ccd24a51245f5f45b142a55047bdbdb79cba5fa20829"
+    },
+    {
+      "slug": "cp-source-0352",
+      "domain": "probability",
+      "sourceEntryId": 352,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **352. Butterfly bias** \\[Gotcha\\]: one variable that is both a confounder and a collider; adjusting and not adjusting both bias.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "One adjustment choice is insufficient",
+      "lens": "the common-cause facet of a more complex adjustment problem",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "67c00d11b1dd435cb0dc88d2cce9ab42a3fec2328814b1d4a7fccb26a6a878b6"
+    },
+    {
+      "slug": "cp-source-0353",
+      "domain": "probability",
+      "sourceEntryId": 353,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **353. Controlling for the outcome's child** \\[Gotcha\\]: adjusting for a consequence of the outcome distorts the effect.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Select on a consequence of the outcome",
+      "lens": "the selection facet of conditioning on downstream information",
+      "model": "collider",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "e317cc6ebeea85e2c7e29849ac0553018c2fdc53f8c411d14a17f0291d878186"
+    },
+    {
+      "slug": "cp-source-0354",
+      "domain": "probability",
+      "sourceEntryId": 354,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **354. Bad control in pay gaps** \\[Gotcha\\]: controlling for occupation can hide discrimination that works through occupation.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An occupation path is part of the total",
+      "lens": "the mediated component removed by holding a mediator fixed",
+      "model": "mediation",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "4a79a42b8ac6be89bb003681bbc0fb99f05a96c4fdca309955311ba66fbeaf08"
+    },
+    {
+      "slug": "cp-source-0356",
+      "domain": "probability",
+      "sourceEntryId": 356,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **356. The rooster and the sun** \\[Gotcha\\]: perfect prediction, zero causation.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A rooster can predict without causing",
+      "lens": "a common clock variable rather than an intervention effect",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "e4bfbe972b31ce6f1fb34a0172631f602c2532cd3bbffda3c5f60d999f3eaaed"
+    },
+    {
+      "slug": "cp-source-0360",
+      "domain": "probability",
+      "sourceEntryId": 360,
+      "sourceSection": "18. Causal graphs & the do-operator",
+      "sourceText": "- **360. Your decision graph** \\[Measure\\]: draw the causal graph behind a personal choice, like whether a gym habit improves sleep.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "State a model for the decision graph",
+      "lens": "the specified direct and mediated paths",
+      "model": "mediation",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "20854dc50669c6470cbefac1d70cf82f9fa8366f7ef350e38f619cb50bb58555"
+    },
+    {
+      "slug": "cp-source-0361",
+      "domain": "probability",
+      "sourceEntryId": 361,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **361. Two worlds** \\[Split\\]: a split screen plays out the same person's life with and without a choice.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Two outcomes for the same toy unit",
+      "lens": "the contrast between two modeled potential outcomes",
+      "model": "ite",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a9b8760197f79d5c7dd9610ea79ea84d2504a8a399b7a278623eb7874e60f9a3"
+    },
+    {
+      "slug": "cp-source-0363",
+      "domain": "probability",
+      "sourceEntryId": 363,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **363. Fill the table** \\[Predict\\]: guess the hidden outcomes, then reveal the true individual effects from a simulation.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Fill the missing potential outcome",
+      "lens": "the individual effect in a fully specified toy table",
+      "model": "ite",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "95152395c508daa2c82c7a3370699ed678f2d64eea53408097393339aabc991b"
+    },
+    {
+      "slug": "cp-source-0365",
+      "domain": "probability",
+      "sourceEntryId": 365,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **365. Averages hide people** \\[Slider\\]: an average effect of zero can hide half helped and half harmed.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Zero average can hide opposite effects",
+      "lens": "the subgroup mixture of treatment effects",
+      "model": "heteroeffect",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "4d3d947ba1aa5aedcb2f3384a16eabbe77c3317f00d0af41ef77cdd7a3aed887"
+    },
+    {
+      "slug": "cp-source-0366",
+      "domain": "probability",
+      "sourceEntryId": 366,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **366. Would she have lived?** \\[Slider\\]: estimate the probability the drug was necessary for survival, given trial and observational data.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A structural survival counterfactual",
+      "lens": "the stipulated missing outcome rather than an identified individual claim",
+      "model": "ite",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "34e59e74c1c362b763de1ee7518e414fd1905830121abdfba48f5c47c052fd6f"
+    },
+    {
+      "slug": "cp-source-0367",
+      "domain": "probability",
+      "sourceEntryId": 367,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **367. But-for causation** \\[Split\\]: poll a legal case; would the harm have happened anyway?",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Would the other cause suffice?",
+      "lens": "the OR structural rule behind a but-for contrast",
+      "model": "sufficient",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "092a6e7e5f7f87b1bd8722bd0abd240488ff6efcae004e9646f8602eef214e49"
+    },
+    {
+      "slug": "cp-source-0368",
+      "domain": "probability",
+      "sourceEntryId": 368,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **368. Firing squad** \\[Gotcha\\]: two shooters fire; neither shot is \"necessary\", yet both caused the death.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Two sufficient causes can overlap",
+      "lens": "the difference between necessity and sufficiency",
+      "model": "sufficient",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "58b99409411b7403a876a6fdfba23f42e8d2f6686b7eb7681945c90958e2acc7"
+    },
+    {
+      "slug": "cp-source-0369",
+      "domain": "probability",
+      "sourceEntryId": 369,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **369. Preemption** \\[Gotcha\\]: one assassin's poison would have worked, but the other's bullet got there first.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "The earlier event happens first",
+      "lens": "the timing rule that distinguishes a backup cause",
+      "model": "preempt",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "fd2708ac993132a707a94fe2b5b5e229e87177c6d84459608dc35df475494ef8"
+    },
+    {
+      "slug": "cp-source-0370",
+      "domain": "probability",
+      "sourceEntryId": 370,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **370. Spillover breaks the table** \\[Gotcha\\]: your vaccination changes my outcome, so \"my outcome if treated\" isn't well defined.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Your exposure includes treated neighbors",
+      "lens": "interference beyond a unit's own treatment",
+      "model": "spillover",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "99a976ff7eabaa2ee499a70d385e5bb7e7a4fabf697f2ed0edafb95fc831763b"
+    },
+    {
+      "slug": "cp-source-0371",
+      "domain": "probability",
+      "sourceEntryId": 371,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **371. Counterfactual fairness** \\[Slider\\]: change only an applicant's group, hold everything causally downstream consistent, and see whether the decision changes.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Keep the inferred disturbance fixed",
+      "lens": "the structural counterfactual rather than an arbitrary feature swap",
+      "model": "counterlinear",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "5704846bcec1b30dd5dd07e82a15edc6e9c068da4f8f3f7d2c3428eabddf04e4"
+    },
+    {
+      "slug": "cp-source-0372",
+      "domain": "probability",
+      "sourceEntryId": 372,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **372. What would flip the decision?** \\[Slider\\]: find the smallest change to an application that turns a loan denial into approval.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A decision score crosses a threshold",
+      "lens": "the stipulated score rule rather than a causal fairness guarantee",
+      "model": "line",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "64e77eebdba9fdfc8f80c0ef1a9b5a43624d0c606d86bf68f8717377898d4802"
+    },
+    {
+      "slug": "cp-source-0373",
+      "domain": "probability",
+      "sourceEntryId": 373,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **373. Twin studies** \\[Story\\]: identical twins raised apart give a natural, if imperfect, look at counterfactual lives.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Shared background and noisy measurement",
+      "lens": "the model-based weight of a noisy related observation",
+      "model": "normalshrink",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "b73e5725d7a36e1147c95533e6ae14f724e0d4c15eca2d24fa6cd439948a69d1"
+    },
+    {
+      "slug": "cp-source-0374",
+      "domain": "probability",
+      "sourceEntryId": 374,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **374. Model the missing outcome** \\[Slider\\]: train a model to predict outcomes with and without treatment and compare the two.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Compare two predicted potential outcomes",
+      "lens": "the model-dependent imputation of an unobserved outcome",
+      "model": "ite",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "0f2cc061f0b2aa284cb9dc0117f7d40982baeaf033129bf3919420f50bfe58ef"
+    },
+    {
+      "slug": "cp-source-0375",
+      "domain": "probability",
+      "sourceEntryId": 375,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **375. Monday-morning quarterback** \\[Gotcha\\]: judging a decision by its outcome confuses bad luck with bad choices.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A good choice can still lose once",
+      "lens": "expected payoff rather than a single realized outcome",
+      "model": "breakeven",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "bars"
+      ],
+      "specSha256": "bfad32152ee119c5a77db8bfed6132d3832b875199152f91fc81f8b091bcdbb3"
+    },
+    {
+      "slug": "cp-source-0376",
+      "domain": "probability",
+      "sourceEntryId": 376,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **376. Weather butterfly** \\[Slider\\]: nudge starting conditions slightly and watch ensemble forecasts diverge.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A small initial difference grows",
+      "lens": "the amplification assumed in a divergent toy recurrence",
+      "model": "feedback",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "timeline"
+      ],
+      "specSha256": "bab080f5376bd17b0d9fbf601d728745acec11d9917e82712fb8d07b3b3f49c7"
+    },
+    {
+      "slug": "cp-source-0377",
+      "domain": "probability",
+      "sourceEntryId": 377,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **377. How much is due to smoking?** \\[Slider\\]: compute the share of lung cancer cases that wouldn't occur without smoking.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An attributable fraction needs a model",
+      "lens": "exposure prevalence under a homogeneous causal risk-ratio model",
+      "model": "attributable",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "18303cf09b7ea8ad7479b98e88931e07d8c961dceb8842a031d4c75e518a2f6a"
+    },
+    {
+      "slug": "cp-source-0378",
+      "domain": "probability",
+      "sourceEntryId": 378,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **378. Excess deaths** \\[Story\\]: pandemic death tolls were estimated by comparing actual deaths to a modeled no-pandemic baseline.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Deaths versus a modeled baseline",
+      "lens": "the specified counterfactual baseline in an excess count",
+      "model": "ite",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a64cd7ccabba0b4f8d5357a77a83f404ae40004dc897f4fa35f9d7e73b26f138"
+    },
+    {
+      "slug": "cp-source-0379",
+      "domain": "probability",
+      "sourceEntryId": 379,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **379. Heatwave attribution** \\[Story\\]: climate scientists compare simulated worlds with and without warming to say how much likelier a heatwave became.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Compare two modeled event probabilities",
+      "lens": "the probability ratio across stipulated worlds",
+      "model": "relativeevent",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "64c733e05012e07542c58cf821c187f56baf8e4e8d5ea2e86d2dccd21820e120"
+    },
+    {
+      "slug": "cp-source-0380",
+      "domain": "probability",
+      "sourceEntryId": 380,
+      "sourceSection": "19. Counterfactuals & potential outcomes",
+      "sourceText": "- **380. Three steps to a counterfactual** \\[Slider\\]: infer the hidden noise, change the cause, replay the model (Pearl's abduction–action–prediction).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Infer noise, change X, replay Y",
+      "lens": "abduction and intervention in a stated linear equation",
+      "model": "counterlinear",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "f6d3a57b8d2ddfdabc862e8bd106d432050e766d2e7c71817f4ebabc632bc7fc"
+    },
+    {
+      "slug": "cp-source-0382",
+      "domain": "probability",
+      "sourceEntryId": 382,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **382. Broken parallel trends** \\[Slider\\]: tilt the control group's pre-trend and watch the estimate go wrong.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "The control trend changes the estimate",
+      "lens": "the untreated-trend assumption behind a difference-in-differences",
+      "model": "did",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a01e8b6ec218ebb05f032deb05e1ecda640d20fbdbd9c89e149ce7112a2969e0"
+    },
+    {
+      "slug": "cp-source-0383",
+      "domain": "probability",
+      "sourceEntryId": 383,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **383. Minimum wage in New Jersey** \\[Story\\]: fast-food employment didn't fall after NJ raised its minimum wage, compared with Pennsylvania (Card & Krueger, 1994).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A toy neighboring-state comparison",
+      "lens": "the control change in a two-period policy comparison",
+      "model": "did",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "86df7a4c24b4e9285e29d263b551240a7f1f1634a5b3347ab89b92bb9d9b43e8"
+    },
+    {
+      "slug": "cp-source-0384",
+      "domain": "probability",
+      "sourceEntryId": 384,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **384. Event study plot** \\[Slider\\]: plot effects by period before and after treatment; flat leads build trust, sloped ones raise flags.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A pre-period check is another contrast",
+      "lens": "the pre-period trend diagnostic before causal interpretation",
+      "model": "did",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "59997d6e06120a4efabbc32b14ec1631430b660369e701e35fcbf5d4e948c16c"
+    },
+    {
+      "slug": "cp-source-0385",
+      "domain": "probability",
+      "sourceEntryId": 385,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **385. Staggered rollout trap** \\[Gotcha\\]: when units adopt at different times and effects grow, standard two-way fixed effects can even flip sign (Goodman-Bacon, 2021).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Negative comparison weights can distort",
+      "lens": "the weighted-effect arithmetic behind problematic comparisons",
+      "model": "weightedcontrast",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "d47a085e8fb40a80622ff385bdc969846aa0098ac6e8434e5e79171e6c74dd4b"
+    },
+    {
+      "slug": "cp-source-0387",
+      "domain": "probability",
+      "sourceEntryId": 387,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **387. Turning 21** \\[Story\\]: US mortality jumps right at the legal drinking age (Carpenter & Dobkin, 2009).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Just below and above an age cutoff",
+      "lens": "the local outcome discontinuity under a threshold model",
+      "model": "rdjump",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "9a1a628df5ac93f2ba1d715115f4d8ff18567b5c69ea37e206948a39687b3544"
+    },
+    {
+      "slug": "cp-source-0388",
+      "domain": "probability",
+      "sourceEntryId": 388,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **388. RDD bandwidth** \\[Slider\\]: widen the window around the cutoff and trade bias for noise.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A wider cutoff window trades errors",
+      "lens": "the assumed bias-variance tradeoff in a local fit",
+      "model": "mse",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "ecca98ec461cd2b0221d0c96d85d9b064bd83da8b86a148776f19b709c0f65fb"
+    },
+    {
+      "slug": "cp-source-0389",
+      "domain": "probability",
+      "sourceEntryId": 389,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **389. Bunching at the line** \\[Gotcha\\]: a pile-up of cases just past a threshold reveals manipulation and breaks the design.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Counts bunch on one side of a cutoff",
+      "lens": "a descriptive density imbalance near an assignment line",
+      "model": "rates",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "93d5ca7bb8ef95074c3cb5f905368a6b62a70bf90b864affb21df2f7c87aac17"
+    },
+    {
+      "slug": "cp-source-0390",
+      "domain": "probability",
+      "sourceEntryId": 390,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **390. The draft lottery** \\[Story\\]: random draft numbers let researchers measure military service's effect on earnings (Angrist, 1990).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An assignment changes service uptake",
+      "lens": "the first-stage denominator in a toy IV estimate",
+      "model": "wald",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "251021693b7ea0384fe41285220c83f1dcfe4adf67c06ca4af956209e7c76b48"
+    },
+    {
+      "slug": "cp-source-0392",
+      "domain": "probability",
+      "sourceEntryId": 392,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **392. Weak instrument** \\[Slider\\]: shrink the instrument's pull on treatment and the estimate goes wild.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A weak first stage amplifies the ratio",
+      "lens": "the sensitivity of the Wald ratio to weak uptake",
+      "model": "wald",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "3bdc727ea1ad3888b817e90300ed1bba9fe76f06b220d5d3a173f760d203caef"
+    },
+    {
+      "slug": "cp-source-0393",
+      "domain": "probability",
+      "sourceEntryId": 393,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **393. Exclusion violated** \\[Gotcha\\]: if the instrument affects the outcome through another path, IV quietly fails.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An extra outcome path contaminates IV",
+      "lens": "the reduced-form numerator under a violated exclusion story",
+      "model": "wald",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "fc5a0d76f2c7fc82a607e4536be6e9234340a1c3ea79b75f107d64e4aa5240f3"
+    },
+    {
+      "slug": "cp-source-0394",
+      "domain": "probability",
+      "sourceEntryId": 394,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **394. California tobacco tax** \\[Story\\]: a synthetic California built from other states showed Proposition 99 cut cigarette sales (Abadie, Diamond & Hainmueller, 2010).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Actual minus a synthetic donor mix",
+      "lens": "the donor weights defining a model-based counterfactual",
+      "model": "synthetic",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "c1b460caaef6730195b2dbb5a8654b78f3d9454987caa0525235ed17dfde66cf"
+    },
+    {
+      "slug": "cp-source-0396",
+      "domain": "probability",
+      "sourceEntryId": 396,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **396. Interrupted time series** \\[Slider\\]: fit the trend before a policy and compare it with what came after.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Project the pre-policy trend",
+      "lens": "the assumed continuation of a fitted pre-period slope",
+      "model": "line",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "7fe8000af8b50a16f3937c0a465ea4b13cda5847b846e5aa9154c7d4dda655fd"
+    },
+    {
+      "slug": "cp-source-0397",
+      "domain": "probability",
+      "sourceEntryId": 397,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **397. The Oregon lottery** \\[Story\\]: Medicaid access was assigned by lottery in 2008, letting researchers measure its effects (Finkelstein et al., 2012).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A lottery offer is not full take-up",
+      "lens": "the intention-to-treat change divided by the uptake change",
+      "model": "wald",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "87a1ab645e082ade7170856afa80eea90249179a4c719632d635192b245d9838"
+    },
+    {
+      "slug": "cp-source-0398",
+      "domain": "probability",
+      "sourceEntryId": 398,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **398. Kink design** \\[Slider\\]: a change in slope at a threshold, like a benefit formula's kink, identifies an effect.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A slope change divided by a first stage",
+      "lens": "the ratio of stipulated local slope changes",
+      "model": "wald",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "f36879aebba5d2bba0167e1053795e50a49022260417f16515526733b5b1d6a6"
+    },
+    {
+      "slug": "cp-source-0399",
+      "domain": "probability",
+      "sourceEntryId": 399,
+      "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+      "sourceText": "- **399. Distance to college** \\[Story\\]: growing up near a college served as an instrument for schooling's effect on earnings (Card, 1995).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A stipulated college-distance instrument",
+      "lens": "the first stage and untested exclusion assumptions",
+      "model": "wald",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "a3009b35d67b7e21b7b74fb7ee62be8e5cfa940a58386794411e2474c9b43c08"
+    },
+    {
+      "slug": "cp-source-0402",
+      "domain": "probability",
+      "sourceEntryId": 402,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **402. Overlap histograms** \\[Slider\\]: plot propensity scores for both groups; slide confounding up until the humps separate.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Count supported toy strata",
+      "lens": "the observed treatment support within strata",
+      "model": "overlap",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a5767f98df99f56e5a6eaf48c28ee12e0a0824702d7e02b0a9d7a7923f9c8bd5"
+    },
+    {
+      "slug": "cp-source-0403",
+      "domain": "probability",
+      "sourceEntryId": 403,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **403. No overlap, no answer** \\[Gotcha\\]: if every rich person was treated and no poor one was, the data can't tell you the effect.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An empty assignment cell",
+      "lens": "the distinction between support and extrapolation",
+      "model": "overlap",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "9b4e5347843cfdd134918a8830c1227a09ccecd8b0c37b36dc4f4923753332b3"
+    },
+    {
+      "slug": "cp-source-0404",
+      "domain": "probability",
+      "sourceEntryId": 404,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **404. Weighted bubbles** \\[Slider\\]: inverse-probability weights resize each dot until both groups look alike.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A weighted unit changes its influence",
+      "lens": "the inverse assignment probability of an observed unit",
+      "model": "ipweight",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "f1a224cd361097d14307c82ef17a16d8009cbb63e73c651f5089c63fa985a53c"
+    },
+    {
+      "slug": "cp-source-0405",
+      "domain": "probability",
+      "sourceEntryId": 405,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **405. Exploding weights** \\[Gotcha\\]: one person with a 1% treatment chance who got treated counts as 100 people.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "One rare assignment gets a large weight",
+      "lens": "the scale of a positivity-near-boundary weight",
+      "model": "ipweight",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "ec0f746e3cee56eecbabb6d44df7aec458bb0889ff61c85b87a28057c11d1db5"
+    },
+    {
+      "slug": "cp-source-0406",
+      "domain": "probability",
+      "sourceEntryId": 406,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **406. LaLonde's benchmark** \\[Story\\]: many observational methods failed to recover a job-training program's experimental effect (LaLonde, 1986).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A method versus a trial benchmark",
+      "lens": "the numerical estimation error against a stipulated benchmark",
+      "model": "percentile",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "scatter"
+      ],
+      "specSha256": "746c5546f45c1d2feb831c489fee4b5b169e000e91750aed5b216db2a1aa581d"
+    },
+    {
+      "slug": "cp-source-0407",
+      "domain": "probability",
+      "sourceEntryId": 407,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **407. How strong a hidden confounder?** \\[Slider\\]: the E-value shows how strong an unmeasured confounder would need to be to erase a result.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A risk-ratio sensitivity function",
+      "lens": "the stated confounding sensitivity function",
+      "model": "evalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "8e836dd756e3d5e55504c0cadf589f3ec9a8681d779d379ffaca3fe803f50de2"
+    },
+    {
+      "slug": "cp-source-0409",
+      "domain": "probability",
+      "sourceEntryId": 409,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **409. Love plot** \\[Slider\\]: watch covariate imbalances shrink toward zero as matching improves.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Balance on a common covariate scale",
+      "lens": "the observed standardized mean difference",
+      "model": "stdgap",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "3f0f18a0af83fb76e02429431b2084eaa8eba58b1020e6de08fc3990b8ec143e"
+    },
+    {
+      "slug": "cp-source-0410",
+      "domain": "probability",
+      "sourceEntryId": 410,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **410. Coarsened matching** \\[Slider\\]: group ages into bands and match exactly within them.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Coarsen ages into explicit bands",
+      "lens": "the grouping boundary used for a coarsened match",
+      "model": "band",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "e0c73e6f0b5c97b99c272f83d8e7c7e0e6ac3239b3ac476ce7ee47a3a94078c4"
+    },
+    {
+      "slug": "cp-source-0411",
+      "domain": "probability",
+      "sourceEntryId": 411,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **411. Regression vs matching** \\[Split\\]: two methods, same data; see where they agree and where extrapolation bites.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A regression beyond the matched region",
+      "lens": "the prediction outside an observed comparison region",
+      "model": "line",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "efde547204440f08f1b96002d0dc3461465b31498f89dbdea1e64579e0d95dcc"
+    },
+    {
+      "slug": "cp-source-0412",
+      "domain": "probability",
+      "sourceEntryId": 412,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **412. Peeking at outcomes** \\[Gotcha\\]: tuning the matching while looking at results quietly turns it into p-hacking.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Outcome-guided tuning creates a search",
+      "lens": "the multiplicity facet of selecting an analysis by outcomes",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a48cf2c7d4b2bc395e96107390525a64386404fc64639581a01344110cfee39b"
+    },
+    {
+      "slug": "cp-source-0413",
+      "domain": "probability",
+      "sourceEntryId": 413,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **413. Propensity score paradox** \\[Gotcha\\]: matching on propensity scores can increase imbalance after a point (King & Nielsen, 2019).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A matching procedure can worsen balance",
+      "lens": "the realized covariate balance rather than a method label",
+      "model": "stdgap",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "fc5a2bed014918ea46d1ca62eae1523fad1a18933184a30f5a2b78c472789a85"
+    },
+    {
+      "slug": "cp-source-0414",
+      "domain": "probability",
+      "sourceEntryId": 414,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **414. Entropy balancing** \\[Slider\\]: solve for weights that match group means exactly.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Choose weights to hit one target mean",
+      "lens": "the support and moment constraint of a two-point balance",
+      "model": "balanceweight",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "8e1d2b9c1c6aaf7981a7a0da0321bb8a238a4f50cb706787fb663c7570f96800"
+    },
+    {
+      "slug": "cp-source-0415",
+      "domain": "probability",
+      "sourceEntryId": 415,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **415. Caliper width** \\[Slider\\]: tighter matches mean fewer matched pairs; see the trade-off live.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A tighter caliper drops a pair",
+      "lens": "the distance threshold for retaining a toy match",
+      "model": "caliper",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "85e8b0976f67227418907b2ba2cc0df0f77a0c78aba9c4740b9cd2f0fbbd4a5c"
+    },
+    {
+      "slug": "cp-source-0416",
+      "domain": "probability",
+      "sourceEntryId": 416,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **416. Trimming changes the question** \\[Gotcha\\]: dropping hard-to-match people changes *whose* effect you estimate.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Trimming changes whose average is taken",
+      "lens": "the population mixture after excluding a subgroup",
+      "model": "heteroeffect",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "c9b46938f70cc2f80bb88f0ac73da132430578f26fac572adb1be22c9987ed33"
+    },
+    {
+      "slug": "cp-source-0417",
+      "domain": "probability",
+      "sourceEntryId": 417,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **417. Healthy-user bias** \\[Gotcha\\]: people who take preventive drugs also exercise and eat well, inflating apparent benefits.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Healthy behavior predicts both choices",
+      "lens": "the common background cause behind an observed benefit",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "005cf7b4cc0aa8b8c2455640e0a5ba8db477ff252b514beab7226cacf46ed06f"
+    },
+    {
+      "slug": "cp-source-0418",
+      "domain": "probability",
+      "sourceEntryId": 418,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **418. Flu shots before flu season** \\[Story\\]: vaccinated seniors also died less *before* flu season, a sign of confounding (Jackson et al., 2006).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An association before the season",
+      "lens": "the common-cause explanation of a negative-control association",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "00eadd7af882f3be0c2f241504d6d4aa4dc3e290822e17bcf8ba20ae2462ed29"
+    },
+    {
+      "slug": "cp-source-0419",
+      "domain": "probability",
+      "sourceEntryId": 419,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **419. Rosenbaum bounds** \\[Slider\\]: dial up hidden bias until a matched study's conclusion breaks.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Hidden odds in a matched pair",
+      "lens": "the assignment-probability bound under a stated Gamma",
+      "model": "oddsbias",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "71d050ffb58648ad11f468ca67f583ec1db40aa4b2749595cc887618d2b13ef2"
+    },
+    {
+      "slug": "cp-source-0420",
+      "domain": "probability",
+      "sourceEntryId": 420,
+      "sourceSection": "21. Matching, weighting & propensity scores",
+      "sourceText": "- **420. Target trial emulation** \\[Story\\]: design an observational analysis as if it were a trial you could have run (Hernán & Robins, 2016).",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "State the comparison before fitting",
+      "lens": "the explicit time and comparison structure of a toy target trial",
+      "model": "did",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "b812b5c1fe1668e19c653ac020817e8a435fb63f38e4a46ebe16666a74b795e2"
+    },
+    {
+      "slug": "cp-source-0421",
+      "domain": "probability",
+      "sourceEntryId": 421,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **421. Four kinds of customers** \\[Split\\]: persuadables, sure things, lost causes and sleeping dogs; guess which a coupon should target.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Some customers move, others do not",
+      "lens": "the mixture of causal response types",
+      "model": "heteroeffect",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "4956cf474daf622ce54e455ba5f76dac58d03b510860d4e1ea4dad1d78b8ae68"
+    },
+    {
+      "slug": "cp-source-0422",
+      "domain": "probability",
+      "sourceEntryId": 422,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **422. Uplift vs propensity** \\[Slider\\]: target the likeliest buyers vs those most *changed* by the offer, and compare revenue.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "High propensity is not high uplift",
+      "lens": "incremental net value rather than baseline conversion",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "c76ef4a7d00a72d782a95adbda09c9bccb2bf7bdebb66dd8fca7e231b3c4163f"
+    },
+    {
+      "slug": "cp-source-0423",
+      "domain": "probability",
+      "sourceEntryId": 423,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **423. Qini curve** \\[Slider\\]: rank customers by predicted uplift and watch cumulative gains rise, then fall.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Cumulative gains can turn negative",
+      "lens": "the incremental value of a marginal targeted group",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a8c6f730165766af0553cbd6ee16c68f8ca04e02b9d1d239282032ac7bc38855"
+    },
+    {
+      "slug": "cp-source-0424",
+      "domain": "probability",
+      "sourceEntryId": 424,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **424. Causal forest heatmap** \\[Slider\\]: the treatment effect painted across age and income.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A stipulated effect surface along age",
+      "lens": "the age slice of a specified heterogeneous-effect model",
+      "model": "line",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a0034852646131a1eea5e3ac2da8c71d009cf7734d605516f4fe004f2a5f6e11"
+    },
+    {
+      "slug": "cp-source-0425",
+      "domain": "probability",
+      "sourceEntryId": 425,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **425. Aspirin and star signs** \\[Story\\]: in the ISIS-2 trial, aspirin seemed not to help Geminis and Libras, a deliberate warning about subgroup fishing.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Twelve null subgroups can mislead",
+      "lens": "the subgroup-search multiplicity under a toy null",
+      "model": "familyerror",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "65a739b685f47581aa17de92aa2b677a7d19ae75dfb57c722a79fa15791465c4"
+    },
+    {
+      "slug": "cp-source-0426",
+      "domain": "probability",
+      "sourceEntryId": 426,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **426. Who should get it?** \\[Slider\\]: set a budget and a learned rule picks who benefits most from treatment.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Spend a fixed treatment budget well",
+      "lens": "the stipulated causal lift net of treatment cost",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "d4729b4ca839c49e03965eadb04a0c4423ebb40c686300ed32cc3c6325ae08c1"
+    },
+    {
+      "slug": "cp-source-0427",
+      "domain": "probability",
+      "sourceEntryId": 427,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **427. Effect by age** \\[Slider\\]: the treatment effect as a curve over age, with a confidence band.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A toy effect changes linearly with age",
+      "lens": "the slope assumption in an age-effect curve",
+      "model": "line",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "84c75e901a668bf850fbf6ef78a56a051fae356cb806a38d61ac7d8d6b2c5eee"
+    },
+    {
+      "slug": "cp-source-0428",
+      "domain": "probability",
+      "sourceEntryId": 428,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **428. Additive or multiplicative?** \\[Gotcha\\]: an interaction can exist on the risk-difference scale and vanish on the ratio scale.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "One ratio, unequal absolute differences",
+      "lens": "the effect scale used to describe interaction",
+      "model": "interaction",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "089ab4890b5bd7f9dacde626969a3e9741eb45763d6ec89c4184676f52f0f4f9"
+    },
+    {
+      "slug": "cp-source-0429",
+      "domain": "probability",
+      "sourceEntryId": 429,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **429. Direct vs indirect** \\[Slider\\]: split a training program's effect into the part through new skills and the rest.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Add the direct and mediator paths",
+      "lens": "the linear no-confounding mediation decomposition",
+      "model": "mediation",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "91616cee15beff1eb7829fa6675896390f1b337b5d203648a38c269118aa73d6"
+    },
+    {
+      "slug": "cp-source-0430",
+      "domain": "probability",
+      "sourceEntryId": 430,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **430. Mediation's hidden trap** \\[Gotcha\\]: a confounder between mediator and outcome breaks the split, even in a randomized trial.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A mediator association can be confounded",
+      "lens": "the common-cause facet missing from a naive mediation split",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "82a329a65f4d0034e7d68f75375b238f85372179588704d1a0cc8b9dd7007f9f"
+    },
+    {
+      "slug": "cp-source-0431",
+      "domain": "probability",
+      "sourceEntryId": 431,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **431. Coupon heterogeneity** \\[Slider\\]: a discount helps price-sensitive shoppers and wastes money on loyal ones.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Coupon response differs across segments",
+      "lens": "the causal lift rather than loyalty alone",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "97798d9ce08ca7ab6295c97acb202eda75593a8dd6a396e71860af12097932bf"
+    },
+    {
+      "slug": "cp-source-0432",
+      "domain": "probability",
+      "sourceEntryId": 432,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **432. Paying sure things** \\[Gotcha\\]: discounts to customers who'd buy anyway look effective by naive metrics.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Paying people who already would buy",
+      "lens": "the difference between baseline purchase and incremental lift",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "1f55686fcd7093e427b92666f34ab202d522556d148287fe343940e41eff9590"
+    },
+    {
+      "slug": "cp-source-0433",
+      "domain": "probability",
+      "sourceEntryId": 433,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **433. Sleeping dogs** \\[Gotcha\\]: a \"we miss you\" email reminds some subscribers to cancel.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A message can have negative uplift",
+      "lens": "the signed incremental response to treatment",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "e6cadd40713a51e25ec7c0fb2e4094643c88699e07c1ae1b97cbd1f0178241e0"
+    },
+    {
+      "slug": "cp-source-0434",
+      "domain": "probability",
+      "sourceEntryId": 434,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **434. S, T and X learners** \\[Split\\]: three ways to estimate individual effects; compare their errors on simulated data.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Compare toy effect-estimator errors",
+      "lens": "the bias-variance risk rather than an estimator's name",
+      "model": "mse",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "36393e536bccfc2517eacbef0a1056f4b303a43c38852d28c10028b9e63276f1"
+    },
+    {
+      "slug": "cp-source-0435",
+      "domain": "probability",
+      "sourceEntryId": 435,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **435. Number needed to treat** \\[Slider\\]: convert a risk reduction into how many people must be treated to help one.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Convert an absolute risk reduction",
+      "lens": "the reciprocal risk difference under a stipulated causal model",
+      "model": "riskchange",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "13979d43ec4cbb1f5e1ef118de9d2d3a0400116591f1c5a4725b83adb629ffe7"
+    },
+    {
+      "slug": "cp-source-0436",
+      "domain": "probability",
+      "sourceEntryId": 436,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **436. \"Doubles the risk\"** \\[Gotcha\\]: from 1 in 10,000 to 2 in 10,000 is a doubling, and still tiny.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Doubling a tiny baseline risk",
+      "lens": "absolute versus relative risk change",
+      "model": "riskchange",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "faab701baa92b07458215eceb887a422a412d2bc4c9552f41cd5e51ee330d4f3"
+    },
+    {
+      "slug": "cp-source-0437",
+      "domain": "probability",
+      "sourceEntryId": 437,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **437. Baseline risk matters** \\[Slider\\]: the same relative benefit helps high-risk patients far more in absolute terms.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A common ratio meets different baselines",
+      "lens": "the baseline-dependent absolute effect",
+      "model": "interaction",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "a1cdf8a15729e74d37d505b9f0bcb47a0b7b42f2c3124fb587682e03f94e73ae"
+    },
+    {
+      "slug": "cp-source-0438",
+      "domain": "probability",
+      "sourceEntryId": 438,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **438. Scholarship policy** \\[Slider\\]: learn a rule for who gets aid to maximize graduations under a fixed budget.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Allocate aid by graduation lift",
+      "lens": "the incremental benefit under a constrained policy budget",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "cbdeb04e5aba721979d3868c7520aa353dea4e9ba50eb5ed17943612a46fc106"
+    },
+    {
+      "slug": "cp-source-0439",
+      "domain": "probability",
+      "sourceEntryId": 439,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **439. Average winner, segment loser** \\[Gotcha\\]: an A/B winner can hurt a key segment hidden in the average.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An average can hide a harmed segment",
+      "lens": "the segment weights behind an average effect",
+      "model": "heteroeffect",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "b79ba4782faeb9e9dddc49b6459981f9cf0d247b1f757e24e8ad94c3be5fb20e"
+    },
+    {
+      "slug": "cp-source-0440",
+      "domain": "probability",
+      "sourceEntryId": 440,
+      "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+      "sourceText": "- **440. Ad to search to sale** \\[Slider\\]: trace how much of an ad's effect works through branded searches.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "An ad can act through a search path",
+      "lens": "the direct and mediated terms in a toy path model",
+      "model": "mediation",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "a47194365dcc1e66dbf6adbf3e2ef5cfd3ad81713c44511fb7a6a9a4aa969663"
+    },
+    {
+      "slug": "cp-source-0441",
+      "domain": "probability",
+      "sourceEntryId": 441,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **441. The rat-tail bounty** \\[Story\\]: colonial Hanoi paid per rat tail in 1902, and people began farming rats; a measure became a target.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A bounty needs incremental outcomes",
+      "lens": "the causal objective rather than a paid activity count",
+      "model": "policyvalue",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "d02e753a7a8863abcdbd4a892fcb4651077cefbf369ff4ae0d1d63b88fbceddc"
+    },
+    {
+      "slug": "cp-source-0442",
+      "domain": "probability",
+      "sourceEntryId": 442,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **442. Predictive policing loop** \\[Slider\\]: patrol where crime was recorded, record more crime there, repeat.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Observed activity reinforces exposure",
+      "lens": "the amplification assumed in a feedback recurrence",
+      "model": "feedback",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "timeline"
+      ],
+      "specSha256": "7a61895372b6ffe1b33b9785198639af6912a9d7ea00255dc22d1f73bbeaea41"
+    },
+    {
+      "slug": "cp-source-0443",
+      "domain": "probability",
+      "sourceEntryId": 443,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **443. Popularity loop** \\[Slider\\]: a recommender shows popular items, which get more clicks, which makes them more popular.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Popularity feeds the next exposure",
+      "lens": "the recursive exposure rule in a toy popularity loop",
+      "model": "feedback",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "timeline"
+      ],
+      "specSha256": "5c9960bbc3ddc68221eae19f70e19df6aed59931f220463f380bd3399ba92d20"
+    },
+    {
+      "slug": "cp-source-0444",
+      "domain": "probability",
+      "sourceEntryId": 444,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **444. Granger's rooster** \\[Gotcha\\]: crowing \"Granger-causes\" sunrise, since it reliably comes first.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A shared clock predicts both signals",
+      "lens": "prediction through a common cause without intervention effect",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "00bd1f339785570262549ecea45562500ce3499d44df54026667d7f1584733a0"
+    },
+    {
+      "slug": "cp-source-0445",
+      "domain": "probability",
+      "sourceEntryId": 445,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **445. Delayed effects** \\[Slider\\]: shift the lag and a cause that seemed useless shows a clear effect weeks later.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A delayed effect enters the comparison",
+      "lens": "the alignment of lagged exposure and current outcome",
+      "model": "lagged",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "2d91b892d3a3d91ae08ff56066e80210f69441dd223adafea01ac65a3744ec66"
+    },
+    {
+      "slug": "cp-source-0446",
+      "domain": "probability",
+      "sourceEntryId": 446,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **446. Friedman's thermostat** \\[Gotcha\\]: heater use correlates with cold rooms, though the heater is what keeps them from being colder.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A thermostat reacts to the cold",
+      "lens": "feedback selection versus a stipulated heating intervention",
+      "model": "confounded",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "2cf4f0f90e102f36f0a16e9c1f8722d3ffcd28d9cb8aed63323ab533052524e1"
+    },
+    {
+      "slug": "cp-source-0447",
+      "domain": "probability",
+      "sourceEntryId": 447,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **447. Herd immunity** \\[Slider\\]: vaccinate a share of a network and watch unvaccinated people get protected too.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Neighbors receive an indirect benefit",
+      "lens": "the neighborhood exposure in an interference model",
+      "model": "spillover",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "a6cd01ac5cb3817b98dbaced6e31151f4fa3f3fdf73886e1def4f25a0dea305a"
+    },
+    {
+      "slug": "cp-source-0448",
+      "domain": "probability",
+      "sourceEntryId": 448,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **448. Leaky A/B test** \\[Gotcha\\]: treated users share a feature with control friends, shrinking the measured effect.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "Controls share some treated exposure",
+      "lens": "contamination of a unit-level treatment contrast",
+      "model": "spillover",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "graph"
+      ],
+      "specSha256": "abf02c35b1da00dc32b04c336de647b46270426132507e544a515e5d39eb569f"
+    },
+    {
+      "slug": "cp-source-0449",
+      "domain": "probability",
+      "sourceEntryId": 449,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **449. Stolen sales** \\[Gotcha\\]: boosting treated sellers in a marketplace test steals buyers from control sellers, doubling the apparent lift.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A control loss enlarges measured lift",
+      "lens": "market displacement versus a treated-control gap",
+      "model": "displacement",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "09681e28a94de6be0a60b098fcfd82d7694c54ec0ad8ef200358c717f1a9c1af"
+    },
+    {
+      "slug": "cp-source-0450",
+      "domain": "probability",
+      "sourceEntryId": 450,
+      "sourceSection": "23. Time, feedback loops & interference",
+      "sourceText": "- **450. Switchback tests** \\[Slider\\]: alternate the whole market between versions by time slot instead of splitting users.",
+      "sourceFile": "1000-causal-inference-probability-demos.md",
+      "title": "A switchback still has carryover",
+      "lens": "the prior-slot exposure left in a current-period contrast",
+      "model": "lagged",
+      "version": 1,
+      "status": "draft",
+      "claims": 11,
+      "visualKinds": [
+        "table",
+        "grid"
+      ],
+      "specSha256": "9ede00e7f96c2c9e74237618365ad9218555cc786b169e1c04c299ece112e02e"
+    }
+  ]
+}

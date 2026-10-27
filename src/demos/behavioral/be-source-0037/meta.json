@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0037",
+  "title": "Higher tips, fewer tippers?",
+  "hook": "Two stated cases: explore the extensive and intensive margins of tipping.",
+  "domain": "behavioral",
+  "concept": "be-source-0037",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the extensive and intensive margins of tipping affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Average, regardless of the stated inputs.",
+  "objective": "Compare the extensive and intensive margins of tipping in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0037.predict",
+      "text": "In a toy sample the bill is 100; fraction 0.9 tip at rate 0.15, the rest tip zero. What is the average tip?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.reveal.0",
+      "text": "The retained results are Share=0.9 TipRate=0.15; Average=13.5 and Share=0.6 TipRate=0.25; Average=15.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.reveal.1",
+      "text": "The conditional tip and the share who tip jointly determine the average. A higher selected rate need not lift the overall mean. This comparison isolates the extensive and intensive margins of tipping.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.case.0.witness",
+      "text": "Share=0.9 TipRate=0.15; Average=13.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Bill\",100],[\"Share\",0.9],[\"TipRate\",0.15]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Average\",\"value\":13.5}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"13.5\"},{\"label\":\"Share\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.case.1.witness",
+      "text": "Share=0.6 TipRate=0.25; Average=15",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Bill\",100],[\"Share\",0.6],[\"TipRate\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Average\",\"value\":15}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"15\"},{\"label\":\"Share\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0037.recall",
+      "text": "In a toy sample the bill is 101; fraction 0.9 tip at rate 0.15, the rest tip zero. What is the average tip? Answer 13.635.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0037/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #37. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy sample the bill is 101; fraction 0.9 tip at rate 0.15, the rest tip zero. What is the average tip?",
+    "options": [
+      "8.181",
+      "19.089",
+      "13.635"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Average 13.635 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0037",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-37"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 37,
+    "sourceSection": "2. Anchoring",
+    "sourceEntryOriginal": "- **37.** Raising NYC taxi screens' default tip options raised average tips but also raised the share of riders who tipped nothing (Haggag & Paci, 2014).",
+    "modelBoundary": "the extensive and intensive margins of tipping",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      0.9,
+      0.15
+    ]
+  }
+}

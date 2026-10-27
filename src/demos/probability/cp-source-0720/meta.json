@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0720",
+  "title": "Admission changes the queue load",
+  "hook": "Two stated cases: explore the accepted arrival rate before a queue admission policy.",
+  "domain": "probability",
+  "concept": "cp-source-0720",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the accepted arrival rate before a queue admission policy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare the accepted arrival rate before a queue admission policy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0720.predict",
+      "text": "A stable toy M/G/1 queue has Poisson arrival rate 0.8, mean service time 1, service-time variance 1. What is mean waiting time before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.reveal.0",
+      "text": "The retained results are Arrival=0.8; Wait=4 and Arrival=0.4; Wait=0.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.reveal.1",
+      "text": "The Pollaczek-Khinchine mean uses both the mean and second moment of service. Stability and the specified arrival/service assumptions are required. This comparison isolates the accepted arrival rate before a queue admission policy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.case.0.witness",
+      "text": "Arrival=0.8; Wait=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.8],[\"Mean\",1],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":4.000000000000001},{\"label\":\"Total\",\"value\":5.000000000000001},{\"label\":\"Utilization\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"4\"},{\"label\":\"Arrival\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.case.1.witness",
+      "text": "Arrival=0.4; Wait=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.4],[\"Mean\",1],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":0.6666666666666667},{\"label\":\"Total\",\"value\":1.6666666666666667},{\"label\":\"Utilization\",\"value\":0.4}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"0.667\"},{\"label\":\"Arrival\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0720.recall",
+      "text": "A stable toy M/G/1 queue has Poisson arrival rate 0.9, mean service time 1, service-time variance 1. What is mean waiting time before service? Answer 9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0720/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #720. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/G/1 queue has Poisson arrival rate 0.9, mean service time 1, service-time variance 1. What is mean waiting time before service?",
+    "options": [
+      "5.4",
+      "9",
+      "12.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Wait 9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0720",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-720"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 720,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **720. Admission control** \\[Slider\\]: an MDP decides when to turn away customers to keep a queue from overloading.",
+    "modelBoundary": "the accepted arrival rate before a queue admission policy",
+    "recallInputs": [
+      0.9,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

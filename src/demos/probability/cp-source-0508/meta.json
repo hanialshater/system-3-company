@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0508",
+  "title": "Pooling removes isolated spare capacity",
+  "hook": "Two stated cases: explore the symmetric single-center versus pooled-center model.",
+  "domain": "probability",
+  "concept": "cp-source-0508",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the symmetric single-center versus pooled-center model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare the symmetric single-center versus pooled-center model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0508.predict",
+      "text": "A stable toy M/M/c queue has arrival rate 0.9, service rate 1 per server, 1 servers and wait threshold 1. What is mean waiting time before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.reveal.0",
+      "text": "The retained results are Arrival=0.9 Servers=1; Wait=9 and Arrival=9 Servers=10; Wait=0.669.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.reveal.1",
+      "text": "Pooling servers changes both waiting probability and delay. Erlang C assumes Poisson arrivals, exponential service, an infinite queue and no abandonment. This comparison isolates the symmetric single-center versus pooled-center model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.case.0.witness",
+      "text": "Arrival=0.9 Servers=1; Wait=9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.9],[\"Service\",1],[\"Servers\",1],[\"Threshold\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":9.000000000000002},{\"label\":\"Total\",\"value\":10.000000000000002},{\"label\":\"SLA\",\"value\":0.18564632376763635},{\"label\":\"Utilization\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"9\"},{\"label\":\"Arrival\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.case.1.witness",
+      "text": "Arrival=9 Servers=10; Wait=0.669",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",9],[\"Service\",1],[\"Servers\",10],[\"Threshold\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":0.6687315241076971},{\"label\":\"Total\",\"value\":1.668731524107697},{\"label\":\"SLA\",\"value\":0.7539874206175334},{\"label\":\"Utilization\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"0.669\"},{\"label\":\"Arrival\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0508.recall",
+      "text": "A stable toy M/M/c queue has arrival rate 0.9, service rate 2 per server, 1 servers and wait threshold 1. What is mean waiting time before service? Answer 0.409.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0508/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #508. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/M/c queue has arrival rate 0.9, service rate 2 per server, 1 servers and wait threshold 1. What is mean waiting time before service?",
+    "options": [
+      "0.245",
+      "0.573",
+      "0.409"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Wait 0.409 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0508",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-508"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 508,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **508. Merge the call centers** \\[Slider\\]: pool ten small centers into one and see the same service level with fewer agents.",
+    "modelBoundary": "the symmetric single-center versus pooled-center model",
+    "recallInputs": [
+      0.9,
+      2,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

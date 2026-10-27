@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0445",
+  "title": "A delayed effect enters the comparison",
+  "hook": "Two stated cases: explore the alignment of lagged exposure and current outcome.",
+  "domain": "probability",
+  "concept": "cp-source-0445",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the alignment of lagged exposure and current outcome affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ObservedGap, regardless of the stated inputs.",
+  "objective": "Compare the alignment of lagged exposure and current outcome in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0445.predict",
+      "text": "A toy current outcome gap combines Direct 0 and carryover coefficient 2 times previous-exposure gap 0.5. What gap is observed?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.reveal.0",
+      "text": "The retained results are PreviousGap=0.5; ObservedGap=1 and PreviousGap=0; ObservedGap=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.reveal.1",
+      "text": "A lag can contaminate a current-period contrast. Timing and washout assumptions matter before calling the observed gap a direct effect. This comparison isolates the alignment of lagged exposure and current outcome.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.case.0.witness",
+      "text": "PreviousGap=0.5; ObservedGap=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Carry\",2],[\"PreviousGap\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ObservedGap\",\"value\":1}]},\"metrics\":[{\"label\":\"ObservedGap\",\"value\":\"1\"},{\"label\":\"PreviousGap\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.case.1.witness",
+      "text": "PreviousGap=0; ObservedGap=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Carry\",2],[\"PreviousGap\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ObservedGap\",\"value\":0}]},\"metrics\":[{\"label\":\"ObservedGap\",\"value\":\"0\"},{\"label\":\"PreviousGap\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0445.recall",
+      "text": "A toy current outcome gap combines Direct 1 and carryover coefficient 2 times previous-exposure gap 0.5. What gap is observed? Answer 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0445/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #445. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy current outcome gap combines Direct 1 and carryover coefficient 2 times previous-exposure gap 0.5. What gap is observed?",
+    "options": [
+      "1.2",
+      "2.8",
+      "2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives ObservedGap 2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0445",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-445"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 445,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **445. Delayed effects** \\[Slider\\]: shift the lag and a cause that seemed useless shows a clear effect weeks later.",
+    "modelBoundary": "the alignment of lagged exposure and current outcome",
+    "recallInputs": [
+      1,
+      2,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

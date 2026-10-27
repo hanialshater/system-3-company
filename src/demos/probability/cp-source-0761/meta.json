@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0761",
+  "title": "Wet evidence updates a rain prior",
+  "hook": "Two stated cases: explore the alternative explanation for a positive observation.",
+  "domain": "probability",
+  "concept": "cp-source-0761",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the alternative explanation for a positive observation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the alternative explanation for a positive observation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0761.predict",
+      "text": "A toy condition has prevalence 0.2; a test catches fraction 0.9 of cases and flags fraction 0.1 of noncases. Given a positive, what probability is a case?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.reveal.0",
+      "text": "The retained results are FalsePositive=0.1; Posterior=0.692 and FalsePositive=0.6; Posterior=0.273.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.reveal.1",
+      "text": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive. This comparison isolates the alternative explanation for a positive observation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.case.0.witness",
+      "text": "FalsePositive=0.1; Posterior=0.692",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.2],[\"Sensitivity\",0.9],[\"FalsePositive\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.6923076923076924}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.692\"},{\"label\":\"FalsePositive\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.case.1.witness",
+      "text": "FalsePositive=0.6; Posterior=0.273",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.2],[\"Sensitivity\",0.9],[\"FalsePositive\",0.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.27272727272727276}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.273\"},{\"label\":\"FalsePositive\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0761.recall",
+      "text": "A toy condition has prevalence 0.16; a test catches fraction 0.9 of cases and flags fraction 0.1 of noncases. Given a positive, what probability is a case? Answer 0.632.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0761/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #761. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy condition has prevalence 0.16; a test catches fraction 0.9 of cases and flags fraction 0.1 of noncases. Given a positive, what probability is a case?",
+    "options": [
+      "0.632",
+      "0.379",
+      "0.884"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 0.632 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0761",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-761"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 761,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **761. Rain, sprinkler, wet grass** \\[Slider\\]: toggle evidence and watch probabilities flow through a small network.",
+    "modelBoundary": "the alternative explanation for a positive observation",
+    "recallInputs": [
+      0.16000000000000003,
+      0.9,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

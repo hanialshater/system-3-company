@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0475",
+  "title": "Two separately controlled toy factors",
+  "hook": "Two stated cases: explore the decoder's constructed separation of angle and light.",
+  "domain": "probability",
+  "concept": "cp-source-0475",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the decoder's constructed separation of angle and light affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines X, regardless of the stated inputs.",
+  "objective": "Compare the decoder's constructed separation of angle and light in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0475.predict",
+      "text": "A toy decoder maps Angle 0 to (cos(angle),sin(angle)) and keeps brightness Light 0.5 separately. What x-coordinate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.reveal.0",
+      "text": "The retained results are Angle=0; X=1 and Angle=1; X=0.54.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.reveal.1",
+      "text": "The decoder explicitly separates two controls by construction. Discovering disentangled factors from unconstrained observations is a different inference problem. This comparison isolates the decoder's constructed separation of angle and light.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.case.0.witness",
+      "text": "Angle=0; X=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Angle\",0],[\"Light\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"X\",\"value\":1},{\"label\":\"Y\",\"value\":0},{\"label\":\"Brightness\",\"value\":0.5}]},\"metrics\":[{\"label\":\"X\",\"value\":\"1\"},{\"label\":\"Angle\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.case.1.witness",
+      "text": "Angle=1; X=0.54",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Angle\",1],[\"Light\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"X\",\"value\":0.5403023058681398},{\"label\":\"Y\",\"value\":0.8414709848078965},{\"label\":\"Brightness\",\"value\":0.5}]},\"metrics\":[{\"label\":\"X\",\"value\":\"0.54\"},{\"label\":\"Angle\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0475.recall",
+      "text": "A toy decoder maps Angle 2 to (cos(angle),sin(angle)) and keeps brightness Light 0.5 separately. What x-coordinate results? Answer -0.416.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0475/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #475. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy decoder maps Angle 2 to (cos(angle),sin(angle)) and keeps brightness Light 0.5 separately. What x-coordinate results?",
+    "options": [
+      "-0.583",
+      "-0.25",
+      "-0.416"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives X -0.416 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0475",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-475"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 475,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **475. Disentangling factors** \\[Slider\\]: slide one latent dimension at a time and watch a generated face change only in pose or light.",
+    "modelBoundary": "the decoder's constructed separation of angle and light",
+    "recallInputs": [
+      2,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0808",
+  "title": "A prediction set can contain more labels",
+  "hook": "Two stated cases for a prediction set can contain more labels.",
+  "domain": "probability",
+  "concept": "cp-source-0808",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the returned set size rather than conformal coverage certification affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Capacity, regardless of the stated inputs.",
+  "objective": "Compare the returned set size rather than conformal coverage certification in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0808.predict",
+      "text": "With 2 possible answers per question and 1 questions, what is the maximum number of distinct answer sequences?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.reveal.0",
+      "text": "The retained results are Outcomes=2; Capacity=2 and Outcomes=3; Capacity=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.reveal.1",
+      "text": "Balanced questions can use the available answer sequences efficiently. Counting sequences is a capacity bound, not a guarantee that a particular puzzle achieves it. This comparison isolates the returned set size rather than conformal coverage certification.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.case.0.witness",
+      "text": "Outcomes=2; Capacity=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",2],[\"Questions\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":2}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"2\"},{\"label\":\"Outcomes\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.case.1.witness",
+      "text": "Outcomes=3; Capacity=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",3],[\"Questions\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":3}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"3\"},{\"label\":\"Outcomes\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0808.recall",
+      "text": "With 2 possible answers per question and 2 questions, what is the maximum number of distinct answer sequences? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0808/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #808. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With 2 possible answers per question and 2 questions, what is the maximum number of distinct answer sequences?",
+    "options": [
+      "2.4",
+      "5.6",
+      "4"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Capacity 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0808",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-808"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 808,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **808. Conformal label sets** \\[Slider\\]: an image classifier returns a set like {cat, fox} when unsure and one label when sure.",
+    "modelBoundary": "the returned set size rather than conformal coverage certification",
+    "recallInputs": [
+      2,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0425", "title": "Twelve null subgroups can mislead", "op": "familyerror", "labels": ["Tests", "Alpha", "Corrected"], "outputs": ["FWER"], "a": [12.0, 0.05, 0.0], "b": [12.0, 0.05, 1.0], "question": "Run 12 independent true-null tests. Nominal Alpha is 0.05; Corrected 0 means divide alpha by test count if 1, otherwise not. What is probability of any rejection?", "questionTemplate": "Run {Tests} independent true-null tests. Nominal Alpha is {Alpha}; Corrected {Corrected} means divide alpha by test count if 1, otherwise not. What is probability of any rejection?", "explain": "This exact family calculation assumes independent null tests. Bonferroni’s union-bound guarantee can also be used without independence.", "lens": "the subgroup-search multiplicity under a toy null", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

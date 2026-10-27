@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0435",
+  "title": "Convert an absolute risk reduction",
+  "hook": "Two stated cases: explore the reciprocal risk difference under a stipulated causal model.",
+  "domain": "probability",
+  "concept": "cp-source-0435",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reciprocal risk difference under a stipulated causal model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Reduction, regardless of the stated inputs.",
+  "objective": "Compare the reciprocal risk difference under a stipulated causal model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0435.predict",
+      "text": "A toy untreated risk is 0.1, treated risk 0.05, with a nonzero difference. What is absolute risk reduction?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.reveal.0",
+      "text": "The retained results are Baseline=0.1 Treated=0.05; Reduction=0.05 and Baseline=0.01 Treated=0.005; Reduction=0.005.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.reveal.1",
+      "text": "Absolute and relative changes use different scales. The reciprocal reduction is an average number-needed-to-treat under this specified causal-risk model. This comparison isolates the reciprocal risk difference under a stipulated causal model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.case.0.witness",
+      "text": "Baseline=0.1 Treated=0.05; Reduction=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",0.1],[\"Treated\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Reduction\",\"value\":0.05},{\"label\":\"NNT\",\"value\":20},{\"label\":\"Ratio\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Reduction\",\"value\":\"0.05\"},{\"label\":\"Baseline\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.case.1.witness",
+      "text": "Baseline=0.01 Treated=0.005; Reduction=0.005",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",0.01],[\"Treated\",0.005]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Reduction\",\"value\":0.005},{\"label\":\"NNT\",\"value\":200},{\"label\":\"Ratio\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Reduction\",\"value\":\"0.005\"},{\"label\":\"Baseline\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0435.recall",
+      "text": "A toy untreated risk is 0.2, treated risk 0.05, with a nonzero difference. What is absolute risk reduction? Answer 0.15.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0435/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #435. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy untreated risk is 0.2, treated risk 0.05, with a nonzero difference. What is absolute risk reduction?",
+    "options": [
+      "0.05",
+      "0.15",
+      "0.25"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Reduction 0.15 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0435",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-435"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 435,
+    "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+    "sourceEntryOriginal": "- **435. Number needed to treat** \\[Slider\\]: convert a risk reduction into how many people must be treated to help one.",
+    "modelBoundary": "the reciprocal risk difference under a stipulated causal model",
+    "recallInputs": [
+      0.2,
+      0.05
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

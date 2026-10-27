@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0153", "title": "Particles move but the mean settles", "op": "ehrenfest", "labels": ["Particles", "Initial", "Steps"], "outputs": ["Expected"], "a": [100.0, 100.0, 10.0], "b": [100.0, 100.0, 100.0], "question": "A toy Ehrenfest urn has 100 particles, initially 100 on the left. Each step moves one uniformly selected particle across. What is expected left count after 10 steps?", "questionTemplate": "A toy Ehrenfest urn has {Particles} particles, initially {Initial} on the left. Each step moves one uniformly selected particle across. What is expected left count after {Steps} steps?", "explain": "The mean relaxes toward half, while realized counts continue fluctuating. An expectation is not a deterministic equilibrium path.", "lens": "expectation versus fluctuating equilibrium counts", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

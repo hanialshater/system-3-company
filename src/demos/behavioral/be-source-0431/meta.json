@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0431",
+  "title": "Forecasting a tenure disappointment",
+  "hook": "Two stated cases: explore the gap between predicted and recorded impact.",
+  "domain": "behavioral",
+  "concept": "be-source-0431",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the gap between predicted and recorded impact affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Error, regardless of the stated inputs.",
+  "objective": "Compare the gap between predicted and recorded impact in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0431.predict",
+      "text": "A toy result is at percentile 3; the forecast was percentile 8. What signed forecasting error is guessed minus actual?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.reveal.0",
+      "text": "The retained results are Guessed=8; Error=5 and Guessed=4; Error=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.reveal.1",
+      "text": "A rank gap describes the two numbers. Measurement noise and mathematical coupling can also affect patterns in such gaps. This comparison isolates the gap between predicted and recorded impact.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.case.0.witness",
+      "text": "Guessed=8; Error=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",3],[\"Guessed\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":3,\"y\":8}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"5\"},{\"label\":\"Guessed\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.case.1.witness",
+      "text": "Guessed=4; Error=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Actual\",3],[\"Guessed\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":3,\"y\":4}],\"xLabel\":\"Actual\",\"yLabel\":\"Guessed\"},\"metrics\":[{\"label\":\"Error\",\"value\":\"1\"},{\"label\":\"Guessed\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0431.recall",
+      "text": "A toy result is at percentile 4; the forecast was percentile 8. What signed forecasting error is guessed minus actual? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0431/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #431. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy result is at percentile 4; the forecast was percentile 8. What signed forecasting error is guessed minus actual?",
+    "options": [
+      "4",
+      "2.4",
+      "5.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Error 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0431",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-431"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 431,
+    "sourceSection": "22. Experience, memory & happiness",
+    "sourceEntryOriginal": "- **431.** Assistant professors overestimated how unhappy being denied tenure would make them (Gilbert, Pinel, Wilson, Blumberg & Wheatley, 1998).",
+    "modelBoundary": "the gap between predicted and recorded impact",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      4,
+      8
+    ]
+  }
+}

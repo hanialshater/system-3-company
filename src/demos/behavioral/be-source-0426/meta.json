@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0426",
+  "title": "A plateau in one subgroup",
+  "hook": "Two stated cases: explore subgroup weights behind an aggregate income slope.",
+  "domain": "behavioral",
+  "concept": "be-source-0426",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How subgroup weights behind an aggregate income slope affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare subgroup weights behind an aggregate income slope in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0426.predict",
+      "text": "A toy mixture puts fraction 0.2 at rate 0 and the remainder at rate 1. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.reveal.0",
+      "text": "The retained results are Weight=0.2; Rate=0.8 and Weight=0.8; Rate=0.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates subgroup weights behind an aggregate income slope.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.case.0.witness",
+      "text": "Weight=0.2; Rate=0.8",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.2],[\"RateA\",0],[\"RateB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.8\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.case.1.witness",
+      "text": "Weight=0.8; Rate=0.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.8],[\"RateA\",0],[\"RateB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.19999999999999996}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.2\"},{\"label\":\"Weight\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0426.recall",
+      "text": "A toy mixture puts fraction 0.16 at rate 0 and the remainder at rate 1. What is its aggregate rate? Answer 0.84.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0426/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.16 at rate 0 and the remainder at rate 1. What is its aggregate rate?",
+    "options": [
+      "0.504",
+      "0.84",
+      "1.176"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Rate 0.84 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0426",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-426"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 426,
+    "sourceSection": "22. Experience, memory & happiness",
+    "sourceEntryOriginal": "- **426.** Day-to-day emotional wellbeing seemed to plateau around $75,000 income (Kahneman & Deaton, 2010); a joint reanalysis found it keeps rising for most people, plateauing only for the least happy 20% (Killingsworth, Kahneman & Mellers, 2023).",
+    "modelBoundary": "subgroup weights behind an aggregate income slope",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.16000000000000003,
+      0,
+      1
+    ]
+  }
+}

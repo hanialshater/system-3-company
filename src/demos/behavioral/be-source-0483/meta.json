@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0483",
+  "title": "Automated timing and a walking claim",
+  "hook": "Two stated cases: explore the influence of later measurement-based replications.",
+  "domain": "behavioral",
+  "concept": "be-source-0483",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the influence of later measurement-based replications affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Pooled, regardless of the stated inputs.",
+  "objective": "Compare the influence of later measurement-based replications in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0483.predict",
+      "text": "Toy visible studies average 0.5 across 1 equal-weight studies; missing studies average 0 across 8. What is the mean if all are included?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.reveal.0",
+      "text": "The retained results are MissingN=8; Pooled=0.056 and MissingN=1; Pooled=0.25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.reveal.1",
+      "text": "Selection of studies can change a pooled estimate. Missing results here are explicit sensitivity assumptions, not recovered observations. This comparison isolates the influence of later measurement-based replications.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.case.0.witness",
+      "text": "MissingN=8; Pooled=0.056",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.5],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.05555555555555555}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.056\"},{\"label\":\"MissingN\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.case.1.witness",
+      "text": "MissingN=1; Pooled=0.25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",0.5],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":0.25}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"0.25\"},{\"label\":\"MissingN\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0483.recall",
+      "text": "Toy visible studies average 0.6 across 1 equal-weight studies; missing studies average 0 across 8. What is the mean if all are included? Answer 0.067.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0483/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #483. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy visible studies average 0.6 across 1 equal-weight studies; missing studies average 0 across 8. What is the mean if all are included?",
+    "options": [
+      "-0.033",
+      "0.067",
+      "0.167"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Pooled 0.067 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0483",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-483"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 483,
+    "sourceSection": "25. Famous findings that failed to replicate or shrank",
+    "sourceEntryOriginal": "- **483.** Reading words about old age was said to make people walk slower (Bargh, Chen & Burrows, 1996); replications with automated timing failed (Doyen, Klein, Pichon & Cleeremans, 2012).",
+    "modelBoundary": "the influence of later measurement-based replications",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.6,
+      1,
+      0,
+      8
+    ]
+  }
+}

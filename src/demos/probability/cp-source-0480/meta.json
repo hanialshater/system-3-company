@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0480",
+  "title": "Score a candidate graph",
+  "hook": "Two stated cases: explore likelihood gain versus a parameter-count penalty.",
+  "domain": "probability",
+  "concept": "cp-source-0480",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How likelihood gain versus a parameter-count penalty affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines BIC, regardless of the stated inputs.",
+  "objective": "Compare likelihood gain versus a parameter-count penalty in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0480.predict",
+      "text": "A toy candidate model has log likelihood -100, 3 parameters and N 1000. What BIC score results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.reveal.0",
+      "text": "The retained results are LogLikelihood=-100 Parameters=3; BIC=220.723 and LogLikelihood=-90 Parameters=5; BIC=214.539.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.reveal.1",
+      "text": "The score penalizes additional parameters while rewarding likelihood fit. A better score is not by itself proof of a graph’s causal direction. This comparison isolates likelihood gain versus a parameter-count penalty.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.case.0.witness",
+      "text": "LogLikelihood=-100 Parameters=3; BIC=220.723",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogLikelihood\",-100],[\"Parameters\",3],[\"N\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BIC\",\"value\":220.7232658369464}]},\"metrics\":[{\"label\":\"BIC\",\"value\":\"220.723\"},{\"label\":\"LogLikelihood\",\"value\":\"-100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.case.1.witness",
+      "text": "LogLikelihood=-90 Parameters=5; BIC=214.539",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogLikelihood\",-90],[\"Parameters\",5],[\"N\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BIC\",\"value\":214.53877639491068}]},\"metrics\":[{\"label\":\"BIC\",\"value\":\"214.539\"},{\"label\":\"LogLikelihood\",\"value\":\"-90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0480.recall",
+      "text": "A toy candidate model has log likelihood -99, 3 parameters and N 1,000. What BIC score results? Answer 218.723.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0480/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #480. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy candidate model has log likelihood -99, 3 parameters and N 1,000. What BIC score results?",
+    "options": [
+      "131.234",
+      "218.723",
+      "306.213"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives BIC 218.723 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0480",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-480"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 480,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **480. Greedy score search** \\[Slider\\]: add, remove and flip arrows to improve a graph's fit score, step by step.",
+    "modelBoundary": "likelihood gain versus a parameter-count penalty",
+    "recallInputs": [
+      -99,
+      3,
+      1000
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0678",
+  "title": "Blend forecast and observation",
+  "hook": "Two stated cases: explore the observation uncertainty in a scalar assimilation step.",
+  "domain": "probability",
+  "concept": "cp-source-0678",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the observation uncertainty in a scalar assimilation step affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the observation uncertainty in a scalar assimilation step in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0678.predict",
+      "text": "A scalar toy filter predicts from Mean 20, PriorVar 4, adds ProcessVar 1, then observes 25 with noise variance 9. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.reveal.0",
+      "text": "The retained results are Noise=9; Posterior=21.786 and Noise=1; Posterior=24.167.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.reveal.1",
+      "text": "Prediction grows uncertainty; a measurement combines the predicted state and observation according to their uncertainties. This is a scalar linear-Gaussian update. This comparison isolates the observation uncertainty in a scalar assimilation step.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.case.0.witness",
+      "text": "Noise=9; Posterior=21.786",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",20],[\"PriorVar\",4],[\"ProcessVar\",1],[\"Observation\",25],[\"Noise\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":21.785714285714285},{\"label\":\"Variance\",\"value\":3.2142857142857144},{\"label\":\"Gain\",\"value\":0.35714285714285715}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"21.786\"},{\"label\":\"Noise\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.case.1.witness",
+      "text": "Noise=1; Posterior=24.167",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",20],[\"PriorVar\",4],[\"ProcessVar\",1],[\"Observation\",25],[\"Noise\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":24.166666666666668},{\"label\":\"Variance\",\"value\":0.8333333333333334},{\"label\":\"Gain\",\"value\":0.8333333333333334}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"24.167\"},{\"label\":\"Noise\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0678.recall",
+      "text": "A scalar toy filter predicts from Mean 21, PriorVar 4, adds ProcessVar 1, then observes 25 with noise variance 9. What posterior mean results? Answer 22.429.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0678/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #678. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A scalar toy filter predicts from Mean 21, PriorVar 4, adds ProcessVar 1, then observes 25 with noise variance 9. What posterior mean results?",
+    "options": [
+      "13.457",
+      "22.429",
+      "31.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 22.429 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0678",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-678"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 678,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **678. Weather assimilation** \\[Story\\]: forecasts blend millions of observations into physics models every few hours.",
+    "modelBoundary": "the observation uncertainty in a scalar assimilation step",
+    "recallInputs": [
+      21,
+      4,
+      1,
+      25,
+      9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

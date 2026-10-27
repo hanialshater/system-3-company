@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0377",
+  "title": "An attributable fraction needs a model",
+  "hook": "Two stated cases: explore exposure prevalence under a homogeneous causal risk-ratio model.",
+  "domain": "probability",
+  "concept": "cp-source-0377",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How exposure prevalence under a homogeneous causal risk-ratio model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Fraction, regardless of the stated inputs.",
+  "objective": "Compare exposure prevalence under a homogeneous causal risk-ratio model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0377.predict",
+      "text": "Under a toy homogeneous causal risk-ratio model, exposure prevalence is 0.3 and RR 3. What population attributable fraction follows if exposure is removed?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.reveal.0",
+      "text": "The retained results are Exposed=0.3; Fraction=0.375 and Exposed=0.1; Fraction=0.167.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.reveal.1",
+      "text": "The fraction requires causal and transport assumptions, not just an observed association. Removing an exposure may change other pathways absent from this toy model. This comparison isolates exposure prevalence under a homogeneous causal risk-ratio model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.case.0.witness",
+      "text": "Exposed=0.3; Fraction=0.375",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Exposed\",0.3],[\"RR\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.37499999999999994}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.375\"},{\"label\":\"Exposed\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.case.1.witness",
+      "text": "Exposed=0.1; Fraction=0.167",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Exposed\",0.1],[\"RR\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.16666666666666669}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.167\"},{\"label\":\"Exposed\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0377.recall",
+      "text": "Under a toy homogeneous causal risk-ratio model, exposure prevalence is 0.4 and RR 3. What population attributable fraction follows if exposure is removed? Answer 0.444.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0377/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under a toy homogeneous causal risk-ratio model, exposure prevalence is 0.4 and RR 3. What population attributable fraction follows if exposure is removed?",
+    "options": [
+      "0.444",
+      "0.267",
+      "0.622"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Fraction 0.444 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0377",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-377"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 377,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **377. How much is due to smoking?** \\[Slider\\]: compute the share of lung cancer cases that wouldn't occur without smoking.",
+    "modelBoundary": "exposure prevalence under a homogeneous causal risk-ratio model",
+    "recallInputs": [
+      0.4,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

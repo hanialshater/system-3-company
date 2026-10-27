@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0097",
+  "title": "The sales star and next quarter",
+  "hook": "Two stated cases: explore the noise share behind selected top performers.",
+  "domain": "probability",
+  "concept": "cp-source-0097",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the noise share behind selected top performers affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ExpectedNext, regardless of the stated inputs.",
+  "objective": "Compare the noise share behind selected top performers in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0097.predict",
+      "text": "A toy repeat-score model predicts Mean 100 plus Reliability 0.2 times the deviation of Observed 160. What is the expected next score?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.reveal.0",
+      "text": "The retained results are Reliability=0.2; ExpectedNext=112 and Reliability=0.9; ExpectedNext=154.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.reveal.1",
+      "text": "Selecting an extreme noisy score can be followed by a less extreme score without any intervention effect. This prediction rule is explicitly assumed. This comparison isolates the noise share behind selected top performers.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.case.0.witness",
+      "text": "Reliability=0.2; ExpectedNext=112",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",100],[\"Observed\",160],[\"Reliability\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":112}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"112\"},{\"label\":\"Reliability\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.case.1.witness",
+      "text": "Reliability=0.9; ExpectedNext=154",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",100],[\"Observed\",160],[\"Reliability\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedNext\",\"value\":154}]},\"metrics\":[{\"label\":\"ExpectedNext\",\"value\":\"154\"},{\"label\":\"Reliability\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0097.recall",
+      "text": "A toy repeat-score model predicts Mean 101 plus Reliability 0.2 times the deviation of Observed 160. What is the expected next score? Answer 112.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0097/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #97. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy repeat-score model predicts Mean 101 plus Reliability 0.2 times the deviation of Observed 160. What is the expected next score?",
+    "options": [
+      "67.68",
+      "157.92",
+      "112.8"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives ExpectedNext 112.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0097",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-97"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 97,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **97. Salesperson of the quarter** \\[Predict\\]: simulate a team of equally skilled sellers and watch \"stars\" rotate.",
+    "modelBoundary": "the noise share behind selected top performers",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      160,
+      0.2
+    ]
+  }
+}

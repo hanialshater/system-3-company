@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0154",
+  "title": "A better salary and what else?",
+  "hook": "Two stated cases: explore the salary percentage before inferring satisfaction.",
+  "domain": "behavioral",
+  "concept": "be-source-0154",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the salary percentage before inferring satisfaction affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the salary percentage before inferring satisfaction in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0154.predict",
+      "text": "A toy baseline is 100; it changes by 20 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.reveal.0",
+      "text": "The retained results are Percent=20; Final=120 and Percent=0; Final=100.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the salary percentage before inferring satisfaction.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.case.0.witness",
+      "text": "Percent=20; Final=120",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",100],[\"Percent\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":120}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"120\"},{\"label\":\"Percent\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.case.1.witness",
+      "text": "Percent=0; Final=100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",100],[\"Percent\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":100}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"100\"},{\"label\":\"Percent\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0154.recall",
+      "text": "A toy baseline is 101; it changes by 20 percent. What is the final level? Answer 121.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0154/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #154. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 101; it changes by 20 percent. What is the final level?",
+    "options": [
+      "72.72",
+      "169.68",
+      "121.2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Final 121.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0154",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-154"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 154,
+    "sourceSection": "8. Choice overload & complexity",
+    "sourceEntryOriginal": "- **154.** \"Maximizers\" got jobs paying about 20% more than \"satisficers\" but felt worse about them (Iyengar, Wells & Schwartz, 2006).",
+    "modelBoundary": "the salary percentage before inferring satisfaction",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      20
+    ]
+  }
+}

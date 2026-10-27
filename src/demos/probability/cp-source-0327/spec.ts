@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0327", "title": "A cue can drive the apparent skill", "op": "confounded", "labels": ["Direct", "Common", "Corr", "Do"], "outputs": ["Slope", "TotalEffect"], "a": [0.0, 1.0, 0.9, 0.0], "b": [0.0, 1.0, 0.9, 1.0], "question": "Standardized toy X and U have Corr 0.9; Y=Direct 0×X+Common 1×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?", "questionTemplate": "Standardized toy X and U have Corr {Corr}; Y=Direct {Direct}×X+Common {Common}×U+noise. Do {Do}=0 asks the observational slope, 1 the intervention derivative. What results?", "explain": "The common cause can change the observational slope without changing the intervention derivative. The causal conclusion follows the specified structural equations.", "lens": "the hidden cue in a structural toy model", "kind": "graph", "answerPosition": 0, "graph": "fork"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

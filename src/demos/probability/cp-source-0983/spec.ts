@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0983", "title": "Average option payoffs after the kink", "op": "twopayoffs", "labels": ["Low", "High", "Strike", "P", "Discount"], "outputs": ["Price"], "a": [80.0, 120.0, 100.0, 0.5, 1.0], "b": [60.0, 140.0, 100.0, 0.5, 1.0], "question": "A toy terminal asset is High 120 with risk-neutral probability P 0.5, otherwise Low 80; call Strike 100, discount factor 1. What expected discounted payoff results?", "questionTemplate": "A toy terminal asset is High {High} with risk-neutral probability P {P}, otherwise Low {Low}; call Strike {Strike}, discount factor {Discount}. What expected discounted payoff results?", "explain": "Nonlinear payoffs must be computed before averaging. This exact two-outcome calculation is a benchmark for simulation.", "lens": "the payoff convexity in a two-outcome pricing benchmark", "kind": "bars", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

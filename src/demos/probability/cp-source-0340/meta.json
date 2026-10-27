@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0340",
+  "title": "A small change on a revenue baseline",
+  "hook": "Two stated cases: explore the base behind a relative revenue change.",
+  "domain": "probability",
+  "concept": "cp-source-0340",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the base behind a relative revenue change affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the base behind a relative revenue change in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0340.predict",
+      "text": "A toy baseline is 100; it changes by 12 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.reveal.0",
+      "text": "The retained results are Baseline=100; Final=112 and Baseline=1,000; Final=1,120.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the base behind a relative revenue change.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.case.0.witness",
+      "text": "Baseline=100; Final=112",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",100],[\"Percent\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":112.00000000000001}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"112\"},{\"label\":\"Baseline\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.case.1.witness",
+      "text": "Baseline=1,000; Final=1,120",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",1000],[\"Percent\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":1120}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"1,120\"},{\"label\":\"Baseline\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0340.recall",
+      "text": "A toy baseline is 101; it changes by 12 percent. What is the final level? Answer 113.12.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0340/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #340. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 101; it changes by 12 percent. What is the final level?",
+    "options": [
+      "67.872",
+      "158.368",
+      "113.12"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Final 113.12 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0340",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-340"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 340,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceEntryOriginal": "- **340. The $100 million headline** \\[Story\\]: a small ad-title change at Bing, ignored for months, raised revenue about 12% (Kohavi & Thomke, 2017).",
+    "modelBoundary": "the base behind a relative revenue change",
+    "recallInputs": [
+      101,
+      12
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

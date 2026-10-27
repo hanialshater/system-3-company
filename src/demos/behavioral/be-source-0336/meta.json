@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0336",
+  "title": "A commitment withdrawal penalty",
+  "hook": "Two stated cases: explore the cost of an early exit in a commitment contract.",
+  "domain": "behavioral",
+  "concept": "be-source-0336",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cost of an early exit in a commitment contract affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gain, regardless of the stated inputs.",
+  "objective": "Compare the cost of an early exit in a commitment contract in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0336.predict",
+      "text": "Keeping a toy option yields 100. Switching yields 120 and costs 10. What is the gain from switching?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.reveal.0",
+      "text": "The retained results are SwitchFee=10; Gain=10 and SwitchFee=40; Gain=-20.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.reveal.1",
+      "text": "Make the opportunity cost visible before judging a refusal to switch. Equal-risk labels can obscure a straightforward payoff difference. This comparison isolates the cost of an early exit in a commitment contract.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.case.0.witness",
+      "text": "SwitchFee=10; Gain=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",100],[\"SwitchFee\",10],[\"After\",120]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":10}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"10\"},{\"label\":\"SwitchFee\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.case.1.witness",
+      "text": "SwitchFee=40; Gain=-20",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",100],[\"SwitchFee\",40],[\"After\",120]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":-20}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"-20\"},{\"label\":\"SwitchFee\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0336.recall",
+      "text": "Keeping a toy option yields 101. Switching yields 120 and costs 10. What is the gain from switching? Answer 9.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0336/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #336. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Keeping a toy option yields 101. Switching yields 120 and costs 10. What is the gain from switching?",
+    "options": [
+      "5.4",
+      "9",
+      "12.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gain 9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0336",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-336"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 336,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **336.** When offered only one commitment account, people deposited more in the version with the higher early-withdrawal penalty (Beshears, Choi, Harris, Laibson, Madrian & Sakong, 2020).",
+    "modelBoundary": "the cost of an early exit in a commitment contract",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      10,
+      120
+    ]
+  }
+}

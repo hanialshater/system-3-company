@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0779",
+  "title": "One latent source links symptoms",
+  "hook": "Two stated cases: explore the shared variance inducing a measurement correlation.",
+  "domain": "probability",
+  "concept": "cp-source-0779",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the shared variance inducing a measurement correlation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Correlation, regardless of the stated inputs.",
+  "objective": "Compare the shared variance inducing a measurement correlation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0779.predict",
+      "text": "Two toy measurements share variance Common 1 and have independent noise variances 1,1. What correlation results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.reveal.0",
+      "text": "The retained results are Common=1; Correlation=0.5 and Common=4; Correlation=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.reveal.1",
+      "text": "A shared latent component induces association without a direct edge between measurements. This covariance construction does not identify the latent cause from data. This comparison isolates the shared variance inducing a measurement correlation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.case.0.witness",
+      "text": "Common=1; Correlation=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Common\",1],[\"NoiseA\",1],[\"NoiseB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Correlation\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Correlation\",\"value\":\"0.5\"},{\"label\":\"Common\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.case.1.witness",
+      "text": "Common=4; Correlation=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Common\",4],[\"NoiseA\",1],[\"NoiseB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Correlation\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Correlation\",\"value\":\"0.8\"},{\"label\":\"Common\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0779.recall",
+      "text": "Two toy measurements share variance Common 2 and have independent noise variances 1,1. What correlation results? Answer 0.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0779/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #779. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy measurements share variance Common 2 and have independent noise variances 1,1. What correlation results?",
+    "options": [
+      "0.667",
+      "0.4",
+      "0.933"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Correlation 0.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0779",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-779"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 779,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **779. One hidden cause** \\[Slider\\]: a cluster of correlated symptoms collapses into one latent variable.",
+    "modelBoundary": "the shared variance inducing a measurement correlation",
+    "recallInputs": [
+      2,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

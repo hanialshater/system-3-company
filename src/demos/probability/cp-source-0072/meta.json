@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0072",
+  "title": "A tail observation changes the mean",
+  "hook": "Two stated cases: explore tail sensitivity rather than proof of a normal law.",
+  "domain": "probability",
+  "concept": "cp-source-0072",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How tail sensitivity rather than proof of a normal law affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare tail sensitivity rather than proof of a normal law in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0072.predict",
+      "text": "A toy sample has 99 identical values 0 and one extreme -20. What is the sample mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.reveal.0",
+      "text": "The retained results are Extreme=-20; Mean=-0.2 and Extreme=-2; Mean=-0.02.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.reveal.1",
+      "text": "The extreme value can move the mean substantially while the median of this sample stays at the repeated value. Sensitivity does not itself establish which observations are invalid. This comparison isolates tail sensitivity rather than proof of a normal law.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.case.0.witness",
+      "text": "Extreme=-20; Mean=-0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",0],[\"N\",99],[\"Extreme\",-20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":-0.2},{\"label\":\"Median\",\"value\":0}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"-0.2\"},{\"label\":\"Extreme\",\"value\":\"-20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.case.1.witness",
+      "text": "Extreme=-2; Mean=-0.02",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",0],[\"N\",99],[\"Extreme\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":-0.02},{\"label\":\"Median\",\"value\":0}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"-0.02\"},{\"label\":\"Extreme\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0072.recall",
+      "text": "A toy sample has 99 identical values 1 and one extreme -20. What is the sample mean? Answer 0.79.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0072/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #72. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sample has 99 identical values 1 and one extreme -20. What is the sample mean?",
+    "options": [
+      "0.474",
+      "0.79",
+      "1.106"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 0.79 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0072",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-72"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 72,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **72. Fat tails** \\[Gotcha\\]: under a normal model, the 1987 one-day 20% crash was a 20-plus-sigma event that \"should\" never happen.",
+    "modelBoundary": "tail sensitivity rather than proof of a normal law",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1,
+      99,
+      -20
+    ]
+  }
+}

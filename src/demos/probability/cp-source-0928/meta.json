@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0928",
+  "title": "A hub holds more contact exposure",
+  "hook": "Two stated cases for a hub holds more contact exposure.",
+  "domain": "probability",
+  "concept": "cp-source-0928",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the degree-weighted contact share before a vaccination policy comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the degree-weighted contact share before a vaccination policy comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0928.predict",
+      "text": "A toy new network link chooses an existing node proportional to degree. A node has Degree 2, total network degree 100. What is its attachment probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.reveal.0",
+      "text": "The retained results are Degree=2; Probability=0.02 and Degree=20; Probability=0.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.reveal.1",
+      "text": "Preferential attachment weights nodes by existing degree. The one-step probability does not alone specify an entire network-growth process. This comparison isolates the degree-weighted contact share before a vaccination policy comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.case.0.witness",
+      "text": "Degree=2; Probability=0.02",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Degree\",2],[\"TotalDegree\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.02}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.02\"},{\"label\":\"Degree\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.case.1.witness",
+      "text": "Degree=20; Probability=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Degree\",20],[\"TotalDegree\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.2\"},{\"label\":\"Degree\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0928.recall",
+      "text": "A toy new network link chooses an existing node proportional to degree. A node has Degree 3, total network degree 100. What is its attachment probability? Answer 0.03.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0928/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #928. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy new network link chooses an existing node proportional to degree. A node has Degree 3, total network degree 100. What is its attachment probability?",
+    "options": [
+      "-0.07",
+      "0.13",
+      "0.03"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.03 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0928",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-928"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 928,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **928. Vaccinate the hubs** \\[Slider\\]: targeting highly connected people beats random vaccination.",
+    "modelBoundary": "the degree-weighted contact share before a vaccination policy comparison",
+    "recallInputs": [
+      3,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

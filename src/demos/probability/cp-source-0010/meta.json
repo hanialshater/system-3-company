@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0010",
+  "title": "Assign the envelopes first",
+  "hook": "Two stated cases: explore the assignment probability before observing money.",
+  "domain": "probability",
+  "concept": "cp-source-0010",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assignment probability before observing money affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ExpectedGain, regardless of the stated inputs.",
+  "objective": "Compare the assignment probability before observing money in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0010.predict",
+      "text": "Two toy envelopes contain 100 and twice that amount. Without observing the contents, your probability of holding the smaller is 0.5. What is expected cash gain from switching?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.reveal.0",
+      "text": "The retained results are PSmall=0.5; ExpectedGain=0 and PSmall=0.8; ExpectedGain=60.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.reveal.1",
+      "text": "The gain when initially holding the smaller amount balances the loss when holding the larger under uniform assignment. The assignment probability must be stated. This comparison isolates the assignment probability before observing money.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.case.0.witness",
+      "text": "PSmall=0.5; ExpectedGain=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Small\",100],[\"PSmall\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedGain\",\"value\":0}]},\"metrics\":[{\"label\":\"ExpectedGain\",\"value\":\"0\"},{\"label\":\"PSmall\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.case.1.witness",
+      "text": "PSmall=0.8; ExpectedGain=60",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Small\",100],[\"PSmall\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"ExpectedGain\",\"value\":60.00000000000001}]},\"metrics\":[{\"label\":\"ExpectedGain\",\"value\":\"60\"},{\"label\":\"PSmall\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0010.recall",
+      "text": "Two toy envelopes contain 100 and twice that amount. Without observing the contents, your probability of holding the smaller is 0.6. What is expected cash gain from switching? Answer 20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0010/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy envelopes contain 100 and twice that amount. Without observing the contents, your probability of holding the smaller is 0.6. What is expected cash gain from switching?",
+    "options": [
+      "12",
+      "28",
+      "20"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives ExpectedGain 20 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0010",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-10"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 10,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **10. Two envelopes** \\[Gotcha\\]: switching always seems to gain 25% in expectation. Swipe to find the broken step.",
+    "modelBoundary": "the assignment probability before observing money",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      100,
+      0.6
+    ]
+  }
+}

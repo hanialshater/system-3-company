@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0837",
+  "title": "A shared control affects precision",
+  "hook": "Two stated cases: explore the control sample size in one independent mean contrast.",
+  "domain": "probability",
+  "concept": "cp-source-0837",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the control sample size in one independent mean contrast affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SE, regardless of the stated inputs.",
+  "objective": "Compare the control sample size in one independent mean contrast in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0837.predict",
+      "text": "Two independent toy means have SD/sample sizes 1/20 and 1/20. What standard error of their difference results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.reveal.0",
+      "text": "The retained results are NB=20; SE=0.316 and NB=80; SE=0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.reveal.1",
+      "text": "Independent sampling variances add for a difference. Reusing a control induces covariance among several treatment contrasts. This comparison isolates the control sample size in one independent mean contrast.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.case.0.witness",
+      "text": "NB=20; SE=0.316",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SDA\",1],[\"NA\",20],[\"SDB\",1],[\"NB\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"SE\",\"value\":0.31622776601683794}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.316\"},{\"label\":\"NB\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.case.1.witness",
+      "text": "NB=80; SE=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SDA\",1],[\"NA\",20],[\"SDB\",1],[\"NB\",80]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"SE\",\"value\":0.25}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.25\"},{\"label\":\"NB\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0837.recall",
+      "text": "Two independent toy means have SD/sample sizes 2/20 and 1/20. What standard error of their difference results? Answer 0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0837/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #837. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent toy means have SD/sample sizes 2/20 and 1/20. What standard error of their difference results?",
+    "options": [
+      "0.3",
+      "0.5",
+      "0.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives SE 0.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0837",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-837"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 837,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **837. Shared control arm** \\[Slider\\]: test four treatments against one control and save sample size.",
+    "modelBoundary": "the control sample size in one independent mean contrast",
+    "recallInputs": [
+      2,
+      20,
+      1,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0728",
+  "title": "An early advantage can reverse",
+  "hook": "Two stated cases: explore the time-varying hazard pattern behind a crossing comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0728",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the time-varying hazard pattern behind a crossing comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare the time-varying hazard pattern behind a crossing comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0728.predict",
+      "text": "A toy lifetime has hazard Rate1 0.1 for Time1 1, then Rate2 0.8 for Time2 2. What survival probability results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.reveal.0",
+      "text": "The retained results are Rate1=0.1 Rate2=0.8; Survival=0.183 and Rate1=0.5 Rate2=0.1; Survival=0.497.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.reveal.1",
+      "text": "Survival is the exponential of negative cumulative hazard. These stipulated rates need not describe a real population. This comparison isolates the time-varying hazard pattern behind a crossing comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.case.0.witness",
+      "text": "Rate1=0.1 Rate2=0.8; Survival=0.183",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate1\",0.1],[\"Time1\",1],[\"Rate2\",0.8],[\"Time2\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.18268352405273464}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.183\"},{\"label\":\"Rate1\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.case.1.witness",
+      "text": "Rate1=0.5 Rate2=0.1; Survival=0.497",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate1\",0.5],[\"Time1\",1],[\"Rate2\",0.1],[\"Time2\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.4965853037914095}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.497\"},{\"label\":\"Rate1\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0728.recall",
+      "text": "A toy lifetime has hazard Rate1 0.2 for Time1 1, then Rate2 0.8 for Time2 2. What survival probability results? Answer 0.165.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0728/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #728. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy lifetime has hazard Rate1 0.2 for Time1 1, then Rate2 0.8 for Time2 2. What survival probability results?",
+    "options": [
+      "0.165",
+      "0.065",
+      "0.265"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Survival 0.165 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0728",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-728"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 728,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **728. Crossing curves** \\[Gotcha\\]: when survival curves cross, a single hazard ratio misleads.",
+    "modelBoundary": "the time-varying hazard pattern behind a crossing comparison",
+    "recallInputs": [
+      0.2,
+      1,
+      0.8,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

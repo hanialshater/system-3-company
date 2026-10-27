@@ -1,0 +1,103 @@
+{
+  "slug": "be-pay-monthly-or-per-visit",
+  "title": "Pay monthly or per visit?",
+  "hook": "At this month's attendance, which gym contract costs less?",
+  "domain": "behavioral",
+  "concept": "be-pay-monthly-or-per-visit",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Compare realized cost per visit with a pay-per-visit alternative."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Compare realized cost per visit with a pay-per-visit alternative.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-pay-monthly-or-per-visit.inputs",
+      "text": "Your toy gym plan costs €72 and you visit four times. What is the realized cost per visit? Toy inputs A=[72, 4, 10]; B=[72, 8, 10].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-pay-monthly-or-per-visit.trace",
+      "text": "Computed results: [[18, 40, 32], [9, 80, -8]]. Labels: €/visit, Pass total €, Monthly−pass €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-pay-monthly-or-per-visit.reveal",
+      "text": "The monthly price is divided by actual visits, not intended visits. The comparison case shows how a higher attendance count changes cost per visit and the comparison with day passes; it does not forecast your attendance.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-pay-monthly-or-per-visit.recall",
+      "text": "A new toy case uses Monthly €=72, Visits=8, Pass €/visit=10. What is €/visit? Answer: 9.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Monthly €=72, Visits=8, Pass €/visit=10. What is €/visit?",
+    "options": [
+      "11.7",
+      "9",
+      "6.3"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 9. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-pay-monthly-or-per-visit",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-86"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 86,
+    "section": "5. Present bias & time preferences",
+    "text": "Gym members on monthly contracts paid over $70 a month but went about 4.3 times, roughly $17 a visit, when a $10 day pass was available (DellaVigna & Malmendier, 2006).",
+    "pointer": "500-behavioral-economics-findings.md entry 86: DellaVigna & Malmendier, 2006",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "same-week-a-year-apart",
+  "meaningfulDifference": "Compare realized cost per visit with a pay-per-visit alternative."
+}

@@ -1,0 +1,162 @@
+{
+  "slug": "p100-ate-att-atc",
+  "title": "Whose treatment effect is it?",
+  "hook": "The same individual effects, three different target populations.",
+  "domain": "probability",
+  "concept": "p100-ate-att-atc",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "shift who gets treated and watch the three average effects separate."
+    ]
+  },
+  "misconception": "Treating ate, att, atc as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "shift who gets treated and watch the three average effects separate.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-ate-att-atc.predict",
+      "text": "Two equally common types have treatment effects 8 and 2. Treatment reaches 80% of responsive types and 20% of less-responsive types. What is the average effect among the treated?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.reveal.0",
+      "text": "The treated population retains ATT=6.8; the untreated population retains ATC=3.2. Equal weighting over the whole population would give ATE=5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.reveal.1",
+      "text": "These are different target populations, not competing calculations of one universal effect. When treatment response varies, changing who receives treatment changes the relevant average even if every individual effect remains fixed.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.recall",
+      "text": "Effects are 10 and 0. A target contains 30% of the first type. What target-average effect follows? The weighted effect is .3×10+.7×0=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.scenario.0.summary",
+      "text": "ATT 6.8",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Effect\",\"Weight\"],\"rows\":[[8,0.8],[2,0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Treated target\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Type 1\",\"value\":6.4},{\"label\":\"Type 2\",\"value\":0.4}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.scenario.1.summary",
+      "text": "ATC 3.2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Effect\",\"Weight\"],\"rows\":[[8,0.2],[2,0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Untreated target\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Type 1\",\"value\":1.6},{\"label\":\"Type 2\",\"value\":1.6}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-ate-att-atc/spec.ts; exact finite illustration specified in manager numericCase: Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-ate-att-atc.hook",
+      "text": "The same individual effects, three different target populations.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-ate-att-atc/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Effects are 10 and 0. A target contains 30% of the first type. What target-average effect follows?",
+    "options": [
+      "3",
+      "5",
+      "7"
+    ],
+    "answer": 0,
+    "why": "The weighted effect is .3×10+.7×0=3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-ate-att-atc",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "estimands"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 364,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceTitle": "ATE, ATT, ATC",
+    "sourceText": "shift who gets treated and watch the three average effects separate.",
+    "sourceEntryOriginal": "- **364. ATE, ATT, ATC** \\[Slider\\]: shift who gets treated and watch the three average effects separate.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "probability/better-in-every-group-worse-overall",
+    "difference": "New teaching boundary: ATE, ATT, ATC. Existing boundary: The learner can explain that an overall rate is an average of subgroup rates weighted by subgroup size, so a treatment that gets most of the hard cases can win in every subgroup and still lose overall.",
+    "numericCase": "Two equally common types: responsive effect8, less responsive effect2. Treat80%responsive,20%less responsive; ATE5,ATT6.8,ATC3.2. Stage shows each population weighting."
+  },
+  "modelAudit": {
+    "a": 6.800000000000001,
+    "b": 3.2,
+    "ate": 5
+  }
+}

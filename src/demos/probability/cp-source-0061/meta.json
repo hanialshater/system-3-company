@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0061",
+  "title": "The peg board counts right turns",
+  "hook": "Two stated cases: explore binomial paths through independent pegs.",
+  "domain": "probability",
+  "concept": "cp-source-0061",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How binomial paths through independent pegs affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare binomial paths through independent pegs in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0061.predict",
+      "text": "In 10 independent Bernoulli trials with success probability 0.5, what is the probability of exactly 5 successes?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.reveal.0",
+      "text": "The retained results are K=5; Probability=0.246 and K=0; Probability=9.77e-4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.reveal.1",
+      "text": "The binomial coefficient counts placements of the successes. A single ordered sequence is only one of those placements. This comparison isolates binomial paths through independent pegs.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.case.0.witness",
+      "text": "K=5; Probability=0.246",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10],[\"P\",0.5],[\"K\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.24609375}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.246\"},{\"label\":\"K\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.case.1.witness",
+      "text": "K=0; Probability=9.77e-4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10],[\"P\",0.5],[\"K\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.0009765625}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"9.77e-4\"},{\"label\":\"K\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0061.recall",
+      "text": "In 11 independent Bernoulli trials with success probability 0.5, what is the probability of exactly 5 successes? Answer 0.226.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0061/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #61. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In 11 independent Bernoulli trials with success probability 0.5, what is the probability of exactly 5 successes?",
+    "options": [
+      "0.126",
+      "0.326",
+      "0.226"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.226 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0061",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-61"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 61,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **61. Galton board** \\[Predict\\]: drop 1,000 balls through pegs and a bell curve builds itself.",
+    "modelBoundary": "binomial paths through independent pegs",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      0.5,
+      5
+    ]
+  }
+}

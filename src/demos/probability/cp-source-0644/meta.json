@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0644",
+  "title": "A periodic component recognizes a cycle",
+  "hook": "Two stated cases: explore the periodic covariance ingredient rather than a full CO2 fit.",
+  "domain": "probability",
+  "concept": "cp-source-0644",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the periodic covariance ingredient rather than a full CO2 fit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the periodic covariance ingredient rather than a full CO2 fit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0644.predict",
+      "text": "A unit-variance zero-mean toy GP has one Observation 2, noise variance 0.1, Distance 1, Length 1. Kernel 2: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.reveal.0",
+      "text": "The retained results are Kernel=2; Mean=1.818 and Kernel=0; Mean=1.103.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.reveal.1",
+      "text": "The kernel supplies similarity and posterior uncertainty. This one-observation conditional calculation does not fit kernel parameters or represent a full dataset. This comparison isolates the periodic covariance ingredient rather than a full CO2 fit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.case.0.witness",
+      "text": "Kernel=2; Mean=1.818",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",1],[\"Length\",1],[\"Noise\",0.1],[\"Observation\",2],[\"Kernel\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1.8181818181818181},{\"label\":\"Variance\",\"value\":0.09090909090909094}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1.818\"},{\"label\":\"Kernel\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.case.1.witness",
+      "text": "Kernel=0; Mean=1.103",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",1],[\"Length\",1],[\"Noise\",0.1],[\"Observation\",2],[\"Kernel\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1.1027830176593334},{\"label\":\"Variance\",\"value\":0.6655641443895979}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1.103\"},{\"label\":\"Kernel\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0644.recall",
+      "text": "A unit-variance zero-mean toy GP has one Observation 2, noise variance 0.2, Distance 1, Length 1. Kernel 2: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results? Answer 1.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0644/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #644. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A unit-variance zero-mean toy GP has one Observation 2, noise variance 0.2, Distance 1, Length 1. Kernel 2: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results?",
+    "options": [
+      "1.667",
+      "1",
+      "2.333"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 1.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0644",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-644"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 644,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **644. Mauna Loa CO₂** \\[Slider\\]: add a trend kernel, a yearly periodic kernel and noise to fit the famous curve and forecast it.",
+    "modelBoundary": "the periodic covariance ingredient rather than a full CO2 fit",
+    "recallInputs": [
+      1,
+      1,
+      0.2,
+      2,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

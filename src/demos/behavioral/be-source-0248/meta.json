@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0248",
+  "title": "Switching routes after a scare",
+  "hook": "Two stated cases: explore the expected risk of both available routes.",
+  "domain": "behavioral",
+  "concept": "be-source-0248",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the expected risk of both available routes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Difference, regardless of the stated inputs.",
+  "objective": "Compare the expected risk of both available routes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0248.predict",
+      "text": "Across 1e+06 toy cases, action risk is 1e-05 and inaction risk 0.0001. How many fewer expected harms come with action?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.reveal.0",
+      "text": "The retained results are InactionRisk=1.00e-4; Difference=90 and InactionRisk=1.00e-5; Difference=0.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.reveal.1",
+      "text": "Count both action and inaction using the same population. These are specified risks in a toy comparison. This comparison isolates the expected risk of both available routes.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.case.0.witness",
+      "text": "InactionRisk=1.00e-4; Difference=90",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",1000000],[\"ActionRisk\",0.00001],[\"InactionRisk\",0.0001]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":90}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"90\"},{\"label\":\"InactionRisk\",\"value\":\"1.00e-4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.case.1.witness",
+      "text": "InactionRisk=1.00e-5; Difference=0",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cases\",1000000],[\"ActionRisk\",0.00001],[\"InactionRisk\",0.00001]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Difference\",\"value\":0}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"0\"},{\"label\":\"InactionRisk\",\"value\":\"1.00e-5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0248.recall",
+      "text": "Across 1.00e+6 toy cases, action risk is 8.00e-6 and inaction risk 1.00e-4. How many fewer expected harms come with action? Answer 92.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0248/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #248. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Across 1.00e+6 toy cases, action risk is 8.00e-6 and inaction risk 1.00e-4. How many fewer expected harms come with action?",
+    "options": [
+      "92",
+      "55.2",
+      "128.8"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Difference 92 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0248",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-248"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 248,
+    "sourceSection": "13. Availability, representativeness & other heuristics",
+    "sourceEntryOriginal": "- **248.** Fear of flying after 9/11 shifted Americans to driving, causing an estimated 1,600 extra road deaths (Gigerenzer, 2006).",
+    "modelBoundary": "the expected risk of both available routes",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1000000,
+      0.000008000000000000001,
+      0.0001
+    ]
+  }
+}

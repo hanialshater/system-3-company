@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0176",
+  "title": "A model response to an unequal split",
+  "hook": "Two stated cases: explore a payoff-based proxy rather than a brain measurement.",
+  "domain": "behavioral",
+  "concept": "be-source-0176",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a payoff-based proxy rather than a brain measurement affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Utility, regardless of the stated inputs.",
+  "objective": "Compare a payoff-based proxy rather than a brain measurement in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0176.predict",
+      "text": "A toy utility equals own payoff 2 minus weight 0.5 times any shortfall below other payoff 8. What is utility?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.reveal.0",
+      "text": "The retained results are Own=2 Other=8; Utility=-1 and Own=5 Other=5; Utility=5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.reveal.1",
+      "text": "Payoff and model utility are separate quantities. Changing the inequality penalty can change a ranking without changing the money. This comparison isolates a payoff-based proxy rather than a brain measurement.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.case.0.witness",
+      "text": "Own=2 Other=8; Utility=-1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Own\",2],[\"Other\",8],[\"Envy\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Utility\",\"value\":-1}]},\"metrics\":[{\"label\":\"Utility\",\"value\":\"-1\"},{\"label\":\"Own\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.case.1.witness",
+      "text": "Own=5 Other=5; Utility=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Own\",5],[\"Other\",5],[\"Envy\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Utility\",\"value\":5}]},\"metrics\":[{\"label\":\"Utility\",\"value\":\"5\"},{\"label\":\"Own\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0176.recall",
+      "text": "A toy utility equals own payoff 3 minus weight 0.5 times any shortfall below other payoff 8. What is utility? Answer 0.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0176/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #176. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy utility equals own payoff 3 minus weight 0.5 times any shortfall below other payoff 8. What is utility?",
+    "options": [
+      "0.5",
+      "0.3",
+      "0.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Utility 0.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0176",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-176"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 176,
+    "sourceSection": "9. Fairness: ultimatum & dictator games",
+    "sourceEntryOriginal": "- **176.** Unfair offers activate the anterior insula, linked to disgust (Sanfey et al., 2003).",
+    "modelBoundary": "a payoff-based proxy rather than a brain measurement",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      3,
+      8,
+      0.5
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0488",
+  "title": "A stipulated small-class effect",
+  "hook": "Two stated cases: explore the difference between two modeled educational outcomes.",
+  "domain": "probability",
+  "concept": "cp-source-0488",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the difference between two modeled educational outcomes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Effect, regardless of the stated inputs.",
+  "objective": "Compare the difference between two modeled educational outcomes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0488.predict",
+      "text": "In a toy structural model the same unit has outcome 50 without treatment and 55 with treatment. What individual effect is with minus without?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.reveal.0",
+      "text": "The retained results are With=55; Effect=5 and With=52; Effect=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.reveal.1",
+      "text": "The two potential outcomes are defined in the model, although only one would be observed for a unit in an ordinary trial. This comparison isolates the difference between two modeled educational outcomes.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.case.0.witness",
+      "text": "With=55; Effect=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Without\",50],[\"With\",55]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Effect\",\"value\":5}]},\"metrics\":[{\"label\":\"Effect\",\"value\":\"5\"},{\"label\":\"With\",\"value\":\"55\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.case.1.witness",
+      "text": "With=52; Effect=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Without\",50],[\"With\",52]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Effect\",\"value\":2}]},\"metrics\":[{\"label\":\"Effect\",\"value\":\"2\"},{\"label\":\"With\",\"value\":\"52\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0488.recall",
+      "text": "In a toy structural model the same unit has outcome 51 without treatment and 55 with treatment. What individual effect is with minus without? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0488/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #488. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy structural model the same unit has outcome 51 without treatment and 55 with treatment. What individual effect is with minus without?",
+    "options": [
+      "4",
+      "2.4",
+      "5.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Effect 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0488",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-488"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 488,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **488. Tennessee STAR** \\[Story\\]: students randomly assigned to smaller classes in 1985–89 did better on tests.",
+    "modelBoundary": "the difference between two modeled educational outcomes",
+    "recallInputs": [
+      51,
+      55
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0882",
+  "title": "Event-study weights change the target",
+  "hook": "Two stated cases: explore the supplied positive or negative cohort weights.",
+  "domain": "probability",
+  "concept": "cp-source-0882",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied positive or negative cohort weights affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Contrast, regardless of the stated inputs.",
+  "objective": "Compare the supplied positive or negative cohort weights in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0882.predict",
+      "text": "A toy estimator combines effects 2,8 with weights 0.5 and 1-Weight, permitting negative weights. What contrast results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.reveal.0",
+      "text": "The retained results are Weight=0.5; Contrast=5 and Weight=1.2; Contrast=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.reveal.1",
+      "text": "A nonconvex comparison can fall outside the component-effect range. These are estimator weights, not population shares. This comparison isolates the supplied positive or negative cohort weights.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.case.0.witness",
+      "text": "Weight=0.5; Contrast=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.5],[\"EffectA\",2],[\"EffectB\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Contrast\",\"value\":5}]},\"metrics\":[{\"label\":\"Contrast\",\"value\":\"5\"},{\"label\":\"Weight\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.case.1.witness",
+      "text": "Weight=1.2; Contrast=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",1.2],[\"EffectA\",2],[\"EffectB\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Contrast\",\"value\":0.8000000000000003}]},\"metrics\":[{\"label\":\"Contrast\",\"value\":\"0.8\"},{\"label\":\"Weight\",\"value\":\"1.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0882.recall",
+      "text": "A toy estimator combines effects 2,8 with weights 0.4 and 1-Weight, permitting negative weights. What contrast results? Answer 5.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0882/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #882. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimator combines effects 2,8 with weights 0.4 and 1-Weight, permitting negative weights. What contrast results?",
+    "options": [
+      "3.36",
+      "5.6",
+      "7.84"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Contrast 5.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0882",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-882"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 882,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **882. Clean event study** \\[Slider\\]: compare naive and interaction-weighted event-study plots under staggered adoption (Sun & Abraham, 2021).",
+    "modelBoundary": "the supplied positive or negative cohort weights",
+    "recallInputs": [
+      0.4,
+      2,
+      8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

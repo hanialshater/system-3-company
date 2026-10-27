@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0047",
+  "title": "A bill or a ticket",
+  "hook": "Two stated cases: explore the budget remaining after a second purchase.",
+  "domain": "behavioral",
+  "concept": "be-source-0047",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the budget remaining after a second purchase affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the budget remaining after a second purchase in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0047.predict",
+      "text": "A toy account starts at 100, receives 0, and pays back 10. What final balance remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.reveal.0",
+      "text": "The retained results are Penalty=10; Net=90 and Penalty=20; Net=80.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.reveal.1",
+      "text": "Track the final balance as well as the wording. Equivalent cash paths can carry different descriptions without changing the arithmetic. This comparison isolates the budget remaining after a second purchase.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.case.0.witness",
+      "text": "Penalty=10; Net=90",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",100],[\"Bonus\",0],[\"Penalty\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Start\",\"value\":100},{\"label\":\"Bonus\",\"value\":100},{\"label\":\"End\",\"value\":90}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"90\"},{\"label\":\"Penalty\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.case.1.witness",
+      "text": "Penalty=20; Net=80",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",100],[\"Bonus\",0],[\"Penalty\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Start\",\"value\":100},{\"label\":\"Bonus\",\"value\":100},{\"label\":\"End\",\"value\":80}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"80\"},{\"label\":\"Penalty\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0047.recall",
+      "text": "A toy account starts at 101, receives 0, and pays back 10. What final balance remains? Answer 91.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0047/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #47. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy account starts at 101, receives 0, and pays back 10. What final balance remains?",
+    "options": [
+      "91",
+      "54.6",
+      "127.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Net 91 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0047",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-47"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 47,
+    "sourceSection": "3. Framing",
+    "sourceEntryOriginal": "- **47.** After losing a $10 bill, 88% would still buy a theater ticket; after losing the ticket itself, only 46% would buy another (Tversky & Kahneman, 1981).",
+    "modelBoundary": "the budget remaining after a second purchase",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      0,
+      10
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0618",
+  "title": "Weight uncertainty becomes output spread",
+  "hook": "Two stated cases: explore the one-weight predictive uncertainty calculation.",
+  "domain": "probability",
+  "concept": "cp-source-0618",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-weight predictive uncertainty calculation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the one-weight predictive uncertainty calculation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0618.predict",
+      "text": "A toy linear weight has mean 1, variance 1; input X 2, independent output-noise variance 0.1. What predictive mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.reveal.0",
+      "text": "The retained results are WeightVar=1; Mean=2 and WeightVar=4; Mean=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.reveal.1",
+      "text": "Weight uncertainty and observation noise contribute differently to predictive variance. This one-weight model is not a full Bayesian neural network. This comparison isolates the one-weight predictive uncertainty calculation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.case.0.witness",
+      "text": "WeightVar=1; Mean=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightMean\",1],[\"WeightVar\",1],[\"X\",2],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":2},{\"label\":\"Variance\",\"value\":4.1}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"2\"},{\"label\":\"WeightVar\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.case.1.witness",
+      "text": "WeightVar=4; Mean=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightMean\",1],[\"WeightVar\",4],[\"X\",2],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":2},{\"label\":\"Variance\",\"value\":16.1}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"2\"},{\"label\":\"WeightVar\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0618.recall",
+      "text": "A toy linear weight has mean 2, variance 1; input X 2, independent output-noise variance 0.1. What predictive mean results? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0618/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #618. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy linear weight has mean 2, variance 1; input X 2, independent output-noise variance 0.1. What predictive mean results?",
+    "options": [
+      "2.4",
+      "4",
+      "5.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0618",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-618"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 618,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **618. Uncertain weights** \\[Slider\\]: a Bayesian neural network draws a different function for each weight sample.",
+    "modelBoundary": "the one-weight predictive uncertainty calculation",
+    "recallInputs": [
+      2,
+      1,
+      2,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0811",
+  "title": "A mean is easier to predict than a point",
+  "hook": "Two stated cases: explore the additional observation noise in a prediction interval.",
+  "domain": "probability",
+  "concept": "cp-source-0811",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the additional observation noise in a prediction interval affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HalfWidth, regardless of the stated inputs.",
+  "objective": "Compare the additional observation noise in a prediction interval in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0811.predict",
+      "text": "Known toy SD 2, N 20, Z multiplier 2. Prediction 0=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.reveal.0",
+      "text": "The retained results are Prediction=0; HalfWidth=0.894 and Prediction=1; HalfWidth=4.099.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.reveal.1",
+      "text": "An individual prediction includes irreducible observation noise. These normal intervals assume a known variance and independent data. This comparison isolates the additional observation noise in a prediction interval.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.case.0.witness",
+      "text": "Prediction=0; HalfWidth=0.894",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",2],[\"N\",20],[\"Z\",2],[\"Prediction\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":0.8944271909999159}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"0.894\"},{\"label\":\"Prediction\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.case.1.witness",
+      "text": "Prediction=1; HalfWidth=4.099",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",2],[\"N\",20],[\"Z\",2],[\"Prediction\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":4.09878030638384}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"4.099\"},{\"label\":\"Prediction\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0811.recall",
+      "text": "Known toy SD 3, N 20, Z multiplier 2. Prediction 0=1 targets a new observation, 0 the mean. What normal interval half-width results? Answer 1.342.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0811/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #811. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Known toy SD 3, N 20, Z multiplier 2. Prediction 0=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+    "options": [
+      "0.805",
+      "1.878",
+      "1.342"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives HalfWidth 1.342 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0811",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-811"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 811,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **811. Prediction vs confidence interval** \\[Split\\]: one is for the average, the other for the next single point; the second is much wider.",
+    "modelBoundary": "the additional observation noise in a prediction interval",
+    "recallInputs": [
+      3,
+      20,
+      2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

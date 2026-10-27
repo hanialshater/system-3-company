@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0892",
+  "title": "Average outcomes under a strategy",
+  "hook": "Two stated cases: explore the stipulated history mixture in a g-formula ingredient.",
+  "domain": "probability",
+  "concept": "cp-source-0892",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated history mixture in a g-formula ingredient affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Average, regardless of the stated inputs.",
+  "objective": "Compare the stipulated history mixture in a g-formula ingredient in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0892.predict",
+      "text": "A toy population has share 0.5 with effect 2, the rest with effect 6. What is its average treatment effect?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.reveal.0",
+      "text": "The retained results are Share=0.5; Average=4 and Share=0.8; Average=2.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.reveal.1",
+      "text": "Averages can hide opposite effects across groups. Targeting requires an identified effect for the relevant population, not just a large average. This comparison isolates the stipulated history mixture in a g-formula ingredient.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.case.0.witness",
+      "text": "Share=0.5; Average=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"EffectA\",2],[\"EffectB\",6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Average\",\"value\":4}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"4\"},{\"label\":\"Share\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.case.1.witness",
+      "text": "Share=0.8; Average=2.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.8],[\"EffectA\",2],[\"EffectB\",6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Average\",\"value\":2.8}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"2.8\"},{\"label\":\"Share\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0892.recall",
+      "text": "A toy population has share 0.4 with effect 2, the rest with effect 6. What is its average treatment effect? Answer 4.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0892/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #892. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has share 0.4 with effect 2, the rest with effect 6. What is its average treatment effect?",
+    "options": [
+      "2.64",
+      "6.16",
+      "4.4"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Average 4.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0892",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-892"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 892,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **892. The g-formula** \\[Slider\\]: simulate patient histories under each strategy to estimate its effect.",
+    "modelBoundary": "the stipulated history mixture in a g-formula ingredient",
+    "recallInputs": [
+      0.4,
+      2,
+      6
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

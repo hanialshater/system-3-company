@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0075",
+  "title": "A toy calendar with fewer dates",
+  "hook": "Two stated cases: explore the support size of a simplified birthday model.",
+  "domain": "probability",
+  "concept": "cp-source-0075",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the support size of a simplified birthday model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Collision, regardless of the stated inputs.",
+  "objective": "Compare the support size of a simplified birthday model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0075.predict",
+      "text": "With 23 independent uniform birthdays across 365 days, what is the probability of any shared birthday?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.reveal.0",
+      "text": "The retained results are Days=365; Collision=0.507 and Days=300; Collision=0.579.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.reveal.1",
+      "text": "Multiply the successive probabilities of no match, then take the complement. The uniform independent calendar is an explicit assumption. This comparison isolates the support size of a simplified birthday model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.case.0.witness",
+      "text": "Days=365; Collision=0.507",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"People\",23],[\"Days\",365]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Collision\",\"value\":0.5072972343239854}]},\"metrics\":[{\"label\":\"Collision\",\"value\":\"0.507\"},{\"label\":\"Days\",\"value\":\"365\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.case.1.witness",
+      "text": "Days=300; Collision=0.579",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"People\",23],[\"Days\",300]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Collision\",\"value\":0.5790513037833428}]},\"metrics\":[{\"label\":\"Collision\",\"value\":\"0.579\"},{\"label\":\"Days\",\"value\":\"300\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0075.recall",
+      "text": "With 24 independent uniform birthdays across 365 days, what is the probability of any shared birthday? Answer 0.538.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0075/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #75. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With 24 independent uniform birthdays across 365 days, what is the probability of any shared birthday?",
+    "options": [
+      "0.323",
+      "0.538",
+      "0.754"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Collision 0.538 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0075",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-75"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 75,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **75. Birthday calendar** \\[Story\\]: real birthdays aren't uniform; US births dip on holidays and peak in September.",
+    "modelBoundary": "the support size of a simplified birthday model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      24,
+      365
+    ]
+  }
+}

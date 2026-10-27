@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0956",
+  "title": "One Fourier feature contributes a wave",
+  "hook": "Two stated cases: explore the sampled angular frequency before kernel averaging.",
+  "domain": "probability",
+  "concept": "cp-source-0956",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sampled angular frequency before kernel averaging affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Kernel, regardless of the stated inputs.",
+  "objective": "Compare the sampled angular frequency before kernel averaging in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0956.predict",
+      "text": "One toy Fourier feature uses angular frequency Omega 1. What cosine kernel contribution occurs at Distance 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.reveal.0",
+      "text": "The retained results are Omega=1; Kernel=0.54 and Omega=3; Kernel=-0.99.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.reveal.1",
+      "text": "Averaging random-frequency contributions can approximate a stationary kernel. One chosen contribution is not a converged approximation. This comparison isolates the sampled angular frequency before kernel averaging.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.case.0.witness",
+      "text": "Omega=1; Kernel=0.54",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",1],[\"Omega\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.20833333333333334,\"y\":0.9783769893537537},{\"x\":0.4166666666666667,\"y\":0.9144430665938302},{\"x\":0.625,\"y\":0.8109631195052179},{\"x\":0.8333333333333334,\"y\":0.6724122440830567},{\"x\":1.0416666666666667,\"y\":0.5047822144359468},{\"x\":1.25,\"y\":0.3153223623952687},{\"x\":1.4583333333333333,\"y\":0.11222607275644564},{\"x\":1.6666666666666667,\"y\":-0.09572354801437566},{\"x\":1.875,\"y\":-0.29953350618957414},{\"x\":2.0833333333333335,\"y\":-0.4903898319782835},{\"x\":2.2916666666666665,\"y\":-0.6600387486516379},{\"x\":2.5,\"y\":-0.8011436155469337},{\"x\":2.7083333333333335,\"y\":-0.9076022085859423},{\"x\":2.9166666666666665,\"y\":-0.97481061718733},{\"x\":3.125,\"y\":-0.9998623450816866},{\"x\":3.3333333333333335,\"y\":-0.981674004711079},{\"x\":3.5416666666666665,\"y\":-0.9210321694304499},{\"x\":3.75,\"y\":-0.8205593573395608},{\"x\":3.9583333333333335,\"y\":-0.684600617809411},{\"x\":4.166666666666667,\"y\":-0.5190356253846217},{\"x\":4.375,\"y\":-0.3310244072528874},{\"x\":4.583333333333333,\"y\":-0.12869770055676},{\"x\":4.791666666666667,\"y\":0.07919466963794071},{\"x\":5,\"y\":0.28366218546322625}],\"xLabel\":\"Distance\",\"yLabel\":\"Kernel\"},\"metrics\":[{\"label\":\"Kernel\",\"value\":\"0.54\"},{\"label\":\"Omega\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.case.1.witness",
+      "text": "Omega=3; Kernel=-0.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",1],[\"Omega\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.20833333333333334,\"y\":0.8109631195052179},{\"x\":0.4166666666666667,\"y\":0.3153223623952687},{\"x\":0.625,\"y\":-0.29953350618957414},{\"x\":0.8333333333333334,\"y\":-0.8011436155469337},{\"x\":1.0416666666666667,\"y\":-0.9998623450816866},{\"x\":1.25,\"y\":-0.8205593573395608},{\"x\":1.4583333333333333,\"y\":-0.3310244072528874},{\"x\":1.6666666666666667,\"y\":0.28366218546322625},{\"x\":1.875,\"y\":0.7911035488707386},{\"x\":2.0833333333333335,\"y\":0.9994494182244994},{\"x\":2.2916666666666665,\"y\":0.8299296871112918},{\"x\":2.5,\"y\":0.3466353178350258},{\"x\":2.7083333333333335,\"y\":-0.2677127697469413},{\"x\":2.9166666666666665,\"y\":-0.7808456836057491},{\"x\":3.125,\"y\":-0.998761333111264},{\"x\":3.3333333333333335,\"y\":-0.8390715290764524},{\"x\":3.5416666666666665,\"y\":-0.36215079630444197},{\"x\":3.75,\"y\":0.2516896500717544},{\"x\":3.9583333333333335,\"y\":0.7703728438431753},{\"x\":4.166666666666667,\"y\":0.9977982791785807},{\"x\":4.375,\"y\":0.8479823663960249},{\"x\":4.583333333333333,\"y\":0.3775665710972933},{\"x\":4.791666666666667,\"y\":-0.23559723776012562},{\"x\":5,\"y\":-0.7596879128588213}],\"xLabel\":\"Distance\",\"yLabel\":\"Kernel\"},\"metrics\":[{\"label\":\"Kernel\",\"value\":\"-0.99\"},{\"label\":\"Omega\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0956.recall",
+      "text": "One toy Fourier feature uses angular frequency Omega 1. What cosine kernel contribution occurs at Distance 2? Answer -0.416.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0956/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #956. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One toy Fourier feature uses angular frequency Omega 1. What cosine kernel contribution occurs at Distance 2?",
+    "options": [
+      "-0.416",
+      "-0.583",
+      "-0.25"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Kernel -0.416 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0956",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-956"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 956,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **956. Random Fourier features** \\[Slider\\]: sum random cosine waves to approximate a Gaussian-process kernel; more features, better fit.",
+    "modelBoundary": "the sampled angular frequency before kernel averaging",
+    "recallInputs": [
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

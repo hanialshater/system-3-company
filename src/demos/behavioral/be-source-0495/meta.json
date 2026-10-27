@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0495",
+  "title": "A small effect in one subgroup",
+  "hook": "Two stated cases: explore the subgroup weights behind an average grade increment.",
+  "domain": "behavioral",
+  "concept": "be-source-0495",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the subgroup weights behind an average grade increment affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the subgroup weights behind an average grade increment in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0495.predict",
+      "text": "A toy mixture puts fraction 0.2 at rate 0.1 and the remainder at rate 0. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.reveal.0",
+      "text": "The retained results are Weight=0.2; Rate=0.02 and Weight=0.8; Rate=0.08.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates the subgroup weights behind an average grade increment.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.case.0.witness",
+      "text": "Weight=0.2; Rate=0.02",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.2],[\"RateA\",0.1],[\"RateB\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.020000000000000004}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.02\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.case.1.witness",
+      "text": "Weight=0.8; Rate=0.08",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.8],[\"RateA\",0.1],[\"RateB\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.08000000000000002}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.08\"},{\"label\":\"Weight\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0495.recall",
+      "text": "A toy mixture puts fraction 0.16 at rate 0.1 and the remainder at rate 0. What is its aggregate rate? Answer 0.016.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0495/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #495. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.16 at rate 0.1 and the remainder at rate 0. What is its aggregate rate?",
+    "options": [
+      "-0.084",
+      "0.016",
+      "0.116"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Rate 0.016 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0495",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-495"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 495,
+    "sourceSection": "25. Famous findings that failed to replicate or shrank",
+    "sourceEntryOriginal": "- **495.** Growth-mindset interventions have weak effects on average (Sisk et al., 2018), with a national study finding about 0.1 grade points among lower-achieving students (Yeager et al., 2019).",
+    "modelBoundary": "the subgroup weights behind an average grade increment",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.16000000000000003,
+      0.1,
+      0
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0947",
+  "title": "Noise colors have different slopes",
+  "hook": "Two stated cases: explore the frequency exponent of a stipulated power spectrum.",
+  "domain": "probability",
+  "concept": "cp-source-0947",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the frequency exponent of a stipulated power spectrum affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Power, regardless of the stated inputs.",
+  "objective": "Compare the frequency exponent of a stipulated power spectrum in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0947.predict",
+      "text": "A stipulated toy power spectrum is frequency^(-Exponent 0). What power occurs at Frequency 2?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.reveal.0",
+      "text": "The retained results are Exponent=0; Power=1 and Exponent=2; Power=0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.reveal.1",
+      "text": "White, pink and Brown-like slopes differ in their frequency weighting. A plotted spectrum alone is not synthesized audio. This comparison isolates the frequency exponent of a stipulated power spectrum.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.case.0.witness",
+      "text": "Exponent=0; Power=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",2],[\"Exponent\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.1,\"y\":1},{\"x\":0.3041666666666667,\"y\":1},{\"x\":0.5083333333333334,\"y\":1},{\"x\":0.7125,\"y\":1},{\"x\":0.9166666666666667,\"y\":1},{\"x\":1.1208333333333333,\"y\":1},{\"x\":1.3250000000000002,\"y\":1},{\"x\":1.529166666666667,\"y\":1},{\"x\":1.7333333333333336,\"y\":1},{\"x\":1.9375000000000002,\"y\":1},{\"x\":2.1416666666666666,\"y\":1},{\"x\":2.3458333333333337,\"y\":1},{\"x\":2.5500000000000003,\"y\":1},{\"x\":2.754166666666667,\"y\":1},{\"x\":2.958333333333334,\"y\":1},{\"x\":3.1625,\"y\":1},{\"x\":3.366666666666667,\"y\":1},{\"x\":3.5708333333333337,\"y\":1},{\"x\":3.7750000000000004,\"y\":1},{\"x\":3.979166666666667,\"y\":1},{\"x\":4.183333333333333,\"y\":1},{\"x\":4.3875,\"y\":1},{\"x\":4.591666666666667,\"y\":1},{\"x\":4.795833333333333,\"y\":1},{\"x\":5,\"y\":1}],\"xLabel\":\"Frequency\",\"yLabel\":\"Power\"},\"metrics\":[{\"label\":\"Power\",\"value\":\"1\"},{\"label\":\"Exponent\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.case.1.witness",
+      "text": "Exponent=2; Power=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",2],[\"Exponent\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.1,\"y\":99.99999999999999},{\"x\":0.3041666666666667,\"y\":10.80878213548508},{\"x\":0.5083333333333334,\"y\":3.86992743886052},{\"x\":0.7125,\"y\":1.9698368728839641},{\"x\":0.9166666666666667,\"y\":1.190082644628099},{\"x\":1.1208333333333333,\"y\":0.7960088998217272},{\"x\":1.3250000000000002,\"y\":0.5695977216091134},{\"x\":1.529166666666667,\"y\":0.4276518498169856},{\"x\":1.7333333333333336,\"y\":0.3328402366863904},{\"x\":1.9375000000000002,\"y\":0.2663891779396461},{\"x\":2.1416666666666666,\"y\":0.21801995488198156},{\"x\":2.3458333333333337,\"y\":0.1817212408784455},{\"x\":2.5500000000000003,\"y\":0.15378700499807763},{\"x\":2.754166666666667,\"y\":0.13183161257984852},{\"x\":2.958333333333334,\"y\":0.11426304304701443},{\"x\":3.1625,\"y\":0.099985939477261},{\"x\":3.366666666666667,\"y\":0.08822664444662286},{\"x\":3.5708333333333337,\"y\":0.0784261398681188},{\"x\":3.7750000000000004,\"y\":0.07017236086136572},{\"x\":3.979166666666667,\"y\":0.06315616348236067},{\"x\":4.183333333333333,\"y\":0.057141950127775766},{\"x\":4.3875,\"y\":0.05194763029520864},{\"x\":4.591666666666667,\"y\":0.04743067381200984},{\"x\":4.795833333333333,\"y\":0.04347822805085443},{\"x\":5,\"y\":0.04}],\"xLabel\":\"Frequency\",\"yLabel\":\"Power\"},\"metrics\":[{\"label\":\"Power\",\"value\":\"0.25\"},{\"label\":\"Exponent\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0947.recall",
+      "text": "A stipulated toy power spectrum is frequency^(-Exponent 1). What power occurs at Frequency 2? Answer 0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0947/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #947. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stipulated toy power spectrum is frequency^(-Exponent 1). What power occurs at Frequency 2?",
+    "options": [
+      "0.5",
+      "0.3",
+      "0.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Power 0.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0947",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-947"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 947,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **947. Colors of noise** \\[Split\\]: listen to white, pink and brown noise and see their spectra slope differently.",
+    "modelBoundary": "the frequency exponent of a stipulated power spectrum",
+    "recallInputs": [
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

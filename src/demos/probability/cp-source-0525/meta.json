@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0525",
+  "title": "Which of two jobs goes first?",
+  "hook": "Two stated cases: explore the mean wait in two explicitly ordered jobs.",
+  "domain": "probability",
+  "concept": "cp-source-0525",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mean wait in two explicitly ordered jobs affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MeanWait, regardless of the stated inputs.",
+  "objective": "Compare the mean wait in two explicitly ordered jobs in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0525.predict",
+      "text": "Two toy jobs arrive together, durations Long 10, Short 1. ShortFirst 0=1 serves the short job first, 0 the long. What is mean time waiting before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.reveal.0",
+      "text": "The retained results are ShortFirst=0; MeanWait=5 and ShortFirst=1; MeanWait=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.reveal.1",
+      "text": "The first job waits zero and the second waits for the first. Mean delay and fairness can favor different scheduling rules. This comparison isolates the mean wait in two explicitly ordered jobs.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.case.0.witness",
+      "text": "ShortFirst=0; MeanWait=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Long\",10],[\"Short\",1],[\"ShortFirst\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanWait\",\"value\":5}]},\"metrics\":[{\"label\":\"MeanWait\",\"value\":\"5\"},{\"label\":\"ShortFirst\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.case.1.witness",
+      "text": "ShortFirst=1; MeanWait=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Long\",10],[\"Short\",1],[\"ShortFirst\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeanWait\",\"value\":0.5}]},\"metrics\":[{\"label\":\"MeanWait\",\"value\":\"0.5\"},{\"label\":\"ShortFirst\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0525.recall",
+      "text": "Two toy jobs arrive together, durations Long 11, Short 1. ShortFirst 0=1 serves the short job first, 0 the long. What is mean time waiting before service? Answer 5.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0525/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #525. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy jobs arrive together, durations Long 11, Short 1. ShortFirst 0=1 serves the short job first, 0 the long. What is mean time waiting before service?",
+    "options": [
+      "3.3",
+      "5.5",
+      "7.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives MeanWait 5.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0525",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-525"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 525,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **525. FIFO, LIFO, sharing** \\[Split\\]: the same jobs under three scheduling rules; compare waits and fairness.",
+    "modelBoundary": "the mean wait in two explicitly ordered jobs",
+    "recallInputs": [
+      11,
+      1,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

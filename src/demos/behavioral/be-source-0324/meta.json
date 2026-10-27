@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0324",
+  "title": "Three questions, a denominator",
+  "hook": "Two stated cases: explore the descriptive share behind a literacy score.",
+  "domain": "behavioral",
+  "concept": "be-source-0324",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the descriptive share behind a literacy score affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Accuracy, regardless of the stated inputs.",
+  "objective": "Compare the descriptive share behind a literacy score in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0324.predict",
+      "text": "A toy assessment has 100 correct answers among 300. What fraction is correct?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.reveal.0",
+      "text": "The retained results are Correct=100 Total=300; Accuracy=0.333 and Correct=200 Total=600; Accuracy=0.333.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.reveal.1",
+      "text": "A score needs its denominator. This descriptive fraction does not establish skill, causation or the accuracy of another population. This comparison isolates the descriptive share behind a literacy score.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.case.0.witness",
+      "text": "Correct=100 Total=300; Accuracy=0.333",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Correct\",100],[\"Total\",300]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.3333333333333333}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.333\"},{\"label\":\"Correct\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.case.1.witness",
+      "text": "Correct=200 Total=600; Accuracy=0.333",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Correct\",200],[\"Total\",600]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.3333333333333333}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.333\"},{\"label\":\"Correct\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0324.recall",
+      "text": "A toy assessment has 101 correct answers among 300. What fraction is correct? Answer 0.337.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0324/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #324. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy assessment has 101 correct answers among 300. What fraction is correct?",
+    "options": [
+      "0.202",
+      "0.337",
+      "0.471"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Accuracy 0.337 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0324",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-324"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 324,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **324.** Only about a third of Americans over 50 answered three basic questions on interest, inflation and diversification correctly (Lusardi & Mitchell, 2011).",
+    "modelBoundary": "the descriptive share behind a literacy score",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      300
+    ]
+  }
+}

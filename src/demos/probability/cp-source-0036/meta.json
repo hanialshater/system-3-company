@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0036",
+  "title": "A coin walk can look like a trend",
+  "hook": "Two stated cases: explore diffusive displacement rather than a market forecast.",
+  "domain": "probability",
+  "concept": "cp-source-0036",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How diffusive displacement rather than a market forecast affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines RMS, regardless of the stated inputs.",
+  "objective": "Compare diffusive displacement rather than a market forecast in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0036.predict",
+      "text": "A symmetric independent toy walk takes 100 steps of magnitude 1. What is its root-mean-square displacement?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.reveal.0",
+      "text": "The retained results are Steps=100; RMS=10 and Steps=400; RMS=20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.reveal.1",
+      "text": "Independent zero-mean increments add variances. Root-mean-square displacement differs from total distance traveled and mean absolute displacement. This comparison isolates diffusive displacement rather than a market forecast.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.case.0.witness",
+      "text": "Steps=100; RMS=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",100],[\"Size\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RMS\",\"value\":10}]},\"metrics\":[{\"label\":\"RMS\",\"value\":\"10\"},{\"label\":\"Steps\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.case.1.witness",
+      "text": "Steps=400; RMS=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",400],[\"Size\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RMS\",\"value\":20}]},\"metrics\":[{\"label\":\"RMS\",\"value\":\"20\"},{\"label\":\"Steps\",\"value\":\"400\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0036.recall",
+      "text": "A symmetric independent toy walk takes 101 steps of magnitude 1. What is its root-mean-square displacement? Answer 10.05.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0036/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #36. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A symmetric independent toy walk takes 101 steps of magnitude 1. What is its root-mean-square displacement?",
+    "options": [
+      "6.03",
+      "10.05",
+      "14.07"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives RMS 10.05 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0036",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-36"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 36,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **36. Stock or coin?** \\[Split\\]: guess which chart is a real stock and which is a coin-flip random walk.",
+    "modelBoundary": "diffusive displacement rather than a market forecast",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      1
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0840",
+  "title": "A test's expected benefit meets cost",
+  "hook": "Two stated cases: explore a supplied value-of-information benefit and testing cost.",
+  "domain": "probability",
+  "concept": "cp-source-0840",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a supplied value-of-information benefit and testing cost affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare a supplied value-of-information benefit and testing cost in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0840.predict",
+      "text": "A toy policy reduces a loss by 100 with probability 0.5 and costs 20. What is its expected cash gain minus cost?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.reveal.0",
+      "text": "The retained results are Cost=20; Net=30 and Cost=60; Net=-10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.reveal.1",
+      "text": "Expected cash value weights the avoided loss by its probability. Utility, liquidity and risk tolerance are separate assumptions. This comparison isolates a supplied value-of-information benefit and testing cost.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.case.0.witness",
+      "text": "Cost=20; Net=30",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.5],[\"Reduction\",100],[\"Cost\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":30}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"30\"},{\"label\":\"Cost\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.case.1.witness",
+      "text": "Cost=60; Net=-10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.5],[\"Reduction\",100],[\"Cost\",60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":-10}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-10\"},{\"label\":\"Cost\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0840.recall",
+      "text": "A toy policy reduces a loss by 100 with probability 0.4 and costs 20. What is its expected cash gain minus cost? Answer 20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0840/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #840. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy reduces a loss by 100 with probability 0.4 and costs 20. What is its expected cash gain minus cost?",
+    "options": [
+      "12",
+      "20",
+      "28"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Net 20 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0840",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-840"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 840,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **840. Is the test worth running?** \\[Slider\\]: compare the expected value of information with the cost of testing.",
+    "modelBoundary": "a supplied value-of-information benefit and testing cost",
+    "recallInputs": [
+      0.4,
+      100,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

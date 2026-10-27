@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0469",
+  "title": "Depletion meets twenty-three labs",
+  "hook": "Two stated cases: explore the evidence weight assigned to a near-zero replication.",
+  "domain": "behavioral",
+  "concept": "be-source-0469",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the evidence weight assigned to a near-zero replication affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Pooled, regardless of the stated inputs.",
+  "objective": "Compare the evidence weight assigned to a near-zero replication in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0469.predict",
+      "text": "Toy visible studies average -0.6 across 1 equal-weight studies; missing studies average 0 across 23. What is the mean if all are included?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.reveal.0",
+      "text": "The retained results are MissingN=23; Pooled=-0.025 and MissingN=1; Pooled=-0.3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.reveal.1",
+      "text": "Selection of studies can change a pooled estimate. Missing results here are explicit sensitivity assumptions, not recovered observations. This comparison isolates the evidence weight assigned to a near-zero replication.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.case.0.witness",
+      "text": "MissingN=23; Pooled=-0.025",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",-0.6],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",23]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":-0.024999999999999998}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"-0.025\"},{\"label\":\"MissingN\",\"value\":\"23\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.case.1.witness",
+      "text": "MissingN=1; Pooled=-0.3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Visible\",-0.6],[\"VisibleN\",1],[\"Missing\",0],[\"MissingN\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Pooled\",\"value\":-0.3}]},\"metrics\":[{\"label\":\"Pooled\",\"value\":\"-0.3\"},{\"label\":\"MissingN\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0469.recall",
+      "text": "Toy visible studies average -0.5 across 1 equal-weight studies; missing studies average 0 across 23. What is the mean if all are included? Answer -0.021.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0469/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #469. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy visible studies average -0.5 across 1 equal-weight studies; missing studies average 0 across 23. What is the mean if all are included?",
+    "options": [
+      "-0.121",
+      "0.079",
+      "-0.021"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Pooled -0.021 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0469",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-469"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 469,
+    "sourceSection": "24. Scarcity, attention & cognitive load",
+    "sourceEntryOriginal": "- **469.** **\\[contested\\]** Self-control was said to be a depletable resource (Baumeister, Bratslavsky, Muraven & Tice, 1998); a 23-lab replication found an effect near zero (Hagger et al., 2016).",
+    "modelBoundary": "the evidence weight assigned to a near-zero replication",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      -0.5,
+      1,
+      0,
+      23
+    ]
+  }
+}

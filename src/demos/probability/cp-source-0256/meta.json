@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0256",
+  "title": "Pull early averages toward the group",
+  "hook": "Two stated cases: explore the evidence weight in a toy shrinkage estimator.",
+  "domain": "probability",
+  "concept": "cp-source-0256",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the evidence weight in a toy shrinkage estimator affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the evidence weight in a toy shrinkage estimator in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0256.predict",
+      "text": "A toy pooled estimate gives 0.4 weight 2 and another estimate 0.25 weight 1. What is the weighted mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.reveal.0",
+      "text": "The retained results are Weight=2; Mean=0.35 and Weight=20; Mean=0.393.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.reveal.1",
+      "text": "A pooled result depends on both estimates and their weights. A larger headline alone is not stronger evidence. This comparison isolates the evidence weight in a toy shrinkage estimator.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.case.0.witness",
+      "text": "Weight=2; Mean=0.35",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.4],[\"Weight\",2],[\"Other\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.35000000000000003}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.35\"},{\"label\":\"Weight\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.case.1.witness",
+      "text": "Weight=20; Mean=0.393",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.4],[\"Weight\",20],[\"Other\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.39285714285714285}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.393\"},{\"label\":\"Weight\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0256.recall",
+      "text": "A toy pooled estimate gives 0.5 weight 2 and another estimate 0.25 weight 1. What is the weighted mean? Answer 0.417.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0256/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #256. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pooled estimate gives 0.5 weight 2 and another estimate 0.25 weight 1. What is the weighted mean?",
+    "options": [
+      "0.25",
+      "0.583",
+      "0.417"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 0.417 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0256",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-256"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 256,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceEntryOriginal": "- **256. Stein's paradox** \\[Story\\]: shrinking each baseball player's early average toward the group mean predicted the season better (Efron & Morris, 1975).",
+    "modelBoundary": "the evidence weight in a toy shrinkage estimator",
+    "recallInputs": [
+      0.5,
+      2,
+      0.25
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

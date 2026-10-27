@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0253",
+  "title": "Multiply ranges in a Fermi estimate",
+  "hook": "Two stated cases: explore positive-factor bounds rather than a confidence interval.",
+  "domain": "probability",
+  "concept": "cp-source-0253",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How positive-factor bounds rather than a confidence interval affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Lower, regardless of the stated inputs.",
+  "objective": "Compare positive-factor bounds rather than a confidence interval in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0253.predict",
+      "text": "Two positive toy factors range from 100 to 200, and 2 to 5. What is the smallest product allowed by these bounds?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.reveal.0",
+      "text": "The retained results are HighA=200; Lower=200 and HighA=500; Lower=200.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.reveal.1",
+      "text": "Range propagation is not a probability interval. The endpoints describe allowed combinations under the stated positive-factor bounds. This comparison isolates positive-factor bounds rather than a confidence interval.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.case.0.witness",
+      "text": "HighA=200; Lower=200",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LowA\",100],[\"HighA\",200],[\"LowB\",2],[\"HighB\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lower\",\"value\":200},{\"label\":\"Upper\",\"value\":1000}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"200\"},{\"label\":\"HighA\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.case.1.witness",
+      "text": "HighA=500; Lower=200",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LowA\",100],[\"HighA\",500],[\"LowB\",2],[\"HighB\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lower\",\"value\":200},{\"label\":\"Upper\",\"value\":2500}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"200\"},{\"label\":\"HighA\",\"value\":\"500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0253.recall",
+      "text": "Two positive toy factors range from 101 to 200, and 2 to 5. What is the smallest product allowed by these bounds? Answer 202.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0253/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #253. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two positive toy factors range from 101 to 200, and 2 to 5. What is the smallest product allowed by these bounds?",
+    "options": [
+      "121.2",
+      "282.8",
+      "202"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Lower 202 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0253",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-253"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 253,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceEntryOriginal": "- **253. Fermi estimates** \\[Measure\\]: estimate piano tuners in Berlin with ranges at each step and see the final uncertainty.",
+    "modelBoundary": "positive-factor bounds rather than a confidence interval",
+    "recallInputs": [
+      101,
+      200,
+      2,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

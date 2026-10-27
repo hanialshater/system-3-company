@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0272",
+  "title": "An observed breakfast association",
+  "hook": "Two stated cases: explore the difference between observing and assigning a behavior.",
+  "domain": "probability",
+  "concept": "cp-source-0272",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the difference between observing and assigning a behavior affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Slope, regardless of the stated inputs.",
+  "objective": "Compare the difference between observing and assigning a behavior in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0272.predict",
+      "text": "Standardized toy X and U have Corr 0.7; Y=Direct 0×X+Common 1×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.reveal.0",
+      "text": "The retained results are Do=0; Slope=0.7 and Do=1; Slope=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.reveal.1",
+      "text": "The common cause can change the observational slope without changing the intervention derivative. The causal conclusion follows the specified structural equations. This comparison isolates the difference between observing and assigning a behavior.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.case.0.witness",
+      "text": "Do=0; Slope=0.7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Common\",1],[\"Corr\",0.7],[\"Do\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"0.7\"},{\"label\":\"Do\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.case.1.witness",
+      "text": "Do=1; Slope=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Common\",1],[\"Corr\",0.7],[\"Do\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":false},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"0\"},{\"label\":\"Do\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0272.recall",
+      "text": "Standardized toy X and U have Corr 0.7; Y=Direct 1×X+Common 1×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results? Answer 1.7.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0272/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #272. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Standardized toy X and U have Corr 0.7; Y=Direct 1×X+Common 1×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+    "options": [
+      "1.7",
+      "1.02",
+      "2.38"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Slope 1.7 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0272",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-272"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 272,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceEntryOriginal": "- **272. Breakfast and weight** \\[Split\\]: half see the observational link, half see trial results; compare conclusions.",
+    "modelBoundary": "the difference between observing and assigning a behavior",
+    "recallInputs": [
+      1,
+      1,
+      0.7,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

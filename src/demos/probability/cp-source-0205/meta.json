@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0205",
+  "title": "A uniform password model",
+  "hook": "Two stated cases: explore the independence assumption behind password entropy.",
+  "domain": "probability",
+  "concept": "cp-source-0205",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the independence assumption behind password entropy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bits, regardless of the stated inputs.",
+  "objective": "Compare the independence assumption behind password entropy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0205.predict",
+      "text": "A toy password draws 8 characters independently and uniformly from an alphabet of 26. What is its entropy in bits?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.reveal.0",
+      "text": "The retained results are Length=8; Bits=37.604 and Length=12; Bits=56.405.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.reveal.1",
+      "text": "The calculation assumes uniform independent generation. A human pattern or reused password need not have the same entropy. This comparison isolates the independence assumption behind password entropy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.case.0.witness",
+      "text": "Length=8; Bits=37.604",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alphabet\",26],[\"Length\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":37.603517745128734}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"37.604\"},{\"label\":\"Length\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.case.1.witness",
+      "text": "Length=12; Bits=56.405",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alphabet\",26],[\"Length\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":56.405276617693104}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"56.405\"},{\"label\":\"Length\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0205.recall",
+      "text": "A toy password draws 8 characters independently and uniformly from an alphabet of 27. What is its entropy in bits? Answer 38.039.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0205/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #205. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy password draws 8 characters independently and uniformly from an alphabet of 27. What is its entropy in bits?",
+    "options": [
+      "22.823",
+      "53.255",
+      "38.039"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Bits 38.039 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0205",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-205"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 205,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **205. Password strength** \\[Measure\\]: type a password pattern and see its entropy and time-to-crack.",
+    "modelBoundary": "the independence assumption behind password entropy",
+    "recallInputs": [
+      27,
+      8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

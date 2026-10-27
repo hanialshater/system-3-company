@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0848",
+  "title": "Geographic separation reduces leakage",
+  "hook": "Two stated cases: explore the cross-boundary exposure assumed in a geo design.",
+  "domain": "probability",
+  "concept": "cp-source-0848",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cross-boundary exposure assumed in a geo design affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Total, regardless of the stated inputs.",
+  "objective": "Compare the cross-boundary exposure assumed in a geo design in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0848.predict",
+      "text": "A toy unit gets direct effect 0 plus Spill 1 per treated neighbor. With 5 treated neighbors, what total effect results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.reveal.0",
+      "text": "The retained results are TreatedNeighbors=5; Total=5 and TreatedNeighbors=0; Total=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.reveal.1",
+      "text": "With interference, exposure includes neighbors’ assignments. A single treatment indicator is insufficient to define every unit’s outcome. This comparison isolates the cross-boundary exposure assumed in a geo design.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.case.0.witness",
+      "text": "TreatedNeighbors=5; Total=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Spill\",1],[\"TreatedNeighbors\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"Neighbors\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"5\"},{\"label\":\"TreatedNeighbors\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.case.1.witness",
+      "text": "TreatedNeighbors=0; Total=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Spill\",1],[\"TreatedNeighbors\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"Neighbors\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"0\"},{\"label\":\"TreatedNeighbors\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0848.recall",
+      "text": "A toy unit gets direct effect 1 plus Spill 1 per treated neighbor. With 5 treated neighbors, what total effect results? Answer 6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0848/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #848. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy unit gets direct effect 1 plus Spill 1 per treated neighbor. With 5 treated neighbors, what total effect results?",
+    "options": [
+      "6",
+      "3.6",
+      "8.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Total 6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0848",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-848"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 848,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceEntryOriginal": "- **848. Geo experiments** \\[Slider\\]: randomize whole cities to measure a marketing change without spillover between users.",
+    "modelBoundary": "the cross-boundary exposure assumed in a geo design",
+    "recallInputs": [
+      1,
+      1,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

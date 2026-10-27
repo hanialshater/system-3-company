@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0168",
+  "title": "The favorite must survive each round",
+  "hook": "Two stated cases: explore multiplication across independent tournament rounds.",
+  "domain": "probability",
+  "concept": "cp-source-0168",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How multiplication across independent tournament rounds affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare multiplication across independent tournament rounds in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0168.predict",
+      "text": "Each of 4 independent required stages succeeds with probability 0.7. What is the probability all stages succeed?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.reveal.0",
+      "text": "The retained results are P=0.7; Probability=0.24 and P=0.9; Probability=0.656.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.reveal.1",
+      "text": "Multiplication requires the stated independence. More required stages can lower the final success chance despite favorable individual odds. This comparison isolates multiplication across independent tournament rounds.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.case.0.witness",
+      "text": "P=0.7; Probability=0.24",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.7],[\"Count\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.24009999999999995}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.24\"},{\"label\":\"P\",\"value\":\"0.7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.case.1.witness",
+      "text": "P=0.9; Probability=0.656",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.9],[\"Count\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.6561}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.656\"},{\"label\":\"P\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0168.recall",
+      "text": "Each of 4 independent required stages succeeds with probability 0.56. What is the probability all stages succeed? Answer 0.098.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0168/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #168. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each of 4 independent required stages succeeds with probability 0.56. What is the probability all stages succeed?",
+    "options": [
+      "-0.002",
+      "0.098",
+      "0.198"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Probability 0.098 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0168",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-168"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 168,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **168. Bracket simulator** \\[Predict\\]: simulate a tournament 10,000 times; even the favorite usually doesn't win.",
+    "modelBoundary": "multiplication across independent tournament rounds",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.5599999999999999,
+      4
+    ]
+  }
+}

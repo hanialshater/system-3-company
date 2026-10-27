@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0523",
+  "title": "Few jobs can mean much outstanding work",
+  "hook": "Two stated cases: explore job counts versus remaining workload.",
+  "domain": "probability",
+  "concept": "cp-source-0523",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How job counts versus remaining workload affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare job counts versus remaining workload in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0523.predict",
+      "text": "Toy queues A/B have counts 1/5, outstanding work 100/10. ByWork 0=1 picks less work; 0 picks fewer jobs. What chosen workload results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.reveal.0",
+      "text": "The retained results are ByWork=0; Wait=100 and ByWork=1; Wait=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.reveal.1",
+      "text": "Job counts can hide unequal sizes. Least outstanding work and least connections need not select the same server. This comparison isolates job counts versus remaining workload.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.case.0.witness",
+      "text": "ByWork=0; Wait=100",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"CountA\",1],[\"WorkA\",100],[\"CountB\",5],[\"WorkB\",10],[\"ByWork\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":100}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"100\"},{\"label\":\"ByWork\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.case.1.witness",
+      "text": "ByWork=1; Wait=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"CountA\",1],[\"WorkA\",100],[\"CountB\",5],[\"WorkB\",10],[\"ByWork\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":10}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"10\"},{\"label\":\"ByWork\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0523.recall",
+      "text": "Toy queues A/B have counts 1/5, outstanding work 101/10. ByWork 0=1 picks less work; 0 picks fewer jobs. What chosen workload results? Answer 101.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0523/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #523. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy queues A/B have counts 1/5, outstanding work 101/10. ByWork 0=1 picks less work; 0 picks fewer jobs. What chosen workload results?",
+    "options": [
+      "60.6",
+      "141.4",
+      "101"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Wait 101 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0523",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-523"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 523,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **523. Load balancer showdown** \\[Slider\\]: round robin vs least-connections under uneven job sizes.",
+    "modelBoundary": "job counts versus remaining workload",
+    "recallInputs": [
+      1,
+      101,
+      5,
+      10,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

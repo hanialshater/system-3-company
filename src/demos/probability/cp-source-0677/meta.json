@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0677",
+  "title": "A map can shift with the robot",
+  "hook": "Two stated cases: explore the translation ambiguity of relative localization.",
+  "domain": "probability",
+  "concept": "cp-source-0677",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the translation ambiguity of relative localization affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Range, regardless of the stated inputs.",
+  "objective": "Compare the translation ambiguity of relative localization in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0677.predict",
+      "text": "A toy robot is at 2, landmark at 8. Shift both by 0. What landmark-minus-robot displacement remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.reveal.0",
+      "text": "The retained results are Shift=0; Range=6 and Shift=100; Range=6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.reveal.1",
+      "text": "Relative displacement survives a shared translation. Absolute position requires an anchor; this is one SLAM identifiability ingredient. This comparison isolates the translation ambiguity of relative localization.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.case.0.witness",
+      "text": "Shift=0; Range=6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Robot\",2],[\"Landmark\",8],[\"Shift\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Range\",\"value\":6},{\"label\":\"RobotShift\",\"value\":2},{\"label\":\"LandmarkShift\",\"value\":8}]},\"metrics\":[{\"label\":\"Range\",\"value\":\"6\"},{\"label\":\"Shift\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.case.1.witness",
+      "text": "Shift=100; Range=6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Robot\",2],[\"Landmark\",8],[\"Shift\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Range\",\"value\":6},{\"label\":\"RobotShift\",\"value\":102},{\"label\":\"LandmarkShift\",\"value\":108}]},\"metrics\":[{\"label\":\"Range\",\"value\":\"6\"},{\"label\":\"Shift\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0677.recall",
+      "text": "A toy robot is at 3, landmark at 8. Shift both by 0. What landmark-minus-robot displacement remains? Answer 5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0677/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #677. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy robot is at 3, landmark at 8. Shift both by 0. What landmark-minus-robot displacement remains?",
+    "options": [
+      "5",
+      "3",
+      "7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Range 5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0677",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-677"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 677,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **677. SLAM** \\[Slider\\]: a robot maps a room while locating itself in it.",
+    "modelBoundary": "the translation ambiguity of relative localization",
+    "recallInputs": [
+      3,
+      8,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

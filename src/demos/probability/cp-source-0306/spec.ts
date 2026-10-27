@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0306", "title": "Failed funds leave the database", "op": "selectedmean", "labels": ["Good", "Bad", "Share", "KeepGood", "KeepBad"], "outputs": ["Selected", "Full"], "a": [20.0, -20.0, 0.5, 1.0, 0.1], "b": [20.0, -20.0, 0.5, 1.0, 1.0], "question": "A toy population has Good outcome 20 with share 0.5, otherwise Bad -20. Retain fractions 1 and 0.1 respectively. What mean is observed among retained units?", "questionTemplate": "A toy population has Good outcome {Good} with share {Share}, otherwise Bad {Bad}. Retain fractions {KeepGood} and {KeepBad} respectively. What mean is observed among retained units?", "explain": "Outcome-dependent inclusion changes the observed mixture. A large selected sample cannot by itself repair missing low-retention outcomes.", "lens": "outcome-dependent inclusion in a fund-return average", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

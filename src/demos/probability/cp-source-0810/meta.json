@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0810",
+  "title": "Noisier inputs get wider bands",
+  "hook": "Two stated cases: explore the local observation spread in a toy prediction interval.",
+  "domain": "probability",
+  "concept": "cp-source-0810",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the local observation spread in a toy prediction interval affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HalfWidth, regardless of the stated inputs.",
+  "objective": "Compare the local observation spread in a toy prediction interval in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0810.predict",
+      "text": "Known toy SD 1, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.reveal.0",
+      "text": "The retained results are SD=1; HalfWidth=2.049 and SD=3; HalfWidth=6.148.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.reveal.1",
+      "text": "An individual prediction includes irreducible observation noise. These normal intervals assume a known variance and independent data. This comparison isolates the local observation spread in a toy prediction interval.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.case.0.witness",
+      "text": "SD=1; HalfWidth=2.049",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",1],[\"N\",20],[\"Z\",2],[\"Prediction\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":2.04939015319192}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"2.049\"},{\"label\":\"SD\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.case.1.witness",
+      "text": "SD=3; HalfWidth=6.148",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SD\",3],[\"N\",20],[\"Z\",2],[\"Prediction\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":6.148170459575759}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"6.148\"},{\"label\":\"SD\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0810.recall",
+      "text": "Known toy SD 2, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results? Answer 4.099.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0810/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #810. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Known toy SD 2, N 20, Z multiplier 2. Prediction 1=1 targets a new observation, 0 the mean. What normal interval half-width results?",
+    "options": [
+      "2.459",
+      "4.099",
+      "5.738"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives HalfWidth 4.099 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0810",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-810"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 810,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **810. Quantile bands** \\[Slider\\]: quantile regression draws bands that widen where the data is noisier.",
+    "modelBoundary": "the local observation spread in a toy prediction interval",
+    "recallInputs": [
+      2,
+      20,
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

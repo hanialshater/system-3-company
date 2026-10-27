@@ -1,0 +1,163 @@
+{
+  "slug": "p100-metropolis-walker",
+  "title": "Should the walker accept?",
+  "hook": "Should the walker accept? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-metropolis-walker",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "a dot proposes jumps across a 2D probability landscape; green arrows accepted, red rejected."
+    ]
+  },
+  "misconception": "A symmetric proposal moves from a state of target weight 3 to weight 1. Under the Metropolis rule, what is acceptance probability? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "a dot proposes jumps across a 2D probability landscape; green arrows accepted, red rejected.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-metropolis-walker.case",
+      "text": "A symmetric proposal moves from a state of target weight 3 to weight 1. Under the Metropolis rule, what is acceptance probability? Options: 1/3; 1/2; 1. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Targetstatesweights[1,3,2], symmetricneighborproposalwithreflectiveedge. A proposed1→3weightmoveaccepts1; reverse3→1accepts1/3. Show Metropolisacceptancemin(1,targetnew/targetold), not always uphill.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.recall",
+      "text": "With symmetric proposals, move from weight 4 to 2. Acceptance? min(1,2/4)=1/2.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.hook",
+      "text": "Should the walker accept? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c4",
+      "text": "The 3→1 proposal is accepted with probability 0.333; the reverse proposal with probability 1. The retained cases show both directions.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c5",
+      "text": "For symmetric proposals, acceptance is min(1, new target weight / old target weight). Downhill proposals can be accepted. That permission helps the chain explore; it is not a rule to keep only improving states.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-metropolis-walker/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c7",
+      "text": "Acceptance: 0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Old\",\"value\":3},{\"label\":\"Proposed\",\"value\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Accept\",\"value\":0.3333333333333333},{\"label\":\"Reject\",\"value\":0.6666666666666667}]}. [{\"label\":\"Acceptance\",\"value\":\"0.333\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c10",
+      "text": "Acceptance: 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Old\",\"value\":1},{\"label\":\"Proposed\",\"value\":3}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-metropolis-walker.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Accept\",\"value\":1},{\"label\":\"Reject\",\"value\":0}]}. [{\"label\":\"Acceptance\",\"value\":\"1\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-metropolis-walker/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With symmetric proposals, move from weight 4 to 2. Acceptance?",
+    "options": [
+      "1/4",
+      "1/2",
+      "1"
+    ],
+    "answer": 1,
+    "why": "min(1,2/4)=1/2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-metropolis-walker",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-581",
+      "distribution"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 581,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceTitle": "Metropolis walker",
+    "sourceText": "a dot proposes jumps across a 2D probability landscape; green arrows accepted, red rejected.",
+    "sourceEntryOriginal": "- **581. Metropolis walker** \\[Slider\\]: a dot proposes jumps across a 2D probability landscape; green arrows accepted, red rejected.",
+    "numericCase": "Targetstatesweights[1,3,2], symmetricneighborproposalwithreflectiveedge. A proposed1→3weightmoveaccepts1; reverse3→1accepts1/3. Show Metropolisacceptancemin(1,targetnew/targetold), not always uphill.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "history/story-great-migration",
+    "difference": "New teaching boundary: Metropolis walker. Existing boundary: A migration map should not stop at an arrival dot."
+  },
+  "modelOutputs": [
+    0.3333333333333333,
+    1
+  ]
+}

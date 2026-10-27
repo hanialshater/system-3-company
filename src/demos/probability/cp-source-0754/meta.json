@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0754",
+  "title": "A few fires can dominate area",
+  "hook": "Two stated cases: explore tail concentration in a Pareto area illustration.",
+  "domain": "probability",
+  "concept": "cp-source-0754",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How tail concentration in a Pareto area illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines WealthShare, regardless of the stated inputs.",
+  "objective": "Compare tail concentration in a Pareto area illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0754.predict",
+      "text": "A toy Pareto distribution has shape Alpha 1.2 greater than 1. What fraction of total wealth is held by the top population share 0.1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.reveal.0",
+      "text": "The retained results are Alpha=1.2; WealthShare=0.681 and Alpha=3; WealthShare=0.215.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.reveal.1",
+      "text": "The shape parameter controls concentration and requires a finite mean for this formula. It is a stated distribution, not an estimate of a country. This comparison isolates tail concentration in a Pareto area illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.case.0.witness",
+      "text": "Alpha=1.2; WealthShare=0.681",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TopShare\",0.1],[\"Alpha\",1.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"WealthShare\",\"value\":0.6812920690579614}]},\"metrics\":[{\"label\":\"WealthShare\",\"value\":\"0.681\"},{\"label\":\"Alpha\",\"value\":\"1.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.case.1.witness",
+      "text": "Alpha=3; WealthShare=0.215",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TopShare\",0.1],[\"Alpha\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"WealthShare\",\"value\":0.21544346900318834}]},\"metrics\":[{\"label\":\"WealthShare\",\"value\":\"0.215\"},{\"label\":\"Alpha\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0754.recall",
+      "text": "A toy Pareto distribution has shape Alpha 1.2 greater than 1. What fraction of total wealth is held by the top population share 0.2? Answer 0.765.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0754/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #754. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Pareto distribution has shape Alpha 1.2 greater than 1. What fraction of total wealth is held by the top population share 0.2?",
+    "options": [
+      "0.459",
+      "1.071",
+      "0.765"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives WealthShare 0.765 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0754",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-754"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 754,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **754. Wildfire sizes** \\[Slider\\]: most fires are tiny, but a handful burn most of the area.",
+    "modelBoundary": "tail concentration in a Pareto area illustration",
+    "recallInputs": [
+      0.2,
+      1.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

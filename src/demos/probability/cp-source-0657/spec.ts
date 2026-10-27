@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0657", "title": "A changed slope alters extrapolation", "op": "changeline", "labels": ["Intercept", "Before", "After", "Cut", "X"], "outputs": ["Prediction"], "a": [0.0, 0.1, 1.0, 10.0, 5.0], "b": [0.0, 0.1, 1.0, 10.0, 15.0], "question": "A continuous toy trend starts at Intercept 0, slope Before 0.1 until Cut 10, then slope After 1. What is its level at X 5?", "questionTemplate": "A continuous toy trend starts at Intercept {Intercept}, slope Before {Before} until Cut {Cut}, then slope After {After}. What is its level at X {X}?", "explain": "A stated changepoint can alter extrapolation. This piecewise mean is only one component of a possible changepoint GP model.", "lens": "the piecewise mean component of a changepoint model", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

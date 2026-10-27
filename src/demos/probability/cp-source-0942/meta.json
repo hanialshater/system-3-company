@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0942",
+  "title": "Odd harmonics sharpen a square wave",
+  "hook": "Two stated cases: explore the truncation order of a square-wave Fourier series.",
+  "domain": "probability",
+  "concept": "cp-source-0942",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the truncation order of a square-wave Fourier series affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the truncation order of a square-wave Fourier series in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0942.predict",
+      "text": "Use Terms 1 odd harmonics of a unit square wave at Time 0.1. What truncated Fourier-series value results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.reveal.0",
+      "text": "The retained results are Terms=1; Value=0.748 and Terms=10; Value=0.946.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.reveal.1",
+      "text": "More odd harmonics sharpen the transition while oscillations remain near the discontinuity. The displayed curve is a finite partial sum. This comparison isolates the truncation order of a square-wave Fourier series.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.case.0.witness",
+      "text": "Terms=1; Value=0.748",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Terms\",1],[\"Time\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.32953864315512305},{\"x\":0.08333333333333333,\"y\":0.6366197723675813},{\"x\":0.125,\"y\":0.9003163161571061},{\"x\":0.16666666666666666,\"y\":1.1026577908435842},{\"x\":0.20833333333333334,\"y\":1.2298549593122292},{\"x\":0.25,\"y\":1.2732395447351628},{\"x\":0.2916666666666667,\"y\":1.2298549593122292},{\"x\":0.3333333333333333,\"y\":1.1026577908435842},{\"x\":0.375,\"y\":0.9003163161571062},{\"x\":0.4166666666666667,\"y\":0.6366197723675813},{\"x\":0.4583333333333333,\"y\":0.32953864315512343},{\"x\":0.5,\"y\":1.5592687330077502e-16},{\"x\":0.5416666666666666,\"y\":-0.32953864315512255},{\"x\":0.5833333333333334,\"y\":-0.6366197723675815},{\"x\":0.625,\"y\":-0.9003163161571061},{\"x\":0.6666666666666666,\"y\":-1.102657790843584},{\"x\":0.7083333333333334,\"y\":-1.2298549593122292},{\"x\":0.75,\"y\":-1.2732395447351628},{\"x\":0.7916666666666666,\"y\":-1.2298549593122294},{\"x\":0.8333333333333334,\"y\":-1.1026577908435842},{\"x\":0.875,\"y\":-0.9003163161571063},{\"x\":0.9166666666666666,\"y\":-0.6366197723675819},{\"x\":0.9583333333333334,\"y\":-0.329538643155123},{\"x\":1,\"y\":-3.1185374660155004e-16}],\"xLabel\":\"Time\",\"yLabel\":\"Value\"},\"metrics\":[{\"label\":\"Value\",\"value\":\"0.748\"},{\"label\":\"Terms\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.case.1.witness",
+      "text": "Terms=10; Value=0.946",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Terms\",10],[\"Time\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.9588580121644464},{\"x\":0.08333333333333333,\"y\":1.0358609474972853},{\"x\":0.125,\"y\":1.0446926227111153},{\"x\":0.16666666666666666,\"y\":1.0173993845193408},{\"x\":0.20833333333333334,\"y\":0.9831921432308413},{\"x\":0.25,\"y\":0.9682476228907636},{\"x\":0.2916666666666667,\"y\":0.9831921432308419},{\"x\":0.3333333333333333,\"y\":1.017399384519341},{\"x\":0.375,\"y\":1.044692622711115},{\"x\":0.4166666666666667,\"y\":1.035860947497285},{\"x\":0.4583333333333333,\"y\":0.958858012164445},{\"x\":0.5,\"y\":1.8960885360094066e-15},{\"x\":0.5416666666666666,\"y\":-0.9588580121644473},{\"x\":0.5833333333333334,\"y\":-1.0358609474972857},{\"x\":0.625,\"y\":-1.044692622711115},{\"x\":0.6666666666666666,\"y\":-1.0173993845193403},{\"x\":0.7083333333333334,\"y\":-0.98319214323084},{\"x\":0.75,\"y\":-0.9682476228907636},{\"x\":0.7916666666666666,\"y\":-0.9831921432308425},{\"x\":0.8333333333333334,\"y\":-1.0173993845193408},{\"x\":0.875,\"y\":-1.044692622711115},{\"x\":0.9166666666666666,\"y\":-1.0358609474972864},{\"x\":0.9583333333333334,\"y\":-0.9588580121644465},{\"x\":1,\"y\":-3.792177072018813e-15}],\"xLabel\":\"Time\",\"yLabel\":\"Value\"},\"metrics\":[{\"label\":\"Value\",\"value\":\"0.946\"},{\"label\":\"Terms\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0942.recall",
+      "text": "Use Terms 2 odd harmonics of a unit square wave at Time 0.1. What truncated Fourier-series value results? Answer 1.152.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0942/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #942. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Use Terms 2 odd harmonics of a unit square wave at Time 0.1. What truncated Fourier-series value results?",
+    "options": [
+      "0.691",
+      "1.152",
+      "1.613"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Value 1.152 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0942",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-942"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 942,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **942. Square wave from sines** \\[Slider\\]: add odd harmonics one by one; the overshoot at the corners never fully goes away (Gibbs phenomenon).",
+    "modelBoundary": "the truncation order of a square-wave Fourier series",
+    "recallInputs": [
+      2,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

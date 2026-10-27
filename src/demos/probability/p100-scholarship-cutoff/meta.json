@@ -1,0 +1,162 @@
+{
+  "slug": "p100-scholarship-cutoff",
+  "title": "What happens at the cutoff?",
+  "hook": "Separate a treatment jump from the smooth trend through the threshold.",
+  "domain": "probability",
+  "concept": "p100-scholarship-cutoff",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "students just above and below a test-score cutoff are alike; the jump at the line is the effect."
+    ]
+  },
+  "misconception": "Treating scholarship cutoff as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "students just above and below a test-score cutoff are alike; the jump at the line is the effect.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-scholarship-cutoff.predict",
+      "text": "A toy score rule gives outcome score/10, plus 3 for scores at least 50. What discontinuity at the threshold belongs to treatment, after accounting for the smooth baseline?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.reveal.0",
+      "text": "The scholarship rule retains a threshold jump of 3; the no-treatment comparison retains 0. The adjacent observed scores differ by 3.1 because the smooth baseline also changes by 0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.reveal.1",
+      "text": "A regression-discontinuity interpretation separates the jump from that smooth trend. It requires continuity of untreated outcomes and no precise sorting or other change at the same cutoff.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.recall",
+      "text": "A smooth baseline rises 0.2 across adjacent scores; the observed difference is 2.2. What jump remains? Subtract the smooth baseline change: 2.2−0.2=2.0.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.scenario.0.summary",
+      "text": "Threshold jump 3",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Score\",\"Eligible\"],\"rows\":[[48,0],[49,0],[50,1],[51,1],[52,1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Scholarship rule\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":48,\"y\":4.8},{\"x\":49,\"y\":4.9},{\"x\":50,\"y\":8},{\"x\":51,\"y\":8.1},{\"x\":52,\"y\":8.2}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.scenario.1.summary",
+      "text": "Threshold jump 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Score\",\"Eligible\"],\"rows\":[[48,0],[49,0],[50,1],[51,1],[52,1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · No scholarship\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":48,\"y\":4.8},{\"x\":49,\"y\":4.9},{\"x\":50,\"y\":5},{\"x\":51,\"y\":5.1},{\"x\":52,\"y\":5.2}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-scholarship-cutoff/spec.ts; exact finite illustration specified in manager numericCase: Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-scholarship-cutoff.hook",
+      "text": "Separate a treatment jump from the smooth trend through the threshold.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-scholarship-cutoff/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A smooth baseline rises 0.2 across adjacent scores; the observed difference is 2.2. What jump remains?",
+    "options": [
+      "0.2",
+      "2.0",
+      "2.4"
+    ],
+    "answer": 1,
+    "why": "Subtract the smooth baseline change: 2.2−0.2=2.0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-scholarship-cutoff",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "rdd"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 386,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceTitle": "Scholarship cutoff",
+    "sourceText": "students just above and below a test-score cutoff are alike; the jump at the line is the effect.",
+    "sourceEntryOriginal": "- **386. Scholarship cutoff** \\[Slider\\]: students just above and below a test-score cutoff are alike; the jump at the line is the effect.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-mindset-small-effect-scale",
+    "difference": "New teaching boundary: Scholarship cutoff. Existing boundary: Explain why changing task difficulty changes the aggregate without measuring learning potential.",
+    "numericCase": "Scores [48,49,50,51,52], baseline outcome score/10. Treatment at score>=50 adds3. Show untreated smooth line and treatment jump3; moving cutoff changes eligibility, not specified effect."
+  },
+  "modelAudit": {
+    "a": 3,
+    "b": 0,
+    "neighborDifference": 3.0999999999999996
+  }
+}

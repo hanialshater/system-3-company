@@ -1,0 +1,103 @@
+{
+  "slug": "be-pay-for-grades-or-reading",
+  "title": "Pay for grades or reading?",
+  "hook": "What changes if a reward targets an input instead of an outcome?",
+  "domain": "behavioral",
+  "concept": "be-pay-for-grades-or-reading",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Compare controllable study inputs with final outcomes as incentive targets."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Compare controllable study inputs with final outcomes as incentive targets.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-pay-for-grades-or-reading.inputs",
+      "text": "A toy learning rule adds two units per completed book. Four books produce how many learning units? Toy inputs A=[4, 2, 8]; B=[2, 2, 8].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-pay-for-grades-or-reading.trace",
+      "text": "Computed results: [[8, 4, 8], [4, 2, 8]]. Labels: Learning units, Reading input, Target grade.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-pay-for-grades-or-reading.reveal",
+      "text": "The input action enters the learning equation, whereas the grade is an outcome threshold. The comparison changes the controllable input. Paying for a target does not by itself specify the mechanism that changes that input.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-pay-for-grades-or-reading.recall",
+      "text": "A new toy case uses Books read=2, Learning/book=2, Grade threshold=8. What is Learning units? Answer: 4.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Books read=2, Learning/book=2, Grade threshold=8. What is Learning units?",
+    "options": [
+      "5.2",
+      "4",
+      "2.8"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 4. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-pay-for-grades-or-reading",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-312"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 312,
+    "section": "16. Incentives & motivation",
+    "text": "Paying students for grades did little, while paying them to read books raised scores (Fryer, 2011).",
+    "pointer": "500-behavioral-economics-findings.md entry 312: Fryer, 2011",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-rewards-metric-gaming",
+  "meaningfulDifference": "Compare controllable study inputs with final outcomes as incentive targets."
+}

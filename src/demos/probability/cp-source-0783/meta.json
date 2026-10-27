@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0783",
+  "title": "A score points uphill in density",
+  "hook": "Two stated cases: explore the local log-density gradient of a Gaussian target.",
+  "domain": "probability",
+  "concept": "cp-source-0783",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the local log-density gradient of a Gaussian target affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Score, regardless of the stated inputs.",
+  "objective": "Compare the local log-density gradient of a Gaussian target in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0783.predict",
+      "text": "For a toy Normal(Mean 0, Variance 1), what is the derivative of log density at X 2?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.reveal.0",
+      "text": "The retained results are X=2; Score=-2 and X=-2; Score=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.reveal.1",
+      "text": "The score points toward increasing log density. Density-gradient drift alone does not draw correctly distributed samples. This comparison isolates the local log-density gradient of a Gaussian target.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.case.0.witness",
+      "text": "X=2; Score=-2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",2],[\"Mean\",0],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-4,\"y\":4},{\"x\":-3.6666666666666665,\"y\":3.6666666666666665},{\"x\":-3.3333333333333335,\"y\":3.3333333333333335},{\"x\":-3,\"y\":3},{\"x\":-2.666666666666667,\"y\":2.666666666666667},{\"x\":-2.333333333333333,\"y\":2.333333333333333},{\"x\":-2,\"y\":2},{\"x\":-1.6666666666666665,\"y\":1.6666666666666665},{\"x\":-1.3333333333333335,\"y\":1.3333333333333335},{\"x\":-1,\"y\":1},{\"x\":-0.6666666666666665,\"y\":0.6666666666666665},{\"x\":-0.3333333333333335,\"y\":0.3333333333333335},{\"x\":0,\"y\":0},{\"x\":0.33333333333333304,\"y\":-0.33333333333333304},{\"x\":0.666666666666667,\"y\":-0.666666666666667},{\"x\":1,\"y\":-1},{\"x\":1.333333333333333,\"y\":-1.333333333333333},{\"x\":1.666666666666667,\"y\":-1.666666666666667},{\"x\":2,\"y\":-2},{\"x\":2.333333333333333,\"y\":-2.333333333333333},{\"x\":2.666666666666667,\"y\":-2.666666666666667},{\"x\":3,\"y\":-3},{\"x\":3.333333333333333,\"y\":-3.333333333333333},{\"x\":3.666666666666667,\"y\":-3.666666666666667},{\"x\":4,\"y\":-4}],\"xLabel\":\"X\",\"yLabel\":\"Score\"},\"metrics\":[{\"label\":\"Score\",\"value\":\"-2\"},{\"label\":\"X\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.case.1.witness",
+      "text": "X=-2; Score=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",-2],[\"Mean\",0],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-4,\"y\":4},{\"x\":-3.6666666666666665,\"y\":3.6666666666666665},{\"x\":-3.3333333333333335,\"y\":3.3333333333333335},{\"x\":-3,\"y\":3},{\"x\":-2.666666666666667,\"y\":2.666666666666667},{\"x\":-2.333333333333333,\"y\":2.333333333333333},{\"x\":-2,\"y\":2},{\"x\":-1.6666666666666665,\"y\":1.6666666666666665},{\"x\":-1.3333333333333335,\"y\":1.3333333333333335},{\"x\":-1,\"y\":1},{\"x\":-0.6666666666666665,\"y\":0.6666666666666665},{\"x\":-0.3333333333333335,\"y\":0.3333333333333335},{\"x\":0,\"y\":0},{\"x\":0.33333333333333304,\"y\":-0.33333333333333304},{\"x\":0.666666666666667,\"y\":-0.666666666666667},{\"x\":1,\"y\":-1},{\"x\":1.333333333333333,\"y\":-1.333333333333333},{\"x\":1.666666666666667,\"y\":-1.666666666666667},{\"x\":2,\"y\":-2},{\"x\":2.333333333333333,\"y\":-2.333333333333333},{\"x\":2.666666666666667,\"y\":-2.666666666666667},{\"x\":3,\"y\":-3},{\"x\":3.333333333333333,\"y\":-3.333333333333333},{\"x\":3.666666666666667,\"y\":-3.666666666666667},{\"x\":4,\"y\":-4}],\"xLabel\":\"X\",\"yLabel\":\"Score\"},\"metrics\":[{\"label\":\"Score\",\"value\":\"2\"},{\"label\":\"X\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0783.recall",
+      "text": "For a toy Normal(Mean 0, Variance 1), what is the derivative of log density at X 3? Answer -3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0783/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #783. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For a toy Normal(Mean 0, Variance 1), what is the derivative of log density at X 3?",
+    "options": [
+      "-4.2",
+      "-3",
+      "-1.8"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Score -3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0783",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-783"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 783,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **783. The score field** \\[Slider\\]: arrows across a 2D plane point toward where data lives; particles follow them home.",
+    "modelBoundary": "the local log-density gradient of a Gaussian target",
+    "recallInputs": [
+      3,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

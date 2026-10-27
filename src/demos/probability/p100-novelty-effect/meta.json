@@ -1,0 +1,162 @@
+{
+  "slug": "p100-novelty-effect",
+  "title": "Will the launch spike last?",
+  "hook": "Compare an early window with a later window under an explicit decay rule.",
+  "domain": "probability",
+  "concept": "p100-novelty-effect",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "a new design spikes clicks for a week, then fades back."
+    ]
+  },
+  "misconception": "Treating novelty effect as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "a new design spikes clicks for a week, then fades back.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-novelty-effect.predict",
+      "text": "A stipulated daily lift follows L(t)=2+18 exp(−t/3), in percentage points. What lift remains on day 9?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.reveal.0",
+      "text": "The late window retains 2.896 points on day 9; the early window retains 20 on day 0. The model’s temporary term decays while its sustained term stays at 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.reveal.1",
+      "text": "A launch-window average would blend those components. This is an explicit hypothetical decay rule, not evidence that real product gains always fade or that day 9 is enough for every experiment.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.recall",
+      "text": "In L(t)=3+12 exp(−t/2), which term survives as t grows? The exponential term tends to zero, leaving the stipulated sustained component 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.scenario.0.summary",
+      "text": "Day 9: 2.896pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Day\",\"Lift\"],\"rows\":[[0,20],[3,8.621829941085963]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Late window\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":20},{\"label\":\"1\",\"value\":14.897563590328208},{\"label\":\"2\",\"value\":11.241508142586657},{\"label\":\"3\",\"value\":8.621829941085963},{\"label\":\"6\",\"value\":4.436035098259029},{\"label\":\"9\",\"value\":2.896167230621551}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.scenario.1.summary",
+      "text": "Day 0: 20pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Sustained term\"],\"rows\":[[2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Early window\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":20},{\"label\":\"1\",\"value\":14.897563590328208},{\"label\":\"2\",\"value\":11.241508142586657},{\"label\":\"3\",\"value\":8.621829941085963}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-novelty-effect/spec.ts; exact finite illustration specified in manager numericCase: Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-novelty-effect.hook",
+      "text": "Compare an early window with a later window under an explicit decay rule.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-novelty-effect/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In L(t)=3+12 exp(−t/2), which term survives as t grows?",
+    "options": [
+      "0",
+      "3",
+      "12"
+    ],
+    "answer": 1,
+    "why": "The exponential term tends to zero, leaving the stipulated sustained component 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-novelty-effect",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "novelty"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 325,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Novelty effect",
+    "sourceText": "a new design spikes clicks for a week, then fades back.",
+    "sourceEntryOriginal": "- **325. Novelty effect** \\[Predict\\]: a new design spikes clicks for a week, then fades back.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-sync-coupling-threshold",
+    "difference": "New teaching boundary: Novelty effect. Existing boundary: Identify a new limiting stage after a successful local improvement.",
+    "numericCase": "Daily lift model L(t)=2+18 exp(-t/3), in percentage points. Day0=20, day3≈8.622, day9≈2.896. Compare early-only reading with late sustained effect2."
+  },
+  "modelAudit": {
+    "a": 2.896167230621551,
+    "b": 20,
+    "day3": 8.621829941085963
+  }
+}

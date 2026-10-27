@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0099",
+  "title": "Strata have explicit population weights",
+  "hook": "Two stated cases: explore the strata weights needed for an aggregate estimate.",
+  "domain": "probability",
+  "concept": "cp-source-0099",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the strata weights needed for an aggregate estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the strata weights needed for an aggregate estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0099.predict",
+      "text": "A toy mixture puts fraction 0.2 at rate 0.9 and the remainder at rate 0.1. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.reveal.0",
+      "text": "The retained results are Weight=0.2; Rate=0.26 and Weight=0.8; Rate=0.74.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates the strata weights needed for an aggregate estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.case.0.witness",
+      "text": "Weight=0.2; Rate=0.26",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.2],[\"RateA\",0.9],[\"RateB\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.26}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.26\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.case.1.witness",
+      "text": "Weight=0.8; Rate=0.74",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.8],[\"RateA\",0.9],[\"RateB\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.7400000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.74\"},{\"label\":\"Weight\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0099.recall",
+      "text": "A toy mixture puts fraction 0.16 at rate 0.9 and the remainder at rate 0.1. What is its aggregate rate? Answer 0.228.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0099/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #99. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.16 at rate 0.9 and the remainder at rate 0.1. What is its aggregate rate?",
+    "options": [
+      "0.128",
+      "0.228",
+      "0.328"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Rate 0.228 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0099",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-99"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 99,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **99. Stratified sampling** \\[Slider\\]: compare random vs stratified samples of a lumpy population; stratified wobbles less.",
+    "modelBoundary": "the strata weights needed for an aggregate estimate",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.16000000000000003,
+      0.9,
+      0.1
+    ]
+  }
+}

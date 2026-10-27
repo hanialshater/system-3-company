@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0538",
+  "title": "Idle drivers are an inflow-outflow stock",
+  "hook": "Two stated cases: explore the assumed returns and request rates of an idle-driver buffer.",
+  "domain": "probability",
+  "concept": "cp-source-0538",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed returns and request rates of an idle-driver buffer affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Stock, regardless of the stated inputs.",
+  "objective": "Compare the assumed returns and request rates of an idle-driver buffer in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0538.predict",
+      "text": "A toy stock starts at 100, receives 30 per time and loses 50 per time over 2. Reflected at zero, what remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.reveal.0",
+      "text": "The retained results are In=30; Stock=60 and In=45; Stock=90.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.reveal.1",
+      "text": "Inflows and outflows jointly determine the buffer. This fluid inventory model omits randomness and any feedback after depletion. This comparison isolates the assumed returns and request rates of an idle-driver buffer.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.case.0.witness",
+      "text": "In=30; Stock=60",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",100],[\"In\",30],[\"Out\",50],[\"Time\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":100},{\"label\":\"Result\",\"value\":60}]},\"metrics\":[{\"label\":\"Stock\",\"value\":\"60\"},{\"label\":\"In\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.case.1.witness",
+      "text": "In=45; Stock=90",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",100],[\"In\",45],[\"Out\",50],[\"Time\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":100},{\"label\":\"Result\",\"value\":90}]},\"metrics\":[{\"label\":\"Stock\",\"value\":\"90\"},{\"label\":\"In\",\"value\":\"45\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0538.recall",
+      "text": "A toy stock starts at 101, receives 30 per time and loses 50 per time over 2. Reflected at zero, what remains? Answer 61.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0538/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #538. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy stock starts at 101, receives 30 per time and loses 50 per time over 2. Reflected at zero, what remains?",
+    "options": [
+      "36.6",
+      "85.4",
+      "61"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Stock 61 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0538",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-538"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 538,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **538. Ride-hailing dispatch** \\[Slider\\]: drivers cycle between idle, en route and busy; demand spikes drain idle drivers.",
+    "modelBoundary": "the assumed returns and request rates of an idle-driver buffer",
+    "recallInputs": [
+      101,
+      30,
+      50,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0638",
+  "title": "Ability minus difficulty sets the odds",
+  "hook": "Two stated cases: explore the one-parameter logistic item-response rule.",
+  "domain": "probability",
+  "concept": "cp-source-0638",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-parameter logistic item-response rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the one-parameter logistic item-response rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0638.predict",
+      "text": "A toy Rasch model uses logit probability Ability 2 minus Difficulty 1. What is the success probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.reveal.0",
+      "text": "The retained results are Difficulty=1; Probability=0.731 and Difficulty=3; Probability=0.269.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.reveal.1",
+      "text": "Ability and difficulty enter through their difference. Locating both scales from data requires identification constraints and an appropriate response model. This comparison isolates the one-parameter logistic item-response rule.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.case.0.witness",
+      "text": "Difficulty=1; Probability=0.731",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ability\",2],[\"Difficulty\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.7310585786300049}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.731\"},{\"label\":\"Difficulty\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.case.1.witness",
+      "text": "Difficulty=3; Probability=0.269",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ability\",2],[\"Difficulty\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.2689414213699951}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.269\"},{\"label\":\"Difficulty\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0638.recall",
+      "text": "A toy Rasch model uses logit probability Ability 3 minus Difficulty 1. What is the success probability? Answer 0.881.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0638/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #638. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Rasch model uses logit probability Ability 3 minus Difficulty 1. What is the success probability?",
+    "options": [
+      "0.881",
+      "0.528",
+      "1.233"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 0.881 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0638",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-638"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 638,
+    "sourceSection": "32. Hierarchical & multilevel models",
+    "sourceEntryOriginal": "- **638. Students and questions** \\[Slider\\]: item response theory estimates each student's ability and each question's difficulty together.",
+    "modelBoundary": "the one-parameter logistic item-response rule",
+    "recallInputs": [
+      3,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

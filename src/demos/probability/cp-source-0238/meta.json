@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0238",
+  "title": "The same z score at different scales",
+  "hook": "Two stated cases: explore the effect scale and interval width.",
+  "domain": "probability",
+  "concept": "cp-source-0238",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the effect scale and interval width affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Lower, regardless of the stated inputs.",
+  "objective": "Compare the effect scale and interval width in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0238.predict",
+      "text": "A toy normal estimate is 0.1 with known SE 0.05. What is the lower endpoint of estimate ±1.96 SE?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.reveal.0",
+      "text": "The retained results are Estimate=0.1 SE=0.05; Lower=0.002 and Estimate=10 SE=5; Lower=0.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.reveal.1",
+      "text": "Effect magnitude and uncertainty both appear in the interval. A repeated-sampling interpretation depends on the stated estimator and model assumptions. This comparison isolates the effect scale and interval width.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.case.0.witness",
+      "text": "Estimate=0.1 SE=0.05; Lower=0.002",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.1],[\"SE\",0.05],[\"Z\",1.96]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"intervals\",\"items\":[{\"label\":\"Estimate\",\"low\":0.0020000000000000018,\"mid\":0.1,\"high\":0.198}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"0.002\"},{\"label\":\"Estimate\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.case.1.witness",
+      "text": "Estimate=10 SE=5; Lower=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",10],[\"SE\",5],[\"Z\",1.96]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"intervals\",\"items\":[{\"label\":\"Estimate\",\"low\":0.1999999999999993,\"mid\":10,\"high\":19.8}]},\"metrics\":[{\"label\":\"Lower\",\"value\":\"0.2\"},{\"label\":\"Estimate\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0238.recall",
+      "text": "A toy normal estimate is 0.2 with known SE 0.05. What is the lower endpoint of estimate ±1.96 SE? Answer 0.102.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0238/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #238. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal estimate is 0.2 with known SE 0.05. What is the lower endpoint of estimate ±1.96 SE?",
+    "options": [
+      "0.002",
+      "0.202",
+      "0.102"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Lower 0.102 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0238",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-238"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 238,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **238. Show the interval** \\[Slider\\]: two studies with the same p-value can have very different effect sizes and certainty.",
+    "modelBoundary": "the effect scale and interval width",
+    "recallInputs": [
+      0.2,
+      0.05,
+      1.96
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

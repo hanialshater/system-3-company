@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0945",
+  "title": "A sampled rotation can reverse",
+  "hook": "Two stated cases: explore the principal signed alias at a fixed frame rate.",
+  "domain": "probability",
+  "concept": "cp-source-0945",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the principal signed alias at a fixed frame rate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Apparent, regardless of the stated inputs.",
+  "objective": "Compare the principal signed alias at a fixed frame rate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0945.predict",
+      "text": "A toy rotation has Frequency 20 cycles per second and Sampling 30 frames per second. What signed principal alias in [-Sampling/2,Sampling/2) results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.reveal.0",
+      "text": "The retained results are Frequency=20; Apparent=-10 and Frequency=10; Apparent=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.reveal.1",
+      "text": "Different continuous frequencies can produce the same sampled phase changes. A negative principal alias can appear to reverse rotation. This comparison isolates the principal signed alias at a fixed frame rate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.case.0.witness",
+      "text": "Frequency=20; Apparent=-10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",20],[\"Sampling\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Apparent\",\"value\":-10}]},\"metrics\":[{\"label\":\"Apparent\",\"value\":\"-10\"},{\"label\":\"Frequency\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.case.1.witness",
+      "text": "Frequency=10; Apparent=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",10],[\"Sampling\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Apparent\",\"value\":10}]},\"metrics\":[{\"label\":\"Apparent\",\"value\":\"10\"},{\"label\":\"Frequency\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0945.recall",
+      "text": "A toy rotation has Frequency 21 cycles per second and Sampling 30 frames per second. What signed principal alias in [-Sampling/2,Sampling/2) results? Answer -9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0945/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #945. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy rotation has Frequency 21 cycles per second and Sampling 30 frames per second. What signed principal alias in [-Sampling/2,Sampling/2) results?",
+    "options": [
+      "-12.6",
+      "-9",
+      "-5.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Apparent -9 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0945",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-945"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 945,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **945. Wagon-wheel effect** \\[Slider\\]: spin a wheel past the camera's frame rate and it appears to turn backward.",
+    "modelBoundary": "the principal signed alias at a fixed frame rate",
+    "recallInputs": [
+      21,
+      30
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

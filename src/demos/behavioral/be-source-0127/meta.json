@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0127",
+  "title": "Your current electricity plan",
+  "hook": "Two stated cases: explore the opportunity cost of keeping a current plan.",
+  "domain": "behavioral",
+  "concept": "be-source-0127",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the opportunity cost of keeping a current plan affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gain, regardless of the stated inputs.",
+  "objective": "Compare the opportunity cost of keeping a current plan in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0127.predict",
+      "text": "Keeping a toy option yields 100. Switching yields 120 and costs 5. What is the gain from switching?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.reveal.0",
+      "text": "The retained results are Before=100 After=120; Gain=15 and Before=120 After=100; Gain=-25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.reveal.1",
+      "text": "Make the opportunity cost visible before judging a refusal to switch. Equal-risk labels can obscure a straightforward payoff difference. This comparison isolates the opportunity cost of keeping a current plan.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.case.0.witness",
+      "text": "Before=100 After=120; Gain=15",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",100],[\"SwitchFee\",5],[\"After\",120]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":15}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"15\"},{\"label\":\"Before\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.case.1.witness",
+      "text": "Before=120 After=100; Gain=-25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",120],[\"SwitchFee\",5],[\"After\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":-25}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"-25\"},{\"label\":\"Before\",\"value\":\"120\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0127.recall",
+      "text": "Keeping a toy option yields 101. Switching yields 120 and costs 5. What is the gain from switching? Answer 14.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0127/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #127. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Keeping a toy option yields 101. Switching yields 120 and costs 5. What is the gain from switching?",
+    "options": [
+      "8.4",
+      "19.6",
+      "14"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gain 14 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0127",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-127"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 127,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **127.** Electricity customers preferred their current reliability-and-price plan, whichever it was (Hartman, Doane & Woo, 1991).",
+    "modelBoundary": "the opportunity cost of keeping a current plan",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      5,
+      120
+    ]
+  }
+}

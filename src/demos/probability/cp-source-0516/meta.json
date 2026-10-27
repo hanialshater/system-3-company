@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0516",
+  "title": "Stops add overhead to an elevator round",
+  "hook": "Two stated cases: explore the deterministic timing facet of floor zoning.",
+  "domain": "probability",
+  "concept": "cp-source-0516",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the deterministic timing facet of floor zoning affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines RoundTime, regardless of the stated inputs.",
+  "objective": "Compare the deterministic timing facet of floor zoning in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0516.predict",
+      "text": "A toy elevator round travels up and down 40 floors at 0.5 time per floor and makes 20 stops of 10 each. What round time results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.reveal.0",
+      "text": "The retained results are Stops=20; RoundTime=240 and Stops=5; RoundTime=90.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.reveal.1",
+      "text": "Stop overhead and travel both enter this simple round. Dispatch interactions, passenger capacity and random demand are outside this timing model. This comparison isolates the deterministic timing facet of floor zoning.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.case.0.witness",
+      "text": "Stops=20; RoundTime=240",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Floors\",40],[\"Stops\",20],[\"PerFloor\",0.5],[\"StopTime\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RoundTime\",\"value\":240}]},\"metrics\":[{\"label\":\"RoundTime\",\"value\":\"240\"},{\"label\":\"Stops\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.case.1.witness",
+      "text": "Stops=5; RoundTime=90",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Floors\",40],[\"Stops\",5],[\"PerFloor\",0.5],[\"StopTime\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RoundTime\",\"value\":90}]},\"metrics\":[{\"label\":\"RoundTime\",\"value\":\"90\"},{\"label\":\"Stops\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0516.recall",
+      "text": "A toy elevator round travels up and down 41 floors at 0.5 time per floor and makes 20 stops of 10 each. What round time results? Answer 241.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0516/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #516. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy elevator round travels up and down 41 floors at 0.5 time per floor and makes 20 stops of 10 each. What round time results?",
+    "options": [
+      "144.6",
+      "241",
+      "337.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives RoundTime 241 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0516",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-516"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 516,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **516. Skyscraper elevators** \\[Slider\\]: morning rush in a 40-floor building; zoning floors to elevators cuts waits.",
+    "modelBoundary": "the deterministic timing facet of floor zoning",
+    "recallInputs": [
+      41,
+      20,
+      0.5,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

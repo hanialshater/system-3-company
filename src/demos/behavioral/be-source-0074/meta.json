@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0074",
+  "title": "What if missing studies differ?",
+  "hook": "Two stated cases: explore the contribution of less favorable evidence.",
+  "domain": "behavioral",
+  "concept": "be-source-0074",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the contribution of less favorable evidence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the contribution of less favorable evidence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0074.predict",
+      "text": "A toy pooled estimate gives 0.43 weight 5 and another estimate 0 weight 1. What is the weighted mean?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.reveal.0",
+      "text": "The retained results are Weight=5; Mean=0.358 and Weight=1; Mean=0.215.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.reveal.1",
+      "text": "A pooled result depends on both estimates and their weights. A larger headline alone is not stronger evidence. This comparison isolates the contribution of less favorable evidence.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.case.0.witness",
+      "text": "Weight=5; Mean=0.358",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.43],[\"Weight\",5],[\"Other\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.35833333333333334}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.358\"},{\"label\":\"Weight\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.case.1.witness",
+      "text": "Weight=1; Mean=0.215",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.43],[\"Weight\",1],[\"Other\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.215}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.215\"},{\"label\":\"Weight\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0074.recall",
+      "text": "A toy pooled estimate gives 0.53 weight 5 and another estimate 0 weight 1. What is the weighted mean? Answer 0.442.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0074/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #74. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pooled estimate gives 0.53 weight 5 and another estimate 0 weight 1. What is the weighted mean?",
+    "options": [
+      "0.442",
+      "0.265",
+      "0.618"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 0.442 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0074",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-74"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 74,
+    "sourceSection": "4. Defaults & choice architecture",
+    "sourceEntryOriginal": "- **74.** A meta-analysis found a moderate average nudge effect, d ≈ 0.43 (Mertens et al., 2022), but correcting for publication bias left little evidence of an overall effect (Maier et al., 2022).",
+    "modelBoundary": "the contribution of less favorable evidence",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.53,
+      5,
+      0
+    ]
+  }
+}

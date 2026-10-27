@@ -1,0 +1,150 @@
+{
+  "slug": "be-source-0325",
+  "title": "A small explained share",
+  "hook": "Two stated cases: explore the difference between correlation and explained variation.",
+  "domain": "behavioral",
+  "concept": "be-source-0325",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the difference between correlation and explained variation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Percent, regardless of the stated inputs.",
+  "objective": "Compare the difference between correlation and explained variation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0325.predict",
+      "text": "In a toy simple linear regression with an intercept and correlation R 0.0316228, what percent of outcome variation is R squared?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.reveal.0",
+      "text": "The retained results are R=0.032; Percent=0.1 and R=0.1; Percent=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.reveal.1",
+      "text": "Squaring a correlation gives the explained share in this simple linear setting. It is neither a causal effect nor an individual prediction guarantee. This comparison isolates the difference between correlation and explained variation.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.case.0.witness",
+      "text": "R=0.032; Percent=0.1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"R\",0.0316227766]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Percent\",\"value\":0.09999999998935076}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"0.1\"},{\"label\":\"R\",\"value\":\"0.032\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.case.1.witness",
+      "text": "R=0.1; Percent=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"R\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Percent\",\"value\":1}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"1\"},{\"label\":\"R\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0325.recall",
+      "text": "In a toy simple linear regression with an intercept and correlation R 0.132, what percent of outcome variation is R squared? Answer 1.732.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0325/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #325. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy simple linear regression with an intercept and correlation R 0.132, what percent of outcome variation is R squared?",
+    "options": [
+      "1.039",
+      "2.425",
+      "1.732"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Percent 1.732 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0325",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-325"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 325,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **325.** Financial education explained about 0.1% of the variation in financial behavior, and effects faded within about 20 months (Fernandes, Lynch & Netemeyer, 2014).",
+    "modelBoundary": "the difference between correlation and explained variation",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.1316227766
+    ]
+  }
+}

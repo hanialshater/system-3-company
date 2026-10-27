@@ -1,0 +1,163 @@
+{
+  "slug": "p100-same-data-different-graphs",
+  "title": "Can observations pick an arrow?",
+  "hook": "Two arrow patterns can fit the same observations. What remains unresolved?",
+  "domain": "probability",
+  "concept": "p100-same-data-different-graphs",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "A → B → C and A ← B ← C produce identical observational data."
+    ]
+  },
+  "misconception": "Treating same data, different graphs as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "A → B → C and A ← B ← C produce identical observational data.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-same-data-different-graphs.predict",
+      "text": "Fair B independently flips into A and C with 10% error each. A←B→C and a fitted A→B→C factorization reproduce the same joint distribution. Can those observations alone pick the causal direction?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.reveal.0",
+      "text": "Both retained graphs have joint mismatch 0 and matching corner probabilities 0.405. Their observational factorization is compatible with the same joint table.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.reveal.1",
+      "text": "Arrows express causal assumptions beyond a distributional fit. These graphs can imply different interventions even when passive observations agree. Additional temporal, experimental or domain information is needed to distinguish their causal interpretations.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.recall",
+      "text": "Two causal graphs imply exactly the same observational distribution. What can separate their intervention predictions? Observationally equivalent models need information that breaks the equivalence, such as an appropriate intervention.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.scenario.0.summary",
+      "text": "P(000)=0.405",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A\",\"C\",\"B=0\",\"B=1\"],\"rows\":[[0,0,0.405,0.005000000000000001],[0,1,0.045000000000000005,0.045000000000000005],[1,0,0.045000000000000005,0.045000000000000005],[1,1,0.005000000000000001,0.405]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Common-cause graph\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"B\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"C\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"1\",\"to\":\"0\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Joint mismatch\",\"value\":0}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.scenario.1.summary",
+      "text": "P(111)=0.405",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A\",\"C\",\"B=0\",\"B=1\"],\"rows\":[[0,0,0.405,0.005000000000000001],[0,1,0.045000000000000005,0.045000000000000005],[1,0,0.045000000000000005,0.045000000000000005],[1,1,0.005000000000000001,0.405]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Chain graph\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"B\",\"x\":160,\"y\":115},{\"id\":\"2\",\"label\":\"C\",\"x\":280,\"y\":45}],\"edges\":[{\"from\":\"0\",\"to\":\"1\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Joint mismatch\",\"value\":0}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-same-data-different-graphs/spec.ts; exact finite illustration specified in manager numericCase: Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-same-data-different-graphs.hook",
+      "text": "Two arrow patterns can fit the same observations. What remains unresolved?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-same-data-different-graphs/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two causal graphs imply exactly the same observational distribution. What can separate their intervention predictions?",
+    "options": [
+      "An informative intervention or extra assumptions",
+      "More identical passive rows alone",
+      "A prettier graph layout"
+    ],
+    "answer": 0,
+    "why": "Observationally equivalent models need information that breaks the equivalence, such as an appropriate intervention."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-same-data-different-graphs",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "equivalence"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 349,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Same data, different graphs",
+    "sourceText": "A → B → C and A ← B ← C produce identical observational data.",
+    "sourceEntryOriginal": "- **349. Same data, different graphs** \\[Gotcha\\]: A → B → C and A ← B ← C produce identical observational data.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-origin-selection-frequencies",
+    "difference": "New teaching boundary: Same data, different graphs. Existing boundary: Recognize that equal means do not imply identical distributions.",
+    "numericCase": "Construct three correlated binary variables by choosing common B fair, independent10%bit flips for A,C. A←B→C and statistically factorized A→B→C generate same joint table; observational arrows not identified without assumptions/interventions. Builder show joint counts, not invented causal certainty."
+  },
+  "modelAudit": {
+    "a": 0,
+    "b": 1,
+    "p000": 0.405,
+    "p111": 0.405
+  }
+}

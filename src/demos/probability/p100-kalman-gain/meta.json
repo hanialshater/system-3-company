@@ -1,0 +1,163 @@
+{
+  "slug": "p100-kalman-gain",
+  "title": "Trust motion or the sensor?",
+  "hook": "Trust motion or the sensor? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-kalman-gain",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "trust the sensor more or the motion model more and watch the estimate jitter or lag."
+    ]
+  },
+  "misconception": "Prior position is 10 with variance 4; sensor reads 14 with variance 1. The scalar Kalman update gives what position? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "trust the sensor more or the motion model more and watch the estimate jitter or lag.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-kalman-gain.case",
+      "text": "Prior position is 10 with variance 4; sensor reads 14 with variance 1. The scalar Kalman update gives what position? Options: 10.8; 12; 13.2. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Priorposition10,variance4;sensormeasurement14,varianceR. Gain4/(4+R);R1→gain.8,updated13.2,var.8;R4→12,var2;R16→10.8,var3.2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.recall",
+      "text": "Prior mean 0, variance 9; measurement 10, variance 1. Updated mean? Gain 9/(9+1)=0.9; updated mean is 9.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.hook",
+      "text": "Trust motion or the sensor? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c4",
+      "text": "The retained estimates are 13.2 with sensor variance 1 and 10.8 with variance 16. The reading stays 14 in both cases.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c5",
+      "text": "Gain is prior variance divided by prior-plus-sensor variance. A noisier sensor receives less weight, so the update stays nearer 10. This scalar Gaussian toy assumes independent prior and measurement errors.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-kalman-gain/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c7",
+      "text": "Position: 13.2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Prior\",\"value\":10},{\"label\":\"Sensor\",\"value\":14}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Updated\",\"value\":13.2},{\"label\":\"Variance\",\"value\":0.7999999999999998}]}. [{\"label\":\"Position\",\"value\":\"13.2\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c10",
+      "text": "Position: 10.8",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Prior\",\"value\":10},{\"label\":\"Sensor\",\"value\":14}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-kalman-gain.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Updated\",\"value\":10.8},{\"label\":\"Variance\",\"value\":3.2}]}. [{\"label\":\"Position\",\"value\":\"10.8\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-kalman-gain/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Prior mean 0, variance 9; measurement 10, variance 1. Updated mean?",
+    "options": [
+      "1",
+      "5",
+      "9"
+    ],
+    "answer": 2,
+    "why": "Gain 9/(9+1)=0.9; updated mean is 9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-kalman-gain",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-662",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 662,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceTitle": "Kalman gain",
+    "sourceText": "trust the sensor more or the motion model more and watch the estimate jitter or lag.",
+    "sourceEntryOriginal": "- **662. Kalman gain** \\[Slider\\]: trust the sensor more or the motion model more and watch the estimate jitter or lag.",
+    "numericCase": "Priorposition10,variance4;sensormeasurement14,varianceR. Gain4/(4+R);R1→gain.8,updated13.2,var.8;R4→12,var2;R16→10.8,var3.2.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/line-stops-at-the-edge",
+    "difference": "New teaching boundary: Kalman gain. Existing boundary: The learner can explain that a model's error is only measured where its training data lived, so predictions for cases unlike the training data (here, outside 0 to 1) can be far off without any warning."
+  },
+  "modelOutputs": [
+    13.2,
+    10.8
+  ]
+}

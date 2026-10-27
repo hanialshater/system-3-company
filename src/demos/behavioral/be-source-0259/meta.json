@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0259",
+  "title": "Money follows the fund",
+  "hook": "Two stated cases: explore the asymmetry of assumed inflows and outflows.",
+  "domain": "behavioral",
+  "concept": "be-source-0259",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the asymmetry of assumed inflows and outflows affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Remaining, regardless of the stated inputs.",
+  "objective": "Compare the asymmetry of assumed inflows and outflows in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0259.predict",
+      "text": "A toy budget starts with 1000 and spends -20 per day for 5 days. What remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.reveal.0",
+      "text": "The retained results are Spend=-20; Remaining=1,100 and Spend=10; Remaining=950.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.reveal.1",
+      "text": "The timing of an inflow and the rate of spending determine the remaining buffer. The schedule is an illustration, not observed household data. This comparison isolates the asymmetry of assumed inflows and outflows.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.case.0.witness",
+      "text": "Spend=-20; Remaining=1,100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",1000],[\"Days\",5],[\"Spend\",-20]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1000},{\"label\":\"2.5\",\"value\":1050},{\"label\":\"5\",\"value\":1100}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"1,100\"},{\"label\":\"Spend\",\"value\":\"-20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.case.1.witness",
+      "text": "Spend=10; Remaining=950",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",1000],[\"Days\",5],[\"Spend\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1000},{\"label\":\"2.5\",\"value\":975},{\"label\":\"5\",\"value\":950}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"950\"},{\"label\":\"Spend\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0259.recall",
+      "text": "A toy budget starts with 1,001 and spends -20 per day for 5 days. What remains? Answer 1,101.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0259/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #259. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy budget starts with 1,001 and spends -20 per day for 5 days. What remains?",
+    "options": [
+      "660.6",
+      "1,541.4",
+      "1,101"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Remaining 1,101 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0259",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-259"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 259,
+    "sourceSection": "13. Availability, representativeness & other heuristics",
+    "sourceEntryOriginal": "- **259.** Money pours into mutual funds after strong past returns, but leaves poor performers only slowly (Sirri & Tufano, 1998).",
+    "modelBoundary": "the asymmetry of assumed inflows and outflows",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      5,
+      -20
+    ]
+  }
+}

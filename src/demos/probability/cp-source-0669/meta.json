@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0669",
+  "title": "One navigation update",
+  "hook": "Two stated cases: explore the observation weight in a scalar navigation illustration.",
+  "domain": "probability",
+  "concept": "cp-source-0669",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the observation weight in a scalar navigation illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the observation weight in a scalar navigation illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0669.predict",
+      "text": "A scalar toy filter predicts from Mean 0, PriorVar 4, adds ProcessVar 1, then observes 10 with noise variance 4. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.reveal.0",
+      "text": "The retained results are Noise=4; Posterior=5.556 and Noise=1; Posterior=8.333.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.reveal.1",
+      "text": "Prediction grows uncertainty; a measurement combines the predicted state and observation according to their uncertainties. This is a scalar linear-Gaussian update. This comparison isolates the observation weight in a scalar navigation illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.case.0.witness",
+      "text": "Noise=4; Posterior=5.556",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"PriorVar\",4],[\"ProcessVar\",1],[\"Observation\",10],[\"Noise\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":5.555555555555555},{\"label\":\"Variance\",\"value\":2.2222222222222223},{\"label\":\"Gain\",\"value\":0.5555555555555556}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"5.556\"},{\"label\":\"Noise\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.case.1.witness",
+      "text": "Noise=1; Posterior=8.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"PriorVar\",4],[\"ProcessVar\",1],[\"Observation\",10],[\"Noise\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":8.333333333333334},{\"label\":\"Variance\",\"value\":0.8333333333333334},{\"label\":\"Gain\",\"value\":0.8333333333333334}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"8.333\"},{\"label\":\"Noise\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0669.recall",
+      "text": "A scalar toy filter predicts from Mean 1, PriorVar 4, adds ProcessVar 1, then observes 10 with noise variance 4. What posterior mean results? Answer 6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0669/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #669. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A scalar toy filter predicts from Mean 1, PriorVar 4, adds ProcessVar 1, then observes 10 with noise variance 4. What posterior mean results?",
+    "options": [
+      "3.6",
+      "6",
+      "8.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0669",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-669"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 669,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **669. Apollo navigation** \\[Story\\]: the Kalman filter helped estimate Apollo spacecraft trajectories in the 1960s.",
+    "modelBoundary": "the observation weight in a scalar navigation illustration",
+    "recallInputs": [
+      1,
+      4,
+      1,
+      10,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

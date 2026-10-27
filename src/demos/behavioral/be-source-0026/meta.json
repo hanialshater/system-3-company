@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0026",
+  "title": "An implausible age cue",
+  "hook": "Two stated cases: explore the weight allowed to an implausible cue.",
+  "domain": "behavioral",
+  "concept": "be-source-0026",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weight allowed to an implausible cue affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the weight allowed to an implausible cue in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0026.predict",
+      "text": "A toy estimate gives anchor 9 weight 0.25 and evidence 78 the remaining weight. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.reveal.0",
+      "text": "The retained results are Anchor=9; Estimate=60.75 and Anchor=140; Estimate=93.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.reveal.1",
+      "text": "An estimate can move because the arbitrary starting point moves. The contrast holds the evidence fixed to expose that channel. This comparison isolates the weight allowed to an implausible cue.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.case.0.witness",
+      "text": "Anchor=9; Estimate=60.75",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",9],[\"Evidence\",78],[\"Weight\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":60.75}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"60.75\"},{\"label\":\"Anchor\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.case.1.witness",
+      "text": "Anchor=140; Estimate=93.5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Anchor\",140],[\"Evidence\",78],[\"Weight\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":93.5}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"93.5\"},{\"label\":\"Anchor\",\"value\":\"140\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0026.recall",
+      "text": "A toy estimate gives anchor 10 weight 0.25 and evidence 78 the remaining weight. What estimate results? Answer 61.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0026/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #26. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimate gives anchor 10 weight 0.25 and evidence 78 the remaining weight. What estimate results?",
+    "options": [
+      "61",
+      "36.6",
+      "85.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Estimate 61 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0026",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-26"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 26,
+    "sourceSection": "2. Anchoring",
+    "sourceEntryOriginal": "- **26.** Asked whether Gandhi died before or after age 9 or age 140, people estimated about 50 and 67 (Strack & Mussweiler, 1997).",
+    "modelBoundary": "the weight allowed to an implausible cue",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      10,
+      78,
+      0.25
+    ]
+  }
+}

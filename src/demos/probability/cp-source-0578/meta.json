@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0578",
+  "title": "Visit every node of a complete graph",
+  "hook": "Two stated cases: explore the collection stages of a uniform complete-graph walk.",
+  "domain": "probability",
+  "concept": "cp-source-0578",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the collection stages of a uniform complete-graph walk affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Steps, regardless of the stated inputs.",
+  "objective": "Compare the collection stages of a uniform complete-graph walk in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0578.predict",
+      "text": "A toy walk on the complete graph of 10 nodes starts at one node and always moves to a different uniform node. What is expected time to visit all nodes?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.reveal.0",
+      "text": "The retained results are Nodes=10; Steps=25.461 and Nodes=50; Steps=219.481.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.reveal.1",
+      "text": "Collection becomes slower as fewer unseen nodes remain. This complete-graph formula does not apply to arbitrary network topologies. This comparison isolates the collection stages of a uniform complete-graph walk.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.case.0.witness",
+      "text": "Nodes=10; Steps=25.461",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Nodes\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Steps\",\"value\":25.460714285714282}]},\"metrics\":[{\"label\":\"Steps\",\"value\":\"25.461\"},{\"label\":\"Nodes\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.case.1.witness",
+      "text": "Nodes=50; Steps=219.481",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Nodes\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Steps\",\"value\":219.48106157814175}]},\"metrics\":[{\"label\":\"Steps\",\"value\":\"219.481\"},{\"label\":\"Nodes\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0578.recall",
+      "text": "A toy walk on the complete graph of 11 nodes starts at one node and always moves to a different uniform node. What is expected time to visit all nodes? Answer 29.29.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0578/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #578. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy walk on the complete graph of 11 nodes starts at one node and always moves to a different uniform node. What is expected time to visit all nodes?",
+    "options": [
+      "29.29",
+      "17.574",
+      "41.006"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Steps 29.29 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0578",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-578"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 578,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **578. Cover time** \\[Predict\\]: how long until a random walker visits every node of a graph?",
+    "modelBoundary": "the collection stages of a uniform complete-graph walk",
+    "recallInputs": [
+      11
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

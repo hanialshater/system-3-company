@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0453",
+  "title": "Repairs added to the estimate",
+  "hook": "Two stated cases: explore the complete bill with specified extra repairs.",
+  "domain": "behavioral",
+  "concept": "be-source-0453",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the complete bill with specified extra repairs affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the complete bill with specified extra repairs in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0453.predict",
+      "text": "A toy price starts at 100, subtracts discount 0, and adds surcharge 80. What is the final price?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.reveal.0",
+      "text": "The retained results are Surcharge=80; Final=180 and Surcharge=0; Final=100.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.reveal.1",
+      "text": "Compare final prices under the two labels. Fairness or preference judgments are not implied by equal arithmetic. This comparison isolates the complete bill with specified extra repairs.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.case.0.witness",
+      "text": "Surcharge=80; Final=180",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",100],[\"Discount\",0],[\"Surcharge\",80]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":180}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"180\"},{\"label\":\"Surcharge\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.case.1.witness",
+      "text": "Surcharge=0; Final=100",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",100],[\"Discount\",0],[\"Surcharge\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":100}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"100\"},{\"label\":\"Surcharge\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0453.recall",
+      "text": "A toy price starts at 101, subtracts discount 0, and adds surcharge 80. What is the final price? Answer 181.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0453/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #453. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy price starts at 101, subtracts discount 0, and adds surcharge 80. What is the final price?",
+    "options": [
+      "108.6",
+      "181",
+      "253.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 181 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0453",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-453"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 453,
+    "sourceSection": "23. Honesty & dishonesty",
+    "sourceEntryOriginal": "- **453.** Auto mechanics recommended unneeded repairs to undercover customers (Schneider, 2012).",
+    "modelBoundary": "the complete bill with specified extra repairs",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      0,
+      80
+    ]
+  }
+}

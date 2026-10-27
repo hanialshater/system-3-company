@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0281", "title": "Stone size changes the treatment mix", "op": "simpson", "labels": ["WeightA", "WeightB", "Rate1", "Rate2", "Advantage"], "outputs": ["Gap", "AggregateA", "AggregateB"], "a": [0.2, 0.8, 0.9, 0.3, 0.05], "b": [0.5, 0.5, 0.9, 0.3, 0.05], "question": "Two toy strata have B rates 0.9,0.3; A is better by 0.05 in both. Stratum-1 shares are 0.2 in A, 0.8 in B. What is aggregate A minus B?", "questionTemplate": "Two toy strata have B rates {Rate1},{Rate2}; A is better by {Advantage} in both. Stratum-1 shares are {WeightA} in A, {WeightB} in B. What is aggregate A minus B?", "explain": "Each stratum has the same stipulated advantage, but different weights can reverse the aggregate comparison. Equalizing weights removes this composition channel.", "lens": "unequal difficulty weights despite a stratum-level advantage", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

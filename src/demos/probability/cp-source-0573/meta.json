@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0573",
+  "title": "A constant annual default hazard",
+  "hook": "Two stated cases: explore the survival complement under a constant conditional hazard.",
+  "domain": "probability",
+  "concept": "cp-source-0573",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the survival complement under a constant conditional hazard affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare the survival complement under a constant conditional hazard in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0573.predict",
+      "text": "An event independently occurs with probability 0.02 on each of 20 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.reveal.0",
+      "text": "The retained results are Trials=20; AtLeastOne=0.332 and Trials=1; AtLeastOne=0.02.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates the survival complement under a constant conditional hazard.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.case.0.witness",
+      "text": "Trials=20; AtLeastOne=0.332",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.02],[\"Trials\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.33239202824490577}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.332\"},{\"label\":\"Trials\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.case.1.witness",
+      "text": "Trials=1; AtLeastOne=0.02",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.02],[\"Trials\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.020000000000000018}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.02\"},{\"label\":\"Trials\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0573.recall",
+      "text": "An event independently occurs with probability 0.016 on each of 20 trials. What is the probability of at least one occurrence? Answer 0.276.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0573/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #573. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.016 on each of 20 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.165",
+      "0.276",
+      "0.386"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives AtLeastOne 0.276 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0573",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-573"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 573,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **573. Credit ratings** \\[Slider\\]: yearly transitions between AAA and default; project a bond's path decades out.",
+    "modelBoundary": "the survival complement under a constant conditional hazard",
+    "recallInputs": [
+      0.016,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

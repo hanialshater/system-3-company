@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0527",
+  "title": "Independent backups must both be slow",
+  "hook": "Two stated cases: explore the joint slow-tail event in a two-copy toy model.",
+  "domain": "probability",
+  "concept": "cp-source-0527",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the joint slow-tail event in a two-copy toy model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the joint slow-tail event in a two-copy toy model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0527.predict",
+      "text": "Each of 2 independent required stages succeeds with probability 0.01. What is the probability all stages succeed?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.reveal.0",
+      "text": "The retained results are Count=2; Probability=1.00e-4 and Count=1; Probability=0.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.reveal.1",
+      "text": "Multiplication requires the stated independence. More required stages can lower the final success chance despite favorable individual odds. This comparison isolates the joint slow-tail event in a two-copy toy model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.case.0.witness",
+      "text": "Count=2; Probability=1.00e-4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.01],[\"Count\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.0001}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"1.00e-4\"},{\"label\":\"Count\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.case.1.witness",
+      "text": "Count=1; Probability=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.01],[\"Count\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.01}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.01\"},{\"label\":\"Count\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0527.recall",
+      "text": "Each of 2 independent required stages succeeds with probability 0.008. What is the probability all stages succeed? Answer 6.40e-5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0527/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #527. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each of 2 independent required stages succeeds with probability 0.008. What is the probability all stages succeed?",
+    "options": [
+      "6.40e-5",
+      "-0.1",
+      "0.1"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 6.40e-5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0527",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-527"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 527,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **527. Hedged requests** \\[Slider\\]: send a backup request after a short delay and cut tail latency for a little extra load.",
+    "modelBoundary": "the joint slow-tail event in a two-copy toy model",
+    "recallInputs": [
+      0.008,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0282",
+  "title": "Across the left digit",
+  "hook": "Two stated cases: explore equal cash gaps with unequal integer-part changes.",
+  "domain": "behavioral",
+  "concept": "be-source-0282",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How equal cash gaps with unequal integer-part changes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines CashGap, regardless of the stated inputs.",
+  "objective": "Compare equal cash gaps with unequal integer-part changes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0282.predict",
+      "text": "Toy prices are 2.99 and 3. What is the cash difference, PriceB minus PriceA?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.reveal.0",
+      "text": "The retained results are PriceA=2.99 PriceB=3; CashGap=0.01 and PriceA=4 PriceB=4.01; CashGap=0.01.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.reveal.1",
+      "text": "The cash gap and the change in the integer part are separate quantities. This display does not measure how large the difference feels. This comparison isolates equal cash gaps with unequal integer-part changes.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.case.0.witness",
+      "text": "PriceA=2.99 PriceB=3; CashGap=0.01",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"PriceA\",2.99],[\"PriceB\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"CashGap\",\"value\":0.009999999999999787},{\"label\":\"IntegerGap\",\"value\":1}]},\"metrics\":[{\"label\":\"CashGap\",\"value\":\"0.01\"},{\"label\":\"PriceA\",\"value\":\"2.99\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.case.1.witness",
+      "text": "PriceA=4 PriceB=4.01; CashGap=0.01",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"PriceA\",4],[\"PriceB\",4.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"CashGap\",\"value\":0.009999999999999787},{\"label\":\"IntegerGap\",\"value\":0}]},\"metrics\":[{\"label\":\"CashGap\",\"value\":\"0.01\"},{\"label\":\"PriceA\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0282.recall",
+      "text": "Toy prices are 3.09 and 3. What is the cash difference, PriceB minus PriceA? Answer -0.09.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0282/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #282. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prices are 3.09 and 3. What is the cash difference, PriceB minus PriceA?",
+    "options": [
+      "-0.19",
+      "-0.09",
+      "0.01"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives CashGap -0.09 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0282",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-282"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 282,
+    "sourceSection": "15. Pricing & consumer behavior",
+    "sourceEntryOriginal": "- **282.** Because people read the leftmost digit first, $2.99 vs $3.00 feels like a bigger gap than $4.00 vs $4.01 (Thomas & Morwitz, 2005).",
+    "modelBoundary": "equal cash gaps with unequal integer-part changes",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      3.0900000000000003,
+      3
+    ]
+  }
+}

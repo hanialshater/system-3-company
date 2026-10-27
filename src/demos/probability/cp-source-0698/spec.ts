@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0698", "title": "Pending outcomes change observed rates", "op": "selectedmean", "labels": ["Good", "Bad", "Share", "KeepGood", "KeepBad"], "outputs": ["Selected", "Full"], "a": [1.0, 0.0, 0.5, 1.0, 1.0], "b": [1.0, 0.0, 0.5, 0.5, 1.0], "question": "A toy population has Good outcome 1 with share 0.5, otherwise Bad 0. Retain fractions 1 and 1 respectively. What mean is observed among retained units?", "questionTemplate": "A toy population has Good outcome {Good} with share {Share}, otherwise Bad {Bad}. Retain fractions {KeepGood} and {KeepBad} respectively. What mean is observed among retained units?", "explain": "Outcome-dependent inclusion changes the observed mixture. A large selected sample cannot by itself repair missing low-retention outcomes.", "lens": "selective completion before a delayed-reward update", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,103 @@
+{
+  "slug": "be-your-lottery-ticket",
+  "title": "Your lottery ticket",
+  "hook": "Does choosing a ticket change its odds or just the price you demand?",
+  "domain": "behavioral",
+  "concept": "be-your-lottery-ticket",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate control over selection from control over a random outcome."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate control over selection from control over a random outcome.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-your-lottery-ticket.inputs",
+      "text": "A toy lottery has ten equally likely tickets. Choosing your own ticket instead of receiving one changes its winning chance to what? Toy inputs A=[10, 1, 0]; B=[10, 0, 1].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-your-lottery-ticket.trace",
+      "text": "Computed results: [[10, 1, 0], [10, 0, 1]]. Labels: Chance %, Self-picked, Assigned.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-your-lottery-ticket.reveal",
+      "text": "The rule assigns equal probability to every ticket. The selection method changes who chooses the label, not the draw distribution. Any ownership value or willingness to sell is a separate measured response.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-your-lottery-ticket.recall",
+      "text": "A new toy case uses Equal tickets=10, Self-picked=0, Assigned=1. What is Chance %? Answer: 10.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Equal tickets=10, Self-picked=0, Assigned=1. What is Chance %?",
+    "options": [
+      "13",
+      "10",
+      "7"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 10. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-your-lottery-ticket",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-235"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 235,
+    "section": "12. Overconfidence & self-assessment",
+    "text": "Office workers who chose their own lottery ticket asked $8.67 to sell it, versus $1.96 for those assigned one (Langer, 1975).",
+    "pointer": "500-behavioral-economics-findings.md entry 235: Langer, 1975",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-certain-confidence-score",
+  "meaningfulDifference": "Separate control over selection from control over a random outcome."
+}

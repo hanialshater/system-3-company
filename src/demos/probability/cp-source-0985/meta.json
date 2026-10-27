@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0985",
+  "title": "Walkers spread into a heat kernel",
+  "hook": "Two stated cases: explore the elapsed diffusion time in a continuum limit.",
+  "domain": "probability",
+  "concept": "cp-source-0985",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the elapsed diffusion time in a continuum limit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Density, regardless of the stated inputs.",
+  "objective": "Compare the elapsed diffusion time in a continuum limit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0985.predict",
+      "text": "A toy diffusion starts at zero, diffusivity 1, elapsed Time 1. What heat-kernel density occurs at X 0?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.reveal.0",
+      "text": "The retained results are Time=1; Density=0.282 and Time=4; Density=0.141.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.reveal.1",
+      "text": "The Gaussian kernel spreads with variance 2Dt. It is a continuum distribution, not a claim that one walker follows the mean. This comparison isolates the elapsed diffusion time in a continuum limit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.case.0.witness",
+      "text": "Time=1; Density=0.282",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",0],[\"Diffusion\",1],[\"Time\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-5,\"y\":0.0005445710575881775},{\"x\":-4.583333333333333,\"y\":0.0014777298785965242},{\"x\":-4.166666666666667,\"y\":0.0036765153128954695},{\"x\":-3.75,\"y\":0.00838645710605402},{\"x\":-3.333333333333333,\"y\":0.017539673597242445},{\"x\":-2.9166666666666665,\"y\":0.03363297701342688},{\"x\":-2.5,\"y\":0.059130280611822704},{\"x\":-2.0833333333333335,\"y\":0.09531371469419375},{\"x\":-1.6666666666666665,\"y\":0.14086453882682645},{\"x\":-1.25,\"y\":0.19087488394015123},{\"x\":-0.833333333333333,\"y\":0.2371355798361253},{\"x\":-0.41666666666666696,\"y\":0.2701129966930789},{\"x\":0,\"y\":0.28209479177387814},{\"x\":0.41666666666666696,\"y\":0.2701129966930789},{\"x\":0.833333333333333,\"y\":0.2371355798361253},{\"x\":1.25,\"y\":0.19087488394015123},{\"x\":1.666666666666667,\"y\":0.14086453882682642},{\"x\":2.083333333333333,\"y\":0.09531371469419381},{\"x\":2.5,\"y\":0.059130280611822704},{\"x\":2.916666666666667,\"y\":0.03363297701342685},{\"x\":3.333333333333334,\"y\":0.01753967359724242},{\"x\":3.75,\"y\":0.00838645710605402},{\"x\":4.166666666666666,\"y\":0.003676515312895476},{\"x\":4.583333333333334,\"y\":0.0014777298785965216},{\"x\":5,\"y\":0.0005445710575881775}],\"xLabel\":\"X\",\"yLabel\":\"Density\"},\"metrics\":[{\"label\":\"Density\",\"value\":\"0.282\"},{\"label\":\"Time\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.case.1.witness",
+      "text": "Time=4; Density=0.141",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",0],[\"Diffusion\",1],[\"Time\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-5,\"y\":0.029565140305911352},{\"x\":-4.583333333333333,\"y\":0.037945918443426305},{\"x\":-4.166666666666667,\"y\":0.047656857347096876},{\"x\":-3.75,\"y\":0.05856807336192477},{\"x\":-3.333333333333333,\"y\":0.07043226941341323},{\"x\":-2.9166666666666665,\"y\":0.08288150583127504},{\"x\":-2.5,\"y\":0.09543744197007561},{\"x\":-2.0833333333333335,\"y\":0.10753631600562759},{\"x\":-1.6666666666666665,\"y\":0.11856778991806265},{\"x\":-1.25,\"y\":0.12792443332502468},{\"x\":-0.833333333333333,\"y\":0.13505649834653946},{\"x\":-0.41666666666666696,\"y\":0.13952520702994442},{\"x\":0,\"y\":0.14104739588693907},{\"x\":0.41666666666666696,\"y\":0.13952520702994442},{\"x\":0.833333333333333,\"y\":0.13505649834653946},{\"x\":1.25,\"y\":0.12792443332502468},{\"x\":1.666666666666667,\"y\":0.11856778991806263},{\"x\":2.083333333333333,\"y\":0.10753631600562759},{\"x\":2.5,\"y\":0.09543744197007561},{\"x\":2.916666666666667,\"y\":0.08288150583127503},{\"x\":3.333333333333334,\"y\":0.07043226941341321},{\"x\":3.75,\"y\":0.05856807336192477},{\"x\":4.166666666666666,\"y\":0.047656857347096904},{\"x\":4.583333333333334,\"y\":0.03794591844342629},{\"x\":5,\"y\":0.029565140305911352}],\"xLabel\":\"X\",\"yLabel\":\"Density\"},\"metrics\":[{\"label\":\"Density\",\"value\":\"0.141\"},{\"label\":\"Time\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0985.recall",
+      "text": "A toy diffusion starts at zero, diffusivity 1, elapsed Time 1. What heat-kernel density occurs at X 1? Answer 0.22.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0985/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #985. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy diffusion starts at zero, diffusivity 1, elapsed Time 1. What heat-kernel density occurs at X 1?",
+    "options": [
+      "0.12",
+      "0.32",
+      "0.22"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Density 0.22 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0985",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-985"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 985,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **985. Diffusion from random walkers** \\[Slider\\]: thousands of random walkers spread into the bell-shaped heat equation solution.",
+    "modelBoundary": "the elapsed diffusion time in a continuum limit",
+    "recallInputs": [
+      1,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0575",
+  "title": "Independent chances for a coupling event",
+  "hook": "Two stated cases: explore a supplied coalescence-opportunity model rather than full CFTP.",
+  "domain": "probability",
+  "concept": "cp-source-0575",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a supplied coalescence-opportunity model rather than full CFTP affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare a supplied coalescence-opportunity model rather than full CFTP in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0575.predict",
+      "text": "An event independently occurs with probability 0.2 on each of 10 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.reveal.0",
+      "text": "The retained results are Trials=10; AtLeastOne=0.893 and Trials=30; AtLeastOne=0.999.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates a supplied coalescence-opportunity model rather than full CFTP.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.case.0.witness",
+      "text": "Trials=10; AtLeastOne=0.893",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.2],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.8926258175999999}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.893\"},{\"label\":\"Trials\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.case.1.witness",
+      "text": "Trials=30; AtLeastOne=0.999",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.2],[\"Trials\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.9987620599607147}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.999\"},{\"label\":\"Trials\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0575.recall",
+      "text": "An event independently occurs with probability 0.16 on each of 10 trials. What is the probability of at least one occurrence? Answer 0.825.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0575/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #575. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.16 on each of 10 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.825",
+      "0.495",
+      "1.155"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives AtLeastOne 0.825 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0575",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-575"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 575,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **575. Coupling from the past** \\[Slider\\]: run chains from every start until they merge, giving an exact sample.",
+    "modelBoundary": "a supplied coalescence-opportunity model rather than full CFTP",
+    "recallInputs": [
+      0.16000000000000003,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

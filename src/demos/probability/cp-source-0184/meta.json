@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0184",
+  "title": "A hard cluster hides soft membership",
+  "hook": "Two stated cases: explore the posterior membership under equal-variance Gaussian classes.",
+  "domain": "probability",
+  "concept": "cp-source-0184",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the posterior membership under equal-variance Gaussian classes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines PosteriorA, regardless of the stated inputs.",
+  "objective": "Compare the posterior membership under equal-variance Gaussian classes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0184.predict",
+      "text": "Two toy equal-variance Gaussian classes have prior A 0.5; the point is DistanceA 1, DistanceB 1.2 from their means; variance 1. What is posterior A?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.reveal.0",
+      "text": "The retained results are DistanceB=1.2; PosteriorA=0.555 and DistanceB=3; PosteriorA=0.982.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.reveal.1",
+      "text": "Soft membership weighs densities and priors. A hard nearest-center label discards this uncertainty and may ignore unequal class priors. This comparison isolates the posterior membership under equal-variance Gaussian classes.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.case.0.witness",
+      "text": "DistanceB=1.2; PosteriorA=0.555",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"DistanceA\",1],[\"DistanceB\",1.2],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"PosteriorA\",\"value\":0.5547792351072147}]},\"metrics\":[{\"label\":\"PosteriorA\",\"value\":\"0.555\"},{\"label\":\"DistanceB\",\"value\":\"1.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.case.1.witness",
+      "text": "DistanceB=3; PosteriorA=0.982",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"DistanceA\",1],[\"DistanceB\",3],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"PosteriorA\",\"value\":0.9820137900379085}]},\"metrics\":[{\"label\":\"PosteriorA\",\"value\":\"0.982\"},{\"label\":\"DistanceB\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0184.recall",
+      "text": "Two toy equal-variance Gaussian classes have prior A 0.4; the point is DistanceA 1, DistanceB 1.2 from their means; variance 1. What is posterior A? Answer 0.454.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0184/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #184. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy equal-variance Gaussian classes have prior A 0.4; the point is DistanceA 1, DistanceB 1.2 from their means; variance 1. What is posterior A?",
+    "options": [
+      "0.272",
+      "0.635",
+      "0.454"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives PosteriorA 0.454 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0184",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-184"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 184,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **184. K-means vs mixtures** \\[Split\\]: hard clusters vs soft membership probabilities on the same overlapping data.",
+    "modelBoundary": "the posterior membership under equal-variance Gaussian classes",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.4,
+      1,
+      1.2,
+      1
+    ]
+  }
+}

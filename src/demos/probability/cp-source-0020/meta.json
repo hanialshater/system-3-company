@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0020",
+  "title": "The last missing sticker",
+  "hook": "Two stated cases: explore the sum of successive collection waits.",
+  "domain": "probability",
+  "concept": "cp-source-0020",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the sum of successive collection waits affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the sum of successive collection waits in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0020.predict",
+      "text": "Each independent toy pack contains one uniformly chosen type among 50. What is the expected number of packs to collect all types?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.reveal.0",
+      "text": "The retained results are Types=50; Expected=224.96 and Types=10; Expected=29.29.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.reveal.1",
+      "text": "The last missing types take longer to find than the first. The expectation sums waiting times at each collection stage. This comparison isolates the sum of successive collection waits.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.case.0.witness",
+      "text": "Types=50; Expected=224.96",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Types\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":224.96026691647114}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"224.96\"},{\"label\":\"Types\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.case.1.witness",
+      "text": "Types=10; Expected=29.29",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Types\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":29.289682539682538}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"29.29\"},{\"label\":\"Types\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0020.recall",
+      "text": "Each independent toy pack contains one uniformly chosen type among 51. What is the expected number of packs to collect all types? Answer 230.459.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0020/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #20. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each independent toy pack contains one uniformly chosen type among 51. What is the expected number of packs to collect all types?",
+    "options": [
+      "230.459",
+      "138.276",
+      "322.643"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Expected 230.459 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0020",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-20"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 20,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **20. Coupon collector** \\[Predict\\]: how many packs to complete a 50-sticker album? About 225.",
+    "modelBoundary": "the sum of successive collection waits",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      51
+    ]
+  }
+}

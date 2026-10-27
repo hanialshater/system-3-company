@@ -1,0 +1,163 @@
+{
+  "slug": "p100-the-censoring-trap",
+  "title": "Who is still a customer?",
+  "hook": "Who is still a customer? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-the-censoring-trap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "dropping customers who haven't churned yet makes lifetimes look much shorter."
+    ]
+  },
+  "misconception": "Four customers have events at times 2 and 4, and censoring at 3 and 5. What is Kaplan–Meier survival just after time 4? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "dropping customers who haven't churned yet makes lifetimes look much shorter.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-the-censoring-trap.case",
+      "text": "Four customers have events at times 2 and 4, and censoring at 3 and 5. What is Kaplan–Meier survival just after time 4? Options: 0; 0.375; 0.5. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Fourcustomerfollowups: eventsat2,4; censoredat3,5. KM S2=3/4,S4=(3/4)*(1/2)=3/8. Droppingcensoredpeople firstgivesat4zero; keep at-riskcountsvisible.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.recall",
+      "text": "Three at risk; one event, then one censor, then an event. Final KM survival? After the censor, the last event removes the sole remaining at-risk person.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.hook",
+      "text": "Who is still a customer? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c4",
+      "text": "Keeping the at-risk sets gives survival 0.375 after time 4. Dropping censored customers before calculation gives 0 instead.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c5",
+      "text": "The first event removes 1 of 4 at risk. Censoring at 3 removes someone from later risk sets; the event at 4 removes 1 of the remaining 2. Kaplan–Meier multiplies 3/4 by 1/2. Its usual interpretation requires appropriate non-informative censoring.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-the-censoring-trap/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c7",
+      "text": "KM survival: 0.375",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"table\",\"columns\":[\"Time\",\"Kind\"],\"rows\":[[2,\"Event\"],[3,\"Censor\"],[4,\"Event\"],[5,\"Censor\"]]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1\",\"value\":0.75},{\"label\":\"2\",\"value\":0.75},{\"label\":\"3\",\"value\":0.375}]}. [{\"label\":\"KM survival\",\"value\":\"0.375\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c10",
+      "text": "Drop-censor: 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"table\",\"columns\":[\"Time\",\"Kind\"],\"rows\":[[2,\"Event\"],[4,\"Event\"]]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-the-censoring-trap.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1\",\"value\":0.5},{\"label\":\"2\",\"value\":0}]}. [{\"label\":\"Drop-censor\",\"value\":\"0\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-the-censoring-trap/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three at risk; one event, then one censor, then an event. Final KM survival?",
+    "options": [
+      "0",
+      "1/3",
+      "2/3"
+    ],
+    "answer": 0,
+    "why": "After the censor, the last event removes the sole remaining at-risk person."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-the-censoring-trap",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-722",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 722,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceTitle": "The censoring trap",
+    "sourceText": "dropping customers who haven't churned yet makes lifetimes look much shorter.",
+    "sourceEntryOriginal": "- **722. The censoring trap** \\[Gotcha\\]: dropping customers who haven't churned yet makes lifetimes look much shorter.",
+    "numericCase": "Fourcustomerfollowups: eventsat2,4; censoredat3,5. KM S2=3/4,S4=(3/4)*(1/2)=3/8. Droppingcensoredpeople firstgivesat4zero; keep at-riskcountsvisible.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "math/straight-across-saves",
+    "difference": "New teaching boundary: The censoring trap. Existing boundary: The learner can compute a diagonal from its two legs and see that it is far shorter than going round the corner."
+  },
+  "modelOutputs": [
+    0.375,
+    0
+  ]
+}

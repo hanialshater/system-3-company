@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0937",
+  "title": "Correct an incomplete reporting tail",
+  "hook": "Two stated cases: explore the reporting-completion probability in one nowcast correction.",
+  "domain": "probability",
+  "concept": "cp-source-0937",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reporting-completion probability in one nowcast correction affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weighted, regardless of the stated inputs.",
+  "objective": "Compare the reporting-completion probability in one nowcast correction in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0937.predict",
+      "text": "A toy action has Target probability 1, Behavior probability 0.2, observed Reward 20. What importance-weighted reward results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.reveal.0",
+      "text": "The retained results are Behavior=0.2; Weighted=100 and Behavior=0.8; Weighted=25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.reveal.1",
+      "text": "The probability ratio reweights a sample toward the target policy. Valid policy evaluation also requires support and correctly recorded behavior probabilities. This comparison isolates the reporting-completion probability in one nowcast correction.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.case.0.witness",
+      "text": "Behavior=0.2; Weighted=100",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",1],[\"Behavior\",0.2],[\"Reward\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Weighted\",\"value\":100}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"100\"},{\"label\":\"Behavior\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.case.1.witness",
+      "text": "Behavior=0.8; Weighted=25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",1],[\"Behavior\",0.8],[\"Reward\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Weighted\",\"value\":25}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"25\"},{\"label\":\"Behavior\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0937.recall",
+      "text": "A toy action has Target probability 1, Behavior probability 0.3, observed Reward 20. What importance-weighted reward results? Answer 66.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0937/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #937. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy action has Target probability 1, Behavior probability 0.3, observed Reward 20. What importance-weighted reward results?",
+    "options": [
+      "40",
+      "93.333",
+      "66.667"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Weighted 66.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0937",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-937"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 937,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **937. Nowcasting** \\[Slider\\]: recent cases are undercounted due to reporting delays; correct the curve's tail.",
+    "modelBoundary": "the reporting-completion probability in one nowcast correction",
+    "recallInputs": [
+      1,
+      0.30000000000000004,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

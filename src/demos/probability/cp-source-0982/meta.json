@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0982",
+  "title": "A toy call responds to volatility",
+  "hook": "Two stated cases: explore the constant volatility in a no-dividend European option model.",
+  "domain": "probability",
+  "concept": "cp-source-0982",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the constant volatility in a no-dividend European option model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Call, regardless of the stated inputs.",
+  "objective": "Compare the constant volatility in a no-dividend European option model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0982.predict",
+      "text": "A toy European call has Spot 100, Strike 100, rate 0.03, volatility Sigma 0.2, Time 1. Under the no-dividend constant-volatility Black-Scholes model, what price results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.reveal.0",
+      "text": "The retained results are Sigma=0.2; Call=9.413 and Sigma=0.5; Call=20.962.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.reveal.1",
+      "text": "The model averages discounted risk-neutral payoffs under specific market assumptions. Its value is not a recommendation or a market quote. This comparison isolates the constant volatility in a no-dividend European option model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.case.0.witness",
+      "text": "Sigma=0.2; Call=9.413",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Spot\",100],[\"Strike\",100],[\"Rate\",0.03],[\"Sigma\",0.2],[\"Time\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Call\",\"value\":9.413403383853016}]},\"metrics\":[{\"label\":\"Call\",\"value\":\"9.413\"},{\"label\":\"Sigma\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.case.1.witness",
+      "text": "Sigma=0.5; Call=20.962",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Spot\",100],[\"Strike\",100],[\"Rate\",0.03],[\"Sigma\",0.5],[\"Time\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Call\",\"value\":20.961539565941777}]},\"metrics\":[{\"label\":\"Call\",\"value\":\"20.962\"},{\"label\":\"Sigma\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0982.recall",
+      "text": "A toy European call has Spot 101, Strike 100, rate 0.03, volatility Sigma 0.2, Time 1. Under the no-dividend constant-volatility Black-Scholes model, what price results? Answer 10.022.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0982/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #982. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy European call has Spot 101, Strike 100, rate 0.03, volatility Sigma 0.2, Time 1. Under the no-dividend constant-volatility Black-Scholes model, what price results?",
+    "options": [
+      "6.013",
+      "14.03",
+      "10.022"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Call 10.022 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0982",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-982"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 982,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **982. Black–Scholes** \\[Slider\\]: drag volatility, time and strike and watch an option's price surface bend.",
+    "modelBoundary": "the constant volatility in a no-dividend European option model",
+    "recallInputs": [
+      101,
+      100,
+      0.03,
+      0.2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

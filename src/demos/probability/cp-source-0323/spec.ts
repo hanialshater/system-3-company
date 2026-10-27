@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0323", "title": "Precision has a sample-size price", "op": "samplesize", "labels": ["P", "Z", "Error"], "outputs": ["N"], "a": [0.1, 1.96, 0.01], "b": [0.1, 1.96, 0.005], "question": "Use the toy large-population normal approximation with proportion 0.1, multiplier 1.96, and desired half-width 0.01. What rounded-up sample size is required?", "questionTemplate": "Use the toy large-population normal approximation with proportion {P}, multiplier {Z}, and desired half-width {Error}. What rounded-up sample size is required?", "explain": "Precision improves with the square root of sample size. The calculation assumes a simple random sample and ignores nonresponse and design effects.", "lens": "the half-width target of a stated normal approximation", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

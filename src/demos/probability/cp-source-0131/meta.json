@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0131",
+  "title": "The bankroll needed after losses",
+  "hook": "Two stated cases: explore the geometric cost of a doubling strategy.",
+  "domain": "probability",
+  "concept": "cp-source-0131",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the geometric cost of a doubling strategy affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Required, regardless of the stated inputs.",
+  "objective": "Compare the geometric cost of a doubling strategy in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0131.predict",
+      "text": "A toy doubling strategy begins at stake 1. After 10 consecutive losses, how much total has been lost?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.reveal.0",
+      "text": "The retained results are Losses=10; Required=1,023 and Losses=20; Required=1.05e+6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.reveal.1",
+      "text": "Losses accumulate geometrically. A finite bankroll or table limit prevents indefinite doubling. This comparison isolates the geometric cost of a doubling strategy.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.case.0.witness",
+      "text": "Losses=10; Required=1,023",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Stake\",1],[\"Losses\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Required\",\"value\":1023},{\"label\":\"Next\",\"value\":1024}]},\"metrics\":[{\"label\":\"Required\",\"value\":\"1,023\"},{\"label\":\"Losses\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.case.1.witness",
+      "text": "Losses=20; Required=1.05e+6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Stake\",1],[\"Losses\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Required\",\"value\":1048575},{\"label\":\"Next\",\"value\":1048576}]},\"metrics\":[{\"label\":\"Required\",\"value\":\"1.05e+6\"},{\"label\":\"Losses\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0131.recall",
+      "text": "A toy doubling strategy begins at stake 2. After 10 consecutive losses, how much total has been lost? Answer 2,046.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0131/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #131. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy doubling strategy begins at stake 2. After 10 consecutive losses, how much total has been lost?",
+    "options": [
+      "2,046",
+      "1,227.6",
+      "2,864.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Required 2,046 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0131",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-131"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 131,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **131. Martingale roulette** \\[Predict\\]: double after every loss; simulate until the table limit or bankroll ends it.",
+    "modelBoundary": "the geometric cost of a doubling strategy",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      2,
+      10
+    ]
+  }
+}

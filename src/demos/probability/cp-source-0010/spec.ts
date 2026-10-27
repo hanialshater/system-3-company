@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0010", "title": "Assign the envelopes first", "op": "envelopes", "labels": ["Small", "PSmall"], "outputs": ["ExpectedGain"], "a": [100.0, 0.5], "b": [100.0, 0.8], "question": "Two toy envelopes contain 100 and twice that amount. Without observing the contents, your probability of holding the smaller is 0.5. What is expected cash gain from switching?", "questionTemplate": "Two toy envelopes contain {Small} and twice that amount. Without observing the contents, your probability of holding the smaller is {PSmall}. What is expected cash gain from switching?", "explain": "The gain when initially holding the smaller amount balances the loss when holding the larger under uniform assignment. The assignment probability must be stated.", "lens": "the assignment probability before observing money", "kind": "bars", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

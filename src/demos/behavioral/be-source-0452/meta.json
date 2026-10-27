@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0452",
+  "title": "Unnecessary treatment visits",
+  "hook": "Two stated cases: explore the visit denominator behind a reported fraction.",
+  "domain": "behavioral",
+  "concept": "be-source-0452",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the visit denominator behind a reported fraction affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Added, regardless of the stated inputs.",
+  "objective": "Compare the visit denominator behind a reported fraction in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0452.predict",
+      "text": "A toy program has 100 eligible units, uptake fraction 0.28, and added amount 1 per participant. What total is added?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.reveal.0",
+      "text": "The retained results are Eligible=100; Added=28 and Eligible=200; Added=56.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.reveal.1",
+      "text": "Separate the effect among participants from the share who participate. Scaling a program requires both pieces. This comparison isolates the visit denominator behind a reported fraction.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.case.0.witness",
+      "text": "Eligible=100; Added=28",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",100],[\"Uptake\",0.28],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":28.000000000000004}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"28\"},{\"label\":\"Eligible\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.case.1.witness",
+      "text": "Eligible=200; Added=56",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",200],[\"Uptake\",0.28],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":56.00000000000001}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"56\"},{\"label\":\"Eligible\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0452.recall",
+      "text": "A toy program has 101 eligible units, uptake fraction 0.28, and added amount 1 per participant. What total is added? Answer 28.28.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0452/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy program has 101 eligible units, uptake fraction 0.28, and added amount 1 per participant. What total is added?",
+    "options": [
+      "28.28",
+      "16.968",
+      "39.592"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Added 28.28 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0452",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-452"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 452,
+    "sourceSection": "23. Honesty & dishonesty",
+    "sourceEntryOriginal": "- **452.** Swiss dentists recommended unnecessary treatment in about 28% of visits by a test patient (Gottschalk, Mimra & Waibel, 2020).",
+    "modelBoundary": "the visit denominator behind a reported fraction",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      0.28,
+      1
+    ]
+  }
+}

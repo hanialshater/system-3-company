@@ -1,0 +1,101 @@
+id	op	title	A	B	lens	Recall
+891	caliper	A marker threshold triggers treatment	5,4	5,6	the eligibility threshold before comparing dynamic treatment strategies	
+892	heteroeffect	Average outcomes under a strategy	0.5,2,6	0.8,2,6	the stipulated history mixture in a g-formula ingredient	
+893	offpolicy	Weights accumulate across treatment	0.8,0.4,2	0.8,0.1,2	one time-specific treatment weight before a longitudinal product	
+894	lagged	Feedback changes a lagged association	1,0,3	1,0.8,3	the feedback carryover term rather than causal identification by prediction	
+895	confounded	Two populations share a driver	0,2,0.8,0	0,2,0.8,1	a common environmental driver in a stipulated structural model	
+896	feedback	A shock propagates through time	1,0.8,5	1,0.2,5	the assumed impulse persistence in a scalar linear recurrence	
+897	lagged	A previous treatment can carry over	1,0.8,3	1,0,3	the remaining effect before and after an idealized washout	
+898	did	Remove a fixed baseline difference	10,15,20,22	100,105,20,22	the time-invariant treated intercept removed by differencing	
+899	weightedcontrast	Two adjusted estimates can disagree	0,1,4	1,1,4	the estimator endpoints before any bracketing identification claim	
+900	synthetic	An outcome model changes the baseline	0.5,10,12,16	0.5,12,14,16	the corrected counterfactual prediction in a synthetic-control illustration	
+902	offpolicy	Rare logging actions get large weights	0.5,0.5,1	0.5,0.01,1	the behavior propensity in a logged-policy reward	
+903	selfnorm	Normalize an importance-weighted mean	1,1,3,0	10,1,30,0	the shared weight scale removed by normalization	
+904	drsample	A model plus a weighted residual	0.8,0.4,1,0.5	0.8,0.8,1,0.5	the residual correction in a single-action evaluation ingredient	
+905	funnel	Position changes click exposure	100,0.9,0.5	100,0.2,0.5	the examination probability at fixed conditional relevance	
+906	rates	A randomized swap reveals click rates	30,100,10,100	20,100,20,100	the illustrative position contrast under a stipulated swap design	
+907	offpolicy	Reweight a click for exposure	1,0.8,1	1,0.2,1	the inverse exposure probability on one observed click	
+908	funnel	An unseen item has no logged clicks	100,0,0.8	100,0.5,0.8	the exposure gate before a preference can be observed	
+909	offpolicy	A niche click may carry more weight	0.5,0.5,1	0.5,0.05,1	the exposure correction before aggregating popularity	
+910	feedback	A recommendation loop amplifies a lead	1,1.1,10	1,1.4,10	the stipulated feedback strength rather than an empirical homogenization estimate	
+911	ite	Incrementality needs a counterfactual	100,110	50,110	the purchases assumed to occur without recommendations	
+913	conjunction	A slate probability combines choices	0.8,0.5	0.4,0.5	the conditional product in a two-position slate ingredient	
+914	mediation	A short-term signal predicts later value	0,2,3	0,2,1	the supplied surrogate-outcome path under explicit structural assumptions	
+915	contextpolicy	Known preferences benchmark a policy	0.5,0.9,0.1,0.1,0.9	0.5,0.9,0.1,0.8,0.2	the reward heterogeneity of two synthetic user types	
+916	offpolicy	Exploration creates logging support	0.5,0.01,1	0.5,0.2,1	the positive behavior propensity needed for finite importance weighting	
+917	selectedmean	Chosen ratings select favorable cases	5,1,0.5,1,1	5,1,0.5,1,0.1	the outcome-dependent response propensity in a ratings illustration	
+918	weightedcontrast	A relevance-diversity score has weights	0.9,0.8,0.4	0.1,0.8,0.4	the explicit scoring tradeoff rather than a guaranteed accuracy gain	
+919	balanceweight	Allocate exposure toward a target	0.5,0,1	0.8,0,1	the exposure share needed to match a stipulated merit target	
+920	calibration	Judge confidence meets experiment wins	0.8,8,10	0.8,5,10	a descriptive agreement count rather than a validated LLM judge	
+921	sir	Take one epidemic state step	0.99,0.01,0.4,0.1,0.1	0.99,0.01,0.1,0.1,0.1	the transmission term in a normalized SIR update	
+922	sir	Fewer contacts slow an infected stock	0.8,0.1,0.6,0.1,0.1	0.8,0.1,0.2,0.1,0.1	the contact-rate parameter before computing a complete epidemic peak	
+923	herd	Immunity changes reproduction	3	2	the homogeneous perfect-immunity threshold	
+924	herd	A threshold is not a final case count	3	5	the critical immune share rather than epidemic overshoot	
+925	compoundpoisson	Offspring variance changes total spread	2,1,1,1	2,1,1,20	the offspring-size variance in a compound transmission count	
+927	giant	Connectivity can support broad reach	0.8	2	the mean-degree threshold in a random-graph reachability model	
+928	attachment	A hub holds more contact exposure	2,100	20,100	the degree-weighted contact share before a vaccination policy comparison	
+929	sizebias	Tracing back oversamples prolific cases	1,90,10,10	1,90,30,10	the size bias from following a random transmission link	
+931	caliper	A behavior waits for enough exposure	3,2	3,4	the minimum-exposure threshold in a binary activation ingredient	
+932	messages	Public guesses can update private odds	0.5,2,1	0.5,2,10	the supplied social likelihood message under an independence assumption	
+933	finitebranch	Many cascades end early	0.6,0.2,5	0.4,0.4,5	the offspring law in a finite branching cascade	
+934	caliper	One threshold can change activation	5,4	5,5	the threshold crossing before a full crowd cascade	
+935	availability	A spreader can leave the active state	0.2,0,1,5	0.8,0,1,5	the stipulated transition out of active spreading	
+936	doublingtime	Turn growth into a doubling time	0.07	0.14	the discrete daily growth assumption	
+937	offpolicy	Correct an incomplete reporting tail	1,0.2,20	1,0.8,20	the reporting-completion probability in one nowcast correction	
+938	rates	Confirmed cases change a fatality ratio	10,100,10,1000	10,500,10,1000	the ascertainment denominator rather than a clinical risk estimate	
+939	preempt	A waiting stage delays infectiousness	2,5	4,5	a stipulated incubation time before a full SEIR trajectory	
+940	lagged	An early signal precedes a case count	0,1,10	0,1,20	the supplied lead-signal contribution in a surveillance illustration	
+941	epicycle	Add two rotating vectors	0.2,3,0	0.2,3,0.4	the higher harmonic in a finite epicycle trace	
+942	squarewave	Odd harmonics sharpen a square wave	1,0.1	10,0.1	the truncation order of a square-wave Fourier series	
+943	tone	A pure tone has one frequency	2,0.1,1	5,0.1,1	the frequency of a synthesized waveform without microphone capture	
+944	tone	A voice component changes frequency	2,0.1,1	8,0.1,1	one illustrative sinusoidal component before a voice spectrogram	
+945	alias	A sampled rotation can reverse	20,30	10,30	the principal signed alias at a fixed frame rate	
+947	spectrum	Noise colors have different slopes	2,0	2,2	the frequency exponent of a stipulated power spectrum	
+948	tone	A periodic component has a timescale	1,0.1,1	7,0.1,1	the specified frequency before a periodogram estimation	
+949	tone	A long cycle has a low frequency	0.09,0.1,1	0.18,0.1,1	a stipulated cycle frequency without a sunspot-data fit	
+950	blurfrequency	Blur suppresses high frequencies	2,0.1	2,0.5	the Gaussian transfer function at a chosen spatial frequency	
+951	blurfrequency	Removing detail attenuates coefficients	3,0.1	3,0.3	a frequency attenuation ingredient rather than a JPEG implementation	
+952	blurfrequency	Convolution becomes a frequency gain	1,0.1	3,0.1	the Gaussian convolution multiplier across frequencies	
+954	oupsd	Reversion sets a spectral bend	0.2,1,1	0.2,3,1	the reversion rate in a stationary OU spectrum	
+955	arpsd	Correlation changes spectral power	1,0,0.1	1,0.8,0.1	the AR coefficient linking autocovariance and spectrum	
+956	coskernel	One Fourier feature contributes a wave	1,1	1,3	the sampled angular frequency before kernel averaging	
+957	coinchar	Products of transforms approach a bell	2,1	100,1	the standardized independent coin-sum characteristic function	
+958	arpsd	Uncorrelated increments have flat power	1,0,0.1	1,0,0.4	the frequency-invariant spectrum of a stipulated white process	
+959	tone	A fingerprint begins with frequencies	2,0.1,1	4,0.1,1	one component before a spectrogram-peak matching system	
+960	blurfrequency	A low-pass filter removes detail	3,0.05	3,0.3	the attenuation of high-frequency signal and noise together	
+962	epicycle	A second octave adds finer variation	0.2,2,0	0.2,8,0.3	the higher-frequency component in a terrain ingredient	
+963	roughness	The Hurst exponent changes scaling	0.1,0.2	0.1,0.8	the Gaussian increment scale at a fixed distance	
+964	coast	A shorter ruler measures more length	1,1.3,10	0.1,1.3,10	the idealized fractal measurement scale	
+965	hitright	A walker reaches a growth boundary	3,10	7,10	the one-dimensional hitting ingredient before aggregation	
+966	line	A perturbation can grow or decay	0,0.8,1	0,1.2,1	one linearized mode before a reaction-diffusion pattern	
+967	giant	A connected component emerges	0.8	1.5	the random-graph connectivity ingredient rather than a lattice simulation	
+968	ar1ess	Slow change reduces independent samples	100,0.2	100,0.95	the autocorrelation cost in a critical-slowing illustration	
+969	relative	A parking realization leaves gaps	75,100	90,100	the occupied length in two stipulated parking outcomes	
+970	relative	Packing fraction depends on geometry	64,100	74,100	the occupied volume in two supplied packing illustrations	
+972	gpvariance	Uncertainty grows away from a sensor	0,1,0.1	3,1,0.1	the one-observation Gaussian-process posterior variance	
+973	normalshrink	Small areas shrink toward a prior	5,1,10,0.1	5,1,10,10	the sampling uncertainty in a toy area-rate estimate	
+974	binaryentropy	Local tile order changes entropy	0.5	0.99	a binary orientation uncertainty rather than an Aztec-diamond sampler	
+975	line	A tree has one fewer edge than nodes	-1,1,10	-1,1,100	the connected-tree edge count before generating a random maze	
+976	poisson	A random baseline has empty regions	1,0	5,0	the void probability under a homogeneous Poisson baseline	
+977	poissonstreams	A random rule thins active events	10,0.1,0	10,0.9,0	the independent activation probability before a cellular automaton	
+978	rmswalk	Independent steps set a walk scale	100,1	400,1	the unrestricted-walk benchmark before self-avoidance	
+979	semicircle	A random-matrix limit has a shape	0,1	1.5,1	the limiting semicircle density at two coordinates	
+980	ising	A neighborhood affects a texture bit	1,0.5,4,0	1,0.5,-4,0	one local conditional before example-based texture synthesis	
+981	loggrowth	Volatility subtracts from log growth	0.1,0.1	0.1,0.5	the quadratic-variation correction in a geometric diffusion	
+982	blackscholes	A toy call responds to volatility	100,100,0.03,0.2,1	100,100,0.03,0.5,1	the constant volatility in a no-dividend European option model	
+983	twopayoffs	Average option payoffs after the kink	80,120,100,0.5,1	60,140,100,0.5,1	the payoff convexity in a two-outcome pricing benchmark	
+984	blackscholes	An assumed smile changes model prices	100,120,0.03,0.2,1	100,120,0.03,0.5,1	two supplied strike-specific volatilities rather than a market calibration	
+985	heat	Walkers spread into a heat kernel	0,1,1	0,1,4	the elapsed diffusion time in a continuum limit	
+986	escape	A barrier makes escape much slower	2,1	4,1	the exponential barrier-to-noise ratio with unit prefactor	
+987	normalshrink	Noise changes a threshold estimate	0,1,0.5,0.1	0,1,0.5,2	the Gaussian observation-noise ingredient before stochastic resonance	
+989	finitebranch	A population can reach extinction	0.3,0.5,5	0.6,0.2,5	the offspring distribution in a bounded extinction model	
+990	caliper	A neuron fires after a threshold	1,0.8	1,1.2	the threshold crossing before integrate-and-fire reset dynamics	
+991	decay	Random atoms have a smooth mean decay	1000,2,2	1000,2,4	the elapsed half-lives of independent decays	
+992	maxwell	Three velocity components give a speed	1,1	2,1	the speed coordinate in a Maxwell distribution	
+993	allindep	A gas rarely returns to one side	0.5,10	0.5,30	the independent equilibrium occupancy of every particle	
+994	net	Orders change a displayed imbalance	0,10,8	0,10,15	the submitted buy-minus-sell count before order-book matching	
+995	ou	A rate returns toward its center	0.03,0.1,1,0.02,1	0.03,0.1,1,0.02,5	the conditional mean of a stipulated Vasicek-type rate	
+996	trade	Asymmetric transitions create a drift	0.2,0,0.5	0.2,0,0.2	the supplied directional transition difference before a ratchet model	
+998	coalescent	More lineages merge sooner	2,1000	10,1000	the pair count determining a neutral coalescent waiting time	
+999	normalmh	A proposed fold has an energy ratio	2,1	1,2	the Metropolis acceptance ingredient for a quadratic toy energy	
+1000	compoundpoisson	Early jackpots inflate count variance	1,1,10,0	1,1,10,1000	the clone-size variance in a compound mutation-count illustration	

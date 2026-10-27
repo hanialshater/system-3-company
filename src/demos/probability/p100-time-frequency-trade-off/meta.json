@@ -1,0 +1,163 @@
+{
+  "slug": "p100-time-frequency-trade-off",
+  "title": "Can a short pulse be narrowband?",
+  "hook": "Can a short pulse be narrowband? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-time-frequency-trade-off",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "squeeze a pulse in time and its spectrum spreads wide."
+    ]
+  },
+  "misconception": "A Gaussian pulse has σt=0.5. With frequency in cycles/time, σf=1/(2πσt). What is σf? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "squeeze a pulse in time and its spectrum spreads wide.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-time-frequency-trade-off.case",
+      "text": "A Gaussian pulse has σt=0.5. With frequency in cycles/time, σf=1/(2πσt). What is σf? Options: 0.159; 0.318; 0.637. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Gaussianpulseσt1,.5,.25 givesσfrequency1/(2πσt)=.159155,.31831,.63662; product1/(2π). Fourierconventioncycles/time; demonstrate curve widthswithout universalrectangularpulseclaim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.recall",
+      "text": "For this Gaussian pair, doubling σt changes σf by? The frequency width is inversely proportional to the time width.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.hook",
+      "text": "Can a short pulse be narrowband? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c4",
+      "text": "The Gaussian frequency widths are 0.318 for time width 0.5 and 0.637 for time width 0.25. Halving the time width doubles this frequency width.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c5",
+      "text": "The product is 1/(2π) under the stated Gaussian and frequency conventions. This is a specific Fourier pair, not an assertion that all pulse shapes have this equality or even finite standard deviations.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c7",
+      "text": "Frequency width: 0.318",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":-1.5,\"y\":0.011108996538242306},{\"x\":-1.375,\"y\":0.022794180883612347},{\"x\":-1.25,\"y\":0.04393693362340742},{\"x\":-1.125,\"y\":0.07955950871822769},{\"x\":-1,\"y\":0.1353352832366127},{\"x\":-0.875,\"y\":0.21626516682988728},{\"x\":-0.75,\"y\":0.32465246735834974},{\"x\":-0.625,\"y\":0.45783336177161427},{\"x\":-0.5,\"y\":0.6065306597126334},{\"x\":-0.375,\"y\":0.7548396019890073},{\"x\":-0.25,\"y\":0.8824969025845955},{\"x\":-0.125,\"y\":0.9692332344763441},{\"x\":0,\"y\":1},{\"x\":0.125,\"y\":0.9692332344763441},{\"x\":0.25,\"y\":0.8824969025845955},{\"x\":0.375,\"y\":0.7548396019890073},{\"x\":0.5,\"y\":0.6065306597126334},{\"x\":0.625,\"y\":0.45783336177161427},{\"x\":0.75,\"y\":0.32465246735834974},{\"x\":0.875,\"y\":0.21626516682988728},{\"x\":1,\"y\":0.1353352832366127},{\"x\":1.125,\"y\":0.07955950871822769},{\"x\":1.25,\"y\":0.04393693362340742},{\"x\":1.375,\"y\":0.022794180883612347},{\"x\":1.5,\"y\":0.011108996538242306}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":-1.5,\"y\":0.00001506246076958719},{\"x\":-1.375,\"y\":0.00008873462266168924},{\"x\":-1.25,\"y\":0.00044803982323466816},{\"x\":-1.125,\"y\":0.0019389493300494996},{\"x\":-1,\"y\":0.007191883355826374},{\"x\":-0.875,\"y\":0.02286362784576037},{\"x\":-0.75,\"y\":0.06229798247098891},{\"x\":-0.625,\"y\":0.14548866348656153},{\"x\":-0.5,\"y\":0.291212933214021},{\"x\":-0.375,\"y\":0.4995954742835465},{\"x\":-0.25,\"y\":0.7346029443286334},{\"x\":-0.125,\"y\":0.925791451203618},{\"x\":0,\"y\":1},{\"x\":0.125,\"y\":0.925791451203618},{\"x\":0.25,\"y\":0.7346029443286334},{\"x\":0.375,\"y\":0.4995954742835465},{\"x\":0.5,\"y\":0.291212933214021},{\"x\":0.625,\"y\":0.14548866348656153},{\"x\":0.75,\"y\":0.06229798247098891},{\"x\":0.875,\"y\":0.02286362784576037},{\"x\":1,\"y\":0.007191883355826374},{\"x\":1.125,\"y\":0.0019389493300494996},{\"x\":1.25,\"y\":0.00044803982323466816},{\"x\":1.375,\"y\":0.00008873462266168924},{\"x\":1.5,\"y\":0.00001506246076958719}]}. [{\"label\":\"Frequency width\",\"value\":\"0.318\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c10",
+      "text": "Frequency width: 0.637",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":-1.5,\"y\":1.522997974471263e-8},{\"x\":-1.375,\"y\":2.6995785033630146e-7},{\"x\":-1.25,\"y\":0.000003726653172078671},{\"x\":-1.125,\"y\":0.00004006529739295107},{\"x\":-1,\"y\":0.00033546262790251185},{\"x\":-0.875,\"y\":0.002187491118182885},{\"x\":-0.75,\"y\":0.011108996538242306},{\"x\":-0.625,\"y\":0.04393693362340742},{\"x\":-0.5,\"y\":0.1353352832366127},{\"x\":-0.375,\"y\":0.32465246735834974},{\"x\":-0.25,\"y\":0.6065306597126334},{\"x\":-0.125,\"y\":0.8824969025845955},{\"x\":0,\"y\":1},{\"x\":0.125,\"y\":0.8824969025845955},{\"x\":0.25,\"y\":0.6065306597126334},{\"x\":0.375,\"y\":0.32465246735834974},{\"x\":0.5,\"y\":0.1353352832366127},{\"x\":0.625,\"y\":0.04393693362340742},{\"x\":0.75,\"y\":0.011108996538242306},{\"x\":0.875,\"y\":0.002187491118182885},{\"x\":1,\"y\":0.00033546262790251185},{\"x\":1.125,\"y\":0.00004006529739295107},{\"x\":1.25,\"y\":0.000003726653172078671},{\"x\":1.375,\"y\":2.6995785033630146e-7},{\"x\":1.5,\"y\":1.522997974471263e-8}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-time-frequency-trade-off.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"curve\",\"points\":[{\"x\":-1.5,\"y\":0.06229798247098891},{\"x\":-1.375,\"y\":0.09705619846756869},{\"x\":-1.25,\"y\":0.14548866348656153},{\"x\":-1.125,\"y\":0.2098416125547109},{\"x\":-1,\"y\":0.291212933214021},{\"x\":-0.875,\"y\":0.38885374469920647},{\"x\":-0.75,\"y\":0.4995954742835465},{\"x\":-0.625,\"y\":0.6176000017753711},{\"x\":-0.5,\"y\":0.7346029443286334},{\"x\":-0.375,\"y\":0.8407262815149845},{\"x\":-0.25,\"y\":0.925791451203618},{\"x\":-0.125,\"y\":0.9809080339138542},{\"x\":0,\"y\":1},{\"x\":0.125,\"y\":0.9809080339138542},{\"x\":0.25,\"y\":0.925791451203618},{\"x\":0.375,\"y\":0.8407262815149845},{\"x\":0.5,\"y\":0.7346029443286334},{\"x\":0.625,\"y\":0.6176000017753711},{\"x\":0.75,\"y\":0.4995954742835465},{\"x\":0.875,\"y\":0.38885374469920647},{\"x\":1,\"y\":0.291212933214021},{\"x\":1.125,\"y\":0.2098416125547109},{\"x\":1.25,\"y\":0.14548866348656153},{\"x\":1.375,\"y\":0.09705619846756869},{\"x\":1.5,\"y\":0.06229798247098891}]}. [{\"label\":\"Frequency width\",\"value\":\"0.637\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-time-frequency-trade-off/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For this Gaussian pair, doubling σt changes σf by?",
+    "options": [
+      "Halving it",
+      "Keeping it",
+      "Doubling it"
+    ],
+    "answer": 0,
+    "why": "The frequency width is inversely proportional to the time width."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-time-frequency-trade-off",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-953",
+      "curve"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 953,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceTitle": "Time-frequency trade-off",
+    "sourceText": "squeeze a pulse in time and its spectrum spreads wide.",
+    "sourceEntryOriginal": "- **953. Time-frequency trade-off** \\[Slider\\]: squeeze a pulse in time and its spectrum spreads wide.",
+    "numericCase": "Gaussianpulseσt1,.5,.25 givesσfrequency1/(2πσt)=.159155,.31831,.63662; product1/(2π). Fourierconventioncycles/time; demonstrate curve widthswithout universalrectangularpulseclaim.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/ai-pareto-front",
+    "difference": "New teaching boundary: Time-frequency trade-off. Existing boundary: Compute the declared pareto front model and distinguish its countercase."
+  },
+  "modelOutputs": [
+    0.3183098861837907,
+    0.6366197723675814
+  ]
+}

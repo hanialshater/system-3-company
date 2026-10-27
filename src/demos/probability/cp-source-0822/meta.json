@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0822",
+  "title": "Allocate error across every look",
+  "hook": "Two stated cases: explore the summable error budget in a Hoeffding confidence sequence.",
+  "domain": "probability",
+  "concept": "cp-source-0822",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the summable error budget in a Hoeffding confidence sequence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HalfWidth, regardless of the stated inputs.",
+  "objective": "Compare the summable error budget in a Hoeffding confidence sequence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0822.predict",
+      "text": "For independent [0,1] toy data use N 100, error Alpha 0.05. Safe 0=1 allocates α/[n(n+1)] per look; 0 uses α at one fixed look. What Hoeffding half-width results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.reveal.0",
+      "text": "The retained results are Safe=0; HalfWidth=0.136 and Safe=1; HalfWidth=0.254.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.reveal.1",
+      "text": "The summable allocation permits a union bound over all positive integer looks. It is conservative and assumes independent bounded observations. This comparison isolates the summable error budget in a Hoeffding confidence sequence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.case.0.witness",
+      "text": "Safe=0; HalfWidth=0.136",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Alpha\",0.05],[\"Safe\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":0.13581015157406195}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"0.136\"},{\"label\":\"Safe\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.case.1.witness",
+      "text": "Safe=1; HalfWidth=0.254",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Alpha\",0.05],[\"Safe\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"HalfWidth\",\"value\":0.2540587545917606}]},\"metrics\":[{\"label\":\"HalfWidth\",\"value\":\"0.254\"},{\"label\":\"Safe\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0822.recall",
+      "text": "For independent [0,1] toy data use N 101, error Alpha 0.05. Safe 0=1 allocates α/[n(n+1)] per look; 0 uses α at one fixed look. What Hoeffding half-width results? Answer 0.135.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0822/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #822. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For independent [0,1] toy data use N 101, error Alpha 0.05. Safe 0=1 allocates α/[n(n+1)] per look; 0 uses α at one fixed look. What Hoeffding half-width results?",
+    "options": [
+      "0.035",
+      "0.135",
+      "0.235"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives HalfWidth 0.135 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0822",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-822"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 822,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **822. Confidence sequences** \\[Slider\\]: intervals valid at every moment, so you can peek as often as you like.",
+    "modelBoundary": "the summable error budget in a Hoeffding confidence sequence",
+    "recallInputs": [
+      101,
+      0.05,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0786",
+  "title": "A pixel sequence multiplies conditionals",
+  "hook": "Two stated cases: explore the chain-rule ingredient in autoregressive generation.",
+  "domain": "probability",
+  "concept": "cp-source-0786",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the chain-rule ingredient in autoregressive generation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Joint, regardless of the stated inputs.",
+  "objective": "Compare the chain-rule ingredient in autoregressive generation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0786.predict",
+      "text": "A toy event has probability 0.8; conditional on it, an additional property occurs with probability 0.7. What is the joint probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.reveal.0",
+      "text": "The retained results are Conditional=0.7; Joint=0.56 and Conditional=0.2; Joint=0.16.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.reveal.1",
+      "text": "The conjunction occupies only part of the original event. Adding a condition cannot make the same event more probable. This comparison isolates the chain-rule ingredient in autoregressive generation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.case.0.witness",
+      "text": "Conditional=0.7; Joint=0.56",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.8],[\"Conditional\",0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":0.5599999999999999}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"0.56\"},{\"label\":\"Conditional\",\"value\":\"0.7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.case.1.witness",
+      "text": "Conditional=0.2; Joint=0.16",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"First\",0.8],[\"Conditional\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Joint\",\"value\":0.16000000000000003}]},\"metrics\":[{\"label\":\"Joint\",\"value\":\"0.16\"},{\"label\":\"Conditional\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0786.recall",
+      "text": "A toy event has probability 0.64; conditional on it, an additional property occurs with probability 0.7. What is the joint probability? Answer 0.448.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0786/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #786. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy event has probability 0.64; conditional on it, an additional property occurs with probability 0.7. What is the joint probability?",
+    "options": [
+      "0.269",
+      "0.448",
+      "0.627"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Joint 0.448 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0786",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-786"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 786,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **786. Pixel by pixel** \\[Slider\\]: an autoregressive model draws an image one pixel at a time, sampling each from a distribution.",
+    "modelBoundary": "the chain-rule ingredient in autoregressive generation",
+    "recallInputs": [
+      0.6400000000000001,
+      0.7
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

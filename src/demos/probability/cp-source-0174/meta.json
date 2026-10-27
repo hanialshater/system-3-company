@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0174",
+  "title": "The inscribed ball loses cube volume",
+  "hook": "Two stated cases: explore the uniform cube-to-ball volume ratio.",
+  "domain": "probability",
+  "concept": "cp-source-0174",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the uniform cube-to-ball volume ratio affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Fraction, regardless of the stated inputs.",
+  "objective": "Compare the uniform cube-to-ball volume ratio in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0174.predict",
+      "text": "What fraction of a cube [-1,1] to Dimension 2 is occupied by its inscribed unit Euclidean ball?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.reveal.0",
+      "text": "The retained results are Dimension=2; Fraction=0.785 and Dimension=10; Fraction=0.002.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.reveal.1",
+      "text": "The volume ratio falls with dimension. This concerns uniform points in this cube, not every high-dimensional distribution. This comparison isolates the uniform cube-to-ball volume ratio.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.case.0.witness",
+      "text": "Dimension=2; Fraction=0.785",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Dimension\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.7853981633974483}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.785\"},{\"label\":\"Dimension\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.case.1.witness",
+      "text": "Dimension=10; Fraction=0.002",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Dimension\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.00249039457019272}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.002\"},{\"label\":\"Dimension\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0174.recall",
+      "text": "What fraction of a cube [-1,1] to Dimension 3 is occupied by its inscribed unit Euclidean ball? Answer 0.524.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0174/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #174. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What fraction of a cube [-1,1] to Dimension 3 is occupied by its inscribed unit Euclidean ball?",
+    "options": [
+      "0.314",
+      "0.524",
+      "0.733"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Fraction 0.524 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0174",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-174"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 174,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **174. Vanishing ball** \\[Gotcha\\]: in high dimensions, almost no random points in a cube land inside the inscribed ball.",
+    "modelBoundary": "the uniform cube-to-ball volume ratio",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      3
+    ]
+  }
+}

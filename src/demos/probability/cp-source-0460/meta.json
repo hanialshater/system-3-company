@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0460",
+  "title": "An early lead gets amplified",
+  "hook": "Two stated cases: explore the initial condition in a stipulated popularity recurrence.",
+  "domain": "probability",
+  "concept": "cp-source-0460",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the initial condition in a stipulated popularity recurrence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the initial condition in a stipulated popularity recurrence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0460.predict",
+      "text": "A toy feedback process starts at 10; each step multiplies the current level by 1.5. What level follows 5 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.reveal.0",
+      "text": "The retained results are Initial=10; Level=75.938 and Initial=11; Level=83.531.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.reveal.1",
+      "text": "A self-reinforcing measurement process can amplify its starting differences. The recurrence is assumed and does not separate true underlying need from observed activity. This comparison isolates the initial condition in a stipulated popularity recurrence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.case.0.witness",
+      "text": "Initial=10; Level=75.938",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",10],[\"Amplification\",1.5],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":10},{\"label\":\"1.25\",\"value\":16.600228795504822},{\"label\":\"2.5\",\"value\":27.556759606310752},{\"label\":\"3.75\",\"value\":45.74485143274839},{\"label\":\"5\",\"value\":75.9375}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"75.938\"},{\"label\":\"Initial\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.case.1.witness",
+      "text": "Initial=11; Level=83.531",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",11],[\"Amplification\",1.5],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":11},{\"label\":\"1.25\",\"value\":18.260251675055304},{\"label\":\"2.5\",\"value\":30.31243556694183},{\"label\":\"3.75\",\"value\":50.31933657602323},{\"label\":\"5\",\"value\":83.53125}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"83.531\"},{\"label\":\"Initial\",\"value\":\"11\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0460.recall",
+      "text": "A toy feedback process starts at 10; each step multiplies the current level by 1.6. What level follows 5 steps? Answer 104.858.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0460/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #460. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy feedback process starts at 10; each step multiplies the current level by 1.6. What level follows 5 steps?",
+    "options": [
+      "62.915",
+      "146.801",
+      "104.858"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Level 104.858 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0460",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-460"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 460,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **460. MusicLab** \\[Story\\]: in parallel worlds of the same song market, early download counts drove wildly different hits (Salganik, Dodds & Watts, 2006).",
+    "modelBoundary": "the initial condition in a stipulated popularity recurrence",
+    "recallInputs": [
+      10,
+      1.6,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0322",
+  "title": "Random groups can differ by chance",
+  "hook": "Two stated cases: explore expected balance rather than exact realized balance.",
+  "domain": "probability",
+  "concept": "cp-source-0322",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How expected balance rather than exact realized balance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SE, regardless of the stated inputs.",
+  "objective": "Compare expected balance rather than exact realized balance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0322.predict",
+      "text": "Two independent toy groups each contain 500 observations with common binary-trait probability 0.4. What is the SD of the difference in trait proportions?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.reveal.0",
+      "text": "The retained results are PerArm=500; SE=0.031 and PerArm=5,000; SE=0.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.reveal.1",
+      "text": "Randomization balances traits in expectation, not exactly in every realized sample. Chance imbalance shrinks with sample size. This comparison isolates expected balance rather than exact realized balance.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.case.0.witness",
+      "text": "PerArm=500; SE=0.031",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.4],[\"PerArm\",500]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SE\",\"value\":0.030983866769659335}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.031\"},{\"label\":\"PerArm\",\"value\":\"500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.case.1.witness",
+      "text": "PerArm=5,000; SE=0.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.4],[\"PerArm\",5000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SE\",\"value\":0.009797958971132713}]},\"metrics\":[{\"label\":\"SE\",\"value\":\"0.01\"},{\"label\":\"PerArm\",\"value\":\"5,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0322.recall",
+      "text": "Two independent toy groups each contain 500 observations with common binary-trait probability 0.32. What is the SD of the difference in trait proportions? Answer 0.03.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0322/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #322. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent toy groups each contain 500 observations with common binary-trait probability 0.32. What is the SD of the difference in trait proportions?",
+    "options": [
+      "-0.07",
+      "0.13",
+      "0.03"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives SE 0.03 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0322",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-322"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 322,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceEntryOriginal": "- **322. Randomization balances the unseen** \\[Predict\\]: randomize 1,000 people and check a hidden trait; the groups match.",
+    "modelBoundary": "expected balance rather than exact realized balance",
+    "recallInputs": [
+      0.32000000000000006,
+      500
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

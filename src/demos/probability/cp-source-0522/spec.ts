@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0522", "title": "One arrival can choose the shorter line", "op": "routing", "labels": ["A", "B", "Service", "Shortest"], "outputs": ["ExpectedWait"], "a": [10.0, 0.0, 1.0, 0.0], "b": [10.0, 0.0, 1.0, 1.0], "question": "Two toy queues contain 10,0 equal-duration jobs, each taking 1. Shortest 0=1 joins the shorter, 0 picks uniformly. What is expected wait for this arrival?", "questionTemplate": "Two toy queues contain {A},{B} equal-duration jobs, each taking {Service}. Shortest {Shortest}=1 joins the shorter, 0 picks uniformly. What is expected wait for this arrival?", "explain": "Routing on observed queue lengths changes this arrival’s delay. A one-arrival comparison is not a full stationary routing analysis.", "lens": "routing with observed equal-duration jobs", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

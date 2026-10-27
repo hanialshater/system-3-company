@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0132", "title": "The upper value of a perfect forecast", "op": "perfectinfo", "labels": ["P", "Gain", "Loss"], "outputs": ["Value"], "a": [0.5, 100.0, 100.0], "b": [0.9, 100.0, 100.0], "question": "A toy action gains 100 in a good state of probability 0.5, loses 100 otherwise; abstaining pays zero. What is the expected value of perfect state information?", "questionTemplate": "A toy action gains {Gain} in a good state of probability {P}, loses {Loss} otherwise; abstaining pays zero. What is the expected value of perfect state information?", "explain": "Perfect information lets the decision condition on the state. Its value is an upper bound for an imperfect forecast under this payoff model.", "lens": "state-contingent choices under perfect information", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

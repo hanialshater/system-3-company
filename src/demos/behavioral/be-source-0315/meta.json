@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0315",
+  "title": "Quit rates and absolute gaps",
+  "hook": "Two stated cases: explore absolute rates rather than a relative headline.",
+  "domain": "behavioral",
+  "concept": "be-source-0315",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How absolute rates rather than a relative headline affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare absolute rates rather than a relative headline in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0315.predict",
+      "text": "A toy comparison has 147/1000 in A and 50/1000 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.reveal.0",
+      "text": "The retained results are TotalA=1,000; Gap=9.7 and TotalA=2,000; Gap=2.35.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates absolute rates rather than a relative headline.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.case.0.witness",
+      "text": "TotalA=1,000; Gap=9.7",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",147],[\"TotalA\",1000],[\"HitB\",50],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":9.7}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"9.7\"},{\"label\":\"TotalA\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.case.1.witness",
+      "text": "TotalA=2,000; Gap=2.35",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",147],[\"TotalA\",2000],[\"HitB\",50],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":2.349999999999999}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"2.35\"},{\"label\":\"TotalA\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0315.recall",
+      "text": "A toy comparison has 148/1,000 in A and 50/1,000 in B. What is A minus B in percentage points? Answer 9.8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0315/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #315. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 148/1,000 in A and 50/1,000 in B. What is A minus B in percentage points?",
+    "options": [
+      "5.88",
+      "9.8",
+      "13.72"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Gap 9.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0315",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-315"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 315,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **315.** Paying smokers up to $750 to quit raised long-term quit rates from 5.0% to 14.7% (Volpp et al., 2009).",
+    "modelBoundary": "absolute rates rather than a relative headline",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      148,
+      1000,
+      50,
+      1000
+    ]
+  }
+}

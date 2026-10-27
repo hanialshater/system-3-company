@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0172",
+  "title": "A correct shuffle needs equal inclusion",
+  "hook": "Two stated cases for a correct shuffle needs equal inclusion.",
+  "domain": "probability",
+  "concept": "cp-source-0172",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the single-card position probability required by a uniform shuffle affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the single-card position probability required by a uniform shuffle in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0172.predict",
+      "text": "A correct toy reservoir keeps 1 items uniformly from a completed stream of 52. What is each item’s inclusion probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.reveal.0",
+      "text": "The retained results are Items=52; Probability=0.019 and Items=10; Probability=0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.reveal.1",
+      "text": "Uniform inclusion depends on the reservoir replacement rule, not on knowing the final stream length in advance. This comparison isolates the single-card position probability required by a uniform shuffle.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.case.0.witness",
+      "text": "Items=52; Probability=0.019",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Items\",52],[\"Kept\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.019230769230769232}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.019\"},{\"label\":\"Items\",\"value\":\"52\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.case.1.witness",
+      "text": "Items=10; Probability=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Items\",10],[\"Kept\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.1\"},{\"label\":\"Items\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0172.recall",
+      "text": "A correct toy reservoir keeps 2 items uniformly from a completed stream of 52. What is each item’s inclusion probability? Answer 0.038.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0172/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #172. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A correct toy reservoir keeps 2 items uniformly from a completed stream of 52. What is each item’s inclusion probability?",
+    "options": [
+      "-0.062",
+      "0.138",
+      "0.038"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.038 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0172",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-172"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 172,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **172. Broken shuffle** \\[Gotcha\\]: a naive card-swap shuffle makes some orders more likely, and the histogram exposes it.",
+    "modelBoundary": "the single-card position probability required by a uniform shuffle",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      52,
+      2
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0426",
+  "title": "Spend a fixed treatment budget well",
+  "hook": "Two stated cases: explore the stipulated causal lift net of treatment cost.",
+  "domain": "probability",
+  "concept": "cp-source-0426",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated causal lift net of treatment cost affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Increment, regardless of the stated inputs.",
+  "objective": "Compare the stipulated causal lift net of treatment cost in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0426.predict",
+      "text": "A toy unit has baseline purchase chance 0.4, causal revenue lift 0.3, and treatment cost 0.1. For 100 treated units, what incremental net value results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.reveal.0",
+      "text": "The retained results are Baseline=0.4 Uplift=0.3; Increment=20 and Baseline=0.9 Uplift=0.02; Increment=-8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.reveal.1",
+      "text": "Incremental value uses the change caused by treatment, not baseline purchase propensity. The model assumes the specified causal lift and common value units. This comparison isolates the stipulated causal lift net of treatment cost.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.case.0.witness",
+      "text": "Baseline=0.4 Uplift=0.3; Increment=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",0.4],[\"Uplift\",0.3],[\"Cost\",0.1],[\"People\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Increment\",\"value\":20}]},\"metrics\":[{\"label\":\"Increment\",\"value\":\"20\"},{\"label\":\"Baseline\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.case.1.witness",
+      "text": "Baseline=0.9 Uplift=0.02; Increment=-8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",0.9],[\"Uplift\",0.02],[\"Cost\",0.1],[\"People\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Increment\",\"value\":-8}]},\"metrics\":[{\"label\":\"Increment\",\"value\":\"-8\"},{\"label\":\"Baseline\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0426.recall",
+      "text": "A toy unit has baseline purchase chance 0.4, causal revenue lift 0.4, and treatment cost 0.1. For 100 treated units, what incremental net value results? Answer 30.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0426/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #426. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy unit has baseline purchase chance 0.4, causal revenue lift 0.4, and treatment cost 0.1. For 100 treated units, what incremental net value results?",
+    "options": [
+      "18",
+      "30",
+      "42"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Increment 30 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0426",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-426"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 426,
+    "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+    "sourceEntryOriginal": "- **426. Who should get it?** \\[Slider\\]: set a budget and a learned rule picks who benefits most from treatment.",
+    "modelBoundary": "the stipulated causal lift net of treatment cost",
+    "recallInputs": [
+      0.4,
+      0.4,
+      0.1,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

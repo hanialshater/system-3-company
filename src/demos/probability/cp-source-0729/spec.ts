@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0729", "title": "A survival contrast needs precision", "op": "zstat", "labels": ["Estimate", "Null", "SE"], "outputs": ["Z"], "a": [0.2, 0.0, 0.2], "b": [0.2, 0.0, 0.05], "question": "A toy Estimate 0.2 has standard error SE 0.2; the null value is 0. What standardized contrast results?", "questionTemplate": "A toy Estimate {Estimate} has standard error SE {SE}; the null value is {Null}. What standardized contrast results?", "explain": "The same estimated contrast looks less precise with greater standard error. A test additionally needs a justified sampling distribution.", "lens": "a standardized summary rather than a full log-rank test", "kind": "bars", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

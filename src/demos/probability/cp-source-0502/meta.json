@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0502",
+  "title": "Near capacity, waiting grows sharply",
+  "hook": "Two stated cases: explore the load gap in a stable queueing model.",
+  "domain": "probability",
+  "concept": "cp-source-0502",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the load gap in a stable queueing model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wait, regardless of the stated inputs.",
+  "objective": "Compare the load gap in a stable queueing model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0502.predict",
+      "text": "A stable toy M/G/1 queue has Poisson arrival rate 0.8, mean service time 1, service-time variance 1. What is mean waiting time before service?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.reveal.0",
+      "text": "The retained results are Arrival=0.8; Wait=4 and Arrival=0.9; Wait=9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.reveal.1",
+      "text": "The Pollaczek-Khinchine mean uses both the mean and second moment of service. Stability and the specified arrival/service assumptions are required. This comparison isolates the load gap in a stable queueing model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.case.0.witness",
+      "text": "Arrival=0.8; Wait=4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.8],[\"Mean\",1],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":4.000000000000001},{\"label\":\"Total\",\"value\":5.000000000000001},{\"label\":\"Utilization\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"4\"},{\"label\":\"Arrival\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.case.1.witness",
+      "text": "Arrival=0.9; Wait=9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",0.9],[\"Mean\",1],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Wait\",\"value\":9.000000000000002},{\"label\":\"Total\",\"value\":10.000000000000002},{\"label\":\"Utilization\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Wait\",\"value\":\"9\"},{\"label\":\"Arrival\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0502.recall",
+      "text": "A stable toy M/G/1 queue has Poisson arrival rate 0.8, mean service time 1, service-time variance 2. What is mean waiting time before service? Answer 6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0502/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #502. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stable toy M/G/1 queue has Poisson arrival rate 0.8, mean service time 1, service-time variance 2. What is mean waiting time before service?",
+    "options": [
+      "3.6",
+      "8.4",
+      "6"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Wait 6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0502",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-502"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 502,
+    "sourceSection": "26. Queueing theory: single queues & Little's law",
+    "sourceEntryOriginal": "- **502. The hockey stick** \\[Slider\\]: plot average wait against utilization; going from 80% to 90% busy doubles the wait.",
+    "modelBoundary": "the load gap in a stable queueing model",
+    "recallInputs": [
+      0.8,
+      1,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

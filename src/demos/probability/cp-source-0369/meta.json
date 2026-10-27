@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0369",
+  "title": "The earlier event happens first",
+  "hook": "Two stated cases: explore the timing rule that distinguishes a backup cause.",
+  "domain": "probability",
+  "concept": "cp-source-0369",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the timing rule that distinguishes a backup cause affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines FirstTime, regardless of the stated inputs.",
+  "objective": "Compare the timing rule that distinguishes a backup cause in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0369.predict",
+      "text": "Two toy sufficient events would arrive at times 2,5; the first ends the process. At what time does the outcome occur?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.reveal.0",
+      "text": "The retained results are TimeA=2 TimeB=5; FirstTime=2 and TimeA=5 TimeB=2; FirstTime=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.reveal.1",
+      "text": "Timing can distinguish the event that actually occurs first from a backup that would have sufficed later. The structural stopping rule is part of the model. This comparison isolates the timing rule that distinguishes a backup cause.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.case.0.witness",
+      "text": "TimeA=2 TimeB=5; FirstTime=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TimeA\",2],[\"TimeB\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FirstTime\",\"value\":2},{\"label\":\"Cause\",\"value\":1}]},\"metrics\":[{\"label\":\"FirstTime\",\"value\":\"2\"},{\"label\":\"TimeA\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.case.1.witness",
+      "text": "TimeA=5 TimeB=2; FirstTime=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TimeA\",5],[\"TimeB\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FirstTime\",\"value\":2},{\"label\":\"Cause\",\"value\":2}]},\"metrics\":[{\"label\":\"FirstTime\",\"value\":\"2\"},{\"label\":\"TimeA\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0369.recall",
+      "text": "Two toy sufficient events would arrive at times 3,5; the first ends the process. At what time does the outcome occur? Answer 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0369/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #369. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy sufficient events would arrive at times 3,5; the first ends the process. At what time does the outcome occur?",
+    "options": [
+      "1.8",
+      "3",
+      "4.2"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives FirstTime 3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0369",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-369"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 369,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **369. Preemption** \\[Gotcha\\]: one assassin's poison would have worked, but the other's bullet got there first.",
+    "modelBoundary": "the timing rule that distinguishes a backup cause",
+    "recallInputs": [
+      3,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

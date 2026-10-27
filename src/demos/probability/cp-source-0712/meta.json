@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0712",
+  "title": "A game policy has expected payoff",
+  "hook": "Two stated cases: explore the assumed game outcome rate rather than a self-play trainer.",
+  "domain": "probability",
+  "concept": "cp-source-0712",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed game outcome rate rather than a self-play trainer affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the assumed game outcome rate rather than a self-play trainer in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0712.predict",
+      "text": "A toy gamble gains 1 with probability 0.5 and loses 1 otherwise. What is its expected cash change?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.reveal.0",
+      "text": "The retained results are Probability=0.5; Expected=0 and Probability=0.8; Expected=0.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.reveal.1",
+      "text": "Reaching an emotionally important balance is different from maximizing expected cash change. Neither guarantees the outcome of one play. This comparison isolates the assumed game outcome rate rather than a self-play trainer.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.case.0.witness",
+      "text": "Probability=0.5; Expected=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",1],[\"Win\",1],[\"Probability\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":0}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"0\"},{\"label\":\"Probability\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.case.1.witness",
+      "text": "Probability=0.8; Expected=0.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",1],[\"Win\",1],[\"Probability\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":0.6000000000000001}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"0.6\"},{\"label\":\"Probability\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0712.recall",
+      "text": "A toy gamble gains 1 with probability 0.5 and loses 2 otherwise. What is its expected cash change? Answer -0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0712/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #712. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy gamble gains 1 with probability 0.5 and loses 2 otherwise. What is its expected cash change?",
+    "options": [
+      "-0.7",
+      "-0.3",
+      "-0.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected -0.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0712",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-712"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 712,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **712. Self-play** \\[Slider\\]: a tic-tac-toe agent learns to never lose by playing itself.",
+    "modelBoundary": "the assumed game outcome rate rather than a self-play trainer",
+    "recallInputs": [
+      2,
+      1,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

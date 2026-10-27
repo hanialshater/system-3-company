@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0370",
+  "title": "Scale a registration increment",
+  "hook": "Two stated cases: explore the population behind a projected registration count.",
+  "domain": "behavioral",
+  "concept": "be-source-0370",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the population behind a projected registration count affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Added, regardless of the stated inputs.",
+  "objective": "Compare the population behind a projected registration count in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0370.predict",
+      "text": "A toy program has 1e+06 eligible units, uptake fraction 0.1, and added amount 1 per participant. What total is added?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.reveal.0",
+      "text": "The retained results are Eligible=1.00e+6; Added=100,000 and Eligible=2.00e+6; Added=200,000.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.reveal.1",
+      "text": "Separate the effect among participants from the share who participate. Scaling a program requires both pieces. This comparison isolates the population behind a projected registration count.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.case.0.witness",
+      "text": "Eligible=1.00e+6; Added=100,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",1000000],[\"Uptake\",0.1],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":100000}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"100,000\"},{\"label\":\"Eligible\",\"value\":\"1.00e+6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.case.1.witness",
+      "text": "Eligible=2.00e+6; Added=200,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",2000000],[\"Uptake\",0.1],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":200000}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"200,000\"},{\"label\":\"Eligible\",\"value\":\"2.00e+6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0370.recall",
+      "text": "A toy program has 1.00e+6 eligible units, uptake fraction 0.1, and added amount 1 per participant. What total is added? Answer 100,000.1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0370/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #370. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy program has 1.00e+6 eligible units, uptake fraction 0.1, and added amount 1 per participant. What total is added?",
+    "options": [
+      "60,000.06",
+      "140,000.14",
+      "100,000.1"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Added 100,000.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0370",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-370"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 370,
+    "sourceSection": "19. Public policy nudges: tax, energy, voting",
+    "sourceEntryOriginal": "- **370.** A reciprocity message (\"If you needed a transplant, would you have one? If so, help others\") added an estimated 100,000 UK organ-donor registrations a year (Behavioural Insights Team, 2013).",
+    "modelBoundary": "the population behind a projected registration count",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1000001,
+      0.1,
+      1
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0130",
+  "title": "A small bankroll can hit zero first",
+  "hook": "Two stated cases: explore absorbing boundaries in a fair game.",
+  "domain": "probability",
+  "concept": "cp-source-0130",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How absorbing boundaries in a fair game affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Ruin, regardless of the stated inputs.",
+  "objective": "Compare absorbing boundaries in a fair game in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0130.predict",
+      "text": "A toy unit-step gambler starts at 10, stops at 0 or 100, and wins each independent step with probability 0.5. What is the probability of reaching 0 first?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.reveal.0",
+      "text": "The retained results are Bankroll=10; Ruin=0.9 and Bankroll=50; Ruin=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.reveal.1",
+      "text": "A favorable one-step chance does not eliminate ruin at an absorbing boundary. Bankroll and target both matter. This comparison isolates absorbing boundaries in a fair game.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.case.0.witness",
+      "text": "Bankroll=10; Ruin=0.9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Bankroll\",10],[\"Total\",100],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Ruin\",\"value\":0.9}]},\"metrics\":[{\"label\":\"Ruin\",\"value\":\"0.9\"},{\"label\":\"Bankroll\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.case.1.witness",
+      "text": "Bankroll=50; Ruin=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Bankroll\",50],[\"Total\",100],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Ruin\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Ruin\",\"value\":\"0.5\"},{\"label\":\"Bankroll\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0130.recall",
+      "text": "A toy unit-step gambler starts at 11, stops at 0 or 100, and wins each independent step with probability 0.5. What is the probability of reaching 0 first? Answer 0.89.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0130/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #130. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy unit-step gambler starts at 11, stops at 0 or 100, and wins each independent step with probability 0.5. What is the probability of reaching 0 first?",
+    "options": [
+      "0.534",
+      "1.246",
+      "0.89"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Ruin 0.89 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0130",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-130"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 130,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **130. Gambler's ruin** \\[Slider\\]: set bankrolls and edge; even a fair game ruins the poorer player most of the time.",
+    "modelBoundary": "absorbing boundaries in a fair game",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      100,
+      0.5
+    ]
+  }
+}

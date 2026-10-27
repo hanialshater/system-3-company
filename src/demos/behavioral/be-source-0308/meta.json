@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0308",
+  "title": "A bigger performance bonus",
+  "hook": "Two stated cases: explore output versus payment in a toy incentive budget.",
+  "domain": "behavioral",
+  "concept": "be-source-0308",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How output versus payment in a toy incentive budget affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Profit, regardless of the stated inputs.",
+  "objective": "Compare output versus payment in a toy incentive budget in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0308.predict",
+      "text": "A toy sale has 100 units at price 5, unit cost 1 and fraction 0 of revenue donated. What profit remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.reveal.0",
+      "text": "The retained results are Quantity=100 Price=5; Profit=400 and Quantity=80 Price=10; Profit=720.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.reveal.1",
+      "text": "Quantity, price, costs and transfers all enter profit. Sales alone cannot establish the profitability of a pricing policy. This comparison isolates output versus payment in a toy incentive budget.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.case.0.witness",
+      "text": "Quantity=100 Price=5; Profit=400",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Quantity\",100],[\"Price\",5],[\"Cost\",1],[\"Charity\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Profit\",\"value\":400}]},\"metrics\":[{\"label\":\"Profit\",\"value\":\"400\"},{\"label\":\"Quantity\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.case.1.witness",
+      "text": "Quantity=80 Price=10; Profit=720",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Quantity\",80],[\"Price\",10],[\"Cost\",1],[\"Charity\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Profit\",\"value\":720}]},\"metrics\":[{\"label\":\"Profit\",\"value\":\"720\"},{\"label\":\"Quantity\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0308.recall",
+      "text": "A toy sale has 101 units at price 5, unit cost 1 and fraction 0 of revenue donated. What profit remains? Answer 404.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0308/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #308. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sale has 101 units at price 5, unit cost 1 and fraction 0 of revenue donated. What profit remains?",
+    "options": [
+      "404",
+      "242.4",
+      "565.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Profit 404 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0308",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-308"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 308,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **308.** In India, very large bonuses relative to pay worsened performance on several tasks (Ariely, Gneezy, Loewenstein & Mazar, 2009).",
+    "modelBoundary": "output versus payment in a toy incentive budget",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      5,
+      1,
+      0
+    ]
+  }
+}

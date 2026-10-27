@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0399",
+  "title": "Output after rank feedback",
+  "hook": "Two stated cases: explore the base behind a relative productivity increment.",
+  "domain": "behavioral",
+  "concept": "be-source-0399",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the base behind a relative productivity increment affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the base behind a relative productivity increment in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0399.predict",
+      "text": "A toy baseline is 100; it changes by 7 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.reveal.0",
+      "text": "The retained results are Baseline=100; Final=107 and Baseline=300; Final=321.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the base behind a relative productivity increment.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.case.0.witness",
+      "text": "Baseline=100; Final=107",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",100],[\"Percent\",7]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":107}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"107\"},{\"label\":\"Baseline\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.case.1.witness",
+      "text": "Baseline=300; Final=321",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",300],[\"Percent\",7]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":321}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"321\"},{\"label\":\"Baseline\",\"value\":\"300\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0399.recall",
+      "text": "A toy baseline is 101; it changes by 7 percent. What is the final level? Answer 108.07.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0399/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #399. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 101; it changes by 7 percent. What is the final level?",
+    "options": [
+      "64.842",
+      "108.07",
+      "151.298"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 108.07 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0399",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-399"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 399,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **399.** Telling workers their productivity rank raised output about 7% (Blanes i Vidal & Nossol, 2011).",
+    "modelBoundary": "the base behind a relative productivity increment",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      7
+    ]
+  }
+}

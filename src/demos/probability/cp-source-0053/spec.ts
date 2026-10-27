@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0053", "title": "A negative test with a high prior", "op": "negative", "labels": ["Prior", "Sensitivity", "FalsePositive"], "outputs": ["Posterior"], "a": [0.5, 0.8, 0.02], "b": [0.01, 0.8, 0.02], "question": "Toy prevalence is 0.5, sensitivity 0.8 and false-positive rate 0.02. After a negative result, what is the probability of the condition?", "questionTemplate": "Toy prevalence is {Prior}, sensitivity {Sensitivity} and false-positive rate {FalsePositive}. After a negative result, what is the probability of the condition?", "explain": "A negative result reweights cases and noncases by their probabilities of testing negative. A test result alone does not fix its predictive meaning.", "lens": "the probability left after a negative result", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

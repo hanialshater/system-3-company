@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0212",
+  "title": "Fewer prescriptions from what base?",
+  "hook": "Two stated cases: explore the baseline used by a relative reduction.",
+  "domain": "behavioral",
+  "concept": "be-source-0212",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the baseline used by a relative reduction affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the baseline used by a relative reduction in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0212.predict",
+      "text": "A toy baseline is 1000; it changes by -3.3 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.reveal.0",
+      "text": "The retained results are Baseline=1,000; Final=967 and Baseline=200; Final=193.4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the baseline used by a relative reduction.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.case.0.witness",
+      "text": "Baseline=1,000; Final=967",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",1000],[\"Percent\",-3.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":967}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"967\"},{\"label\":\"Baseline\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.case.1.witness",
+      "text": "Baseline=200; Final=193.4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",200],[\"Percent\",-3.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":193.4}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"193.4\"},{\"label\":\"Baseline\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0212.recall",
+      "text": "A toy baseline is 1,001; it changes by -3.3 percent. What is the final level? Answer 967.967.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0212/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #212. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 1,001; it changes by -3.3 percent. What is the final level?",
+    "options": [
+      "967.967",
+      "580.78",
+      "1,355.154"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 967.967 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0212",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-212"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 212,
+    "sourceSection": "11. Social norms & conformity",
+    "sourceEntryOriginal": "- **212.** A letter telling England's top antibiotic prescribers they prescribed more than peers cut prescriptions 3.3% (Hallsworth et al., 2016).",
+    "modelBoundary": "the baseline used by a relative reduction",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      -3.3
+    ]
+  }
+}

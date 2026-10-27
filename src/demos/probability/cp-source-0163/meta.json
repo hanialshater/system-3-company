@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0163",
+  "title": "Scatter points over a bounded lake",
+  "hook": "Two stated cases: explore the bounding-area scale in an area estimate.",
+  "domain": "probability",
+  "concept": "cp-source-0163",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the bounding-area scale in an area estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the bounding-area scale in an area estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0163.predict",
+      "text": "A toy Monte Carlo sample has 250 hits among 1000; multiply the hit fraction by Scale 100. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.reveal.0",
+      "text": "The retained results are Hits=250 N=1,000; Estimate=25 and Hits=2,500 N=10,000; Estimate=25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.reveal.1",
+      "text": "Sampling error remains after a Monte Carlo estimate. The reported plug-in standard error assumes independent indicator draws. This comparison isolates the bounding-area scale in an area estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.case.0.witness",
+      "text": "Hits=250 N=1,000; Estimate=25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Hits\",250],[\"N\",1000],[\"Scale\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":25},{\"label\":\"SE\",\"value\":1.3693063937629153}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"25\"},{\"label\":\"Hits\",\"value\":\"250\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.case.1.witness",
+      "text": "Hits=2,500 N=10,000; Estimate=25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Hits\",2500],[\"N\",10000],[\"Scale\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":25},{\"label\":\"SE\",\"value\":0.4330127018922193}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"25\"},{\"label\":\"Hits\",\"value\":\"2,500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0163.recall",
+      "text": "A toy Monte Carlo sample has 251 hits among 1,000; multiply the hit fraction by Scale 100. What estimate results? Answer 25.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0163/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #163. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Monte Carlo sample has 251 hits among 1,000; multiply the hit fraction by Scale 100. What estimate results?",
+    "options": [
+      "15.06",
+      "35.14",
+      "25.1"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Estimate 25.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0163",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-163"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 163,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **163. Area of a lake** \\[Slider\\]: draw any shape, scatter points, and estimate its area.",
+    "modelBoundary": "the bounding-area scale in an area estimate",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      251,
+      1000,
+      100
+    ]
+  }
+}

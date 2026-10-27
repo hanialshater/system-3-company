@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0058",
+  "title": "How many estimates were right?",
+  "hook": "Two stated cases: explore the denominator in a reported accuracy share.",
+  "domain": "behavioral",
+  "concept": "be-source-0058",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the denominator in a reported accuracy share affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Accuracy, regardless of the stated inputs.",
+  "objective": "Compare the denominator in a reported accuracy share in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0058.predict",
+      "text": "A toy assessment has 21 correct answers among 100. What fraction is correct?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.reveal.0",
+      "text": "The retained results are Correct=21 Total=100; Accuracy=0.21 and Correct=42 Total=200; Accuracy=0.21.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.reveal.1",
+      "text": "A score needs its denominator. This descriptive fraction does not establish skill, causation or the accuracy of another population. This comparison isolates the denominator in a reported accuracy share.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.case.0.witness",
+      "text": "Correct=21 Total=100; Accuracy=0.21",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Correct\",21],[\"Total\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.21}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.21\"},{\"label\":\"Correct\",\"value\":\"21\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.case.1.witness",
+      "text": "Correct=42 Total=200; Accuracy=0.21",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Correct\",42],[\"Total\",200]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Accuracy\",\"value\":0.21}]},\"metrics\":[{\"label\":\"Accuracy\",\"value\":\"0.21\"},{\"label\":\"Correct\",\"value\":\"42\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0058.recall",
+      "text": "A toy assessment has 22 correct answers among 100. What fraction is correct? Answer 0.22.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0058/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #58. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy assessment has 22 correct answers among 100. What fraction is correct?",
+    "options": [
+      "0.12",
+      "0.32",
+      "0.22"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Accuracy 0.22 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0058",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-58"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 58,
+    "sourceSection": "3. Framing",
+    "sourceEntryOriginal": "- **58.** Only 21% of gynecologists correctly said a positive mammogram means about a 1 in 10 chance of cancer (Gigerenzer et al., 2007).",
+    "modelBoundary": "the denominator in a reported accuracy share",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      22,
+      100
+    ]
+  }
+}

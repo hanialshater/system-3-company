@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0741",
+  "title": "A maximum moves toward the boundary",
+  "hook": "Two stated cases: explore the number of bounded independent draws.",
+  "domain": "probability",
+  "concept": "cp-source-0741",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the number of bounded independent draws affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines CDF, regardless of the stated inputs.",
+  "objective": "Compare the number of bounded independent draws in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0741.predict",
+      "text": "For 2 independent Uniform(0,1) draws, what is probability their maximum is at most X 0.9?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.reveal.0",
+      "text": "The retained results are N=2; CDF=0.81 and N=20; CDF=0.122.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.reveal.1",
+      "text": "All draws must fall below the threshold. The bounded maximum approaches its endpoint rather than growing without limit. This comparison isolates the number of bounded independent draws.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.case.0.witness",
+      "text": "N=2; CDF=0.81",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",0.9],[\"N\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.001736111111111111},{\"x\":0.08333333333333333,\"y\":0.006944444444444444},{\"x\":0.125,\"y\":0.015625},{\"x\":0.16666666666666666,\"y\":0.027777777777777776},{\"x\":0.20833333333333334,\"y\":0.04340277777777778},{\"x\":0.25,\"y\":0.0625},{\"x\":0.2916666666666667,\"y\":0.08506944444444446},{\"x\":0.3333333333333333,\"y\":0.1111111111111111},{\"x\":0.375,\"y\":0.140625},{\"x\":0.4166666666666667,\"y\":0.17361111111111113},{\"x\":0.4583333333333333,\"y\":0.21006944444444442},{\"x\":0.5,\"y\":0.25},{\"x\":0.5416666666666666,\"y\":0.29340277777777773},{\"x\":0.5833333333333334,\"y\":0.34027777777777785},{\"x\":0.625,\"y\":0.390625},{\"x\":0.6666666666666666,\"y\":0.4444444444444444},{\"x\":0.7083333333333334,\"y\":0.5017361111111112},{\"x\":0.75,\"y\":0.5625},{\"x\":0.7916666666666666,\"y\":0.626736111111111},{\"x\":0.8333333333333334,\"y\":0.6944444444444445},{\"x\":0.875,\"y\":0.765625},{\"x\":0.9166666666666666,\"y\":0.8402777777777777},{\"x\":0.9583333333333334,\"y\":0.9184027777777779},{\"x\":1,\"y\":1}],\"xLabel\":\"X\",\"yLabel\":\"CDF\"},\"metrics\":[{\"label\":\"CDF\",\"value\":\"0.81\"},{\"label\":\"N\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.case.1.witness",
+      "text": "N=20; CDF=0.122",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",0.9],[\"N\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":2.487569170435791e-28},{\"x\":0.08333333333333333,\"y\":2.60840533045888e-22},{\"x\":0.125,\"y\":8.673617379884035e-19},{\"x\":0.16666666666666666,\"y\":2.7351112277912505e-16},{\"x\":0.20833333333333334,\"y\":2.37233082812862e-14},{\"x\":0.25,\"y\":9.094947017729282e-13},{\"x\":0.2916666666666667,\"y\":1.9848878168114288e-11},{\"x\":0.3333333333333333,\"y\":2.867971990792438e-10},{\"x\":0.375,\"y\":3.0243033780422146e-9},{\"x\":0.4166666666666667,\"y\":2.4875691704357958e-8},{\"x\":0.4583333333333333,\"y\":1.6735121468050713e-7},{\"x\":0.5,\"y\":9.5367431640625e-7},{\"x\":0.5416666666666666,\"y\":0.000004727616197164248},{\"x\":0.5833333333333334,\"y\":0.000020813057274008607},{\"x\":0.625,\"y\":0.00008271806125530277},{\"x\":0.6666666666666666,\"y\":0.00030072865982171717},{\"x\":0.7083333333333334,\"y\":0.0010110056748693411},{\"x\":0.75,\"y\":0.0031712119389339932},{\"x\":0.7916666666666666,\"y\":0.0093507659090491},{\"x\":0.8333333333333334,\"y\":0.02608405330458885},{\"x\":0.875,\"y\":0.06920875877393026},{\"x\":0.9166666666666666,\"y\":0.17548046728482744},{\"x\":0.9583333333333334,\"y\":0.42690563376915297},{\"x\":1,\"y\":1}],\"xLabel\":\"X\",\"yLabel\":\"CDF\"},\"metrics\":[{\"label\":\"CDF\",\"value\":\"0.122\"},{\"label\":\"N\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0741.recall",
+      "text": "For 2 independent Uniform(0,1) draws, what is probability their maximum is at most X 1? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0741/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #741. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 2 independent Uniform(0,1) draws, what is probability their maximum is at most X 1?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives CDF 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0741",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-741"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 741,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **741. Maximum of many** \\[Slider\\]: take the max of n random draws again and again; a Gumbel curve emerges.",
+    "modelBoundary": "the number of bounded independent draws",
+    "recallInputs": [
+      1,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

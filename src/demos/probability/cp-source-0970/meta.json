@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0970",
+  "title": "Packing fraction depends on geometry",
+  "hook": "Two stated cases: explore the occupied volume in two supplied packing illustrations.",
+  "domain": "probability",
+  "concept": "cp-source-0970",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the occupied volume in two supplied packing illustrations affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Percent, regardless of the stated inputs.",
+  "objective": "Compare the occupied volume in two supplied packing illustrations in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0970.predict",
+      "text": "A toy saving is 64 on a price of 100. What percentage of the original price is saved?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.reveal.0",
+      "text": "The retained results are Saving=64; Percent=64 and Saving=74; Percent=74.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.reveal.1",
+      "text": "The cash saving is the numerator; the reference price supplies the denominator. The same saving can therefore have different relative sizes. This comparison isolates the occupied volume in two supplied packing illustrations.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.case.0.witness",
+      "text": "Saving=64; Percent=64",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Saving\",64],[\"Price\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Percent\",\"value\":64}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"64\"},{\"label\":\"Saving\",\"value\":\"64\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.case.1.witness",
+      "text": "Saving=74; Percent=74",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Saving\",74],[\"Price\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Percent\",\"value\":74}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"74\"},{\"label\":\"Saving\",\"value\":\"74\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0970.recall",
+      "text": "A toy saving is 65 on a price of 100. What percentage of the original price is saved? Answer 65.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0970/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #970. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy saving is 65 on a price of 100. What percentage of the original price is saved?",
+    "options": [
+      "39",
+      "91",
+      "65"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Percent 65 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0970",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-970"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 970,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **970. Random packing** \\[Predict\\]: shaken spheres fill about 64% of space, below the 74% of perfect stacking.",
+    "modelBoundary": "the occupied volume in two supplied packing illustrations",
+    "recallInputs": [
+      65,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

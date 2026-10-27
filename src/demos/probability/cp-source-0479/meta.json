@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0479",
+  "title": "A predictive slope under intervention",
+  "hook": "Two stated cases: explore the structural derivative after changing assignment.",
+  "domain": "probability",
+  "concept": "cp-source-0479",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the structural derivative after changing assignment affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Slope, regardless of the stated inputs.",
+  "objective": "Compare the structural derivative after changing assignment in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0479.predict",
+      "text": "Standardized toy X and U have Corr 0.8; Y=Direct 1×X+Common 3×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.reveal.0",
+      "text": "The retained results are Do=0; Slope=3.4 and Do=1; Slope=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.reveal.1",
+      "text": "The common cause can change the observational slope without changing the intervention derivative. The causal conclusion follows the specified structural equations. This comparison isolates the structural derivative after changing assignment.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.case.0.witness",
+      "text": "Do=0; Slope=3.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"Common\",3],[\"Corr\",0.8],[\"Do\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"3.4\"},{\"label\":\"Do\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.case.1.witness",
+      "text": "Do=1; Slope=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"Common\",3],[\"Corr\",0.8],[\"Do\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":false},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"1\"},{\"label\":\"Do\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0479.recall",
+      "text": "Standardized toy X and U have Corr 0.8; Y=Direct 2×X+Common 3×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results? Answer 4.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0479/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #479. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Standardized toy X and U have Corr 0.8; Y=Direct 2×X+Common 3×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+    "options": [
+      "4.4",
+      "2.64",
+      "6.16"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Slope 4.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0479",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-479"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 479,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **479. Robust under intervention** \\[Split\\]: a causal and a predictive model face a policy change; only one keeps working.",
+    "modelBoundary": "the structural derivative after changing assignment",
+    "recallInputs": [
+      2,
+      3,
+      0.8,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

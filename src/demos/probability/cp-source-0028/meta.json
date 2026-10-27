@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0028",
+  "title": "One six or one double six?",
+  "hook": "Two stated cases: explore the complement over independent attempts.",
+  "domain": "probability",
+  "concept": "cp-source-0028",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the complement over independent attempts affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare the complement over independent attempts in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0028.predict",
+      "text": "An event independently occurs with probability 0.166667 on each of 4 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.reveal.0",
+      "text": "The retained results are P=0.167 Trials=4; AtLeastOne=0.518 and P=0.028 Trials=24; AtLeastOne=0.491.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates the complement over independent attempts.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.case.0.witness",
+      "text": "P=0.167 Trials=4; AtLeastOne=0.518",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.16666666666666666],[\"Trials\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.5177469135802468}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.518\"},{\"label\":\"P\",\"value\":\"0.167\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.case.1.witness",
+      "text": "P=0.028 Trials=24; AtLeastOne=0.491",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.027777777777777776],[\"Trials\",24]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.4914038761309034}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.491\"},{\"label\":\"P\",\"value\":\"0.028\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0028.recall",
+      "text": "An event independently occurs with probability 0.133 on each of 4 trials. What is the probability of at least one occurrence? Answer 0.436.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0028/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #28. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.133 on each of 4 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.261",
+      "0.61",
+      "0.436"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives AtLeastOne 0.436 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0028",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-28"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 28,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **28. De Méré's bet** \\[Predict\\]: one six in 4 rolls (51.8%) vs double six in 24 rolls of two dice (49.1%).",
+    "modelBoundary": "the complement over independent attempts",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.13333333333333333,
+      4
+    ]
+  }
+}

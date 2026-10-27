@@ -1,0 +1,163 @@
+{
+  "slug": "p100-healthy-vs-stuck-chains",
+  "title": "Has this chain explored enough?",
+  "hook": "Has this chain explored enough? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-healthy-vs-stuck-chains",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "a \"fuzzy caterpillar\" trace plot beside one that wanders and sticks."
+    ]
+  },
+  "misconception": "Two fixed traces are 00001111 and 01010101. Both have mean 0.5. Which has more equal adjacent pairs? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "a \"fuzzy caterpillar\" trace plot beside one that wanders and sticks.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.case",
+      "text": "Two fixed traces are 00001111 and 01010101. Both have mean 0.5. Which has more equal adjacent pairs? Options: First trace; Second trace; Same count. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: ComparefixedtracesA[0,0,0,0,1,1,1,1],B[0,1,0,1,0,1,0,1]. Bothmean.5; adjacentagreement6/7versus0. Label illustrativeautocorrelationpattern and not formalconvergencediagnosis.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.recall",
+      "text": "Two traces share a mean. Does that prove equal dependence between successive values? A mean ignores the ordering of observations.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.hook",
+      "text": "Has this chain explored enough? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c4",
+      "text": "The first trace repeats its previous value in 6 of 7 adjacent pairs; the second in 0. Both averages are 0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c5",
+      "text": "Matching means do not reveal temporal dependence. These deliberately fixed traces isolate sticking versus alternating. Adjacent agreement is the statistic shown; it is not a formal chain-convergence diagnostic, and an alternating trace is not independent sampling.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c7",
+      "text": "Agreement: 0.857",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0},{\"label\":\"2\",\"value\":0},{\"label\":\"3\",\"value\":0},{\"label\":\"4\",\"value\":1},{\"label\":\"5\",\"value\":1},{\"label\":\"6\",\"value\":1},{\"label\":\"7\",\"value\":1}]}. [{\"label\":\"Agreement\",\"value\":\"0.857\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c10",
+      "text": "Agreement: 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-healthy-vs-stuck-chains.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":1},{\"label\":\"2\",\"value\":0},{\"label\":\"3\",\"value\":1},{\"label\":\"4\",\"value\":0},{\"label\":\"5\",\"value\":1},{\"label\":\"6\",\"value\":0},{\"label\":\"7\",\"value\":1}]}. [{\"label\":\"Agreement\",\"value\":\"0\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-healthy-vs-stuck-chains/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two traces share a mean. Does that prove equal dependence between successive values?",
+    "options": [
+      "Yes",
+      "No",
+      "Only if the mean is 0.5"
+    ],
+    "answer": 1,
+    "why": "A mean ignores the ordering of observations."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-healthy-vs-stuck-chains",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-583",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 583,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceTitle": "Healthy vs stuck chains",
+    "sourceText": "a \"fuzzy caterpillar\" trace plot beside one that wanders and sticks.",
+    "sourceEntryOriginal": "- **583. Healthy vs stuck chains** \\[Split\\]: a \"fuzzy caterpillar\" trace plot beside one that wanders and sticks.",
+    "numericCase": "ComparefixedtracesA[0,0,0,0,1,1,1,1],B[0,1,0,1,0,1,0,1]. Bothmean.5; adjacentagreement6/7versus0. Label illustrativeautocorrelationpattern and not formalconvergencediagnosis.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/agent-loop",
+    "difference": "New teaching boundary: Healthy vs stuck chains. Existing boundary: Trace an observation-dependent observe/action loop, including its jam branch and terminal stop."
+  },
+  "modelOutputs": [
+    0.8571428571428571,
+    0
+  ]
+}
