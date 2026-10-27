@@ -1526,6 +1526,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "flour-on-the-moon": () => import("./physics/flour-on-the-moon/Demo"),
   "head-on-is-a-wall": () => import("./physics/head-on-is-a-wall/Demo"),
   "higher-orbit-slower": () => import("./physics/higher-orbit-slower/Demo"),
+  "inclined-orbit-projection": () => import("./physics/inclined-orbit-projection/Demo"),
   "iss-gravity-still-there": () => import("./physics/iss-gravity-still-there/Demo"),
   "kettle-vs-bulb-kwh": () => import("./physics/kettle-vs-bulb-kwh/Demo"),
   "lifeguard-fastest-path": () => import("./physics/lifeguard-fastest-path/Demo"),

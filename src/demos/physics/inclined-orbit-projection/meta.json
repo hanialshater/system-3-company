@@ -1,0 +1,25 @@
+{
+  "slug": "inclined-orbit-projection",
+  "title": "Is that orbit really oval?",
+  "hook": "Tilt a circular orbit and watch its apparent shape change.",
+  "domain": "physics",
+  "concept": "inclined-orbit-projection",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {"categoryManager": "cm-physics", "builder": "demo-builder"},
+  "learner": {"knows": ["circles and orbits", "a view from above"], "doesNotKnow": ["orthographic projection"]},
+  "misconception": "An orbit that looks oval from one view must be an elliptical orbit.",
+  "objective": "Explain that tilting a circular orbit changes its projected shape while its actual radius and speed stay fixed in the stated model.",
+  "claims": [
+    {"id": "physics.inclined-orbit-projection.model", "text": "The stage shows a circular orbit tilted about its horizontal axis and viewed with orthographic projection.", "support": "derivation", "source": "Demo.tsx projects (R cos(a), R sin(a) cos(tilt)) at R = 95 display units.", "status": "unverified", "addresses": ["stage", "reveal"]},
+    {"id": "physics.inclined-orbit-projection.axis", "text": "The projected short axis is multiplied by cos(tilt); at 60 degrees it is half as long.", "support": "derivation", "source": "Rotation about x followed by projection onto x-y: (R cos(a), R sin(a) cos(tilt)); cos(60 degrees) = 1/2.", "status": "unverified", "addresses": ["reveal"]},
+    {"id": "physics.inclined-orbit-projection.speed", "text": "In the stated model the circle's orientation changes without changing its radius or constant speed.", "support": "convention", "source": "Explicit model assumption: rigidly reorient the same circular orbit, holding its physical radius and speed constant.", "status": "unverified", "addresses": ["predict", "reveal"]},
+    {"id": "physics.inclined-orbit-projection.recall", "text": "A circular ring viewed at an angle can look oval while remaining circular.", "support": "derivation", "source": "The orthographic projection described in physics.inclined-orbit-projection.axis.", "status": "unverified", "addresses": ["recall"]}
+  ],
+  "confidence": "",
+  "recall": {"question": "A circular ring looks oval when you tilt it away from a camera. What can you conclude about its true shape?", "options": ["It must have stretched", "It can still be circular", "It must have shrunk"], "answer": 1, "why": "A tilted circle projects to an oval; its actual shape need not change."},
+  "evidence": {"qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": []},
+  "version": 1,
+  "curriculum": {"primary": "physics:inclined-orbit-projection", "prerequisites": [], "level": "intro", "references": [], "also": []},
+  "format": "single-card"
+}
