@@ -1,3 +1,11 @@
+## 2026-10-27 · chief-of-staff · visual chemistry and biology batch, 65 of 500 drafted
+
+- **Changed:** Added six concentration particle-model exercises and six single-gene Punnett-square exercises. PR 29 now has 30 chemistry and 35 biology drafts. The six examples in each new set reuse a model; they are related exercises, not 12 independent topics.
+- **Checks:** Production build and TypeScript pass. All 12 new lessons passed the browser contract on phone and desktop (24/24); the builder inspected two phone screenshots. Six targeted model tests pass, including independent count and genotype checks. The 810 errors and five warnings from `npm run check` match the recorded pre-existing baseline. `npm run verify` still stops on the two existing publication-readiness failures. Strict 390×844 reveal fit and independent accessibility review were not checked.
+- **Believe:** Medium confidence in the model calculations and basic interactions; none of these exercises is independently reviewed for pedagogy, overlap, accessibility or source accuracy. All claims are unverified, with no human-learner evidence.
+- **Next:** W-2117: 220 more chemistry lessons; W-2118: 215 more biology lessons. Prioritize genuinely different concepts and visual models over repeating these exercises. W-2119: independent fact-check and review of all 65 drafts. Reconcile records and registry with physics PR 28 at integration.
+- **Blocked:** 435 lessons remain to build; the 65 drafts are not cleared for publication.
+
 ## 2026-10-27 · chief-of-staff · visual chemistry and biology batch, 53 of 500 drafted
 
 - **Changed:** Added 12 balanced-reaction particle models, 13 genetics lessons (DNA copying, transcription, translation, mutations, splicing and chromosome division), and five membrane-transport lessons. DNA replication uses a projected helix with original and new strands coloured separately. The PR now holds 24 chemistry and 29 biology drafts. The reaction cases are related exercises and most genetics examples share a sequence-tile layout; do not count this as broad subject coverage.
