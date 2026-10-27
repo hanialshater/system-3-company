@@ -1,0 +1,66 @@
+{
+  "slug": "scale-centripetal-acceleration-radius",
+  "title": "A wider turn at the same speed",
+  "hook": "Change turn radius and predict centripetal acceleration.",
+  "domain": "physics",
+  "concept": "scaling-centripetal-acceleration-radius",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "turn radius",
+      "centripetal acceleration",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "a_c = v²/r"
+    ]
+  },
+  "misconception": "centripetal acceleration doubles when turn radius doubles, regardless of the stated relationship.",
+  "objective": "Apply a_c = v²/r to compare centripetal acceleration when turn radius changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-centripetal-acceleration-radius.model",
+      "text": "With uniform circular motion with fixed speed, a_c = v²/r. When turn radius doubles, centripetal acceleration becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model a_c = v²/r; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider uniform circular motion with fixed speed, with a nonzero initial result. If turn radius triples from a positive value, what is the multiplier on centripetal acceleration?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply a_c = v²/r under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-centripetal-acceleration-radius",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

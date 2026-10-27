@@ -1,0 +1,66 @@
+{
+  "slug": "scale-terminal-stokes-viscosity",
+  "title": "A bead in more viscous fluid",
+  "hook": "Change fluid viscosity and predict terminal speed.",
+  "domain": "physics",
+  "concept": "scaling-terminal-stokes-viscosity",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fluid viscosity",
+      "terminal speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v_t = 2Δρgr²/(9η)"
+    ]
+  },
+  "misconception": "terminal speed doubles when fluid viscosity doubles, regardless of the stated relationship.",
+  "objective": "Apply v_t = 2Δρgr²/(9η) to compare terminal speed when fluid viscosity changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-terminal-stokes-viscosity.model",
+      "text": "With a small sphere denser than the fluid in Stokes flow with fixed radius gravity and density difference, v_t = 2Δρgr²/(9η). When fluid viscosity doubles, terminal speed becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v_t = 2Δρgr²/(9η); scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a small sphere denser than the fluid in Stokes flow with fixed radius gravity and density difference, with a nonzero initial result. If fluid viscosity triples from a positive value, what is the multiplier on terminal speed?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply v_t = 2Δρgr²/(9η) under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-terminal-stokes-viscosity",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

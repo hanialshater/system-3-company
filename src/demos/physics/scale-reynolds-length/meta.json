@@ -1,0 +1,66 @@
+{
+  "slug": "scale-reynolds-length",
+  "title": "Size and Reynolds number",
+  "hook": "Change characteristic length and predict Reynolds number.",
+  "domain": "physics",
+  "concept": "scaling-reynolds-length",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "characteristic length",
+      "Reynolds number",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "Re = ρvL/η"
+    ]
+  },
+  "misconception": "Reynolds number stays fixed when characteristic length doubles.",
+  "objective": "Apply Re = ρvL/η to compare Reynolds number when characteristic length changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-reynolds-length.model",
+      "text": "With fixed fluid density speed and dynamic viscosity, Re = ρvL/η. When characteristic length doubles, Reynolds number becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model Re = ρvL/η; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider fixed fluid density speed and dynamic viscosity, with a nonzero initial result. If characteristic length triples from a positive value, what is the multiplier on Reynolds number?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply Re = ρvL/η under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-reynolds-length",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

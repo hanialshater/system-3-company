@@ -1,0 +1,66 @@
+{
+  "slug": "scale-wave-angular-frequency",
+  "title": "Cycles and radians",
+  "hook": "Change ordinary frequency and predict angular frequency.",
+  "domain": "physics",
+  "concept": "scaling-wave-angular-frequency",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ordinary frequency",
+      "angular frequency",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "ω = 2πf"
+    ]
+  },
+  "misconception": "angular frequency stays fixed when ordinary frequency doubles.",
+  "objective": "Apply ω = 2πf to compare angular frequency when ordinary frequency changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-wave-angular-frequency.model",
+      "text": "With a periodic wave, ω = 2πf. When ordinary frequency doubles, angular frequency becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model ω = 2πf; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a periodic wave, with a nonzero initial result. If ordinary frequency triples from a positive value, what is the multiplier on angular frequency?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply ω = 2πf under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-wave-angular-frequency",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "sag-and-rope-tension",
+  "title": "Can the rope be perfectly flat?",
+  "hook": "Raise the ends of a rope while a weight hangs from its middle.",
+  "domain": "physics",
+  "concept": "taut-rope-never-straight",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "The two upward components must add to 200 N. At 30° each side needs 200 N; at 10° the vertical fraction is smaller, so each side needs about 576 N."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "The two upward components must add to 200 N. At 30° each side needs 200 N; at 10° the vertical fraction is smaller, so each side needs about 576 N.",
+  "claims": [
+    {
+      "id": "physics.sag-and-rope-tension.model",
+      "text": "The two upward components must add to 200 N. At 30° each side needs 200 N; at 10° the vertical fraction is smaller, so each side needs about 576 N. Static, symmetric, ideal massless rope. Perfectly horizontal rope cannot supply an upward component in this model.",
+      "support": "derivation",
+      "source": "Vertical equilibrium: 2 T sin(theta) = 200 N. T(30°)=200 N; T(10°)=575.877 N.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two identical ropes hold a 100 N weight. Each makes 30° with the horizontal. What is the tension in each?",
+    "options": [
+      "50 N",
+      "100 N",
+      "200 N"
+    ],
+    "answer": 1,
+    "why": "Each tension contributes half its value upward: 2 × T × 0.5 = 100 N."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:taut-rope-never-straight",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

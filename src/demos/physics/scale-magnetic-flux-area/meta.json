@@ -1,0 +1,66 @@
+{
+  "slug": "scale-magnetic-flux-area",
+  "title": "Enlarge the loop",
+  "hook": "Change loop area and predict magnetic-flux magnitude.",
+  "domain": "physics",
+  "concept": "scaling-magnetic-flux-area",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "loop area",
+      "magnetic-flux magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "flux magnitude = B A abs(cosθ)"
+    ]
+  },
+  "misconception": "magnetic-flux magnitude stays fixed when loop area doubles.",
+  "objective": "Apply flux magnitude = B A abs(cosθ) to compare magnetic-flux magnitude when loop area changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-magnetic-flux-area.model",
+      "text": "With a uniform fixed magnetic field at a fixed angle to the area normal, flux magnitude = B A abs(cosθ). When loop area doubles, magnetic-flux magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model flux magnitude = B A abs(cosθ); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a uniform fixed magnetic field at a fixed angle to the area normal, with a nonzero initial result. If loop area triples from a positive value, what is the multiplier on magnetic-flux magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply flux magnitude = B A abs(cosθ) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-magnetic-flux-area",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

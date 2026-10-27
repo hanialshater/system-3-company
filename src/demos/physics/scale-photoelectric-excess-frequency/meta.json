@@ -1,0 +1,66 @@
+{
+  "slug": "scale-photoelectric-excess-frequency",
+  "title": "A photon above the threshold",
+  "hook": "Change frequency above the threshold and predict maximum electron kinetic energy.",
+  "domain": "physics",
+  "concept": "scaling-photoelectric-excess-frequency",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "frequency above the threshold",
+      "maximum electron kinetic energy",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "K_max = h(f − f₀)"
+    ]
+  },
+  "misconception": "maximum electron kinetic energy stays fixed when frequency above the threshold doubles.",
+  "objective": "Apply K_max = h(f − f₀) to compare maximum electron kinetic energy when frequency above the threshold changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-photoelectric-excess-frequency.model",
+      "text": "With an ideal photoelectric model for one fixed material, K_max = h(f − f₀). When frequency above the threshold doubles, maximum electron kinetic energy becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model K_max = h(f − f₀); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal photoelectric model for one fixed material, with a nonzero initial result. If frequency above the threshold triples from a positive value, what is the multiplier on maximum electron kinetic energy?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply K_max = h(f − f₀) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-photoelectric-excess-frequency",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

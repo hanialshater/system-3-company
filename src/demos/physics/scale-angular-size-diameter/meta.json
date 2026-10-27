@@ -1,0 +1,66 @@
+{
+  "slug": "scale-angular-size-diameter",
+  "title": "A larger distant object",
+  "hook": "Change physical diameter and predict small angular diameter.",
+  "domain": "physics",
+  "concept": "scaling-angular-size-diameter",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "physical diameter",
+      "small angular diameter",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "angle ≈ diameter/distance"
+    ]
+  },
+  "misconception": "small angular diameter stays fixed when physical diameter doubles.",
+  "objective": "Apply angle ≈ diameter/distance to compare small angular diameter when physical diameter changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-angular-size-diameter.model",
+      "text": "With fixed distance much larger than the diameter, angle ≈ diameter/distance. When physical diameter doubles, small angular diameter becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model angle ≈ diameter/distance; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider fixed distance much larger than the diameter, with a nonzero initial result. If physical diameter triples from a positive value, what is the multiplier on small angular diameter?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply angle ≈ diameter/distance under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-angular-size-diameter",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

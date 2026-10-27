@@ -1,0 +1,66 @@
+{
+  "slug": "scale-bohr-binding-charge",
+  "title": "A hydrogen-like ion's binding",
+  "hook": "Change nuclear charge number and predict binding-energy magnitude.",
+  "domain": "physics",
+  "concept": "scaling-bohr-binding-charge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "nuclear charge number",
+      "binding-energy magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "abs(E_n) = 13.6 Z² eV/n²"
+    ]
+  },
+  "misconception": "binding-energy magnitude doubles when nuclear charge number doubles, regardless of the stated relationship.",
+  "objective": "Apply abs(E_n) = 13.6 Z² eV/n² to compare binding-energy magnitude when nuclear charge number changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-bohr-binding-charge.model",
+      "text": "With the nonrelativistic Bohr model of a one-electron ion at fixed principal quantum number, abs(E_n) = 13.6 Z² eV/n². When nuclear charge number doubles, binding-energy magnitude becomes 4 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model abs(E_n) = 13.6 Z² eV/n²; scaling exponent 2. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider the nonrelativistic Bohr model of a one-electron ion at fixed principal quantum number, with a nonzero initial result. If nuclear charge number triples from a positive value, what is the multiplier on binding-energy magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 2,
+    "why": "Apply abs(E_n) = 13.6 Z² eV/n² under the same assumptions: the multiplier is 9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-bohr-binding-charge",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

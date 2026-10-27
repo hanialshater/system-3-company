@@ -1,0 +1,66 @@
+{
+  "slug": "scale-centripetal-force-mass",
+  "title": "A heavier object on the circle",
+  "hook": "Change mass and predict centripetal force.",
+  "domain": "physics",
+  "concept": "scaling-centripetal-force-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "mass",
+      "centripetal force",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "F_c = mv²/r"
+    ]
+  },
+  "misconception": "centripetal force stays fixed when mass doubles.",
+  "objective": "Apply F_c = mv²/r to compare centripetal force when mass changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-centripetal-force-mass.model",
+      "text": "With uniform circular motion with fixed speed and radius, F_c = mv²/r. When mass doubles, centripetal force becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model F_c = mv²/r; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider uniform circular motion with fixed speed and radius, with a nonzero initial result. If mass triples from a positive value, what is the multiplier on centripetal force?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply F_c = mv²/r under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-centripetal-force-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

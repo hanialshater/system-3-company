@@ -1,0 +1,66 @@
+{
+  "slug": "scale-angular-speed-turn-time",
+  "title": "A longer revolution",
+  "hook": "Change revolution period and predict angular speed.",
+  "domain": "physics",
+  "concept": "scaling-angular-speed-turn-time",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "revolution period",
+      "angular speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "ω = 2π/T"
+    ]
+  },
+  "misconception": "angular speed doubles when revolution period doubles, regardless of the stated relationship.",
+  "objective": "Apply ω = 2π/T to compare angular speed when revolution period changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-angular-speed-turn-time.model",
+      "text": "With uniform circular motion, ω = 2π/T. When revolution period doubles, angular speed becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model ω = 2π/T; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider uniform circular motion, with a nonzero initial result. If revolution period triples from a positive value, what is the multiplier on angular speed?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply ω = 2π/T under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-angular-speed-turn-time",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

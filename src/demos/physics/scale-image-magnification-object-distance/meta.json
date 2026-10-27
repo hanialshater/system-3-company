@@ -1,0 +1,66 @@
+{
+  "slug": "scale-image-magnification-object-distance",
+  "title": "Move the object away",
+  "hook": "Change object distance and predict magnification magnitude.",
+  "domain": "physics",
+  "concept": "scaling-image-magnification-object-distance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "object distance",
+      "magnification magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "magnification magnitude = image distance / object distance"
+    ]
+  },
+  "misconception": "magnification magnitude doubles when object distance doubles, regardless of the stated relationship.",
+  "objective": "Apply magnification magnitude = image distance / object distance to compare magnification magnitude when object distance changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-image-magnification-object-distance.model",
+      "text": "With thin-lens configurations with fixed image distance and refocusing lenses of different focal lengths, magnification magnitude = image distance / object distance. When object distance doubles, magnification magnitude becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model magnification magnitude = image distance / object distance; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider thin-lens configurations with fixed image distance and refocusing lenses of different focal lengths, with a nonzero initial result. If object distance triples from a positive value, what is the multiplier on magnification magnitude?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply magnification magnitude = image distance / object distance under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-image-magnification-object-distance",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

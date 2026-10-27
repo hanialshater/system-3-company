@@ -1,0 +1,66 @@
+{
+  "slug": "scale-bohr-speed-level",
+  "title": "Electron speed in the Bohr model",
+  "hook": "Change principal quantum number and predict electron speed.",
+  "domain": "physics",
+  "concept": "scaling-bohr-speed-level",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "principal quantum number",
+      "electron speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v_n ∝ 1/n"
+    ]
+  },
+  "misconception": "electron speed doubles when principal quantum number doubles, regardless of the stated relationship.",
+  "objective": "Apply v_n ∝ 1/n to compare electron speed when principal quantum number changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-bohr-speed-level.model",
+      "text": "With the nonrelativistic Bohr model of hydrogen with allowed positive integer levels, v_n ∝ 1/n. When principal quantum number doubles, electron speed becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v_n ∝ 1/n; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider the nonrelativistic Bohr model of hydrogen with allowed positive integer levels, with a nonzero initial result. If principal quantum number triples from a positive value, what is the multiplier on electron speed?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply v_n ∝ 1/n under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-bohr-speed-level",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

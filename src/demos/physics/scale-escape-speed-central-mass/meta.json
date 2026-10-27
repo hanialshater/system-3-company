@@ -1,0 +1,66 @@
+{
+  "slug": "scale-escape-speed-central-mass",
+  "title": "Escape a heavier planet",
+  "hook": "Change central mass and predict escape speed.",
+  "domain": "physics",
+  "concept": "scaling-escape-speed-central-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "central mass",
+      "escape speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v_escape = √(2GM/r)"
+    ]
+  },
+  "misconception": "escape speed doubles when central mass doubles, regardless of the stated relationship.",
+  "objective": "Apply v_escape = √(2GM/r) to compare escape speed when central mass changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-escape-speed-central-mass.model",
+      "text": "With a Newtonian spherical body with fixed launch radius and no other gravitating bodies, v_escape = √(2GM/r). When central mass doubles, escape speed becomes √2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v_escape = √(2GM/r); scaling exponent 0.5. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a Newtonian spherical body with fixed launch radius and no other gravitating bodies, with a nonzero initial result. If central mass triples from a positive value, what is the multiplier on escape speed?",
+    "options": [
+      "×√3",
+      "×3",
+      "×1/3"
+    ],
+    "answer": 0,
+    "why": "Apply v_escape = √(2GM/r) under the same assumptions: the multiplier is √3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-escape-speed-central-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

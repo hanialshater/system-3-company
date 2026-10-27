@@ -1,0 +1,66 @@
+{
+  "slug": "scale-oscillator-max-speed-amplitude",
+  "title": "A wider oscillator swing",
+  "hook": "Change amplitude and predict maximum speed.",
+  "domain": "physics",
+  "concept": "scaling-oscillator-max-speed-amplitude",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "amplitude",
+      "maximum speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v_max = ωA"
+    ]
+  },
+  "misconception": "maximum speed stays fixed when amplitude doubles.",
+  "objective": "Apply v_max = ωA to compare maximum speed when amplitude changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-oscillator-max-speed-amplitude.model",
+      "text": "With simple harmonic motion with fixed angular frequency, v_max = ωA. When amplitude doubles, maximum speed becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v_max = ωA; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider simple harmonic motion with fixed angular frequency, with a nonzero initial result. If amplitude triples from a positive value, what is the multiplier on maximum speed?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply v_max = ωA under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-oscillator-max-speed-amplitude",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

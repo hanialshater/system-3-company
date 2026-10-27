@@ -1,0 +1,66 @@
+{
+  "slug": "scale-aperture-light-area",
+  "title": "Collect light with a wider lens",
+  "hook": "Change aperture diameter and predict collected power.",
+  "domain": "physics",
+  "concept": "scaling-aperture-light-area",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "aperture diameter",
+      "collected power",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "P ∝ aperture area ∝ D²"
+    ]
+  },
+  "misconception": "collected power doubles when aperture diameter doubles, regardless of the stated relationship.",
+  "objective": "Apply P ∝ aperture area ∝ D² to compare collected power when aperture diameter changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-aperture-light-area.model",
+      "text": "With a uniformly illuminated unobstructed circular aperture with fixed irradiance, P ∝ aperture area ∝ D². When aperture diameter doubles, collected power becomes 4 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model P ∝ aperture area ∝ D²; scaling exponent 2. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a uniformly illuminated unobstructed circular aperture with fixed irradiance, with a nonzero initial result. If aperture diameter triples from a positive value, what is the multiplier on collected power?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 2,
+    "why": "Apply P ∝ aperture area ∝ D² under the same assumptions: the multiplier is 9."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-aperture-light-area",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,241 @@
+# slug|title|output quantity|input quantity|power|held fixed / assumptions|relationship|diagram
+# Mechanics and rotation
+kinetic-energy-mass|Mass and motion energy|kinetic energy|mass|1|a moving object at fixed speed|K = ½mv²|graph
+momentum-speed|How fast is the momentum?|momentum magnitude|speed|1|a fixed mass moving in a straight line|p = mv|graph
+momentum-mass|A heavier moving object|momentum magnitude|mass|1|a fixed speed along the same line|p = mv|graph
+work-force|A stronger push over the same path|work done|force|1|a constant force parallel to a fixed displacement|W = Fd|graph
+work-distance|Push for twice the distance|work done|distance|1|a constant force parallel to the displacement|W = Fd|graph
+impulse-force|The area under a force pulse|impulse magnitude|force magnitude|1|a constant force acting in one direction for a fixed time|J = FΔt|graph
+impulse-time|Push for twice as long|impulse magnitude|force duration|1|a constant force acting in one direction|J = FΔt|graph
+spring-force-extension|The stretching spring|spring restoring-force magnitude|extension|1|an ideal spring with fixed stiffness|F = kx|spring
+spring-energy-extension|The compressed spring stores energy|elastic potential energy|compression|2|an ideal spring with fixed stiffness|U = ½kx²|spring
+spring-period-mass|A heavier spring oscillator|oscillation period|attached mass|0.5|an ideal horizontal spring with fixed stiffness|T = 2π√(m/k)|spring
+spring-period-stiffness|A stiffer spring oscillator|oscillation period|spring stiffness|-0.5|an ideal horizontal spring with fixed attached mass|T = 2π√(m/k)|spring
+spring-frequency-stiffness|Stiffness and spring frequency|oscillation frequency|spring stiffness|0.5|an ideal mass–spring oscillator with fixed mass|f = (1/2π)√(k/m)|spring
+spring-frequency-mass|Mass and spring frequency|oscillation frequency|attached mass|-0.5|an ideal mass–spring oscillator with fixed spring stiffness|f = (1/2π)√(k/m)|spring
+oscillator-max-speed-amplitude|A wider oscillator swing|maximum speed|amplitude|1|simple harmonic motion with fixed angular frequency|v_max = ωA|spring
+oscillator-max-accel-amplitude|The strongest restoring turn|maximum acceleration magnitude|amplitude|1|simple harmonic motion with fixed angular frequency|a_max = ω²A|spring
+oscillator-energy-amplitude|Swing twice as far|total mechanical energy|amplitude|2|an ideal spring oscillator with fixed stiffness|E = ½kA²|spring
+centripetal-acceleration-speed|Faster around the circle|centripetal acceleration|orbital speed|2|uniform circular motion with fixed radius|a_c = v²/r|orbit
+centripetal-acceleration-radius|A wider turn at the same speed|centripetal acceleration|turn radius|-1|uniform circular motion with fixed speed|a_c = v²/r|orbit
+centripetal-force-mass|A heavier object on the circle|centripetal force|mass|1|uniform circular motion with fixed speed and radius|F_c = mv²/r|orbit
+centripetal-force-radius|The force for a wider circle|centripetal force|turn radius|-1|uniform circular motion with fixed mass and speed|F_c = mv²/r|orbit
+angular-speed-turn-time|A longer revolution|angular speed|revolution period|-1|uniform circular motion|ω = 2π/T|orbit
+rim-speed-radius|Two places on a turntable|tangential speed|distance from the axle|1|a rigid turntable with fixed angular speed|v = ωr|orbit
+rim-acceleration-radius|A wider circle at fixed spin|centripetal acceleration|distance from the axle|1|a rigid turntable with fixed angular speed|a_c = ω²r|orbit
+rotation-angle-time|A steady spinning wheel|angle turned|elapsed time|1|a wheel rotating at constant angular speed|Δθ = ωΔt|orbit
+rotation-torque-lever|The longer wrench|torque magnitude|lever arm|1|the same perpendicular force applied about a fixed pivot|τ = rF|graph
+rotation-torque-force|Push the wrench harder|torque magnitude|force|1|the same perpendicular lever arm about a fixed pivot|τ = rF|graph
+angular-momentum-inertia|Spin with more inertia|angular momentum|moment of inertia|1|rotation at fixed angular speed about the same axis|L = Iω|orbit
+rotation-energy-spin|Spin the wheel faster|rotational kinetic energy|angular speed|2|a rigid object with fixed moment of inertia|K_rot = ½Iω²|orbit
+rotation-energy-inertia|Energy at the same spin|rotational kinetic energy|moment of inertia|1|a rigid object rotating at fixed angular speed|K_rot = ½Iω²|orbit
+spin-power-torque|Powering the spinning axle|mechanical power|torque|1|rotation at fixed angular speed with torque along the axis|P = τω|orbit
+# Fluids and materials
+hydrostatic-pressure-density|A denser liquid at depth|gauge pressure|fluid density|1|a static liquid at fixed depth and gravitational acceleration|ΔP = ρgh|fluid
+hydrostatic-pressure-depth|Twice as deep|gauge pressure|depth|1|a static liquid with uniform density and fixed gravity|ΔP = ρgh|fluid
+hydrostatic-pressure-gravity|A liquid under stronger gravity|gauge pressure|gravitational acceleration|1|a static liquid with fixed density and depth|ΔP = ρgh|fluid
+buoyancy-volume|Move more water aside|buoyant force|submerged volume|1|a body immersed in the same fluid under fixed gravity|F_b = ρgV|fluid
+buoyancy-density|A denser fluid pushes back|buoyant force|fluid density|1|a fixed submerged volume under fixed gravity|F_b = ρgV|fluid
+buoyancy-gravity|Buoyancy under stronger gravity|buoyant force|gravitational acceleration|1|a fixed volume submerged in fluid of fixed density|F_b = ρgV|fluid
+continuity-area-speed|The narrowing pipe|fluid speed|pipe cross-sectional area|-1|steady incompressible flow with fixed volume-flow rate|Av = Q|fluid
+continuity-flow-speed|More flow through one pipe|fluid speed|volume-flow rate|1|steady incompressible flow in a pipe of fixed cross-sectional area|v = Q/A|fluid
+flow-rate-area|A wider opening at the same speed|volume-flow rate|cross-sectional area|1|uniform fluid speed held fixed across the opening|Q = Av|fluid
+flow-rate-speed|Faster through one opening|volume-flow rate|fluid speed|1|uniform flow across a fixed cross-sectional area|Q = Av|fluid
+flow-radius-laminar|A slightly wider tiny tube|laminar volume-flow rate|tube radius|4|ideal Poiseuille flow with fixed pressure drop viscosity and length|Q = πΔPr⁴/(8ηL)|fluid
+flow-viscosity-laminar|Thicker fluid through a tube|laminar volume-flow rate|dynamic viscosity|-1|ideal Poiseuille flow with fixed radius pressure drop and tube length|Q = πΔPr⁴/(8ηL)|fluid
+flow-length-laminar|The longer narrow tube|laminar volume-flow rate|tube length|-1|ideal Poiseuille flow with fixed pressure drop radius and viscosity|Q = πΔPr⁴/(8ηL)|fluid
+flow-pressure-laminar|More pressure through a tube|laminar volume-flow rate|pressure difference|1|ideal Poiseuille flow with fixed radius viscosity and tube length|Q = πΔPr⁴/(8ηL)|fluid
+stokes-drag-speed|A slow sphere in fluid|drag force|sphere speed|1|creeping flow around a sphere of fixed radius in fluid of fixed viscosity|F = 6πηrv|fluid
+stokes-drag-radius|A larger slow sphere|drag force|sphere radius|1|creeping flow at fixed speed and fluid viscosity|F = 6πηrv|fluid
+stokes-drag-viscosity|A slow sphere in thicker fluid|drag force|fluid viscosity|1|creeping flow around a sphere with fixed radius and speed|F = 6πηrv|fluid
+quadratic-drag-speed|Air drag and speed|drag force|relative speed|2|a fixed drag coefficient fluid density and frontal area|F_d = ½ρC_dAv²|fluid
+dynamic-pressure-speed|The dynamic pressure of flow|dynamic pressure|flow speed|2|a fluid of fixed density|q = ½ρv²|fluid
+reynolds-speed|Speed and Reynolds number|Reynolds number|flow speed|1|fixed fluid density viscosity and characteristic length|Re = ρvL/η|fluid
+reynolds-length|Size and Reynolds number|Reynolds number|characteristic length|1|fixed fluid density speed and dynamic viscosity|Re = ρvL/η|fluid
+strain-force-linear|Stretch an elastic wire|tensile strain|tension force|1|a uniform wire in its linear elastic regime with fixed area and Young modulus|strain = F/(AY)|spring
+wire-stretch-length|A longer elastic wire|extension|original wire length|1|a uniform wire under fixed tension area and Young modulus in the linear regime|ΔL = FL/(AY)|spring
+wire-stretch-area|A thicker elastic wire|extension|cross-sectional area|-1|a uniform wire under fixed tension length and Young modulus in the linear regime|ΔL = FL/(AY)|spring
+bulk-strain-pressure|Squeezing a fluid gently|volume strain magnitude|pressure increase|1|small compression with fixed bulk modulus|ΔV/V = ΔP/B|fluid
+surface-energy-area|Making a larger surface|surface energy|new surface area|1|a fixed surface tension and a single interface|E = γA|fluid
+capillary-rise-radius|Water climbing a thin tube|capillary-rise height|tube radius|-1|fixed surface tension density gravity and contact angle with a wetting liquid|h = 2γ cosθ/(ρgr)|fluid
+capillary-rise-surface-tension|A stronger liquid surface|capillary-rise height|surface tension|1|fixed tube radius density gravity and contact angle|h = 2γ cosθ/(ρgr)|fluid
+terminal-stokes-radius|A larger settling bead|terminal speed|sphere radius|2|a small sphere denser than the fluid in Stokes flow with fixed fluid viscosity and density difference|v_t = 2Δρgr²/(9η)|fluid
+terminal-stokes-viscosity|A bead in more viscous fluid|terminal speed|fluid viscosity|-1|a small sphere denser than the fluid in Stokes flow with fixed radius gravity and density difference|v_t = 2Δρgr²/(9η)|fluid
+# Heat and thermodynamics
+heat-capacity-mass|Heating twice the mass|heat needed|mass|1|the same material at fixed specific heat and temperature change without a phase transition|Q = mcΔT|fluid
+heat-capacity-temperature|A larger temperature change|heat needed|temperature change|1|a fixed mass with constant specific heat and no phase transition|Q = mcΔT|fluid
+heat-capacity-specific|Materials with different heat capacity|heat needed|specific heat capacity|1|fixed mass and temperature change without a phase transition|Q = mcΔT|fluid
+latent-heat-mass|Melt more ice|heat needed for the phase change|mass changing phase|1|fixed latent heat with the material at its phase-change temperature|Q = mL|fluid
+thermal-expansion-length|A longer heated rod|length change|original rod length|1|the same material and temperature change in the linear expansion regime|ΔL = αL₀ΔT|graph
+thermal-expansion-temperature|Warm the same rod more|length change|temperature change|1|the same rod and linear expansion coefficient over a limited temperature range|ΔL = αL₀ΔT|graph
+conduction-area|A wider conducting wall|conducted heat rate|cross-sectional area|1|steady one-dimensional conduction with fixed thickness conductivity and temperature difference|Q̇ = kAΔT/L|graph
+conduction-temperature|A bigger temperature difference|conducted heat rate|temperature difference|1|steady one-dimensional conduction with fixed area thickness and conductivity|Q̇ = kAΔT/L|graph
+conduction-thickness|A thicker conducting wall|conducted heat rate|wall thickness|-1|steady one-dimensional conduction with fixed area conductivity and temperature difference|Q̇ = kAΔT/L|graph
+conduction-conductivity|A better heat conductor|conducted heat rate|thermal conductivity|1|steady one-dimensional conduction with fixed area thickness and temperature difference|Q̇ = kAΔT/L|graph
+convection-area|More warm surface in airflow|convective heat rate|surface area|1|a fixed convection coefficient and surface-to-fluid temperature difference|Q̇ = hAΔT|fluid
+convection-temperature|A warmer surface in air|convective heat rate|temperature difference|1|fixed convection coefficient and surface area|Q̇ = hAΔT|fluid
+convection-coefficient|Faster mixing near a surface|convective heat rate|heat-transfer coefficient|1|fixed surface area and surface-to-fluid temperature difference|Q̇ = hAΔT|fluid
+blackbody-area|A bigger ideal emitter|radiated power|surface area|1|an ideal blackbody at fixed absolute temperature|P = σAT⁴|graph
+blackbody-temperature|Heat an ideal emitter|radiated power|absolute temperature|4|an ideal blackbody of fixed area ignoring incoming radiation|P = σAT⁴|graph
+gas-pressure-temperature|Warm a sealed rigid vessel|ideal-gas pressure|absolute temperature|1|a fixed quantity of ideal gas at fixed volume|P = nRT/V|fluid
+gas-pressure-volume|Compress a sealed vessel|ideal-gas pressure|gas volume|-1|a fixed quantity of ideal gas at fixed absolute temperature|P = nRT/V|fluid
+gas-volume-temperature|Warm a movable gas piston|ideal-gas volume|absolute temperature|1|a fixed quantity of ideal gas at fixed pressure|V = nRT/P|fluid
+gas-pressure-amount|More gas in the same vessel|ideal-gas pressure|amount of gas|1|an ideal gas at fixed volume and absolute temperature|P = nRT/V|fluid
+gas-rms-temperature|Molecular speeds in a gas|root-mean-square molecular speed|absolute temperature|0.5|an ideal gas with fixed molecular mass|v_rms = √(3kT/m)|fluid
+gas-rms-mass|Heavy and light gas molecules|root-mean-square molecular speed|molecular mass|-0.5|an ideal gas at fixed absolute temperature|v_rms = √(3kT/m)|fluid
+monatomic-internal-temp|Heating a monatomic ideal gas|internal energy|absolute temperature|1|a fixed amount of monatomic ideal gas|U = 3nRT/2|fluid
+monatomic-internal-moles|More monatomic gas|internal energy|amount of gas|1|a monatomic ideal gas at fixed absolute temperature|U = 3nRT/2|fluid
+isobaric-work-pressure|More pressure on a piston|work by the gas|pressure|1|a constant-pressure expansion with the same volume change|W = PΔV|fluid
+isobaric-work-volume|A larger piston expansion|work by the gas|volume change|1|a constant-pressure expansion at fixed pressure|W = PΔV|fluid
+# Waves and optics
+wave-wavelength-frequency|A faster vibration in one medium|wavelength|frequency|-1|a wave travelling at fixed speed in a nondispersive medium|λ = v/f|wave
+wave-speed-frequency|Frequency and wave speed|wave speed|frequency|1|ideal waves in different media whose wavelength is held fixed|v = fλ|wave
+wave-speed-wavelength|Wavelength and wave speed|wave speed|wavelength|1|ideal waves in different media whose frequency is held fixed|v = fλ|wave
+wave-period-frequency|A clock for a wave|wave period|frequency|-1|a periodic wave|T = 1/f|wave
+wave-number-wavelength|Count the radians per metre|angular wave number|wavelength|-1|a sinusoidal wave|k = 2π/λ|wave
+wave-angular-frequency|Cycles and radians|angular frequency|ordinary frequency|1|a periodic wave|ω = 2πf|wave
+wave-distance-time|How far does a wave travel?|distance travelled|elapsed time|1|a wave packet moving at fixed speed|d = vt|wave
+string-wave-tension|Pull a string tighter|wave speed|string tension|0.5|a taut flexible string with fixed linear mass density|v = √(T/μ)|wave
+string-wave-density|A heavier string|wave speed|linear mass density|-0.5|a taut flexible string under fixed tension|v = √(T/μ)|wave
+string-fundamental-length|The longer vibrating string|fundamental frequency|string length|-1|a string fixed at both ends with fixed wave speed|f₁ = v/(2L)|wave
+string-harmonic-number|Higher string harmonics|harmonic frequency|harmonic number|1|a string fixed at both ends with fixed length and wave speed|f_n = nv/(2L)|wave
+open-pipe-fundamental-length|A longer open pipe|fundamental frequency|pipe length|-1|an ideal pipe open at both ends with fixed sound speed|f₁ = v/(2L)|wave
+closed-pipe-fundamental-length|A longer closed pipe|fundamental frequency|pipe length|-1|an ideal pipe closed at one end and open at the other with fixed sound speed|f₁ = v/(4L)|wave
+wave-intensity-amplitude|Make the wave taller|wave intensity|wave amplitude|2|a linear wave with fixed frequency medium and other parameters|I ∝ A²|wave
+wave-amplitude-intensity|How tall is a stronger wave?|wave amplitude|wave intensity|0.5|a linear wave with fixed frequency medium and other parameters|A ∝ √I|wave
+point-source-intensity-distance|Sound spreads in three dimensions|intensity|distance from the source|-2|an isotropic point source in a lossless medium with fixed power|I = P/(4πr²)|orbit
+point-source-intensity-power|A stronger point source|intensity|source power|1|an isotropic point source in a lossless medium at fixed distance|I = P/(4πr²)|orbit
+plane-wave-power-area|A larger beam cross section|power carried|cross-sectional area|1|a uniform beam with fixed intensity|P = IA|wave
+refraction-index-speed|Light inside different media|phase speed of light|refractive index|-1|a transparent nondispersive medium and fixed vacuum light speed|v = c/n|wave
+optical-path-index|A denser optical path|optical path length|refractive index|1|a uniform transparent medium with fixed geometric path length|OPL = nL|wave
+optical-path-length|A longer optical path|optical path length|geometric path length|1|a uniform transparent medium with fixed refractive index|OPL = nL|wave
+snell-sine-index|Bending into a different medium|sine of the transmitted angle|second medium refractive index|-1|a fixed incident angle and first-medium index in a case where transmission occurs|sinθ₂ = n₁ sinθ₁/n₂|wave
+lens-power-focal|A lens and its focal length|lens optical power|focal length|-1|a thin lens in air with focal length measured in metres|D = 1/f|graph
+mirror-focal-curvature|A spherical mirror's curvature|focal length magnitude|radius of curvature|1|a spherical mirror in the paraxial approximation|f = R/2|graph
+image-magnification-image-distance|The image moves farther away|magnification magnitude|image distance|1|thin-lens configurations with fixed object distance and refocusing lenses of different focal lengths|magnification magnitude = image distance / object distance|graph
+image-magnification-object-distance|Move the object away|magnification magnitude|object distance|-1|thin-lens configurations with fixed image distance and refocusing lenses of different focal lengths|magnification magnitude = image distance / object distance|graph
+double-slit-fringe-wavelength|A longer wavelength on two slits|fringe spacing|wavelength|1|two narrow slits in the small-angle limit with fixed slit separation and screen distance|Δy ≈ λL/d|wave
+double-slit-fringe-screen|Move the screen away|fringe spacing|screen distance|1|two narrow slits in the small-angle limit with fixed wavelength and slit separation|Δy ≈ λL/d|wave
+double-slit-fringe-separation|Spread the two slits|fringe spacing|slit separation|-1|two narrow slits in the small-angle limit with fixed wavelength and screen distance|Δy ≈ λL/d|wave
+diffraction-angle-wavelength|A longer diffracting wavelength|small-angle first-minimum angle|wavelength|1|a single slit in the small-angle limit with fixed slit width|θ ≈ λ/a|wave
+diffraction-angle-width|Change the diffraction slit|small-angle first-minimum angle|slit width|-1|a single slit in the small-angle limit with fixed wavelength|θ ≈ λ/a|wave
+rayleigh-angle-wavelength|Wavelength and sharp detail|angular resolution limit|wavelength|1|a circular aperture under the Rayleigh criterion with fixed aperture diameter|θ ≈ 1.22λ/D|wave
+rayleigh-angle-aperture|A wider telescope aperture|angular resolution limit|aperture diameter|-1|a circular aperture under the Rayleigh criterion with fixed wavelength|θ ≈ 1.22λ/D|wave
+telescope-magnification-objective|A telescope with a longer objective|angular magnification magnitude|objective focal length|1|an ideal astronomical telescope with fixed eyepiece focal length|magnification magnitude = f_objective/f_eyepiece|graph
+telescope-magnification-eyepiece|Change the telescope eyepiece|angular magnification magnitude|eyepiece focal length|-1|an ideal astronomical telescope with fixed objective focal length|magnification magnitude = f_objective/f_eyepiece|graph
+aperture-light-area|Collect light with a wider lens|collected power|aperture diameter|2|a uniformly illuminated unobstructed circular aperture with fixed irradiance|P ∝ aperture area ∝ D²|orbit
+# Electricity
+coulomb-force-first-charge|Increase one electric charge|electric-force magnitude|first charge magnitude|1|two fixed point charges at fixed separation in the same medium|F = k|q₁q₂|/r²|circuit
+coulomb-force-second-charge|Increase the other electric charge|electric-force magnitude|second charge magnitude|1|two fixed point charges at fixed separation in the same medium|F = k|q₁q₂|/r²|circuit
+coulomb-force-distance|Separate two charges|electric-force magnitude|separation|-2|two fixed point charges in the same medium|F = k|q₁q₂|/r²|circuit
+point-field-charge|A larger source charge|electric-field magnitude|source charge magnitude|1|a point charge observed at fixed distance in the same medium|E = k|q|/r²|circuit
+point-field-distance|A more distant electric field|electric-field magnitude|distance from the charge|-2|a fixed point charge in the same medium|E = k|q|/r²|circuit
+electric-force-test-charge|A bigger test charge|electric-force magnitude|test charge magnitude|1|a fixed external electric field|F = |q|E|circuit
+electric-force-field|A stronger electric field|electric-force magnitude|electric-field magnitude|1|a fixed test-charge magnitude|F = |q|E|circuit
+electric-work-charge|Move more charge across a voltage|electric-work magnitude|charge magnitude|1|a fixed electric potential difference|work magnitude = |qΔV||circuit
+electric-work-voltage|Move charge across more voltage|electric-work magnitude|potential-difference magnitude|1|a fixed charge magnitude|work magnitude = |qΔV||circuit
+point-potential-charge|Potential from a larger charge|electric-potential magnitude|source charge magnitude|1|a point charge at fixed distance with zero potential at infinity|potential magnitude = k|q|/r|circuit
+point-potential-distance|Potential farther from a charge|electric-potential magnitude|distance|-1|a fixed point charge with zero potential at infinity|potential magnitude = k|q|/r|circuit
+parallel-field-voltage|More voltage between plates|electric-field magnitude|voltage magnitude|1|ideal parallel plates at fixed separation ignoring edge effects|E = |V|/d|circuit
+parallel-field-gap|Widen the plate gap|electric-field magnitude|plate separation|-1|ideal parallel plates at fixed voltage ignoring edge effects|E = |V|/d|circuit
+capacitor-charge-voltage|Charge the same capacitor|stored charge magnitude|voltage magnitude|1|an ideal capacitor with fixed capacitance|Q = C|V||circuit
+capacitor-charge-capacitance|A larger capacitance|stored charge magnitude|capacitance|1|an ideal capacitor at fixed voltage magnitude|Q = C|V||circuit
+capacitor-energy-voltage|More voltage and stored energy|stored electric energy|voltage magnitude|2|an ideal capacitor with fixed capacitance|U = CV²/2|circuit
+capacitor-energy-capacitance|Energy in a larger capacitor|stored electric energy|capacitance|1|an ideal capacitor at fixed voltage magnitude|U = CV²/2|circuit
+capacitor-area|Enlarge the capacitor plates|capacitance|plate area|1|ideal parallel plates with fixed separation and dielectric permittivity ignoring edge effects|C = εA/d|circuit
+capacitor-gap|Separate the capacitor plates|capacitance|plate separation|-1|ideal parallel plates with fixed area and dielectric permittivity ignoring edge effects|C = εA/d|circuit
+capacitor-permittivity|Change the dielectric|capacitance|dielectric permittivity|1|ideal parallel plates with fixed area and separation ignoring edge effects|C = εA/d|circuit
+resistor-current-voltage|Raise the resistor voltage|current magnitude|voltage magnitude|1|an ohmic resistor with fixed resistance|I = |V|/R|circuit
+resistor-current-resistance|Raise the resistance|current magnitude|resistance|-1|an ohmic resistor at fixed voltage magnitude|I = |V|/R|circuit
+resistor-power-voltage|Voltage and resistor power|resistor power|voltage magnitude|2|an ohmic resistor with fixed resistance|P = V²/R|circuit
+resistor-power-current|Current and resistor power|resistor power|current magnitude|2|an ohmic resistor with fixed resistance|P = I²R|circuit
+resistor-power-resistance-current|Resistance at fixed current|resistor power|resistance|1|an ohmic resistor with fixed current magnitude|P = I²R|circuit
+resistor-power-resistance-voltage|Resistance at fixed voltage|resistor power|resistance|-1|an ohmic resistor with fixed voltage magnitude|P = V²/R|circuit
+resistor-energy-duration|How long does the heater run?|electrical energy dissipated|time|1|an ideal resistor at fixed power|E = Pt|circuit
+electric-charge-current|More charge through a wire|charge transferred|current|1|a steady one-direction current over a fixed duration|Q = It|circuit
+electric-charge-duration|A longer steady current|charge transferred|duration|1|a steady one-direction current with fixed magnitude|Q = It|circuit
+rc-time-resistance|Resistance and the RC response|RC time constant|resistance|1|an ideal RC circuit with fixed capacitance|τ = RC|circuit
+rc-time-capacitance|Capacitance and the RC response|RC time constant|capacitance|1|an ideal RC circuit with fixed resistance|τ = RC|circuit
+# Magnetism and electromagnetic induction
+magnetic-force-charge|A larger charge in a magnetic field|magnetic-force magnitude|charge magnitude|1|a particle with fixed speed moving perpendicular to a fixed uniform magnetic field|F = abs(q)vB|circuit
+magnetic-force-speed|Move faster across a magnetic field|magnetic-force magnitude|particle speed|1|a fixed charge moving perpendicular to a fixed uniform magnetic field|F = abs(q)vB|circuit
+magnetic-force-field|A stronger magnetic field|magnetic-force magnitude|magnetic-field magnitude|1|a fixed charge moving at fixed speed perpendicular to a uniform magnetic field|F = abs(q)vB|circuit
+wire-magnetic-force-current|More current through a magnetic field|force magnitude on the wire|current magnitude|1|a straight wire of fixed length perpendicular to a uniform magnetic field|F = BIL|circuit
+wire-magnetic-force-length|A longer wire in the field|force magnitude on the wire|wire length|1|a straight wire at fixed current perpendicular to a uniform magnetic field|F = BIL|circuit
+wire-magnetic-force-field|A stronger field on a wire|force magnitude on the wire|magnetic-field magnitude|1|a straight wire of fixed length carrying fixed current perpendicular to the field|F = BIL|circuit
+wire-field-current|A current makes a circular field|magnetic-field magnitude|current magnitude|1|an ideal long straight wire in vacuum observed at fixed perpendicular distance|B = μ₀I/(2πr)|circuit
+wire-field-distance|Move away from the wire|magnetic-field magnitude|perpendicular distance|-1|an ideal long straight wire in vacuum carrying fixed current|B = μ₀I/(2πr)|circuit
+solenoid-field-current|More current in a solenoid|interior magnetic-field magnitude|current magnitude|1|an ideal long solenoid in vacuum with fixed turn density|B = μ₀nI|circuit
+solenoid-field-turn-density|Wind more turns per metre|interior magnetic-field magnitude|turn density|1|an ideal long solenoid in vacuum with fixed current|B = μ₀nI|circuit
+orbit-magnetic-speed|A faster charge in a magnetic field|circular-orbit radius|particle speed|1|a nonrelativistic charged particle moving perpendicular to a fixed uniform magnetic field with fixed mass and charge|r = mv/(abs(q)B)|orbit
+orbit-magnetic-mass|A heavier charge in a magnetic field|circular-orbit radius|particle mass|1|a nonrelativistic charged particle at fixed speed and charge moving perpendicular to a fixed field|r = mv/(abs(q)B)|orbit
+orbit-magnetic-field|A particle in a magnetic field|circular-orbit radius|magnetic-field magnitude|-1|a nonrelativistic charged particle at fixed mass speed and charge moving perpendicular to a uniform field|r = mv/(abs(q)B)|orbit
+orbit-magnetic-charge|Change the particle's charge|circular-orbit radius|charge magnitude|-1|a nonrelativistic particle at fixed mass and speed moving perpendicular to a fixed uniform magnetic field|r = mv/(abs(q)B)|orbit
+cyclotron-frequency-field|A cyclotron and its field|cyclotron frequency|magnetic-field magnitude|1|a nonrelativistic particle with fixed mass and charge moving perpendicular to a uniform field|f = abs(q)B/(2πm)|orbit
+cyclotron-frequency-mass|A heavier cyclotron particle|cyclotron frequency|particle mass|-1|a nonrelativistic particle with fixed charge in a fixed uniform magnetic field|f = abs(q)B/(2πm)|orbit
+magnetic-flux-field|Increase the field through a loop|magnetic-flux magnitude|magnetic-field magnitude|1|a fixed planar area and fixed field angle to its normal|flux magnitude = B A abs(cosθ)|circuit
+magnetic-flux-area|Enlarge the loop|magnetic-flux magnitude|loop area|1|a uniform fixed magnetic field at a fixed angle to the area normal|flux magnitude = B A abs(cosθ)|circuit
+faraday-turn-count|Wind a coil with more turns|induced emf magnitude|number of turns|1|a coil with the same rate of flux change through each identical turn|emf magnitude = N abs(dΦ/dt)|circuit
+faraday-flux-rate|Change the magnetic flux faster|induced emf magnitude|flux-change rate magnitude|1|a fixed-turn coil with the same flux change through each turn|emf magnitude = N abs(dΦ/dt)|circuit
+motional-emf-speed|Move a conducting rod faster|motional emf magnitude|rod speed|1|a rod moving perpendicular to its length and a fixed uniform magnetic field with fixed length|emf = BLv|circuit
+motional-emf-length|A longer rod crossing the field|motional emf magnitude|rod length|1|a rod moving perpendicular to its length and a fixed uniform magnetic field at fixed speed|emf = BLv|circuit
+motional-emf-field|A rod in a stronger field|motional emf magnitude|magnetic-field magnitude|1|a rod of fixed length moving perpendicular to its length and the field at fixed speed|emf = BLv|circuit
+transformer-secondary-turns|More turns on the secondary|secondary voltage magnitude|secondary turn count|1|an ideal transformer with fixed primary voltage and primary turn count|Vs/Vp = Ns/Np|circuit
+transformer-primary-turns|More turns on the primary|secondary voltage magnitude|primary turn count|-1|an ideal transformer with fixed primary voltage and secondary turn count|Vs/Vp = Ns/Np|circuit
+inductor-energy-current|Store energy in a coil|stored magnetic energy|current magnitude|2|an ideal inductor with fixed inductance|U = LI²/2|circuit
+inductor-energy-inductance|Energy in a larger inductance|stored magnetic energy|inductance|1|an ideal inductor with fixed current magnitude|U = LI²/2|circuit
+rl-time-inductance|An inductor responds slowly|RL time constant|inductance|1|an ideal series RL circuit with fixed resistance|τ = L/R|circuit
+rl-time-resistance|Resistance and the RL time|RL time constant|resistance|-1|an ideal series RL circuit with fixed inductance|τ = L/R|circuit
+coil-torque-turns|More turns on a motor coil|magnetic torque magnitude|number of turns|1|an identical planar coil with fixed current area field and angle θ between the coil normal and the field|torque magnitude = N I A B abs(sinθ)|circuit
+# Quantum, atomic and nuclear physics
+photon-momentum-frequency|A higher-frequency photon|photon momentum magnitude|photon frequency|1|a photon in vacuum|p = hf/c|wave
+photon-momentum-wavelength|A photon's wavelength|photon momentum magnitude|vacuum wavelength|-1|a photon in vacuum|p = h/λ|wave
+debroglie-wavelength-momentum|The wavelength of moving matter|de Broglie wavelength|momentum magnitude|-1|a particle with nonzero momentum|λ = h/p|wave
+particle-kinetic-momentum|Momentum and kinetic energy|kinetic energy|momentum magnitude|2|a nonrelativistic particle of fixed mass|K = p²/(2m)|graph
+particle-momentum-kinetic|Kinetic energy and momentum|momentum magnitude|kinetic energy|0.5|a nonrelativistic particle of fixed mass|p = √(2mK)|graph
+debroglie-kinetic-energy|Waves of moving particles|de Broglie wavelength|kinetic energy|-0.5|a nonrelativistic particle of fixed mass with positive kinetic energy|λ = h/√(2mK)|wave
+box-energy-quantum-number|A higher box energy level|energy eigenvalue|quantum number|2|a particle in a one-dimensional infinite square well of fixed width and mass with allowed positive integer quantum numbers|E_n = n²h²/(8mL²)|wave
+box-energy-width|Widen the quantum box|energy eigenvalue|box width|-2|a particle in a one-dimensional infinite square well with fixed mass and quantum number|E_n = n²h²/(8mL²)|wave
+box-energy-mass|A heavier particle in a box|energy eigenvalue|particle mass|-1|a particle in a one-dimensional infinite square well with fixed width and quantum number|E_n = n²h²/(8mL²)|wave
+box-wavelength-width|A wider standing-wave box|allowed wavelength|box width|1|a one-dimensional infinite square well with fixed positive integer quantum number|λ_n = 2L/n|wave
+box-wavelength-quantum-number|More half-waves in a box|allowed wavelength|quantum number|-1|a one-dimensional infinite square well of fixed width with allowed positive integer quantum numbers|λ_n = 2L/n|wave
+uncertainty-bound-position|A wider position uncertainty|minimum momentum-uncertainty bound|position uncertainty|-1|the Heisenberg uncertainty relation for positive uncertainties|Δp ≥ ħ/(2Δx)|wave
+uncertainty-bound-momentum|A wider momentum uncertainty|minimum position-uncertainty bound|momentum uncertainty|-1|the Heisenberg uncertainty relation for positive uncertainties|Δx ≥ ħ/(2Δp)|wave
+photoelectric-excess-frequency|A photon above the threshold|maximum electron kinetic energy|frequency above the threshold|1|an ideal photoelectric model for one fixed material|K_max = h(f − f₀)|wave
+photoelectric-stopping-energy|Stop a faster photoelectron|stopping-potential magnitude|maximum electron kinetic energy|1|an ideal photoelectric stopping measurement with fixed elementary charge|abs(V_stop) = K_max/e|circuit
+bohr-radius-level|A larger hydrogen orbit model|Bohr orbit radius|principal quantum number|2|the nonrelativistic Bohr model of hydrogen with allowed positive integer levels|r_n = a₀n²|orbit
+bohr-energy-level|A higher hydrogen level|binding-energy magnitude|principal quantum number|-2|the nonrelativistic Bohr model of hydrogen with allowed positive integer levels|abs(E_n) = 13.6 eV/n²|orbit
+bohr-speed-level|Electron speed in the Bohr model|electron speed|principal quantum number|-1|the nonrelativistic Bohr model of hydrogen with allowed positive integer levels|v_n ∝ 1/n|orbit
+bohr-radius-charge|A hydrogen-like ion|Bohr orbit radius|nuclear charge number|-1|the nonrelativistic Bohr model of a one-electron ion at fixed principal quantum number|r_n = a₀n²/Z|orbit
+bohr-binding-charge|A hydrogen-like ion's binding|binding-energy magnitude|nuclear charge number|2|the nonrelativistic Bohr model of a one-electron ion at fixed principal quantum number|abs(E_n) = 13.6 Z² eV/n²|orbit
+decay-activity-count|More radioactive nuclei|expected activity|number of undecayed nuclei|1|a radioactive isotope with fixed decay constant|activity = λN|decay
+decay-activity-constant|A faster decay constant|expected activity|decay constant|1|a radioactive population with fixed number of undecayed nuclei|activity = λN|decay
+decay-mean-life|The lifetime of a decay model|mean lifetime|decay constant|-1|an exponential radioactive decay model|mean lifetime = 1/λ|decay
+mass-energy-rest-mass|Mass and rest energy|rest energy|rest mass|1|the same constant speed of light|E₀ = mc²|graph
+binding-energy-mass-defect|Nuclear binding and mass defect|binding energy|mass defect|1|a fixed conversion factor c²|binding energy = Δm c²|graph
+# Astronomy and gravitation
+orbit-speed-central-mass|A heavier central body|circular-orbit speed|central mass|0.5|a circular Newtonian orbit at fixed radius around a dominant spherical mass|v = √(GM/r)|orbit
+orbit-speed-radius|A wider circular orbit|circular-orbit speed|orbital radius|-0.5|a circular Newtonian orbit around a fixed dominant spherical mass|v = √(GM/r)|orbit
+escape-speed-central-mass|Escape a heavier planet|escape speed|central mass|0.5|a Newtonian spherical body with fixed launch radius and no other gravitating bodies|v_escape = √(2GM/r)|orbit
+surface-gravity-mass|A heavier planet of equal radius|surface gravitational acceleration|planet mass|1|a spherically symmetric planet with fixed radius|g = GM/R²|orbit
+surface-gravity-radius|A larger planet of equal mass|surface gravitational acceleration|planet radius|-2|a spherically symmetric planet with fixed mass|g = GM/R²|orbit
+gravity-potential-radius|Climb out of gravity's well|gravitational-potential magnitude|distance from the centre|-1|a fixed spherical mass with potential set to zero at infinity|potential magnitude = GM/r|orbit
+gravity-potential-mass|A deeper gravity well|gravitational-potential magnitude|central mass|1|a spherically symmetric source at fixed distance with zero potential at infinity|potential magnitude = GM/r|orbit
+orbital-energy-radius|The energy of a circular orbit|orbital-energy magnitude|orbital radius|-1|a small orbiting mass in a circular Newtonian orbit around a fixed dominant mass|energy magnitude = GMm/(2r)|orbit
+orbital-energy-mass|A heavier orbiting object|orbital-energy magnitude|orbiting mass|1|a circular Newtonian orbit with fixed radius around a fixed dominant mass|energy magnitude = GMm/(2r)|orbit
+tidal-gradient-distance|The distance to a tidal source|leading tidal acceleration difference|distance to the source|-3|a small fixed radial separation much shorter than the distance from a fixed point-mass source|tidal acceleration difference ≈ 2GMℓ/r³|orbit
+tidal-gradient-mass|A heavier tidal source|leading tidal acceleration difference|source mass|1|a small fixed radial separation much shorter than fixed distance from a point-mass source|tidal acceleration difference ≈ 2GMℓ/r³|orbit
+tidal-gradient-separation|A larger body in a tidal field|leading tidal acceleration difference|separation between points|1|a radial separation much shorter than fixed distance from a fixed point-mass source|tidal acceleration difference ≈ 2GMℓ/r³|orbit
+stellar-luminosity-radius|A larger star at equal temperature|ideal blackbody luminosity|stellar radius|2|a spherical blackbody with fixed absolute surface temperature|L = 4πR²σT⁴|orbit
+stellar-luminosity-temperature|A hotter star of equal size|ideal blackbody luminosity|absolute surface temperature|4|a spherical blackbody with fixed radius|L = 4πR²σT⁴|orbit
+stellar-flux-distance|A star twice as far away|observed flux|distance|-2|an isotropic source of fixed luminosity in empty non-expanding space|flux = L/(4πd²)|orbit
+stellar-flux-luminosity|A more luminous distant star|observed flux|source luminosity|1|an isotropic source at fixed distance in empty non-expanding space|flux = L/(4πd²)|orbit
+parallax-distance|A more distant star's parallax|small annual parallax angle|distance|-1|a fixed observing baseline with distance much larger than that baseline|angle ≈ baseline/distance|orbit
+angular-size-diameter|A larger distant object|small angular diameter|physical diameter|1|fixed distance much larger than the diameter|angle ≈ diameter/distance|orbit
+angular-size-distance|The same object farther away|small angular diameter|distance|-1|a fixed physical diameter much smaller than the distance|angle ≈ diameter/distance|orbit
+transit-depth-planet|A wider transiting planet|ideal fractional transit depth|planet radius|2|a small opaque planet crossing a uniform stellar disk of fixed radius without limb darkening|depth ≈ (R_planet/R_star)²|orbit
+transit-depth-star|A wider star behind a planet|ideal fractional transit depth|stellar radius|-2|a fixed opaque planet crossing a uniform stellar disk without limb darkening|depth ≈ (R_planet/R_star)²|orbit
+schwarzschild-radius-mass|Mass and Schwarzschild radius|Schwarzschild radius|mass|1|a nonrotating uncharged Schwarzschild solution|r_s = 2GM/c²|orbit
+light-crossing-distance|A longer trip for light|light-travel time|distance|1|light in vacuum over a fixed inertial frame distance|t = d/c|wave
+small-redshift-recession-distance|A farther nearby galaxy|recession speed|distance|1|the ideal low-redshift linear Hubble relation with fixed Hubble parameter|v ≈ H₀d|orbit
+weak-lensing-deflection-mass|Deflect light past a mass|small deflection angle|lens mass|1|weak-field light deflection by a spherical mass at fixed impact parameter|α ≈ 4GM/(c²b)|orbit

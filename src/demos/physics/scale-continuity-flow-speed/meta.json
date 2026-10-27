@@ -1,0 +1,66 @@
+{
+  "slug": "scale-continuity-flow-speed",
+  "title": "More flow through one pipe",
+  "hook": "Change volume-flow rate and predict fluid speed.",
+  "domain": "physics",
+  "concept": "scaling-continuity-flow-speed",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "volume-flow rate",
+      "fluid speed",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "v = Q/A"
+    ]
+  },
+  "misconception": "fluid speed stays fixed when volume-flow rate doubles.",
+  "objective": "Apply v = Q/A to compare fluid speed when volume-flow rate changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-continuity-flow-speed.model",
+      "text": "With steady incompressible flow in a pipe of fixed cross-sectional area, v = Q/A. When volume-flow rate doubles, fluid speed becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model v = Q/A; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider steady incompressible flow in a pipe of fixed cross-sectional area, with a nonzero initial result. If volume-flow rate triples from a positive value, what is the multiplier on fluid speed?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply v = Q/A under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-continuity-flow-speed",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

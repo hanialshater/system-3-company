@@ -1,0 +1,64 @@
+{
+  "slug": "moving-clock-six-tenths",
+  "title": "How much time passes on the ship?",
+  "hook": "Compare a moving clock with the stationary frame.",
+  "domain": "physics",
+  "concept": "special-relativity-time-dilation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "The Lorentz factor at 0.6c is 1/sqrt(1−0.6²) = 1.25. The moving clock measures the proper time between its own two events: 10/1.25 = 8 seconds."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "The Lorentz factor at 0.6c is 1/sqrt(1−0.6²) = 1.25. The moving clock measures the proper time between its own two events: 10/1.25 = 8 seconds.",
+  "claims": [
+    {
+      "id": "physics.moving-clock-six-tenths.model",
+      "text": "The Lorentz factor at 0.6c is 1/sqrt(1−0.6²) = 1.25. The moving clock measures the proper time between its own two events: 10/1.25 = 8 seconds. Special relativity: inertial motion at constant speed; the observer uses synchronized clocks in their own frame.",
+      "support": "derivation",
+      "source": "Delta t = gamma Delta tau, gamma = 1/sqrt(1-beta²). beta=0.6 gives gamma=1.25.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At 0.6c, a moving clock records 4 seconds between two ticks. How much time separates those events in the observer's rest frame?",
+    "options": [
+      "3.2 s",
+      "5 s",
+      "6 s"
+    ],
+    "answer": 1,
+    "why": "Multiply the proper interval by gamma=1.25: 4 × 1.25 = 5 seconds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:special-relativity-time-dilation",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

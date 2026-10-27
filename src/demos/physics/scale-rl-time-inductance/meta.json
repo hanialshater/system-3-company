@@ -1,0 +1,66 @@
+{
+  "slug": "scale-rl-time-inductance",
+  "title": "An inductor responds slowly",
+  "hook": "Change inductance and predict RL time constant.",
+  "domain": "physics",
+  "concept": "scaling-rl-time-inductance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "inductance",
+      "RL time constant",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "τ = L/R"
+    ]
+  },
+  "misconception": "RL time constant stays fixed when inductance doubles.",
+  "objective": "Apply τ = L/R to compare RL time constant when inductance changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-rl-time-inductance.model",
+      "text": "With an ideal series RL circuit with fixed resistance, τ = L/R. When inductance doubles, RL time constant becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model τ = L/R; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal series RL circuit with fixed resistance, with a nonzero initial result. If inductance triples from a positive value, what is the multiplier on RL time constant?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply τ = L/R under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-rl-time-inductance",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-bohr-radius-charge",
+  "title": "A hydrogen-like ion",
+  "hook": "Change nuclear charge number and predict Bohr orbit radius.",
+  "domain": "physics",
+  "concept": "scaling-bohr-radius-charge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "nuclear charge number",
+      "Bohr orbit radius",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "r_n = a₀n²/Z"
+    ]
+  },
+  "misconception": "Bohr orbit radius doubles when nuclear charge number doubles, regardless of the stated relationship.",
+  "objective": "Apply r_n = a₀n²/Z to compare Bohr orbit radius when nuclear charge number changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-bohr-radius-charge.model",
+      "text": "With the nonrelativistic Bohr model of a one-electron ion at fixed principal quantum number, r_n = a₀n²/Z. When nuclear charge number doubles, Bohr orbit radius becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model r_n = a₀n²/Z; scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider the nonrelativistic Bohr model of a one-electron ion at fixed principal quantum number, with a nonzero initial result. If nuclear charge number triples from a positive value, what is the multiplier on Bohr orbit radius?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply r_n = a₀n²/Z under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-bohr-radius-charge",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

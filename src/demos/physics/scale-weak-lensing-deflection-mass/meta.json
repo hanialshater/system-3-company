@@ -1,0 +1,66 @@
+{
+  "slug": "scale-weak-lensing-deflection-mass",
+  "title": "Deflect light past a mass",
+  "hook": "Change lens mass and predict small deflection angle.",
+  "domain": "physics",
+  "concept": "scaling-weak-lensing-deflection-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "lens mass",
+      "small deflection angle",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "α ≈ 4GM/(c²b)"
+    ]
+  },
+  "misconception": "small deflection angle stays fixed when lens mass doubles.",
+  "objective": "Apply α ≈ 4GM/(c²b) to compare small deflection angle when lens mass changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-weak-lensing-deflection-mass.model",
+      "text": "With weak-field light deflection by a spherical mass at fixed impact parameter, α ≈ 4GM/(c²b). When lens mass doubles, small deflection angle becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model α ≈ 4GM/(c²b); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider weak-field light deflection by a spherical mass at fixed impact parameter, with a nonzero initial result. If lens mass triples from a positive value, what is the multiplier on small deflection angle?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply α ≈ 4GM/(c²b) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-weak-lensing-deflection-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

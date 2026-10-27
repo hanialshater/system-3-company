@@ -1,0 +1,64 @@
+{
+  "slug": "distance-time-slope",
+  "title": "A steeper line means what?",
+  "hook": "Two journeys reach the same distance in different times.",
+  "domain": "physics",
+  "concept": "motion-graph-slope",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "Slope is distance change divided by time change. Both lines reach 12 km, but the steeper one reaches it in half the time: 12 rather than 6 km/h."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "Slope is distance change divided by time change. Both lines reach 12 km, but the steeper one reaches it in half the time: 12 rather than 6 km/h.",
+  "claims": [
+    {
+      "id": "physics.distance-time-slope.model",
+      "text": "Slope is distance change divided by time change. Both lines reach 12 km, but the steeper one reaches it in half the time: 12 rather than 6 km/h. A straight distance–time line represents constant speed over the interval.",
+      "support": "derivation",
+      "source": "For a straight distance-time graph, slope = delta distance / delta time. 12/2=6 and 12/1=12 km/h.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A straight distance–time graph rises 30 km over 3 hours. What is its slope?",
+    "options": [
+      "10 km/h",
+      "27 km/h",
+      "90 km/h"
+    ],
+    "answer": 0,
+    "why": "30 km divided by 3 h is 10 km/h."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:motion-graph-slope",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-string-harmonic-number",
+  "title": "Higher string harmonics",
+  "hook": "Change harmonic number and predict harmonic frequency.",
+  "domain": "physics",
+  "concept": "scaling-string-harmonic-number",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "harmonic number",
+      "harmonic frequency",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "f_n = nv/(2L)"
+    ]
+  },
+  "misconception": "harmonic frequency stays fixed when harmonic number doubles.",
+  "objective": "Apply f_n = nv/(2L) to compare harmonic frequency when harmonic number changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-string-harmonic-number.model",
+      "text": "With a string fixed at both ends with fixed length and wave speed, f_n = nv/(2L). When harmonic number doubles, harmonic frequency becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model f_n = nv/(2L); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a string fixed at both ends with fixed length and wave speed, with a nonzero initial result. If harmonic number triples from a positive value, what is the multiplier on harmonic frequency?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply f_n = nv/(2L) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-string-harmonic-number",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

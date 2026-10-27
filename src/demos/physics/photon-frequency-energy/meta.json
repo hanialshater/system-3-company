@@ -1,0 +1,64 @@
+{
+  "slug": "photon-frequency-energy",
+  "title": "What changes a photon's energy?",
+  "hook": "Compare one photon at two different frequencies.",
+  "domain": "physics",
+  "concept": "photon-energy-frequency",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the quantities named in the question"
+    ],
+    "doesNotKnow": [
+      "A photon's energy is E = hf, where h is Planck's constant. Doubling the frequency doubles the energy of each photon."
+    ]
+  },
+  "misconception": "The alternative answers in the prediction appear plausible without the stated physical model.",
+  "objective": "A photon's energy is E = hf, where h is Planck's constant. Doubling the frequency doubles the energy of each photon.",
+  "claims": [
+    {
+      "id": "physics.photon-frequency-energy.model",
+      "text": "A photon's energy is E = hf, where h is Planck's constant. Doubling the frequency doubles the energy of each photon. This compares individual photons, not the total power of light beams containing different numbers of photons.",
+      "support": "derivation",
+      "source": "Planck relation E=hf; for a vacuum wave, wavelength decreases as frequency rises, c=f lambda.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One photon has triple the frequency of another. How do their individual photon energies compare?",
+    "options": [
+      "One third",
+      "The same",
+      "Three times"
+    ],
+    "answer": 2,
+    "why": "Photon energy is proportional to frequency."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "physics:photon-energy-frequency",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

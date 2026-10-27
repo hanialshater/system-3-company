@@ -1,0 +1,66 @@
+{
+  "slug": "scale-wave-distance-time",
+  "title": "How far does a wave travel?",
+  "hook": "Change elapsed time and predict distance travelled.",
+  "domain": "physics",
+  "concept": "scaling-wave-distance-time",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "elapsed time",
+      "distance travelled",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "d = vt"
+    ]
+  },
+  "misconception": "distance travelled stays fixed when elapsed time doubles.",
+  "objective": "Apply d = vt to compare distance travelled when elapsed time changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-wave-distance-time.model",
+      "text": "With a wave packet moving at fixed speed, d = vt. When elapsed time doubles, distance travelled becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model d = vt; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a wave packet moving at fixed speed, with a nonzero initial result. If elapsed time triples from a positive value, what is the multiplier on distance travelled?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply d = vt under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-wave-distance-time",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "scale-blackbody-temperature",
+  "title": "Heat an ideal emitter",
+  "hook": "Change absolute temperature and predict radiated power.",
+  "domain": "physics",
+  "concept": "scaling-blackbody-temperature",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "absolute temperature",
+      "radiated power",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "P = σAT⁴"
+    ]
+  },
+  "misconception": "radiated power doubles when absolute temperature doubles, regardless of the stated relationship.",
+  "objective": "Apply P = σAT⁴ to compare radiated power when absolute temperature changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-blackbody-temperature.model",
+      "text": "With an ideal blackbody of fixed area ignoring incoming radiation, P = σAT⁴. When absolute temperature doubles, radiated power becomes 16 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model P = σAT⁴; scaling exponent 4. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal blackbody of fixed area ignoring incoming radiation, with a nonzero initial result. If absolute temperature triples from a positive value, what is the multiplier on radiated power?",
+    "options": [
+      "×9",
+      "×27",
+      "×81"
+    ],
+    "answer": 2,
+    "why": "Apply P = σAT⁴ under the same assumptions: the multiplier is 81."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-blackbody-temperature",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

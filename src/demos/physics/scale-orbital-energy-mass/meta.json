@@ -1,0 +1,66 @@
+{
+  "slug": "scale-orbital-energy-mass",
+  "title": "A heavier orbiting object",
+  "hook": "Change orbiting mass and predict orbital-energy magnitude.",
+  "domain": "physics",
+  "concept": "scaling-orbital-energy-mass",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "orbiting mass",
+      "orbital-energy magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "energy magnitude = GMm/(2r)"
+    ]
+  },
+  "misconception": "orbital-energy magnitude stays fixed when orbiting mass doubles.",
+  "objective": "Apply energy magnitude = GMm/(2r) to compare orbital-energy magnitude when orbiting mass changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-orbital-energy-mass.model",
+      "text": "With a circular Newtonian orbit with fixed radius around a fixed dominant mass, energy magnitude = GMm/(2r). When orbiting mass doubles, orbital-energy magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model energy magnitude = GMm/(2r); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a circular Newtonian orbit with fixed radius around a fixed dominant mass, with a nonzero initial result. If orbiting mass triples from a positive value, what is the multiplier on orbital-energy magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply energy magnitude = GMm/(2r) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-orbital-energy-mass",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

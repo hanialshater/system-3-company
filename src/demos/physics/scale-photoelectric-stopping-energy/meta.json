@@ -1,0 +1,66 @@
+{
+  "slug": "scale-photoelectric-stopping-energy",
+  "title": "Stop a faster photoelectron",
+  "hook": "Change maximum electron kinetic energy and predict stopping-potential magnitude.",
+  "domain": "physics",
+  "concept": "scaling-photoelectric-stopping-energy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "maximum electron kinetic energy",
+      "stopping-potential magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "abs(V_stop) = K_max/e"
+    ]
+  },
+  "misconception": "stopping-potential magnitude stays fixed when maximum electron kinetic energy doubles.",
+  "objective": "Apply abs(V_stop) = K_max/e to compare stopping-potential magnitude when maximum electron kinetic energy changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-photoelectric-stopping-energy.model",
+      "text": "With an ideal photoelectric stopping measurement with fixed elementary charge, abs(V_stop) = K_max/e. When maximum electron kinetic energy doubles, stopping-potential magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model abs(V_stop) = K_max/e; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal photoelectric stopping measurement with fixed elementary charge, with a nonzero initial result. If maximum electron kinetic energy triples from a positive value, what is the multiplier on stopping-potential magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply abs(V_stop) = K_max/e under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-photoelectric-stopping-energy",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

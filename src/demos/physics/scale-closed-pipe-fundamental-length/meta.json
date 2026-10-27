@@ -1,0 +1,66 @@
+{
+  "slug": "scale-closed-pipe-fundamental-length",
+  "title": "A longer closed pipe",
+  "hook": "Change pipe length and predict fundamental frequency.",
+  "domain": "physics",
+  "concept": "scaling-closed-pipe-fundamental-length",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "pipe length",
+      "fundamental frequency",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "f₁ = v/(4L)"
+    ]
+  },
+  "misconception": "fundamental frequency doubles when pipe length doubles, regardless of the stated relationship.",
+  "objective": "Apply f₁ = v/(4L) to compare fundamental frequency when pipe length changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-closed-pipe-fundamental-length.model",
+      "text": "With an ideal pipe closed at one end and open at the other with fixed sound speed, f₁ = v/(4L). When pipe length doubles, fundamental frequency becomes ½ times its original value.",
+      "support": "derivation",
+      "source": "Idealized model f₁ = v/(4L); scaling exponent -1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal pipe closed at one end and open at the other with fixed sound speed, with a nonzero initial result. If pipe length triples from a positive value, what is the multiplier on fundamental frequency?",
+    "options": [
+      "×1/3",
+      "×1",
+      "×3"
+    ],
+    "answer": 0,
+    "why": "Apply f₁ = v/(4L) under the same assumptions: the multiplier is 1/3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-closed-pipe-fundamental-length",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

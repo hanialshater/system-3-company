@@ -1,0 +1,66 @@
+{
+  "slug": "scale-gas-pressure-amount",
+  "title": "More gas in the same vessel",
+  "hook": "Change amount of gas and predict ideal-gas pressure.",
+  "domain": "physics",
+  "concept": "scaling-gas-pressure-amount",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "amount of gas",
+      "ideal-gas pressure",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "P = nRT/V"
+    ]
+  },
+  "misconception": "ideal-gas pressure stays fixed when amount of gas doubles.",
+  "objective": "Apply P = nRT/V to compare ideal-gas pressure when amount of gas changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-gas-pressure-amount.model",
+      "text": "With an ideal gas at fixed volume and absolute temperature, P = nRT/V. When amount of gas doubles, ideal-gas pressure becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model P = nRT/V; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal gas at fixed volume and absolute temperature, with a nonzero initial result. If amount of gas triples from a positive value, what is the multiplier on ideal-gas pressure?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply P = nRT/V under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-gas-pressure-amount",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

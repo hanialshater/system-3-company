@@ -1,0 +1,66 @@
+{
+  "slug": "scale-telescope-magnification-objective",
+  "title": "A telescope with a longer objective",
+  "hook": "Change objective focal length and predict angular magnification magnitude.",
+  "domain": "physics",
+  "concept": "scaling-telescope-magnification-objective",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "objective focal length",
+      "angular magnification magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "magnification magnitude = f_objective/f_eyepiece"
+    ]
+  },
+  "misconception": "angular magnification magnitude stays fixed when objective focal length doubles.",
+  "objective": "Apply magnification magnitude = f_objective/f_eyepiece to compare angular magnification magnitude when objective focal length changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-telescope-magnification-objective.model",
+      "text": "With an ideal astronomical telescope with fixed eyepiece focal length, magnification magnitude = f_objective/f_eyepiece. When objective focal length doubles, angular magnification magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model magnification magnitude = f_objective/f_eyepiece; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider an ideal astronomical telescope with fixed eyepiece focal length, with a nonzero initial result. If objective focal length triples from a positive value, what is the multiplier on angular magnification magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply magnification magnitude = f_objective/f_eyepiece under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-telescope-magnification-objective",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

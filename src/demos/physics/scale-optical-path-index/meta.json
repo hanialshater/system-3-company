@@ -1,0 +1,66 @@
+{
+  "slug": "scale-optical-path-index",
+  "title": "A denser optical path",
+  "hook": "Change refractive index and predict optical path length.",
+  "domain": "physics",
+  "concept": "scaling-optical-path-index",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "refractive index",
+      "optical path length",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "OPL = nL"
+    ]
+  },
+  "misconception": "optical path length stays fixed when refractive index doubles.",
+  "objective": "Apply OPL = nL to compare optical path length when refractive index changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-optical-path-index.model",
+      "text": "With a uniform transparent medium with fixed geometric path length, OPL = nL. When refractive index doubles, optical path length becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model OPL = nL; scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a uniform transparent medium with fixed geometric path length, with a nonzero initial result. If refractive index triples from a positive value, what is the multiplier on optical path length?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply OPL = nL under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-optical-path-index",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}

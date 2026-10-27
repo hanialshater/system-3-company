@@ -1,0 +1,66 @@
+{
+  "slug": "scale-faraday-turn-count",
+  "title": "Wind a coil with more turns",
+  "hook": "Change number of turns and predict induced emf magnitude.",
+  "domain": "physics",
+  "concept": "scaling-faraday-turn-count",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "number of turns",
+      "induced emf magnitude",
+      "multiplying and dividing"
+    ],
+    "doesNotKnow": [
+      "emf magnitude = N abs(dΦ/dt)"
+    ]
+  },
+  "misconception": "induced emf magnitude stays fixed when number of turns doubles.",
+  "objective": "Apply emf magnitude = N abs(dΦ/dt) to compare induced emf magnitude when number of turns changes, under the stated assumptions.",
+  "claims": [
+    {
+      "id": "physics.scale-faraday-turn-count.model",
+      "text": "With a coil with the same rate of flux change through each identical turn, emf magnitude = N abs(dΦ/dt). When number of turns doubles, induced emf magnitude becomes 2 times its original value.",
+      "support": "derivation",
+      "source": "Idealized model emf magnitude = N abs(dΦ/dt); scaling exponent 1. Physics and assumptions await independent review.",
+      "status": "unverified",
+      "addresses": [
+        "predict",
+        "stage",
+        "reveal",
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Consider a coil with the same rate of flux change through each identical turn, with a nonzero initial result. If number of turns triples from a positive value, what is the multiplier on induced emf magnitude?",
+    "options": [
+      "×1",
+      "×3",
+      "×9"
+    ],
+    "answer": 1,
+    "why": "Apply emf magnitude = N abs(dΦ/dt) under the same assumptions: the multiplier is 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:scaling-faraday-turn-count",
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card"
+}
