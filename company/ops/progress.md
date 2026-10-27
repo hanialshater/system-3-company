@@ -1,3 +1,11 @@
+## 2026-10-27 · chief-of-staff · visual chemistry and biology batch, 53 of 500 drafted
+
+- **Changed:** Added 12 balanced-reaction particle models, 13 genetics lessons (DNA copying, transcription, translation, mutations, splicing and chromosome division), and five membrane-transport lessons. DNA replication uses a projected helix with original and new strands coloured separately. The PR now holds 24 chemistry and 29 biology drafts. The reaction cases are related exercises and most genetics examples share a sequence-tile layout; do not count this as broad subject coverage.
+- **Checks:** Production build and TypeScript pass. The 30 new lessons each passed the Playwright contract at phone and desktop sizes (60/60). Builder inspected phone screenshots for methane combustion, glucose transport and DNA replication. Four targeted tests pass for atom conservation, selected codons and base pairing, reading frame, and transport/pump counts. `npm run check` remains at the main baseline of 810 errors and 5 warnings. `npm run verify` stops at two pre-existing publication-readiness failures.
+- **Believe:** the engineering interactions are functioning, and the examples are plausible with limited model-level tests. Independent review of every scientific claim, diagram accuracy, accessibility, teaching quality, and overlap has not occurred. No human learner evidence was gathered. All new lessons remain drafts and claims remain unverified.
+- **Next:** W-2117: 226 more chemistry lessons; W-2118: 221 more biology lessons. Prioritise new concepts and richer scenes beyond counting reactions or sequence changes. W-2119: independent checks on all 53 drafts. Keep the work in PR 29.
+- **Blocked:** 447 lessons are not yet built; none of the new lessons is cleared for publication.
+
 ## 2026-10-27 · chief-of-staff · visual chemistry and biology batch, 23 of 500 drafted
 
 - **Changed:** Added 12 chemistry drafts on molecular geometry, with rotatable 3D-projected SVG models, and 11 life-science drafts on cell structures with annotated SVG cell models. Added curriculum entries and the batch manifest. All are drafts and all claims remain unverified.

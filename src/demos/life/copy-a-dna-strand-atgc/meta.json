@@ -1,0 +1,64 @@
+{
+  "slug": "copy-a-dna-strand-atgc",
+  "title": "The missing DNA strand",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "copy-a-dna-strand-atgc",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "A pairs with T, and G pairs with C. The complementary strand runs antiparallel, so 5′–A T G C–3′ pairs with 3′–T A C G–5′."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "A pairs with T, and G pairs with C. The complementary strand runs antiparallel, so 5′–A T G C–3′ pairs with 3′–T A C G–5′.",
+  "claims": [
+    {
+      "id": "life.copy-a-dna-strand-atgc.c1",
+      "text": "Question, answer, diagram and explanation: A DNA strand reads 5′–A T G C–3′. What is its complementary strand written in the opposite direction, 3′ to 5′? A pairs with T, and G pairs with C. The complementary strand runs antiparallel, so 5′–A T G C–3′ pairs with 3′–T A C G–5′.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/14-1-structure-of-dna",
+      "status": "unverified"
+    },
+    {
+      "id": "life.copy-a-dna-strand-atgc.c2",
+      "text": "Recall: Which DNA base pairs with G? In ordinary DNA base pairing, guanine pairs with cytosine.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/14-1-structure-of-dna",
+      "status": "unverified"
+    },
+    {
+      "id": "life.copy-a-dna-strand-atgc.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which DNA base pairs with G?",
+    "options": [
+      "C",
+      "A",
+      "T"
+    ],
+    "answer": 0,
+    "why": "In ordinary DNA base pairing, guanine pairs with cytosine."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

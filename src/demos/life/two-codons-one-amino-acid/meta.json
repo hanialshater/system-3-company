@@ -1,0 +1,64 @@
+{
+  "slug": "two-codons-one-amino-acid",
+  "title": "One codon changes",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "two-codons-one-amino-acid",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "Both GAA and GAG encode glutamate in the standard genetic code. This single-base change is synonymous for the amino-acid sequence, though it may have other effects."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "Both GAA and GAG encode glutamate in the standard genetic code. This single-base change is synonymous for the amino-acid sequence, though it may have other effects.",
+  "claims": [
+    {
+      "id": "life.two-codons-one-amino-acid.c1",
+      "text": "Question, answer, diagram and explanation: In the standard genetic code, a codon changes from GAA to GAG. What happens to its amino acid? Both GAA and GAG encode glutamate in the standard genetic code. This single-base change is synonymous for the amino-acid sequence, though it may have other effects.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.two-codons-one-amino-acid.c2",
+      "text": "Recall: In the standard genetic code, can two different codons encode the same amino acid? The genetic code is redundant: for example GAA and GAG both encode glutamate.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.two-codons-one-amino-acid.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the standard genetic code, can two different codons encode the same amino acid?",
+    "options": [
+      "Yes",
+      "No",
+      "Only stop codons can"
+    ],
+    "answer": 0,
+    "why": "The genetic code is redundant: for example GAA and GAG both encode glutamate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

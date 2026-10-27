@@ -1,0 +1,64 @@
+{
+  "slug": "mutation-creates-stop-codon",
+  "title": "A codon changes",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "mutation-creates-stop-codon",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "UAU encodes tyrosine, while UAA is a stop codon in the standard genetic code. If translated in this reading frame, the new stop ends translation at that point."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "UAU encodes tyrosine, while UAA is a stop codon in the standard genetic code. If translated in this reading frame, the new stop ends translation at that point.",
+  "claims": [
+    {
+      "id": "life.mutation-creates-stop-codon.c1",
+      "text": "Question, answer, diagram and explanation: In the standard genetic code, a codon changes from UAU to UAA. What happens at that position? UAU encodes tyrosine, while UAA is a stop codon in the standard genetic code. If translated in this reading frame, the new stop ends translation at that point.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.mutation-creates-stop-codon.c2",
+      "text": "Recall: Which codon signals stop in the standard genetic code? UAA signals stop; UAU specifies tyrosine and GUA specifies valine.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.mutation-creates-stop-codon.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which codon signals stop in the standard genetic code?",
+    "options": [
+      "UAA",
+      "UAU",
+      "GUA"
+    ],
+    "answer": 0,
+    "why": "UAA signals stop; UAU specifies tyrosine and GUA specifies valine."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

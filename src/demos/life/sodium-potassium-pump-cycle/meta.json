@@ -1,0 +1,64 @@
+{
+  "slug": "sodium-potassium-pump-cycle",
+  "title": "Two ions, opposite directions",
+  "hook": "Predict where the cargo ends up, then run the model.",
+  "domain": "life",
+  "concept": "sodium-potassium-pump-cycle",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Cells have a plasma membrane separating inside from outside."
+    ],
+    "doesNotKnow": [
+      "The sodium–potassium ATPase uses ATP to move three sodium ions out and two potassium ions into the cell per cycle. The illustration shows only the five transported ions, not the entire concentrations on either side."
+    ]
+  },
+  "misconception": "Everything crosses a cell membrane by the same mechanism.",
+  "objective": "The sodium–potassium ATPase uses ATP to move three sodium ions out and two potassium ions into the cell per cycle. The illustration shows only the five transported ions, not the entire concentrations on either side.",
+  "claims": [
+    {
+      "id": "life.sodium-potassium-pump-cycle.c1",
+      "text": "Question, stage and reveal: In one normal sodium–potassium pump cycle powered by one ATP, how many sodium ions go out and potassium ions go in? The sodium–potassium ATPase uses ATP to move three sodium ions out and two potassium ions into the cell per cycle. The illustration shows only the five transported ions, not the entire concentrations on either side.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-ap-courses/pages/5-3-active-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.sodium-potassium-pump-cycle.c2",
+      "text": "Recall: In one normal Na⁺/K⁺ pump cycle, how many potassium ions move into the cell? The pump moves two potassium ions in and three sodium ions out per cycle.",
+      "support": "source",
+      "source": "OpenStax https://openstax.org/books/biology-ap-courses/pages/5-3-active-transport",
+      "status": "unverified"
+    },
+    {
+      "id": "life.sodium-potassium-pump-cycle.c3",
+      "text": "The diagram is schematic and represents only selected molecules, not trajectories or all particles.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In one normal Na⁺/K⁺ pump cycle, how many potassium ions move into the cell?",
+    "options": [
+      "Two",
+      "Three",
+      "One"
+    ],
+    "answer": 0,
+    "why": "The pump moves two potassium ions in and three sodium ions out per cycle."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

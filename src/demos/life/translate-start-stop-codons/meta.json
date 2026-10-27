@@ -1,0 +1,64 @@
+{
+  "slug": "translate-start-stop-codons",
+  "title": "Reading three letters at a time",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "translate-start-stop-codons",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "AUG encodes methionine, GCU encodes alanine and UAA is a stop codon in the standard genetic code. Stop ends translation rather than adding an amino acid."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "AUG encodes methionine, GCU encodes alanine and UAA is a stop codon in the standard genetic code. Stop ends translation rather than adding an amino acid.",
+  "claims": [
+    {
+      "id": "life.translate-start-stop-codons.c1",
+      "text": "Question, answer, diagram and explanation: Using the standard genetic code, an mRNA reads 5′–AUG GCU UAA–3′ starting at AUG. What does it specify before translation stops? AUG encodes methionine, GCU encodes alanine and UAA is a stop codon in the standard genetic code. Stop ends translation rather than adding an amino acid.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.translate-start-stop-codons.c2",
+      "text": "Recall: In the standard genetic code, what does UAA signal? UAA is a stop codon in the standard genetic code.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code",
+      "status": "unverified"
+    },
+    {
+      "id": "life.translate-start-stop-codons.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the standard genetic code, what does UAA signal?",
+    "options": [
+      "Stop translation",
+      "Add alanine",
+      "Add methionine"
+    ],
+    "answer": 0,
+    "why": "UAA is a stop codon in the standard genetic code."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

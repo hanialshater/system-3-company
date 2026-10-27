@@ -1,0 +1,35 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const root=process.cwd(), dir='tools/science-visual-batch/reactions';
+const cases=JSON.parse(fs.readFileSync(`${dir}/cases.json`,'utf8'));
+const template=fs.readFileSync(`${dir}/template.txt`,'utf8');
+const curriculumPath='content/curriculum/chemistry.json', curriculum=JSON.parse(fs.readFileSync(curriculumPath,'utf8'));
+const slugsPath='tools/science-visual-batch/slugs.json', slugs=JSON.parse(fs.readFileSync(slugsPath,'utf8'));
+const src='OpenStax Chemistry 2e §4.1 https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations';
+const atoms=x=>x.match(/Cl|[A-Z]/g)||[];
+const expand=side=>side.flatMap(([label,raw,n])=>Array.from({length:n},()=>({label,atoms:atoms(raw)})));
+const totals=arr=>arr.flatMap(x=>x.atoms).reduce((a,x)=>(a[x]=(a[x]||0)+1,a),{});
+const sorted=x=>JSON.stringify(Object.entries(x).sort());
+for(const [i,c] of cases.entries()) {
+ const before=expand(c.reactants), after=expand(c.products);
+ if(sorted(totals(before))!==sorted(totals(after))) throw Error(`unbalanced ${c.slug}`);
+ if(Math.max(before.length,after.length)>8) throw Error(`stage overflow ${c.slug}`);
+ const amount=c.products.find(x=>x[0]===c.target)[2];
+ const labels=[`${Math.max(0,amount-1)} molecules`,`${amount} molecules`,`${amount+1} molecules`];
+ const shift=i%3; const options=labels.slice(shift).concat(labels.slice(0,shift));const answer=options.indexOf(`${amount} molecules`);
+ const list=x=>x.map(([f,,n])=>`${n} ${f}`).join(' and ');
+ const question=`${c.context} If ${list(c.reactants)} react completely to make only ${c.products.map(x=>x[0]).join(' and ')}, how many ${c.target} molecules form?`;
+ const explanation=`The model gives ${amount} ${c.target}: ${c.equation}. The ${Object.entries(totals(before)).sort().map(([e,n])=>`${n} ${e}`).join(', ')} atoms are present on both sides; atoms change partners, not identity.`;
+ const lesson={question,options,answer,before,after,equation:c.equation,explanation};
+ const recallQuestion=`If you double every starting amount in ${c.equation}, how many ${c.target} molecules are produced in the same model?`;
+ const recallOptions=[`${2*amount} molecules`,`${amount} molecules`,`${2*amount+1} molecules`];
+ const meta={slug:c.slug,title:c.title,hook:'Count the atoms before the molecules change partners.',domain:'chemistry',concept:c.slug,status:'draft',durationSec:60,owner:{categoryManager:'cm-chemistry',builder:'demo-builder'},learner:{knows:['Atoms of an element are conserved in ordinary chemical reactions.'],doesNotKnow:['How molecule counts and atom counts differ in this balanced reaction.']},misconception:'The number of molecules must stay constant when atoms rearrange.',objective:`Use atom counts to explain ${c.equation}.`,claims:[{id:`chemistry.${c.slug}.c1`,text:`Question, stage and reveal: ${c.context} ${c.equation}; ${explanation}`,support:'derivation',source:`${src}; reaction model balanced by counting each element. Specific reaction identity needs independent verification.`,status:'unverified'},{id:`chemistry.${c.slug}.c2`,text:'Each circle is one atom, grouped by molecular formula; the diagram is not a molecular geometry or real-time reaction mechanism.',support:'convention',source:'Modelling convention',status:'unverified'},{id:`chemistry.${c.slug}.c3`,text:`Recall: doubling every coefficient gives ${2*amount} ${c.target} molecules.`,support:'derivation',source:`Multiply every coefficient in ${c.equation} by two.`,status:'unverified'}],confidence:'',recall:{question:recallQuestion,options:recallOptions,answer:0,why:'Doubling the starting amounts doubles each product coefficient in this model.'},evidence:{qa:[],simulatedLearner:[],pairwise:[],humanLearners:[]},version:1};
+ const output=path.join(root,'src/demos/chemistry',c.slug);fs.mkdirSync(output,{recursive:true});
+ fs.writeFileSync(path.join(output,'Demo.tsx'),template.replace('__CASE__',JSON.stringify(lesson,null,2)));
+ fs.writeFileSync(path.join(output,'meta.json'),JSON.stringify(meta,null,2)+'\n');
+ if(!curriculum.concepts.some(x=>x.id===c.slug)) curriculum.concepts.push({id:c.slug,name:c.title,level:'intro',demand:2,prerequisites:[]});
+ if(!slugs.chemistry.includes(c.slug)) slugs.chemistry.push(c.slug);
+}
+fs.writeFileSync(curriculumPath,JSON.stringify(curriculum,null,2)+'\n');
+fs.writeFileSync(slugsPath,JSON.stringify(slugs,null,2)+'\n');
+console.log(`Built ${cases.length} balanced-reaction lessons`);

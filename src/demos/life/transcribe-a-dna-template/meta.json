@@ -1,0 +1,64 @@
+{
+  "slug": "transcribe-a-dna-template",
+  "title": "From DNA to RNA",
+  "hook": "Predict the result, then reveal the sequence.",
+  "domain": "life",
+  "concept": "transcribe-a-dna-template",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "DNA and RNA are sequences of chemical building blocks."
+    ],
+    "doesNotKnow": [
+      "The RNA is 5′–A U G C U U–3′. It is complementary and antiparallel to the DNA template; RNA uses U where DNA uses T."
+    ]
+  },
+  "misconception": "The original sequence and the resulting sequence must have the same interpretation.",
+  "objective": "The RNA is 5′–A U G C U U–3′. It is complementary and antiparallel to the DNA template; RNA uses U where DNA uses T.",
+  "claims": [
+    {
+      "id": "life.transcribe-a-dna-template.c1",
+      "text": "Question, answer, diagram and explanation: An RNA polymerase reads the DNA template 3′–T A C G A A–5′. Which RNA strand does it build 5′ to 3′? The RNA is 5′–A U G C U U–3′. It is complementary and antiparallel to the DNA template; RNA uses U where DNA uses T.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-2-prokaryotic-transcription",
+      "status": "unverified"
+    },
+    {
+      "id": "life.transcribe-a-dna-template.c2",
+      "text": "Recall: What RNA base normally pairs with A in the DNA template? RNA uses uracil to pair with A in the DNA template.",
+      "support": "source",
+      "source": "OpenStax Biology 2e https://openstax.org/books/biology-2e/pages/15-2-prokaryotic-transcription",
+      "status": "unverified"
+    },
+    {
+      "id": "life.transcribe-a-dna-template.c3",
+      "text": "The figure is a simplified model and is not to scale.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What RNA base normally pairs with A in the DNA template?",
+    "options": [
+      "U",
+      "T",
+      "C"
+    ],
+    "answer": 0,
+    "why": "RNA uses uracil to pair with A in the DNA template."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,546 @@
+[
+  {
+    "slug": "copy-a-dna-strand-atgc",
+    "title": "The missing DNA strand",
+    "question": "A DNA strand reads 5′–A T G C–3′. What is its complementary strand written in the opposite direction, 3′ to 5′?",
+    "options": [
+      "3′–T A C G–5′",
+      "3′–A T G C–5′",
+      "3′–U A C G–5′"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "DNA 5′→3′",
+        "tokens": [
+          "A",
+          "T",
+          "G",
+          "C"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "DNA 5′→3′",
+        "tokens": [
+          "A",
+          "T",
+          "G",
+          "C"
+        ]
+      },
+      {
+        "label": "DNA 3′→5′",
+        "tokens": [
+          "T",
+          "A",
+          "C",
+          "G"
+        ]
+      }
+    ],
+    "button": "Pair the bases",
+    "explanation": "A pairs with T, and G pairs with C. The complementary strand runs antiparallel, so 5′–A T G C–3′ pairs with 3′–T A C G–5′.",
+    "source": "https://openstax.org/books/biology-2e/pages/14-1-structure-of-dna"
+  },
+  {
+    "slug": "transcribe-a-dna-template",
+    "title": "From DNA to RNA",
+    "question": "An RNA polymerase reads the DNA template 3′–T A C G A A–5′. Which RNA strand does it build 5′ to 3′?",
+    "options": [
+      "A U G C U U",
+      "T A C G A A",
+      "A T G C T T"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "DNA 3′→5′",
+        "tokens": [
+          "TAC",
+          "GAA"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "DNA 3′→5′",
+        "tokens": [
+          "TAC",
+          "GAA"
+        ]
+      },
+      {
+        "label": "RNA 5′→3′",
+        "tokens": [
+          "AUG",
+          "CUU"
+        ]
+      }
+    ],
+    "button": "Transcribe RNA",
+    "explanation": "The RNA is 5′–A U G C U U–3′. It is complementary and antiparallel to the DNA template; RNA uses U where DNA uses T.",
+    "source": "https://openstax.org/books/biology-2e/pages/15-2-prokaryotic-transcription"
+  },
+  {
+    "slug": "translate-start-stop-codons",
+    "title": "Reading three letters at a time",
+    "question": "Using the standard genetic code, an mRNA reads 5′–AUG GCU UAA–3′ starting at AUG. What does it specify before translation stops?",
+    "options": [
+      "Methionine, alanine, then stop",
+      "Three amino acids",
+      "Alanine, methionine, then stop"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "mRNA 5′→3′",
+        "tokens": [
+          "AUG",
+          "GCU",
+          "UAA"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "mRNA 5′→3′",
+        "tokens": [
+          "AUG",
+          "GCU",
+          "UAA"
+        ]
+      },
+      {
+        "label": "result",
+        "tokens": [
+          "Met",
+          "Ala",
+          "STOP"
+        ]
+      }
+    ],
+    "button": "Read the codons",
+    "explanation": "AUG encodes methionine, GCU encodes alanine and UAA is a stop codon in the standard genetic code. Stop ends translation rather than adding an amino acid.",
+    "source": "https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code"
+  },
+  {
+    "slug": "two-codons-one-amino-acid",
+    "title": "One codon changes",
+    "question": "In the standard genetic code, a codon changes from GAA to GAG. What happens to its amino acid?",
+    "options": [
+      "It remains glutamate",
+      "It becomes a stop",
+      "It becomes valine"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "old mRNA",
+        "tokens": [
+          "GAA"
+        ]
+      },
+      {
+        "label": "new mRNA",
+        "tokens": [
+          "GAG"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "GAA",
+        "tokens": [
+          "Glu"
+        ]
+      },
+      {
+        "label": "GAG",
+        "tokens": [
+          "Glu"
+        ]
+      }
+    ],
+    "button": "Translate both",
+    "explanation": "Both GAA and GAG encode glutamate in the standard genetic code. This single-base change is synonymous for the amino-acid sequence, though it may have other effects.",
+    "source": "https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code"
+  },
+  {
+    "slug": "one-letter-changes-amino-acid",
+    "title": "One letter in a codon",
+    "question": "In the standard genetic code, a codon changes from GAA to GUA. What happens to the encoded amino acid?",
+    "options": [
+      "Glutamate becomes valine",
+      "Glutamate stays glutamate",
+      "A stop is created"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "old mRNA",
+        "tokens": [
+          "GAA"
+        ]
+      },
+      {
+        "label": "new mRNA",
+        "tokens": [
+          "GUA"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "GAA",
+        "tokens": [
+          "Glu"
+        ]
+      },
+      {
+        "label": "GUA",
+        "tokens": [
+          "Val"
+        ]
+      }
+    ],
+    "button": "Translate both",
+    "explanation": "GAA encodes glutamate and GUA encodes valine in the standard genetic code. This substitution changes one amino acid in this example.",
+    "source": "https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code"
+  },
+  {
+    "slug": "mutation-creates-stop-codon",
+    "title": "A codon changes",
+    "question": "In the standard genetic code, a codon changes from UAU to UAA. What happens at that position?",
+    "options": [
+      "A stop replaces tyrosine",
+      "Tyrosine remains",
+      "Alanine replaces tyrosine"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "old mRNA",
+        "tokens": [
+          "UAU"
+        ]
+      },
+      {
+        "label": "new mRNA",
+        "tokens": [
+          "UAA"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "UAU",
+        "tokens": [
+          "Tyr"
+        ]
+      },
+      {
+        "label": "UAA",
+        "tokens": [
+          "STOP"
+        ]
+      }
+    ],
+    "button": "Translate both",
+    "explanation": "UAU encodes tyrosine, while UAA is a stop codon in the standard genetic code. If translated in this reading frame, the new stop ends translation at that point.",
+    "source": "https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code"
+  },
+  {
+    "slug": "one-insertion-shifts-reading-frame",
+    "title": "One extra letter shifts the groups",
+    "question": "A message is read AUG | GAA | CCA. Insert A immediately after AUG. How are the next complete triplets grouped?",
+    "options": [
+      "AGA | ACC",
+      "GAA | CCA",
+      "AAA | CCA"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "original",
+        "tokens": [
+          "AUG",
+          "GAA",
+          "CCA"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "insert A",
+        "tokens": [
+          "AUG",
+          "A",
+          "GAA",
+          "CCA"
+        ]
+      },
+      {
+        "label": "regroup",
+        "tokens": [
+          "AUG",
+          "AGA",
+          "ACC",
+          "A"
+        ]
+      }
+    ],
+    "button": "Insert and regroup",
+    "explanation": "Inserting one base gives AUGAGAACCA. Reading from the same start produces AUG | AGA | ACC, with one trailing base; the reading frame after the insertion has shifted.",
+    "source": "https://openstax.org/books/biology-2e/pages/15-5-mutations"
+  },
+  {
+    "slug": "splice-out-an-intron",
+    "title": "A message gets edited",
+    "question": "A simplified RNA has exon ACG, an intron UUU, then exon GGA. If the intron is removed, what remains in this example?",
+    "options": [
+      "ACG GGA",
+      "ACG UUU",
+      "UUU GGA"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "pre-mRNA",
+        "tokens": [
+          "ACG",
+          "UUU",
+          "GGA"
+        ]
+      },
+      {
+        "label": "region",
+        "tokens": [
+          "exon",
+          "intron",
+          "exon"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "mature RNA",
+        "tokens": [
+          "ACG",
+          "GGA"
+        ]
+      },
+      {
+        "label": "removed",
+        "tokens": [
+          "UUU"
+        ]
+      }
+    ],
+    "button": "Splice the RNA",
+    "explanation": "In this schematic example the intron UUU is removed and exons ACG and GGA are joined. Real splice sites are specified by surrounding sequence signals and machinery.",
+    "source": "https://openstax.org/books/biology-2e/pages/15-3-eukaryotic-transcription"
+  },
+  {
+    "slug": "alternate-exons-change-message",
+    "title": "One transcript, two messages",
+    "question": "A pre-mRNA has exons A, B and C. One splice pattern joins A–B–C; another skips B. What is the second message?",
+    "options": [
+      "A–C",
+      "A–B",
+      "B–C"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "pre-mRNA",
+        "tokens": [
+          "exon A",
+          "exon B",
+          "exon C"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "pattern 1",
+        "tokens": [
+          "exon A",
+          "exon B",
+          "exon C"
+        ]
+      },
+      {
+        "label": "pattern 2",
+        "tokens": [
+          "exon A",
+          "exon C"
+        ]
+      }
+    ],
+    "button": "Compare splice patterns",
+    "explanation": "Alternative splicing can include or omit particular exons. Here, skipping exon B joins A to C, so one pre-mRNA can produce different mature RNA sequences.",
+    "source": "https://openstax.org/books/biology-2e/pages/16-5-eukaryotic-post-transcriptional-gene-regulation"
+  },
+  {
+    "slug": "replication-keeps-one-old-strand",
+    "title": "What survives the copy?",
+    "question": "During semiconservative DNA replication, what does each newly formed double helix contain?",
+    "options": [
+      "One original strand and one new strand",
+      "Two original strands",
+      "Two new strands"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "original",
+        "tokens": [
+          "old",
+          "old"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "copy 1",
+        "tokens": [
+          "old",
+          "new"
+        ]
+      },
+      {
+        "label": "copy 2",
+        "tokens": [
+          "old",
+          "new"
+        ]
+      }
+    ],
+    "button": "Copy the strands",
+    "explanation": "The two original strands separate and each acts as a template. Each resulting double helix contains one original strand and one newly synthesised complementary strand.",
+    "source": "https://openstax.org/books/biology-2e/pages/14-3-basics-of-dna-replication"
+  },
+  {
+    "slug": "chromosome-copied-before-division",
+    "title": "Copied but not yet separated",
+    "question": "A cell has two unreplicated chromosomes. After DNA replication, before sister chromatids separate, how many chromosomes and chromatids are there?",
+    "options": [
+      "Two chromosomes, four chromatids",
+      "Four chromosomes, four chromatids",
+      "Two chromosomes, two chromatids"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "before S",
+        "tokens": [
+          "I₁",
+          "I₂"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "after S",
+        "tokens": [
+          "X₁",
+          "X₂"
+        ]
+      },
+      {
+        "label": "each X",
+        "tokens": [
+          "2",
+          "sisters"
+        ]
+      }
+    ],
+    "button": "Replicate DNA",
+    "explanation": "Each chromosome is copied into two sister chromatids joined at a centromere. Before separation, this model has two chromosomes and four chromatids; each X stands for a duplicated chromosome.",
+    "source": "https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle"
+  },
+  {
+    "slug": "mitosis-two-cells-two-chromosomes",
+    "title": "One cell divides into two",
+    "question": "A model cell has two chromosomes. After ordinary mitosis and cytokinesis, how many chromosomes are in each daughter cell?",
+    "options": [
+      "Two",
+      "One",
+      "Four"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "parent",
+        "tokens": [
+          "X₁",
+          "X₂"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "daughter 1",
+        "tokens": [
+          "I₁",
+          "I₂"
+        ]
+      },
+      {
+        "label": "daughter 2",
+        "tokens": [
+          "I₁",
+          "I₂"
+        ]
+      }
+    ],
+    "button": "Separate and divide",
+    "explanation": "After DNA replication, mitosis separates sister chromatids. With normal separation, each daughter in this model receives one copy of each chromosome: two per cell.",
+    "source": "https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle"
+  },
+  {
+    "slug": "meiosis-halves-chromosome-set",
+    "title": "Four cells from one",
+    "question": "A diploid model cell has one pair of homologous chromosomes (2n = 2). After meiosis, how many chromosomes are in each of its four cells?",
+    "options": [
+      "One",
+      "Two",
+      "Four"
+    ],
+    "answer": 0,
+    "before": [
+      {
+        "label": "parent 2n=2",
+        "tokens": [
+          "Xᴬ",
+          "Xᵃ"
+        ]
+      }
+    ],
+    "after": [
+      {
+        "label": "four cells",
+        "tokens": [
+          "Iᴬ",
+          "Iᴬ",
+          "Iᵃ",
+          "Iᵃ"
+        ]
+      },
+      {
+        "label": "per cell",
+        "tokens": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      }
+    ],
+    "button": "Complete meiosis",
+    "explanation": "Meiosis separates homologues and then sister chromatids. With normal separation, each of the four haploid cells in this 2n = 2 model receives one chromosome. Crossing over is omitted here.",
+    "source": "https://openstax.org/books/biology-2e/pages/11-1-the-process-of-meiosis"
+  }
+]
