@@ -127,10 +127,20 @@ export function LessonsWorld({ islands }: { islands: WorldIsland[] }) {
 }
 
 function WorldIslandMap({ island, selected, suggested, variant, onSelect }: { island: WorldIsland; selected: string; suggested: string; variant: number; onSelect: (slug: string) => void }) {
+  const root = useRef<HTMLElement>(null);
+  const [seen, setSeen] = useState(island.index === 0);
+  const showTerrain = seen || islandLessons(island).some(l => l.slug === selected);
+  useEffect(() => {
+    if (seen || !root.current) return;
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { setSeen(true); observer.disconnect(); }
+    }, { rootMargin: "1000px" });
+    observer.observe(root.current); return () => observer.disconnect();
+  }, [seen]);
   let order = 0;
-  return <section id={`island-${island.id}`} className={styles.island} aria-label={island.name}>
+  return <section ref={root} id={`island-${island.id}`} className={styles.island} aria-label={island.name}>
     <header className={styles.islandHeading}><span className={styles.islandNumber}>{String(island.index + 1).padStart(2, "0")}</span><div><p>{island.domainName}</p><h2>{island.name}</h2><span>{islandLessons(island).length} questions to explore</span></div><span aria-hidden="true" className={styles.headingStar}>✧</span></header>
-    {island.regions.map((region, regionIndex) => <section key={region.id} className={styles.region} aria-label={region.name}>
+    {showTerrain ? island.regions.map((region, regionIndex) => <section key={region.id} className={styles.region} aria-label={region.name}>
       <WorldScene variant={variant + regionIndex}/>
       <div className={styles.regionLabel}><span>{String(regionIndex + 1).padStart(2, "0")} / {String(island.regions.length).padStart(2, "0")}</span><h3>{region.name}</h3><p>{region.hint}</p></div>
       {region.lessons.map((l, index) => {
@@ -141,6 +151,6 @@ function WorldIslandMap({ island, selected, suggested, variant, onSelect }: { is
           <span className={styles.tooltip} role="tooltip">{l.title}</span>
         </div>;
       })}
-    </section>)}
+    </section>) : <div className={styles.regionPlaceholder} style={{ aspectRatio: `400 / ${680 * island.regions.length}` }} aria-label="Island scenery loads as you approach" />}
   </section>;
 }
