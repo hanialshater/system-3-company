@@ -1,0 +1,36 @@
+{
+  "scope": "Builder-run engineering checks; not independent launch-gate or learner evidence.",
+  "batchCount": 250,
+  "initialBrowser": {
+    "cases": 500,
+    "passed": 500,
+    "failed": 0,
+    "viewports": [
+      "phone",
+      "desktop"
+    ]
+  },
+  "initialStrictPhoneFit": {
+    "lessons": 250,
+    "passed": 250,
+    "failed": 0,
+    "viewport": "390x844"
+  },
+  "correctedLessons": 16,
+  "correctedBrowser": {
+    "cases": 32,
+    "passed": 32,
+    "failed": 0
+  },
+  "correctedStrictPhoneFit": {
+    "lessons": 16,
+    "passed": 16,
+    "failed": 0,
+    "viewport": "390x844"
+  },
+  "witnessProbe": "passed: dynamic scaling, retained double-case witness, discrete steps, projected orbit and 44px controls",
+  "physicsFactCheck": "not independently verified",
+  "overlap": "232 scaling scenarios, 137 distinct equation strings; independent review required",
+  "companyCheck": "810 existing errors, 5 existing warnings, identical to baseline",
+  "verify": "stops at two existing publication-readiness test failures"
+}

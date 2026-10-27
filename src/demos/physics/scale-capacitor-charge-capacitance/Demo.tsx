@@ -20,7 +20,7 @@ const lesson: ScalingCase = {
   "exponent": 1.0,
   "discrete": false,
   "result": "2",
-  "rule": "Q = Cabs(V)",
+  "rule": "Q = C·abs(V)",
   "condition": "an ideal capacitor at fixed voltage magnitude",
   "picture": "circuit"
 };

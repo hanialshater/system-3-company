@@ -1,3 +1,11 @@
+## 2026-10-27 · chief-of-staff · physics batch in PR 28, 250 drafts implemented
+
+- **Changed:** Completed the 250-lesson physics batch in one draft PR: 18 individually specified cases and 232 slider-based scaling scenarios. Includes 3D-projected SVG for an orbit and shaded spatial illustrations. W-2115 is in review; W-2116 requests independent physics, overlap and learner review.
+- **Limits:** The 232 scaling scenarios use 137 distinct equation strings; many vary different inputs to the same law and use a shared chart. Do not treat the count as 250 distinct physical laws or proof of teaching effectiveness. All claims are unverified.
+- **Checks:** Production build, TypeScript and batch count/choice/selected arithmetic tests pass. The company check matches the pre-existing 810 errors and five warnings. Full verify stops at two existing publication-readiness failures. Browser contract 500/500 and strict phone fit 250/250 passed; after 16 notation or assumption fixes, 32/32 browser retests and 16/16 strict phone-fit retests passed. See `company/reviews/physics-batch-250/build.md`.
+- **Next:** Route independent claim, overlap and pedagogy review through W-2116. Do not publish based on builder checks alone.
+- **Blocked:** Publication remains subject to the independent gates and the existing verification failures.
+
 ## 2026-10-27 · chief-of-staff · physics batch in PR 28, 18 of 250 drafted
 
 - **Changed:** Added 17 draft lessons to the initial inclined-orbit prototype: ten previously uncovered physics curriculum concepts and seven modern-physics / orbital concepts. Shared diagrams are in `src/lib/physics/PhysicsCase.tsx`; the 3D orbit is an orthographic projection in `src/demos/physics/inclined-orbit-projection/`. Board W-2115 tracks the remaining 232.

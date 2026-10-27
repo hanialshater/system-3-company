@@ -7,7 +7,7 @@ import { ScalingStage, type ScalingCase } from "@/lib/physics/ScalingStage";
 import styles from "@/lib/physics/physics.module.css";
 
 const lesson: ScalingCase = {
-  "question": "Consider an ideal long solenoid with fixed current, with a nonzero initial result. If turn density doubles from a positive value, what happens to interior magnetic-field magnitude?",
+  "question": "Consider an ideal long solenoid in vacuum with fixed current, with a nonzero initial result. If turn density doubles from a positive value, what happens to interior magnetic-field magnitude?",
   "options": [
     "×½",
     "×1",
@@ -21,7 +21,7 @@ const lesson: ScalingCase = {
   "discrete": false,
   "result": "2",
   "rule": "B = μ₀nI",
-  "condition": "an ideal long solenoid with fixed current",
+  "condition": "an ideal long solenoid in vacuum with fixed current",
   "picture": "circuit"
 };
 

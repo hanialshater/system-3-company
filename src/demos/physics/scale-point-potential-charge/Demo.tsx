@@ -20,7 +20,7 @@ const lesson: ScalingCase = {
   "exponent": 1.0,
   "discrete": false,
   "result": "2",
-  "rule": "potential magnitude = kabs(q)/r",
+  "rule": "potential magnitude = k·abs(q)/r",
   "condition": "a point charge at fixed distance with zero potential at infinity",
   "picture": "circuit"
 };

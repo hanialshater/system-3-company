@@ -20,7 +20,7 @@ const lesson: ScalingCase = {
   "exponent": 1.0,
   "discrete": false,
   "result": "2",
-  "rule": "E = kabs(q)/r²",
+  "rule": "E = k·abs(q)/r²",
   "condition": "a point charge observed at fixed distance in the same medium",
   "picture": "circuit"
 };

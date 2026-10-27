@@ -7,7 +7,7 @@ import { ScalingStage, type ScalingCase } from "@/lib/physics/ScalingStage";
 import styles from "@/lib/physics/physics.module.css";
 
 const lesson: ScalingCase = {
-  "question": "Consider an ideal long straight wire carrying fixed current, with a nonzero initial result. If perpendicular distance doubles from a positive value, what happens to magnetic-field magnitude?",
+  "question": "Consider an ideal long straight wire in vacuum carrying fixed current, with a nonzero initial result. If perpendicular distance doubles from a positive value, what happens to magnetic-field magnitude?",
   "options": [
     "×½",
     "×1",
@@ -21,7 +21,7 @@ const lesson: ScalingCase = {
   "discrete": false,
   "result": "½",
   "rule": "B = μ₀I/(2πr)",
-  "condition": "an ideal long straight wire carrying fixed current",
+  "condition": "an ideal long straight wire in vacuum carrying fixed current",
   "picture": "circuit"
 };
 

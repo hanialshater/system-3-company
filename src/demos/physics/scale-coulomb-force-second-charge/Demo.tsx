@@ -20,7 +20,7 @@ const lesson: ScalingCase = {
   "exponent": 1.0,
   "discrete": false,
   "result": "2",
-  "rule": "F = kabs(q₁q₂)/r²",
+  "rule": "F = k·abs(q₁q₂)/r²",
   "condition": "two fixed point charges at fixed separation in the same medium",
   "picture": "circuit"
 };

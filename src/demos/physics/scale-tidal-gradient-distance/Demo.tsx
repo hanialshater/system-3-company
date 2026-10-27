@@ -7,7 +7,7 @@ import { ScalingStage, type ScalingCase } from "@/lib/physics/ScalingStage";
 import styles from "@/lib/physics/physics.module.css";
 
 const lesson: ScalingCase = {
-  "question": "Consider a small fixed separation much shorter than the distance from a fixed point-mass source, with a nonzero initial result. If distance to the source doubles from a positive value, what happens to leading tidal acceleration difference?",
+  "question": "Consider a small fixed radial separation much shorter than the distance from a fixed point-mass source, with a nonzero initial result. If distance to the source doubles from a positive value, what happens to leading tidal acceleration difference?",
   "options": [
     "×⅛",
     "×¼",
@@ -21,7 +21,7 @@ const lesson: ScalingCase = {
   "discrete": false,
   "result": "⅛",
   "rule": "tidal acceleration difference ≈ 2GMℓ/r³",
-  "condition": "a small fixed separation much shorter than the distance from a fixed point-mass source",
+  "condition": "a small fixed radial separation much shorter than the distance from a fixed point-mass source",
   "picture": "orbit"
 };
 
