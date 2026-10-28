@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>System 3 · Content hub lab</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1110;color:#e4eee9;font:15px system-ui}main{max-width:1180px;margin:auto;padding:32px 24px}h1{font-size:36px;margin:10px 0}h2{font-size:20px}p{color:#aebfb7;line-height:1.6}.eyebrow{font-size:12px;letter-spacing:2px;color:#80ddb2}.flow{padding:20px 0;color:#80ddb2;font-family:monospace}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.card{padding:22px;border:1px solid #293c33;border-radius:16px;background:#111d17}textarea{width:100%;background:#08100c;color:#c8e4d4;border:1px solid #365343;border-radius:8px;padding:12px;font:12px/1.5 monospace;min-height:270px;resize:vertical}textarea#tests{min-height:125px}button,select{background:#243c2e;color:#e4eee9;border:1px solid #456450;border-radius:8px;padding:10px 14px;font:inherit;cursor:pointer}button.primary{background:#9ae7b4;color:#102016}button:disabled{opacity:.45;cursor:wait}button:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #d6ff8d;outline-offset:3px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}label{display:block;margin:16px 0 8px}iframe{width:100%;height:260px;border:0;background:#0b1110;border-radius:12px}code{font-size:12px;overflow-wrap:anywhere}.job{border-top:1px solid #293c33;padding:14px 0}.job p{margin:4px 0}.status{color:#9ae7b4}.failed{color:#ffb0a2}#message{white-space:pre-wrap;overflow-wrap:anywhere;min-height:30px}details pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}.note{font-size:12px}@media(max-width:780px){main{padding:22px 14px}.grid{grid-template-columns:1fr}h1{font-size:28px}}
+</style></head><body><main>
+<div class="eyebrow">SYSTEM 3 / R&D / W-2169</div><h1>Content hub lab</h1>
+<p>Git per space. Scoped writes. Tests and compilation before publication.<br>Load the published artifact when a demo opens.</p>
+<div class="flow">Git commit → queued build → tests + compiler → immutable artifact → publication pointer</div>
+<div class="grid"><section class="card"><h2>1. Edit a demo</h2>
+<label for="demo">Demo in the research space</label><select id="demo"><option>alpha</option><option>beta</option></select>
+<p class="note">Both demos pin ui@1.0.0. To change the multiplier, update the code and its test expectation.</p>
+<label for="source">TypeScript source</label><textarea id="source" spellcheck="false"></textarea>
+<label for="tests">Tests</label><textarea id="tests" spellcheck="false"></textarea>
+<div class="toolbar"><button class="primary" id="save">Save Git revision</button><button id="work">Run queued builds</button></div>
+<p id="message" role="status" aria-live="polite"></p><code id="head"></code>
+</section><section class="card"><h2>2. Published demo</h2><p id="publication"></p><iframe id="preview" title="Published synthetic demo" sandbox="allow-scripts"></iframe>
+<p class="note">Saving and building do not publish. Publish a successful build below, or roll back to an earlier one. Failed builds keep the previous demo available.</p>
+<h2>3. Build history</h2><div id="jobs"></div>
+</section></div><p class="note">Local R&D prototype with trusted synthetic code. Build subprocesses are not security sandboxes. SQLite and local object files model production metadata and CDN storage. No production deployment or million-demo scale claim.</p>
+</main><script>
+const token='__LOCAL_TOKEN__'; let state; const $=id=>document.getElementById(id);
+async function api(url,data){const r=await fetch(url,data?{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify(data)}:{});const j=await r.json();if(!r.ok)throw Error(j.error);return j}
+function message(text){$('message').textContent=text}
+async function refresh(editors=false){state=await api('/api/state');const demo=$('demo').value;const pub=state.publications.find(p=>p?.demo===demo);$('head').textContent='HEAD '+state.head;
+if(editors){$('source').value=state.sources['demos/'+demo+'/index.ts'];$('tests').value=state.sources['demos/'+demo+'/test.mjs']}
+$('publication').textContent=pub?'Published revision '+pub.sha.slice(0,10)+' · release '+pub.generation:'Not published';
+if($('preview').dataset.release!==demo+':'+pub?.generation){$('preview').src='/frame/'+demo;$('preview').dataset.release=demo+':'+pub?.generation}
+$('jobs').replaceChildren();for(const job of [...state.jobs].reverse().filter(j=>j.demo===demo)){const row=document.createElement('div');row.className='job';const status=document.createElement('strong');status.className=job.status==='failed'?'failed':'status';status.textContent=job.status+' · '+job.sha.slice(0,10);const info=document.createElement('p');info.textContent=job.artifact?'artifact '+job.artifact.slice(0,12)+' · '+Math.round(job.milliseconds)+' ms':'Awaiting a successful build';row.append(status,info);
+if(job.artifact){const publish=document.createElement('button');const historical=job.sha!==state.head;publish.textContent=historical?'Publish historical build / rollback':'Publish this build';publish.onclick=()=>action(async()=>{await api('/api/publish',{demo,job:job.id,expectedGeneration:pub?.generation??0,rollback:historical});await refresh();message('Publication pointer updated. No compilation performed.')});row.append(publish)}
+const details=document.createElement('details'),summary=document.createElement('summary'),log=document.createElement('pre');summary.textContent='Build / test log';log.textContent=job.log??'Queued';details.append(summary,log);row.append(details);$('jobs').append(row)}}
+async function action(fn){const buttons=[...document.querySelectorAll('button')];buttons.forEach(b=>b.disabled=true);try{await fn()}catch(e){message(e.message)}finally{buttons.forEach(b=>b.disabled=false)}}
+$('save').onclick=()=>action(async()=>{const demo=$('demo').value;const r=await api('/api/write',{expectedHead:state.head,scope:'demos/'+demo,files:{['demos/'+demo+'/index.ts']:$('source').value,['demos/'+demo+'/test.mjs']:$('tests').value}});await refresh();message('Saved '+r.sha.slice(0,10)+'. '+r.jobs.length+' affected demo build(s) queued.')});
+$('work').onclick=()=>action(async()=>{message('Testing and compiling queued revisions…');const jobs=await api('/api/work',{});await refresh();message(jobs.length?jobs.map(j=>j.demo+': '+j.status).join('\n'):'No queued builds.')});
+$('demo').onchange=()=>action(()=>refresh(true));refresh(true).catch(e=>message(e.message));
+</script></body></html>

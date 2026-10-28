@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "revision": "A",
+      "fullFlow": true,
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "revision": "B",
+      "fullFlow": false,
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "revision": "A",
+      "fullFlow": false,
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "pass": true
+    },
+    {
+      "revision": "B",
+      "fullFlow": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true
+    },
+    {
+      "check": "failed React build preserves publication; restored inputs reuse artifact",
+      "pass": true
+    }
+  ],
+  "sequence": [
+    {
+      "revision": "A",
+      "generation": 2,
+      "hostProcess": 14866
+    },
+    {
+      "revision": "B",
+      "generation": 3,
+      "hostProcess": 14866
+    },
+    {
+      "revision": "A",
+      "generation": 4,
+      "hostProcess": 14866
+    },
+    {
+      "revision": "B",
+      "generation": 5,
+      "hostProcess": 14866
+    }
+  ],
+  "errors": [],
+  "hostBuild": "Next.js production build",
+  "artifactOriginSeparate": true,
+  "liveDeployment": false
+}

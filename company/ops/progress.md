@@ -843,6 +843,22 @@ Implemented probability source entries 1–200 as explicit finite mini-labs. Man
 
 Implementation progress against supplied lists: 500 behavioral and 300 probability entries are implemented across PR16, PR17, PR19 and this batch; 700 probability entries remain. W-2035 tracks this draft batch and W-2033 the remaining queue. Each new batch is at most 200, with a final 100 remainder. All new lessons remain drafts. No merge or deploy.
 
+## 2026-10-25 · content hub pilot live · W-2173 ready for review
+
+Deployed https://system3-content-hub-demo.vercel.app/d/sum-seven-ignores-first-die on a dedicated Next.js project. Separate artifact project serves both immutable real-lesson revisions. Live host/publication/frame/client asset requests return 200; unknown publication returns 404. Confirmed A → B → A → B with the same host deployment dpl_FbfQrsfJ7VPppcZvgd4Q7E93HUA4. Frame CSP/sandbox, CORS and immutable caching are present; manifest/API responses are no-store. Vercel reports no runtime errors in the sampled hour.
+
+Global Config token creation was blocked by a connector schema bug rejecting its valid ID. The pilot uses a public CDN manifest and versioned release alias instead; no Next build is needed for switching/rollback. One Global Config was created but remains unused, with no read token. No connector delete capability is available. Local Git/compiler operator remains local; existing System 3 production app/domains are unchanged.
+
+Local full phone/desktop lesson flows, failure preservation and cache restoration passed before deployment. Live interactive browser verification was interrupted by test-browser proxy CA trust failure and then workspace unavailability; no TLS verification was disabled and no live-browser success is claimed. W-2173 is review, not independent acceptance. Receipt: company/ops/deployments/2026-10-25-content-hub-pilot.json; status: company/rnd/content-hub/deployment-status.md. Next: rerun the live browser flow when the test environment returns, then W-2170/W-2171 independent R&D/production integration decisions.
+
+## 2026-10-25 · one-demo content hub deployment · W-2173 blocked on Vercel team access
+
+Prepared the published sum-seven-ignores-first-die lesson in a real Git-per-space hub with a trusted React compiler profile, pinned runtime/types, TypeScript checks and compiled model tests. A separate minimal Next.js host builds successfully and reads a mutable publication endpoint without demo imports. Local phone/desktop full flows, A → B → A → B with one host process, failed React compilation preserving publication, restored-input cache reuse and opaque frame isolation pass. Eight hub/index regressions pass. Evidence: company/rnd/content-hub/deployment-status.md and evidence/deployment-*.
+
+The failure-injection test caught the old transpile-only loader accepting malformed TSX; the new profile now performs full TypeScript diagnostics before bundling. Main repository check retains 811 errors/four warnings and aggregate verify retains its known publication-readiness failures. No production app route, protected file, lesson source or learner metric changed.
+
+Vercel denies scoped access (403) to team_Ss0FbvX3HyCJMqitsy31SLPj and explicitly requires authorize_team_access. The founder already authorized deploying one demo; this is missing connection access. No cloud project/resource/deployment was created and no live URL exists. The initial access link expired during preparation; request a fresh short-lived link when resuming. After access: dedicated artifact + Next host projects, Global Config pointer, READY checks and live A/B/rollback with unchanged host deployment ID. Git/build operator remains local for this pilot; a distributed control plane is outside scope.
+
 ## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 11: SQLite-compatible database in Clojure; off-boarding and a persistent knowledge base
 
 Founder: "go for sqllight", "Clojure, core families"; the org must have autonomy (continuous work, self-landing, roles not limits); "add the persistent knowledge base", "i thought we have agents off boarding"; "make it grounded in real compatibility test".
@@ -909,6 +925,21 @@ Verification completed: exact 200-entry manifest/runtime checks; 500 behavioral 
 What I believe: high confidence in implementation counts, pure arithmetic fixtures, contract behavior and bounded engineering fixes; these checks do not establish learning or verify the supplied empirical findings. All 200 lessons are draft and all 1,601 claims remain unverified. Source verification, independent learner reviews, publication boundaries and shared-engine ops readiness remain open. The framework reported an existing Next.js security advisory; its supported build retry passed, and no upgrade was made in this content PR.
 
 Next: review PR #16, then the owning category managers route fact checks and independent learner reviews. The manager/source/engineering/QA records and reproducible manifest are under `company/reviews/behavioral-probability-200/`. No merge or deploy has been performed. GitHub publication used the authenticated connector; its initial cc61db3 commit has the exact tree8b484292 of local source422b1109, verified against the create-tree response.
+## 2026-10-24 · R&D real-catalogue content hub test · W-2172 ready for review
+
+All 1,645 real React demos bundled independently in 185.84 s; shared kit 4.15 s separately. One scoped comment-only source revision rebuilt in 36.6 ms. Selected exactly 1/10/0 demos for isolated/ten/docs edits; shared controls selected 1,643 consumers. Dependency index: 801 ms real / 813 ms with 1,000 labelled source copies (2,645 records). Copies are deduplication fixtures, not incoming authored demos.
+
+28/28 preselected phone/desktop runtime checks and 14/14 independent resolver sample audits pass; 8/8 hub/index integration cases and full TypeScript check pass. Company check has exactly the prior 811 errors/four warnings; aggregate verify still stops at the same two publication-readiness failures. Evidence and limits: company/rnd/content-hub/catalogue-results.md. No production routes, demo sources or protected paths changed; no deployment.
+
+Belief: independent React artifact delivery is feasible for this catalogue; the timings are local single observations, not million-demo capacity or full QA. Production integration needs generated loaders/catalogue replaced and static-only slug routing removed (company/rnd/content-hub/nextjs-architecture.md). Original DOM write API and new React adapter are not yet integrated. Next: W-2170 R&D acceptance, W-2171 production architecture review, repeat with actual incoming authored demos when available.
+
+## 2026-10-24 · R&D content hub prototype · W-2169 ready for review
+
+Built src/lab/content-hub/: Git per space, scoped optimistic writes, queued snapshot builds, exact/transitive dependency pins, TypeScript checks and emitted ESM, compiled tests, immutable artifacts, SQLite release pointers, rollback and standalone browser preview. Tracking: GitHub issue #18; brief/results in company/rnd/content-hub/. Predictions committed locally in 8dec8024 before execution. Seven integration tests and five desktop/phone browser checks pass. Finite fixture count: five compiler runs versus fourteen rebuild-all; not scale evidence.
+
+Repository check diagnostics exactly match isolated base 60eaf60a: 811 errors/four warnings. Full verify stops at the same two publication-readiness failures reproduced on the base; later stages not reached. No production imports, protected paths, dependencies or deployments changed.
+
+Belief: the write/build/publication boundary is feasible for the synthetic fixtures (high confidence); million-demo capacity and production safety remain untested. Next: W-2170 rnd-lead independent acceptance; W-2171 principal-engineer review against EDD-003/SPIKE-001. No manager acceptance or production readiness is claimed.
 ## 2026-10-23 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 8 written up; K38 and K39 built; Benchmark 9 ready to run
 
 Founder: "Go with the C compiler in Clojure", "We need S vs vanilla", "do the comparison after W7 then keep going", "No native image, go after B8", "for learnings lets make them baysian", "Yes go with K39".
