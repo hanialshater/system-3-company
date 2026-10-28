@@ -23,6 +23,12 @@ const nextConfig = {
   // Lesson frames pilot: always define the flag, so an unset flag is the constant "off" and DemoHost's frame branch
   // folds away at build time (P4, company/engineering/reviews/2026-10-25-content-hub-production-review.md).
   env: { NEXT_PUBLIC_LESSON_FRAMES: process.env.NEXT_PUBLIC_LESSON_FRAMES === "pilot-50" ? "pilot-50" : "off" },
+  // The type check runs as its own step in the build script (next typegen, then tsc --noEmit with a
+  // 4 GB heap) before next build, and a type error still fails the build there. Next's own check
+  // would run tsc again while Turbopack still holds its compile graph (about 6 GB for 8,232 pages).
+  // tsc needs about 2.8 GB more, and the two together went over Vercel's 8 GB build machine
+  // (r25, dpl_92Q7iJ4uuFDPyrfAwRLrcggaBeKc; company/ops/deployments/2026-10-28-r25-production.json).
+  typescript: { ignoreBuildErrors: true },
   // HQ routes read the working tree via process.cwd(), so output file tracing pulls in whatever
   // is on disk, including QA screenshots verify writes just before `vercel build`. Vercel fails
   // the deploy when a traced file matches .vercelignore (run 39032703960). Keep this list in step

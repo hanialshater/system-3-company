@@ -5,7 +5,7 @@
   "description": "A company of narrow AI agents that makes 60-second interactive lessons, run on the System 3 architecture.",
   "scripts": {
     "dev": "npm run editorial:account && npm run registry && next dev",
-    "build": "npm run editorial:account && npm run registry && next build",
+    "build": "npm run editorial:account && npm run registry && next typegen && node --max-old-space-size=4096 node_modules/typescript/bin/tsc --noEmit && next build",
     "start": "next start",
     "typecheck": "npm run registry && tsc --noEmit",
     "registry": "node tools/company.mjs registry",

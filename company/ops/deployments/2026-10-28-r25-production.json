@@ -1,0 +1,71 @@
+{
+  "release": "r25",
+  "status": "prepared again after a failed build (attempt 2 awaiting deploy; the coordinator deploys)",
+  "target": "production",
+  "recordedBy": "release-manager, 2026-10-28. release-manager does not deploy r25: the coordinator does (coordinator, 2026-10-28)",
+  "sourceCommit": "the commit that adds this file, the tip of release/r25 (see the PR). Its only parent is 0e34c13abf8966aad038a565707dc6a5ba37c220, and the two differ only by this record",
+  "sourceBranch": "release/r25",
+  "base": "e8b529cd317d2dbf680d657339fe2ada31a2d507 (default branch ccr-4c6c7654-ew9ko1: r24's live tree 0fc13b86a plus records)",
+  "contents": [
+    "74da4b56f: cherry-pick -x of 80c847c55 (r23): next, @next/env, @next/swc-* 16.4.0 -> 16.4.3 in package.json and package-lock.json, plus its decision record and readiness record. Nothing else in the code changed; the original change had no code edits.",
+    "0e34c13ab: flatten-the-cube-to-a-dot ported from 40b8bfbc1 (r22): Demo.tsx, meta.json (status published, claims c1-c9 verified), styles; its review records, the r22 launch review, the founder's decision to run the pairwise after publishing, the design specs, the W-2047 readiness record and the lane M check script. Registry regenerated. Main's approved version of the 16.4.3 readiness record (principal-engineer-ops, U1-U6)."
+  ],
+  "notIncluded": "The rest of main's 452 commits (W-2121, chief of staff) and the inspection branch's 12 undeployed commits (W-2122).",
+  "approval": {
+    "who": "founder",
+    "date": "2026-10-28",
+    "words": "Approve r25 when ready (Rec.)",
+    "optionApproved": "Once r25 passes its checks, build and local QA, I deploy it to production without asking again and smoke-test it. If it fails any check, I roll back to r23 instead.",
+    "record": "the founder's answer in the conversation, relayed word for word to release-manager by the coordinator (2026-10-28); release-manager did not see it first-hand. It covers one production deploy of sourceCommit's tree and, if a check fails, a rollback to r23 (dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz); nothing else."
+  },
+  "preDeployChecks": {
+    "npmLsNext": "next@16.4.3 (also deduped under better-auth@1.7.10), after npm ci",
+    "companyCheck": "783 errors, 4 warnings, the same error set as the r24 tree (diffed line by line); flatten-the-cube-to-a-dot raises none",
+    "typecheck": "pass (npm run typecheck, exit 0)",
+    "build": "pass (npm run build, exit 0): Next.js 16.4.3 (Turbopack), compiled in 3.4 min, 8,232 static pages. Turbopack could not write its own build cache because the disk was full; that cache is optional, and the build output is complete",
+    "localServe": "next start on the build: / 200, /learn/world 200, /catalog 200, /d/flatten-the-cube-to-a-dot 200 (with data-slug), /d/euclid-three-steps 200, /history 200, /d/no-such-lesson-xyz 404; /hq 404 locally because HQ_PUBLIC is not set here (production sets it)",
+    "qa": "tests/qa/feed.spec.ts 10/10; tests/qa/contract.spec.ts with QA_ONLY=flatten-the-cube-to-a-dot,euclid-three-steps 4/4 (phone and desktop); tests/world 4/4; a Chromium browser run of /learn/world and the cube lesson on phone (Pixel 7) and desktop: no page errors. The only failed request was /api/account/me 404, which is expected while accounts are off",
+    "notRun": "the full npm run verify (it stops on inherited suite failures, as recorded at r23 U5); tests/hq/releases.test.mjs is stale (it expects r13)",
+    "attempt2": {
+      "tree": "the fix commit (tip of release/r25)",
+      "npmLsNext": "next@16.4.3",
+      "companyCheck": "783 errors, 4 warnings, the same error set as r24",
+      "typecheck": "pass",
+      "build": "pass under the 8 GB cap (see fix.measured); 8,232 static pages",
+      "localServe": "/ /learn/world /catalog /d/flatten-the-cube-to-a-dot (data-slug) /d/euclid-three-steps /history: 200; /d/no-such-lesson-xyz: 404",
+      "qa": "feed.spec 10/10; contract.spec (cube, euclid) 4/4; tests/world 4/4; World and the cube lesson on phone and desktop: no page errors (only /api/account/me 404, expected)"
+    }
+  },
+  "deployStep": "Vercel builds only commits whose message carries the deploy marker (vercel.json ignoreCommand), so the deployed SHA will be an empty marker commit on top of sourceCommit, as for r23 and r24. Steps: git commit-tree $(git rev-parse <tip of release/r25>^{tree}) -p <tip of release/r25> with a marker r25 message; push it to release/r25; then Vercel create_deployment, target production, gitSource github hanialshater/system-3-company ref release/r25 at that SHA. Check that the build log names that SHA and 'Next.js 16.4.3'.",
+  "productionSmoke": [
+    "build log: the type step shows as 'Types generated successfully' before 'Next.js 16.4.3', and Next prints 'Skipping validation of types'. The build passes without an OOM report",
+    "build log: 'Next.js 16.4.3' and the marker SHA; state READY; system-3-company.vercel.app assigned to the new deployment",
+    "HTTP: / 200 with data-slug=; /learn/world 200; /catalog 200; /d/flatten-the-cube-to-a-dot 200 with data-slug=\"flatten-the-cube-to-a-dot\"; /d/euclid-three-steps 200; /history 200; /hq 200; /d/no-such-lesson-xyz 404",
+    "QA_BASE_URL=https://system-3-company.vercel.app npx playwright test tests/qa/feed.spec.ts: 10/10",
+    "QA_ONLY=flatten-the-cube-to-a-dot,euclid-three-steps QA_BASE_URL=https://system-3-company.vercel.app npx playwright test tests/qa/contract.spec.ts: 4/4",
+    "/learn/world on phone and desktop: no page errors",
+    "Vercel get_runtime_errors for the first 30 minutes after READY: no new error class compared with r24",
+    "note: the browser specs send the app's own beacons to /api/events; record the time window, as at r23"
+  ],
+  "rollback": "on any failed check: Vercel instant rollback to r23, dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (the founder's approved fallback), then a COE. A rollback removes the World, which is the trade-off the founder accepted.",
+  "afterReady": "append r25 to company/ops/releases.json (date = READY time, commit = sourceCommit, deploy_commit = the marker SHA, deployment id), set this record's status, and merge release/r25 into the default branch through its PR",
+  "checkedTree": "0e34c13abf8966aad038a565707dc6a5ba37c220 (typecheck, build, local serve and QA); company check rerun on the tip",
+  "attempts": [
+    {
+      "attempt": 1,
+      "deployment": "dpl_92Q7iJ4uuFDPyrfAwRLrcggaBeKc",
+      "commit": "0accb77ac (marker commit on 32b843de8)",
+      "result": "build failed, errorCode out_of_memory: 'npm run build exited with SIGKILL', and Vercel's build report shows an OOM event. The machine was iad1 with 2 cores and 8 GB. The build compiled in 3.6 min and was killed 89 s into Next's 'Running TypeScript' step, while Turbopack was also writing its filesystem cache. Production stayed on r24. The founder declined a rollback to r23 and chose 'Fix the memory, retry (Rec.)'.",
+      "cause": "Two large consumers overlapped on an 8 GB machine. Turbopack's process holds about 6 GB of native memory for its compile graph (8,232 pages) through the type check and the cache write. Next then runs tsc in a worker in the same container, and tsc needs about 1.8 to 2.8 GB on top. Measured locally in an 8 GB memory cgroup on 2 cores (taskset), with the unchanged r25 build: the process tree reached 7,678 MB RSS, the cgroup sat at its limit (failcnt 94,080), and the tsc worker died at V8's default heap of about 2 GB, which Node sets for 8 GB. tsc alone in the same cap: about 2.2 GB, then a heap OOM; with a 4 GB heap it passes at 2.8 GB RSS. r24 on Next 16.4.0 ran the same overlap and passed (TypeScript 106 s), so the build was already near the limit. Next's JS build code is the same in 16.4.0 and 16.4.3 apart from version strings, and turbopackFileSystemCacheForBuild defaults to true in both. 16.4.3 compiled more slowly on Vercel (3.6 min against 2.5), so its native Turbopack is the likely extra memory, but that is not proven: 16.4.0 was not rerun under the cap."
+    }
+  ],
+  "fix": {
+    "files": [
+      "package.json (build script)",
+      "next.config.mjs (typescript.ignoreBuildErrors, commented)"
+    ],
+    "change": "The build runs 'next typegen && node --max-old-space-size=4096 node_modules/typescript/bin/tsc --noEmit' as its own step before 'next build', so tsc finishes and exits before Turbopack starts, and Next's built-in second type check is skipped. The type gate is unchanged: the same tsconfig, the generated route types (validator.ts) included, and a type error still fails the build (a probe file with TS2322 made npm run build exit 2 before Next started). Protected paths are not touched.",
+    "measured": "Measured locally in an 8 GB cgroup on 2 cores. With 1 static worker (experimental.cpus 1, set only for this run to match Vercel's 'using 1 worker', not committed), the tree peaked at 6,621 MB RSS and the cgroup at 6,781 MB, with failcnt 0: about 1.4 GB of headroom. The tsc step peaked at about 1.8 GB. With this machine's default 3 static workers, the peak was 7,836 MB, and it still passed.",
+    "notDone": "Turbopack's own memory was not reduced. Its build log warns that tools/lib/ritual-records.mjs, through src/lib/hq.ts, makes it trace the whole project (24,090 files). That is a follow-up for engineering."
+  }
+}
