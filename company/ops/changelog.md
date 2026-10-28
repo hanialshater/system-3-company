@@ -1,5 +1,7 @@
 # Changelog
 
+2026-10-28 · platform-engineer: Integrated the first bespoke Number Island scene, four quiet motion layers with pause/reduced-motion support, and original subject emblems. Other islands retain their ordinary fallback; all3895 lesson entries and existing branching/camera/player geometry are unchanged. Tier1 self-check: `company/engineering/readiness/2026-10-28-world-bespoke-platform-selfcheck.md`.
+
 2026-10-28 · platform-engineer: Replaced the World corridor with an open subject atlas and island topic branches; shared illustrated journal styling with List; added map pinch/button zoom, bounded pan, immersive view and versioned navigation-only camera restoration. Lesson metadata, player order and publication remain unchanged. Tier1 self-check: `company/engineering/readiness/2026-10-28-world-zoom-platform-selfcheck.md`.
 
 2026-10-24 · platform-engineer: Added isolated numerical trace geometry and state for the founder's 100 behavioral +100 causal/probability draft PR, with local per-lesson specs, two witnessed cases, saved evidence across Reset, eight visual families and focused validation/state tests. Existing kit and lesson engines unchanged. Tier-2 readiness remains pending independent review (`company/engineering/readiness/2026-10-24-mini-lab-engine.md`).
