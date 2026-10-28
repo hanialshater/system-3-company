@@ -27,7 +27,7 @@ VP Personalization remains parked under F-52. Head-of-product approves this scop
 
 The accepted evidence-derived Explored/Understood states, due revisits and versioned delayed-recall flag remain the next learning-behavior scope in `company/product/lessons-world-journey-scope.md`. They may ship only when implemented with the approved ownership, timing and independent evidence checks. For this first inspection, omit unsupported progress counts, seals and recall controls rather than presenting fixture progress as real or unknown as zero. No new account data, assessment persistence, analytics or personalization policy is required to expose the full world.
 
-EXP-009 predictions remain preregistered in `company/experiments/EXP-009-lessons-world.md`; inspection is not evidence that those predictions succeeded. Its analytics-steward owns any experiment launch/readout. The founder removed token metering as a blocker; no billed-dollar total or automatically enforced cap is claimed.
+EXP-011 (registered as EXP-009; renumbered 2026-10-28, main already had EXP-009) predictions remain preregistered in `company/experiments/EXP-011-lessons-world.md`; inspection is not evidence that those predictions succeeded. Its analytics-steward owns any experiment launch/readout. The founder removed token metering as a blocker; no billed-dollar total or automatically enforced cap is claimed.
 
 ## Ownership and bounded acceptance
 

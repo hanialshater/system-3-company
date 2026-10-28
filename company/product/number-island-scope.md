@@ -72,4 +72,4 @@ These are functional acceptance criteria, not an experiment outcome. There is no
 
 ## Handoff to chief of staff
 
-Associate this response with W-2027. Keep that owner step awaiting the category, portfolio and personalization answers rather than marking the full feature approved or done. Suggested added owner steps: `cm-math` collection sign-off and `vp-personalization` static-world boundary. No application code, tests, board, progress log or event log was edited in this consultation.
+Associate this response with W-2124. Keep that owner step awaiting the category, portfolio and personalization answers rather than marking the full feature approved or done. Suggested added owner steps: `cm-math` collection sign-off and `vp-personalization` static-world boundary. No application code, tests, board, progress log or event log was edited in this consultation.

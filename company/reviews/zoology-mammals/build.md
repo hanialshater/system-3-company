@@ -11,7 +11,7 @@ The lessons use a common prediction → click to uncover evidence → reveal pat
 - Recall wording differs from prediction in all 14, but several revisit the same organism and require a stronger independent transfer test.
 - No reset control is provided; page reload behavior was not checked.
 - 390 × 844 reveal fit, keyboard use, readable type sizes, contrast and screen-reader output have not been inspected. No screenshots, actual browser QA, learner review, or typecheck were run in this worktree.
-- Company check after all 14 lessons returned 800 errors and four warnings. Of the 17 additions relative to the supplied 783-error starting report, 14 were these not-yet-added curriculum concepts, two were stale generated registries, and one was the inherited invalid `W-2055` state `blocked`. The integration owner handles curriculum, registry and board; no check success is asserted here.
+- Company check after all 14 lessons returned 800 errors and four warnings. Of the 17 additions relative to the supplied 783-error starting report, 14 were these not-yet-added curriculum concepts, two were stale generated registries, and one was the inherited invalid `W-2162` state `blocked`. The integration owner handles curriculum, registry and board; no check success is asserted here.
 
 ## Open questions for review
 

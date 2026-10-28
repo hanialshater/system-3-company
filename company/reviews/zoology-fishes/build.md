@@ -11,7 +11,7 @@ The `check.py` script verifies manifest uniqueness, metadata/source-status and a
 - Recall wording differs from prediction, but some questions revisit the same case and need more distinct transfer examples.
 - Stage labels are model descriptions rather than measured data. The six-value countercurrent example and body-volume comparison are deliberately stipulated models. The gill shape is a two-dimensional analogy; realistic anatomy, scale and causal strength are not asserted.
 - No real browser QA, TypeScript, screenshot inspection, 390 × 844 fit check, keyboard or screen-reader test was performed in this worktree. No claim, pedagogy or learner review was performed. Several source leads are institution or textbook landing pages; fact-checkers must locate exact sources.
-- Company check with the previously committed 14 mammals plus these 12 fish returned 812 errors and four warnings. Relative to the supplied starting report of 783 errors/four warnings, 26 are not-yet-added curriculum concepts, two are stale generated registries, and one is the inherited `W-2055` state `blocked`. The parent integration owner handles all three shared files; no success is asserted.
+- Company check with the previously committed 14 mammals plus these 12 fish returned 812 errors and four warnings. Relative to the supplied starting report of 783 errors/four warnings, 26 are not-yet-added curriculum concepts, two are stale generated registries, and one is the inherited `W-2162` state `blocked`. The parent integration owner handles all three shared files; no success is asserted.
 
 ## Open review
 

@@ -1,4 +1,4 @@
-## 2026-10-28 · zoology first 200 drafts · W-2055
+## 2026-10-28 · zoology first 200 drafts · W-2162
 
 Changed: added 73 more draft lessons to PR #40 after its initial 125, yielding 198 there plus the two prototypes in PR #32: 200 drafts out of the 500 proposed questions. The remaining 300 are not implemented. The new lessons cover additional birds, dinosaurs, mammals, reptiles and amphibians, fishes and arthropods. The drafts use schematics; some use shared interaction patterns. Claims and institutional source leads remain unverified; no merge or publication.
 
@@ -6,7 +6,7 @@ Checks: all 73 new modules passed builder-run transpilation and metadata/answer 
 
 Next: finish the standalone TypeScript check, update PR #40, restore browser QA and continue the remaining 300 in reviewable batches. Do not claim that draft implementation or static diagram checks establish learning or scientific correctness.
 
-## 2026-10-28 · zoology drafts and exploratory QA · W-2055
+## 2026-10-28 · zoology drafts and exploratory QA · W-2162
 
 Changed: added 125 new draft zoology lessons beyond the two prototypes, spanning fossil evidence, dinosaurs, mammals, birds, reptiles and amphibians, fishes, invertebrates, animal behavior and ecology. Updated curriculum/registry and fixed multiple diagram legibility and evidence-mapping findings; generated diagrams are schematics and the claims and source leads remain unverified. This is an incomplete first batch toward 500, not a completed collection. 373 of the 500 proposed entries remain unbuilt.
 
@@ -14,15 +14,15 @@ Believe: high confidence in the implementation count and registry mapping; low c
 
 Checks: TypeScript passed; company check still reports the inherited 783 errors and four warnings. Verify still stops at the inherited publication-readiness failure. Browser launches after capacity recovered. The production build compiled but was killed during its TypeScript phase (exit 137); protected-contract QA was not run. Continue the remaining entries in the founder's requested batch sizes, then route source-specific fact checks, learner, accessibility and visual review before publication. Do not count drafts as validated lessons.
 
-## 2026-10-28 · zoology curriculum and design directions · W-2055
+## 2026-10-28 · zoology curriculum and design directions · W-2162
 
-Changed: added an inventory of 500 proposed questions in ten strands, including the two existing prototype drafts. Added twelve candidate interaction patterns and visual/asset review requirements. This is a content plan: 498 lessons remain unbuilt, and no candidate is science-reviewed. The first prototype PR is #32. W-2055 is blocked on host capacity for builds, with source, overlap and design reviews still required.
+Changed: added an inventory of 500 proposed questions in ten strands, including the two existing prototype drafts. Added twelve candidate interaction patterns and visual/asset review requirements. This is a content plan: 498 lessons remain unbuilt, and no candidate is science-reviewed. The first prototype PR is #32. W-2162 is blocked on host capacity for builds, with source, overlap and design reviews still required.
 
 Believe: high confidence in the numbered 500-slot count and exact question-text uniqueness, not in semantic uniqueness or scientific accuracy. The repository check remains 783 errors and four warnings, matching its starting state. No code changes, build, browser testing, publication or merge in this planning change. At dispatch time the host had about 1.3 GB free; the 10 GB build guard prevented builder dispatch. Browser setup also failed on system permissions in the preceding session.
 
 Next: restore at least 10 GB free and complete browser setup; audit the catalog for overlap and source each brief, then implement the remaining work in 200-entry batches without double-counting the two prototypes. Keep independent science, accessibility, visual, learner and publication review gates intact.
 
-## 2026-10-28 · zoology prototypes · W-2055
+## 2026-10-28 · zoology prototypes · W-2162
 
 Changed: drafted two life-science lessons, one contrasting footprint and bone evidence and one showing birds within a simplified dinosaur tree; added curriculum and registry entries. This is 2 of the requested 500, with 498 still to scope and build. Sources are leads and all claims remain unverified. No publication, merge or deploy.
 
