@@ -3899,4 +3899,6 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "where-the-axis-starts": () => import("./probability/where-the-axis-starts/Demo"),
   "which-coin-is-it": () => import("./probability/which-coin-is-it/Demo"),
   "why-seven-wins": () => import("./probability/why-seven-wins/Demo"),
+  "was-that-word-on-the-list": () => import("./psychology/was-that-word-on-the-list/Demo"),
+  "which-dots-belong-together": () => import("./psychology/which-dots-belong-together/Demo"),
 };

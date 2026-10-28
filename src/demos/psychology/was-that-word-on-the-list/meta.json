@@ -1,0 +1,63 @@
+{
+  "slug": "was-that-word-on-the-list",
+  "title": "Was that word on the list?",
+  "hook": "A word feels familiar. How can you check where it came from?",
+  "domain": "psychology",
+  "concept": "source-monitoring-familiarity",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {"categoryManager": "cm-behavioral", "builder": "demo-builder"},
+  "learner": {
+    "knows": ["a list contains some words and not others"],
+    "doesNotKnow": ["that a plausible or familiar-feeling word need not have appeared in a specific list"]
+  },
+  "misconception": "A word that feels familiar must have appeared on the list.",
+  "objective": "Compare a probe word against the original list, distinguishing familiarity from evidence about its source.",
+  "claims": [
+    {
+      "id": "psychology.was-that-word-on-the-list.c1",
+      "text": "The Rest list consists of bed, rest, awake, dream and night; the probe sleep is absent. The Desk list consists of paper, pencil, ruler, eraser and pen; the probe pencil is present.",
+      "support": "derivation",
+      "source": "The authored CASES fixture in src/demos/psychology/was-that-word-on-the-list/Demo.tsx; the membership is computed from the same array displayed on screen.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.was-that-word-on-the-list.c2",
+      "text": "A word can fit the theme without appearing in that list; comparing each probe to the source settles membership for the two authored lists.",
+      "support": "derivation",
+      "source": "The Rest example is the counterexample; compare the probe sleep with its authored list in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.was-that-word-on-the-list.c3",
+      "text": "Familiarity and a trace of where you saw something are different kinds of information. A feeling of familiarity alone does not establish that a word appeared on a particular list.",
+      "support": "source",
+      "source": "OpenStax Psychology 2e, 8.3 Problems with Memory, https://openstax.org/books/psychology-2e/pages/8-3-problems-with-memory (source monitoring and misattribution); independent checking of the wording and source is pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.was-that-word-on-the-list.c4",
+      "text": "The short activity illustrates source checking; it does not test or diagnose the learner's memory ability.",
+      "support": "convention",
+      "source": "This single, uncontrolled authored activity in Demo.tsx is not a validated assessment.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.was-that-word-on-the-list.c5",
+      "text": "In the recall example, the word sea is not present in the original list tide, wave, coast, sand.",
+      "support": "derivation",
+      "source": "Authored recall fixture below: membership by direct comparison.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A list was tide, wave, coast, sand. Later the word sea feels familiar. What establishes whether sea was on that list?",
+    "options": ["Its familiar feeling", "Checking the original list", "Its length"],
+    "answer": 1,
+    "why": "The source list has tide, wave, coast and sand; sea is not one of its words. Feeling familiar is not proof that it appeared there."
+  },
+  "evidence": {"qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": []},
+  "version": 1,
+  "curriculum": {"primary": "psychology:source-monitoring-familiarity", "prerequisites": [], "level": "intro", "references": [], "also": []}
+}
