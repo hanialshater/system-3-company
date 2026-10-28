@@ -1,8 +1,8 @@
-# EXP-010: Lessons World milestones M0 to M4: check predictions and learning predictions
+# EXP-012: Lessons World milestones M0 to M4: check predictions and learning predictions
 
 owner: analytics-steward
 date: 2026-10-28
-board: W-2055
+board: W-2152
 status: registered by the commit containing this file, before any M0 to M4 maker starts; NOT run. Registration authorizes no build, no collection, no study, no holdout and no deploy.
 source brief: company/product/2026-10-28-world-brief.md (head-of-product, PR #35, proposed, not approved), sections 3 to 5
 ownership: the founder gave analytics-steward this experiment's predictions, cohorts, guardrails and wrong-ifs (company/decisions/2026-10-27-founder-lessons-world-journey.md, "Experiment"); that line supersedes the role-card routing of gamification registrations to personalization-eval for this scoped work and un-parks no role.
@@ -87,7 +87,7 @@ Common terms:
 
 **Two kinds of evidence.** The P rows are checks on the artifact. Their judges are qa-tester, design-lead, accessibility-reviewer, principal-engineer, learning-scientist-personalization and evaluation-steward, each on their own record, read by the steward. The steward judges nothing it built and builds nothing. The L rows need learner data that does not exist.
 
-**Why no L row can be judged today.** `src/lib/events-intake.ts` keeps no identifier of any kind: no session, device or participant. Its `reveal` event has no fields. Its `recall` event has only `correct` and `spacedDays`, with no source and no question version. `REGISTERED_EXPERIMENTS` is empty. The progress store (`src/kit/progress.ts`, `recalls: { at, correct }[]`) lives on the learner's device. So nobody can link a learner's first reveal to their later recall, or assign a learner to an arm. L1 to L4 wait on instruments that privacy-reviewer and backend must approve first (EXP-009, "Minimum instrumentation and consent"). M1's new `source` and `qv` fields do not change this, even though head-of-product chose EDD-018 Addendum A3 option (b), which adds them as account recall columns (W-2056): account records carry no consent and no assignment, so they are not study data, and using them for L rows would need privacy-reviewer's approval as a new purpose. Until those instruments exist, every L row reads "not measured". Nothing in copy, the WBR or a launch record may say the World improves learning.
+**Why no L row can be judged today.** `src/lib/events-intake.ts` keeps no identifier of any kind: no session, device or participant. Its `reveal` event has no fields. Its `recall` event has only `correct` and `spacedDays`, with no source and no question version. `REGISTERED_EXPERIMENTS` is empty. The progress store (`src/kit/progress.ts`, `recalls: { at, correct }[]`) lives on the learner's device. So nobody can link a learner's first reveal to their later recall, or assign a learner to an arm. L1 to L4 wait on instruments that privacy-reviewer and backend must approve first (EXP-009, "Minimum instrumentation and consent"). M1's new `source` and `qv` fields do not change this, even though head-of-product chose EDD-018 Addendum A3 option (b), which adds them as account recall columns (W-2154): account records carry no consent and no assignment, so they are not study data, and using them for L rows would need privacy-reviewer's approval as a new purpose. Until those instruments exist, every L row reads "not measured". Nothing in copy, the WBR or a launch record may say the World improves learning.
 
 **L1 and L2** follow EXP-009's design in full: consented adults, 1:1 assignment before exposure, intention to treat, 3,000 per arm, 28-day enrollment, bootstrap seed 9009, SRM and integrity checks before any outcome is read.
 

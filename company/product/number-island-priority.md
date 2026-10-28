@@ -20,20 +20,20 @@ The chief-of-staff remains the sole shared-board writer. These are priority and 
 
 | Item | Priority | Owner | Queue decision | Reason |
 |---|---|---|---|---|
-| W-2027 | P3 | head-of-product | next | Close the bounded scope and category/personalization answers first. Owner's product-shell response is already on disk, but remaining scope answers are not inferred from it. |
-| W-2026 | P3 | design-lead | next | Direction exists; commission the interaction/mockup/visual work only after the required product and engineering boundaries are answered. Do not mark SVG artwork done. |
-| W-2028 | P3 | principal-engineer | next | Confirm tier, implementation ownership, EDD/readiness obligations and dispatch prerequisites before a builder starts. |
-| W-2029 | P3 | evaluation-steward | backlog | Manager may define the independent QA/a11y route now; actual artifact verification waits for a build and approved acceptance criteria. |
-| W-2030 | P3 | release-manager | backlog | Keep the exact founder preview approval available; deployment awaits reviewed artifact, required verification, integration and working deployment access. |
+| W-2124 | P3 | head-of-product | next | Close the bounded scope and category/personalization answers first. Owner's product-shell response is already on disk, but remaining scope answers are not inferred from it. |
+| W-2123 | P3 | design-lead | next | Direction exists; commission the interaction/mockup/visual work only after the required product and engineering boundaries are answered. Do not mark SVG artwork done. |
+| W-2125 | P3 | principal-engineer | next | Confirm tier, implementation ownership, EDD/readiness obligations and dispatch prerequisites before a builder starts. |
+| W-2126 | P3 | evaluation-steward | backlog | Manager may define the independent QA/a11y route now; actual artifact verification waits for a build and approved acceptance criteria. |
+| W-2127 | P3 | release-manager | backlog | Keep the exact founder preview approval available; deployment awaits reviewed artifact, required verification, integration and working deployment access. |
 
 Suggested exact commands, to be executed by chief-of-staff:
 
 ```sh
-node tools/triage.mjs set W-2027 --p=3 --owner=head-of-product --state=next --note="Portfolio decision: optional founder-requested Number Island; close category and personalization scope before implementation. company/product/number-island-priority.md"
-node tools/triage.mjs set W-2026 --p=3 --owner=design-lead --state=next --note="Portfolio decision: existing direction is not artwork approval; finish bounded design after owner answers and before builder dispatch. company/product/number-island-priority.md"
-node tools/triage.mjs set W-2028 --p=3 --owner=principal-engineer --state=next --note="Portfolio decision: tier, EDD/readiness and builder routing are prerequisites for optional Number Island implementation. company/product/number-island-priority.md"
-node tools/triage.mjs set W-2029 --p=3 --owner=evaluation-steward --state=backlog --note="Portfolio decision: route independent QA/a11y now if useful; artifact verification waits for the implemented world and acceptance criteria. company/product/number-island-priority.md"
-node tools/triage.mjs set W-2030 --p=3 --owner=release-manager --state=backlog --note="Portfolio decision: scoped preview approval exists; retain release gates, reviewed artifact, default-branch integration and usable API access as prerequisites. company/product/number-island-priority.md"
+node tools/triage.mjs set W-2124 --p=3 --owner=head-of-product --state=next --note="Portfolio decision: optional founder-requested Number Island; close category and personalization scope before implementation. company/product/number-island-priority.md"
+node tools/triage.mjs set W-2123 --p=3 --owner=design-lead --state=next --note="Portfolio decision: existing direction is not artwork approval; finish bounded design after owner answers and before builder dispatch. company/product/number-island-priority.md"
+node tools/triage.mjs set W-2125 --p=3 --owner=principal-engineer --state=next --note="Portfolio decision: tier, EDD/readiness and builder routing are prerequisites for optional Number Island implementation. company/product/number-island-priority.md"
+node tools/triage.mjs set W-2126 --p=3 --owner=evaluation-steward --state=backlog --note="Portfolio decision: route independent QA/a11y now if useful; artifact verification waits for the implemented world and acceptance criteria. company/product/number-island-priority.md"
+node tools/triage.mjs set W-2127 --p=3 --owner=release-manager --state=backlog --note="Portfolio decision: scoped preview approval exists; retain release gates, reviewed artifact, default-branch integration and usable API access as prerequisites. company/product/number-island-priority.md"
 ```
 
 Use normal board state transitions to reflect genuinely completed owner work; do not label the whole feature done when only a consultation is complete. Link each manager answer and its downstream artifacts on the appropriate item. Where one item combines a finished consultation and unfinished implementation, retain it open or split the remaining work explicitly, rather than silently dropping it.

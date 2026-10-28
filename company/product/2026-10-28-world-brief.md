@@ -4,7 +4,7 @@ owner: head-of-product
 date: 2026-10-28
 class: product / format / progressive learning
 status: proposed. Not self-approved (see "Approval" below). Nothing here is built, run or deployed.
-builds on: the live inspection World (`/learn/world`, released 2026-10-28; release-manager's record, W-2054)
+builds on: the live inspection World (`/learn/world`, released 2026-10-28; release-manager's record, W-2151)
 sources:
 - founder plan and refinements: `company/decisions/2026-10-27-founder-lessons-world-journey.md`
 - inspection scope: `company/product/2026-10-27-world-all-lessons-inspection.md`
@@ -129,7 +129,7 @@ Each milestone has the same shape: registered predictions, then one warm maker, 
   - the suggested-next marker;
   - island-order player entry recording scheduled recalls with their source;
   - Unknown handled as Unknown.
-- **Account recall columns: option (b) of EDD-018 Addendum A3** (head-of-product, 2026-10-28, W-2056). Add nullable `source` and `qv` to the `recall` table with up and down migrations, and carry them through the server sanitiser (`src/lib/server/progress-store.ts`), merge, export and deletion. *Reason:* the server today keeps only `at` and `correct`. Under option (a), a signed-in learner who restores on a second device would see every Understood lesson fall back to Explored. That is the learner's evidence vanishing for a reason the learner cannot see, which is what "time alone never lowers a state" and "Unknown is not zero" exist to prevent. It would also make the account a worse copy of the browser, while we say the account keeps your progress. The two fields hold an answer's origin and a question version, which is no new personal data. *Cost accepted:* M1 becomes tier 2 learner data, with backend-engineer's migration review, privacy-reviewer's data-inventory row and principal-engineer-ops' readiness record. M1 may run into its pause line sooner. Flag attempts are still M3.
+- **Account recall columns: option (b) of EDD-018 Addendum A3** (head-of-product, 2026-10-28, W-2154). Add nullable `source` and `qv` to the `recall` table with up and down migrations, and carry them through the server sanitiser (`src/lib/server/progress-store.ts`), merge, export and deletion. *Reason:* the server today keeps only `at` and `correct`. Under option (a), a signed-in learner who restores on a second device would see every Understood lesson fall back to Explored. That is the learner's evidence vanishing for a reason the learner cannot see, which is what "time alone never lowers a state" and "Unknown is not zero" exist to prevent. It would also make the account a worse copy of the browser, while we say the account keeps your progress. The two fields hold an answer's origin and a question version, which is no new personal data. *Cost accepted:* M1 becomes tier 2 learner data, with backend-engineer's migration review, privacy-reviewer's data-inventory row and principal-engineer-ops' readiness record. M1 may run into its pause line sooner. Flag attempts are still M3.
 - **Predictions:**
   - P1.1: QA-tester writes a table of at least 30 fixture histories *from this brief, before the build*. The functions agree with all of them. *Wrong if* any row differs.
   - P1.2: no fixture with a recall under 24 hours after first reveal, or with a practice-source answer, yields Understood. *Wrong if* one does.
@@ -219,7 +219,7 @@ Each milestone has the same shape: registered predictions, then one warm maker, 
 
 - **O1 (product, to principal-engineer):** EDD-018 §6 gives the World learning code to four builders. The city's principles ask for one warm maker per piece of work. *Ask:* amend §6 so personalization-engineer is the single maker for M1 to M4. Backend-engineer would then review the attempt store rather than write it. *If refused:* backend-engineer builds only the M3 attempt store and API, as a sub-piece with its own check, and the brief records that the warm-maker default was broken and why.
   - **Answered (accepted), 2026-10-28, principal-engineer: EDD-018 Addendum A.** §6's reason was parallel building, and the milestones run one after another, so personalization-engineer is the one maker for M1 to M4. The other owners review once at the end (A2). M1 and M3 are tier 2. Stop rule (A4): if backend-engineer's review of the account part fails twice in one milestone, backend-engineer becomes that part's maker, and the milestone record says why.
-  - **Its finding A3**, a conflict in this brief between new recall fields and "no new account fields": head-of-product chose option (b), additive columns. The reason is in M1. W-2056.
+  - **Its finding A3**, a conflict in this brief between new recall fields and "no new account fields": head-of-product chose option (b), additive columns. The reason is in M1. W-2154.
 - **O2 (product, to the founder):** Unchecked content plus delayed recall can make wrong facts stick. *Product's answer:* the seal-only-on-checked-islands rule (section 2), and Unchecked shown beside every state. The founder may prefer states to show only on checked lessons. That is question F2.
 - **O3 (from EXP-009, carried):** A large consented study may cost more than the feature. *Answer stays EXP-009's:* the study is a design, not a spend. Until it runs, the World's learning claim is unmeasured, and nothing in copy, the WBR or a launch record says otherwise.
 

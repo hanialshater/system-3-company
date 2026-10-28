@@ -1,4 +1,6 @@
-# EXP-009: Lessons World exploration and one-week recall
+# EXP-011: Lessons World exploration and one-week recall
+
+> Renumbered 2026-10-28 (integration engineer): registered as EXP-009 on the default branch on 2026-10-27; main already had EXP-009 (meta measurement integrity, 2026-10-20), so this one is EXP-011. The predictions below are unchanged.
 
 owner: analytics-steward
 approver: head-of-product (VP Personalization remains parked under founder F-52 correction)
