@@ -1,3 +1,9 @@
+## 2026-10-28 — Branching world, shared journal List and real camera ready
+
+App8a8e630b9/buildVkYO2NHoyWSW6d6YpWCrT passed production build8230pages and12world tests. Independent final browser checks cover phone/short/desktop,3895unique List lessons,14subject atlas,162islands,188actualtopicconnections(62cross-subject), actual map pinch withbrowserzoom1, pan/reset/cancel/immersive exit, updatedlesson selection and exactcamera/scrollreturn. Oneindependenttier1engineerreview approved source after the breadcrumbfix. Labels/controlssafe; no lesson status/claims/account/Feed changes. Durable screenshots company/design/previews/2026-10-28-world-zoom/.
+
+Push this reviewed baseline to codex/all-lessons-inspection for the founder's own deployment; no additional Vercel marker. Existing783errors4warnings and strictpublished-readiness test remain inherited and unresolved. Founder next requested bespoke islands/scenery/emblems/animation: firstNumberIsland artproof assigned tovisual-designer andplatform, withfrozenhub/leafgeometry,quietmotion/off/reduced-motion. That artwork is not included in this baseline verification.
+
 ## 2026-10-28 — Completed all500 science drafts included;3895-stop snapshot ready
 
 PR29 advanced during implementation from347 to500 draft lessons. The final76a87df1d snapshot adds153, yielding3895 unique stops/162 islands, with720 Published/234 Review/2941 Draft preserved. Frozenapp a39e39968, build7RPMubtedbVVPXsJdQM4F passed8230staticpages;35science model tests pass. Independent actualbrowser addendum confirms3895unique list entries, both new science players, exact return offsets and native stage swipe. See company/engineering/readiness/2026-10-28-world-completed-build.json and completed-science provenance.
