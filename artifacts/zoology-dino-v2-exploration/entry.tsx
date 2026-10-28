@@ -1,0 +1,10 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import {DemoCard} from '../../src/components/DemoCard';
+import '../../src/app/globals.css';
+import M0 from "../../src/demos/life/zoo-dino-dental-battery/meta.json";
+import M1 from "../../src/demos/life/zoo-dino-wishbone/meta.json";
+const items:Record<string,any>={"zoo-dino-dental-battery":M0,"zoo-dino-wishbone":M1};
+const slug=new URLSearchParams(location.search).get('slug')||'';const source=items[slug];const meta={...source,claims:{verified:0,total:source?.claims?.length||0}};
+const domain={id:'life',name:'Life Sciences',short:'Life',color:'#52b788'};
+createRoot(document.getElementById('root')!).render(<main className="single"><nav className="topbar"><a className="brand" href="/">S3</a><span className="muted small">Life Sciences</span><a className="brand-link" href="/catalog">Map</a></nav><div className="slot-screen"><DemoCard meta={meta} domain={domain} active standalone /></div></main>);

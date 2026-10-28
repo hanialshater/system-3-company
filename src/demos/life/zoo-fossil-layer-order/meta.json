@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-fossil-layer-order",
+  "title": "Which layer came first?",
+  "hook": "A stack keeps a record of its sequence.",
+  "domain": "life",
+  "concept": "zoo-fossil-layer-order",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Sediment can accumulate in layers."
+    ],
+    "doesNotKnow": [
+      "How relative order follows from undisturbed layering."
+    ]
+  },
+  "misconception": "The uppermost undisturbed sediment layer must be oldest.",
+  "objective": "Infer relative order for a specified undisturbed stack.",
+  "claims": [
+    {
+      "id": "life.zoo-fossil-layer-order.c1",
+      "text": "In an undisturbed stack deposited in sequence, each layer is younger than the layer it covers; later overturning or disturbance limits this inference.",
+      "support": "source",
+      "source": "Source lead for independent verification: US Geological Survey, National Geologic Map Database, https://www.usgs.gov/programs/national-geologic-map-database; the specific supporting text has not been checked.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-fossil-layer-order.c2",
+      "text": "The stage is a schematic model, with stated example values or sample counts; it is not a reconstruction of an observed field site.",
+      "support": "convention",
+      "source": "Illustration and model convention.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-fossil-layer-order.c3",
+      "text": "Recall: An undisturbed stack is deposited X, then Y, then Z. Which is younger than X? In the stipulated order, Y was deposited after X.",
+      "support": "derivation",
+      "source": "Relative order or arithmetic under the explicitly stated example conditions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An undisturbed stack is deposited X, then Y, then Z. Which is younger than X?",
+    "options": [
+      "Y",
+      "Neither Y nor Z",
+      "Only X"
+    ],
+    "answer": 0,
+    "why": "In the stipulated order, Y was deposited after X."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

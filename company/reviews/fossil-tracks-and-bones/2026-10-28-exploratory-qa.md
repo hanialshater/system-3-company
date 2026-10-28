@@ -1,0 +1,11 @@
+# Exploratory browser QA: fossil-tracks-and-bones v1
+
+Date: 2026-10-28. Target: local component harness on 127.0.0.1:4927, source tree at 0279bec2; this is not a built Next.js application, production route, or the protected Playwright contract. Harness bundles the actual DemoCard, Lesson, controls, global stylesheet and lesson component; its DemoHost and Next Link are stubs, and it supplies card metadata directly. Results cannot certify routing, build completeness, accessibility or learning. All reported flows were manually scripted in Playwright/Chromium; one exploratory setup attempt initially failed to connect, and a separate setup was corrected before the recorded runs.
+
+Four browser flows were observed: correct and incorrect prediction on 390×844 and 1280×800. All four had initially disabled stage and commit controls, no initial reveal, reveal disabled until interaction, an observable stage change, enabled reveal after the action, the expected correct/incorrect verdict, no horizontal document overflow, no browser page or console errors, and reload back to predict. The reveal text exceeded 120 characters. A keyboard-only pass reached an option, commit, stage control and reveal using Tab and Space/Enter. The stage control measured 190.3 × 33 px, above the protected contract's 24 px minimum; consider a larger touch target.
+
+At 390×844, screenshot inspection showed the entire stage and reveal in view (stage top 126.3 px, reveal bottom 491.3 px, card body bottom 785 px). Supplemental reduced-motion runs used light and dark OS preferences at 390×844 and 360×640. In this standalone skin both preferences render the dark surface. The small-phone measurements showed stage top 126.3 px and reveal bottom 493.4 px within the body ending at 581 px; no horizontal overflow. Only screenshots actually opened by this QA agent are claimed as visually inspected: the wrong-answer 390×844 phone reveal.
+
+Artifacts: `artifacts/zoology-exploration/v1/results.json`, `v1/extra-results.json`, `probe.mjs`, `extra.mjs`, `server.mjs`, `entry.tsx`, `host.tsx`, `link.tsx`; screenshot `artifacts/zoology-exploration/v1/fossil-tracks-and-bones-phone-reveal.png`.
+
+Remaining: the full application route and protected contract, full accessibility review, independent science and teaching review, and human learner evidence. No launch verdict.

@@ -1,0 +1,64 @@
+{
+  "slug": "ecology-camera-field-toy",
+  "title": "What can the camera see?",
+  "hook": "A camera records only part of a landscape.",
+  "domain": "life",
+  "concept": "ecology-camera-field-toy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Animals depend on features of their surroundings."
+    ],
+    "doesNotKnow": [
+      "In a toy model, a camera detects an animal only inside its outlined field. Which camera placement can see an animal walking along the marked path?"
+    ]
+  },
+  "misconception": "A single observation or change determines the same outcome everywhere.",
+  "objective": "In a toy model, a camera detects an animal only inside its outlined field. Which camera placement can see an animal walking along the marked path?",
+  "claims": [
+    {
+      "id": "life.ecology-camera-field-toy.c1",
+      "text": "In a toy model, a camera detects an animal only inside its outlined field. Which camera placement can see an animal walking along the marked path? The first camera field overlaps the animal’s marked path; the second lies away from it. Under this toy model’s visibility rule, the first can detect an animal on the overlapped portion. Real camera detection also depends on timing, triggering and placement.",
+      "support": "source",
+      "source": "Stipulated illustrative scenario, not wildlife observations. Source lead, not checked: OpenStax Biology 2e, ecology, https://openstax.org/details/books/biology-2e",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ecology-camera-field-toy.c2",
+      "text": "The panels show a simplified illustrative scenario, not observations or measurements of real animals.",
+      "support": "convention",
+      "source": "Diagram convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ecology-camera-field-toy.c3",
+      "text": "In a toy model a camera detects only inside its field. An animal walks outside that field. Is it detected? The stipulated rule says detection is limited to the field.",
+      "support": "source",
+      "source": "Stipulated illustrative scenario, not wildlife observations. Source lead, not checked: OpenStax Biology 2e, ecology, https://openstax.org/details/books/biology-2e",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy model a camera detects only inside its field. An animal walks outside that field. Is it detected?",
+    "options": [
+      "No",
+      "Yes, automatically",
+      "Only if it is larger than the field"
+    ],
+    "answer": 0,
+    "why": "The stipulated rule says detection is limited to the field."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

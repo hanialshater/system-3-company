@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-dino-healed-injury",
+  "title": "A fracture with a history",
+  "hook": "A bone can preserve signs of repair.",
+  "domain": "life",
+  "concept": "zoo-dino-healed-injury",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Living bone can repair after some injuries."
+    ],
+    "doesNotKnow": [
+      "Infer survival after an identified healed injury without inventing a cause."
+    ]
+  },
+  "misconception": "Any fossil injury means the animal died immediately.",
+  "objective": "Infer survival after an identified healed injury without inventing a cause.",
+  "claims": [
+    {
+      "id": "life.zoo-dino-healed-injury.c1",
+      "text": "A bone can preserve signs of repair. An identified fossil bone injury shows healing. What does that healing support? In the schematic, repaired tissue surrounds the earlier fracture. If the feature is correctly identified as healing, the animal lived for some time after the injury. This observation alone does not determine the injury’s cause or exact survival time.",
+      "support": "source",
+      "source": "Source lead for independent checking: Smithsonian https://naturalhistory.si.edu/collections/paleobiology. Healing is stipulated; the drawing is not a diagnosis or actual specimen.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-dino-healed-injury.c2",
+      "text": "The schematic figure and its chosen timing, species or measurements represent the explicitly stated example and are not photographic evidence of an individual specimen.",
+      "support": "convention",
+      "source": "Simplified schematic; constructed example where indicated.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-dino-healed-injury.c3",
+      "text": "Recall: A fossil vertebrate bone has independently identified healed damage. What does healing support? Healing requires a period after the injury during the animal’s life.",
+      "support": "source",
+      "source": "Source lead for independent checking: Smithsonian https://naturalhistory.si.edu/collections/paleobiology. Healing is stipulated; the drawing is not a diagnosis or actual specimen.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fossil vertebrate bone has independently identified healed damage. What does healing support?",
+    "options": [
+      "The animal died instantly when injured",
+      "The animal lived some time after the damage",
+      "The exact cause of damage is known"
+    ],
+    "answer": 1,
+    "why": "Healing requires a period after the injury during the animal’s life."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

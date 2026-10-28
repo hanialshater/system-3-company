@@ -1,0 +1,13 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+export default function Demo({slug}:{slug:string}) {
+ const [step,setStep]=useState(0);
+ return <Lesson slug={slug} predict={{question:"In this schematic flower visit, which event represents pollen reaching the stigma?",options:["The visitor deposits pollen on the stigma", "The visitor drinks nectar", "The flower opens its petals"],answer:0}} exploreHint="Inspect pollen on the visitor, then trace its contact with the stigma." reveal={()=><p>In the diagram, pollen carried by the visitor reaches the flower’s stigma. Pollination is pollen transfer from an anther to a stigma; nectar collection and pollination are distinct events, even when they occur during the same visit.</p>}>
+ {({locked,interact})=><div><svg viewBox="0 0 340 190" className="stage-svg" role="img" aria-label={step===0?"A schematic figure with evidence hidden until inspection.":step===1?"A bee carries pollen on its body; the stigma is not yet shown.":"In the diagram, pollen carried by the visitor reaches the flower’s stigma. Pollination is pollen transfer from an anther to a stigma; nectar collection and pollination are distinct events, even when they occur during the same visit."}>
+ {step>=1&&<><ellipse cx="76" cy="88" rx="40" ry="24" fill="#e1bd66" stroke="#806b3e" strokeWidth="2"/><path d="M60 65 Q70 43 82 65 M80 65 Q93 43 103 65" fill="#bfd9df" stroke="#7396a0" strokeWidth="2"/><path d="M65 68 V108 M86 68 V108" stroke="#6d5d43" strokeWidth="5"/><circle cx="99" cy="94" r="5" fill="#b88c31"/><circle cx="107" cy="103" r="5" fill="#b88c31"/><text x="76" y="40" textAnchor="middle" fill="var(--fg)" fontSize="13">Pollen on bee</text></>}
+ {step>=2&&<><circle cx="251" cy="106" r="48" fill="#e9c2aa"/><path d="M251 139 V84" stroke="#73936c" strokeWidth="6"/><ellipse cx="251" cy="80" rx="10" ry="6" fill="#9a6f74"/><circle cx="250" cy="77" r="4" fill="#b88c31"/><circle cx="255" cy="76" r="4" fill="#b88c31"/><path d="M125 94 H195 M188 89 L195 94 L188 99" stroke="var(--fg)" strokeWidth="2" fill="none"/><text x="251" y="177" textAnchor="middle" fill="var(--fg)" fontSize="13">Stigma receives pollen</text></>}
+ </svg><Row><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==0} onClick={()=>setStep(1)}>Inspect pollen</Control><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==1} onClick={()=>{setStep(2);interact();}}>Trace to stigma</Control></Row><p style={{textAlign:"center",color:"var(--muted)",fontSize:".8rem"}}>Simplified schematic · not to scale</p></div>}
+ </Lesson>;
+}

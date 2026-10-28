@@ -1,0 +1,64 @@
+{
+  "slug": "ecology-detection-unseen-toy",
+  "title": "Counted or present?",
+  "hook": "A count can miss members of the population.",
+  "domain": "life",
+  "concept": "ecology-detection-unseen-toy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Animals depend on features of their surroundings."
+    ],
+    "doesNotKnow": [
+      "In a toy habitat known to contain 10 animals, a survey detects 5. How many were present but not detected?"
+    ]
+  },
+  "misconception": "A single observation or change determines the same outcome everywhere.",
+  "objective": "In a toy habitat known to contain 10 animals, a survey detects 5. How many were present but not detected?",
+  "claims": [
+    {
+      "id": "life.ecology-detection-unseen-toy.c1",
+      "text": "In a toy habitat known to contain 10 animals, a survey detects 5. How many were present but not detected? The stipulated population contains 10 animals and the survey detects 5, leaving 10 − 5 = 5 not detected. Real surveys usually do not know the total beforehand, so a raw count alone does not reveal how many were missed.",
+      "support": "source",
+      "source": "Stipulated illustrative scenario, not wildlife observations. Source lead, not checked: OpenStax Biology 2e, ecology, https://openstax.org/details/books/biology-2e",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ecology-detection-unseen-toy.c2",
+      "text": "The panels show a simplified illustrative scenario, not observations or measurements of real animals.",
+      "support": "convention",
+      "source": "Diagram convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.ecology-detection-unseen-toy.c3",
+      "text": "A toy population contains 12 animals and 7 are detected. How many are missed? 12 present minus 7 detected leaves 5 missed.",
+      "support": "source",
+      "source": "Stipulated illustrative scenario, not wildlife observations. Source lead, not checked: OpenStax Biology 2e, ecology, https://openstax.org/details/books/biology-2e",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population contains 12 animals and 7 are detected. How many are missed?",
+    "options": [
+      "19 animals",
+      "5 animals",
+      "7 animals"
+    ],
+    "answer": 1,
+    "why": "12 present minus 7 detected leaves 5 missed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

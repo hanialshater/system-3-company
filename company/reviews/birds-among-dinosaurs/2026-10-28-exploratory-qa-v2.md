@@ -1,0 +1,11 @@
+# Exploratory browser QA: birds-among-dinosaurs v2
+
+Date: 2026-10-28. Local component harness, not a Next.js application or protected contract. Actual DemoCard, Lesson, stylesheet and v2 component were bundled; DemoHost and Next Link were stubs. Exact tested component git blob: `0d0b80f04fa58ab8e6fb2f533bdc9c570570e839`; metadata blob: `e8043fa3a89002e6b6962f5a5c2d8960789d1537`. The working tree was dirty; identifying these bytes does not attest a clean built application.
+
+Four scripted Chromium flows—correct and incorrect answers on 390×844 and 1280×800—showed initial lock, reveal gated on interaction, changed stage, expected verdict, no horizontal document overflow and no page/console errors. Reload returned to prediction. A keyboard-only phone walk reached option, commit, stage control and reveal with Tab and Space/Enter. The control now measures 149.2 × 44 px in both viewports. At 390×844, stage top was 126.3 px and the wrong-answer reveal bottom was 528.8 px; card body bottom was 785 px. The wrong-answer 390×844 reveal and 360×640 correct-answer dark screenshots were visually inspected and the full stage and reveal were visible. Reduced-motion runs with light and dark OS preferences at 390×844 and 360×640 found no document overflow or card-body crop by geometry; both preferences use the same dark standalone surface.
+
+Retest of v1 finding: the outside branch now uses `--muted` (#a9abb5 in `.single`), and the dinosaur branch uses `--good` (#4fd1a5). The formerly faint outside branch is plainly visible in the inspected screenshots. Against the #191b22 stop of the card's dark gradient, the outside branch is approximately 7.52:1; background varies over the gradient. This sample is not a full contrast audit.
+
+Artifacts: `artifacts/zoology-exploration/results.json`, `extra-results.json`, `probe.mjs`, `extra.mjs`, `server.mjs`, `birds-among-dinosaurs-phone-reveal.png`, `birds-among-dinosaurs-dark-small-phone.png`. The previous version's corresponding files are under `artifacts/zoology-exploration/v1/`.
+
+Limitations: this is exploratory component QA, not actual application routing, the protected contract, a comprehensive accessibility or scientific review, or learner evidence. No launch verdict.

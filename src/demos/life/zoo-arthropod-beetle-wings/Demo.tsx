@@ -1,0 +1,13 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+export default function Demo({slug}:{slug:string}) {
+ const [step,setStep]=useState(0);
+ return <Lesson slug={slug} predict={{question:"In the illustrated beetle with flight wings, what covers the folded hindwings while the beetle rests?",options:["The hardened forewings", "The antennae", "The legs"],answer:0}} exploreHint="Inspect the closed beetle and then uncover its hindwings." reveal={()=><p>The schematic shows hardened forewings called elytra covering the folded hindwings. In a beetle with functional flight wings, the hindwings can unfold; flight ability varies among beetles.</p>}>
+ {({locked,interact})=><div><svg viewBox="0 0 340 190" className="stage-svg" role="img" aria-label={step===0?"A schematic figure with evidence hidden until inspection.":step===1?"A schematic beetle has closed forewing covers over its back.":"The schematic shows hardened forewings called elytra covering the folded hindwings. In a beetle with functional flight wings, the hindwings can unfold; flight ability varies among beetles."}>
+ {step===1&&<><path d="M128 70 L94 48 M118 99 L78 98 M128 130 L94 151 M212 70 L246 48 M222 99 L262 98 M212 130 L246 151" stroke="#604d3a" strokeWidth="4"/><ellipse cx="170" cy="105" rx="55" ry="69" fill="#987d5d" stroke="#604d3a" strokeWidth="3"/><path d="M170 39 V171" stroke="#604d3a" strokeWidth="3"/><circle cx="170" cy="28" r="16" fill="#987d5d"/><text x="170" y="180" textAnchor="middle" fill="var(--fg)" fontSize="13">Closed elytra</text></>}
+ {step>=2&&<><rect x="102" y="37" width="136" height="137" fill="var(--bg)"/><path d="M146 78 L108 53 M143 103 L99 103 M146 128 L108 152 M194 78 L232 53 M197 103 L241 103 M194 128 L232 152" stroke="#604d3a" strokeWidth="4"/><ellipse cx="170" cy="105" rx="27" ry="62" fill="#987d5d"/><circle cx="170" cy="28" r="16" fill="#987d5d"/><path d="M145 68 Q105 13 78 49 Q82 98 145 125 M195 68 Q235 13 262 49 Q258 98 195 125" fill="#b8d5db" stroke="#6a939e" strokeWidth="2"/><path d="M145 59 Q110 41 103 102 M195 59 Q230 41 237 102" fill="none" stroke="#795c43" strokeWidth="8"/><text x="170" y="180" textAnchor="middle" fill="var(--fg)" fontSize="13">Covers open · hindwings shown</text></>}
+ </svg><Row><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==0} onClick={()=>setStep(1)}>Inspect closed</Control><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==1} onClick={()=>{setStep(2);interact();}}>Uncover wings</Control></Row><p style={{textAlign:"center",color:"var(--muted)",fontSize:".8rem"}}>Simplified schematic · not to scale</p></div>}
+ </Lesson>;
+}

@@ -1,0 +1,71 @@
+{
+  "slug": "fish-countercurrent-oxygen",
+  "title": "A gradient along the way",
+  "hook": "Two flows can meet in different arrangements.",
+  "domain": "life",
+  "concept": "fish-countercurrent-oxygen",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Fish live in aquatic environments."
+    ],
+    "doesNotKnow": [
+      "In this toy model, which flow arrangement keeps water oxygen pressure above blood oxygen pressure at all three positions?"
+    ]
+  },
+  "misconception": "The first explanation of an aquatic animal feature must be correct.",
+  "objective": "In this toy model, which flow arrangement keeps water oxygen pressure above blood oxygen pressure at all three positions?",
+  "claims": [
+    {
+      "id": "life.fish-countercurrent-oxygen.c1",
+      "text": "In this toy model, which flow arrangement keeps water oxygen pressure above blood oxygen pressure at all three positions? In the same-direction toy case, the two pressures reach 50 at the last position. In the opposite-direction case, water stays 10 units above blood at each marked position. Opposing flows can maintain an oxygen-pressure gradient across a gill; these values are illustrative, not fish measurements.",
+      "support": "source",
+      "source": "Source lead, not checked: OpenStax Biology 2e, animal respiration and osmoregulation, https://openstax.org/details/books/biology-2e",
+      "status": "unverified"
+    },
+    {
+      "id": "life.fish-countercurrent-oxygen.c2",
+      "text": "The two panels are simplified schematics, not observations or measurements.",
+      "support": "convention",
+      "source": "Diagram convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.fish-countercurrent-oxygen.c3",
+      "text": "Water oxygen pressures are 90, 60, 30 and blood oxygen pressures are 80, 50, 20 at corresponding positions. Is water higher at all three? At each position the water value exceeds the blood value by 10.",
+      "support": "source",
+      "source": "Source lead, not checked: OpenStax Biology 2e, animal respiration and osmoregulation, https://openstax.org/details/books/biology-2e",
+      "status": "unverified"
+    },
+    {
+      "id": "life.fish-countercurrent-oxygen.c4",
+      "text": "The same-direction toy oxygen pressures are water [100,70,50] and blood [0,30,50]; the opposite-direction pressures are water [100,70,40] and blood [90,60,30]. The latter has a positive water-minus-blood difference of 10 at every marked position. Units are arbitrary, not measured values.",
+      "support": "derivation",
+      "source": "Arithmetic on the stipulated values in the stage",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Water oxygen pressures are 90, 60, 30 and blood oxygen pressures are 80, 50, 20 at corresponding positions. Is water higher at all three?",
+    "options": [
+      "No, only at the first",
+      "No, none",
+      "Yes"
+    ],
+    "answer": 2,
+    "why": "At each position the water value exceeds the blood value by 10."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

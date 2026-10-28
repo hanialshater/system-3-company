@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-dino-jaw-joint-constraint",
+  "title": "A jaw with a pivot",
+  "hook": "A joint constrains the movements a model can make.",
+  "domain": "life",
+  "concept": "zoo-dino-jaw-joint-constraint",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Fossils and models can supply evidence about the past."
+    ],
+    "doesNotKnow": [
+      "The second picture shows the lower bar rotating around the same marked pivot. A real jaw can be more complex; fossils and joint geometry help constrain possible motion but do not show every soft tissue detail."
+    ]
+  },
+  "misconception": "A jaw joint places no constraint on modeled jaw motion.",
+  "objective": "In this toy jaw model, the lower jaw rotates around one fixed pivot. Which motion does the model allow?",
+  "claims": [
+    {
+      "id": "life.zoo-dino-jaw-joint-constraint.c1",
+      "text": "A joint constrains the movements a model can make. In this toy jaw model, the lower jaw rotates around one fixed pivot. Which motion does the model allow? The second picture shows the lower bar rotating around the same marked pivot. A real jaw can be more complex; fossils and joint geometry help constrain possible motion but do not show every soft tissue detail.",
+      "support": "source",
+      "source": "Unverified research starting points: Smithsonian National Museum of Natural History, https://naturalhistory.si.edu/collections/paleobiology ; University of California Museum of Paleontology, https://ucmp.berkeley.edu/ . Claim-specific references and specimen evidence have not been checked.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-dino-jaw-joint-constraint.c2",
+      "text": "Diagram convention: Toy hinge; real jaw anatomy is more complex Diagram labels: Initial angle; Same pivot.",
+      "support": "convention",
+      "source": "Explicitly labeled schematic; not a specimen reconstruction.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-dino-jaw-joint-constraint.c3",
+      "text": "Recall: A toy bar is pinned at one end. Which motion keeps that pin fixed? A fixed pin lets the bar rotate around that point in this toy model.",
+      "support": "source",
+      "source": "Unverified research starting points: Smithsonian National Museum of Natural History, https://naturalhistory.si.edu/collections/paleobiology ; University of California Museum of Paleontology, https://ucmp.berkeley.edu/ . Claim-specific references and specimen evidence have not been checked.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy bar is pinned at one end. Which motion keeps that pin fixed?",
+    "options": [
+      "Detaching the bar without changing the pin",
+      "Rotating the bar around the pin",
+      "Moving the pin with the far end"
+    ],
+    "answer": 1,
+    "why": "A fixed pin lets the bar rotate around that point in this toy model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

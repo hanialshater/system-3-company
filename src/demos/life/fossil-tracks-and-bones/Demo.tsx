@@ -18,7 +18,7 @@ export default function Demo({slug}:{slug:string}) {
         <text x="84" y="137" textAnchor="middle" fill="var(--fg)" fontSize="14">{opened ? "Body part" : "Bone"}</text>
         <text x="256" y="137" textAnchor="middle" fill="var(--fg)" fontSize="14">{opened ? "Surface mark" : "Footprint"}</text>
       </svg>
-      <Row><Control disabled={locked || opened} onClick={()=>{setOpened(true);interact();}}>Compare the evidence</Control></Row>
+      <Row><Control style={{minHeight:44}} disabled={locked || opened} onClick={()=>{setOpened(true);interact();}}>Compare the evidence</Control></Row>
     </div>}
   </Lesson>;
 }

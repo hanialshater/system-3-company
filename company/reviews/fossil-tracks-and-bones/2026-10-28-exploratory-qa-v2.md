@@ -1,0 +1,9 @@
+# Exploratory browser QA: fossil-tracks-and-bones v2
+
+Date: 2026-10-28. Local component harness, not a Next.js application or protected contract. Actual DemoCard, Lesson, stylesheet and v2 component were bundled; DemoHost and Next Link were stubs. Exact tested component git blob: `80658211409ffe36c738f2393608be0e346c92dc`; metadata blob: `84712c16a9548a44110347b1e548b9e340e00829`. The working tree was dirty; identifying these bytes does not attest a clean built application.
+
+Four scripted Chromium flows—correct and incorrect answers on 390×844 and 1280×800—showed initial lock, reveal gated on interaction, changed stage, expected verdict, no horizontal document overflow and no page/console errors. Reload returned to prediction. A keyboard-only phone walk reached option, commit, stage control and reveal with Tab and Space/Enter. The control now measures 190.3 × 44 px in both viewports. At 390×844, stage top was 126.3 px and reveal bottom 502.3 px; card body bottom was 785 px. The wrong-answer 390×844 reveal screenshot was visually inspected and the full stage and reveal were visible. Reduced-motion runs with light and dark OS preferences at 390×844 and 360×640 found no document overflow or card-body crop by geometry; both preferences use the same dark standalone surface. 360×640 screenshot was captured but not visually inspected.
+
+Artifacts: `artifacts/zoology-exploration/results.json`, `extra-results.json`, `probe.mjs`, `extra.mjs`, `server.mjs` and `fossil-tracks-and-bones-phone-reveal.png`. The previous version's corresponding files are under `artifacts/zoology-exploration/v1/`.
+
+Limitations: this is exploratory component QA, not actual application routing, the protected contract, a comprehensive accessibility or scientific review, or learner evidence. No launch verdict.

@@ -1,0 +1,11 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { DemoCard } from '../../src/components/DemoCard';
+import '../../src/app/globals.css';
+const slug = new URLSearchParams(location.search).get('slug') || 'fossil-tracks-and-bones';
+const isBird = slug === 'birds-among-dinosaurs';
+const title = isBird ? 'Where do birds belong?' : 'A mark or a body?';
+const hook = isBird ? 'A family tree can include living and extinct branches.' : 'Two fossils preserve different kinds of evidence.';
+const meta = {slug,title,hook,status:'draft',durationSec:60, claims:{verified:0,total:3}} as any;
+const domain = {id:'life', name:'Life Sciences', short:'Life', color:'#52b788'};
+createRoot(document.getElementById('root')!).render(<main className="single"><nav className="topbar"><a className="brand" href="/">S3</a><span className="muted small">Life Sciences</span><a className="brand-link" href="/catalog">Map</a></nav><div className="slot-screen"><DemoCard meta={meta} domain={domain} active standalone /></div></main>);
