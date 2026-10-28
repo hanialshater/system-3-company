@@ -1,0 +1,80 @@
+{
+  "question": "Propyne is treated with H₂ and Lindlar catalyst. Which major organic product forms after workup?",
+  "options": [
+    "propanone",
+    "propene",
+    "propane"
+  ],
+  "answer": 1,
+  "before": {
+    "name": "propyne",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "C",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 3
+      }
+    ]
+  },
+  "after": {
+    "name": "propene",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 160,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "CH₂",
+        "x": 222,
+        "y": 0,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 2
+      }
+    ]
+  },
+  "explanation": "Lindlar catalyst reduces an alkyne to an alkene without normally continuing to the alkane. Propyne therefore gives propene under these conditions."
+}

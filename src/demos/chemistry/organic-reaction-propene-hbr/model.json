@@ -1,0 +1,91 @@
+{
+  "question": "Propene is treated with HBr without peroxides. Which major organic product forms after workup?",
+  "options": [
+    "1-bromopropane",
+    "1,2-dibromopropane",
+    "2-bromopropane"
+  ],
+  "answer": 2,
+  "before": {
+    "name": "propene",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 2
+      }
+    ]
+  },
+  "after": {
+    "name": "2-bromopropane",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 160,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "CH₃",
+        "x": 222,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "Br",
+        "x": 160,
+        "y": -24,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "order": 1
+      }
+    ]
+  },
+  "explanation": "Under these conditions HBr adds across propene with Markovnikov regiochemistry: bromine ends up on the middle carbon and hydrogen on the terminal carbon."
+}

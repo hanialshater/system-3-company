@@ -1,0 +1,80 @@
+{
+  "question": "Ethanol is treated with PCC in a dry solvent. Which major organic product forms after workup?",
+  "options": [
+    "ethane",
+    "ethanal",
+    "ethanoic acid"
+  ],
+  "answer": 1,
+  "before": {
+    "name": "ethanol",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "OH",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      }
+    ]
+  },
+  "after": {
+    "name": "ethanal",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 129,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 191,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "O",
+        "x": 191,
+        "y": -24,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 2
+      }
+    ]
+  },
+  "explanation": "PCC oxidizes this primary alcohol to an aldehyde. The oxygen-bearing carbon changes from CH₂–OH to CH=O, forming ethanal under these conditions."
+}

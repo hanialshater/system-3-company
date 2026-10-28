@@ -1,3 +1,11 @@
+## 2026-10-28 · chief-of-staff · organic reaction practice tranche
+
+- **Changed:** Added 30 draft organic reaction exercises under the existing chemistry category in PR 31, alongside the first two prototypes. They share one condensed-structure comparison renderer and are related product-prediction practice, not 30 independently designed simulations. W-2120 covers the rest; 118 requested entries remain.
+- **Checks:** Graph valence and answer-mapping fixtures pass for all 30; paired regioselectivity and oxidation/reduction fixtures pass. `npm run check` is at 810 errors and 5 warnings; `npm run verify` stops at two existing publication-readiness tests. TypeScript and browser QA are in progress.
+- **Believe:** The diagrams illustrate connectivity, not spatial geometry or reaction mechanisms. Claims are source-linked and unverified. Scientific accuracy, accessibility, learning effectiveness, overlap and strict phone fit need independent review.
+- **Next:** Finish browser QA, resolve visual/scientific findings, build the remaining 118 distinct lessons, and route independent review.
+- **Blocked:** Publication-readiness test failures; no lesson here is approved for publication.
+
 ## 2026-10-28 · chief-of-staff · organic chemistry request, prototype tranche
 
 - **Changed:** Began the founder's request for 150 highly visual organic chemistry lessons. Added two drafts: a rotatable Newman projection of ethane and a stepwise SN2 schematic. Both are in the chemistry curriculum and have source-linked, unverified claims. W-2120 tracks the remaining 148.

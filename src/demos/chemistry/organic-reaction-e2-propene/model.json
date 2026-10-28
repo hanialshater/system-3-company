@@ -1,0 +1,91 @@
+{
+  "question": "2-bromopropane is treated with a strong base under E2 conditions. Which major organic product forms after workup?",
+  "options": [
+    "2-propanol",
+    "propene",
+    "propane"
+  ],
+  "answer": 1,
+  "before": {
+    "name": "2-bromopropane",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₃",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "Br",
+        "x": 160,
+        "y": -24,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "order": 1
+      }
+    ]
+  },
+  "after": {
+    "name": "propene",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 160,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "CH₂",
+        "x": 222,
+        "y": 0,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 2
+      }
+    ]
+  },
+  "explanation": "In an E2 elimination a base removes a β hydrogen as bromide leaves, forming a carbon–carbon double bond. Both ends of this symmetrical substrate lead to propene."
+}
