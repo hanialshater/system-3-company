@@ -32,8 +32,8 @@ export function WorldPlayer({ islandId, islandName, items, domains }: { islandId
   }, [islandId, items]);
   function returnPosition() {
     try {
-      const saved = JSON.parse(sessionStorage.getItem("s3:world-position:v1") ?? "null");
-      if (saved) sessionStorage.setItem("s3:world-position:v1", JSON.stringify({ ...saved, slug: items[active].slug, view }));
+      const saved = JSON.parse(sessionStorage.getItem("s3:world-position:v2") ?? "null");
+      if (saved) sessionStorage.setItem("s3:world-position:v2", JSON.stringify({ ...saved, slug: items[active].slug, view }));
     } catch { /* Return selection still travels in the URL. */ }
   }
   function move(delta: number) {
