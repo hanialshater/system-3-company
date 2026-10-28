@@ -271,3 +271,16 @@ QA's table is PR #42: `tests/world/fixtures/m1-histories.json`, 50 histories and
   - **Same rules otherwise.** A labelled seal gives the same credit under the same rules. The label is never hidden by a setting.
   - **M3's table** must include islands of both kinds, and an island that becomes fully checked between two seals.
 
+
+### 10a. Addendum: R-LEGACY-QV, QA's three readings and two open cases (head-of-product, 2026-10-28)
+
+QA's rows are in `tests/world/fixtures/m1-histories-legacy-qv-2026-10-28.json` (13 histories, 31 cases; README `README-legacy-qv-2026-10-28.md`, commit 9fe9a1b77). This addendum overrules no row in that file. Rulings 4 and 5 cover cases the file does not assert, so QA adds them in a new dated file. Nothing is rewritten.
+
+1. **A change before the record does not block it: confirmed.** "Changed after the record's time" means strictly after its `at`. A null-`qv` record made after a question change was answered on the changed question. If nothing changed again before M1, that question is the pinned version, so the record counts. Row `legacy-qv-a-change-before-the-record-does-not-block-it` stands.
+2. **Condition 2 is permanent: confirmed.** A null-`qv` record blocked by a change between its time and M1 never counts again. A later question change, a sync or a new pin does not revive it. Only a later answer that carries a `source` and a `qv` restores the state.
+3. **The writer proof first, and on its own: confirmed.** If the M1 record does not contain engineering's writer proof (3.2 rule 6), no null-source record counts, whatever its question history. The version conditions are read only once the proof exists.
+4. **A counted legacy account row is not rewritten with its pinned version on sync.** Stored rows keep `source` and `qv` null, on the server and in the browser. Export shows them null. The pinned version from the M1 record is applied when the state is derived, never written into the record.
+   - *Reason:* a record holds what was observed. A written-in `qv` would make an inferred version look the same as an observed one. If the pin or the proof is ever found wrong, an inference stored as evidence could not be undone.
+   - New rows should assert, on both devices after a sync, that a counted legacy row still has `source: null` and `qv: null`.
+5. **A null-`qv` recall made after M1 does not count.** "Pre-M1" is read from the record's `at`, not from when it reaches the account. So an old offline client's records made before M1's release time follow the legacy rule when they sync later. A null-source, null-`qv` record with `at` at or after M1's release time (`m1_release_at_ms`) is no evidence: it makes nothing Understood and sets no worth-another-look cue. It is still kept and synced. Old clients can no longer say which question they answered, so their answers stop deciding the state from M1 on.
+   - New rows should cover a record at release time minus 1 ms (legacy rule) and at release time (no evidence), each arriving after M1, including a wrong answer that sets no cue.

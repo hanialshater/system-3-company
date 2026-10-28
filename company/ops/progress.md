@@ -1,3 +1,7 @@
+## 2026-10-28 · head-of-product · World brief §10a: legacy-qv readings confirmed, two cases ruled
+
+Brief §10a confirms QA's three R-LEGACY-QV readings (change before the record does not block it; condition 2 permanent; writer proof first). Rules the two open cases: legacy rows are never rewritten with the pinned qv (applied at derivation only); a null-qv recall with `at` at or after M1's release is no evidence, read by `at`, not arrival. No QA row overruled; QA adds rows for 4 and 5 in a new dated file (board W-2179). Sure: these follow from "a record holds what was observed". Next: QA's new file before the maker relies on 4 and 5.
+
 ## 2026-10-28 · head-of-product · World brief: founder F1-F4 recorded, five M1 table rulings
 
 company/product/2026-10-28-world-brief.md now records the founder's answers: F1 $60 per milestone; F2 seals on every island, labelled "unchecked content" (overrides product's recommendation; objection O2 kept and travels); F3 build M1 now on a branch, release only on green checks or the founder's explicit release; F4 no holdout. New §10 rules on QA's M1 table (PR #42): R-LEGACY-QV yes with a condition (adds rows, changes none), R-MERGE-FIRST yes, R-EXPLORED-INCLUDES-UNDERSTOOD yes, R-SEAL-DUE the brief governs (no due condition), R-SEAL-UNCHECKED label rule for M3. Board: W-2177 principal-engineer (amend EDD-018 §3), W-2178 qa-tester (new rows).
