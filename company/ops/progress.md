@@ -5,6 +5,15 @@
 - **Believe:** Engineering checks cover basic interaction and arithmetic, not independent scientific correctness, overlap, accessibility, strict 390×844 reveal fit or learner effectiveness. Many entries are related practice cases that share a renderer; 500 entries do not mean 500 independently designed simulations. Source claims remain unverified and no human-learner evidence is claimed.
 - **Next:** W-2117 and W-2118: review and refine each subject's drafts. W-2119: independent scientific, pedagogy, overlap, design and accessibility review of all 500. Reconcile board and registry changes with physics PR 28 when integrating.
 - **Blocked:** None of the 500 drafts is cleared for publication. Repository-wide verification remains blocked by the recorded existing readiness failures.
+## 2026-10-28 · chief-of-staff · founder inbox triaged (31 items: 18 closed, 5 merged, 8 kept)
+
+What changed: company/ops/founder-inbox.json. Of 31 items (30 open plus F-05, which was waiting on review), 18 are closed and 5 are merged (both have status `closed`, with closedAt, closedBy, closedReason and a triage block), and 8 are kept, each rewritten as one plain question with its old wording under `previous`. Nothing was deleted. The record with the table and the kept questions is company/ops/2026-10-28-inbox-triage.md. F-52 (r24) is left for the coordinator.
+
+What I believe and how sure: high confidence in the evidence for each closure (commits and files cited; F-50 to F-54 are on main, not yet on this branch). Medium confidence that HQ shows the list correctly: hq.ts founderQueue hides only `decided`, so closed items still show until hq-engineer adds `closed` to the filter.
+
+Next: the founder answers F-25 and F-26 (due 10-30), then F-23, F-49, F-17, F-05 and F-11. The board follow-ups are listed in the record. The board was not edited in this run, and `npm run check` was not run: the worktree is sparse and the disk is nearly full.
+
+Blocked: nothing new. The F-52 id collides with main's decision record of the same number, and the reconciliation (W-2121) has to renumber one.
 
 ## 2026-10-28 · release-manager · r24 recorded; production regressed r23's security fix
 

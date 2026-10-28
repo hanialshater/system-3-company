@@ -42,8 +42,18 @@
       "links": [
         "company/constitution/amendments/AMD-001-earn-the-reveal-and-tooling.md"
       ],
-      "status": "open",
-      "note": "2026-10-15: part (c2)+R1 SIGNED by the founder; (a), (b), (c1), (d) stay open."
+      "status": "closed",
+      "note": "2026-10-15: part (c2)+R1 SIGNED by the founder; (a), (b), (c1), (d) stay open.",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "stale: Part (d) is withdrawn as covered: AMD-013 (one readiness policy) was ratified by the founder on 2026-10-17 and applied in a6333dd0, and its header says 'AMD-001 (d) is withdrawn as covered'. Parts (a), (b) and (c1) were waiting on the evaluation steward's review, which never happened; their diffs were written on 2026-10-12 against an 18-lesson tree, and the gates have since moved to AMD-013 and AMD-017 (ratified 2026-10-25, F-51, on main cee585285). Nothing is ready for you to ratify. Routed back to evaluation-steward to redraft (a) and (c1) against AMD-013/017 or withdraw them; a redraft returns as a new item.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "stale",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-04",
@@ -57,21 +67,57 @@
         "company/ops/runbook-deploy.md",
         ".claude/commands/deploy.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "done: Lessons have been deployed to Vercel since r1 (2026-10-14, f86812702); the production catalog deploy you approved is F-47 (2026-10-16), and releases r1 to r24 are in company/ops/releases.json.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "done",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Publish now\" (F-47, 2026-10-16)"
     },
     {
       "id": "F-05",
-      "title": "EDD-003 lesson storage at scale: approve stage 1 after the engineering review, and answer Kenji's 7 questions",
+      "title": "Do you approve the EDD-003 stage 1 pilot (50 lessons as runtime bundles, esbuild 0.27.0 exact-pinned as a devDependency, 1.2M tokens released of a 1.89M ceiling), or park scale-stage-1?",
       "category": "approval",
-      "priority": 2,
+      "priority": 3,
       "blocks": "Scaling past about 2k lessons; locales; image assets",
-      "options": "Approve stage 1 (browser sandbox, content-hashed bundles on a CDN), with the SPIKE-001 changes",
-      "recommendation": "Approve once the review record closes; the questions are in the EDD",
+      "options": [
+        "A: approve now, as reviewed (the review closed 2026-10-14; principal-engineer passed ADR-010 and the dependency record, 617dfdb)",
+        "B: approve only if principal-engineer re-measures today's 3,895-lesson build and finds an EDD-003 trigger crossed (build over 10 min, QA over 2 h, or lesson JS over 200 KB gz); otherwise park it",
+        "C: park scale-stage-1 now"
+      ],
+      "recommendation": "B. The review is twelve days old and was sized for about 2,000 lessons; the last full build passed with 8,230 static pages, and nobody has measured the triggers since.",
       "links": [
         "company/engineering/edd/EDD-003-lesson-storage-at-scale.md",
         "company/engineering/spikes/SPIKE-001-frontend-sandbox.md"
       ],
-      "status": "waiting on review"
+      "status": "open",
+      "previous": [
+        {
+          "date": "2026-10-28",
+          "title": "EDD-003 lesson storage at scale: approve stage 1 after the engineering review, and answer Kenji's 7 questions",
+          "status": "waiting on review",
+          "options": "Approve stage 1 (browser sandbox, content-hashed bundles on a CDN), with the SPIKE-001 changes",
+          "recommendation": "Approve once the review record closes; the questions are in the EDD"
+        }
+      ],
+      "question": "Do you approve the EDD-003 stage 1 pilot (50 lessons as runtime bundles, esbuild 0.27.0 exact-pinned as a devDependency, 1.2M tokens released of a 1.89M ceiling), or park scale-stage-1?",
+      "absorbs": [
+        "F-34 (item 3)",
+        "F-35"
+      ],
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 7,
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "priorityWas": 2
+      }
     },
     {
       "id": "F-06",
@@ -84,7 +130,18 @@
       "links": [
         "company/decisions/2026-10-13-design-org.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: The restructuring you approved (F-50, 2026-10-25; applied on main in 050845585) made multi-card sequences their own lane (lane M, design-lead) with its own flow, and AMD-017 (F-51) requires design and pairwise records for a format's first 3 lessons. That replaces both the design-review scope and the 'when do multi-card lessons get kit support' question.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Approved and decide for me\" (F-50, 2026-10-25, relayed by the coordinating session)"
     },
     {
       "id": "F-07",
@@ -109,8 +166,19 @@
       "links": [
         "company/personalization/README.md"
       ],
-      "status": "open",
-      "board": "W-091"
+      "status": "closed",
+      "board": "W-091",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "done: Your personalization brief was given and answered: commit 0a9f33358 (2026-10-16, 'response to the founder's brief F-08'), then your decisions of 2026-10-17 (company/decisions/2026-10-17-founder-personalization-milestone-delegation.md) and 2026-10-20 (company/decisions/2026-10-20-founder-edp-faithful-personalization.md).",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "done",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Yes I want better and more faithful implementation\" (2026-10-20)"
     },
     {
       "id": "F-09",
@@ -121,7 +189,18 @@
       "links": [
         "company/international/README.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: F-50 parked localization-lead and localizer ('Never ran; no locale chosen (F-09)', company/ceo-office/2026-10-25-restructuring-proposal.md, on main). With no one to act on a locale choice, the question no longer blocks anything. It returns with any proposal to un-park localization.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Approved and decide for me\" (F-50, 2026-10-25, relayed)"
     },
     {
       "id": "F-10",
@@ -132,19 +211,50 @@
       "links": [
         "company/reviews/half-of-humanity/2026-10-13-fact-check.md"
       ],
-      "status": "open",
-      "board": "W-048, W-049"
+      "status": "closed",
+      "board": "W-048, W-049",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "done: Both claims were verified by the fact-checker on 2026-10-14 without the human check: geography.half-of-humanity.c1 (the lesson is published, v4) and geography.continental-jigsaw.c1 (src/demos/geography/*/meta.json, checkedOn 2026-10-14). Board W-048 and W-049 can close.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "done",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-11",
-      "title": "Recruit 5 real learners for EXP-002 (the only real evidence of learning)",
+      "title": "Will you recruit 5 real learners for EXP-002, the only test of whether the lessons teach?",
       "category": "action",
-      "priority": 4,
+      "priority": 3,
       "links": [
         "company/experiments/EXP-002-real-learner-recall.md"
       ],
       "status": "open",
-      "board": "W-007"
+      "board": "W-007",
+      "previous": [
+        {
+          "date": "2026-10-28",
+          "title": "Recruit 5 real learners for EXP-002 (the only real evidence of learning)",
+          "status": "open"
+        }
+      ],
+      "question": "Will you recruit 5 real learners for EXP-002, the only test of whether the lessons teach?",
+      "options": [
+        "A: recruit 5 now (sessions with you, analysis by analytics-steward)",
+        "B: recruit at First Light, once accounts can record recall",
+        "C: drop EXP-002"
+      ],
+      "recommendation": "A. AMD-017 now samples agent learner walks 1 in 5, and no real learner has been measured (EXP-002 is 'designed, not run').",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 8,
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "priorityWas": 4
+      }
     },
     {
       "id": "F-12",
@@ -154,8 +264,18 @@
       "links": [
         "company/rituals/records/"
       ],
-      "status": "open",
-      "board": "W-011"
+      "status": "closed",
+      "board": "W-011",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "stale: The Operational Plan draft (company/rituals/records/2026-10-12-op-planning.md) planned a 500-lesson cycle that the catalog has passed (3,895 lessons in the World). F-50's lane budgets (to 2026-11-08) are marked for confirmation at the next op-planning, which brings a fresh plan. AMD-000 was ratified on 2026-10-12; its re-ratification goes on the next constitutional review's agenda (board W-011), not the inbox.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "stale",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-13",
@@ -168,9 +288,20 @@
         "company/ceo-office/2026-10-13-role-evaluation.md",
         "company/ceo-office/handoff-map.md"
       ],
-      "status": "open",
+      "status": "closed",
       "options": "P1 Ada stops publishing, chairing launches and filing QA records (release-manager, qa-tester, head-of-product take them). P2 accessibility review of all 76 published lessons: unpublish failures, or waive in writing. P3 attribution from dispatches only, not commit keywords. P5 ratify AMD-001(d). P6 cultural and safety reviewers report to the evaluation steward. P7 cut head-of-product direct reports. P8 decision records for 4 role changes; merge domain-scout into principal-pm-verticals and hq-engineer into tools-lead. Also: should the 27 sub-area managers exist yet?",
-      "recommendation": "Approve P1, P2 (review, not waive), P3 and P8 now; P5 with F-03; P6 and P7 at OP planning"
+      "recommendation": "Approve P1, P2 (review, not waive), P3 and P8 now; P5 with F-03; P6 and P7 at OP planning",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: The restructuring you approved (F-50) rests on these proposals and applied them: the operator does no production (P1), checkers report to the quality lane (P6, F-28), head-of-product's span is 6 (P7), domain-scout merged into principal-pm-verticals (P8), and the 36 strand managers are parked (the sub-area question). P2 is F-14, P5 is AMD-013. Record: company/decisions/2026-10-25-founder-restructuring.md and commit 050845585, both on main.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Approved and decide for me\" (F-50, 2026-10-25, relayed)"
     },
     {
       "id": "F-14",
@@ -184,8 +315,19 @@
         "company/reviews/_accessibility/2026-10-13-published-audit.md",
         "company/reviews/_accessibility/2026-10-13-published-audit.md#second-batch-2026-10-14"
       ],
-      "status": "open",
-      "board": "W-148"
+      "status": "closed",
+      "board": "W-148",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: No unpublish is waiting on you: after the 26 lessons re-passed contrast, you approved the production deploy of the published catalog (F-47, 'Publish now', 2026-10-16), and it has shipped in every release since. The kit items K2 to K4 stay with platform-engineer on W-148, outside the inbox.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Publish now\" (F-47, 2026-10-16)"
     },
     {
       "id": "F-15",
@@ -225,19 +367,44 @@
     },
     {
       "id": "F-17",
-      "title": "Monetization: whether to pursue ads, and on these terms (vp-marketing proposal, 2026-10-15)",
+      "title": "Do you want ads at all, on the staged plan (a labelled card between lessons, house cards only in release 1, no personalised ads while learners may be under 16), with the Surface Value amendment ratified alongside it and the host decided before any commercial use, or no monetization yet?",
       "category": "decision",
       "priority": 2,
       "blocks": "Any ad work; the Stage 0 preconditions in the proposal",
-      "options": "(a) Proceed to Stage 0: a first-party contextual ad card between lessons only (never inside a lesson or before a reveal, 1 per 6 lessons, static, labelled), personalised/behavioural ads ruled out while learners may be under 13/16. (b) Donations (adults) and school/B2B licences only, no ads. (c) No monetization yet.",
-      "recommendation": "(a) staged, with donations and a school-licence discovery in parallel. At realistic early traffic, display ads earn less than the hosting they need (assumed ranges, no real-learner data).",
+      "options": [
+        "A: proceed on the staged plan: Stage 0 preconditions, then house cards only in release 1 (1 per 6 lessons, never inside a lesson or before a reveal, labelled); ratify the Surface Value amendment with it (was F-19); decide Vercel Pro or another host before Stage 2 (was F-18); approve no ad, affiliate or donation account now, each comes back separately after the privacy review (was F-20)",
+        "B: donations and school licences only, no ads",
+        "C: no monetization yet; the ad slot leaves release 1"
+      ],
+      "recommendation": "A, as vp-marketing proposed: house cards earn $0 at launch, so this decides the rules, not revenue. vp-marketing is scheduled to park at First Light's close (2026-11-23), so an answer after that date has no owner.",
       "links": [
         "company/marketing/2026-10-15-monetization-ads-proposal.md",
         "company/product/surface-value.md"
       ],
       "status": "open",
       "depends_on": "F-01, F-04",
-      "budget": "first-light"
+      "budget": "first-light",
+      "previous": [
+        {
+          "date": "2026-10-28",
+          "title": "Monetization: whether to pursue ads, and on these terms (vp-marketing proposal, 2026-10-15)",
+          "status": "open",
+          "options": "(a) Proceed to Stage 0: a first-party contextual ad card between lessons only (never inside a lesson or before a reveal, 1 per 6 lessons, static, labelled), personalised/behavioural ads ruled out while learners may be under 13/16. (b) Donations (adults) and school/B2B licences only, no ads. (c) No monetization yet.",
+          "recommendation": "(a) staged, with donations and a school-licence discovery in parallel. At realistic early traffic, display ads earn less than the hosting they need (assumed ranges, no real-learner data)."
+        }
+      ],
+      "question": "Do you want ads at all, on the staged plan (a labelled card between lessons, house cards only in release 1, no personalised ads while learners may be under 16), with the Surface Value amendment ratified alongside it and the host decided before any commercial use, or no monetization yet?",
+      "absorbs": [
+        "F-18",
+        "F-19",
+        "F-20"
+      ],
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 6,
+        "record": "company/ops/2026-10-28-inbox-triage.md"
+      }
     },
     {
       "id": "F-18",
@@ -251,8 +418,19 @@
         "company/marketing/2026-10-15-monetization-ads-proposal.md",
         "company/engineering/notes/2026-10-14-scalability-options-for-founder.md"
       ],
-      "status": "open",
-      "budget": "first-light"
+      "status": "closed",
+      "budget": "first-light",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "merged into F-17: Hosting for commercial use only matters if you pursue ads (F-17); it is now part of F-17's question.",
+      "mergedInto": "F-17",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "merge",
+        "into": "F-17",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-19",
@@ -266,7 +444,18 @@
         "company/marketing/2026-10-15-monetization-ads-proposal.md",
         "company/product/surface-value.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "merged into F-17: The Surface Value amendment for ads is conditional on F-17 (a); it is now part of F-17's question.",
+      "mergedInto": "F-17",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "merge",
+        "into": "F-17",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-20",
@@ -279,7 +468,18 @@
       "links": [
         "company/marketing/2026-10-15-monetization-ads-proposal.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "merged into F-17: Ad, affiliate and donation accounts come after F-17; its recommendation was 'approve none now'. Now part of F-17's question.",
+      "mergedInto": "F-17",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "merge",
+        "into": "F-17",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-21",
@@ -312,20 +512,51 @@
         "company/product/verticals/plan-to-2000.md",
         "company/decisions/2026-10-15-behavioral-economics-dlr-decision.md"
       ],
-      "status": "open",
-      "budget": "behavioral-econ"
+      "status": "closed",
+      "budget": "behavioral-econ",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: The slot budget inside the 2,000 is moot. You ordered 500 behavioral demos from the source lists (company/decisions/2026-10-24-founder-behavioral-causal-200-pr.md and 2026-10-24-founder-remaining-source-demos.md), and they are drafts in the 3,895-lesson World. The behavioral-econ line stayed at STOP (F-43).",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Ok proceed with other demos 200 in each pr\" (2026-10-24)"
     },
     {
       "id": "F-23",
-      "title": "First Light: the public domain name (and brand name) for the first release",
+      "title": "What is First Light's public name and domain?",
       "category": "decision",
       "priority": 2,
       "blocks": "First Light domain and brand workstream; Vercel domain purchase (spend approved in principle, 2026-10-15-founder-first-light.md item 8)",
-      "options": "vp-marketing proposes a shortlist with availability and price quotes; founder picks",
-      "recommendation": "Ask vp-marketing for 3-5 names with quotes before Project Review 1 or the Friday founder review",
+      "options": [
+        "A: vp-marketing brings 3 to 5 names with availability and prices, and you pick",
+        "B: you name it directly",
+        "C: launch on system-3-company.vercel.app"
+      ],
+      "recommendation": "A, this week. Sign-in also waits on it: the email sender needs a domain you control (company/engineering/operations/2026-10-19-production-account-provisioning.md, Pending).",
       "status": "open",
       "board": "W-905, W-907",
-      "budget": "first-light"
+      "budget": "first-light",
+      "previous": [
+        {
+          "date": "2026-10-28",
+          "title": "First Light: the public domain name (and brand name) for the first release",
+          "status": "open",
+          "options": "vp-marketing proposes a shortlist with availability and price quotes; founder picks",
+          "recommendation": "Ask vp-marketing for 3-5 names with quotes before Project Review 1 or the Friday founder review"
+        }
+      ],
+      "question": "What is First Light's public name and domain?",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 4,
+        "record": "company/ops/2026-10-28-inbox-triage.md"
+      }
     },
     {
       "id": "F-24",
@@ -344,31 +575,71 @@
     },
     {
       "id": "F-25",
-      "title": "Engage a lawyer for First Light by 10-30: privacy policy and terms, COPPA/GDPR-K (Art. 8), ePrivacy for localStorage and the beacon, user-content duties if social stays, Vercel commercial use",
+      "title": "Will you engage a lawyer by 2026-10-30 for First Light's privacy policy and terms (COPPA, GDPR-K, ePrivacy for localStorage and the beacon, user-content duties if social stays, Vercel commercial use)?",
       "category": "decision",
       "priority": 1,
       "blocks": "privacy gate P7 (lawyer-reviewed policy at RC1 11-13)",
-      "recommendation": "yes; the money decision is the founder's",
+      "recommendation": "A. The privacy gate needs a lawyer-reviewed policy at RC1 (11-13). The money is yours to approve.",
       "status": "open",
       "budget": "first-light",
       "links": [
         "company/initiatives/first-light/privacy-gate.md"
-      ]
+      ],
+      "previous": [
+        {
+          "date": "2026-10-28",
+          "title": "Engage a lawyer for First Light by 10-30: privacy policy and terms, COPPA/GDPR-K (Art. 8), ePrivacy for localStorage and the beacon, user-content duties if social stays, Vercel commercial use",
+          "status": "open",
+          "recommendation": "yes; the money decision is the founder's"
+        }
+      ],
+      "question": "Will you engage a lawyer by 2026-10-30 for First Light's privacy policy and terms (COPPA, GDPR-K, ePrivacy for localStorage and the beacon, user-content duties if social stays, Vercel commercial use)?",
+      "options": [
+        "A: yes, by 10-30",
+        "B: yes, after First Light is re-planned",
+        "C: no; release 1 ships without accounts or social"
+      ],
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 2,
+        "record": "company/ops/2026-10-28-inbox-triage.md"
+      }
     },
     {
       "id": "F-26",
-      "title": "First Light social: name a human moderator and a cover who can act on reports within 24 hours",
+      "title": "Who are the human moderator and the cover who can act on social reports within 24 hours, or does release 1 ship share-a-lesson only?",
       "category": "decision",
       "priority": 1,
       "blocks": "Social beyond share links in release 1 (privacy gate §5.1, P4.3); without them social is absent from the release build",
-      "options": "Name yourself plus one cover; name two people you trust; or accept that release 1 ships share-a-lesson only",
-      "recommendation": "Decide by 10-30 so the privacy gate can rule by 11-09",
+      "options": [
+        "A: you, plus one cover",
+        "B: two people you name",
+        "C: share-a-lesson only in release 1"
+      ],
+      "recommendation": "A, if you still want the social features you asked for on 10-15 ('Yes i want these back'). C if no one can promise the 24 hours. Due 10-30, so the privacy gate can rule by 11-09.",
       "links": [
         "company/decisions/2026-10-15-founder-first-light-ads-social-back.md"
       ],
       "status": "open",
       "due": "2026-10-30",
-      "budget": "first-light"
+      "budget": "first-light",
+      "previous": [
+        {
+          "date": "2026-10-28",
+          "title": "First Light social: name a human moderator and a cover who can act on reports within 24 hours",
+          "status": "open",
+          "options": "Name yourself plus one cover; name two people you trust; or accept that release 1 ships share-a-lesson only",
+          "recommendation": "Decide by 10-30 so the privacy gate can rule by 11-09"
+        }
+      ],
+      "question": "Who are the human moderator and the cover who can act on social reports within 24 hours, or does release 1 ship share-a-lesson only?",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 3,
+        "record": "company/ops/2026-10-28-inbox-triage.md"
+      }
     },
     {
       "id": "F-27",
@@ -381,7 +652,18 @@
         "company/decisions/2026-10-16-proposal-managers-dispatch-own-teams.md",
         "company/rituals/records/2026-10-16-retro-delegation.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: Growth is no longer split between two people: F-52 (main's numbering, the principles G1 to G3, 2026-10-25; applied in c0967b47f on main) moved growth-designer under head-of-product, and head-of-strategic-initiatives is scheduled to park when First Light closes (2026-11-23). Note: main's F-52 decision record (company/decisions/2026-10-25-founder-f52.md) is not this file's F-52 (r24), which is F-55 after the 2026-10-28 unification.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"F-52 for System 3 Lessons\" (2026-10-25)"
     },
     {
       "id": "F-28",
@@ -394,7 +676,18 @@
         "company/decisions/2026-10-16-proposal-managers-dispatch-own-teams.md",
         "company/rituals/records/2026-10-16-retro-delegation.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "done: Adopted in F-50: route-reviewer (the merged cultural and safety reviewers) reports to evaluation-steward, and checkers are dispatched only from the quality lane's standing orders (company/ceo-office/2026-10-25-restructuring-proposal.md §3; commit 050845585 on main).",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "done",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Approved and decide for me\" (F-50, 2026-10-25, relayed)"
     },
     {
       "id": "F-29",
@@ -406,7 +699,17 @@
         "company/decisions/2026-10-16-poc-map-and-dispatch-requests.md",
         "company/decisions/2026-10-16-proposal-managers-dispatch-own-teams.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "done: Built: dispatch-check takes a batch= source and fails one whose file does not exist (c73ddb90e, 2026-10-16, and d11cfca7c, 2026-10-17; tools/dispatch-check.mjs).",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "done",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-30",
@@ -445,7 +748,17 @@
       "links": [
         "company/rituals/records/2026-10-16-retro-delegation.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: Leonie's draft never came, and the need is covered: every session ends with a dated handoff (what changed, what you believe and how sure, what's next, what's blocked) under CLAUDE.md, and every run writes one offboarding entry (F-39, tools/memory.mjs). If chief-of-staff-ceo-office still wants the 'checked on disk' column, it is an onboarding change through the org data, not a founder question.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-33",
@@ -456,7 +769,18 @@
       "links": [
         "company/rituals/records/2026-10-16-retro-delegation.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "done: Done by F-50: all 36 strand managers are parked with their definitions kept (company/org.json on main, 64 parked roles; commit 050845585).",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "done",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Approved and decide for me\" (F-50, 2026-10-25, relayed)"
     },
     {
       "id": "F-34",
@@ -468,7 +792,18 @@
         "company/rituals/records/2026-10-16-project-review-positions-principal-engineer.md",
         "company/rituals/records/2026-10-16-project-review.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "merged into F-05: Items 1 (First Light tranche 2 against the stop rule) and 2 (lifehacks-engine-v2 cost) are stale: the 10-23 checkpoint passed, F-46 closed out Life Hacks, and First Light's re-plan (W-1122) will bring tranche 2 back. Item 3 (scale-stage-1: release 1.2M of a 1.89M ceiling) is the same decision as F-05.",
+      "mergedInto": "F-05",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "merge",
+        "into": "F-05",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-35",
@@ -480,7 +815,18 @@
         "company/engineering/adr/ADR-010-lesson-bundler-esbuild.md",
         "company/decisions/2026-10-16-dep-esbuild.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "merged into F-05: The esbuild devDependency is only for the scale-stage-1 bundler; it is part of F-05's question.",
+      "mergedInto": "F-05",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "merge",
+        "into": "F-05",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-36",
@@ -505,7 +851,17 @@
         "company/research/notes/2026-10-16-rome-why-east-routes.md",
         "company/research/notes/2026-10-16-w902-item-level-sources.md"
       ],
-      "status": "open"
+      "status": "closed",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "stale: This was optional and blocks nothing (its own text). The Rome lesson says 'this record does not say why', and both behavioral held lines shipped cut. If you have the PDFs, add them to the repo at any time; the source list stays in company/research/notes/2026-10-16-w902-item-level-sources.md.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "stale",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-38",
@@ -551,8 +907,19 @@
       "links": [
         "company/decisions/2026-10-16-founder-throughput-for-10k.md"
       ],
-      "status": "open",
-      "recommendation": "draft being written; objections from evaluation-steward, Leonie, PE-ops before the founder decides"
+      "status": "closed",
+      "recommendation": "draft being written; objections from evaluation-steward, Leonie, PE-ops before the founder decides",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "superseded: Replaced by the restructuring you approved: F-50 (lanes with standing build orders, one revision round, coordination charged to the lane, a cost target per tier-S lesson) and F-51 (AMD-017 risk tiers, with tier-S learner walks sampled 1 in 5). The org-health objection to sampling before the weekly audit of 50 has run stays open on AMD-017 (owner chief-of-staff-ceo-office).",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "superseded",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      },
+      "founderWords": "\"Approved and decide for me\" (F-50); \"Ratify sampling learner walks at 1 in 5 now.\" (F-51, 2026-10-25)"
     },
     {
       "id": "F-42",
@@ -597,8 +964,18 @@
       "links": [
         "company/initiatives/first-light/2026-10-16-fast-path-to-release.md"
       ],
-      "status": "open",
-      "recommendation": "by 10-22"
+      "status": "closed",
+      "recommendation": "by 10-22",
+      "closedAt": "2026-10-28",
+      "closedBy": "chief-of-staff",
+      "closedReason": "done: fra1 is set: vercel.json has regions [fra1] since 8bfca75c7 (2026-10-19, your own commit, company/engineering/operations/2026-10-19-production-account-provisioning.md: 'founder requested setup of production sign-in resources'). Accounts-off previews and production releases have run since.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "close",
+        "kind": "done",
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "statusWas": "open"
+      }
     },
     {
       "id": "F-46",
@@ -636,7 +1013,7 @@
     },
     {
       "id": "F-49",
-      "title": "rnd-knots tranche 2 budget (0.6M): EDD-011 Part 2, the exported extraCrossings check that makes knot briefs 5, 7, 8 buildable",
+      "title": "Do you release rnd-knots tranche 2 (0.6M tokens; EDD-011 Part 2, the kit's exported extraCrossings check that makes knot briefs 5, 7 and 8 buildable)?",
       "category": "decision",
       "budget": "rnd-knots",
       "priority": 2,
@@ -647,11 +1024,30 @@
       ],
       "status": "open",
       "options": [
-        "A: release now (0.6M; 7 knot lessons in parallel)",
-        "B: release when one of knot briefs 1-4 gets a launch-review go (portfolio-manager recommends)",
-        "C: decline"
+        "A: release now",
+        "B: decline (rnd-lead then parks, per F-52 G2 on main)"
       ],
-      "note": "Knot briefs 1-4 do NOT wait on this: they build on the catalog line now. Open objection (vp-rnd, unanswered): the kill trigger moved from no brief to no knot lesson with a launch-review go by 2026-11-06. Not delegable: changes the kit (tier 2). Chair: founder (project review)."
+      "note": "Knot briefs 1-4 do NOT wait on this: they build on the catalog line now. Open objection (vp-rnd, unanswered): the kill trigger moved from no brief to no knot lesson with a launch-review go by 2026-11-06. Not delegable: changes the kit (tier 2). Chair: founder (project review).",
+      "previous": [
+        {
+          "date": "2026-10-28",
+          "title": "rnd-knots tranche 2 budget (0.6M): EDD-011 Part 2, the exported extraCrossings check that makes knot briefs 5, 7, 8 buildable",
+          "status": "open",
+          "options": [
+            "A: release now (0.6M; 7 knot lessons in parallel)",
+            "B: release when one of knot briefs 1-4 gets a launch-review go (portfolio-manager recommends)",
+            "C: decline"
+          ]
+        }
+      ],
+      "question": "Do you release rnd-knots tranche 2 (0.6M tokens; EDD-011 Part 2, the kit's exported extraCrossings check that makes knot briefs 5, 7 and 8 buildable)?",
+      "recommendation": "A. The condition portfolio-manager set for its option B has been met: knot briefs 1 to 4 are published (draw-a-table-knot v4, tricolour-check, unknot-game, left-or-right). The bet's kill date (no knot lesson with a launch-review go by 2026-11-06) can no longer fire. vp-rnd's objection to the moved kill trigger travels with the decision, though vp-rnd is now parked.",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 5,
+        "record": "company/ops/2026-10-28-inbox-triage.md"
+      }
     },
     {
       "id": "F-50",
@@ -715,7 +1111,14 @@
         "C: keep r24 as it is (accept the advisories while the World is inspected)"
       ],
       "recommendation": "B if r25 can be ready today; A if not. Not C: r23 was a security deploy.",
-      "note": "Numbered F-52 on the default branch because main already holds F-50 and F-51; renumbered F-55 on 2026-10-28 in the main/default unification (integration engineer), because main's decision records already use F-52, F-53 and F-54. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff)."
+      "note": "Numbered F-52 on the default branch because main already holds F-50 and F-51; renumbered F-55 on 2026-10-28 in the main/default unification (integration engineer), because main's decision records already use F-52, F-53 and F-54. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff).",
+      "triage": {
+        "date": "2026-10-28",
+        "verdict": "keep",
+        "rank": 1,
+        "record": "company/ops/2026-10-28-inbox-triage.md",
+        "note": "left open for the coordinator, who closes it when r25 is live"
+      }
     }
   ]
 }
