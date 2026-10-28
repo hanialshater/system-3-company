@@ -661,16 +661,20 @@
       "links": [
         "company/ops/deployments/2026-10-28-r24-production.json",
         "company/ops/deployments/2026-10-26-r23-production.json",
-        "company/ops/releases.json"
+        "company/ops/releases.json",
+        "company/ops/deployments/2026-10-28-r25-production.json"
       ],
-      "status": "open",
+      "status": "decided",
       "options": [
         "A: roll back to r23 (dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz): restores Next 16.4.3 and the cube lesson, removes the World",
         "B: keep r24 live, and approve one new release r25: the default branch with 80c847c55 (Next 16.4.3) and the cube lesson merged, so the World stays and the fixes return (release-manager prepares; nothing deploys before your approval of that deploy)",
         "C: keep r24 as it is (accept the advisories while the World is inspected)"
       ],
       "recommendation": "B if r25 can be ready today; A if not. Not C: r23 was a security deploy.",
-      "note": "Numbered F-52 because main already holds F-50 and F-51. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff)."
+      "note": "Numbered F-52 because main already holds F-50 and F-51. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff).",
+      "decided": "2026-10-28",
+      "answer": "B. \"Approve r25 when ready (Rec.)\"; after attempt 1 failed for out of memory: declined the rollback to r23, then \"Fix the memory, retry (Rec.)\" (founder, 2026-10-28)",
+      "decision": "founder 2026-10-28: option B, the new release r25. It is live as dpl_GSH8o9Knf1GVJKEcAzGYyd6ba8to (READY 2026-10-28T19:08:30.857Z), on source fead82bd37a1ce45495606f81cfa20ec7f2a69da. Evidence: the build log shows Next.js 16.4.3; /d/flatten-the-cube-to-a-dot returns 200 with its data-slug; feed.spec 10/10 and contract.spec 4/4 against production; no runtime errors. Attempt 1 (dpl_92Q7iJ4uuFDPyrfAwRLrcggaBeKc) failed for out of memory and was fixed on release/r25. Records: company/ops/deployments/2026-10-28-r25-production.json, company/ops/releases.json r25."
     }
   ]
 }
