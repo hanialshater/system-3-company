@@ -1,6 +1,6 @@
 {
   "release": "r25",
-  "status": "prepared again after a failed build (attempt 2 awaiting deploy; the coordinator deploys)",
+  "status": "live: dpl_GSH8o9Knf1GVJKEcAzGYyd6ba8to READY 2026-10-28T19:08:30.857Z, aliased to system-3-company.vercel.app (attempt 2). Attempt 1 failed for out of memory.",
   "target": "production",
   "recordedBy": "release-manager, 2026-10-28. release-manager does not deploy r25: the coordinator does (coordinator, 2026-10-28)",
   "sourceCommit": "the commit that adds this file, the tip of release/r25 (see the PR). Its only parent is 0e34c13abf8966aad038a565707dc6a5ba37c220, and the two differ only by this record",
@@ -48,7 +48,7 @@
     "note: the browser specs send the app's own beacons to /api/events; record the time window, as at r23"
   ],
   "rollback": "on any failed check: Vercel instant rollback to r23, dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (the founder's approved fallback), then a COE. A rollback removes the World, which is the trade-off the founder accepted.",
-  "afterReady": "append r25 to company/ops/releases.json (date = READY time, commit = sourceCommit, deploy_commit = the marker SHA, deployment id), set this record's status, and merge release/r25 into the default branch through its PR",
+  "afterReady": "done: r25 appended to company/ops/releases.json, F-52 decided, W-2120 done. PR #39 merges release/r25 into main (integration engineer).",
   "checkedTree": "0e34c13abf8966aad038a565707dc6a5ba37c220 (typecheck, build, local serve and QA); company check rerun on the tip",
   "attempts": [
     {
@@ -57,6 +57,13 @@
       "commit": "0accb77ac (marker commit on 32b843de8)",
       "result": "build failed, errorCode out_of_memory: 'npm run build exited with SIGKILL', and Vercel's build report shows an OOM event. The machine was iad1 with 2 cores and 8 GB. The build compiled in 3.6 min and was killed 89 s into Next's 'Running TypeScript' step, while Turbopack was also writing its filesystem cache. Production stayed on r24. The founder declined a rollback to r23 and chose 'Fix the memory, retry (Rec.)'.",
       "cause": "Two large consumers overlapped on an 8 GB machine. Turbopack's process holds about 6 GB of native memory for its compile graph (8,232 pages) through the type check and the cache write. Next then runs tsc in a worker in the same container, and tsc needs about 1.8 to 2.8 GB on top. Measured locally in an 8 GB memory cgroup on 2 cores (taskset), with the unchanged r25 build: the process tree reached 7,678 MB RSS, the cgroup sat at its limit (failcnt 94,080), and the tsc worker died at V8's default heap of about 2 GB, which Node sets for 8 GB. tsc alone in the same cap: about 2.2 GB, then a heap OOM; with a 4 GB heap it passes at 2.8 GB RSS. r24 on Next 16.4.0 ran the same overlap and passed (TypeScript 106 s), so the build was already near the limit. Next's JS build code is the same in 16.4.0 and 16.4.3 apart from version strings, and turbopackFileSystemCacheForBuild defaults to true in both. 16.4.3 compiled more slowly on Vercel (3.6 min against 2.5), so its native Turbopack is the likely extra memory, but that is not proven: 16.4.0 was not rerun under the cap."
+    },
+    {
+      "attempt": 2,
+      "deployment": "dpl_GSH8o9Knf1GVJKEcAzGYyd6ba8to",
+      "commit": "f8c6d33ad8dfb5ca1204c3dc77c9429a0b6214a0 (marker on fead82bd37a1ce45495606f81cfa20ec7f2a69da)",
+      "result": "READY 2026-10-28T19:08:30.857Z. Read by release-manager in the build log: iad1, 2 cores, 8 GB; 'Types generated successfully'; tsc took about 98 s before '▲ Next.js 16.4.3 (Turbopack)'; compiled in 2.7 min; 'Skipping validation of types'; 1 worker generated 8,232 static pages in 72 s; 'Build Completed in /vercel/output [7m]'; no OOM report.",
+      "approval": "the founder declined the rollback to r23 after attempt 1 and chose 'Fix the memory, retry (Rec.)'"
     }
   ],
   "fix": {
@@ -67,5 +74,15 @@
     "change": "The build runs 'next typegen && node --max-old-space-size=4096 node_modules/typescript/bin/tsc --noEmit' as its own step before 'next build', so tsc finishes and exits before Turbopack starts, and Next's built-in second type check is skipped. The type gate is unchanged: the same tsconfig, the generated route types (validator.ts) included, and a type error still fails the build (a probe file with TS2322 made npm run build exit 2 before Next started). Protected paths are not touched.",
     "measured": "Measured locally in an 8 GB cgroup on 2 cores. With 1 static worker (experimental.cpus 1, set only for this run to match Vercel's 'using 1 worker', not committed), the tree peaked at 6,621 MB RSS and the cgroup at 6,781 MB, with failcnt 0: about 1.4 GB of headroom. The tsc step peaked at about 1.8 GB. With this machine's default 3 static workers, the peak was 7,836 MB, and it still passed.",
     "notDone": "Turbopack's own memory was not reduced. Its build log warns that tools/lib/ritual-records.mjs, through src/lib/hq.ts, makes it trace the whole project (24,090 files). That is a follow-up for engineering."
+  },
+  "deployedBy": "coordinator (release-manager prepared the release and the fix, and did not deploy)",
+  "productionSmokeResults": {
+    "by": "coordinator, relayed 2026-10-28",
+    "http": "200 for /, /learn/world, /catalog, /d/flatten-the-cube-to-a-dot (with data-slug), /d/euclid-three-steps, /history and /hq; 404 for /d/no-such-lesson-xyz",
+    "feedSpec": "10/10 against https://system-3-company.vercel.app",
+    "contractSpec": "4/4 (flatten-the-cube-to-a-dot, euclid-three-steps; phone and desktop)",
+    "beaconWindow": "2026-10-28T19:09:10Z to 19:09:50Z (real beacons sent to /api/events)",
+    "runtimeErrors": "none since 19:08Z",
+    "buildLogVersion": "'Next.js 16.4.3', confirmed by release-manager in the deployment events (the coordinator had not checked it)"
   }
 }

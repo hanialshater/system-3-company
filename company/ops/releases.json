@@ -1281,6 +1281,48 @@
           "company check: 783 errors, 4 warnings on this tree (inherited)."
         ]
       }
+    },
+    {
+      "version": "r25",
+      "date": "2026-10-28T19:08:30.857Z",
+      "commit": "fead82bd37a1ce45495606f81cfa20ec7f2a69da",
+      "deploy_commit": "f8c6d33ad8dfb5ca1204c3dc77c9429a0b6214a0 (empty marker commit on fead82bd3, same tree d0a6b0a3f; branch release/r25)",
+      "target": "production",
+      "deployment": "dpl_GSH8o9Knf1GVJKEcAzGYyd6ba8to (company/ops/deployments/2026-10-28-r25-production.json); attempt 1 dpl_92Q7iJ4uuFDPyrfAwRLrcggaBeKc (marker 0accb77ac) failed: out_of_memory, SIGKILL during Next's TypeScript step",
+      "rollback_target": "dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f (r24, keeps the World); dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (r23) if 16.4.3 must stay",
+      "approved_by": {
+        "who": "founder",
+        "record": "conversation, 2026-10-28, relayed word for word by the coordinator: the conditional option 'Once r25 passes its checks, build and local QA, I deploy it to production without asking again and smoke-test it. If it fails any check, I roll back to r23 instead.' After attempt 1 failed, the founder declined that rollback and chose the retry.",
+        "quote": "\"Approve r25 when ready (Rec.)\"; after attempt 1 failed for out of memory: declined the rollback to r23, then \"Fix the memory, retry (Rec.)\" (founder, 2026-10-28)"
+      },
+      "summary": "Restores r23's Next.js 16.4.3 security fix and r22's flatten-the-cube-to-a-dot on top of r24's Lessons World. Also fixes the build's memory: the type check now runs before next build.",
+      "added": {
+        "features": [],
+        "lessons": {
+          "published": {
+            "count": 1,
+            "slugs": [
+              "flatten-the-cube-to-a-dot"
+            ]
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "Next.js 16.4.0 -> 16.4.3 again (cherry-pick of r23's 80c847c55): the critical next advisories that r24 brought back are cleared (R-031).",
+          "flatten-the-cube-to-a-dot served again (published in r22, missing in r24): 721 published lessons.",
+          "Build memory: next typegen and tsc --noEmit (4 GB heap) run before next build, with typescript.ignoreBuildErrors set so Next does not run a second, overlapping check. Measured in an 8 GB cgroup on 2 cores with 1 worker: peak 6,621 MB, against 7,678 MB and a heap OOM before. A type error still fails the build."
+        ],
+        "known_issues": [
+          "Smoke relayed by the coordinator: HTTP 200 for /, /learn/world, /catalog, /d/flatten-the-cube-to-a-dot (with data-slug), /d/euclid-three-steps, /history and /hq; 404 for /d/no-such-lesson-xyz. feed.spec 10/10 and contract.spec (cube, euclid) 4/4 against production. No Vercel runtime errors since 19:08Z.",
+          "The browser specs sent real beacons to /api/events from 19:09:10Z to 19:09:50Z; exclude that window from metrics.",
+          "Turbopack's own memory is still about 6 GB: tools/lib/ritual-records.mjs, through src/lib/hq.ts, makes it trace the whole project (24,130 files). Follow-up for engineering.",
+          "The World's lessons are still inspection-only, as in r24: most are unchecked drafts.",
+          "company check: 783 errors, 4 warnings on this tree (inherited, same set as r24)."
+        ]
+      }
     }
   ],
   "historical_deployments": [

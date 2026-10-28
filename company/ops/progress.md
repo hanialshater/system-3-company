@@ -57,6 +57,29 @@ Blocked: nothing new. The F-52 id collides with main's decision record of the sa
 Founder asked to proceed with at least 500 psychology and human learning demos. A new incubating psychology domain has two draft pilots: `was-that-word-on-the-list` (source monitoring) and `which-dots-belong-together` (proximity). Domain scout's proposal, product scope, interim coordinator acceptance, curriculum, registry and claim records are included. All claims remain unverified; 2 of at least 500 demos implemented, 498 or more remaining. W-2160 tracks continued briefs/builds, W-2161 independent review and QA. No activation, publication, or deployment was approved by this work.
 
 Baseline company check had 783 errors and four warnings; the first post-change check had the identical output. Baseline and post-change verify both stopped at the pre-existing publication test (34 pass, 1 fail). TypeScript and a domain/claim/registry consistency check passed. npm setup could not install Chromium's system dependencies because changing user/group IDs was denied; the cloud browser could not reach the isolated local server. Browser and phone QA, source verification, subject-area overlap sign-off and learner review remain open. Production build outcome is recorded in the pull request. Next: finish independent pilots review, provide a usable browser, and deliver distinct source-backed lessons in bounded batches toward the founder target.
+## 2026-10-28 · release-manager · r25 live: Next 16.4.3 and the cube lesson are back, and the World stays
+
+**First thing to know: production is r25.** It is dpl_GSH8o9Knf1GVJKEcAzGYyd6ba8to (READY 19:08:30Z), on source fead82bd3 with marker f8c6d33ad, from branch release/r25. The coordinator deployed it; release-manager prepared it. It fixes r24's two regressions: Next.js is 16.4.3 again (r23's security fix 80c847c55, R-031 advisories cleared), and flatten-the-cube-to-a-dot (r22) is served again. The Lessons World stays. F-52 is decided (option B) and W-2120 is done.
+
+What happened:
+- Founder: "Approve r25 when ready (Rec.)", a conditional approval: deploy if the checks pass, otherwise roll back to r23.
+- Attempt 1 (dpl_92Q7iJ4uuFDPyrfAwRLrcggaBeKc, marker 0accb77ac) failed: out_of_memory, SIGKILL 89 s into Next's "Running TypeScript" step on the 8 GB, 2-core machine. Production stayed on r24. The founder declined the rollback and chose "Fix the memory, retry (Rec.)".
+- Cause: Turbopack keeps about 6 GB of native memory through the type check and the cache write, and Next's tsc worker needs about 1.8 to 2.8 GB on top. r24 ran the same overlap and only just fitted. I reproduced the failure locally in an 8 GB memory cgroup on 2 cores: the tree reached 7,678 MB, and the tsc worker hit a heap OOM. Why 16.4.3 needs more than 16.4.0 is not proven: Next's build JavaScript is the same, so the likely cause is native Turbopack, and I did not rerun 16.4.0.
+- Fix (fead82bd3; package.json and next.config.mjs): the build runs `next typegen` and `tsc --noEmit` (4 GB heap) before `next build`, and `typescript.ignoreBuildErrors` stops Next from running a second, overlapping check. The type gate holds: a probe with TS2322 made the build exit 2. The peak under the cap with 1 worker is 6,621 MB.
+- Attempt 2's build log, which I read myself: "Types generated successfully", tsc about 98 s, "Next.js 16.4.3", "Skipping validation of types", 8,232 pages with 1 worker, done in 7 min, no OOM.
+
+What I believe and how sure:
+- The deploy facts and the git facts are high confidence. I read the Vercel build events and the commits.
+- The production smoke comes from the coordinator; I did not run it: 200s on the core routes and on the cube lesson, 404 on an unknown slug, feed.spec 10/10, contract.spec 4/4, no runtime errors since 19:08Z.
+- The browser specs sent real beacons to /api/events from 19:09:10Z to 19:09:50Z. Leave that window out of any metric.
+
+Next:
+- The integration engineer merges PR #39 (release/r25) into main.
+- The chief of staff reconciles the default branch with main (W-2121). W-2122 (the inspection branch's 12 undeployed commits) is unchanged.
+- Engineering: Turbopack traces the whole project through tools/lib/ritual-records.mjs, imported by src/lib/hq.ts (24,130 files). Cutting that is the real reduction in build memory; the fix only stops the two peaks overlapping.
+- Rollback targets: r24 dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f (keeps the World, but runs 16.4.0); r23 dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz.
+
+Checks: npm run check gave 783 errors and 4 warnings, the same set as r24. Typecheck passes. The build passes under the 8 GB cap.
 
 ## 2026-10-28 · release-manager · r24 recorded; production regressed r23's security fix
 
