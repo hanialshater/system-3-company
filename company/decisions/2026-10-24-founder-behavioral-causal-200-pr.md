@@ -40,5 +40,5 @@ Three existing demo-builder instances own Behavioral 1–100 and Probability A/B
 
 ## Board
 
-- W-2026: 100 behavioral demos (cm-behavioral).
-- W-2027: 100 causal/probability demos (cm-probability).
+- W-2123: 100 behavioral demos (cm-behavioral).
+- W-2124: 100 causal/probability demos (cm-probability).
