@@ -1,0 +1,1640 @@
+{
+ "schema": "s3.lessons-world.m1-histories-amendment/1",
+ "title": "World M1: amendment to QA's table for R-LEGACY-QV (rows for the ruled condition)",
+ "amends": {
+  "file": "m1-histories.json",
+  "sha256": "eb500559c2df90afd01796baeffce23fc0b9ebc716bc2c6f5ed929e1cf9d43f3",
+  "note": "The original is not edited. It still holds its 50 histories and 195 cases. This file adds rows only; it changes none of them. No history in the original has a null-qv recall followed by a question change, so nothing there is superseded (World brief section 10)."
+ },
+ "written_by": "qa-tester",
+ "date": "2026-10-28",
+ "board_item": "W-2178",
+ "written_from": "company/product/2026-10-28-world-brief.md section 10, R-LEGACY-QV (head-of-product, 2026-10-28) and section 3.2 rules 1 to 6, on origin/product/world-brief-rulings. Nothing else: no M1 code was read, and none exists. The expected states are the ruling applied by hand.",
+ "ruling": "A null-qv recall counts, once engineering's writer proof exists (3.2 rule 6), as the question version current when M1 is released, pinned per lesson in the M1 record. (1) It stops counting once that lesson's question changes after M1. (2) It never counts if the question changed after the record's time but before M1.",
+ "frozen": "Same terms as m1-histories.json: committed before the M1 maker's first commit under src/; edited after that commit it is void for EXP-012 P1.1. A correction goes in a newer dated file.",
+ "how_to_read": {
+  "same_as": "m1-histories.json how_to_read, plus the four additions below. All other rules, the vocabulary, the units (ms from t0) and the expect shape are unchanged.",
+  "m1_release_at_ms": "The moment M1 is released. Every record in pre_m1 is dated before it. The World's state function is read only from m1_release_at_ms on, so steps start with the m1_release event at that instant.",
+  "pre_m1": "What existed before M1: records (reveals, and recalls with source null and qv null), and qv_changes ({lesson, at_ms, qv}: the lesson's question becomes qv at that time). current_qv is each lesson's version at t0, before any qv_change. A history with account rows instead of local records gives them in the m1_release event's account_rows, and no device holds them until a sync step.",
+  "at_release": "What engineering's M1 record must show for the history: pinned_qv (each lesson's version current at m1_release_at_ms) and changed_after_record_before_m1 (the lessons with a null-qv recall and a question change after that recall and before M1; empty if none).",
+  "m1_release": "The event at the first step. After it, steps use the original vocabulary. A qv_change event after it is a change after M1 (no at_ms: it applies at now_ms)."
+ },
+ "readings_chosen": [
+  "A null-qv recall made after a question change (change at_ms earlier than the record's at_ms) is not blocked: it was made against the changed question. Row legacy-qv-a-change-before-the-record-does-not-block-it. If head-of-product reads 'changed since the record' differently, that row and only that row changes.",
+  "Condition 2 is permanent for the record: once it fails at M1 the record never counts again, whatever later happens. Only answers carrying a source and a qv can restore the state.",
+  "The proof gate (3.2 rule 6) is checked first and independently: without it nothing counts, changed or not. Row legacy-qv-needs-the-writer-proof.",
+  "Not asserted anywhere: whether a counted record is rewritten with its pinned version on sync (these rows never assert a synced record's qv); and a null-qv recall that arrives from an old client after M1 (the ruling speaks of pre-M1 records)."
+ ],
+ "coverage_index": {
+  "R-LEGACY-QV counts, no change": [
+   "legacy-qv-counts-when-the-question-never-changed",
+   "legacy-qv-a-later-answer-in-the-new-format-decides",
+   "legacy-qv-latest-of-two-null-recalls-wins"
+  ],
+  "condition 1, change after M1 stops it": [
+   "legacy-qv-stops-counting-when-the-question-changes-after-m1",
+   "legacy-qv-wrong-recall-cues-then-a-later-change-clears-the-cue",
+   "legacy-qv-pins-are-per-lesson",
+   "legacy-qv-a-change-before-the-record-does-not-block-it",
+   "legacy-qv-two-devices-account-row-counts-then-stops"
+  ],
+  "condition 2, change before M1 never counts": [
+   "legacy-qv-question-changed-between-record-and-m1-never-counts",
+   "legacy-qv-wrong-recall-before-a-pre-m1-change-gives-no-cue",
+   "legacy-qv-pins-are-per-lesson",
+   "legacy-qv-two-devices-account-row-changed-before-m1"
+  ],
+  "other rules still apply": [
+   "legacy-qv-keeps-the-24-hour-gap",
+   "legacy-qv-needs-the-writer-proof"
+  ],
+  "two devices": [
+   "legacy-qv-two-devices-account-row-counts-then-stops",
+   "legacy-qv-two-devices-account-row-changed-before-m1"
+  ]
+ },
+ "histories": [
+  {
+   "id": "legacy-qv-counts-when-the-question-never-changed",
+   "title": "A null-qv recall counts as the pinned version while its lesson's question has not changed since M1, however long it stays that way",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 5184000000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-question-changed-between-record-and-m1-never-counts",
+   "title": "A null-qv recall followed by a question change before M1 never counts, even though the pinned version is now current; only new answers on the pinned version count",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "R-LEGACY-QV condition 2"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": [
+     {
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "qv": 3
+     }
+    ]
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 3,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": [
+     "add-a-zero"
+    ]
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 518400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 518400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 691200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-wrong-recall-before-a-pre-m1-change-gives-no-cue",
+   "title": "A wrong null-qv recall that does not count (question changed before M1) leaves the lesson Explored with no worth-another-look cue",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "R-LEGACY-QV condition 2",
+    "3.2 wrong answer cue only when qualifying"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": [
+     {
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "qv": 3
+     }
+    ]
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 3,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": [
+     "add-a-zero"
+    ]
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-wrong-recall-cues-then-a-later-change-clears-the-cue",
+   "title": "A wrong null-qv recall that counts gives Explored with the cue; a question change after M1 retires it, so the cue goes and the lesson stays Explored until a new-version answer",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "R-LEGACY-QV condition 1"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172800000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "more-digits-not-bigger"
+      ]
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 604800000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "more-digits-not-bigger",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 777600000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 777600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-stops-counting-when-the-question-changes-after-m1",
+   "title": "A counted null-qv recall stops counting once the question changes after M1, with no cue; a stale old-version answer does not bring it back; a new-version answer does",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "R-LEGACY-QV condition 1",
+    "3.2.3 version"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 518400000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "add-a-zero",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 604800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 604800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 777600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 777600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-pins-are-per-lesson",
+   "title": "Three lessons with null-qv correct recalls: one changed once before M1, one never, one changed twice before M1. Only the unchanged one counts, and a later change to it stops it",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "R-LEGACY-QV condition 2",
+    "pinned per lesson"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 0
+     },
+     {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     {
+      "type": "recall",
+      "lesson": "add-the-slices",
+      "at_ms": 172920000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": [
+     {
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "qv": 3
+     },
+     {
+      "lesson": "add-the-slices",
+      "at_ms": 262800000,
+      "qv": 3
+     },
+     {
+      "lesson": "add-the-slices",
+      "at_ms": 345600000,
+      "qv": 4
+     }
+    ]
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 3,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 4
+    },
+    "changed_after_record_before_m1": [
+     "add-a-zero",
+     "add-the-slices"
+    ]
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 2,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 518400000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "more-digits-not-bigger",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-a-change-before-the-record-does-not-block-it",
+   "title": "A question change that happened before the null-qv record (not after it) does not block the record; the pinned version is that later version, and the record counts until the next change",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "R-LEGACY-QV condition 2 (after the record's time)"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": [
+     {
+      "lesson": "add-a-zero",
+      "at_ms": 86400000,
+      "qv": 3
+     }
+    ]
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 3,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 518400000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "add-a-zero",
+      "qv": 4
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-keeps-the-24-hour-gap",
+   "title": "The 24-hour gap from the first reveal still applies to a null-qv recall: 86,399,999 ms after the reveal does not count, 86,400,000 ms does",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "3.2.2 gap",
+    "P1.2"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86399999,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 86400000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-needs-the-writer-proof",
+   "title": "Without engineering's writer proof the ruling does not apply: an unchanged null-qv recall still leaves the lesson Explored, now and later",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "3.2.6 proof still required"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 5184000000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-a-later-answer-in-the-new-format-decides",
+   "title": "After M1 a counted null-qv correct recall is replaced by the latest answer: a later wrong scheduled answer gives Explored with the cue, a later correct one gives Understood again",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "3.2.5 latest answer wins"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 604800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 604800000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 777600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 777600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-latest-of-two-null-recalls-wins",
+   "title": "Two null-qv recalls for one lesson, both before M1 and the question unchanged: the later one decides, correct-then-wrong gives Explored with the cue, wrong-then-correct gives Understood",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "3.2.5 latest answer wins"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     },
+     {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 259260000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-two-devices-account-row-counts-then-stops",
+   "title": "Account rows from before the migration (null source, null qv) with the question unchanged count on both devices after sync; a question change after M1 stops them on both",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "P1.5",
+    "R-LEGACY-QV condition 1",
+    "account rows before the M1 migration"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": []
+   },
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release",
+      "account_rows": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "recall",
+        "lesson": "add-a-zero",
+        "at_ms": 172800000,
+        "correct": true,
+        "source": null,
+        "qv": null
+       }
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 435600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 518400000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "add-a-zero",
+      "qv": 3
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-two-devices-account-row-changed-before-m1",
+   "title": "Account rows from before the migration whose question changed after the record and before M1 never count on either device; a new-version answer on one device then gives Understood on both after sync",
+   "covers": [
+    "R-LEGACY-QV",
+    "3.2.6 old records",
+    "P1.7",
+    "P1.5",
+    "R-LEGACY-QV condition 2"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [],
+    "qv_changes": [
+     {
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "qv": 3
+     }
+    ]
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 3,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    },
+    "changed_after_record_before_m1": [
+     "add-a-zero"
+    ]
+   },
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release",
+      "account_rows": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "recall",
+        "lesson": "add-a-zero",
+        "at_ms": 172800000,
+        "correct": true,
+        "source": null,
+        "qv": null
+       }
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 435600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 691200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 3,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 694800000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "row_count": {
+  "histories": 13,
+  "cases": 31
+ }
+}
