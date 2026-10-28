@@ -1,6 +1,6 @@
 # EXP-012: Lessons World milestones M0 to M4: check predictions and learning predictions
 
-> Renumbered 2026-10-28 (integration engineer): written as EXP-010 on product/world-brief (PR #35); main already had EXP-010 (lesson frames pilot), so this one is EXP-012. The predictions below are unchanged.
+> Renumbered 2026-10-28 (integration engineer): written as EXP-010 on product/world-brief (PR #35); main already had EXP-010 (lesson frames pilot), so this one is EXP-012. The predictions below are unchanged. The frozen QA table in `tests/world/fixtures/` (PR #42) names this experiment EXP-010 and is not edited, because its sha256 pins it.
 
 owner: analytics-steward
 date: 2026-10-28
