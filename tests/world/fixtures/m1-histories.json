@@ -1,0 +1,6415 @@
+{
+ "schema": "s3.lessons-world.m1-histories/1",
+ "title": "World M1: QA's table of learner histories (P1.1, P1.2)",
+ "frozen": "Committed before the M1 maker starts (EXP-010 P1.1). Do not edit after the maker's first commit under src/. A change after that date voids P1.1. Corrections go in a new file with a dated amendment, never into this one.",
+ "written_by": "qa-tester",
+ "date": "2026-10-28",
+ "written_from": "company/product/2026-10-28-world-brief.md section 3 (3.1, 3.2, 3.3, 3.4) and section 5 M1, on origin/product/world-brief; company/experiments/EXP-010-lessons-world-milestones.md P1.1 to P1.7; company/engineering/edd/EDD-018-lessons-world-journey.md section 3 and Addendum A. No M1 code was read; none exists.",
+ "founder_decisions_applied": {
+  "F1": "cost line only; no effect on this table",
+  "F2": "seals may appear on unchecked islands with an unchecked-content label; changes M3. Nothing in this table depends on whether an island is checked (see R-SEAL-UNCHECKED)",
+  "F3": "M1 is built on a branch and released only when checks are green; no effect on this table",
+  "F4": "no holdout; no effect on this table"
+ },
+ "constants": {
+  "gap_ms": 86400000,
+  "revisit_schedule_days": [
+   1,
+   3,
+   7,
+   21
+  ],
+  "fixture_island": {
+   "note": "a three-lesson fixture island, in this island order; it is not Number Island",
+   "lessons": [
+    "add-a-zero",
+    "more-digits-not-bigger",
+    "add-the-slices"
+   ]
+  },
+  "default_t0": "2026-11-10T10:00:00Z",
+  "default_current_qv": 2
+ },
+ "how_to_read": {
+  "time": "Every time is milliseconds elapsed since the history's t0 (UTC instant), which is real elapsed time. Local calendar days never matter; tz is given only for the three rows whose point is that they do not.",
+  "step": "Steps are applied in order. now_ms is the moment the learner's screen is read after the step. event.at_ms is when the record was made; it can be earlier than now_ms (late arrival). After each step the expectation is read at now_ms.",
+  "expect": "states (per lesson: not-started | explored | understood | unknown), counts (null whenever the store is unknown, never zero), another_look (lessons showing the worth-another-look cue). due, next and seal_attempt appear only on steps that assert them. Multi-device histories give by_device.",
+  "events": {
+   "reveal": "recorded reveal (completedAt)",
+   "recall": "{lesson, at_ms, correct, source, qv}; source is scheduled | seal | practice | replay | research_probe | qa_shortened | null (pre-M1); a null source comes with a null qv",
+   "recall_skipped": "recall shown and skipped or abandoned, no option chosen",
+   "flag_practice": "a flag practice session; its answers are recall records with source practice",
+   "qv_change": "the lesson's current recall question version becomes qv",
+   "open_world": "learner opens the World; open, select_option, predict, dwell, scroll: engagement only",
+   "tick": "time passes, nothing else",
+   "choose": "learner explicitly picks a lesson; read in that step only",
+   "store_status": "the progress store becomes ready | blocked | unreadable (records, if given, are what a ready store then holds); ownership_change: account ownership checking or switching",
+   "sync": "the listed devices push to the account and pull the merge, in the order listed; account_seed: rows already in the account before any device"
+  },
+  "legacy_writer_proof": "false unless engineering has shown, in the M1 record, that the due-revisit path was the only writer of recalls before M1 (3.2 rule 6, P1.7)."
+ },
+ "rulings_needed": [
+  {
+   "id": "R-LEGACY-QV",
+   "question": "When engineering's proof exists, does a pre-M1 recall (null source, null qv) match the lesson's current question version? The table says yes (it counts as scheduled).",
+   "rows": [
+    "pre-m1-records-count-with-proof"
+   ],
+   "if_no": "the row's U becomes E"
+  },
+  {
+   "id": "R-MERGE-FIRST",
+   "question": "After a sync, is the first recorded reveal the earliest across devices? The table says yes.",
+   "rows": [
+    "two-devices-gap-runs-from-the-earliest-reveal"
+   ],
+   "if_no": "the last step becomes E on both devices"
+  },
+  {
+   "id": "R-EXPLORED-INCLUDES-UNDERSTOOD",
+   "question": "Brief 3.3 says the seal opens when every lesson is Explored. The table reads that as: has a recorded reveal, so an Understood lesson counts. (Otherwise the seal branch of 3.4 is reachable only while some lesson is Explored and, by 24 hours, due.)",
+   "rows": [
+    "next-seal-attempt-opens-at-exactly-24h",
+    "next-seal-attempt-waits-24h-after-practice"
+   ],
+   "if_no": "the seal rows must be redrawn"
+  },
+  {
+   "id": "R-SEAL-DUE",
+   "question": "EDD-018 section 3 adds that all sampled questions must be due; brief 3.3 lists four conditions and not that one. The table follows the brief. Under the EDD reading, a due lesson wins branch 2 of 3.4, so branch 4 would never be reached.",
+   "rows": [
+    "next-seal-attempt-opens-at-exactly-24h",
+    "next-seal-attempt-waits-24h-after-practice"
+   ],
+   "if_no": "head-of-product to say which text governs before the build"
+  },
+  {
+   "id": "R-SEAL-UNCHECKED",
+   "question": "Under F2 a seal may open on an unchecked island. The table never sets an island's checked state and asserts nothing that depends on it; M3's table must.",
+   "rows": [
+    "next-seal-attempt-opens-at-exactly-24h",
+    "next-seal-attempt-waits-24h-after-practice"
+   ],
+   "if_no": "none for M1"
+  }
+ ],
+ "other_reading_choices": [
+  "A cue (worth another look) exists only while the latest qualifying answer is wrong. A wrong answer that does not qualify (under 24 h, practice, old version) gives no cue.",
+  "A question version change retires every older answer for that lesson, wrong ones included: the state is Explored with no cue until a new-version answer.",
+  "Due is asserted only where the schedule is unambiguous: not answered at all and 1 day or more since the first reveal, or answered once and still before day 3, or answered once and long overdue.",
+  "A source of seal is written only for an eligible seal attempt. An ineligible attempt is recorded as practice.",
+  "Records are ordered by at_ms; two records at the same instant are not tested.",
+  "An explicit choice applies only in the step where it is made."
+ ],
+ "coverage_index": {
+  "3.2 rule 1 source": [
+   "practice-never-yields-understood",
+   "practice-wrong-changes-nothing",
+   "other-sources-never-qualify",
+   "other-sources-wrong-after-understood",
+   "seal-answer-counts-once-attempted",
+   "latest-answer-wins-whatever-its-source"
+  ],
+  "3.2 rule 2 gap": [
+   "gap-one-ms-short",
+   "gap-exact",
+   "gap-calendar-day-is-not-elapsed-time",
+   "gap-dst-fall-back-elapsed-24h",
+   "gap-dst-spring-forward-wall-24h-is-not-enough",
+   "gap-anchored-on-first-reveal",
+   "recall-before-reveal-is-not-evidence",
+   "wrong-answer-under-24h-is-not-a-qualifying-wrong"
+  ],
+  "3.2 rule 3 version": [
+   "old-question-version-never-counts",
+   "version-change-drops-understood-to-explored",
+   "version-change-retires-an-old-wrong-answer"
+  ],
+  "3.2 rule 4 answered": [
+   "skipped-recall-is-no-evidence"
+  ],
+  "3.2 rule 5 no double credit": [
+   "no-double-credit-scheduled-and-seal",
+   "latest-answer-wins-whatever-its-source",
+   "duplicate-delivery-counts-once",
+   "two-devices-repeated-sync-is-idempotent"
+  ],
+  "3.2 rule 6 old records": [
+   "pre-m1-records-do-not-count-without-proof",
+   "pre-m1-records-count-with-proof",
+   "pre-m1-records-never-override-new-ones",
+   "two-devices-account-rows-without-source"
+  ],
+  "wrong answer resets, keeps history": [
+   "wrong-answer-sends-back-to-explored",
+   "wrong-first-then-correct",
+   "practice-answer-cannot-clear-a-wrong-cue",
+   "two-devices-later-wrong-wins"
+  ],
+  "boundary pair 86,399,999 / 86,400,000 ms (P1.2)": [
+   "gap-one-ms-short",
+   "gap-exact",
+   "gap-dst-fall-back-elapsed-24h",
+   "wrong-answer-under-24h-is-not-a-qualifying-wrong",
+   "next-seal-attempt-opens-at-exactly-24h",
+   "next-seal-attempt-waits-24h-after-practice"
+  ],
+  "practice never yields Understood": [
+   "practice-never-yields-understood",
+   "practice-answer-cannot-clear-a-wrong-cue"
+  ],
+  "old question version never counts": [
+   "old-question-version-never-counts",
+   "version-change-drops-understood-to-explored"
+  ],
+  "time alone never lowers a state": [
+   "time-alone-never-lowers-a-state",
+   "practice-answer-cannot-clear-a-wrong-cue",
+   "due-is-a-mark-not-a-state"
+  ],
+  "Unknown shows no state and no count (P1.4)": [
+   "unknown-store-blocked-from-the-start",
+   "unknown-store-unreadable-then-empty",
+   "unknown-while-account-ownership-settles",
+   "unknown-after-having-been-readable",
+   "account-switch-shows-no-previous-account"
+  ],
+  "account synced across two devices (P1.5)": [
+   "two-devices-source-and-version-survive-sync",
+   "two-devices-latest-answer-wins-either-sync-order",
+   "two-devices-later-wrong-wins",
+   "two-devices-account-rows-without-source",
+   "two-devices-gap-runs-from-the-earliest-reveal",
+   "two-devices-repeated-sync-is-idempotent"
+  ],
+  "3.4 branch 1 explicit choice": [
+   "next-explicit-choice-beats-everything"
+  ],
+  "3.4 branch 2 due revisit": [
+   "next-due-revisit-in-island-order",
+   "due-is-a-mark-not-a-state"
+  ],
+  "3.4 branch 3 first unexplored": [
+   "fresh-learner",
+   "next-first-unexplored-in-island-order",
+   "next-due-revisit-in-island-order"
+  ],
+  "3.4 branch 4 open seal attempt": [
+   "next-seal-attempt-opens-at-exactly-24h",
+   "next-seal-attempt-waits-24h-after-practice"
+  ],
+  "3.4 branch 5 optional practice": [
+   "reveal-makes-explored",
+   "next-seal-attempt-opens-at-exactly-24h",
+   "next-seal-attempt-waits-24h-after-practice"
+  ],
+  "pre-M1 record with null source and qv": [
+   "pre-m1-records-do-not-count-without-proof",
+   "pre-m1-records-count-with-proof",
+   "pre-m1-records-never-override-new-ones",
+   "two-devices-account-rows-without-source"
+  ]
+ },
+ "histories": [
+  {
+   "id": "fresh-learner",
+   "title": "A fresh learner with a readable, empty store starts at stop 1 and sees real zeros",
+   "covers": [
+    "3.1 not-started",
+    "3.4 branch 3 first-unexplored",
+    "3.4 fresh learner starts at stop 1"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "open_world"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-a-zero"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "engagement-is-not-evidence",
+   "title": "Opens, selections, predictions, scrolling and dwell never leave Not started",
+   "covers": [
+    "3.1 not-started"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "open",
+      "lesson": "add-a-zero"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "select_option",
+      "lesson": "add-a-zero"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 120000,
+     "event": {
+      "type": "predict",
+      "lesson": "add-a-zero"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 180000,
+     "event": {
+      "type": "dwell",
+      "lesson": "add-a-zero",
+      "ms": 120000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 240000,
+     "event": {
+      "type": "scroll"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 6,
+     "now_ms": 300000,
+     "event": {
+      "type": "open",
+      "lesson": "more-digits-not-bigger"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-a-zero"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "reveal-makes-explored",
+   "title": "A recorded reveal is Explored; all three revealed and nothing else gives optional practice",
+   "covers": [
+    "3.1 explored",
+    "3.4 branch 5 practice"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "more-digits-not-bigger"
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 3600000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-the-slices"
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 7200000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 7200000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [],
+      "next": {
+       "kind": "practice",
+       "lesson": null
+      },
+      "seal_attempt": "closed"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gap-one-ms-short",
+   "title": "86,399,999 ms after the first reveal does not qualify",
+   "covers": [
+    "3.2.2 gap",
+    "boundary 86,399,999"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 86399999,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86399999,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "gap-exact",
+   "title": "86,400,000 ms after the first reveal qualifies",
+   "covers": [
+    "3.2.2 gap",
+    "boundary 86,400,000"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 86400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "gap-calendar-day-is-not-elapsed-time",
+   "title": "A recall on the next local calendar date but 1 hour later does not qualify (America/New_York)",
+   "covers": [
+    "3.2.2 gap",
+    "calendar days do not count"
+   ],
+   "t0": "2026-11-01T03:30:00Z",
+   "tz": "America/New_York",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 3600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "gap-dst-fall-back-elapsed-24h",
+   "title": "Across the autumn clock change, 24 h elapsed qualifies although the wall clock moved 23 h (America/New_York)",
+   "covers": [
+    "3.2.2 gap",
+    "DST boundary"
+   ],
+   "t0": "2026-11-01T04:30:00Z",
+   "tz": "America/New_York",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 86399999,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86399999,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 86400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "gap-dst-spring-forward-wall-24h-is-not-enough",
+   "title": "Across the spring clock change, 24 wall-clock hours is only 23 h elapsed and does not qualify (America/New_York)",
+   "covers": [
+    "3.2.2 gap",
+    "DST boundary"
+   ],
+   "t0": "2026-03-08T01:00:00Z",
+   "tz": "America/New_York",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 82800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 82800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 86400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "gap-anchored-on-first-reveal",
+   "title": "A replay reveal does not move the anchor: the gap runs from the first reveal",
+   "covers": [
+    "3.2.2 gap",
+    "first recorded reveal"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 72000000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 72000000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 90000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 90000000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "recall-before-reveal-is-not-evidence",
+   "title": "A recall dated before the lesson was ever revealed is ignored, even after the reveal arrives",
+   "covers": [
+    "3.2.2 gap",
+    "EDD-018 section 3: ignore recalls without a completion"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 172800000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 176400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 259200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "recall-without-any-reveal",
+   "title": "A recall for a lesson with no recorded reveal leaves it Not started",
+   "covers": [
+    "3.1 not-started",
+    "EDD-018 section 3: ignore recalls without a completion"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 259200000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 259200000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 345600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 345600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "practice-never-yields-understood",
+   "title": "Flag practice answers, however correct and however late, never make a lesson Understood",
+   "covers": [
+    "3.2.1 source practice",
+    "practice never yields Understood"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "flag_practice",
+      "at_ms": 172800000,
+      "answers": [
+       {
+        "lesson": "add-a-zero",
+        "correct": true,
+        "qv": 2
+       },
+       {
+        "lesson": "more-digits-not-bigger",
+        "correct": true,
+        "qv": 2
+       },
+       {
+        "lesson": "add-the-slices",
+        "correct": true,
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 864000000,
+     "event": {
+      "type": "flag_practice",
+      "at_ms": 864000000,
+      "answers": [
+       {
+        "lesson": "add-a-zero",
+        "correct": true,
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "practice-wrong-changes-nothing",
+   "title": "A wrong answer in practice changes nothing for an Understood lesson",
+   "covers": [
+    "3.2 wrong answer",
+    "3.2.1 source practice"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 259200000,
+     "event": {
+      "type": "flag_practice",
+      "at_ms": 259200000,
+      "answers": [
+       {
+        "lesson": "add-a-zero",
+        "correct": false,
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 1728000000,
+     "event": {
+      "type": "flag_practice",
+      "at_ms": 1728000000,
+      "answers": [
+       {
+        "lesson": "add-a-zero",
+        "correct": false,
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "other-sources-never-qualify",
+   "title": "Replay, research-probe and QA shortened-day answers, though correct and late, do not make Understood",
+   "covers": [
+    "3.2.1 source: replay, research probe, ?revisitMinutes"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 120000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 120000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "replay",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": true,
+      "source": "research_probe",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 6,
+     "now_ms": 172920000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-the-slices",
+      "at_ms": 172920000,
+      "correct": true,
+      "source": "qa_shortened",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "other-sources-wrong-after-understood",
+   "title": "Wrong answers from replay, probe and QA shortened days do not reset an Understood lesson",
+   "covers": [
+    "3.2.1 source",
+    "3.2 wrong answer"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 259200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "correct": false,
+      "source": "replay",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 345600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 345600000,
+      "correct": false,
+      "source": "research_probe",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 432000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 432000000,
+      "correct": false,
+      "source": "qa_shortened",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "seal-answer-counts-once-attempted",
+   "title": "A correct answer inside an eligible seal attempt qualifies like a scheduled one, only for a revealed lesson",
+   "covers": [
+    "3.2.1 source seal attempt"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "seal",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": true,
+      "source": "seal",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "latest-answer-wins-whatever-its-source",
+   "title": "Only the latest qualifying answer for a lesson decides, scheduled or seal",
+   "covers": [
+    "3.2.5 no double credit",
+    "3.2 wrong answer"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 176400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 176400000,
+      "correct": false,
+      "source": "seal",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 180000000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 180000000,
+      "correct": false,
+      "source": "seal",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero",
+       "more-digits-not-bigger"
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "now_ms": 183600000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 183600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "no-double-credit-scheduled-and-seal",
+   "title": "A scheduled and a seal answer for one lesson within 24 hours count once",
+   "covers": [
+    "3.2.5 no double credit"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 180000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 180000000,
+      "correct": true,
+      "source": "seal",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "old-question-version-never-counts",
+   "title": "An answer to an older question version does not count; the current version does",
+   "covers": [
+    "3.2.3 version"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 1
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 259200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "version-change-drops-understood-to-explored",
+   "title": "A changed question sends an Understood lesson back to Explored, with no wrong-answer cue, until a new-version answer",
+   "covers": [
+    "3.2.3 version",
+    "time/edits do not claim a wrong answer"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 259200000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "add-a-zero",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 345600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 345600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 432000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 432000000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "version-change-retires-an-old-wrong-answer",
+   "title": "After a version change an old wrong answer no longer decides the state or the cue",
+   "covers": [
+    "3.2.3 version",
+    "3.2 wrong answer"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 259200000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "add-a-zero",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 345600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 345600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "wrong-answer-sends-back-to-explored",
+   "title": "A later qualifying wrong answer returns an Understood lesson to Explored with a cue; a later correct one restores Understood",
+   "covers": [
+    "3.2 wrong answer resets",
+    "3.1 understood"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 432000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 432000000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 604800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 604800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "wrong-first-then-correct",
+   "title": "A first qualifying answer that is wrong leaves Explored with a cue; a later correct one gives Understood",
+   "covers": [
+    "3.2 wrong answer resets"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 345600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 345600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "wrong-answer-under-24h-is-not-a-qualifying-wrong",
+   "title": "A wrong answer 86,399,999 ms after the first reveal gives no cue; at 86,400,000 ms it does",
+   "covers": [
+    "3.2.2 gap",
+    "3.2 wrong answer",
+    "boundary 86,399,999 / 86,400,000"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 86399999,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86399999,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 86460000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 86460000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [
+       "more-digits-not-bigger"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "practice-answer-cannot-clear-a-wrong-cue",
+   "title": "After a qualifying wrong answer, a correct practice answer leaves Explored and the cue; time does not clear it",
+   "covers": [
+    "3.2 wrong answer",
+    "3.2.1 source practice",
+    "3.1 time alone"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 259200000,
+     "event": {
+      "type": "flag_practice",
+      "at_ms": 259200000,
+      "answers": [
+       {
+        "lesson": "add-a-zero",
+        "correct": true,
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 34560000000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ],
+      "due": [
+       "add-a-zero"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "skipped-recall-is-no-evidence",
+   "title": "A skipped or abandoned recall neither qualifies nor resets anything",
+   "covers": [
+    "3.2.4 answered"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall_skipped",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 432000000,
+     "event": {
+      "type": "recall_skipped",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 432000000,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "time-alone-never-lowers-a-state",
+   "title": "After 400 days Understood, Explored and Not started are unchanged; due is a separate mark",
+   "covers": [
+    "3.1 time alone never lowers",
+    "due is not a state"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 34560000000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": [],
+      "due": [
+       "add-a-zero",
+       "more-digits-not-bigger"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "due-is-a-mark-not-a-state",
+   "title": "A lesson becomes due while staying Explored, and is no longer due once answered",
+   "covers": [
+    "due is not a state",
+    "3.4 branch 2"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172860000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": [],
+      "due": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "pre-m1-records-do-not-count-without-proof",
+   "title": "Recalls with null source and null qv leave the lesson Explored when engineering has not shown the due-revisit path was the only writer",
+   "covers": [
+    "3.2.6 old records",
+    "P1.7"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "pre-m1-records-count-with-proof",
+   "title": "With engineering's proof recorded, null-source null-qv recalls count as scheduled ones",
+   "covers": [
+    "3.2.6 old records",
+    "P1.7"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": [
+       "more-digits-not-bigger"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "pre-m1-records-never-override-new-ones",
+   "title": "New-format records decide; an old-format record, even a later-dated one from an old client, does not change the state",
+   "covers": [
+    "3.2.6 old records",
+    "P1.6 old clients still sync"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 691200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 864000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 864000000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 950400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 950400000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "unknown-store-blocked-from-the-start",
+   "title": "A blocked store shows no state, no count and only the fixed Start-here marker; when it opens, real states appear",
+   "covers": [
+    "3.1 unknown",
+    "P1.4",
+    "3.4 unknown shows only Start here"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 176400000,
+     "event": {
+      "type": "store_status",
+      "status": "blocked"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "unknown",
+       "more-digits-not-bigger": "unknown",
+       "add-the-slices": "unknown"
+      },
+      "counts": null,
+      "another_look": [],
+      "next": {
+       "kind": "start-here",
+       "lesson": null
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 180000000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "unknown",
+       "more-digits-not-bigger": "unknown",
+       "add-the-slices": "unknown"
+      },
+      "counts": null,
+      "another_look": [],
+      "next": {
+       "kind": "start-here",
+       "lesson": null
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 183600000,
+     "event": {
+      "type": "store_status",
+      "status": "ready",
+      "records": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "recall",
+        "lesson": "add-a-zero",
+        "at_ms": 172800000,
+        "correct": true,
+        "source": "scheduled",
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "more-digits-not-bigger"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "unknown-store-unreadable-then-empty",
+   "title": "An unreadable store is Unknown, never zero; once readable and empty it is a true fresh record",
+   "covers": [
+    "3.1 unknown",
+    "P1.4"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "store_status",
+      "status": "unreadable"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "unknown",
+       "more-digits-not-bigger": "unknown",
+       "add-the-slices": "unknown"
+      },
+      "counts": null,
+      "another_look": [],
+      "next": {
+       "kind": "start-here",
+       "lesson": null
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "store_status",
+      "status": "ready",
+      "records": []
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 3,
+       "explored": 0,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-a-zero"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "unknown-while-account-ownership-settles",
+   "title": "Until account ownership settles every lesson is Unknown, and no count is shown",
+   "covers": [
+    "3.1 unknown account ownership",
+    "P1.4"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "ownership_change",
+      "status": "checking"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "unknown",
+       "more-digits-not-bigger": "unknown",
+       "add-the-slices": "unknown"
+      },
+      "counts": null,
+      "another_look": [],
+      "next": {
+       "kind": "start-here",
+       "lesson": null
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 10000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "unknown",
+       "more-digits-not-bigger": "unknown",
+       "add-the-slices": "unknown"
+      },
+      "counts": null,
+      "another_look": [],
+      "next": {
+       "kind": "start-here",
+       "lesson": null
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 20000,
+     "event": {
+      "type": "store_status",
+      "status": "ready",
+      "records": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "more-digits-not-bigger"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "unknown-after-having-been-readable",
+   "title": "A store that stops being readable turns every lesson Unknown, not Not started; recovery restores the real states",
+   "covers": [
+    "3.1 unknown",
+    "P1.4"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "store_status",
+      "status": "blocked"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "unknown",
+       "more-digits-not-bigger": "unknown",
+       "add-the-slices": "unknown"
+      },
+      "counts": null,
+      "another_look": [],
+      "next": {
+       "kind": "start-here",
+       "lesson": null
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 7200000,
+     "event": {
+      "type": "store_status",
+      "status": "ready",
+      "records": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "account-switch-shows-no-previous-account",
+   "title": "Switching account clears the visible states at once (no leak of the old account), then shows the new account",
+   "covers": [
+    "3.1 unknown account ownership",
+    "EDD-018 section 4: clear on account switch"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 176400000,
+     "event": {
+      "type": "store_status",
+      "status": "ready",
+      "records": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "recall",
+        "lesson": "add-a-zero",
+        "at_ms": 172800000,
+        "correct": true,
+        "source": "scheduled",
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 180000000,
+     "event": {
+      "type": "ownership_change",
+      "status": "switching"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "unknown",
+       "more-digits-not-bigger": "unknown",
+       "add-the-slices": "unknown"
+      },
+      "counts": null,
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 183600000,
+     "event": {
+      "type": "store_status",
+      "status": "ready",
+      "records": [
+       {
+        "type": "reveal",
+        "lesson": "more-digits-not-bigger",
+        "at_ms": 0
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "two-devices-source-and-version-survive-sync",
+   "title": "A recall answered on device A reaches device B with the same source and qv, and both show the same state",
+   "covers": [
+    "P1.5",
+    "two devices"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 176400000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      },
+      "synced_record": {
+       "device": "B",
+       "lesson": "add-a-zero",
+       "latest": {
+        "at_ms": 172800000,
+        "correct": true,
+        "source": "scheduled",
+        "qv": 2
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "two-devices-latest-answer-wins-either-sync-order",
+   "title": "A wrong on A and a later correct on B settle to Understood on both, whichever device syncs first",
+   "covers": [
+    "P1.5",
+    "two devices",
+    "3.2 wrong answer",
+    "merge order"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": [
+         "add-a-zero"
+        ]
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 180000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 180000000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "B"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": [
+         "add-a-zero"
+        ]
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 259200000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "B",
+       "A"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "two-devices-later-wrong-wins",
+   "title": "A correct on A and a later wrong on B settle to Explored with the cue on both",
+   "covers": [
+    "P1.5",
+    "two devices",
+    "3.2 wrong answer"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 259200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "B"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": [
+         "add-a-zero"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 262800000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": [
+         "add-a-zero"
+        ]
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": [
+         "add-a-zero"
+        ]
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "two-devices-account-rows-without-source",
+   "title": "Account rows written before the migration (null source, null qv) give Explored on both devices; a new row then gives Understood on both with its fields intact",
+   "covers": [
+    "P1.5",
+    "3.2.6 old records",
+    "account rows before the M1 migration",
+    "two devices"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 176400000,
+     "event": {
+      "type": "account_seed",
+      "records": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "recall",
+        "lesson": "add-a-zero",
+        "at_ms": 172800000,
+        "correct": true,
+        "source": null,
+        "qv": null
+       }
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 180000000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 691200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 694800000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      },
+      "synced_record": {
+       "device": "B",
+       "lesson": "add-a-zero",
+       "latest": {
+        "at_ms": 691200000,
+        "correct": true,
+        "source": "scheduled",
+        "qv": 2
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "two-devices-gap-runs-from-the-earliest-reveal",
+   "title": "After sync the first reveal is the earliest across devices, so the 24 h gap runs from it",
+   "covers": [
+    "3.2.2 gap",
+    "first recorded reveal",
+    "two devices"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "devices": [
+    "A",
+    "B"
+   ],
+   "needs_ruling": [
+    "R-MERGE-FIRST"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 36000000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 36000000,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 39600000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0,
+      "device": "B"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 104400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 104400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172800000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "two-devices-repeated-sync-is-idempotent",
+   "title": "Syncing the same records twice changes nothing and counts the answer once",
+   "covers": [
+    "P1.5",
+    "3.2.5 no double credit",
+    "two devices"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 176400000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 180000000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "late-arriving-older-answer-does-not-win",
+   "title": "Records are ordered by their timestamp, not by arrival: an older correct answer arriving late does not undo a newer wrong one",
+   "covers": [
+    "3.2.5 latest decides",
+    "EDD-018 section 3: sort by timestamp"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 432000000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 432000000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 518400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 691200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "duplicate-delivery-counts-once",
+   "title": "The same recall delivered twice is one answer",
+   "covers": [
+    "3.2.5 no double credit",
+    "EDD-018 section 3: deduplicate"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 345600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 345600000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 345660000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 345600000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [
+       "add-a-zero"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "lessons-are-independent",
+   "title": "An answer for one lesson never changes another lesson, and practice on a third changes nothing",
+   "covers": [
+    "state per lesson",
+    "3.2 wrong answer"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 60000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 60000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 120000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 120000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 2,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 172860000,
+      "correct": false,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 2,
+       "understood": 1
+      },
+      "another_look": [
+       "more-digits-not-bigger"
+      ]
+     }
+    },
+    {
+     "n": 6,
+     "now_ms": 172920000,
+     "event": {
+      "type": "flag_practice",
+      "at_ms": 172920000,
+      "answers": [
+       {
+        "lesson": "add-the-slices",
+        "correct": true,
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 2,
+       "understood": 1
+      },
+      "another_look": [
+       "more-digits-not-bigger"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "next-explicit-choice-beats-everything",
+   "title": "A lesson the learner explicitly chose is the suggestion, over a due revisit and over the first unexplored stop",
+   "covers": [
+    "3.4 branch 1 explicit choice"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "more-digits-not-bigger"
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "choose",
+      "lesson": "add-the-slices"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "chosen",
+       "lesson": "add-the-slices"
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "choose",
+      "lesson": "add-the-slices"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [
+       "add-a-zero"
+      ],
+      "next": {
+       "kind": "chosen",
+       "lesson": "add-the-slices"
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172860000,
+     "event": {
+      "type": "choose",
+      "lesson": "add-a-zero"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [
+       "add-a-zero"
+      ],
+      "next": {
+       "kind": "chosen",
+       "lesson": "add-a-zero"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "next-due-revisit-in-island-order",
+   "title": "A due revisit beats the first unexplored stop, and several due revisits go in island order, not in the order they became due",
+   "covers": [
+    "3.4 branch 2 due revisit",
+    "3.4 branch 3"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-a-zero"
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 3600000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "more-digits-not-bigger"
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 172800000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [],
+      "due": [
+       "add-a-zero",
+       "add-the-slices"
+      ],
+      "next": {
+       "kind": "due-revisit",
+       "lesson": "add-a-zero"
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 172860000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172860000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": [],
+      "due": [
+       "add-the-slices"
+      ],
+      "next": {
+       "kind": "due-revisit",
+       "lesson": "add-the-slices"
+      }
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 172920000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-the-slices",
+      "at_ms": 172920000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "understood"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 0,
+       "understood": 2
+      },
+      "another_look": [],
+      "due": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "more-digits-not-bigger"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "next-first-unexplored-in-island-order",
+   "title": "The first unexplored stop is the earliest one in island order, not the one after the last visited",
+   "covers": [
+    "3.4 branch 3 first unexplored"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "not-started",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-a-zero"
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 3600000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-the-slices"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "next-seal-attempt-opens-at-exactly-24h",
+   "title": "With every lesson explored, the seal attempt is suggested only once 86,400,000 ms have passed since the last first exploration",
+   "covers": [
+    "3.4 branch 4 open seal attempt",
+    "3.3 seal opens when",
+    "boundary 86,399,999 / 86,400,000",
+    "3.4 branch 5 practice"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "needs_ruling": [
+    "R-EXPLORED-INCLUDES-UNDERSTOOD",
+    "R-SEAL-DUE",
+    "R-SEAL-UNCHECKED"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "more-digits-not-bigger"
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 3600000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "first-unexplored",
+       "lesson": "add-the-slices"
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 7200000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 7200000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": [],
+      "next": {
+       "kind": "practice",
+       "lesson": null
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 86400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 2,
+       "understood": 1
+      },
+      "another_look": [],
+      "next": {
+       "kind": "practice",
+       "lesson": null
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 90000000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 90000000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 1,
+       "understood": 2
+      },
+      "another_look": [],
+      "next": {
+       "kind": "practice",
+       "lesson": null
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 6,
+     "now_ms": 93599999,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 1,
+       "understood": 2
+      },
+      "another_look": [],
+      "next": {
+       "kind": "practice",
+       "lesson": null
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 7,
+     "now_ms": 93600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-the-slices",
+      "at_ms": 93600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "understood"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 0,
+       "understood": 3
+      },
+      "another_look": [],
+      "next": {
+       "kind": "seal-attempt",
+       "lesson": null
+      },
+      "seal_attempt": "open"
+     }
+    }
+   ]
+  },
+  {
+   "id": "next-seal-attempt-waits-24h-after-practice",
+   "title": "After a flag practice the seal attempt is closed until 86,400,000 ms later",
+   "covers": [
+    "3.4 branch 4",
+    "3.4 branch 5 practice",
+    "3.3 seal opens when",
+    "boundary 86,399,999 / 86,400,000"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": false,
+   "needs_ruling": [
+    "R-EXPLORED-INCLUDES-UNDERSTOOD",
+    "R-SEAL-DUE",
+    "R-SEAL-UNCHECKED"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 0,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 3600000,
+     "event": {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 3600000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 7200000,
+     "event": {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 7200000
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 86400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 86400000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 2,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 5,
+     "now_ms": 90000000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 90000000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 1,
+       "understood": 2
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 6,
+     "now_ms": 93600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-the-slices",
+      "at_ms": 93600000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "understood"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 0,
+       "understood": 3
+      },
+      "another_look": [],
+      "next": {
+       "kind": "seal-attempt",
+       "lesson": null
+      },
+      "seal_attempt": "open"
+     }
+    },
+    {
+     "n": 7,
+     "now_ms": 97200000,
+     "event": {
+      "type": "flag_practice",
+      "at_ms": 97200000,
+      "answers": [
+       {
+        "lesson": "add-a-zero",
+        "correct": true,
+        "qv": 2
+       },
+       {
+        "lesson": "more-digits-not-bigger",
+        "correct": false,
+        "qv": 2
+       }
+      ]
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "understood"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 0,
+       "understood": 3
+      },
+      "another_look": [],
+      "next": {
+       "kind": "practice",
+       "lesson": null
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 8,
+     "now_ms": 183599999,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "understood"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 0,
+       "understood": 3
+      },
+      "another_look": [],
+      "next": {
+       "kind": "practice",
+       "lesson": null
+      },
+      "seal_attempt": "closed"
+     }
+    },
+    {
+     "n": 9,
+     "now_ms": 183600000,
+     "event": {
+      "type": "tick"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "understood",
+       "add-the-slices": "understood"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 0,
+       "understood": 3
+      },
+      "another_look": [],
+      "next": {
+       "kind": "seal-attempt",
+       "lesson": null
+      },
+      "seal_attempt": "open"
+     }
+    }
+   ]
+  }
+ ]
+}
