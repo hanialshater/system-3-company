@@ -1,0 +1,74 @@
+{
+  "slug": "game-rhythm-echo-backward-together",
+  "title": "Backward Rhythm · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "rhythm-echo-backward",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Backward Rhythm · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-rhythm-echo-backward-together.c1",
+      "text": "Original house rules: A partner chooses a three-action sequence of claps and taps. The partner performs it once; the lead performs the actions in reverse order. The lead's action sequence is the exact reverse. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-rhythm-echo-backward-together.c2",
+      "text": "For this version: 2–8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Backward Rhythm, what counts as a successful turn?",
+    "options": [
+      "The lead's action sequence is the exact reverse.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "The lead's action sequence is the exact reverse."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "rhythm-echo-backward",
+    "format": "together",
+    "family": "rhythm",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "None"
+  }
+}

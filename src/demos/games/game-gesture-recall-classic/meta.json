@@ -1,0 +1,74 @@
+{
+  "slug": "game-gesture-recall-classic",
+  "title": "Gesture Recall · Classic",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "gesture-recall",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Gesture Recall · Classic with friends.",
+  "claims": [
+    {
+      "id": "games.game-gesture-recall-classic.c1",
+      "text": "Original house rules: A partner prepares three small, safe gestures. The partner shows the gestures once; the lead repeats them in order. All three gestures are repeated correctly. Each player takes two turns. Give the lead one point for each successful turn. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-gesture-recall-classic.c2",
+      "text": "For this version: 2–8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Gesture Recall, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "All three gestures are repeated correctly."
+    ],
+    "answer": 2,
+    "why": "All three gestures are repeated correctly."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "gesture-recall",
+    "format": "classic",
+    "family": "memory",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "None"
+  }
+}

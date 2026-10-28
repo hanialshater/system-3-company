@@ -1,0 +1,74 @@
+{
+  "slug": "game-letter-category-classic",
+  "title": "Letter Category · Classic",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "letter-category",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Letter Category · Classic with friends.",
+  "claims": [
+    {
+      "id": "games.game-letter-category-classic.c1",
+      "text": "Original house rules: Choose a letter and a broad category together. The lead names two different examples in the category that begin with that letter. Both answers fit the category and start with the selected letter. Each player takes two turns. Give the lead one point for each successful turn. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-letter-category-classic.c2",
+      "text": "For this version: 2–8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Letter Category, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "Both answers fit the category and start with the selected letter.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "Both answers fit the category and start with the selected letter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "letter-category",
+    "format": "classic",
+    "family": "words",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "None"
+  }
+}

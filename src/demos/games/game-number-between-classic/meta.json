@@ -1,0 +1,74 @@
+{
+  "slug": "game-number-between-classic",
+  "title": "Number Between · Classic",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "number-between",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Number Between · Classic with friends.",
+  "claims": [
+    {
+      "id": "games.game-number-between-classic.c1",
+      "text": "Original house rules: The lead secretly writes a whole number from 1 to 20. The lead gives two bounds, one lower and one higher, and the others make up to three guesses. The group guesses the written number. Each player takes two turns. Give the lead one point for each successful turn. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-number-between-classic.c2",
+      "text": "For this version: 2–8 players; materials: Paper and pencil.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Number Between, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The group guesses the written number.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The group guesses the written number."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "number-between",
+    "format": "classic",
+    "family": "detective",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Paper and pencil"
+  }
+}

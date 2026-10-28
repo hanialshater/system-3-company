@@ -1,0 +1,74 @@
+{
+  "slug": "game-object-pairing-together",
+  "title": "Object Pairing · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "object-pairing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Object Pairing · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-object-pairing-together.c1",
+      "text": "Original house rules: Arrange four objects in two clear pairs and cover them after a brief look. The lead names the two original pairs from memory. Both named pairs match the original arrangement. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-object-pairing-together.c2",
+      "text": "For this version: 2–8 players; materials: Four household objects and a cloth.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Object Pairing, what counts as a successful turn?",
+    "options": [
+      "Both named pairs match the original arrangement.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "Both named pairs match the original arrangement."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "object-pairing",
+    "format": "together",
+    "family": "memory",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Four household objects and a cloth"
+  }
+}

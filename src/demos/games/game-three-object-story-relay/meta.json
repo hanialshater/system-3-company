@@ -1,0 +1,70 @@
+{
+  "slug": "game-three-object-story-relay",
+  "title": "Three-Object Story · Pair relay",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "three-object-story",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Three-Object Story · Pair relay with friends.",
+  "claims": [
+    {
+      "id": "games.game-three-object-story-relay.c1",
+      "text": "Original house rules: Place three safe everyday objects on a table. The lead tells a short fictional story that includes all three objects. The story includes each object and has a clear ending. Form pairs. On each pair’s turn, both people make separate attempts with fresh challenges, helping only their partner. The pair earns one point only if both succeed. Each pair has two turns. Highest score wins.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-three-object-story-relay.c2",
+      "text": "For this version: 4, 6 or 8 players; materials: Three household objects.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Three-Object Story, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "The story includes each object and has a clear ending."
+    ],
+    "answer": 2,
+    "why": "The story includes each object and has a clear ending."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "three-object-story",
+    "format": "relay",
+    "family": "story",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      6,
+      8
+    ],
+    "materials": "Three household objects"
+  }
+}

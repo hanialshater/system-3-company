@@ -1,0 +1,14 @@
+"use client";
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { GameVisual, type HomeGame } from "./GameVisual";
+export function GameBrowser({games,families}:{games:HomeGame[];families:Record<string,string>}){
+ const [q,setQ]=useState(''),[family,setFamily]=useState('all'),[players,setPlayers]=useState('all'),[materials,setMaterials]=useState('all');
+ const groups=useMemo(()=>{const filtered=games.filter(g=>{
+  const hit=`${g.name} ${g.familyName} ${g.materials} ${g.setup} ${g.turn}`.toLowerCase().includes(q.toLowerCase().trim());
+  return hit&&(family==='all'||g.family===family)&&(players==='all'||g.allowedPlayers.includes(Number(players)))&&(materials==='all'||(materials==='none'?g.materials==='None':g.materials.toLowerCase().includes('paper')));
+ });const map=new Map<string,HomeGame[]>();for(const g of filtered){const list=map.get(g.baseId)||[];list.push(g);map.set(g.baseId,list);}return [...map.values()];},[games,q,family,players,materials]);
+ const [limit,setLimit]=useState(24),visible=groups.slice(0,limit),count=groups.reduce((n,g)=>n+g.length,0);
+ return <div className="games-browser"><div className="games-filters"><label>Search<input value={q} onChange={e=>{setQ(e.target.value);setLimit(24)}} placeholder="Drawing, words, paper…"/></label><label>Type<select value={family} onChange={e=>{setFamily(e.target.value);setLimit(24)}}><option value="all">All types</option>{Object.entries(families).map(([id,name])=><option key={id} value={id}>{name}</option>)}</select></label><label>Players<select value={players} onChange={e=>{setPlayers(e.target.value);setLimit(24)}}><option value="all">Any group</option>{[2,3,4,5,6,7,8].map(n=><option key={n} value={n}>{n} players</option>)}</select></label><label>Materials<select value={materials} onChange={e=>{setMaterials(e.target.value);setLimit(24)}}><option value="all">Any materials</option><option value="none">No materials</option><option value="paper">Uses paper</option></select></label></div>
+ <p aria-live="polite">{groups.length} base game{groups.length===1?'':'s'} · {count} playable format{count===1?'':'s'}</p><div className="games-grid">{visible.map(list=><article className="game-browser-card" key={list[0].baseId}><div className="games-card-art"><GameVisual family={list[0].family} baseId={list[0].baseId} step={0} preview/></div><span className="games-tag">{list[0].familyName}</span><h2>{list[0].name}</h2><p>{list[0].setup}</p><p className="games-meta">{list[0].materials}</p><details><summary>Choose a format ({list.length})</summary><ul>{list.map(g=><li key={g.slug}><Link href={`/games/${g.slug}`}>{g.modeName} <span className="games-meta">· {g.playersLabel} players</span></Link></li>)}</ul></details></article>)}</div>{groups.length===0&&<p>No games match those filters. Try a broader search.</p>}{limit<groups.length&&<button className="games-button" onClick={()=>setLimit(n=>n+24)}>Show more games</button>}</div>;
+}

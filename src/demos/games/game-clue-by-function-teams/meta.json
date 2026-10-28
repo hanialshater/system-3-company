@@ -1,0 +1,72 @@
+{
+  "slug": "game-clue-by-function-teams",
+  "title": "Clue by Function · Teams",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "clue-by-function",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Clue by Function · Teams with friends.",
+  "claims": [
+    {
+      "id": "games.game-clue-by-function-teams.c1",
+      "text": "Original house rules: The lead writes the name of a common household object. The lead describes one function of the object without naming it. Another player guesses the written object. Form two teams. Each team has four turns; only the lead’s teammates respond or assist. Each success earns the team one point. The higher team score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-clue-by-function-teams.c2",
+      "text": "For this version: 4–8 players; materials: Paper and pencil.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Clue by Function, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "Another player guesses the written object."
+    ],
+    "answer": 2,
+    "why": "Another player guesses the written object."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "clue-by-function",
+    "format": "teams",
+    "family": "detective",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Paper and pencil"
+  }
+}

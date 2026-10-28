@@ -1,0 +1,74 @@
+{
+  "slug": "game-musical-question-quick",
+  "title": "Musical Question · Quick round",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "musical-question",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Musical Question · Quick round with friends.",
+  "claims": [
+    {
+      "id": "games.game-musical-question-quick.c1",
+      "text": "Original house rules: Choose a short familiar two-part tune known to both players. The lead hums the first part and the partner hums the next part. The partner continues with the agreed second part. Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-musical-question-quick.c2",
+      "text": "For this version: 2–8 players; materials: A timer.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Musical Question, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The partner continues with the agreed second part.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The partner continues with the agreed second part."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "musical-question",
+    "format": "quick",
+    "family": "rhythm",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "A timer"
+  }
+}

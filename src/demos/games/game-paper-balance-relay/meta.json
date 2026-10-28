@@ -1,0 +1,70 @@
+{
+  "slug": "game-paper-balance-relay",
+  "title": "Paper Balance · Pair relay",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "paper-balance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Paper Balance · Pair relay with friends.",
+  "claims": [
+    {
+      "id": "games.game-paper-balance-relay.c1",
+      "text": "Original house rules: Give the lead a sheet of paper and a flat table. The lead folds the paper so it balances upright on the table. The folded paper remains upright without support for five seconds. Form pairs. On each pair’s turn, both people make separate attempts with fresh challenges, helping only their partner. The pair earns one point only if both succeed. Each pair has two turns. Highest score wins.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-paper-balance-relay.c2",
+      "text": "For this version: 4, 6 or 8 players; materials: One sheet of paper.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Paper Balance, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "The folded paper remains upright without support for five seconds."
+    ],
+    "answer": 2,
+    "why": "The folded paper remains upright without support for five seconds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "paper-balance",
+    "format": "relay",
+    "family": "paper",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      6,
+      8
+    ],
+    "materials": "One sheet of paper"
+  }
+}

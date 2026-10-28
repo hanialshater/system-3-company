@@ -1,0 +1,74 @@
+{
+  "slug": "game-paper-ring-classic",
+  "title": "Paper Ring · Classic",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "paper-ring",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Paper Ring · Classic with friends.",
+  "claims": [
+    {
+      "id": "games.game-paper-ring-classic.c1",
+      "text": "Original house rules: Give the lead one sheet of paper and a clear table. The lead folds the sheet into a closed ring without tape or cutting. The ring keeps its closed shape when placed on the table for five seconds. Each player takes two turns. Give the lead one point for each successful turn. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-paper-ring-classic.c2",
+      "text": "For this version: 2–8 players; materials: One sheet of paper.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Paper Ring, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The ring keeps its closed shape when placed on the table for five seconds.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The ring keeps its closed shape when placed on the table for five seconds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "paper-ring",
+    "format": "classic",
+    "family": "paper",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "One sheet of paper"
+  }
+}

@@ -1,0 +1,48 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+import { GameVisual, type HomeGame } from "@/components/games/GameVisual";
+const game: HomeGame = {
+  "slug": "game-letter-category-quick",
+  "baseId": "letter-category",
+  "name": "Letter Category",
+  "title": "Letter Category · Quick round",
+  "family": "words",
+  "familyName": "Word games",
+  "mode": "quick",
+  "modeName": "Quick round",
+  "minPlayers": 2,
+  "maxPlayers": 8,
+  "allowedPlayers": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "playersLabel": "2–8",
+  "materials": "A timer",
+  "setup": "Choose a letter and a broad category together.",
+  "turn": "The lead names two different examples in the category that begin with that letter.",
+  "success": "Both answers fit the category and start with the selected letter.",
+  "format": "Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared."
+};
+const prompt = {
+  "question": "In Letter Category, what counts as a successful turn?",
+  "choices": [
+    "The group ends the round before anyone plays.",
+    "Both answers fit the category and start with the selected letter.",
+    "The lead skips the turn without attempting it."
+  ],
+  "correct": 1,
+  "explanation": "Setup: Choose a letter and a broad category together. Turn: The lead names two different examples in the category that begin with that letter. Success: Both answers fit the category and start with the selected letter. Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared."
+};
+export default function Demo({slug}:{slug:string}){
+ const [shown,setShown]=useState(false);
+ return <Lesson slug={slug} predict={{question:prompt.question,options:prompt.choices,answer:prompt.correct}} exploreHint="See the turn, then open the full rules." reveal={()=><p>{prompt.explanation}</p>}>
+ {({locked,interact})=><div><GameVisual family={game.family} baseId={game.baseId} step={shown?1:0}/><Row><Control disabled={locked||shown} onClick={()=>{setShown(true);interact();}}>See the turn</Control></Row><p style={{textAlign:'center',fontSize:'0.8rem',color:'var(--muted)',margin:'4px 0'}}>{game.playersLabel} players · {game.materials}</p><p style={{textAlign:'center',fontSize:'0.8rem',margin:'4px 0'}}><a href={`/games/${game.slug}`}>Open complete game instructions</a></p></div>}
+ </Lesson>;
+}

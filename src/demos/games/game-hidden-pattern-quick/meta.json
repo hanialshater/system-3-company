@@ -1,0 +1,74 @@
+{
+  "slug": "game-hidden-pattern-quick",
+  "title": "Hidden Pattern · Quick round",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "hidden-pattern",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Hidden Pattern · Quick round with friends.",
+  "claims": [
+    {
+      "id": "games.game-hidden-pattern-quick.c1",
+      "text": "Original house rules: The lead writes the first three terms of a simple repeating pattern and keeps the next term hidden. The others inspect the visible terms and name the next term. The predicted term matches the lead's written continuation and rule. Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-hidden-pattern-quick.c2",
+      "text": "For this version: 2–8 players; materials: Paper and pencil; a timer.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Hidden Pattern, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "The predicted term matches the lead's written continuation and rule."
+    ],
+    "answer": 2,
+    "why": "The predicted term matches the lead's written continuation and rule."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "hidden-pattern",
+    "format": "quick",
+    "family": "detective",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Paper and pencil; a timer"
+  }
+}

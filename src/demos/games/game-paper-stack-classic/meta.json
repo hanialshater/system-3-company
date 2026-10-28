@@ -1,0 +1,74 @@
+{
+  "slug": "game-paper-stack-classic",
+  "title": "Paper Stack · Classic",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "paper-stack",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Paper Stack · Classic with friends.",
+  "claims": [
+    {
+      "id": "games.game-paper-stack-classic.c1",
+      "text": "Original house rules: Give the lead three sheets of paper and a flat table. The lead folds the sheets into three separate shapes and stacks them. All three folded shapes remain stacked for five seconds. Each player takes two turns. Give the lead one point for each successful turn. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-paper-stack-classic.c2",
+      "text": "For this version: 2–8 players; materials: Three sheets of paper.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Paper Stack, what counts as a successful turn?",
+    "options": [
+      "All three folded shapes remain stacked for five seconds.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "All three folded shapes remain stacked for five seconds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "paper-stack",
+    "format": "classic",
+    "family": "paper",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Three sheets of paper"
+  }
+}

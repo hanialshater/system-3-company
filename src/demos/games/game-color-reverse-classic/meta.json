@@ -1,0 +1,74 @@
+{
+  "slug": "game-color-reverse-classic",
+  "title": "Color Reverse · Classic",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "color-reverse",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Color Reverse · Classic with friends.",
+  "claims": [
+    {
+      "id": "games.game-color-reverse-classic.c1",
+      "text": "Original house rules: Arrange three colored papers in a row and cover them after a brief look. The lead names the colors from right to left. The three colors are named in reverse order. Each player takes two turns. Give the lead one point for each successful turn. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-color-reverse-classic.c2",
+      "text": "For this version: 2–8 players; materials: Three different colored papers and a cloth.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Color Reverse, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "The three colors are named in reverse order."
+    ],
+    "answer": 2,
+    "why": "The three colors are named in reverse order."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "color-reverse",
+    "format": "classic",
+    "family": "memory",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Three different colored papers and a cloth"
+  }
+}

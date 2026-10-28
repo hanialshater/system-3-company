@@ -1,0 +1,74 @@
+{
+  "slug": "game-repeat-the-directions-together",
+  "title": "Repeat the Directions · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "repeat-the-directions",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Repeat the Directions · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-repeat-the-directions-together.c1",
+      "text": "Original house rules: A partner says a sequence of three directions chosen from left, right, up and down. The lead repeats the three directions in order. All three directions match the original sequence. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-repeat-the-directions-together.c2",
+      "text": "For this version: 2–8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Repeat the Directions, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "All three directions match the original sequence.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "All three directions match the original sequence."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "repeat-the-directions",
+    "format": "together",
+    "family": "memory",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "None"
+  }
+}
