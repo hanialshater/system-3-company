@@ -39,7 +39,7 @@ No deployment was attempted, no release approval was consumed, no Vercel project
 
 ## Board suggestions for the chief of staff
 
-- Keep W-2030 with release-manager, blocked on the artifact/reviews, green required verification, integrated default-branch source and usable workflow API access.
+- Keep W-2127 with release-manager, blocked on the artifact/reviews, green required verification, integrated default-branch source and usable workflow API access.
 - Link the two `test:publish` baseline failures to evaluation-steward rather than broadening this feature into silently rewriting unrelated gates.
 - Route the `api.github.com` denial to environment/network configuration ownership. Reuse existing authentication; no duplicate credential requirement is justified by current evidence.
 - Track release documentation/visibility drift with the release tooling owner and evaluation-steward. No source, test, workflow or configuration changes were made in this consultation.

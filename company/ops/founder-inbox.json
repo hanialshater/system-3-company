@@ -654,7 +654,7 @@
       "note": "Knot briefs 1-4 do NOT wait on this: they build on the catalog line now. Open objection (vp-rnd, unanswered): the kill trigger moved from no brief to no knot lesson with a launch-review go by 2026-11-06. Not delegable: changes the kit (tier 2). Chair: founder (project review)."
     },
     {
-      "id": "F-52",
+      "id": "F-55",
       "title": "r24 (the Lessons World production deploy) undid r23 and r22: production runs Next.js 16.4.0 again, with the critical advisories r23 cleared, and no longer serves flatten-the-cube-to-a-dot",
       "category": "deploy",
       "priority": 1,
@@ -671,7 +671,7 @@
         "C: keep r24 as it is (accept the advisories while the World is inspected)"
       ],
       "recommendation": "B if r25 can be ready today; A if not. Not C: r23 was a security deploy.",
-      "note": "Numbered F-52 because main already holds F-50 and F-51. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff).",
+      "note": "Numbered F-52 on the default branch because main already holds F-50 and F-51; renumbered F-55 on 2026-10-28 in the main/default unification (integration engineer), because main's decision records already use F-52, F-53 and F-54. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff).",
       "decided": "2026-10-28",
       "answer": "B. \"Approve r25 when ready (Rec.)\"; after attempt 1 failed for out of memory: declined the rollback to r23, then \"Fix the memory, retry (Rec.)\" (founder, 2026-10-28)",
       "decision": "founder 2026-10-28: option B, the new release r25. It is live as dpl_GSH8o9Knf1GVJKEcAzGYyd6ba8to (READY 2026-10-28T19:08:30.857Z), on source fead82bd37a1ce45495606f81cfa20ec7f2a69da. Evidence: the build log shows Next.js 16.4.3; /d/flatten-the-cube-to-a-dot returns 200 with its data-slug; feed.spec 10/10 and contract.spec 4/4 against production; no runtime errors. Attempt 1 (dpl_92Q7iJ4uuFDPyrfAwRLrcggaBeKc) failed for out of memory and was fixed on release/r25. Records: company/ops/deployments/2026-10-28-r25-production.json, company/ops/releases.json r25."
