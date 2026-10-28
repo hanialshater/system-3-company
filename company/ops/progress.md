@@ -1,3 +1,11 @@
+## 2026-10-28 · zoology curriculum and design directions · W-2055
+
+Changed: added an inventory of 500 proposed questions in ten strands, including the two existing prototype drafts. Added twelve candidate interaction patterns and visual/asset review requirements. This is a content plan: 498 lessons remain unbuilt, and no candidate is science-reviewed. The first prototype PR is #32. W-2055 is blocked on host capacity for builds, with source, overlap and design reviews still required.
+
+Believe: high confidence in the numbered 500-slot count and exact question-text uniqueness, not in semantic uniqueness or scientific accuracy. The repository check remains 783 errors and four warnings, matching its starting state. No code changes, build, browser testing, publication or merge in this planning change. At dispatch time the host had about 1.3 GB free; the 10 GB build guard prevented builder dispatch. Browser setup also failed on system permissions in the preceding session.
+
+Next: restore at least 10 GB free and complete browser setup; audit the catalog for overlap and source each brief, then implement the remaining work in 200-entry batches without double-counting the two prototypes. Keep independent science, accessibility, visual, learner and publication review gates intact.
+
 ## 2026-10-28 · zoology prototypes · W-2055
 
 Changed: drafted two life-science lessons, one contrasting footprint and bone evidence and one showing birds within a simplified dinosaur tree; added curriculum and registry entries. This is 2 of the requested 500, with 498 still to scope and build. Sources are leads and all claims remain unverified. No publication, merge or deploy.
