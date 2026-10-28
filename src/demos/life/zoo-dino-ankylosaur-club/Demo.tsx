@@ -1,0 +1,13 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+export default function Demo({slug}:{slug:string}) {
+ const [step,setStep]=useState(0);
+ return <Lesson slug={slug} predict={{question:"An identified ankylosaur fossil preserves a bony club attached to articulated tail bones. Where does the evidence place the club?",options:["At the end of the tail", "At the tip of the snout", "Detached from the skeleton"],answer:0}} exploreHint="Inspect the armored body, then trace the linked tail bones." reveal={()=><p>The schematic shows a bony club connected to the end of the tail by articulated bones. In the stipulated fossil this connection provides evidence of position; the drawing does not establish how the club was used.</p>}>
+ {({locked,interact})=><div><svg viewBox="0 0 340 190" className="stage-svg" role="img" aria-label={step===0?"A schematic figure with evidence hidden until inspection.":step===1?"A schematic armored dinosaur body is visible; the connected tail has not been traced.":"The schematic shows a bony club connected to the end of the tail by articulated bones. In the stipulated fossil this connection provides evidence of position; the drawing does not establish how the club was used."}>
+ {step>=1&&<><ellipse cx="157" cy="105" rx="75" ry="43" fill="#9bad8a" stroke="#657657" strokeWidth="3"/><path d="M92 88 L77 81 L59 88 L67 105 L87 109 M105 132 L101 158 M140 142 L138 159 M180 142 L182 159 M210 132 L217 158" fill="#9bad8a" stroke="#657657" strokeWidth="5"/><path d="M115 68 L122 54 L129 68 M150 62 L157 49 L164 62 M184 66 L191 54 L198 69" fill="#d4c59f" stroke="#657657" strokeWidth="2"/><text x="128" y="181" textAnchor="middle" fill="var(--fg)" fontSize="13">Armored dinosaur · schematic</text></>}
+ {step>=2&&<><path d="M230 107 Q260 112 285 124" fill="none" stroke="#657657" strokeWidth="15" strokeLinecap="round"/><path d="M231 107 Q260 112 285 124" fill="none" stroke="#e3d8c0" strokeWidth="3" strokeDasharray="5 4"/><ellipse cx="297" cy="126" rx="17" ry="12" fill="#9bad8a" stroke="#657657" strokeWidth="3"/><text x="288" y="90" textAnchor="middle" fill="var(--fg)" fontSize="12">Tail club</text><path d="M288 94 L295 112" stroke="var(--fg)" strokeWidth="2"/></>}
+ </svg><Row><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==0} onClick={()=>setStep(1)}>Inspect body</Control><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==1} onClick={()=>{setStep(2);interact();}}>Trace tail bones</Control></Row><p style={{textAlign:"center",color:"var(--muted)",fontSize:".8rem"}}>Simplified schematic · not to scale</p></div>}
+ </Lesson>;
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-fossil-uneven-search",
+  "title": "Which place is richer?",
+  "hook": "Find counts and search effort can differ.",
+  "domain": "life",
+  "concept": "zoo-fossil-uneven-search",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "A rate compares a count with the amount searched."
+    ],
+    "doesNotKnow": [
+      "Raw totals can change with search effort even when observed yield per site is equal."
+    ]
+  },
+  "misconception": "More finds always mean more finds per searched site.",
+  "objective": "Compute finds per site in two constructed surveys.",
+  "claims": [
+    {
+      "id": "life.zoo-fossil-uneven-search.c1",
+      "text": "In a hypothetical survey, A has two finds in two sites and B has eight finds in eight sites; each rate is one per site. A difference in raw totals can arise from unequal search effort, and equal observed rates do not establish equal true abundance.",
+      "support": "derivation",
+      "source": "Arithmetic and declared constructed example; not field data.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-fossil-uneven-search.c2",
+      "text": "The stage is a schematic model, with stated example values or sample counts; it is not a reconstruction of an observed field site.",
+      "support": "convention",
+      "source": "Illustration and model convention.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-fossil-uneven-search.c3",
+      "text": "Recall: Survey X finds 3 fossils in 3 sites; survey Y finds 6 in 6. Which has the higher observed finds per site? Both rates are one find per searched site.",
+      "support": "derivation",
+      "source": "Relative order or arithmetic under the explicitly stated example conditions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Survey X finds 3 fossils in 3 sites; survey Y finds 6 in 6. Which has the higher observed finds per site?",
+    "options": [
+      "Neither: their rates are equal",
+      "Survey X",
+      "Survey Y"
+    ],
+    "answer": 0,
+    "why": "Both rates are one find per searched site."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

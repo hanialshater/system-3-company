@@ -1,3 +1,11 @@
+## 2026-10-28 · zoology drafts and exploratory QA · W-2055
+
+Changed: added 125 new draft zoology lessons beyond the two prototypes, spanning fossil evidence, dinosaurs, mammals, birds, reptiles and amphibians, fishes, invertebrates, animal behavior and ecology. Updated curriculum/registry and fixed multiple diagram legibility and evidence-mapping findings; generated diagrams are schematics and the claims and source leads remain unverified. This is an incomplete first batch toward 500, not a completed collection. 373 of the 500 proposed entries remain unbuilt.
+
+Believe: high confidence in the implementation count and registry mapping; low confidence in scientific and visual readiness without independent review. Exploratory component-harness Chromium flows covered all 125 originals on 390×844 and desktop, 250/250 scripted runs, plus the two prototypes and corrected versions; some first-pass controls measured 33 px and several visual findings required fixes. The harness stubs routing and does not establish full-application behavior, human learning, complete accessibility or verified science. QA records, retained results and a sample of inspected screenshots are in company/reviews and artifacts/zoology-*-exploration. The first prototype PR and curriculum PR remain drafts; no merge or deploy.
+
+Checks: TypeScript passed; company check still reports the inherited 783 errors and four warnings. Verify still stops at the inherited publication-readiness failure. Browser launches after capacity recovered. The production build compiled but was killed during its TypeScript phase (exit 137); protected-contract QA was not run. Continue the remaining entries in the founder's requested batch sizes, then route source-specific fact checks, learner, accessibility and visual review before publication. Do not count drafts as validated lessons.
+
 ## 2026-10-28 · zoology curriculum and design directions · W-2055
 
 Changed: added an inventory of 500 proposed questions in ten strands, including the two existing prototype drafts. Added twelve candidate interaction patterns and visual/asset review requirements. This is a content plan: 498 lessons remain unbuilt, and no candidate is science-reviewed. The first prototype PR is #32. W-2055 is blocked on host capacity for builds, with source, overlap and design reviews still required.

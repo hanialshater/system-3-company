@@ -1,0 +1,3 @@
+# Arthropod stage contact sheet, 2026-10-28
+
+This sheet shows the final state of 14 schematic SVG stages on a white background, rendered from their actual components with the kit and state stubbed. It is a builder inspection of stage drawings only, not browser or phone-fit QA. The stages show simplified anatomy and leave source accuracy, darkness/contrast, interaction, screen-reader accessibility, layout and learner usefulness for independent review. Builder inspection caught and fixed an overlapping insect label and a stale shell caption. The individual lesson reviews record the remaining limitations.

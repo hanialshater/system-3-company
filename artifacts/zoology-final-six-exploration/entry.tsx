@@ -1,0 +1,14 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import {DemoCard} from '../../src/components/DemoCard';
+import '../../src/app/globals.css';
+import M0 from "../../src/demos/life/animal-imitation-evidence/meta.json";
+import M1 from "../../src/demos/life/animal-observation-versus-motive/meta.json";
+import M2 from "../../src/demos/life/fish-parrotfish-scrape/meta.json";
+import M3 from "../../src/demos/life/fish-seahorse-tail-anchor/meta.json";
+import M4 from "../../src/demos/life/fish-shark-oily-liver/meta.json";
+import M5 from "../../src/demos/life/zoo-arthropod-ant-trail/meta.json";
+const items:Record<string,any>={"animal-imitation-evidence":M0,"animal-observation-versus-motive":M1,"fish-parrotfish-scrape":M2,"fish-seahorse-tail-anchor":M3,"fish-shark-oily-liver":M4,"zoo-arthropod-ant-trail":M5};
+const slug=new URLSearchParams(location.search).get('slug')||'';const source=items[slug];const meta={...source,claims:{verified:0,total:source?.claims?.length||0}};
+const domain={id:'life',name:'Life Sciences',short:'Life',color:'#52b788'};
+createRoot(document.getElementById('root')!).render(<main className="single"><nav className="topbar"><a className="brand" href="/">S3</a><span className="muted small">Life Sciences</span><a className="brand-link" href="/catalog">Map</a></nav><div className="slot-screen"><DemoCard meta={meta} domain={domain} active standalone /></div></main>);

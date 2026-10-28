@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-bird-soaring-air",
+  "title": "A glider gains height",
+  "hook": "The air itself can move.",
+  "domain": "life",
+  "concept": "zoo-bird-soaring-air",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Animals have structures and activities that can be studied."
+    ],
+    "doesNotKnow": [
+      "The schematic combines two vertical motions: the bird sinks 1 m/s relative to the air, while the air rises 2 m/s. Adding the signed velocities gives a 1 m/s rise relative to the ground. This is a toy model, not a measurement of a particular bird."
+    ]
+  },
+  "misconception": "The features shown in this question have only one possible interpretation.",
+  "objective": "In a simplified model a gliding bird sinks 1 m/s relative to the air. If the air rises 2 m/s, how does its height change relative to the ground?",
+  "claims": [
+    {
+      "id": "life.zoo-bird-soaring-air.c1",
+      "text": "The air itself can move. In a simplified model a gliding bird sinks 1 m/s relative to the air. If the air rises 2 m/s, how does its height change relative to the ground? The schematic combines two vertical motions: the bird sinks 1 m/s relative to the air, while the air rises 2 m/s. Adding the signed velocities gives a 1 m/s rise relative to the ground. This is a toy model, not a measurement of a particular bird.",
+      "support": "source",
+      "source": "Source lead to check: Cornell Lab of Ornithology, https://www.allaboutbirds.org/news/how-birds-fly/ ; the given speeds are stipulated toy-model values.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-bird-soaring-air.c2",
+      "text": "Toy velocity diagram, not a real bird or measurement.",
+      "support": "convention",
+      "source": "Drawing convention and explicitly stated model inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-bird-soaring-air.c3",
+      "text": "If this glider sinks 1 m/s in air rising 3 m/s, what is its ground-relative vertical speed? Add the air motion (+3) to the bird’s motion relative to it (−1), giving +2 m/s.",
+      "support": "source",
+      "source": "Source lead to check: Cornell Lab of Ornithology, https://www.allaboutbirds.org/news/how-birds-fly/ ; the given speeds are stipulated toy-model values.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If this glider sinks 1 m/s in air rising 3 m/s, what is its ground-relative vertical speed?",
+    "options": [
+      "Up 2 m/s",
+      "Down 2 m/s",
+      "Up 4 m/s"
+    ],
+    "answer": 0,
+    "why": "Add the air motion (+3) to the bird’s motion relative to it (−1), giving +2 m/s."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

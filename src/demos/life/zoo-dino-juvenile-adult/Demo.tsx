@@ -1,0 +1,13 @@
+"use client";
+import { useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Row } from "@/kit/controls";
+export default function Demo({slug}:{slug:string}) {
+ const [step,setStep]=useState(0);
+ return <Lesson slug={slug} predict={{question:"Two independently identified fossils belong to the same dinosaur species, one juvenile and one adult. What can help explain differences in their size and proportions?",options:["Changes during growth", "A need to assume different species immediately", "An exact skin color recorded in bone"],answer:0}} exploreHint="Inspect the juvenile, then compare the adult." reveal={()=><p>The schematic contrasts an identified juvenile and adult of the same stipulated species. Growth can change size and proportions; a visible difference alone does not determine whether two unidentified fossils are separate species.</p>}>
+ {({locked,interact})=><div><svg viewBox="0 0 340 190" className="stage-svg" role="img" aria-label={step===0?"A schematic figure with evidence hidden until inspection.":step===1?"A schematic dinosaur identified as a juvenile is shown.":"The schematic contrasts an identified juvenile and adult of the same stipulated species. Growth can change size and proportions; a visible difference alone does not determine whether two unidentified fossils are separate species."}>
+ {step>=1&&<><g transform="translate(12 67) scale(.52)"><path d="M15 105 Q65 90 100 68 Q130 51 166 67 L194 52 L226 58 L210 69 L190 70 Q175 90 145 87 L131 130 L116 130 L122 87 L97 99Z" fill="#adc39b" stroke="#61785c" strokeWidth="4"/><path d="M147 87 L164 130 L177 130 M154 74 L179 91" stroke="#61785c" strokeWidth="5" fill="none"/></g><text x="75" y="171" textAnchor="middle" fill="var(--fg)" fontSize="13">Juvenile</text></>}
+ {step>=2&&<><g transform="translate(142 8) scale(.78)"><path d="M15 105 Q65 90 100 68 Q130 51 166 67 L194 52 L226 58 L210 69 L190 70 Q175 90 145 87 L131 130 L116 130 L122 87 L97 99Z" fill="#c6b18e" stroke="#806f57" strokeWidth="4"/><path d="M147 87 L164 130 L177 130 M154 74 L179 91" stroke="#806f57" strokeWidth="5" fill="none"/></g><text x="235" y="171" textAnchor="middle" fill="var(--fg)" fontSize="13">Adult · same species</text></>}
+ </svg><Row><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==0} onClick={()=>setStep(1)}>Inspect juvenile</Control><Control style={{minHeight:44,minWidth:44}} disabled={locked||step!==1} onClick={()=>{setStep(2);interact();}}>Compare adult</Control></Row><p style={{textAlign:"center",color:"var(--muted)",fontSize:".8rem"}}>Simplified schematic · not to scale</p></div>}
+ </Lesson>;
+}

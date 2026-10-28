@@ -1,0 +1,5 @@
+# Octopus and coral arrow corrections — 2026-10-28
+
+`zoo-invert-octopus-jet` v2 draws a schematic siphon and labels the two opposite-direction arrows “Animal” and “Water”. `zoo-invert-coral-partner-exchange` v2 keeps the coral outline and shows food moving from the green photosynthetic partner toward animal tissue, with CO₂ directed back toward the partner. Labels were moved clear of tentacles. Both prior evidence states, independent guarded controls and 44 px declarations remain. Factual claims and recall are unchanged; the diagram-convention claims were updated. All claims remain unverified.
+
+The opened SVG scenes were rendered and inspected as static pictures, including the revised coral arrow. This is not browser, phone-fit, color-contrast, accessibility, scientific or learner validation; the animal anatomy and resource-exchange schematic require specialist review. `tools/invertebrate-drafts/generate.py` predates these v2 fixes and contains v1 artwork and metadata; it must not overwrite these files without first incorporating the changes.

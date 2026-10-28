@@ -1,0 +1,21 @@
+import React from "react";
+import D0 from "../../src/demos/life/ecology-beaver-habitat-tradeoff/Demo";
+import D1 from "../../src/demos/life/ecology-beaver-upstream-water/Demo";
+import D2 from "../../src/demos/life/ecology-camera-field-toy/Demo";
+import D3 from "../../src/demos/life/ecology-corridor-contact-risk/Demo";
+import D4 from "../../src/demos/life/ecology-detection-unseen-toy/Demo";
+import D5 from "../../src/demos/life/ecology-island-nest-predator-toy/Demo";
+import D6 from "../../src/demos/life/ecology-migration-protected-boundary/Demo";
+import D7 from "../../src/demos/life/ecology-nonnative-versus-invasive/Demo";
+import D8 from "../../src/demos/life/ecology-seed-carry-or-eat/Demo";
+import D9 from "../../src/demos/life/ecology-unsurveyed-range-unknown/Demo";
+import D10 from "../../src/demos/life/ecology-wildlife-corridor-toy/Demo";
+import D11 from "../../src/demos/life/ecology-wildlife-overpass-toy/Demo";
+import D12 from "../../src/demos/life/mammal-camel-hump-reserve/Demo";
+import D13 from "../../src/demos/life/mammal-elephant-ear-heat/Demo";
+import D14 from "../../src/demos/life/zoo-herp-lizard-sun-shade/Demo";
+import D15 from "../../src/demos/life/zoo-herp-snake-tongue-chemicals/Demo";
+import D16 from "../../src/demos/life/zoo-invert-coral-partner-exchange/Demo";
+import D17 from "../../src/demos/life/zoo-invert-octopus-jet/Demo";
+const items:Record<string,React.ComponentType<{slug:string}>>={"ecology-beaver-habitat-tradeoff":D0,"ecology-beaver-upstream-water":D1,"ecology-camera-field-toy":D2,"ecology-corridor-contact-risk":D3,"ecology-detection-unseen-toy":D4,"ecology-island-nest-predator-toy":D5,"ecology-migration-protected-boundary":D6,"ecology-nonnative-versus-invasive":D7,"ecology-seed-carry-or-eat":D8,"ecology-unsurveyed-range-unknown":D9,"ecology-wildlife-corridor-toy":D10,"ecology-wildlife-overpass-toy":D11,"mammal-camel-hump-reserve":D12,"mammal-elephant-ear-heat":D13,"zoo-herp-lizard-sun-shade":D14,"zoo-herp-snake-tongue-chemicals":D15,"zoo-invert-coral-partner-exchange":D16,"zoo-invert-octopus-jet":D17};
+export function DemoHost({slug}:{slug:string}){const C=items[slug];return C?<C slug={slug}/>:<p>Missing lesson</p>}
