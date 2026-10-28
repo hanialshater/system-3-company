@@ -52,7 +52,7 @@ A recall answer qualifies only if all six of these hold:
 3. **Version.** It used the lesson's current recall question version. If the question changes, older answers stop qualifying for the new version, and the lesson shows Explored until a new qualifying answer.
 4. **Answered.** The learner chose an option. Skipping or abandoning is no evidence.
 5. **No double credit.** For one lesson, only the latest answer counts, whatever its source. A scheduled recall and a seal answer for the same lesson within 24 hours do not count twice toward a seal or a count.
-6. **Old records.** Recall records written before M1 have no source or version field (`recalls: { at, correct }`). They count as scheduled recalls only if engineering shows, in the M1 record, that the due-revisit path was the only writer of `recalls` before M1. Otherwise they do not count, and those lessons show Explored.
+6. **Old records.** Recall records written before M1 have no source or version field (`recalls: { at, correct }`). They count as scheduled recalls only if engineering shows, in the M1 record, that the due-revisit path was the only writer of `recalls` before M1. Otherwise they do not count, and those lessons show Explored. The same rule applies to account rows written before the M1 migration, whose `source` and `qv` are null (M1, option (b)).
 
 **A wrong answer resets the state but keeps the history.** If the latest qualifying answer is wrong, the stop goes back to Explored, with a "worth another look" cue. Earlier correct answers stay in the record but no longer decide the state. The stop becomes Understood again only after a later qualifying correct answer. Under the existing schedule that answer comes at least one day after the wrong one. A wrong answer during practice changes nothing.
 
@@ -103,7 +103,7 @@ No milestone's maker starts until analytics-steward has registered that mileston
 
 Each milestone has the same shape: registered predictions, then one warm maker, then the checks once at the end, then the exit decision. Reviewers see the artifact before the maker's notes.
 
-**One warm maker: personalization-engineer.** It is one maker for M1 to M4, warm across milestones. It owns the feed surface and gamification UI (`tools/org/roles.mjs`), which covers the player hookup and the flag and seal UI. EDD-018 §6 splits these files across four builders (platform, learner-model, backend, personalization). One maker crossing those lines needs principal-engineer's agreement to amend EDD-018 §6. That is open objection O1 (section 8).
+**One warm maker: personalization-engineer.** It is one maker for M1 to M4, warm across milestones. It owns the feed surface and gamification UI (`tools/org/roles.mjs`), which covers the player hookup and the flag and seal UI. EDD-018 §6 splits these files across four builders (platform, learner-model, backend, personalization). Principal-engineer agreed in EDD-018 Addendum A: one maker, with the other owners reviewing the diff once at the end of each milestone (Addendum A2). O1 is answered (section 8).
 
 **Cost** (section 6): $60 target per milestone, pause at $120.
 
@@ -129,17 +129,22 @@ Each milestone has the same shape: registered predictions, then one warm maker, 
   - the suggested-next marker;
   - island-order player entry recording scheduled recalls with their source;
   - Unknown handled as Unknown.
-- **No new account fields.** Account sync of these records uses the existing progress sink. Flag attempts are M3.
+- **Account recall columns: option (b) of EDD-018 Addendum A3** (head-of-product, 2026-10-28, W-2056). Add nullable `source` and `qv` to the `recall` table with up and down migrations, and carry them through the server sanitiser (`src/lib/server/progress-store.ts`), merge, export and deletion. *Reason:* the server today keeps only `at` and `correct`. Under option (a), a signed-in learner who restores on a second device would see every Understood lesson fall back to Explored. That is the learner's evidence vanishing for a reason the learner cannot see, which is what "time alone never lowers a state" and "Unknown is not zero" exist to prevent. It would also make the account a worse copy of the browser, while we say the account keeps your progress. The two fields hold an answer's origin and a question version, which is no new personal data. *Cost accepted:* M1 becomes tier 2 learner data, with backend-engineer's migration review, privacy-reviewer's data-inventory row and principal-engineer-ops' readiness record. M1 may run into its pause line sooner. Flag attempts are still M3.
 - **Predictions:**
   - P1.1: QA-tester writes a table of at least 30 fixture histories *from this brief, before the build*. The functions agree with all of them. *Wrong if* any row differs.
   - P1.2: no fixture with a recall under 24 hours after first reveal, or with a practice-source answer, yields Understood. *Wrong if* one does.
   - P1.3: the normal feed is unchanged. The fixed-fixture feed order and the feed's existing tests are byte-identical before and after. *Wrong if* any differs.
   - P1.4: a blocked or unreadable store shows no count and no state in the List or on the map. *Wrong if* "0" or "Not started" appears.
+  - P1.5: a recall answered on device A, signed in, arrives on device B with the same `source` and `qv`, and the lesson shows the same state on both. *Wrong if* either field is dropped or the states differ. Run in `npm run test:accounts` on a real Postgres.
+  - P1.6: the down migration restores the old `recall` table, and old clients' syncs still pass. *Wrong if* either fails.
   - L3 is registered, but cannot be judged until instrumentation exists.
 - **Checks at the end:**
   - qa-tester: the fixture table, then a browser walk: phone and desktop, fresh and clearly labelled seeded-returning, player round trip;
   - principal-engineer: diff review;
-  - privacy-reviewer: the new recall fields against the data inventory;
+  - backend-engineer: migration order and the server, merge, export and delete paths, with `test:accounts` run by the reviewer (EDD-018 Addendum A2);
+  - platform-engineer: the `src/kit/progress.ts` change;
+  - principal-engineer-ops: tier-2 readiness and the rollback line;
+  - privacy-reviewer: the new recall fields and columns against the data inventory, before merge;
   - accessibility-reviewer: states are not carried by colour alone.
 - **Exit.** Head-of-product approves on those records.
 
@@ -213,6 +218,8 @@ Each milestone has the same shape: registered predictions, then one warm maker, 
 ## 8. Objections and open lines
 
 - **O1 (product, to principal-engineer):** EDD-018 §6 gives the World learning code to four builders. The city's principles ask for one warm maker per piece of work. *Ask:* amend §6 so personalization-engineer is the single maker for M1 to M4. Backend-engineer would then review the attempt store rather than write it. *If refused:* backend-engineer builds only the M3 attempt store and API, as a sub-piece with its own check, and the brief records that the warm-maker default was broken and why.
+  - **Answered (accepted), 2026-10-28, principal-engineer: EDD-018 Addendum A.** §6's reason was parallel building, and the milestones run one after another, so personalization-engineer is the one maker for M1 to M4. The other owners review once at the end (A2). M1 and M3 are tier 2. Stop rule (A4): if backend-engineer's review of the account part fails twice in one milestone, backend-engineer becomes that part's maker, and the milestone record says why.
+  - **Its finding A3**, a conflict in this brief between new recall fields and "no new account fields": head-of-product chose option (b), additive columns. The reason is in M1. W-2056.
 - **O2 (product, to the founder):** Unchecked content plus delayed recall can make wrong facts stick. *Product's answer:* the seal-only-on-checked-islands rule (section 2), and Unchecked shown beside every state. The founder may prefer states to show only on checked lessons. That is question F2.
 - **O3 (from EXP-009, carried):** A large consented study may cost more than the feature. *Answer stays EXP-009's:* the study is a design, not a spend. Until it runs, the World's learning claim is unmeasured, and nothing in copy, the WBR or a launch record says otherwise.
 
