@@ -3,7 +3,7 @@
 owner: principal-engineer
 date: 2026-10-27
 tier: 2
-status: architecture supplied; feature implementation blocked by required checks
+status: architecture supplied; feature implementation blocked by required checks. §6's four-builder split superseded by Addendum A (2026-10-28, one maker)
 source: company/decisions/2026-10-27-founder-lessons-world-journey.md
 reviewers: principal-engineer + privacy-reviewer + principal-engineer-ops; learning semantics through head-of-product
 
@@ -70,6 +70,8 @@ Return uses bounded island/stop restoration plus the map/list mode and scroll an
 
 ## 6. File ownership and parallel-safe implementation
 
+> **Superseded by Addendum A (2026-10-28).** The table and the integration line below are kept for the record. The maker for M1 to M4 of the World brief is one role; the owners below become code-owner reviewers, as Addendum A lists. The rest of this section (no cross-owner edits to make an import pass becomes "no edit outside the admitted file list"; no package/config/protected QA or gate edits; stop and route a required protected change) still binds.
+
 | Owner | Exclusive writes after admission | Consumes |
 |---|---|---|
 | platform-engineer | world page/client/SVG kit/styles/assets, manifest/server projection/navigation modules, catalog link, platform world tests | shared learning hook/gateway, bounded feed-entry helper |
@@ -88,3 +90,60 @@ Remediation route: evaluation-steward owns exact invariant/failing-test triage a
 After real green admission: test latest-right/wrong, same-day rejection, due boundaries, all-completed/practice wait, six-question coverage rotation, version changes, partial/duplicate attempts, account transitions/late writes/merge/export/delete, unknown storage, explicit destination priority and fresh stop 1. Browser tests cover island-order swiping, ordinary feed regressions, deep-link/back/return restoration, 320px bottom-sheet reachability, map/list identity, labels/targets/keyboard/contrast/reduced motion, lazy-scene scroll stability and no fake endless content.
 
 Reviewers receive pinned actual artifacts before builder reasoning. Capture real fresh and clearly labelled seeded-returning phone/desktop screenshots; never present sample evidence as the founder's real history. Founder screenshot approval precedes deployment. Principal-engineer reviews the diff; principal-engineer-ops independently approves tier-2 readiness. Release-manager retains the supported workflow, source-integration and access checks; previous red gates/API denials are not waived here. The world remains opt-in and can be removed from discovery/returned to its prior source through the existing reviewed release process; no new deploy shortcut or invented telemetry is introduced.
+
+## Addendum A (2026-10-28): one warm maker for the World brief, owners review at the end
+
+owner: principal-engineer · answers: objection O1 in `company/product/2026-10-28-world-brief.md` §8 (head-of-product) · tier of this addendum: 0 (a design record; it changes no source)
+
+### A1. Decision on O1: accepted, with the conditions below
+
+**One maker, personalization-engineer, builds every source file of M1 to M4**, including the pieces §6 gave to platform-engineer, learner-model-engineer and backend-engineer: the World page, scenes and styles, the manifest, projection and navigation helpers, the pure state, qualifying-recall, suggested-next and flag-scoring functions, the learning hook and browser gateway, the additive recall fields in `src/kit/progress.ts`, and the M3 attempt store, migration and API. The other owners keep their domains and review the diff once, at the end of the milestone that touches them, in that milestone's existing check round.
+
+Why §6 does not survive: its stated reason was *parallel-safe implementation*, four builders at once under capped build parallelism, with chief-of-staff integrating their commits. The brief runs the milestones one after another, so nothing is built in parallel and the reason is gone. What is left of the split is a relay of four cold makers over shared contracts, plus an integration step whose only job is to join them. That is what the city's principle exists to avoid (`system3-meta PRINCIPLES.md`, city copy `system3-city/PRINCIPLES.md`: warm makers, few members). The contracts in §2 to §5 do not depend on who writes them, and they stand unchanged.
+
+Whether a concrete reason forbids it, by candidate:
+- **Protected paths.** None is needed. `src/kit/Lesson.tsx` stays untouched (§4 already shows the existing `updateProgress` sink suffices). New tests go in `tests/world/`, which is not protected. If the build shows that `tests/qa/**`, `tools/company.mjs` or `.github/workflows/ci.yml` must change (for example, to run a World suite in CI), the maker stops that change and routes it to evaluation-steward for an amendment. No workaround.
+- **Authority lines in the org data** (`tools/org/roles.mjs`). Personalization-engineer "may not merge a change that touches the kit, the lesson host or the app shell without platform-engineer's review", and backend-engineer holds "order review of every migration, including other teams'; review of other teams' patches to the export and delete code". Both are review gates, not authorship rules, and A2 keeps both. Nothing in the org data makes another role the only possible author of these files.
+- **Accounts code is where defects were found before.** The accounts rebuild review found binding and stale-tab defects that only showed up under server-side probes (`company/engineering/reviews/2026-10-18-accounts-rebuild-review.md`, PC3, PC9 and PC10). That is a risk, not a ban. It is handled by A2's backend review, by `npm run test:accounts` on a real Postgres, and by the stop rule in A4.
+
+### A2. Code-owner reviews (once, at the end, artifact before the maker's notes)
+
+| Files the maker may change | Reviewer (why) | Milestone |
+|---|---|---|
+| `src/kit/progress.ts` (additive `source`, `qv` on new recall records only; no change to `revisitDue`'s schedule semantics without a separate tier-2 note) | platform-engineer (kit owner, tier 2 class kit); backend-engineer (data owner of `s3c:progress:v1`, data inventory D1); privacy-reviewer (the D1 row) | M1 |
+| `src/lib/server/progress-store.ts`, `db/migrations/*`, `src/app/api/account/**`, `src/lib/account-client.ts` merge/export/delete paths, the new attempt store and `GET/POST /api/account/world-checks` | backend-engineer (code owner; migration order review; `test:accounts` green on a real Postgres 16, run by the reviewer); privacy-reviewer (before merge) | M1 only if A3 picks option (b); M3 always |
+| `src/components/DemoCard.tsx`, `src/components/DemoHost.tsx`, `src/app/d/**`, `src/app/layout.tsx`, `globals.css` | platform-engineer. Not expected to change. If a diff touches one, the review is required | any |
+| `src/app/learn/world/**`, `src/components/world/**`, `src/lib/lessons-world.ts`, `src/lib/world-catalog.ts`, new `src/lib/world-*.ts` | principal-engineer (diff review). Platform-engineer only for the performance budget measurement (P4.1) and any shell change | M1, M3, M4; M2 below |
+| `src/components/Feed.tsx`, `src/lib/feed-index.ts` (if the island-session branch needs them) | personalization-engineer's own files; P1.3 (normal feed byte-identical) is the check, and platform-engineer reviews only kit/host/shell contact | M1 |
+| The pure state and recall functions (`src/lib/world-learning.ts` or its successor) | No separate learner-model-engineer review. QA-tester's fixture table, written from the brief before the build (P1.1, P1.2), is the independent check of the semantics, and head-of-product owns them. If the progressive-learning recommender later reuses these functions, they come under learner-model-engineer's review then | M1 |
+
+Tiers, read from `company/engineering/README.md`: M1 and M3 are tier 2 (kit, learner data), so each needs this diff review, principal-engineer-ops' readiness record and a rollback line. M2 and M4 are tier 1. M2's check list in the brief names no engineer, but tier 1 still needs one engineer to read the diff: principal-engineer reads it in the same round, and no extra ceremony is added. `company/engineering/readiness/paths.json` maps `src/lib/server/**` (except `db*`) and `src/lib/world-*` to the default tier 1. **This addendum classes them tier 2 for the World work**, until the map gets rules for them (board item, mine, beside W-1792).
+
+### A3. A finding the brief has to settle before M1 starts
+
+The brief's M1 says "an additive `source` and `qv` on new recall records" and also "no new account fields; account sync uses the existing progress sink". For a signed-in learner, those two lines conflict. The server's `cleanProgressMap` keeps only `{ at, correct }` per recall and drops unknown keys (`src/lib/server/progress-store.ts`, lines 41 to 50). The `recall` table holds `at_ms` and `correct` only (`db/migrations/001_accounts.up.sql`). So a recall restored from the account on a second device arrives with no source and no version. Under brief §3.2 rules 1, 3 and 6, the World could then not tell a flag-practice answer from a scheduled one, or an old question version from the current one.
+
+The fix is one of two, and head-of-product picks it, in the brief, before M1's maker starts:
+- **(a) Browser-only fields.** Any recall without `source`/`qv`, whatever its date, does not qualify for World states, so it shows Explored. Signed-in learners on a second device lose Understood until they answer a new recall there. No account change is needed.
+- **(b) Additive columns.** Add `source` and `qv` to `recall` with up and down migrations, and extend the sanitiser, merge and export. These are new account fields, so the work is tier 2 learner data: backend-engineer's migration review, privacy-reviewer's inventory row, and A2's second row in M1.
+
+Engineering prefers (b), because (a) breaks rule 3.2.3 across devices. Either is buildable by the one maker.
+
+### A4. Stop rule for the one-maker choice
+
+If backend-engineer's review of the account and server part (A2, second row) fails twice in one milestone, that part goes to backend-engineer as its maker, as a sub-piece with its own check. The milestone record then states that the warm-maker default was broken and why: this is the brief's own fallback. The brief's session and dollar stop rule (§6) still applies to the whole milestone.
+
+### A5. What changes elsewhere, and who does it
+
+- §2's "Canonical modules: platform owns …, learner-model engineering owns …, backend owns …" now names the code-owner *reviewers*. The module names are suggestions. The inspection build already uses `src/lib/lessons-world.ts` and `src/lib/world-catalog.ts`, and the maker may extend those instead of creating parallel files. No competing parsers or state definitions, as before.
+- §6's "chief-of-staff integrates explicit commits into a nondefault review branch" is dropped. The maker works on one branch per milestone.
+- The durable ownership of `src/app/learn/world/**` and `src/components/world/**` stays as `tools/org/roles.mjs` has it (platform-engineer by default, "the rest of src/app, src/components"). This addendum admits personalization-engineer as maker for M1 to M4 only. If the founder or head-of-product wants the World to belong to the personalization lane for good, that is an org-data change for chief-of-staff to propose (board).
+- Superseded, not amended in place, would be wrong: §1 to §5 and §7 are reviewed contracts and remediation rules that do not depend on the maker. Only §6 is superseded, by this addendum.
+
+### A6. Objections to this addendum
+
+Write them here, with the date and role. Each gets an answer recorded beside it.
+
+| # | From | Objection | Answer |
+|---|---|---|---|
+| O1 | head-of-product (brief §8) | §6's four-builder split conflicts with one warm maker | Accepted with conditions A2 to A4; §6 superseded by this addendum |
