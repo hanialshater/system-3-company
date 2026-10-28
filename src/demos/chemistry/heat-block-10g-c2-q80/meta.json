@@ -1,0 +1,71 @@
+{
+  "slug": "heat-block-10g-c2-q80",
+  "title": "A larger heat transfer",
+  "hook": "Transfer heat and watch the thermometer respond.",
+  "domain": "chemistry",
+  "concept": "heat-block-10g-c2-q80",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Heat transfer can change temperature."
+    ],
+    "doesNotKnow": [
+      "How mass and specific heat determine the change for a given heat transfer."
+    ]
+  },
+  "misconception": "The same heat always produces the same temperature change regardless of mass or material.",
+  "objective": "Apply q = mcΔT under the stated ideal assumptions.",
+  "claims": [
+    {
+      "id": "chemistry.heat-block-10g-c2-q80.c1",
+      "text": "Question, model and explanation: A model block has mass 10 g and constant specific heat 2 J/(g·°C). It begins at 20 °C and receives 80 J as heat. With no phase change or other energy transfer, what is its final temperature? Using q = mcΔT, ΔT = 80/(10 × 2) = 4 °C. Starting at 20 °C gives 24 °C. This is an ideal block with constant specific heat.",
+      "support": "derivation",
+      "source": "Arithmetic from q = mcΔT; OpenStax https://openstax.org/books/chemistry-2e/pages/5-1-energy-basics",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-block-10g-c2-q80.c2",
+      "text": "The block and thermometer are schematic; the numerical values describe an idealized model, not a named material.",
+      "support": "convention",
+      "source": "Modelling convention",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-block-10g-c2-q80.c3",
+      "text": "Recall: If mass and specific heat stay fixed, what happens to the magnitude of ΔT when the magnitude of heat transfer doubles? From q = mcΔT, the temperature change is proportional to heat when m and c stay fixed.",
+      "support": "derivation",
+      "source": "OpenStax https://openstax.org/books/chemistry-2e/pages/5-1-energy-basics",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.heat-block-10g-c2-q80.c4",
+      "text": "For a fixed mass and specific heat, a larger magnitude of heat transfer produces a larger temperature change.",
+      "support": "source",
+      "source": "Arithmetic from q = mcΔT; OpenStax https://openstax.org/books/chemistry-2e/pages/5-1-energy-basics",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If mass and specific heat stay fixed, what happens to the magnitude of ΔT when the magnitude of heat transfer doubles?",
+    "options": [
+      "It doubles",
+      "It halves",
+      "It stays unchanged"
+    ],
+    "answer": 0,
+    "why": "From q = mcΔT, the temperature change is proportional to heat when m and c stay fixed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

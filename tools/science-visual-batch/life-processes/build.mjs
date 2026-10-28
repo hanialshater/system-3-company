@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+const dir='tools/science-visual-batch/life-processes',cases=JSON.parse(fs.readFileSync(`${dir}/cases.json`)),template=fs.readFileSync(`${dir}/template.txt`,'utf8');
+const cp='content/curriculum/life.json',cur=JSON.parse(fs.readFileSync(cp));
+const sp='tools/science-visual-batch/slugs.json',slugs=JSON.parse(fs.readFileSync(sp));
+for(const [i,c] of cases.entries()){
+ if(c.options.length!==3||new Set(c.options).size!==3||c.from.length>18||c.to.length>18)throw Error(c.slug);
+ const shift=i%3, options=c.options.slice(shift).concat(c.options.slice(0,shift)),answer=options.indexOf(c.options[0]);
+ const lesson={question:c.q,options,answer,from:c.from,to:c.to,fromIcon:c.fromIcon,toIcon:c.toIcon,via:c.via,explanation:c.explanation};
+ const recall={question:`In the illustrated ${c.via.toLowerCase()} example, which endpoint follows ${c.from.toLowerCase()}?`,options:[c.to,c.from,'No transfer'],answer:0,why:c.explanation};
+ const meta={slug:c.slug,title:c.title,hook:'Predict where the illustrated process leads.',domain:'life',concept:c.slug,status:'draft',durationSec:60,owner:{categoryManager:'cm-life',builder:'demo-builder'},learner:{knows:['Living systems move or transform matter and signals.'],doesNotKnow:[c.explanation]},misconception:'The illustrated process sends matter or signals to the wrong destination.',objective:`Explain ${c.via.toLowerCase()} from ${c.from.toLowerCase()} to ${c.to.toLowerCase()} in this example.`,claims:[{id:`life.${c.slug}.c1`,text:`Question, diagram and explanation: ${c.q} ${c.explanation}`,support:'source',source:`OpenStax ${c.source}`,status:'unverified'},{id:`life.${c.slug}.c2`,text:'The diagram shows a selected step, not all structures, inputs, products or intermediate events.',support:'convention',source:'Modelling convention',status:'unverified'},{id:`life.${c.slug}.c3`,text:`Recall: ${recall.question} ${recall.why}`,support:'source',source:`OpenStax ${c.source}`,status:'unverified'}],confidence:'',recall,evidence:{qa:[],simulatedLearner:[],pairwise:[],humanLearners:[]},version:1};
+ const out=`src/demos/life/${c.slug}`;if(fs.existsSync(out))throw Error(`Already exists: ${c.slug}`);fs.mkdirSync(out,{recursive:true});fs.writeFileSync(`${out}/Demo.tsx`,template.replace('__CASE__',JSON.stringify(lesson,null,2)));fs.writeFileSync(`${out}/meta.json`,JSON.stringify(meta,null,2)+'\n');if(!cur.concepts.some(x=>x.id===c.slug))cur.concepts.push({id:c.slug,name:c.title,level:'intro',demand:2,prerequisites:[]});if(!slugs.life.includes(c.slug))slugs.life.push(c.slug);
+}
+fs.writeFileSync(cp,JSON.stringify(cur,null,2)+'\n');fs.writeFileSync(sp,JSON.stringify(slugs,null,2)+'\n');console.log(`Built ${cases.length} life-process diagrams`);
