@@ -1,3 +1,11 @@
+## 2026-10-28 · zoology first 200 drafts · W-2055
+
+Changed: added 73 more draft lessons to PR #40 after its initial 125, yielding 198 there plus the two prototypes in PR #32: 200 drafts out of the 500 proposed questions. The remaining 300 are not implemented. The new lessons cover additional birds, dinosaurs, mammals, reptiles and amphibians, fishes and arthropods. The drafts use schematics; some use shared interaction patterns. Claims and institutional source leads remain unverified; no merge or publication.
+
+Checks: all 73 new modules passed builder-run transpilation and metadata/answer checks. Builders inspected static light/dark contact sheets for 61 of the 73, not browser or phone layouts. This checkout could not install Chromium: system dependency installation was denied, and a direct browser download returned a broken archive. A cloud browser could not reach the local preview. Earlier exploratory browser evidence still applies only to the earlier 125 and prototypes, not to these 73. Independent science, precise sources, accessibility, visual pedagogy, semantic overlap and learner review remain open. The company check stayed at 783 errors and four warnings; verify stopped at the existing publication-readiness failure. The previous production build compiled but was killed during TypeScript.
+
+Next: finish the standalone TypeScript check, update PR #40, restore browser QA and continue the remaining 300 in reviewable batches. Do not claim that draft implementation or static diagram checks establish learning or scientific correctness.
+
 ## 2026-10-28 · zoology drafts and exploratory QA · W-2055
 
 Changed: added 125 new draft zoology lessons beyond the two prototypes, spanning fossil evidence, dinosaurs, mammals, birds, reptiles and amphibians, fishes, invertebrates, animal behavior and ecology. Updated curriculum/registry and fixed multiple diagram legibility and evidence-mapping findings; generated diagrams are schematics and the claims and source leads remain unverified. This is an incomplete first batch toward 500, not a completed collection. 373 of the 500 proposed entries remain unbuilt.

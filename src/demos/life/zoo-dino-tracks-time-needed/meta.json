@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-dino-tracks-time-needed",
+  "title": "Tracks need a clock",
+  "hook": "Footprints preserve a spacing, but speed needs more.",
+  "domain": "life",
+  "concept": "zoo-dino-tracks-time-needed",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Fossils and models can supply evidence about the past."
+    ],
+    "doesNotKnow": [
+      "Both schematic prints show a 2 meter separation. Calculating distance divided by time also needs a time interval. Scientists may estimate dinosaur speeds with additional assumptions and trackway measurements; this toy example does not."
+    ]
+  },
+  "misconception": "Distance alone determines speed without a time interval.",
+  "objective": "Two prints are 2 meters apart in a toy trackway. Without a time interval, can you calculate speed as distance divided by time?",
+  "claims": [
+    {
+      "id": "life.zoo-dino-tracks-time-needed.c1",
+      "text": "Footprints preserve a spacing, but speed needs more. Two prints are 2 meters apart in a toy trackway. Without a time interval, can you calculate speed as distance divided by time? Both schematic prints show a 2 meter separation. Calculating distance divided by time also needs a time interval. Scientists may estimate dinosaur speeds with additional assumptions and trackway measurements; this toy example does not.",
+      "support": "source",
+      "source": "Unverified research starting points: Smithsonian National Museum of Natural History, https://naturalhistory.si.edu/collections/paleobiology ; University of California Museum of Paleontology, https://ucmp.berkeley.edu/ . Claim-specific references and specimen evidence have not been checked.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-dino-tracks-time-needed.c2",
+      "text": "Diagram convention: Toy trackway; no estimated real speed Diagram labels: Spacing: 2 m; ?; Time: unknown.",
+      "support": "convention",
+      "source": "Explicitly labeled schematic; not a specimen reconstruction.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-dino-tracks-time-needed.c3",
+      "text": "Recall: You know the distance between two marks but not how long the motion took. Is distance divided by time determined? Distance divided by time requires both quantities.",
+      "support": "source",
+      "source": "Unverified research starting points: Smithsonian National Museum of Natural History, https://naturalhistory.si.edu/collections/paleobiology ; University of California Museum of Paleontology, https://ucmp.berkeley.edu/ . Claim-specific references and specimen evidence have not been checked.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You know the distance between two marks but not how long the motion took. Is distance divided by time determined?",
+    "options": [
+      "Yes, by ignoring the time",
+      "No, the time is missing",
+      "Yes, the distance determines it"
+    ],
+    "answer": 1,
+    "why": "Distance divided by time requires both quantities."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
