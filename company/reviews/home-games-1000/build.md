@@ -5,7 +5,7 @@ Status: draft, not independently reviewed.
 
 ## Scope and limits
 
-The catalogue has 1,000 labeled playable formats generated from 200 base activity descriptions and five group/scoring formats. This is **not 1,000 independently distinct games**. Some of the 200 base activities are related themselves. The five formats change how turns or results are organized; they do not create new core mechanics. W-2122 tracks expansion if 1,000 genuinely distinct games are required.
+The catalogue has 1,000 labeled playable formats generated from 200 base activity descriptions and five group/scoring formats. This is **not 1,000 independently distinct games**. Some of the 200 base activities are related themselves. The five formats change how turns or results are organized; they do not create new core mechanics. W-2166 tracks expansion if 1,000 genuinely distinct games are required.
 
 A new `games` domain uses the existing `cm-lifehacks` owner; no new company role is created. The category has an ordinary feed entry per format and a separate `/games` browser with player, material and type filters. `/games/[slug]` gives setup, turn, success, ending and related formats directly, without requiring the feed prediction interaction. Rules are original house-rule proposals, not official rules of named traditional games; every claim remains unverified.
 
@@ -22,4 +22,4 @@ The artwork consists of ten reusable colorful SVG families, with additional pape
 
 ## Next
 
-W-2122: grow from 200 base activities toward 1,000 independently distinct games. W-2123: independent review of game instructions, safety, playability, duplication and activity-specific illustration. W-2124: production build and full-app/mobile QA when capacity permits. Reconcile the generated registry, domain list, board IDs and progress with other open category PRs on integration.
+W-2166: grow from 200 base activities toward 1,000 independently distinct games. W-2167: independent review of game instructions, safety, playability, duplication and activity-specific illustration. W-2168: production build and full-app/mobile QA when capacity permits. Reconcile the generated registry, domain list, board IDs and progress with other open category PRs on integration.
