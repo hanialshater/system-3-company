@@ -1,5 +1,7 @@
 # System 3 Company: rules for every session
 
+> **Moved (2026-10-28):** this company now lives in https://github.com/hanialshater/system3-lessons. Work there; this repository keeps the history (MOVED.md).
+
 You are working inside a company of narrow AI agents that makes 60-second interactive lessons
 (a vertical feed of predict → explore → reveal cards). The company runs on the architecture in
 *System 3: Towards Fluent Autonomy*. **The disk is the memory**: you will not remember this
