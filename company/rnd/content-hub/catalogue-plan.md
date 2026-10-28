@@ -1,6 +1,6 @@
 # Content hub: real-catalogue compatibility and growth test
 
-owner: rnd-engineer · date: 2026-10-24 · board: W-2029
+owner: rnd-engineer · date: 2026-10-24 · board: W-2172
 tracking: GitHub #18 / draft PR #20
 
 ## Hypothesis

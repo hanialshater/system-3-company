@@ -1,7 +1,7 @@
 # Content hub prototype: feasibility results
 
 owner: rnd-engineer · date: 2026-10-24 · status: implementation ready for independent review
-tracking: [issue #18](https://github.com/hanialshater/system-3-company/issues/18), W-2026 (review), W-2027 (R&D acceptance), W-2028 (architecture)
+tracking: [issue #18](https://github.com/hanialshater/system-3-company/issues/18), W-2169 (review), W-2170 (R&D acceptance), W-2171 (architecture)
 
 ## Result
 
@@ -16,7 +16,7 @@ Predictions were recorded in local commit `8dec8024` before executing the protot
 
 ## What changed because of it
 
-Feasibility supports proceeding to R&D review of the Git/write/build/publication separation. Keep the implementation incubating in `src/lab/content-hub/`; no production migration follows automatically. W-2027 asks rnd-lead for independent acceptance and whether another bounded spike is justified. W-2028 asks principal-engineer to compare this write path with EDD-003 and SPIKE-001, especially React/kit integration and the existing editorial gates.
+Feasibility supports proceeding to R&D review of the Git/write/build/publication separation. Keep the implementation incubating in `src/lab/content-hub/`; no production migration follows automatically. W-2170 asks rnd-lead for independent acceptance and whether another bounded spike is justified. W-2171 asks principal-engineer to compare this write path with EDD-003 and SPIKE-001, especially React/kit integration and the existing editorial gates.
 
 ## Limits and next experiment
 

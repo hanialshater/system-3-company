@@ -1,6 +1,6 @@
 # One-demo content hub deployment
 
-owner: release-manager · date: 2026-10-24 · board: W-2030
+owner: release-manager · date: 2026-10-24 · board: W-2173
 status: authorized; preparing isolated pilot; Vercel team access pending
 
 ## Authorization
@@ -25,4 +25,4 @@ Vercel responded with a team-access 403. The connector's authorize_team_access a
 
 ## Acceptance
 
-Public host URL renders the published real lesson from a separate artifact origin. A server-side publication lookup selects the approved content-hub artifact. Switching/rolling back the pointer changes delivered revision while the Next.js deployment ID remains unchanged. All retained artifact bytes remain unchanged. Save source/build/publication/deployment IDs and local/live verification evidence; leave production integration review W-2028 open.
+Public host URL renders the published real lesson from a separate artifact origin. A server-side publication lookup selects the approved content-hub artifact. Switching/rolling back the pointer changes delivered revision while the Next.js deployment ID remains unchanged. All retained artifact bytes remain unchanged. Save source/build/publication/deployment IDs and local/live verification evidence; leave production integration review W-2171 open.

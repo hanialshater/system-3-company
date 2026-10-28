@@ -1,6 +1,6 @@
 # Real-catalogue content hub test
 
-owner: rnd-engineer · date: 2026-10-24 · board: W-2029 · status: ready for independent review
+owner: rnd-engineer · date: 2026-10-24 · board: W-2172 · status: ready for independent review
 tracking: GitHub #18 / draft PR #20
 
 ## Scope and result
@@ -46,4 +46,4 @@ Proceed to independent R&D and architecture review, not rollout. The main compat
 
 The real Next.js integration still needs request-time/cached catalogue resolution and runtime artifact loading. Today `DemoHost.tsx` uses generated component imports, while `/d/[slug]` statically enumerates lessons with `dynamicParams = false`; new demo URLs would still need a rebuild until those are changed. See [nextjs-architecture.md](nextjs-architecture.md).
 
-This benchmark did not connect the new React compiler adapter to the original DOM prototype's production-like write API, replace real app routes, run every demo's full interactive QA, validate million-demo throughput, provide hostile-code build isolation, or deploy anything. R&D acceptance remains W-2027 and production architecture review remains W-2028. When the actual incoming 1,000 demos are available, rerun this same harness against their authored source instead of the copies.
+This benchmark did not connect the new React compiler adapter to the original DOM prototype's production-like write API, replace real app routes, run every demo's full interactive QA, validate million-demo throughput, provide hostile-code build isolation, or deploy anything. R&D acceptance remains W-2170 and production architecture review remains W-2171. When the actual incoming 1,000 demos are available, rerun this same harness against their authored source instead of the copies.

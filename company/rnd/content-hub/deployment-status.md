@@ -1,6 +1,6 @@
 # One-demo content hub deployment
 
-owner: release-manager · date: 2026-10-25 · board: W-2030
+owner: release-manager · date: 2026-10-25 · board: W-2173
 status: deployed READY; live HTTP/publishing checks passed; live interactive browser rerun pending
 
 ## Live URL
@@ -30,4 +30,4 @@ No additional host builds were performed to change A/B pointers. This demonstrat
 
 ## Tracking
 
-[PR #20](https://github.com/hanialshater/system-3-company/pull/20), [issue #18](https://github.com/hanialshater/system-3-company/issues/18). W-2030 is ready for review, with the live browser recheck explicitly open. W-2027 independent R&D acceptance and W-2028 production integration review remain open.
+[PR #20](https://github.com/hanialshater/system-3-company/pull/20), [issue #18](https://github.com/hanialshater/system-3-company/issues/18). W-2173 is ready for review, with the live browser recheck explicitly open. W-2170 independent R&D acceptance and W-2171 production integration review remain open.

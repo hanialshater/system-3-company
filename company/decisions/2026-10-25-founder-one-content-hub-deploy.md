@@ -17,7 +17,7 @@ Source: this conversation, following the production physical architecture discus
 
 The founder authorized one content-hub demo deployment. Prepare an isolated technical pilot with the already published sum-seven-ignores-first-die lesson, a dedicated artifact origin and a dedicated Next.js shell. The existing production app, its domains, learner data and editorial publication state are outside this change. The Git/build operator remains local for the pilot.
 
-W-2030 tracks execution. [Plan](../rnd/content-hub/deployment-plan.md) and [current status/evidence](../rnd/content-hub/deployment-status.md). Local production build and full-flow checks pass. Independent production integration acceptance is not claimed.
+W-2173 tracks execution. [Plan](../rnd/content-hub/deployment-plan.md) and [current status/evidence](../rnd/content-hub/deployment-status.md). Local production build and full-flow checks pass. Independent production integration acceptance is not claimed.
 
 ## Objections
 

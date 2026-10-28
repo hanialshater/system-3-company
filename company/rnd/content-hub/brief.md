@@ -1,7 +1,7 @@
 # Content hub: Git per space and compile on write
 
 owner: rnd-lead · implementation: rnd-engineer · date: 2026-10-24
-board: W-2026 (prototype), W-2027 (R&D review), W-2028 (architecture review)
+board: W-2169 (prototype), W-2170 (R&D review), W-2171 (architecture review)
 status: prototype authorized by founder; implementation in progress; production adoption unapproved
 
 ## Founder request
@@ -38,6 +38,6 @@ would_be_wrong_if: any unrelated edit rebuilds an unchanged demo; a failed build
 
 ## Acceptance and boundaries
 
-Automated integration checks exercise real temporary Git repositories, compiler, test subprocesses, SQLite state, artifact bytes and HTTP reads. Include failure recovery, stale publication protection, pinning, scope/path checks, rollback and restart. Self-tests establish feasibility, not independent acceptance. R&D lead owns W-2027; principal engineer owns W-2028 before any production proposal.
+Automated integration checks exercise real temporary Git repositories, compiler, test subprocesses, SQLite state, artifact bytes and HTTP reads. Include failure recovery, stale publication protection, pinning, scope/path checks, rollback and restart. Self-tests establish feasibility, not independent acceptance. R&D lead owns W-2170; principal engineer owns W-2171 before any production proposal.
 
 This prototype does not establish million-demo throughput, production authentication, a distributed Git farm, build isolation for hostile code, distributed leases, real CDN/object-store integration or SSR execution. Test subprocesses execute trusted fixtures and are not a security sandbox. Production work must preserve System 3 editorial and publication gates.

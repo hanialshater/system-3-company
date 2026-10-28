@@ -1,7 +1,7 @@
 # Integrating the content hub with the real Next.js app
 
 owner: rnd-engineer · date: 2026-10-24 · status: proposed architecture, not a production migration
-tracking: GitHub #18 / draft PR #20; architecture review W-2028
+tracking: GitHub #18 / draft PR #20; architecture review W-2171
 
 ## Boundary
 
@@ -60,4 +60,4 @@ Only changes to the host application or its supported bridge protocol need a Nex
 
 ## Relationship to the experiment
 
-The real-catalogue benchmark compiles React artifacts and tests loading a preselected domain sample in frames. It does not replace production `DemoHost`, route generation, catalogue storage, authorization, editorial gates or progress persistence. Those application changes remain proposed for W-2028 review.
+The real-catalogue benchmark compiles React artifacts and tests loading a preselected domain sample in frames. It does not replace production `DemoHost`, route generation, catalogue storage, authorization, editorial gates or progress persistence. Those application changes remain proposed for W-2171 review.

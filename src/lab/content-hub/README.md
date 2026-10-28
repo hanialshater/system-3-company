@@ -1,6 +1,6 @@
 # Content hub prototype
 
-R&D incubation · W-2026 · [issue #18](https://github.com/hanialshater/system-3-company/issues/18)
+R&D incubation · W-2169 · [issue #18](https://github.com/hanialshater/system-3-company/issues/18)
 
 One Git repository per space. Scoped optimistic writes create commits and enqueue only affected demos. A separate worker compiles and tests committed snapshots. Immutable artifacts are served on demand; per-demo publication pointers control releases and rollback.
 
@@ -92,7 +92,7 @@ The benchmark uses existing TypeScript and Next-vendored webpack/terser, with co
 - Removing source does not silently withdraw a published artifact; an explicit production withdrawal policy is needed.
 - Production must use an isolated build service and a separate registrable artifact domain, preserve existing editorial/QA/claims gates, and define SDK support/security upgrade policy. Synthetic tests here do not substitute for those gates.
 
-R&D lead owns independent acceptance (W-2027); principal engineer owns compatibility, production boundaries and EDD-003 integration (W-2028). No production imports or protected paths changed.
+R&D lead owns independent acceptance (W-2170); principal engineer owns compatibility, production boundaries and EDD-003 integration (W-2171). No production imports or protected paths changed.
 
 ## Budget, prior art and licence
 
