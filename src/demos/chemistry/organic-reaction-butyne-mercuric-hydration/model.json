@@ -1,0 +1,113 @@
+{
+  "question": "1-butyne is treated with H₂O, H₂SO₄ and HgSO₄. Which major organic product forms after workup?",
+  "options": [
+    "2-butanone",
+    "butanal",
+    "1-butanol"
+  ],
+  "answer": 0,
+  "before": {
+    "name": "1-butyne",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 67,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 129,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "C",
+        "x": 191,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 253,
+        "y": 0,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "order": 3
+      }
+    ]
+  },
+  "after": {
+    "name": "2-butanone",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 67,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 129,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "C",
+        "x": 191,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "CH₃",
+        "x": 253,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "O",
+        "x": 191,
+        "y": -24,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "order": 1
+      },
+      {
+        "a": 2,
+        "b": 4,
+        "order": 2
+      }
+    ]
+  },
+  "explanation": "Mercury-catalyzed hydration forms an enol which tautomerizes to a ketone. In 1-butyne the final carbonyl is at carbon 2, giving 2-butanone."
+}

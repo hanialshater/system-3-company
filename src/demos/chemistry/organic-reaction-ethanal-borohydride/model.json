@@ -1,0 +1,80 @@
+{
+  "question": "Ethanal is treated with NaBH₄, then water. Which major organic product forms after workup?",
+  "options": [
+    "ethane",
+    "ethanol",
+    "ethanoic acid"
+  ],
+  "answer": 1,
+  "before": {
+    "name": "ethanal",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 129,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 191,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "O",
+        "x": 191,
+        "y": -24,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 2
+      }
+    ]
+  },
+  "after": {
+    "name": "ethanol",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 160,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "OH",
+        "x": 222,
+        "y": 0,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      }
+    ]
+  },
+  "explanation": "Sodium borohydride reduces an aldehyde to a primary alcohol after workup. The carbonyl carbon of ethanal becomes the CH₂ bearing OH in ethanol."
+}

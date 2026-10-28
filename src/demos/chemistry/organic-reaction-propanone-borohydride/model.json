@@ -1,0 +1,102 @@
+{
+  "question": "Propanone is treated with NaBH₄, then water. Which major organic product forms after workup?",
+  "options": [
+    "2-propanol",
+    "1-propanol",
+    "propanoic acid"
+  ],
+  "answer": 0,
+  "before": {
+    "name": "propanone",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "C",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₃",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "O",
+        "x": 160,
+        "y": -24,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "order": 2
+      }
+    ]
+  },
+  "after": {
+    "name": "2-propanol",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH",
+        "x": 160,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "CH₃",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "OH",
+        "x": 160,
+        "y": -24,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "order": 1
+      }
+    ]
+  },
+  "explanation": "Borohydride reduces a ketone to a secondary alcohol after workup. The former carbonyl carbon retains both carbon neighbors and gains a hydrogen."
+}

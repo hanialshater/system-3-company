@@ -1,0 +1,80 @@
+{
+  "question": "Bromoethane is treated with azide ion in a polar aprotic solvent. Which major organic product forms after workup?",
+  "options": [
+    "ethylamine",
+    "acetonitrile",
+    "ethyl azide"
+  ],
+  "answer": 2,
+  "before": {
+    "name": "bromoethane",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "Br",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      }
+    ]
+  },
+  "after": {
+    "name": "ethyl azide",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "N₃",
+        "x": 222,
+        "y": 0,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      }
+    ]
+  },
+  "explanation": "Azide ion can replace bromide by SN2 substitution at a primary carbon. The displayed N₃ group is a condensed label for the azide group, not a single atom."
+}

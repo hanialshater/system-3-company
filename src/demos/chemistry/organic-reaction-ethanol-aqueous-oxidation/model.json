@@ -1,0 +1,91 @@
+{
+  "question": "Ethanol is treated with aqueous chromic acid. Which major organic product forms after workup?",
+  "options": [
+    "ethanoic acid",
+    "ethanal",
+    "ethane"
+  ],
+  "answer": 0,
+  "before": {
+    "name": "ethanol",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "CH₂",
+        "x": 160,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "OH",
+        "x": 222,
+        "y": 0,
+        "changed": false
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      }
+    ]
+  },
+  "after": {
+    "name": "ethanoic acid",
+    "atoms": [
+      {
+        "label": "CH₃",
+        "x": 98,
+        "y": 0,
+        "changed": false
+      },
+      {
+        "label": "C",
+        "x": 160,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "OH",
+        "x": 222,
+        "y": 0,
+        "changed": true
+      },
+      {
+        "label": "O",
+        "x": 160,
+        "y": -24,
+        "changed": true
+      }
+    ],
+    "bonds": [
+      {
+        "a": 0,
+        "b": 1,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "order": 1
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "order": 2
+      }
+    ]
+  },
+  "explanation": "A strong aqueous oxidant converts a primary alcohol to a carboxylic acid. The same terminal carbon ends up bonded to both the carbonyl oxygen and OH."
+}
