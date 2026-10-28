@@ -1,6 +1,6 @@
 # Psychology and human learning: 500-demo vertical
 
-Status: proposed delivery plan, 2026-10-28. This is a capacity map, not 500 written briefs or completed demos. Founder direction: `company/decisions/2026-10-28-founder-psychology-learning.md` (W-2055).
+Status: proposed delivery plan, 2026-10-28. This is a capacity map, not 500 written briefs or completed demos. Founder direction: `company/decisions/2026-10-28-founder-psychology-learning.md` (W-2156).
 
 ## Learner and promise
 

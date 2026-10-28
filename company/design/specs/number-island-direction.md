@@ -4,7 +4,7 @@ owner: design-lead
 date: 2026-10-27
 status: agree with changes; direction only, not artifact approval
 source: company/decisions/2026-10-27-founder-number-island.md
-board: W-2026
+board: W-2123
 
 ## Decision
 
@@ -86,4 +86,4 @@ The company can inspect a real world page with original vector scenery, twelve a
 
 ## Handoff
 
-Next owner: head-of-product for product scope and category routing, then principal-engineer for technical tier/owner. Chief of staff should mark W-2026 direction supplied and link this file; W-2027 and W-2028 remain pending their owners. Do not mark art, UI, QA or deployment complete.
+Next owner: head-of-product for product scope and category routing, then principal-engineer for technical tier/owner. Chief of staff should mark W-2123 direction supplied and link this file; W-2124 and W-2125 remain pending their owners. Do not mark art, UI, QA or deployment complete.

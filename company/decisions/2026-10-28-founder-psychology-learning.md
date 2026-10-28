@@ -21,8 +21,8 @@ recorded by: chief-of-staff
 | Step | Role | Answer | Where |
 |---|---|---|---|
 | 1 | principal-pm-verticals | Proposed 20-strand capacity map and staged route; target is 500 functioning demos, not 500 titles | company/product/verticals/2026-10-28-psychology-human-learning.md |
-| 2 | domain-scout | Pending checkable domain proposal and overlap audit | W-2056 |
-| 3 | head-of-product | Pending domain decision and existing manager assignment | W-2057 |
+| 2 | domain-scout | Pending checkable domain proposal and overlap audit | W-2157 |
+| 3 | head-of-product | Pending domain decision and existing manager assignment | W-2158 |
 | 4 | chief-of-staff-ceo-office | Only if a new or changed role is proposed; no org change made | Pending |
 
 ## Objections
@@ -33,7 +33,7 @@ recorded by: chief-of-staff
 
 ## Board
 
-- W-2055 Psychology and human learning vertical and delivery route (principal-pm-verticals)
-- W-2056 Domain proposal, checkability and catalog-overlap audit (domain-scout)
-- W-2057 Domain decision and existing-manager assignment (head-of-product)
-- W-2058 Restore qualifying build environment and browser setup (principal-engineer-ops)
+- W-2156 Psychology and human learning vertical and delivery route (principal-pm-verticals)
+- W-2157 Domain proposal, checkability and catalog-overlap audit (domain-scout)
+- W-2158 Domain decision and existing-manager assignment (head-of-product)
+- W-2159 Restore qualifying build environment and browser setup (principal-engineer-ops)

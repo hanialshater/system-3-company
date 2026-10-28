@@ -5,7 +5,7 @@ date: 2026-10-27
 status: approve with changes; conditional implementation clearance only
 reviewed: company/engineering/edd/EDD-017-number-island.md
 affected design: company/design/specs/number-island-interaction.md; company/design/specs/number-island-direction.md
-board: W-2028
+board: W-2125
 
 ## Verdict
 
