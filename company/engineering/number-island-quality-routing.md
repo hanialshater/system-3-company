@@ -4,7 +4,7 @@ owner: evaluation-steward
 date: 2026-10-27
 status: agree with changes; acceptance plan only, no artifact verdict
 request: company/decisions/2026-10-27-founder-number-island.md
-board: W-2029
+board: W-2126
 
 ## Manager answer
 
@@ -21,7 +21,7 @@ The first version has no learner-history/progress reads or writes, personalized 
 5. **Design-lead**, after the independent findings are written, reviews phone/desktop captures for the agreed visual/navigation treatment. QA/a11y defects go back as problems to platform-engineer; the original reviewers recheck the changed artifact. Record source changes and keep prior failures visible.
 6. **Principal-engineer + principal-engineer-ops** review implementation/readiness under the tier-2 route. **Release-manager** receives the actual independent records and full verification result, then determines whether the already-authorized feature preview can run. No manager may convert red gates to green by describing a preview as harmless.
 
-QA and accessibility reports for this new page should be app-level records under `company/qa/number-island/` and `company/engineering/reviews/`, respectively, linked from the intake and W-2029. Do not put navigation-only findings into the twelve lesson review folders: those files can affect lesson readiness. If an existing lesson itself has a defect, record and route that separate finding under its normal lesson-review procedure. QA of navigation does not confer a learner-review launch verdict or verify factual claims.
+QA and accessibility reports for this new page should be app-level records under `company/qa/number-island/` and `company/engineering/reviews/`, respectively, linked from the intake and W-2126. Do not put navigation-only findings into the twelve lesson review folders: those files can affect lesson readiness. If an existing lesson itself has a defect, record and route that separate finding under its normal lesson-review procedure. QA of navigation does not confer a learner-review launch verdict or verify factual claims.
 
 ## Frozen acceptance cases for the built artifact
 
@@ -64,4 +64,4 @@ These are existing owner work items, not permission for the Number Island builde
 
 ## Handoff
 
-Associate this plan with W-2029; keep it pending actual artifact review. Suggested separate bounded follow-up: evaluation-steward investigates the mutable real-lesson publication fixture and proposes a semantics-preserving test correction; category managers retain actual readiness remediation. No new test/gate, amendment, lesson review, source change, shared operational record or deployment was made here.
+Associate this plan with W-2126; keep it pending actual artifact review. Suggested separate bounded follow-up: evaluation-steward investigates the mutable real-lesson publication fixture and proposes a semantics-preserving test correction; category managers retain actual readiness remediation. No new test/gate, amendment, lesson review, source change, shared operational record or deployment was made here.

@@ -51,4 +51,4 @@ No personalization rule, mastery definition, experiment result or improved-learn
 
 ## Handoff
 
-Associate this answer with W-2027 and the proposed personalization consultation step. Chief of staff should record “boundary supplied; scoped growth-designer interaction review pending,” not “personalization QA passed” or “ready to ship.” Next immediate owner is interaction-designer via design-lead once category/product/engineering prerequisites allow the spec; the subsequent growth-designer review comes through this VP. No application code, assessments, board, progress log or event log changed in this consultation.
+Associate this answer with W-2124 and the proposed personalization consultation step. Chief of staff should record “boundary supplied; scoped growth-designer interaction review pending,” not “personalization QA passed” or “ready to ship.” Next immediate owner is interaction-designer via design-lead once category/product/engineering prerequisites allow the spec; the subsequent growth-designer review comes through this VP. No application code, assessments, board, progress log or event log changed in this consultation.
