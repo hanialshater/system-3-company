@@ -1,3 +1,11 @@
+## 2026-10-28 · zoology prototypes · W-2055
+
+Changed: drafted two life-science lessons, one contrasting footprint and bone evidence and one showing birds within a simplified dinosaur tree; added curriculum and registry entries. This is 2 of the requested 500, with 498 still to scope and build. Sources are leads and all claims remain unverified. No publication, merge or deploy.
+
+Believe: medium confidence that the interactions represent their intended distinction, but no independent science or learner review and no browser or 390×844 fit checks have been performed. The drawings are schematics, not reconstructions. Build and browser QA are blocked by the host guard: free space fell below 10 GB; setup's system dependency installation also failed on permission errors. Before and after changes the company check had 783 errors and 4 warnings; verify stopped at the existing publication-readiness test. TypeScript passed after the change. See `company/reviews/zoology-prototypes/build.md`.
+
+Next: restore host capacity, finish environment setup, review the two prototypes and plan and deliver the remaining 498 in bounded batches; run the required checks, fact-checks, visual QA and independent learner reviews. Do not present the prototypes as the completed collection.
+
 ## 2026-10-28 — Completed all500 science drafts included;3895-stop snapshot ready
 
 PR29 advanced during implementation from347 to500 draft lessons. The final76a87df1d snapshot adds153, yielding3895 unique stops/162 islands, with720 Published/234 Review/2941 Draft preserved. Frozenapp a39e39968, build7RPMubtedbVVPXsJdQM4F passed8230staticpages;35science model tests pass. Independent actualbrowser addendum confirms3895unique list entries, both new science players, exact return offsets and native stage swipe. See company/engineering/readiness/2026-10-28-world-completed-build.json and completed-science provenance.
