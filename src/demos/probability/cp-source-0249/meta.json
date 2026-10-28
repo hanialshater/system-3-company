@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0249",
+  "title": "Tagged fish in the second sample",
+  "hook": "Two stated cases: explore the recaptured tagged fraction under a closed-population model.",
+  "domain": "probability",
+  "concept": "cp-source-0249",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the recaptured tagged fraction under a closed-population model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Population, regardless of the stated inputs.",
+  "objective": "Compare the recaptured tagged fraction under a closed-population model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0249.predict",
+      "text": "A toy closed population has 50 tagged members. A later random sample has size 50, with 5 tagged. What simple capture-recapture estimate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.reveal.0",
+      "text": "The retained results are Recaptured=5; Population=500 and Recaptured=10; Population=250.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.reveal.1",
+      "text": "The estimate matches the tagged fractions. Mixing, tag retention and equal capture chances are assumptions, not consequences of the formula. This comparison isolates the recaptured tagged fraction under a closed-population model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.case.0.witness",
+      "text": "Recaptured=5; Population=500",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tagged\",50],[\"Sample\",50],[\"Recaptured\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Population\",\"value\":500}]},\"metrics\":[{\"label\":\"Population\",\"value\":\"500\"},{\"label\":\"Recaptured\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.case.1.witness",
+      "text": "Recaptured=10; Population=250",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Tagged\",50],[\"Sample\",50],[\"Recaptured\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Population\",\"value\":250}]},\"metrics\":[{\"label\":\"Population\",\"value\":\"250\"},{\"label\":\"Recaptured\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0249.recall",
+      "text": "A toy closed population has 51 tagged members. A later random sample has size 50, with 5 tagged. What simple capture-recapture estimate results? Answer 510.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0249/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #249. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy closed population has 51 tagged members. A later random sample has size 50, with 5 tagged. What simple capture-recapture estimate results?",
+    "options": [
+      "306",
+      "510",
+      "714"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Population 510 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0249",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-249"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 249,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceEntryOriginal": "- **249. Fish in a lake** \\[Predict\\]: tag 50 fish, recapture 50, count tagged ones, estimate the total.",
+    "modelBoundary": "the recaptured tagged fraction under a closed-population model",
+    "recallInputs": [
+      51,
+      50,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

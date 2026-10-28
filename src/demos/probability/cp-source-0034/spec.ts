@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0034", "title": "An ideal ten-card riffle model", "op": "riffle", "labels": ["Cards", "Shuffles"], "outputs": ["IdentityRatio"], "a": [10.0, 1.0], "b": [10.0, 7.0], "question": "Under the ideal GSR riffle model, use 10 distinct cards and 1 riffles. What is the identity-permutation probability divided by its uniform probability?", "questionTemplate": "Under the ideal GSR riffle model, use {Cards} distinct cards and {Shuffles} riffles. What is the identity-permutation probability divided by its uniform probability?", "explain": "Repeated ideal riffles form an a-shuffle with a equal to two to the riffle count. One permutation’s ratio alone is not a full mixing-distance measure.", "lens": "one permutation's deviation from uniformity", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

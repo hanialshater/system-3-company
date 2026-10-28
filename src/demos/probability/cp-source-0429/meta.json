@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0429",
+  "title": "Add the direct and mediator paths",
+  "hook": "Two stated cases: explore the linear no-confounding mediation decomposition.",
+  "domain": "probability",
+  "concept": "cp-source-0429",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the linear no-confounding mediation decomposition affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Total, regardless of the stated inputs.",
+  "objective": "Compare the linear no-confounding mediation decomposition in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0429.predict",
+      "text": "A toy linear model has X→Y coefficient 1, X→M coefficient 2, M→Y coefficient 3, with no interactions or confounding. What is the total X effect?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.reveal.0",
+      "text": "The retained results are MY=3; Total=7 and MY=0; Total=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.reveal.1",
+      "text": "The total includes the direct path and the product along the mediator path. This decomposition needs the specified structural assumptions. This comparison isolates the linear no-confounding mediation decomposition.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.case.0.witness",
+      "text": "MY=3; Total=7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"XM\",2],[\"MY\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"M\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"7\"},{\"label\":\"MY\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.case.1.witness",
+      "text": "MY=0; Total=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"XM\",2],[\"MY\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"M\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"1\"},{\"label\":\"MY\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0429.recall",
+      "text": "A toy linear model has X→Y coefficient 2, X→M coefficient 2, M→Y coefficient 3, with no interactions or confounding. What is the total X effect? Answer 8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0429/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #429. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy linear model has X→Y coefficient 2, X→M coefficient 2, M→Y coefficient 3, with no interactions or confounding. What is the total X effect?",
+    "options": [
+      "4.8",
+      "8",
+      "11.2"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Total 8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0429",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-429"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 429,
+    "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+    "sourceEntryOriginal": "- **429. Direct vs indirect** \\[Slider\\]: split a training program's effect into the part through new skills and the rest.",
+    "modelBoundary": "the linear no-confounding mediation decomposition",
+    "recallInputs": [
+      2,
+      2,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

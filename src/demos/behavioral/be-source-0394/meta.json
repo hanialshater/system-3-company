@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0394",
+  "title": "Callbacks with a common denominator",
+  "hook": "Two stated cases: explore absolute callback rates rather than a relative headline.",
+  "domain": "behavioral",
+  "concept": "be-source-0394",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How absolute callback rates rather than a relative headline affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare absolute callback rates rather than a relative headline in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0394.predict",
+      "text": "A toy comparison has 965/10000 in A and 645/10000 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.reveal.0",
+      "text": "The retained results are HitA=965 TotalA=10,000; Gap=3.2 and HitA=1,930 TotalA=20,000; Gap=3.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates absolute callback rates rather than a relative headline.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.case.0.witness",
+      "text": "HitA=965 TotalA=10,000; Gap=3.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",965],[\"TotalA\",10000],[\"HitB\",645],[\"TotalB\",10000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":3.2}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"3.2\"},{\"label\":\"HitA\",\"value\":\"965\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.case.1.witness",
+      "text": "HitA=1,930 TotalA=20,000; Gap=3.2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",1930],[\"TotalA\",20000],[\"HitB\",645],[\"TotalB\",10000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":3.2}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"3.2\"},{\"label\":\"HitA\",\"value\":\"1,930\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0394.recall",
+      "text": "A toy comparison has 966/10,000 in A and 645/10,000 in B. What is A minus B in percentage points? Answer 3.21.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0394/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #394. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 966/10,000 in A and 645/10,000 in B. What is A minus B in percentage points?",
+    "options": [
+      "1.926",
+      "4.494",
+      "3.21"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gap 3.21 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0394",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-394"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 394,
+    "sourceSection": "20. Labor & the workplace",
+    "sourceEntryOriginal": "- **394.** Resumes with white-sounding names got about 50% more callbacks than identical ones with Black-sounding names, 9.65% vs 6.45% (Bertrand & Mullainathan, 2004).",
+    "modelBoundary": "absolute callback rates rather than a relative headline",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      966,
+      10000,
+      645,
+      10000
+    ]
+  }
+}

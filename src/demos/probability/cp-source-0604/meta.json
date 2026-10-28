@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0604",
+  "title": "A smaller gap raises the bound",
+  "hook": "Two stated cases: explore the stipulated approximation gap in an optimization objective.",
+  "domain": "probability",
+  "concept": "cp-source-0604",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated approximation gap in an optimization objective affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ELBO, regardless of the stated inputs.",
+  "objective": "Compare the stipulated approximation gap in an optimization objective in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0604.predict",
+      "text": "A toy model has log evidence -5 and KL gap 4. From ELBO=log evidence-KL, what bound value results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.reveal.0",
+      "text": "The retained results are KL=4; ELBO=-9 and KL=0.2; ELBO=-5.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.reveal.1",
+      "text": "The identity relates approximation quality and the evidence bound. A high numerical objective alone does not guarantee the approximation captures every posterior feature. This comparison isolates the stipulated approximation gap in an optimization objective.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.case.0.witness",
+      "text": "KL=4; ELBO=-9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogEvidence\",-5],[\"KL\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ELBO\",\"value\":-9},{\"label\":\"Gap\",\"value\":4}]},\"metrics\":[{\"label\":\"ELBO\",\"value\":\"-9\"},{\"label\":\"KL\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.case.1.witness",
+      "text": "KL=0.2; ELBO=-5.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogEvidence\",-5],[\"KL\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ELBO\",\"value\":-5.2},{\"label\":\"Gap\",\"value\":0.2}]},\"metrics\":[{\"label\":\"ELBO\",\"value\":\"-5.2\"},{\"label\":\"KL\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0604.recall",
+      "text": "A toy model has log evidence -4 and KL gap 4. From ELBO=log evidence-KL, what bound value results? Answer -8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0604/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #604. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy model has log evidence -4 and KL gap 4. From ELBO=log evidence-KL, what bound value results?",
+    "options": [
+      "-11.2",
+      "-4.8",
+      "-8"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives ELBO -8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0604",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-604"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 604,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **604. Climbing the ELBO** \\[Slider\\]: watch the approximation slide and stretch as optimization runs.",
+    "modelBoundary": "the stipulated approximation gap in an optimization objective",
+    "recallInputs": [
+      -4,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

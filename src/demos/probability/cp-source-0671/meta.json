@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0671",
+  "title": "A level beneath daily noise",
+  "hook": "Two stated cases: explore the process variance in a local-level update.",
+  "domain": "probability",
+  "concept": "cp-source-0671",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the process variance in a local-level update affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the process variance in a local-level update in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0671.predict",
+      "text": "A scalar toy filter predicts from Mean 10, PriorVar 1, adds ProcessVar 0.1, then observes 16 with noise variance 9. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.reveal.0",
+      "text": "The retained results are ProcessVar=0.1; Posterior=10.653 and ProcessVar=4; Posterior=12.143.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.reveal.1",
+      "text": "Prediction grows uncertainty; a measurement combines the predicted state and observation according to their uncertainties. This is a scalar linear-Gaussian update. This comparison isolates the process variance in a local-level update.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.case.0.witness",
+      "text": "ProcessVar=0.1; Posterior=10.653",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"PriorVar\",1],[\"ProcessVar\",0.1],[\"Observation\",16],[\"Noise\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":10.653465346534654},{\"label\":\"Variance\",\"value\":0.9801980198019803},{\"label\":\"Gain\",\"value\":0.10891089108910892}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"10.653\"},{\"label\":\"ProcessVar\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.case.1.witness",
+      "text": "ProcessVar=4; Posterior=12.143",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"PriorVar\",1],[\"ProcessVar\",4],[\"Observation\",16],[\"Noise\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":12.142857142857142},{\"label\":\"Variance\",\"value\":3.2142857142857144},{\"label\":\"Gain\",\"value\":0.35714285714285715}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"12.143\"},{\"label\":\"ProcessVar\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0671.recall",
+      "text": "A scalar toy filter predicts from Mean 11, PriorVar 1, adds ProcessVar 0.1, then observes 16 with noise variance 9. What posterior mean results? Answer 11.545.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0671/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #671. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A scalar toy filter predicts from Mean 11, PriorVar 1, adds ProcessVar 0.1, then observes 16 with noise variance 9. What posterior mean results?",
+    "options": [
+      "11.545",
+      "6.927",
+      "16.162"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 11.545 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0671",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-671"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 671,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **671. Local level** \\[Slider\\]: separate a sales series into a slowly moving level and daily noise.",
+    "modelBoundary": "the process variance in a local-level update",
+    "recallInputs": [
+      11,
+      1,
+      0.1,
+      16,
+      9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

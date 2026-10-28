@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0994",
+  "title": "Orders change a displayed imbalance",
+  "hook": "Two stated cases: explore the submitted buy-minus-sell count before order-book matching.",
+  "domain": "probability",
+  "concept": "cp-source-0994",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the submitted buy-minus-sell count before order-book matching affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the submitted buy-minus-sell count before order-book matching in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0994.predict",
+      "text": "A toy account starts at 0, receives 10, and pays back 8. What final balance remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.reveal.0",
+      "text": "The retained results are Penalty=8; Net=2 and Penalty=15; Net=-5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.reveal.1",
+      "text": "Track the final balance as well as the wording. Equivalent cash paths can carry different descriptions without changing the arithmetic. This comparison isolates the submitted buy-minus-sell count before order-book matching.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.case.0.witness",
+      "text": "Penalty=8; Net=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",0],[\"Bonus\",10],[\"Penalty\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Start\",\"value\":0},{\"label\":\"Bonus\",\"value\":10},{\"label\":\"End\",\"value\":2}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"2\"},{\"label\":\"Penalty\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.case.1.witness",
+      "text": "Penalty=15; Net=-5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",0],[\"Bonus\",10],[\"Penalty\",15]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Start\",\"value\":0},{\"label\":\"Bonus\",\"value\":10},{\"label\":\"End\",\"value\":-5}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-5\"},{\"label\":\"Penalty\",\"value\":\"15\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0994.recall",
+      "text": "A toy account starts at 1, receives 10, and pays back 8. What final balance remains? Answer 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0994/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #994. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy account starts at 1, receives 10, and pays back 8. What final balance remains?",
+    "options": [
+      "1.8",
+      "4.2",
+      "3"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Net 3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0994",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-994"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 994,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **994. Order book** \\[Slider\\]: random buy and sell orders arrive and the price emerges from their matches.",
+    "modelBoundary": "the submitted buy-minus-sell count before order-book matching",
+    "recallInputs": [
+      1,
+      10,
+      8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

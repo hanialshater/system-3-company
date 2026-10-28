@@ -1,0 +1,162 @@
+{
+  "slug": "p100-maximum-likelihood",
+  "title": "Where does the curve fit?",
+  "hook": "Four flips, three candidate biases: compare the sequence probabilities.",
+  "domain": "probability",
+  "concept": "p100-maximum-likelihood",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "drag a curve's parameters; a likelihood meter peaks at the best fit."
+    ]
+  },
+  "misconception": "Treating maximum likelihood as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "drag a curve's parameters; a likelihood meter peaks at the best fit.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-maximum-likelihood.predict",
+      "text": "You observe 3 heads and 1 tail in four independent coin flips. Which bias makes this exact sequence most likely?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.reveal.0",
+      "text": "The retained cases select 75% heads for three heads and 25% for one head. Each bar multiplies the probabilities of the four observed flips.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.reveal.1",
+      "text": "The tallest bar maximizes the likelihood of this sequence among these candidates. It is not the probability that the candidate bias is true; that would also require a prior.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.recall",
+      "text": "For 2 heads and 2 tails, which candidate bias maximizes p²(1−p)²? The symmetric sequence has likelihood 0.0625 at 50%, larger than 0.03516 at either other candidate.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.scenario.0.summary",
+      "text": "Best: 75% heads",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"H\",\"T\"],\"rows\":[[3,1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Three heads\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"25%\",\"value\":0.01171875},{\"label\":\"50%\",\"value\":0.0625},{\"label\":\"75%\",\"value\":0.10546875}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.scenario.1.summary",
+      "text": "Best: 25% heads",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"H\",\"T\"],\"rows\":[[1,3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · One head\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"25%\",\"value\":0.10546875},{\"label\":\"50%\",\"value\":0.0625},{\"label\":\"75%\",\"value\":0.01171875}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-maximum-likelihood/spec.ts; exact finite illustration specified in manager numericCase: Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-maximum-likelihood.hook",
+      "text": "Four flips, three candidate biases: compare the sequence probabilities.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-maximum-likelihood/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 2 heads and 2 tails, which candidate bias maximizes p²(1−p)²?",
+    "options": [
+      "25% heads",
+      "50% heads",
+      "75% heads"
+    ],
+    "answer": 1,
+    "why": "The symmetric sequence has likelihood 0.0625 at 50%, larger than 0.03516 at either other candidate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-maximum-likelihood",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "likelihood"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 241,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceTitle": "Maximum likelihood",
+    "sourceText": "drag a curve's parameters; a likelihood meter peaks at the best fit.",
+    "sourceEntryOriginal": "- **241. Maximum likelihood** \\[Slider\\]: drag a curve's parameters; a likelihood meter peaks at the best fit.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/ai-maximum-likelihood",
+    "difference": "New teaching boundary: Maximum likelihood. Existing boundary: Compute the maximum likelihood construction and explain its countercase and stated boundary.",
+    "numericCase": "Four independent flips contain 3 H and 1 T. Compare likelihoods p^3(1-p) for p=.25,.5,.75: .01171875,.0625,.10546875; changing the data to 1 H reverses the optimum."
+  },
+  "modelAudit": {
+    "a": 0.10546875,
+    "b": 0.10546875,
+    "aLow": 0.01171875
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0659", "title": "One output informs a correlated output", "op": "conditionalnormal", "labels": ["Observation", "ObsVar", "TargetVar", "Covariance", "Noise"], "outputs": ["Mean", "Variance"], "a": [2.0, 1.0, 1.0, 0.8, 0.1], "b": [2.0, 1.0, 1.0, 0.0, 0.1], "question": "Two zero-mean toy normal outputs have variances 1,1, covariance 0.8. Observe the first at 2 with noise variance 0.1. What is the conditional target mean?", "questionTemplate": "Two zero-mean toy normal outputs have variances {ObsVar},{TargetVar}, covariance {Covariance}. Observe the first at {Observation} with noise variance {Noise}. What is the conditional target mean?", "explain": "Cross-covariance allows one output to inform another. The specified joint covariance must be valid and observation noise is assumed independent.", "lens": "the cross-covariance in a two-output Gaussian update", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

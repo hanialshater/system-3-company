@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0200",
+  "title": "Change the cost of a missed case",
+  "hook": "Two stated cases: explore the explicit costs assigned to two error types.",
+  "domain": "probability",
+  "concept": "cp-source-0200",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the explicit costs assigned to two error types affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Cost, regardless of the stated inputs.",
+  "objective": "Compare the explicit costs assigned to two error types in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0200.predict",
+      "text": "A toy decision rule makes 20 false positives and 10 false negatives, costing 1 and 10 each. What is its total error cost?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.reveal.0",
+      "text": "The retained results are CostFP=1 CostFN=10; Cost=120 and CostFP=10 CostFN=1; Cost=210.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.reveal.1",
+      "text": "Changing error costs can change the preferred rule even on identical outcomes. The costs are explicit decision assumptions. This comparison isolates the explicit costs assigned to two error types.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.case.0.witness",
+      "text": "CostFP=1 CostFN=10; Cost=120",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"FP\",20],[\"FN\",10],[\"CostFP\",1],[\"CostFN\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Cost\",\"value\":120}]},\"metrics\":[{\"label\":\"Cost\",\"value\":\"120\"},{\"label\":\"CostFP\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.case.1.witness",
+      "text": "CostFP=10 CostFN=1; Cost=210",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"FP\",20],[\"FN\",10],[\"CostFP\",10],[\"CostFN\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Cost\",\"value\":210}]},\"metrics\":[{\"label\":\"Cost\",\"value\":\"210\"},{\"label\":\"CostFP\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0200.recall",
+      "text": "A toy decision rule makes 21 false positives and 10 false negatives, costing 1 and 10 each. What is its total error cost? Answer 121.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0200/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #200. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy decision rule makes 21 false positives and 10 false negatives, costing 1 and 10 each. What is its total error cost?",
+    "options": [
+      "121",
+      "72.6",
+      "169.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Cost 121 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0200",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-200"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 200,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **200. Where should the line go?** \\[Slider\\]: change the cost of each mistake and watch the best threshold move.",
+    "modelBoundary": "the explicit costs assigned to two error types",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      21,
+      10,
+      1,
+      10
+    ]
+  }
+}

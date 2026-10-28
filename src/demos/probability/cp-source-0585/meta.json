@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0585",
+  "title": "Within and between chains disagree",
+  "hook": "Two stated cases: explore the classic variance-ratio diagnostic under supplied summaries.",
+  "domain": "probability",
+  "concept": "cp-source-0585",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the classic variance-ratio diagnostic under supplied summaries affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rhat, regardless of the stated inputs.",
+  "objective": "Compare the classic variance-ratio diagnostic under supplied summaries in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0585.predict",
+      "text": "A toy classic variance-ratio diagnostic has per-chain N 100, within-chain variance 1, N-scaled between-chain variance 100. What square-root ratio results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.reveal.0",
+      "text": "The retained results are Between=100; Rhat=1.411 and Between=1; Rhat=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.reveal.1",
+      "text": "This classic summary compares within and between variation. Modern rank-normalized diagnostics and other checks are needed for robust sampler assessment. This comparison isolates the classic variance-ratio diagnostic under supplied summaries.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.case.0.witness",
+      "text": "Between=100; Rhat=1.411",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Within\",1],[\"Between\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rhat\",\"value\":1.4106735979665885}]},\"metrics\":[{\"label\":\"Rhat\",\"value\":\"1.411\"},{\"label\":\"Between\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.case.1.witness",
+      "text": "Between=1; Rhat=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Within\",1],[\"Between\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rhat\",\"value\":1}]},\"metrics\":[{\"label\":\"Rhat\",\"value\":\"1\"},{\"label\":\"Between\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0585.recall",
+      "text": "A toy classic variance-ratio diagnostic has per-chain N 101, within-chain variance 1, N-scaled between-chain variance 100. What square-root ratio results? Answer 1.407.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0585/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #585. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy classic variance-ratio diagnostic has per-chain N 101, within-chain variance 1, N-scaled between-chain variance 100. What square-root ratio results?",
+    "options": [
+      "0.844",
+      "1.407",
+      "1.97"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Rhat 1.407 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0585",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-585"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 585,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **585. Four chains, one answer** \\[Slider\\]: start chains in different corners; R-hat drops toward 1 as they agree.",
+    "modelBoundary": "the classic variance-ratio diagnostic under supplied summaries",
+    "recallInputs": [
+      101,
+      1,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

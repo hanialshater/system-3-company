@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0933",
+  "title": "Many cascades end early",
+  "hook": "Two stated cases: explore the offspring law in a finite branching cascade.",
+  "domain": "probability",
+  "concept": "cp-source-0933",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the offspring law in a finite branching cascade affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Extinct, regardless of the stated inputs.",
+  "objective": "Compare the offspring law in a finite branching cascade in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0933.predict",
+      "text": "One toy lineage has 0 offspring with probability 0.6, 2 with 0.2, otherwise 1. What is extinction probability by 5 generations?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.reveal.0",
+      "text": "The retained results are Zero=0.6 Two=0.2; Extinct=0.961 and Zero=0.4 Two=0.4; Extinct=0.723.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.reveal.1",
+      "text": "Iterating the offspring generating function gives finite-generation extinction. This differs from its eventual fixed point. This comparison isolates the offspring law in a finite branching cascade.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.case.0.witness",
+      "text": "Zero=0.6 Two=0.2; Extinct=0.961",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Zero\",0.6],[\"Two\",0.2],[\"Generations\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Extinct\",\"value\":0.9607033683207311}]},\"metrics\":[{\"label\":\"Extinct\",\"value\":\"0.961\"},{\"label\":\"Zero\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.case.1.witness",
+      "text": "Zero=0.4 Two=0.4; Extinct=0.723",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Zero\",0.4],[\"Two\",0.4],[\"Generations\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Extinct\",\"value\":0.7230269125438721}]},\"metrics\":[{\"label\":\"Extinct\",\"value\":\"0.723\"},{\"label\":\"Zero\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0933.recall",
+      "text": "One toy lineage has 0 offspring with probability 0.7, 2 with 0.2, otherwise 1. What is extinction probability by 5 generations? Answer 0.985.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0933/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #933. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One toy lineage has 0 offspring with probability 0.7, 2 with 0.2, otherwise 1. What is extinction probability by 5 generations?",
+    "options": [
+      "0.591",
+      "0.985",
+      "1.379"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Extinct 0.985 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0933",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-933"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 933,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **933. Viral cascade sizes** \\[Slider\\]: most posts barely spread; a few explode, a heavy-tailed distribution.",
+    "modelBoundary": "the offspring law in a finite branching cascade",
+    "recallInputs": [
+      0.7,
+      0.2,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

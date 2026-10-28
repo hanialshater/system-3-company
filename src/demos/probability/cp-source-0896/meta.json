@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0896",
+  "title": "A shock propagates through time",
+  "hook": "Two stated cases: explore the assumed impulse persistence in a scalar linear recurrence.",
+  "domain": "probability",
+  "concept": "cp-source-0896",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed impulse persistence in a scalar linear recurrence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the assumed impulse persistence in a scalar linear recurrence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0896.predict",
+      "text": "A toy feedback process starts at 1; each step multiplies the current level by 0.8. What level follows 5 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.reveal.0",
+      "text": "The retained results are Amplification=0.8; Level=0.328 and Amplification=0.2; Level=3.20e-4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.reveal.1",
+      "text": "A self-reinforcing measurement process can amplify its starting differences. The recurrence is assumed and does not separate true underlying need from observed activity. This comparison isolates the assumed impulse persistence in a scalar linear recurrence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.case.0.witness",
+      "text": "Amplification=0.8; Level=0.328",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1],[\"Amplification\",0.8],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1.25\",\"value\":0.7565932872025407},{\"label\":\"2.5\",\"value\":0.5724334022399462},{\"label\":\"3.75\",\"value\":0.4330992695052552},{\"label\":\"5\",\"value\":0.3276800000000001}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"0.328\"},{\"label\":\"Amplification\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.case.1.witness",
+      "text": "Amplification=0.2; Level=3.20e-4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1],[\"Amplification\",0.2],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1.25\",\"value\":0.1337480609952844},{\"label\":\"2.5\",\"value\":0.01788854381999832},{\"label\":\"3.75\",\"value\":0.0023925580499539532},{\"label\":\"5\",\"value\":0.0003200000000000001}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"3.20e-4\"},{\"label\":\"Amplification\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0896.recall",
+      "text": "A toy feedback process starts at 2; each step multiplies the current level by 0.8. What level follows 5 steps? Answer 0.655.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0896/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #896. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy feedback process starts at 2; each step multiplies the current level by 0.8. What level follows 5 steps?",
+    "options": [
+      "0.655",
+      "0.393",
+      "0.918"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Level 0.655 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0896",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-896"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 896,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **896. Impulse responses** \\[Slider\\]: shock one variable in a time-series model and watch effects ripple through others.",
+    "modelBoundary": "the assumed impulse persistence in a scalar linear recurrence",
+    "recallInputs": [
+      2,
+      0.8,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

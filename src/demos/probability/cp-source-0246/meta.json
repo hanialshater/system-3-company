@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0246",
+  "title": "A penalty shrinks one coefficient",
+  "hook": "Two stated cases: explore the ridge denominator in a centered single-feature model.",
+  "domain": "probability",
+  "concept": "cp-source-0246",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the ridge denominator in a centered single-feature model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Coefficient, regardless of the stated inputs.",
+  "objective": "Compare the ridge denominator in a centered single-feature model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0246.predict",
+      "text": "A centered one-predictor toy regression has sum XY 20, sum X² 10, and ridge Penalty 0. What coefficient results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.reveal.0",
+      "text": "The retained results are Penalty=0; Coefficient=2 and Penalty=10; Coefficient=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.reveal.1",
+      "text": "The penalty enlarges the denominator and shrinks the coefficient. Intercepts and feature scaling require separate specification. This comparison isolates the ridge denominator in a centered single-feature model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.case.0.witness",
+      "text": "Penalty=0; Coefficient=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"XY\",20],[\"XX\",10],[\"Penalty\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Coefficient\",\"value\":2}]},\"metrics\":[{\"label\":\"Coefficient\",\"value\":\"2\"},{\"label\":\"Penalty\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.case.1.witness",
+      "text": "Penalty=10; Coefficient=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"XY\",20],[\"XX\",10],[\"Penalty\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Coefficient\",\"value\":1}]},\"metrics\":[{\"label\":\"Coefficient\",\"value\":\"1\"},{\"label\":\"Penalty\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0246.recall",
+      "text": "A centered one-predictor toy regression has sum XY 21, sum X² 10, and ridge Penalty 0. What coefficient results? Answer 2.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0246/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #246. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A centered one-predictor toy regression has sum XY 21, sum X² 10, and ridge Penalty 0. What coefficient results?",
+    "options": [
+      "1.26",
+      "2.1",
+      "2.94"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Coefficient 2.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0246",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-246"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 246,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceEntryOriginal": "- **246. Ridge regression** \\[Slider\\]: increase the penalty and watch wild coefficients shrink toward zero.",
+    "modelBoundary": "the ridge denominator in a centered single-feature model",
+    "recallInputs": [
+      21,
+      10,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

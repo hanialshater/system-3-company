@@ -1,5 +1,7 @@
 # Deploy merged default branch
 
+owner: founder (decision); chief-of-staff (record)
+
 class: deploy
 route: release-manager → existing Vercel project
 

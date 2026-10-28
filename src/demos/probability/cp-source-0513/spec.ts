@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0513", "title": "A snapshot depends on its starting queue", "op": "fluid", "labels": ["Initial", "Arrival", "Capacity", "Time"], "outputs": ["Backlog"], "a": [0.0, 9.0, 10.0, 1.0], "b": [90.0, 9.0, 10.0, 1.0], "question": "A toy fluid queue starts at 0; constant arrival rate 9 and capacity 10 run for Time 1. What backlog remains, reflected at zero?", "questionTemplate": "A toy fluid queue starts at {Initial}; constant arrival rate {Arrival} and capacity {Capacity} run for Time {Time}. What backlog remains, reflected at zero?", "explain": "A persistent input-capacity gap accumulates work. This deterministic fluid approximation omits stochastic waiting-time variability.", "lens": "the transient starting state of a deterministic fluid queue", "kind": "timeline", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0452",
+  "title": "A fear-driven toy withdrawal loop",
+  "hook": "Two stated cases: explore the amplification rule in a stipulated bank-run model.",
+  "domain": "probability",
+  "concept": "cp-source-0452",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the amplification rule in a stipulated bank-run model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the amplification rule in a stipulated bank-run model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0452.predict",
+      "text": "A toy feedback process starts at 10; each step multiplies the current level by 1.5. What level follows 5 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.reveal.0",
+      "text": "The retained results are Amplification=1.5; Level=75.938 and Amplification=0.8; Level=3.277.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.reveal.1",
+      "text": "A self-reinforcing measurement process can amplify its starting differences. The recurrence is assumed and does not separate true underlying need from observed activity. This comparison isolates the amplification rule in a stipulated bank-run model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.case.0.witness",
+      "text": "Amplification=1.5; Level=75.938",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",10],[\"Amplification\",1.5],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":10},{\"label\":\"1.25\",\"value\":16.600228795504822},{\"label\":\"2.5\",\"value\":27.556759606310752},{\"label\":\"3.75\",\"value\":45.74485143274839},{\"label\":\"5\",\"value\":75.9375}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"75.938\"},{\"label\":\"Amplification\",\"value\":\"1.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.case.1.witness",
+      "text": "Amplification=0.8; Level=3.277",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",10],[\"Amplification\",0.8],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":10},{\"label\":\"1.25\",\"value\":7.565932872025407},{\"label\":\"2.5\",\"value\":5.7243340223994625},{\"label\":\"3.75\",\"value\":4.330992695052552},{\"label\":\"5\",\"value\":3.2768000000000006}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"3.277\"},{\"label\":\"Amplification\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0452.recall",
+      "text": "A toy feedback process starts at 11; each step multiplies the current level by 1.5. What level follows 5 steps? Answer 83.531.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0452/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #452. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy feedback process starts at 11; each step multiplies the current level by 1.5. What level follows 5 steps?",
+    "options": [
+      "83.531",
+      "50.119",
+      "116.944"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Level 83.531 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0452",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-452"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 452,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **452. Bank run** \\[Slider\\]: set how many depositors fear a run and watch it become self-fulfilling.",
+    "modelBoundary": "the amplification rule in a stipulated bank-run model",
+    "recallInputs": [
+      11,
+      1.5,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0785",
+  "title": "A generator can lose its input signal",
+  "hook": "Two stated cases: explore the information collapse of a binary decoder illustration.",
+  "domain": "probability",
+  "concept": "cp-source-0785",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the information collapse of a binary decoder illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MutualBits, regardless of the stated inputs.",
+  "objective": "Compare the information collapse of a binary decoder illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0785.predict",
+      "text": "A uniform binary toy code drives a noisy binary decoder with flip probability 0.1 when Coupled 1=1. At 0 the output is independent. What mutual information remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.reveal.0",
+      "text": "The retained results are Coupled=1; MutualBits=0.531 and Coupled=0; MutualBits=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.reveal.1",
+      "text": "Ignoring a latent code removes information from that code to the output. This channel analogy does not reproduce VAE training dynamics. This comparison isolates the information collapse of a binary decoder illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.case.0.witness",
+      "text": "Coupled=1; MutualBits=0.531",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Coupled\",1],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MutualBits\",\"value\":0.5310044064107188}]},\"metrics\":[{\"label\":\"MutualBits\",\"value\":\"0.531\"},{\"label\":\"Coupled\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.case.1.witness",
+      "text": "Coupled=0; MutualBits=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Coupled\",0],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MutualBits\",\"value\":0}]},\"metrics\":[{\"label\":\"MutualBits\",\"value\":\"0\"},{\"label\":\"Coupled\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0785.recall",
+      "text": "A uniform binary toy code drives a noisy binary decoder with flip probability 0.2 when Coupled 1=1. At 0 the output is independent. What mutual information remains? Answer 0.278.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0785/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #785. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A uniform binary toy code drives a noisy binary decoder with flip probability 0.2 when Coupled 1=1. At 0 the output is independent. What mutual information remains?",
+    "options": [
+      "0.278",
+      "0.167",
+      "0.389"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives MutualBits 0.278 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0785",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-785"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 785,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **785. Mode collapse** \\[Gotcha\\]: a GAN trained on eight clusters learns to produce only one or two.",
+    "modelBoundary": "the information collapse of a binary decoder illustration",
+    "recallInputs": [
+      1,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

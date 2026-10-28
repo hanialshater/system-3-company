@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0427",
+  "title": "A toy effect changes linearly with age",
+  "hook": "Two stated cases: explore the slope assumption in an age-effect curve.",
+  "domain": "probability",
+  "concept": "cp-source-0427",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the slope assumption in an age-effect curve affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare the slope assumption in an age-effect curve in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0427.predict",
+      "text": "A toy fitted line has Intercept -1, Slope 0.05; what does it predict at X 20?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.reveal.0",
+      "text": "The retained results are X=20; Prediction=0 and X=50; Prediction=1.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates the slope assumption in an age-effect curve.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.case.0.witness",
+      "text": "X=20; Prediction=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",-1],[\"Slope\",0.05],[\"X\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":0}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"0\"},{\"label\":\"X\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.case.1.witness",
+      "text": "X=50; Prediction=1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",-1],[\"Slope\",0.05],[\"X\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":1.5}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"1.5\"},{\"label\":\"X\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0427.recall",
+      "text": "A toy fitted line has Intercept 0, Slope 0.05; what does it predict at X 20? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0427/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #427. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 0, Slope 0.05; what does it predict at X 20?",
+    "options": [
+      "0.6",
+      "1.4",
+      "1"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Prediction 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0427",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-427"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 427,
+    "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+    "sourceEntryOriginal": "- **427. Effect by age** \\[Slider\\]: the treatment effect as a curve over age, with a confidence band.",
+    "modelBoundary": "the slope assumption in an age-effect curve",
+    "recallInputs": [
+      0,
+      0.05,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

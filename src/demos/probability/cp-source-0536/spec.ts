@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0536", "title": "A green-time share sets average capacity", "op": "green", "labels": ["Arrival", "Saturation", "Green", "Time"], "outputs": ["Backlog"], "a": [80.0, 100.0, 0.5, 10.0], "b": [80.0, 100.0, 0.9, 10.0], "question": "Toy traffic arrives at rate 80. Saturation flow is 100, available for Green fraction 0.5; starting empty over Time 10, what fluid backlog accumulates?", "questionTemplate": "Toy traffic arrives at rate {Arrival}. Saturation flow is {Saturation}, available for Green fraction {Green}; starting empty over Time {Time}, what fluid backlog accumulates?", "explain": "Green time changes effective capacity. This average-rate calculation omits within-cycle queues and interactions at other intersections.", "lens": "the supplied signal duty cycle in a fluid model", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

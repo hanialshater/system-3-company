@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0218", "title": "A die constrained by its mean", "op": "maxent", "labels": ["Sides", "Mean"], "outputs": ["Tilt"], "a": [6.0, 4.5], "b": [6.0, 2.5], "question": "On toy faces 1 through 6, use maximum-entropy probabilities proportional to exp(tilt×face), constrained to mean 4.5. What tilt solves the mean by bisection on [-10,10]?", "questionTemplate": "On toy faces 1 through {Sides}, use maximum-entropy probabilities proportional to exp(tilt×face), constrained to mean {Mean}. What tilt solves the mean by bisection on [-10,10]?", "explain": "A maximum-entropy distribution depends on the stated support and moment constraint. Changing that information changes the resulting least-committal model.", "lens": "the mean constraint in an exponential maximum-entropy family", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

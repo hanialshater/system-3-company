@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0543",
+  "title": "Integrate a changing hourly arrival rate",
+  "hook": "Two stated cases: explore the area under a stated linear intensity.",
+  "domain": "probability",
+  "concept": "cp-source-0543",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the area under a stated linear intensity affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the area under a stated linear intensity in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0543.predict",
+      "text": "A toy nonhomogeneous Poisson rate changes linearly from 10 to 30 over Time 2. What expected event count results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.reveal.0",
+      "text": "The retained results are End=30; Expected=40 and End=50; Expected=60.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.reveal.1",
+      "text": "The integral of the rate gives the expected count. It does not specify the exact count that will occur in a realized interval. This comparison isolates the area under a stated linear intensity.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.case.0.witness",
+      "text": "End=30; Expected=40",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",10],[\"End\",30],[\"Time\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":40}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"40\"},{\"label\":\"End\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.case.1.witness",
+      "text": "End=50; Expected=60",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",10],[\"End\",50],[\"Time\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":60}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"60\"},{\"label\":\"End\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0543.recall",
+      "text": "A toy nonhomogeneous Poisson rate changes linearly from 11 to 30 over Time 2. What expected event count results? Answer 41.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0543/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #543. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy nonhomogeneous Poisson rate changes linearly from 11 to 30 over Time 2. What expected event count results?",
+    "options": [
+      "24.6",
+      "41",
+      "57.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Expected 41 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0543",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-543"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 543,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **543. Traffic by hour** \\[Slider\\]: draw a daily arrival-rate curve and watch visits pulse with it.",
+    "modelBoundary": "the area under a stated linear intensity",
+    "recallInputs": [
+      11,
+      30,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

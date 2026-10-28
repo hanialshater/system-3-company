@@ -1,5 +1,7 @@
 # PR4 replacement payload
 
+owner: founder (decision); chief-of-staff (record)
+
 class: category-or-vertical
 route: cm-history → previously completed learning/cultural/documentary/source-use dispositions → chief-of-staff integration
 

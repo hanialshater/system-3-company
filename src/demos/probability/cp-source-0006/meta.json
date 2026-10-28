@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0006",
+  "title": "Condition on at least one boy",
+  "hook": "Two stated cases: explore the family-level conditioning event.",
+  "domain": "probability",
+  "concept": "cp-source-0006",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the family-level conditioning event affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines BothBoys, regardless of the stated inputs.",
+  "objective": "Compare the family-level conditioning event in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0006.predict",
+      "text": "Two children have independent sex and uniform birthdays across 1 equally likely day categories. Condition on at least one boy in a specified category. What is the probability of two boys?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.reveal.0",
+      "text": "The retained results are Days=1; BothBoys=0.333 and Days=7; BothBoys=0.481.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.reveal.1",
+      "text": "This conditions on the stated family-level event, rather than hearing about a randomly selected child. Reporting protocols change the sample space. This comparison isolates the family-level conditioning event.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.case.0.witness",
+      "text": "Days=1; BothBoys=0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Days\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BothBoys\",\"value\":0.3333333333333333}]},\"metrics\":[{\"label\":\"BothBoys\",\"value\":\"0.333\"},{\"label\":\"Days\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.case.1.witness",
+      "text": "Days=7; BothBoys=0.481",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Days\",7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BothBoys\",\"value\":0.48148148148148145}]},\"metrics\":[{\"label\":\"BothBoys\",\"value\":\"0.481\"},{\"label\":\"Days\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0006.recall",
+      "text": "Two children have independent sex and uniform birthdays across 2 equally likely day categories. Condition on at least one boy in a specified category. What is the probability of two boys? Answer 0.429.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0006/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #6. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two children have independent sex and uniform birthdays across 2 equally likely day categories. Condition on at least one boy in a specified category. What is the probability of two boys?",
+    "options": [
+      "0.257",
+      "0.429",
+      "0.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives BothBoys 0.429 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0006",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-6"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 6,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **6. Boy or girl** \\[Gotcha\\]: a family has two kids, at least one a boy. Chance both are boys? 1/3, not 1/2.",
+    "modelBoundary": "the family-level conditioning event",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      2
+    ]
+  }
+}

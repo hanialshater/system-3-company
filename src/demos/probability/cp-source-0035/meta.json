@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0035",
+  "title": "Count orders on a logarithmic scale",
+  "hook": "Two stated cases: explore the factorial number of distinct permutations.",
+  "domain": "probability",
+  "concept": "cp-source-0035",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the factorial number of distinct permutations affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Log10Orders, regardless of the stated inputs.",
+  "objective": "Compare the factorial number of distinct permutations in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0035.predict",
+      "text": "A toy deck has 52 distinct cards. What is log10 of the number of possible orders?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.reveal.0",
+      "text": "The retained results are Cards=52; Log10Orders=67.907 and Cards=20; Log10Orders=18.386.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.reveal.1",
+      "text": "The factorial counts permutations of distinct cards. A logarithmic output keeps a huge exact count within a readable numeric range. This comparison isolates the factorial number of distinct permutations.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.case.0.witness",
+      "text": "Cards=52; Log10Orders=67.907",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cards\",52]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Log10Orders\",\"value\":67.90664839220476}]},\"metrics\":[{\"label\":\"Log10Orders\",\"value\":\"67.907\"},{\"label\":\"Cards\",\"value\":\"52\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.case.1.witness",
+      "text": "Cards=20; Log10Orders=18.386",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Cards\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Log10Orders\",\"value\":18.386124616877716}]},\"metrics\":[{\"label\":\"Log10Orders\",\"value\":\"18.386\"},{\"label\":\"Cards\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0035.recall",
+      "text": "A toy deck has 53 distinct cards. What is log10 of the number of possible orders? Answer 69.631.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0035/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #35. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy deck has 53 distinct cards. What is log10 of the number of possible orders?",
+    "options": [
+      "69.631",
+      "41.779",
+      "97.483"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Log10Orders 69.631 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0035",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-35"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 35,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **35. 52 factorial** \\[Gotcha\\]: a well-shuffled deck is almost certainly in an order never seen before in history.",
+    "modelBoundary": "the factorial number of distinct permutations",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      53
+    ]
+  }
+}

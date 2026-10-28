@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0672",
+  "title": "Separate trend and season",
+  "hook": "Two stated cases: explore the seasonal component of a stipulated signal.",
+  "domain": "probability",
+  "concept": "cp-source-0672",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the seasonal component of a stipulated signal affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the seasonal component of a stipulated signal in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0672.predict",
+      "text": "A toy signal is Level 10+Trend 1×Time 0.25+Amplitude 3×sin(2πTime). What signal results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.reveal.0",
+      "text": "The retained results are Amplitude=3; Level=13.25 and Amplitude=0; Level=10.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.reveal.1",
+      "text": "An additive decomposition separates the assumed components. This calculation does not estimate them from observations. This comparison isolates the seasonal component of a stipulated signal.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.case.0.witness",
+      "text": "Amplitude=3; Level=13.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Level\",10],[\"Trend\",1],[\"Amplitude\",3],[\"Time\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":10},{\"x\":0.125,\"y\":12.246320343559642},{\"x\":0.25,\"y\":13.25},{\"x\":0.375,\"y\":12.496320343559642},{\"x\":0.5,\"y\":10.5},{\"x\":0.625,\"y\":8.503679656440358},{\"x\":0.75,\"y\":7.75},{\"x\":0.875,\"y\":8.753679656440358},{\"x\":1,\"y\":11},{\"x\":1.125,\"y\":13.246320343559642},{\"x\":1.25,\"y\":14.25},{\"x\":1.375,\"y\":13.496320343559645},{\"x\":1.5,\"y\":11.500000000000002},{\"x\":1.625,\"y\":9.503679656440356},{\"x\":1.75,\"y\":8.75},{\"x\":1.875,\"y\":9.753679656440355},{\"x\":2,\"y\":11.999999999999998},{\"x\":2.125,\"y\":14.246320343559644},{\"x\":2.25,\"y\":15.25},{\"x\":2.375,\"y\":14.496320343559645},{\"x\":2.5,\"y\":12.500000000000002},{\"x\":2.625,\"y\":10.503679656440358},{\"x\":2.75,\"y\":9.75},{\"x\":2.875,\"y\":10.753679656440355},{\"x\":3,\"y\":12.999999999999998}],\"xLabel\":\"Time\",\"yLabel\":\"Level\"},\"metrics\":[{\"label\":\"Level\",\"value\":\"13.25\"},{\"label\":\"Amplitude\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.case.1.witness",
+      "text": "Amplitude=0; Level=10.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Level\",10],[\"Trend\",1],[\"Amplitude\",0],[\"Time\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":10},{\"x\":0.125,\"y\":10.125},{\"x\":0.25,\"y\":10.25},{\"x\":0.375,\"y\":10.375},{\"x\":0.5,\"y\":10.5},{\"x\":0.625,\"y\":10.625},{\"x\":0.75,\"y\":10.75},{\"x\":0.875,\"y\":10.875},{\"x\":1,\"y\":11},{\"x\":1.125,\"y\":11.125},{\"x\":1.25,\"y\":11.25},{\"x\":1.375,\"y\":11.375},{\"x\":1.5,\"y\":11.5},{\"x\":1.625,\"y\":11.625},{\"x\":1.75,\"y\":11.75},{\"x\":1.875,\"y\":11.875},{\"x\":2,\"y\":12},{\"x\":2.125,\"y\":12.125},{\"x\":2.25,\"y\":12.25},{\"x\":2.375,\"y\":12.375},{\"x\":2.5,\"y\":12.5},{\"x\":2.625,\"y\":12.625},{\"x\":2.75,\"y\":12.75},{\"x\":2.875,\"y\":12.875},{\"x\":3,\"y\":13}],\"xLabel\":\"Time\",\"yLabel\":\"Level\"},\"metrics\":[{\"label\":\"Level\",\"value\":\"10.25\"},{\"label\":\"Amplitude\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0672.recall",
+      "text": "A toy signal is Level 11+Trend 1×Time 0.25+Amplitude 3×sin(2πTime). What signal results? Answer 14.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0672/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #672. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy signal is Level 11+Trend 1×Time 0.25+Amplitude 3×sin(2πTime). What signal results?",
+    "options": [
+      "8.55",
+      "14.25",
+      "19.95"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Level 14.25 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0672",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-672"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 672,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **672. Trend, season, holiday** \\[Slider\\]: decompose a time series into structural pieces you can toggle.",
+    "modelBoundary": "the seasonal component of a stipulated signal",
+    "recallInputs": [
+      11,
+      1,
+      3,
+      0.25
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

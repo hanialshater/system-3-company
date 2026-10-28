@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0084",
+  "title": "One more day of waiting",
+  "hook": "Two stated cases: explore the delay under a hyperbolic discount rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0084",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the delay under a hyperbolic discount rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the delay under a hyperbolic discount rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0084.predict",
+      "text": "A toy delayed amount 100 is discounted by dividing by 1 + 0.1 × delay 1. What is its value now?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.reveal.0",
+      "text": "The retained results are Delay=1; Value=90.909 and Delay=30; Value=25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.reveal.1",
+      "text": "The same added delay has a larger proportional effect near the present under this hyperbolic rule. This comparison isolates the delay under a hyperbolic discount rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.case.0.witness",
+      "text": "Delay=1; Value=90.909",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Amount\",100],[\"K\",0.1],[\"Delay\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":100},{\"x\":0.4166666666666667,\"y\":96},{\"x\":0.8333333333333334,\"y\":92.30769230769232},{\"x\":1.25,\"y\":88.88888888888889},{\"x\":1.6666666666666667,\"y\":85.71428571428571},{\"x\":2.0833333333333335,\"y\":82.75862068965516},{\"x\":2.5,\"y\":80},{\"x\":2.9166666666666665,\"y\":77.41935483870968},{\"x\":3.3333333333333335,\"y\":74.99999999999999},{\"x\":3.75,\"y\":72.72727272727273},{\"x\":4.166666666666667,\"y\":70.58823529411764},{\"x\":4.583333333333333,\"y\":68.57142857142857},{\"x\":5,\"y\":66.66666666666667},{\"x\":5.416666666666667,\"y\":64.86486486486486},{\"x\":5.833333333333333,\"y\":63.1578947368421},{\"x\":6.25,\"y\":61.53846153846154},{\"x\":6.666666666666667,\"y\":60},{\"x\":7.083333333333333,\"y\":58.536585365853654},{\"x\":7.5,\"y\":57.142857142857146},{\"x\":7.916666666666667,\"y\":55.81395348837209},{\"x\":8.333333333333334,\"y\":54.54545454545454},{\"x\":8.75,\"y\":53.333333333333336},{\"x\":9.166666666666666,\"y\":52.173913043478265},{\"x\":9.583333333333334,\"y\":51.06382978723404},{\"x\":10,\"y\":50}],\"xLabel\":\"Delay\",\"yLabel\":\"Value\"},\"metrics\":[{\"label\":\"Value\",\"value\":\"90.909\"},{\"label\":\"Delay\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.case.1.witness",
+      "text": "Delay=30; Value=25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Amount\",100],[\"K\",0.1],[\"Delay\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":100},{\"x\":1.25,\"y\":88.88888888888889},{\"x\":2.5,\"y\":80},{\"x\":3.75,\"y\":72.72727272727273},{\"x\":5,\"y\":66.66666666666667},{\"x\":6.25,\"y\":61.53846153846154},{\"x\":7.5,\"y\":57.142857142857146},{\"x\":8.75,\"y\":53.333333333333336},{\"x\":10,\"y\":50},{\"x\":11.25,\"y\":47.05882352941177},{\"x\":12.5,\"y\":44.44444444444444},{\"x\":13.75,\"y\":42.10526315789474},{\"x\":15,\"y\":40},{\"x\":16.25,\"y\":38.095238095238095},{\"x\":17.5,\"y\":36.36363636363637},{\"x\":18.75,\"y\":34.78260869565217},{\"x\":20,\"y\":33.333333333333336},{\"x\":21.25,\"y\":32},{\"x\":22.5,\"y\":30.76923076923077},{\"x\":23.75,\"y\":29.62962962962963},{\"x\":25,\"y\":28.571428571428573},{\"x\":26.25,\"y\":27.586206896551722},{\"x\":27.5,\"y\":26.666666666666668},{\"x\":28.75,\"y\":25.806451612903224},{\"x\":30,\"y\":25}],\"xLabel\":\"Delay\",\"yLabel\":\"Value\"},\"metrics\":[{\"label\":\"Value\",\"value\":\"25\"},{\"label\":\"Delay\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0084.recall",
+      "text": "A toy delayed amount 101 is discounted by dividing by 1 + 0.1 × delay 1. What is its value now? Answer 91.818.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0084/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #84. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy delayed amount 101 is discounted by dividing by 1 + 0.1 × delay 1. What is its value now?",
+    "options": [
+      "55.091",
+      "91.818",
+      "128.545"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Value 91.818 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0084",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-84"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 84,
+    "sourceSection": "5. Present bias & time preferences",
+    "sourceEntryOriginal": "- **84.** Implied discount rates are far higher over short delays than long ones (Thaler, 1981).",
+    "modelBoundary": "the delay under a hyperbolic discount rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      0.1,
+      1
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0874",
+  "title": "A genetic instrument needs assumptions",
+  "hook": "Two stated cases: explore the first-stage denominator under stipulated IV validity.",
+  "domain": "probability",
+  "concept": "cp-source-0874",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the first-stage denominator under stipulated IV validity affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Ratio, regardless of the stated inputs.",
+  "objective": "Compare the first-stage denominator under stipulated IV validity in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0874.predict",
+      "text": "A toy instrument changes mean outcome by 0.02 and treatment uptake by 0.1. What is the Wald ratio?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.reveal.0",
+      "text": "The retained results are FirstStage=0.1; Ratio=0.2 and FirstStage=0.02; Ratio=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.reveal.1",
+      "text": "A small first stage amplifies the ratio. Exclusion, instrument validity and the target-effect assumptions cannot be inferred from this division. This comparison isolates the first-stage denominator under stipulated IV validity.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.case.0.witness",
+      "text": "FirstStage=0.1; Ratio=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reduced\",0.02],[\"FirstStage\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"Z\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"T\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"0.2\"},{\"label\":\"FirstStage\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.case.1.witness",
+      "text": "FirstStage=0.02; Ratio=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reduced\",0.02],[\"FirstStage\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"Z\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"T\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"1\"},{\"label\":\"FirstStage\",\"value\":\"0.02\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0874.recall",
+      "text": "A toy instrument changes mean outcome by 0.12 and treatment uptake by 0.1. What is the Wald ratio? Answer 1.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0874/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #874. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy instrument changes mean outcome by 0.12 and treatment uptake by 0.1. What is the Wald ratio?",
+    "options": [
+      "0.72",
+      "1.68",
+      "1.2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Ratio 1.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0874",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-874"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 874,
+    "sourceSection": "44. Advanced identification: front-door, bounds, transportability",
+    "sourceEntryOriginal": "- **874. Mendelian randomization** \\[Story\\]: genes randomly inherited at conception act as instruments for exposures like alcohol use.",
+    "modelBoundary": "the first-stage denominator under stipulated IV validity",
+    "recallInputs": [
+      0.12000000000000001,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

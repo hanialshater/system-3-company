@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0024", "title": "Average the selected short sequences", "op": "hotselection", "labels": ["N", "P"], "outputs": ["MeanSelected"], "a": [4.0, 0.5], "b": [8.0, 0.5], "question": "Enumerate 4 independent flips with heads probability 0.5. Exclude sequences with no heads before the last position. Average each remaining sequence’s fraction of heads-after-heads. What results?", "questionTemplate": "Enumerate {N} independent flips with heads probability {P}. Exclude sequences with no heads before the last position. Average each remaining sequence’s fraction of heads-after-heads. What results?", "explain": "Equal weighting of sequence-level fractions differs from pooling all eligible transitions. The finite-sequence selection rule creates the contrast.", "lens": "sequence-level averaging after heads", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

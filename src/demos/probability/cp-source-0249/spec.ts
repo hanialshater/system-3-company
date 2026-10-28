@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0249", "title": "Tagged fish in the second sample", "op": "capture", "labels": ["Tagged", "Sample", "Recaptured"], "outputs": ["Population"], "a": [50.0, 50.0, 5.0], "b": [50.0, 50.0, 10.0], "question": "A toy closed population has 50 tagged members. A later random sample has size 50, with 5 tagged. What simple capture-recapture estimate results?", "questionTemplate": "A toy closed population has {Tagged} tagged members. A later random sample has size {Sample}, with {Recaptured} tagged. What simple capture-recapture estimate results?", "explain": "The estimate matches the tagged fractions. Mixing, tag retention and equal capture chances are assumptions, not consequences of the formula.", "lens": "the recaptured tagged fraction under a closed-population model", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

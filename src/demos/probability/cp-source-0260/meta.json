@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0260",
+  "title": "Independent measurement errors combine",
+  "hook": "Two stated cases: explore the addition of independent variances.",
+  "domain": "probability",
+  "concept": "cp-source-0260",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the addition of independent variances affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare the addition of independent variances in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0260.predict",
+      "text": "Two independent zero-mean toy errors have variances 4,9. What is the standard deviation of their sum?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.reveal.0",
+      "text": "The retained results are VarA=4; SD=3.606 and VarA=16; SD=5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.reveal.1",
+      "text": "Independent variances add before taking a square root. Adding standard deviations would answer a different question; covariance would add another term. This comparison isolates the addition of independent variances.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.case.0.witness",
+      "text": "VarA=4; SD=3.606",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"VarA\",4],[\"VarB\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":3.605551275463989}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"3.606\"},{\"label\":\"VarA\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.case.1.witness",
+      "text": "VarA=16; SD=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"VarA\",16],[\"VarB\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":5}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"5\"},{\"label\":\"VarA\",\"value\":\"16\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0260.recall",
+      "text": "Two independent zero-mean toy errors have variances 5,9. What is the standard deviation of their sum? Answer 3.742.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0260/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #260. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent zero-mean toy errors have variances 5,9. What is the standard deviation of their sum?",
+    "options": [
+      "3.742",
+      "2.245",
+      "5.238"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives SD 3.742 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0260",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-260"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 260,
+    "sourceSection": "13. Estimation, fitting & uncertainty",
+    "sourceEntryOriginal": "- **260. Stacking errors** \\[Slider\\]: combine uncertain measurements and watch how errors add in quadrature.",
+    "modelBoundary": "the addition of independent variances",
+    "recallInputs": [
+      5,
+      9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

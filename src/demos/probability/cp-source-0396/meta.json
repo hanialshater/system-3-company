@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0396",
+  "title": "Project the pre-policy trend",
+  "hook": "Two stated cases: explore the assumed continuation of a fitted pre-period slope.",
+  "domain": "probability",
+  "concept": "cp-source-0396",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed continuation of a fitted pre-period slope affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare the assumed continuation of a fitted pre-period slope in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0396.predict",
+      "text": "A toy fitted line has Intercept 10, Slope 2; what does it predict at X 5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.reveal.0",
+      "text": "The retained results are Slope=2; Prediction=20 and Slope=1; Prediction=15.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates the assumed continuation of a fitted pre-period slope.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.case.0.witness",
+      "text": "Slope=2; Prediction=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",10],[\"Slope\",2],[\"X\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":20}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"20\"},{\"label\":\"Slope\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.case.1.witness",
+      "text": "Slope=1; Prediction=15",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",10],[\"Slope\",1],[\"X\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":15}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"15\"},{\"label\":\"Slope\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0396.recall",
+      "text": "A toy fitted line has Intercept 11, Slope 2; what does it predict at X 5? Answer 21.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0396/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #396. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 11, Slope 2; what does it predict at X 5?",
+    "options": [
+      "12.6",
+      "21",
+      "29.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Prediction 21 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0396",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-396"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 396,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceEntryOriginal": "- **396. Interrupted time series** \\[Slider\\]: fit the trend before a policy and compare it with what came after.",
+    "modelBoundary": "the assumed continuation of a fitted pre-period slope",
+    "recallInputs": [
+      11,
+      2,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

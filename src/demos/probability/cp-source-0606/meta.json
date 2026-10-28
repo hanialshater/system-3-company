@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0606",
+  "title": "One invertible step rescales a density",
+  "hook": "Two stated cases: explore the Jacobian of a single affine flow component.",
+  "domain": "probability",
+  "concept": "cp-source-0606",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Jacobian of a single affine flow component affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Y, regardless of the stated inputs.",
+  "objective": "Compare the Jacobian of a single affine flow component in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0606.predict",
+      "text": "Transform a standard-normal toy coordinate X 1 by Y=Shift 0+Scale 2×X, with nonzero scale. What Y results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.reveal.0",
+      "text": "The retained results are Scale=2; Y=2 and Scale=0.5; Y=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.reveal.1",
+      "text": "The density transformation also accounts for the Jacobian. This single affine step illustrates a flow component, not a complete expressive flow model. This comparison isolates the Jacobian of a single affine flow component.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.case.0.witness",
+      "text": "Scale=2; Y=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",1],[\"Scale\",2],[\"Shift\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Y\",\"value\":2},{\"label\":\"LogDensity\",\"value\":-2.112085713764618}]},\"metrics\":[{\"label\":\"Y\",\"value\":\"2\"},{\"label\":\"Scale\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.case.1.witness",
+      "text": "Scale=0.5; Y=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",1],[\"Scale\",0.5],[\"Shift\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Y\",\"value\":0.5},{\"label\":\"LogDensity\",\"value\":-0.7257913526447274}]},\"metrics\":[{\"label\":\"Y\",\"value\":\"0.5\"},{\"label\":\"Scale\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0606.recall",
+      "text": "Transform a standard-normal toy coordinate X 2 by Y=Shift 0+Scale 2×X, with nonzero scale. What Y results? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0606/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #606. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Transform a standard-normal toy coordinate X 2 by Y=Shift 0+Scale 2×X, with nonzero scale. What Y results?",
+    "options": [
+      "2.4",
+      "4",
+      "5.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Y 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0606",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-606"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 606,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **606. Normalizing flows** \\[Slider\\]: a plain Gaussian is bent, step by step, into a spiral or a moon shape.",
+    "modelBoundary": "the Jacobian of a single affine flow component",
+    "recallInputs": [
+      2,
+      2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

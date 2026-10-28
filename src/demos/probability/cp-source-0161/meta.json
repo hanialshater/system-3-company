@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0161",
+  "title": "Darts estimate a circle's area",
+  "hook": "Two stated cases: explore the hit fraction and Monte Carlo sampling error.",
+  "domain": "probability",
+  "concept": "cp-source-0161",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the hit fraction and Monte Carlo sampling error affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the hit fraction and Monte Carlo sampling error in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0161.predict",
+      "text": "A toy Monte Carlo sample has 785 hits among 1000; multiply the hit fraction by Scale 4. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.reveal.0",
+      "text": "The retained results are Hits=785 N=1,000; Estimate=3.14 and Hits=7,850 N=10,000; Estimate=3.14.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.reveal.1",
+      "text": "Sampling error remains after a Monte Carlo estimate. The reported plug-in standard error assumes independent indicator draws. This comparison isolates the hit fraction and Monte Carlo sampling error.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.case.0.witness",
+      "text": "Hits=785 N=1,000; Estimate=3.14",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Hits\",785],[\"N\",1000],[\"Scale\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":3.14},{\"label\":\"SE\",\"value\":0.051965373086315846}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"3.14\"},{\"label\":\"Hits\",\"value\":\"785\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.case.1.witness",
+      "text": "Hits=7,850 N=10,000; Estimate=3.14",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Hits\",7850],[\"N\",10000],[\"Scale\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":3.14},{\"label\":\"SE\",\"value\":0.016432893841317176}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"3.14\"},{\"label\":\"Hits\",\"value\":\"7,850\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0161.recall",
+      "text": "A toy Monte Carlo sample has 786 hits among 1,000; multiply the hit fraction by Scale 4. What estimate results? Answer 3.144.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0161/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #161. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Monte Carlo sample has 786 hits among 1,000; multiply the hit fraction by Scale 4. What estimate results?",
+    "options": [
+      "3.144",
+      "1.886",
+      "4.402"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Estimate 3.144 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0161",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-161"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 161,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **161. Darts for π** \\[Predict\\]: throw random darts at a square with a circle inside; the hit ratio estimates π.",
+    "modelBoundary": "the hit fraction and Monte Carlo sampling error",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      786,
+      1000,
+      4
+    ]
+  }
+}

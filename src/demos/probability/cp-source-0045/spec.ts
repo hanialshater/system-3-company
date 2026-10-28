@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0045", "title": "Reverse the conditional carefully", "op": "bayes", "labels": ["Prior", "Sensitivity", "FalsePositive"], "outputs": ["Posterior"], "a": [0.1, 0.8, 0.02], "b": [0.01, 0.8, 0.02], "question": "A toy condition has prevalence 0.1; a test catches fraction 0.8 of cases and flags fraction 0.02 of noncases. Given a positive, what probability is a case?", "questionTemplate": "A toy condition has prevalence {Prior}; a test catches fraction {Sensitivity} of cases and flags fraction {FalsePositive} of noncases. Given a positive, what probability is a case?", "explain": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive.", "lens": "the specified population and reverse conditional", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

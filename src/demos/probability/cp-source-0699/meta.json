@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0699",
+  "title": "A poor price has an experiment cost",
+  "hook": "Two stated cases: explore the inferior-price exposure under assumed mean revenues.",
+  "domain": "probability",
+  "concept": "cp-source-0699",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the inferior-price exposure under assumed mean revenues affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Regret, regardless of the stated inputs.",
+  "objective": "Compare the inferior-price exposure under assumed mean revenues in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0699.predict",
+      "text": "The best toy arm pays mean 10; a chosen arm pays 7 for 20 pulls. What expected cumulative regret results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.reveal.0",
+      "text": "The retained results are Pulls=20; Regret=60 and Pulls=5; Regret=15.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.reveal.1",
+      "text": "Regret compares expected rewards with an oracle benchmark. Realized rewards can fluctuate around this expected cost. This comparison isolates the inferior-price exposure under assumed mean revenues.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.case.0.witness",
+      "text": "Pulls=20; Regret=60",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Best\",10],[\"Chosen\",7],[\"Pulls\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Regret\",\"value\":60}]},\"metrics\":[{\"label\":\"Regret\",\"value\":\"60\"},{\"label\":\"Pulls\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.case.1.witness",
+      "text": "Pulls=5; Regret=15",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Best\",10],[\"Chosen\",7],[\"Pulls\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Regret\",\"value\":15}]},\"metrics\":[{\"label\":\"Regret\",\"value\":\"15\"},{\"label\":\"Pulls\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0699.recall",
+      "text": "The best toy arm pays mean 11; a chosen arm pays 7 for 20 pulls. What expected cumulative regret results? Answer 80.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0699/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #699. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The best toy arm pays mean 11; a chosen arm pays 7 for 20 pulls. What expected cumulative regret results?",
+    "options": [
+      "48",
+      "80",
+      "112"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Regret 80 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0699",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-699"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 699,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceEntryOriginal": "- **699. Price testing** \\[Slider\\]: a bandit tests price points while limiting revenue lost to bad prices.",
+    "modelBoundary": "the inferior-price exposure under assumed mean revenues",
+    "recallInputs": [
+      11,
+      7,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

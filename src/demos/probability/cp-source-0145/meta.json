@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0145",
+  "title": "A weather chain forgets its start",
+  "hook": "Two stated cases: explore transition rates and a finite-time weather distribution.",
+  "domain": "probability",
+  "concept": "cp-source-0145",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How transition rates and a finite-time weather distribution affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rain, regardless of the stated inputs.",
+  "objective": "Compare transition rates and a finite-time weather distribution in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0145.predict",
+      "text": "A toy chain switches sun to rain with chance 0.2, rain to sun with 0.4; initial rain probability 0. What is rain probability after 10 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.reveal.0",
+      "text": "The retained results are StartRain=0; Rain=0.333 and StartRain=1; Rain=0.333.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.reveal.1",
+      "text": "Transition probabilities determine both the stationary share and how the initial condition fades. This formula is for the stated two-state chain. This comparison isolates transition rates and a finite-time weather distribution.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.case.0.witness",
+      "text": "StartRain=0; Rain=0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ToRain\",0.2],[\"ToSun\",0.4],[\"StartRain\",0],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rain\",\"value\":0.33329838079999996}]},\"metrics\":[{\"label\":\"Rain\",\"value\":\"0.333\"},{\"label\":\"StartRain\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.case.1.witness",
+      "text": "StartRain=1; Rain=0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ToRain\",0.2],[\"ToSun\",0.4],[\"StartRain\",1],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rain\",\"value\":0.33340323839999997}]},\"metrics\":[{\"label\":\"Rain\",\"value\":\"0.333\"},{\"label\":\"StartRain\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0145.recall",
+      "text": "A toy chain switches sun to rain with chance 0.3, rain to sun with 0.4; initial rain probability 0. What is rain probability after 10 steps? Answer 0.429.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0145/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #145. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy chain switches sun to rain with chance 0.3, rain to sun with 0.4; initial rain probability 0. What is rain probability after 10 steps?",
+    "options": [
+      "0.257",
+      "0.6",
+      "0.429"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rain 0.429 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0145",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-145"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 145,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **145. Weather chain** \\[Slider\\]: set sunny-to-rainy odds and watch the long-run share of rainy days settle.",
+    "modelBoundary": "transition rates and a finite-time weather distribution",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.30000000000000004,
+      0.4,
+      0,
+      10
+    ]
+  }
+}

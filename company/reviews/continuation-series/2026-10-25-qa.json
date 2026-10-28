@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-25",
+  "status": "mechanical pass; independent source/learner reviews open",
+  "testedLocalCommit": "c5ecf4f9a0c74e2e21f530edca7fb02e57bb11c9",
+  "testedRemoteCommit": "cee659f00c15a254cf62680b55ddf647ad534a4d",
+  "tree": "15aacc0f71ece1361f39c96ca4ed4099c1f75ab0",
+  "productionBuild": {
+    "command": "NODE_OPTIONS=--max-old-space-size=6144 npm run build -- --webpack",
+    "supportedRetry": true,
+    "lessonPages": 2445,
+    "buildId": "Xu175Okaa-Q0pW43qw6GM"
+  },
+  "qaStamp": {
+    "files": [
+      "tests/qa",
+      "playwright.config.ts"
+    ],
+    "head": "c5ecf4f9a0c74e2e21f530edca7fb02e57bb11c9",
+    "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+    "blobs": {
+      "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+      "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+      "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+      "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+    },
+    "modified": [],
+    "clean": true
+  },
+  "contract": {
+    "startTime": "2026-10-25T08:13:43.473Z",
+    "duration": 694556.55,
+    "expected": 1200,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "phoneFit": {
+    "02": {
+      "summary": {
+        "viewport": "390x844",
+        "lessons": 200,
+        "fit": 200,
+        "scroll": 0,
+        "clip": 0,
+        "thumb": 0,
+        "errors": 0,
+        "cropped": 0,
+        "namedHidden": 0,
+        "phoneFit": 200,
+        "pass": 200
+      },
+      "tool": {
+        "name": "reveal-fit",
+        "files": [
+          "tools/reveal-fit.mjs"
+        ],
+        "head": "c5ecf4f9a0c74e2e21f530edca7fb02e57bb11c9",
+        "commit": "79c22aaf7bb2863ec46a5d487d5b38f090f49fb7",
+        "blobs": {
+          "tools/reveal-fit.mjs": "5ad023e4ee5d9a0d77afdcbfa7317d9a5b48563a"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "recorded": "2026-10-25T08:26:25.009Z"
+    },
+    "03": {
+      "summary": {
+        "viewport": "390x844",
+        "lessons": 200,
+        "fit": 200,
+        "scroll": 0,
+        "clip": 0,
+        "thumb": 0,
+        "errors": 0,
+        "cropped": 0,
+        "namedHidden": 0,
+        "phoneFit": 200,
+        "pass": 200
+      },
+      "tool": {
+        "name": "reveal-fit",
+        "files": [
+          "tools/reveal-fit.mjs"
+        ],
+        "head": "c5ecf4f9a0c74e2e21f530edca7fb02e57bb11c9",
+        "commit": "79c22aaf7bb2863ec46a5d487d5b38f090f49fb7",
+        "blobs": {
+          "tools/reveal-fit.mjs": "5ad023e4ee5d9a0d77afdcbfa7317d9a5b48563a"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "recorded": "2026-10-25T08:27:31.517Z"
+    },
+    "04": {
+      "summary": {
+        "viewport": "390x844",
+        "lessons": 200,
+        "fit": 200,
+        "scroll": 0,
+        "clip": 0,
+        "thumb": 0,
+        "errors": 0,
+        "cropped": 0,
+        "namedHidden": 0,
+        "phoneFit": 200,
+        "pass": 200
+      },
+      "tool": {
+        "name": "reveal-fit",
+        "files": [
+          "tools/reveal-fit.mjs"
+        ],
+        "head": "c5ecf4f9a0c74e2e21f530edca7fb02e57bb11c9",
+        "commit": "79c22aaf7bb2863ec46a5d487d5b38f090f49fb7",
+        "blobs": {
+          "tools/reveal-fit.mjs": "5ad023e4ee5d9a0d77afdcbfa7317d9a5b48563a"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "recorded": "2026-10-25T08:08:23.880Z"
+    }
+  },
+  "inspectedPhoneReveals": [
+    "be-source-0015",
+    "be-source-0020",
+    "be-source-0041",
+    "be-source-0252",
+    "be-source-0274",
+    "be-source-0423",
+    "cp-source-0013",
+    "cp-source-0015",
+    "cp-source-0024",
+    "cp-source-0106",
+    "cp-source-0142",
+    "cp-source-0189"
+  ],
+  "limitations": [
+    "Builder inspection is not independent design/learner approval.",
+    "Grid-only stages require pedagogical review.",
+    "cp-source-0189 long output label and prior continuation recall uniqueness are queued for repair.",
+    "Earlier missing-browser invocations failed; this clean completed run has 1200 expected passes, zero skips, unexpected results or flakes."
+  ],
+  "rawReportSha256": "0574da4b940cfa7285edd4504d696cce688128e3d61054bc4421076635505e57"
+}

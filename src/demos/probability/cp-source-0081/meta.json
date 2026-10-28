@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0081",
+  "title": "Small schools have noisy proportions",
+  "hook": "Two stated cases: explore sample size behind extreme observed school rates.",
+  "domain": "probability",
+  "concept": "cp-source-0081",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How sample size behind extreme observed school rates affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare sample size behind extreme observed school rates in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0081.predict",
+      "text": "For 20 independent toy Bernoulli observations with probability 0.5, what is the standard deviation of the sample proportion?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.reveal.0",
+      "text": "The retained results are N=20; SD=0.112 and N=2,000; SD=0.011.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.reveal.1",
+      "text": "Sampling spread depends on sample size as well as the underlying probability. This exact model assumes independent observations. This comparison isolates sample size behind extreme observed school rates.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.case.0.witness",
+      "text": "N=20; SD=0.112",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.11180339887498948}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.112\"},{\"label\":\"N\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.case.1.witness",
+      "text": "N=2,000; SD=0.011",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"N\",2000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.011180339887498949}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.011\"},{\"label\":\"N\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0081.recall",
+      "text": "For 20 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion? Answer 0.11.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0081/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #81. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 20 independent toy Bernoulli observations with probability 0.4, what is the standard deviation of the sample proportion?",
+    "options": [
+      "0.01",
+      "0.11",
+      "0.21"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives SD 0.11 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0081",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-81"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 81,
+    "sourceSection": "5. Sampling, variance & regression to the mean",
+    "sourceEntryOriginal": "- **81. Small schools** \\[Gotcha\\]: the smallest schools dominate both the best and the worst score lists, simply from noise.",
+    "modelBoundary": "sample size behind extreme observed school rates",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.4,
+      20
+    ]
+  }
+}

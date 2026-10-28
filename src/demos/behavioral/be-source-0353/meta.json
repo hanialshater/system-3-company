@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0353",
+  "title": "A prescription-count default",
+  "hook": "Two stated cases: explore the average count implied by a stated retention rule.",
+  "domain": "behavioral",
+  "concept": "be-source-0353",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the average count implied by a stated retention rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the average count implied by a stated retention rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0353.predict",
+      "text": "A toy population keeps default contribution 10 with probability 0.8; otherwise chooses 30. What is the mean contribution?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.reveal.0",
+      "text": "The retained results are Default=10; Final=14 and Default=20; Final=22.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.reveal.1",
+      "text": "The aggregate combines retained defaults and active choices. Automatic participation and the chosen contribution rate are different outcomes. This comparison isolates the average count implied by a stated retention rule.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.case.0.witness",
+      "text": "Default=10; Final=14",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Default\",10],[\"Other\",30],[\"Inertia\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":13.999999999999998}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"14\"},{\"label\":\"Default\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.case.1.witness",
+      "text": "Default=20; Final=22",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Default\",20],[\"Other\",30],[\"Inertia\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":22}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"22\"},{\"label\":\"Default\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0353.recall",
+      "text": "A toy population keeps default contribution 11 with probability 0.8; otherwise chooses 30. What is the mean contribution? Answer 14.8.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0353/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population keeps default contribution 11 with probability 0.8; otherwise chooses 30. What is the mean contribution?",
+    "options": [
+      "14.8",
+      "8.88",
+      "20.72"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 14.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0353",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-353"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 353,
+    "sourceSection": "18. Health behavior",
+    "sourceEntryOriginal": "- **353.** Lowering the default pill count for opioid prescriptions in health records reduced the number of pills prescribed (Delgado et al., 2018).",
+    "modelBoundary": "the average count implied by a stated retention rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      30,
+      0.8
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0140",
+  "title": "Who holds the lottery ticket?",
+  "hook": "Two stated cases: explore the selling and buying roles for the same object.",
+  "domain": "behavioral",
+  "concept": "be-source-0140",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the selling and buying roles for the same object affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Ratio, regardless of the stated inputs.",
+  "objective": "Compare the selling and buying roles for the same object in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0140.predict",
+      "text": "A toy seller asks 15; a buyer offers 5 for the same item. What is the sell-to-buy ratio?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.reveal.0",
+      "text": "The retained results are Sell=15 Buy=5; Ratio=3 and Sell=10 Buy=10; Ratio=1.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.reveal.1",
+      "text": "The ratio describes a valuation gap. It does not identify whether ownership, procedures or information caused it. This comparison isolates the selling and buying roles for the same object.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.case.0.witness",
+      "text": "Sell=15 Buy=5; Ratio=3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",15],[\"Buy\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":3}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"3\"},{\"label\":\"Sell\",\"value\":\"15\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.case.1.witness",
+      "text": "Sell=10 Buy=10; Ratio=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Sell\",10],[\"Buy\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Ratio\",\"value\":1}]},\"metrics\":[{\"label\":\"Ratio\",\"value\":\"1\"},{\"label\":\"Sell\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0140.recall",
+      "text": "A toy seller asks 16; a buyer offers 5 for the same item. What is the sell-to-buy ratio? Answer 3.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0140/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #140. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller asks 16; a buyer offers 5 for the same item. What is the sell-to-buy ratio?",
+    "options": [
+      "3.2",
+      "1.92",
+      "4.48"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Ratio 3.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0140",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-140"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 140,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **140.** People given a lottery ticket demanded far more to sell it than others would pay to buy one (Knetsch & Sinden, 1984).",
+    "modelBoundary": "the selling and buying roles for the same object",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      16,
+      5
+    ]
+  }
+}

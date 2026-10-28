@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0160",
+  "title": "Simplify without deleting options",
+  "hook": "Two stated cases: explore the cost per comparison with an unchanged menu.",
+  "domain": "behavioral",
+  "concept": "be-source-0160",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cost per comparison with an unchanged menu affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Checks, regardless of the stated inputs.",
+  "objective": "Compare the cost per comparison with an unchanged menu in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0160.predict",
+      "text": "A toy decision inspects 5 attributes for each of 12 options, spending 3 seconds per check. What total time is needed?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.reveal.0",
+      "text": "The retained results are Seconds=3; Checks=180 and Seconds=1; Checks=60.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.reveal.1",
+      "text": "Decision cost depends on both the number of options and the dimensions compared. A smaller interface can change this cost without removing alternatives. This comparison isolates the cost per comparison with an unchanged menu.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.case.0.witness",
+      "text": "Seconds=3; Checks=180",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Options\",12],[\"Attributes\",5],[\"Seconds\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":12},{\"label\":\"Result\",\"value\":180}]},\"metrics\":[{\"label\":\"Checks\",\"value\":\"180\"},{\"label\":\"Seconds\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.case.1.witness",
+      "text": "Seconds=1; Checks=60",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Options\",12],[\"Attributes\",5],[\"Seconds\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Input\",\"value\":12},{\"label\":\"Result\",\"value\":60}]},\"metrics\":[{\"label\":\"Checks\",\"value\":\"60\"},{\"label\":\"Seconds\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0160.recall",
+      "text": "A toy decision inspects 5 attributes for each of 13 options, spending 3 seconds per check. What total time is needed? Answer 195.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0160/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #160. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy decision inspects 5 attributes for each of 13 options, spending 3 seconds per check. What total time is needed?",
+    "options": [
+      "117",
+      "273",
+      "195"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Checks 195 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0160",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-160"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 160,
+    "sourceSection": "8. Choice overload & complexity",
+    "sourceEntryOriginal": "- **160.** Simplifying choice can raise take-up without removing any options (Beshears et al., 2013; Bettinger et al., 2012).",
+    "modelBoundary": "the cost per comparison with an unchanged menu",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      13,
+      5,
+      3
+    ]
+  }
+}

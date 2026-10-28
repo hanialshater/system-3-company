@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0618", "title": "Weight uncertainty becomes output spread", "op": "uncertainlinear", "labels": ["WeightMean", "WeightVar", "X", "Noise"], "outputs": ["Mean", "Variance"], "a": [1.0, 1.0, 2.0, 0.1], "b": [1.0, 4.0, 2.0, 0.1], "question": "A toy linear weight has mean 1, variance 1; input X 2, independent output-noise variance 0.1. What predictive mean results?", "questionTemplate": "A toy linear weight has mean {WeightMean}, variance {WeightVar}; input X {X}, independent output-noise variance {Noise}. What predictive mean results?", "explain": "Weight uncertainty and observation noise contribute differently to predictive variance. This one-weight model is not a full Bayesian neural network.", "lens": "the one-weight predictive uncertainty calculation", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

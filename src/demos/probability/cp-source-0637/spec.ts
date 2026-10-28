@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0637", "title": "Between-study spread changes the weights", "op": "randomeffects", "labels": ["A", "SEA", "B", "SEB", "TauVar"], "outputs": ["Mean", "SE"], "a": [1.0, 0.1, 3.0, 1.0, 0.0], "b": [1.0, 0.1, 3.0, 1.0, 1.0], "question": "Two toy studies estimate 1,3 with SEs 0.1,1; assume known between-study variance 0. What inverse-total-variance weighted mean results?", "questionTemplate": "Two toy studies estimate {A},{B} with SEs {SEA},{SEB}; assume known between-study variance {TauVar}. What inverse-total-variance weighted mean results?", "explain": "Between-study variation changes the weights and pooled uncertainty. Estimating that variation and assessing study validity are separate tasks.", "lens": "the assumed heterogeneity in a two-study meta-analysis", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0031",
+  "title": "Count the laboratory results",
+  "hook": "Two stated cases: explore the denominator behind a replication share.",
+  "domain": "behavioral",
+  "concept": "be-source-0031",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the denominator behind a replication share affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Share, regardless of the stated inputs.",
+  "objective": "Compare the denominator behind a replication share in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0031.predict",
+      "text": "A toy replication set has 30 positive results among 36 studies. What percentage is positive?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.reveal.0",
+      "text": "The retained results are Positive=30; Share=83.333 and Positive=18; Share=50.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.reveal.1",
+      "text": "The observed share is a descriptive count. Designs, precision and selection still matter before generalizing from that count. This comparison isolates the denominator behind a replication share.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.case.0.witness",
+      "text": "Positive=30; Share=83.333",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Positive\",30],[\"Studies\",36]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Share\",\"value\":83.33333333333333}]},\"metrics\":[{\"label\":\"Share\",\"value\":\"83.333\"},{\"label\":\"Positive\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.case.1.witness",
+      "text": "Positive=18; Share=50",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Positive\",18],[\"Studies\",36]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Share\",\"value\":50}]},\"metrics\":[{\"label\":\"Share\",\"value\":\"50\"},{\"label\":\"Positive\",\"value\":\"18\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0031.recall",
+      "text": "A toy replication set has 31 positive results among 36 studies. What percentage is positive? Answer 86.111.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0031/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #31. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy replication set has 31 positive results among 36 studies. What percentage is positive?",
+    "options": [
+      "51.667",
+      "120.556",
+      "86.111"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Share 86.111 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0031",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-31"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 31,
+    "sourceSection": "2. Anchoring",
+    "sourceEntryOriginal": "- **31.** Anchoring replicated strongly across 36 labs, among the sturdiest effects tested (Klein et al., Many Labs 1, 2014).",
+    "modelBoundary": "the denominator behind a replication share",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      31,
+      36
+    ]
+  }
+}

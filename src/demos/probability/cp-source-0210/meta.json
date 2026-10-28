@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0210",
+  "title": "Reverse the KL arguments",
+  "hook": "Two stated cases: explore the weighting distribution in directional divergence.",
+  "domain": "probability",
+  "concept": "cp-source-0210",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the weighting distribution in directional divergence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines KLBits, regardless of the stated inputs.",
+  "objective": "Compare the weighting distribution in directional divergence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0210.predict",
+      "text": "Two toy Bernoulli distributions have probabilities P 0.8 and Q 0.5, both strictly between zero and one. What is KL(P||Q) in bits?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.reveal.0",
+      "text": "The retained results are P=0.8 Q=0.5; KLBits=0.278 and P=0.5 Q=0.8; KLBits=0.322.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.reveal.1",
+      "text": "KL weights log probability ratios by the first distribution. Reversing its arguments changes those weights, so it need not be symmetric. This comparison isolates the weighting distribution in directional divergence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.case.0.witness",
+      "text": "P=0.8 Q=0.5; KLBits=0.278",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.8],[\"Q\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"KLBits\",\"value\":0.2780719051126377}]},\"metrics\":[{\"label\":\"KLBits\",\"value\":\"0.278\"},{\"label\":\"P\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.case.1.witness",
+      "text": "P=0.5 Q=0.8; KLBits=0.322",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Q\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"KLBits\",\"value\":0.32192809488736246}]},\"metrics\":[{\"label\":\"KLBits\",\"value\":\"0.322\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0210.recall",
+      "text": "Two toy Bernoulli distributions have probabilities P 0.64 and Q 0.5, both strictly between zero and one. What is KL(P||Q) in bits? Answer 0.057.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0210/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #210. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy Bernoulli distributions have probabilities P 0.64 and Q 0.5, both strictly between zero and one. What is KL(P||Q) in bits?",
+    "options": [
+      "-0.043",
+      "0.057",
+      "0.157"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives KLBits 0.057 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0210",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-210"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 210,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **210. KL divergence** \\[Slider\\]: drag one distribution away from another and watch the \"surprise cost\" grow, unevenly in each direction.",
+    "modelBoundary": "the weighting distribution in directional divergence",
+    "recallInputs": [
+      0.6400000000000001,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

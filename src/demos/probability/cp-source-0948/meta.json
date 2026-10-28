@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0948",
+  "title": "A periodic component has a timescale",
+  "hook": "Two stated cases: explore the specified frequency before a periodogram estimation.",
+  "domain": "probability",
+  "concept": "cp-source-0948",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the specified frequency before a periodogram estimation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Signal, regardless of the stated inputs.",
+  "objective": "Compare the specified frequency before a periodogram estimation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0948.predict",
+      "text": "A toy sine tone has Frequency 1, Amplitude 1. What sample value occurs at Time 0.1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.reveal.0",
+      "text": "The retained results are Frequency=1; Signal=0.588 and Frequency=7; Signal=-0.951.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.reveal.1",
+      "text": "A pure sinusoid has a specified frequency and phase. This finite waveform does not record or analyze a microphone. This comparison isolates the specified frequency before a periodogram estimation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.case.0.witness",
+      "text": "Frequency=1; Signal=0.588",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",1],[\"Time\",0.1],[\"Amplitude\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.25881904510252074},{\"x\":0.08333333333333333,\"y\":0.49999999999999994},{\"x\":0.125,\"y\":0.7071067811865475},{\"x\":0.16666666666666666,\"y\":0.8660254037844386},{\"x\":0.20833333333333334,\"y\":0.9659258262890683},{\"x\":0.25,\"y\":1},{\"x\":0.2916666666666667,\"y\":0.9659258262890683},{\"x\":0.3333333333333333,\"y\":0.8660254037844387},{\"x\":0.375,\"y\":0.7071067811865476},{\"x\":0.4166666666666667,\"y\":0.49999999999999994},{\"x\":0.4583333333333333,\"y\":0.258819045102521},{\"x\":0.5,\"y\":1.2246467991473532e-16},{\"x\":0.5416666666666666,\"y\":-0.25881904510252035},{\"x\":0.5833333333333334,\"y\":-0.5000000000000001},{\"x\":0.625,\"y\":-0.7071067811865475},{\"x\":0.6666666666666666,\"y\":-0.8660254037844385},{\"x\":0.7083333333333334,\"y\":-0.9659258262890683},{\"x\":0.75,\"y\":-1},{\"x\":0.7916666666666666,\"y\":-0.9659258262890684},{\"x\":0.8333333333333334,\"y\":-0.8660254037844386},{\"x\":0.875,\"y\":-0.7071067811865477},{\"x\":0.9166666666666666,\"y\":-0.5000000000000004},{\"x\":0.9583333333333334,\"y\":-0.2588190451025207},{\"x\":1,\"y\":-2.4492935982947064e-16}],\"xLabel\":\"Time\",\"yLabel\":\"Signal\"},\"metrics\":[{\"label\":\"Signal\",\"value\":\"0.588\"},{\"label\":\"Frequency\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.case.1.witness",
+      "text": "Frequency=7; Signal=-0.951",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",7],[\"Time\",0.1],[\"Amplitude\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.041666666666666664,\"y\":0.9659258262890683},{\"x\":0.08333333333333333,\"y\":-0.4999999999999997},{\"x\":0.125,\"y\":-0.7071067811865477},{\"x\":0.16666666666666666,\"y\":0.8660254037844384},{\"x\":0.20833333333333334,\"y\":0.2588190451025208},{\"x\":0.25,\"y\":-1},{\"x\":0.2916666666666667,\"y\":0.2588190451025217},{\"x\":0.3333333333333333,\"y\":0.8660254037844393},{\"x\":0.375,\"y\":-0.7071067811865477},{\"x\":0.4166666666666667,\"y\":-0.5000000000000001},{\"x\":0.4583333333333333,\"y\":0.9659258262890682},{\"x\":0.5,\"y\":8.572527594031472e-16},{\"x\":0.5416666666666666,\"y\":-0.9659258262890686},{\"x\":0.5833333333333334,\"y\":0.5000000000000017},{\"x\":0.625,\"y\":0.7071067811865489},{\"x\":0.6666666666666666,\"y\":-0.8660254037844375},{\"x\":0.7083333333333334,\"y\":-0.2588190451025199},{\"x\":0.75,\"y\":1},{\"x\":0.7916666666666666,\"y\":-0.25881904510251746},{\"x\":0.8333333333333334,\"y\":-0.8660254037844388},{\"x\":0.875,\"y\":0.7071067811865446},{\"x\":0.9166666666666666,\"y\":0.5000000000000009},{\"x\":0.9583333333333334,\"y\":-0.9659258262890689},{\"x\":1,\"y\":-1.7145055188062944e-15}],\"xLabel\":\"Time\",\"yLabel\":\"Signal\"},\"metrics\":[{\"label\":\"Signal\",\"value\":\"-0.951\"},{\"label\":\"Frequency\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0948.recall",
+      "text": "A toy sine tone has Frequency 2, Amplitude 1. What sample value occurs at Time 0.1? Answer 0.951.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0948/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #948. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sine tone has Frequency 2, Amplitude 1. What sample value occurs at Time 0.1?",
+    "options": [
+      "0.571",
+      "0.951",
+      "1.331"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Signal 0.951 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0948",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-948"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 948,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **948. Hidden rhythm** \\[Slider\\]: a periodogram finds a weekly cycle buried in very noisy daily data.",
+    "modelBoundary": "the specified frequency before a periodogram estimation",
+    "recallInputs": [
+      2,
+      0.1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0826",
+  "title": "Evidence grows as likelihood wealth",
+  "hook": "Two stated cases: explore the fixed-alternative likelihood ratio under a Bernoulli null.",
+  "domain": "probability",
+  "concept": "cp-source-0826",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the fixed-alternative likelihood ratio under a Bernoulli null affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Wealth, regardless of the stated inputs.",
+  "objective": "Compare the fixed-alternative likelihood ratio under a Bernoulli null in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0826.predict",
+      "text": "Toy Bernoulli data have Heads 12 in Trials 20. Compare fixed Alt 0.7 with Null 0.5. What likelihood-ratio wealth results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.reveal.0",
+      "text": "The retained results are Heads=12; Wealth=0.952 and Heads=16; Wealth=28.226.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.reveal.1",
+      "text": "Under the stated independent null and fixed alternative this ratio is a nonnegative martingale. A valid sequential decision needs a specified threshold. This comparison isolates the fixed-alternative likelihood ratio under a Bernoulli null.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.case.0.witness",
+      "text": "Heads=12; Wealth=0.952",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Heads\",12],[\"Trials\",20],[\"Null\",0.5],[\"Alt\",0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Wealth\",\"value\":0.952240023281452}]},\"metrics\":[{\"label\":\"Wealth\",\"value\":\"0.952\"},{\"label\":\"Heads\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.case.1.witness",
+      "text": "Heads=16; Wealth=28.226",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Heads\",16],[\"Trials\",20],[\"Null\",0.5],[\"Alt\",0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Wealth\",\"value\":28.226275258009437}]},\"metrics\":[{\"label\":\"Wealth\",\"value\":\"28.226\"},{\"label\":\"Heads\",\"value\":\"16\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0826.recall",
+      "text": "Toy Bernoulli data have Heads 13 in Trials 20. Compare fixed Alt 0.7 with Null 0.5. What likelihood-ratio wealth results? Answer 2.222.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0826/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #826. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy Bernoulli data have Heads 13 in Trials 20. Compare fixed Alt 0.7 with Null 0.5. What likelihood-ratio wealth results?",
+    "options": [
+      "1.333",
+      "3.111",
+      "2.222"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Wealth 2.222 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0826",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-826"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 826,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **826. Testing by betting** \\[Slider\\]: an e-value grows like a gambler's wealth when betting against the null.",
+    "modelBoundary": "the fixed-alternative likelihood ratio under a Bernoulli null",
+    "recallInputs": [
+      13,
+      20,
+      0.5,
+      0.7
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

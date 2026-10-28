@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0710",
+  "title": "Sell now or keep the option",
+  "hook": "Two stated cases: explore the supplied continuation value at an offer.",
+  "domain": "probability",
+  "concept": "cp-source-0710",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied continuation value at an offer affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the supplied continuation value at an offer in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0710.predict",
+      "text": "A toy seller can take Offer 10 or discounted continuation 12×Gamma 0.9. What is the better expected value?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.reveal.0",
+      "text": "The retained results are Continuation=12; Value=10.8 and Continuation=8; Value=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.reveal.1",
+      "text": "Stopping compares the offer with a supplied continuation value. Computing that continuation is a separate dynamic-programming problem. This comparison isolates the supplied continuation value at an offer.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.case.0.witness",
+      "text": "Continuation=12; Value=10.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offer\",10],[\"Continuation\",12],[\"Gamma\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":10.8}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"10.8\"},{\"label\":\"Continuation\",\"value\":\"12\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.case.1.witness",
+      "text": "Continuation=8; Value=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Offer\",10],[\"Continuation\",8],[\"Gamma\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":10}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"10\"},{\"label\":\"Continuation\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0710.recall",
+      "text": "A toy seller can take Offer 11 or discounted continuation 12×Gamma 0.9. What is the better expected value? Answer 11.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0710/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #710. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller can take Offer 11 or discounted continuation 12×Gamma 0.9. What is the better expected value?",
+    "options": [
+      "11",
+      "6.6",
+      "15.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Value 11 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0710",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-710"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 710,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **710. When to sell** \\[Slider\\]: an optimal-stopping MDP for selling an asset with random offers.",
+    "modelBoundary": "the supplied continuation value at an offer",
+    "recallInputs": [
+      11,
+      12,
+      0.9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

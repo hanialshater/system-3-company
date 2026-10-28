@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0645", "title": "A prior linear-function variance", "op": "uncertainlinear", "labels": ["WeightMean", "WeightVar", "X", "Noise"], "outputs": ["Mean", "Variance"], "a": [0.0, 1.0, 1.0, 0.0], "b": [0.0, 1.0, 2.0, 0.0], "question": "A toy linear weight has mean 0, variance 1; input X 1, independent output-noise variance 0. What predictive mean results?", "questionTemplate": "A toy linear weight has mean {WeightMean}, variance {WeightVar}; input X {X}, independent output-noise variance {Noise}. What predictive mean results?", "explain": "Weight uncertainty and observation noise contribute differently to predictive variance. This one-weight model is not a full Bayesian neural network.", "lens": "the Gaussian linear-function prior as a simple process example", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

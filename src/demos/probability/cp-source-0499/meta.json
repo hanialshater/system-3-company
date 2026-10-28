@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0499",
+  "title": "One-axis halo-location update",
+  "hook": "Two stated cases for one-axis halo-location update.",
+  "domain": "probability",
+  "concept": "cp-source-0499",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a normal measurement ingredient rather than full shear inference affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare a normal measurement ingredient rather than full shear inference in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0499.predict",
+      "text": "A toy normal prior has mean 0, variance 4; one normal measurement is 2 with noise variance 0.25. What is the posterior mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.reveal.0",
+      "text": "The retained results are Noise=0.25; Mean=1.882 and Noise=4; Mean=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.reveal.1",
+      "text": "Precisions weight the prior and measurement. The variance calculation assumes the stated independent normal model. This comparison isolates a normal measurement ingredient rather than full shear inference.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.case.0.witness",
+      "text": "Noise=0.25; Mean=1.882",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",2],[\"Noise\",0.25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1.8823529411764706},{\"label\":\"Variance\",\"value\":0.23529411764705882}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1.882\"},{\"label\":\"Noise\",\"value\":\"0.25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.case.1.witness",
+      "text": "Noise=4; Mean=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",2],[\"Noise\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1},{\"label\":\"Variance\",\"value\":2}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1\"},{\"label\":\"Noise\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0499.recall",
+      "text": "A toy normal prior has mean 0, variance 5; one normal measurement is 2 with noise variance 0.25. What is the posterior mean? Answer 1.905.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0499/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #499. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal prior has mean 0, variance 5; one normal measurement is 2 with noise variance 0.25. What is the posterior mean?",
+    "options": [
+      "1.143",
+      "2.667",
+      "1.905"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 1.905 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0499",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-499"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 499,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **499. Observing Dark Worlds** \\[Story\\]: a 2012 Kaggle contest asked teams to locate invisible dark matter halos from distorted galaxy shapes; Bayesian MCMC models took the top two places.",
+    "modelBoundary": "a normal measurement ingredient rather than full shear inference",
+    "recallInputs": [
+      0,
+      5,
+      2,
+      0.25
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

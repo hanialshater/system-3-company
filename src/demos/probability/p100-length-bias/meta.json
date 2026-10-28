@@ -1,0 +1,161 @@
+{
+  "slug": "p100-length-bias",
+  "title": "Which cases get sampled?",
+  "hook": "Two equally frequent cases have unequal windows for being detected.",
+  "domain": "probability",
+  "concept": "p100-length-bias",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "screening finds slow-growing tumors more often, making screen-found cancers look less deadly."
+    ]
+  },
+  "misconception": "Treating length bias as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "screening finds slow-growing tumors more often, making screen-found cancers look less deadly.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-length-bias.predict",
+      "text": "Two equally frequent toy conditions are detectable for 1 and 4 months. A uniform-time screen samples in proportion to detectable duration. What share of detected cases is long-duration?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.reveal.0",
+      "text": "Uniform-time screening retains 80% long-duration cases, while sampling at onset retains 50%. The long detectable window offers four times as much opportunity for capture.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.reveal.1",
+      "text": "Duration weighting changes which cases enter the observed group. This is a toy exposure model, not clinical evidence or a screening recommendation; comparing the groups’ later outcomes would need to address that selection.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.recall",
+      "text": "Equal onsets last 2 and 6 time units. Under duration-weighted sampling, what fraction is long-duration? The long-duration share is 6/(2+6)=75%.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.scenario.0.summary",
+      "text": "Long-duration 80%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Fast\",\"value\":1},{\"label\":\"Slow\",\"value\":4}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Uniform-time screen\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Fast %\",\"value\":20},{\"label\":\"Slow %\",\"value\":80}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.scenario.1.summary",
+      "text": "Long-duration 50%",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Fast\",\"value\":1},{\"label\":\"Slow\",\"value\":1}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Onset sampling\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Fast %\",\"value\":50},{\"label\":\"Slow %\",\"value\":50}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-length-bias/spec.ts; exact finite illustration specified in manager numericCase: Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-length-bias.hook",
+      "text": "Two equally frequent cases have unequal windows for being detected.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-length-bias/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Equal onsets last 2 and 6 time units. Under duration-weighted sampling, what fraction is long-duration?",
+    "options": [
+      "25%",
+      "50%",
+      "75%"
+    ],
+    "answer": 2,
+    "why": "The long-duration share is 6/(2+6)=75%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-length-bias",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "length-bias"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 313,
+    "sourceSection": "16. Selection bias, colliders & survivorship",
+    "sourceTitle": "Length bias",
+    "sourceText": "screening finds slow-growing tumors more often, making screen-found cancers look less deadly.",
+    "sourceEntryOriginal": "- **313. Length bias** \\[Gotcha\\]: screening finds slow-growing tumors more often, making screen-found cancers look less deadly.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "geography/ruler-on-mercator",
+    "difference": "New teaching boundary: Length bias. Existing boundary: The learner can explain that on a Mercator map the same on-screen length covers less ground farther from the equator (half at 60°), so a single scale bar is true only along one line.",
+    "numericCase": "Model tumor A detectable1month, B detectable4months; onset frequencies equal. A uniform-time screening sample is weighted1:4, 80%slow tumors. The stage is exposure-time weighting, not a medical recommendation."
+  },
+  "modelAudit": {
+    "a": 0.8,
+    "b": 0.5
+  }
+}

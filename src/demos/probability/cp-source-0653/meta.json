@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0653",
+  "title": "Latent uncertainty softens a class score",
+  "hook": "Two stated cases: explore the displayed logistic-normal approximation.",
+  "domain": "probability",
+  "concept": "cp-source-0653",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the displayed logistic-normal approximation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ApproxProbability, regardless of the stated inputs.",
+  "objective": "Compare the displayed logistic-normal approximation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0653.predict",
+      "text": "A toy latent normal has Mean 2, Variance 0. Use the stated approximation logistic(mean/sqrt(1+pi×variance/8)). What class probability results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.reveal.0",
+      "text": "The retained results are Variance=0; ApproxProbability=0.881 and Variance=4; ApproxProbability=0.777.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.reveal.1",
+      "text": "Integrating over latent uncertainty can soften a plug-in logistic score. This displayed formula is an approximation, not exact GP classification inference. This comparison isolates the displayed logistic-normal approximation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.case.0.witness",
+      "text": "Variance=0; ApproxProbability=0.881",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",2],[\"Variance\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ApproxProbability\",\"value\":0.8807970779778823}]},\"metrics\":[{\"label\":\"ApproxProbability\",\"value\":\"0.881\"},{\"label\":\"Variance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.case.1.witness",
+      "text": "Variance=4; ApproxProbability=0.777",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",2],[\"Variance\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ApproxProbability\",\"value\":0.7768446945302134}]},\"metrics\":[{\"label\":\"ApproxProbability\",\"value\":\"0.777\"},{\"label\":\"Variance\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0653.recall",
+      "text": "A toy latent normal has Mean 3, Variance 0. Use the stated approximation logistic(mean/sqrt(1+pi×variance/8)). What class probability results? Answer 0.953.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0653/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #653. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy latent normal has Mean 3, Variance 0. Use the stated approximation logistic(mean/sqrt(1+pi×variance/8)). What class probability results?",
+    "options": [
+      "0.953",
+      "0.572",
+      "1.334"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives ApproxProbability 0.953 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0653",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-653"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 653,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **653. GP classification** \\[Slider\\]: a smooth probability surface separates two classes, uncertain where they mix.",
+    "modelBoundary": "the displayed logistic-normal approximation",
+    "recallInputs": [
+      3,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0763",
+  "title": "Two callers update an alarm belief",
+  "hook": "Two stated cases: explore a second likelihood message under conditional independence.",
+  "domain": "probability",
+  "concept": "cp-source-0763",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a second likelihood message under conditional independence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare a second likelihood message under conditional independence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0763.predict",
+      "text": "Toy prior 0.01 receives two conditionally independent evidence likelihood ratios LR1 10, LR2 5. What posterior results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.reveal.0",
+      "text": "The retained results are LR2=5; Posterior=0.336 and LR2=1; Posterior=0.092.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.reveal.1",
+      "text": "Likelihood messages multiply odds under the stated conditional independence. Dependent evidence must not be counted as independent. This comparison isolates a second likelihood message under conditional independence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.case.0.witness",
+      "text": "LR2=5; Posterior=0.336",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.01],[\"LR1\",10],[\"LR2\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.33557046979865773}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.336\"},{\"label\":\"LR2\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.case.1.witness",
+      "text": "LR2=1; Posterior=0.092",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.01],[\"LR1\",10],[\"LR2\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.09174311926605505}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.092\"},{\"label\":\"LR2\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0763.recall",
+      "text": "Toy prior 0.008 receives two conditionally independent evidence likelihood ratios LR1 10, LR2 5. What posterior results? Answer 0.287.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0763/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #763. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prior 0.008 receives two conditionally independent evidence likelihood ratios LR1 10, LR2 5. What posterior results?",
+    "options": [
+      "0.172",
+      "0.402",
+      "0.287"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Posterior 0.287 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0763",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-763"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 763,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **763. Burglar alarm** \\[Slider\\]: neighbors call about the alarm; was it a burglar or an earthquake?",
+    "modelBoundary": "a second likelihood message under conditional independence",
+    "recallInputs": [
+      0.008,
+      10,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

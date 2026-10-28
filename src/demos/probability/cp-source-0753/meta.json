@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0753",
+  "title": "Each magnitude step changes the rate",
+  "hook": "Two stated cases: explore the stipulated tenfold decline per magnitude step.",
+  "domain": "probability",
+  "concept": "cp-source-0753",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated tenfold decline per magnitude step affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Balance, regardless of the stated inputs.",
+  "objective": "Compare the stipulated tenfold decline per magnitude step in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0753.predict",
+      "text": "A toy balance starts at 1000, compounds at rate -0.9 per period, for 1 periods. What balance results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.reveal.0",
+      "text": "The retained results are Years=1; Balance=100 and Years=2; Balance=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.reveal.1",
+      "text": "Compounding applies the rate to the changing balance. Compare the same horizon under the altered rate. This comparison isolates the stipulated tenfold decline per magnitude step.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.case.0.witness",
+      "text": "Years=1; Balance=100",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",1000],[\"Rate\",-0.9],[\"Years\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1000},{\"label\":\"0.333\",\"value\":464.15888336127784},{\"label\":\"0.667\",\"value\":215.44346900318837},{\"label\":\"1\",\"value\":99.99999999999997}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"100\"},{\"label\":\"Years\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.case.1.witness",
+      "text": "Years=2; Balance=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Start\",1000],[\"Rate\",-0.9],[\"Years\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1000},{\"label\":\"0.667\",\"value\":215.44346900318837},{\"label\":\"1.333\",\"value\":46.41588833612778},{\"label\":\"2\",\"value\":9.999999999999995}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"10\"},{\"label\":\"Years\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0753.recall",
+      "text": "A toy balance starts at 1,001, compounds at rate -0.9 per period, for 1 periods. What balance results? Answer 100.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0753/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #753. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy balance starts at 1,001, compounds at rate -0.9 per period, for 1 periods. What balance results?",
+    "options": [
+      "60.06",
+      "100.1",
+      "140.14"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Balance 100.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0753",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-753"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 753,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **753. Earthquake sizes** \\[Slider\\]: each magnitude step up is about ten times rarer (Gutenberg–Richter).",
+    "modelBoundary": "the stipulated tenfold decline per magnitude step",
+    "recallInputs": [
+      1001,
+      -0.9,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0462",
+  "title": "A direction must be stipulated here",
+  "hook": "Two stated cases for a direction must be stipulated here.",
+  "domain": "probability",
+  "concept": "cp-source-0462",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a structural direction rather than direction inferred from scatter affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Counterfactual, regardless of the stated inputs.",
+  "objective": "Compare a structural direction rather than direction inferred from scatter in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0462.predict",
+      "text": "Toy Y=Slope 2×X+U. Observe X=1,Y=4; hold inferred U fixed and intervene X=2. What counterfactual Y results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.reveal.0",
+      "text": "The retained results are NewX=2; Counterfactual=6 and NewX=3; Counterfactual=8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.reveal.1",
+      "text": "Infer the disturbance from the observation, change the assigned cause, and reuse that disturbance. The answer depends on this specified structural model. This comparison isolates a structural direction rather than direction inferred from scatter.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.case.0.witness",
+      "text": "NewX=2; Counterfactual=6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Slope\",2],[\"ObservedX\",1],[\"ObservedY\",4],[\"NewX\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Counterfactual\",\"value\":\"6\"},{\"label\":\"NewX\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.case.1.witness",
+      "text": "NewX=3; Counterfactual=8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Slope\",2],[\"ObservedX\",1],[\"ObservedY\",4],[\"NewX\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Counterfactual\",\"value\":\"8\"},{\"label\":\"NewX\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0462.recall",
+      "text": "Toy Y=Slope 3×X+U. Observe X=1,Y=4; hold inferred U fixed and intervene X=2. What counterfactual Y results? Answer 7.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0462/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #462. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy Y=Slope 3×X+U. Observe X=1,Y=4; hold inferred U fixed and intervene X=2. What counterfactual Y results?",
+    "options": [
+      "4.2",
+      "7",
+      "9.8"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Counterfactual 7 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0462",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-462"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 462,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **462. Which way is the arrow?** \\[Predict\\]: see a scatter and guess cause vs effect; noise that's even around the curve in one direction reveals it.",
+    "modelBoundary": "a structural direction rather than direction inferred from scatter",
+    "recallInputs": [
+      3,
+      1,
+      4,
+      2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

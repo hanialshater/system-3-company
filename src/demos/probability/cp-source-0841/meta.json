@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0841",
+  "title": "A rating lift can steal control sales",
+  "hook": "Two stated cases: explore the control displacement inflating a measured sales contrast.",
+  "domain": "probability",
+  "concept": "cp-source-0841",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the control displacement inflating a measured sales contrast affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MeasuredGap, regardless of the stated inputs.",
+  "objective": "Compare the control displacement inflating a measured sales contrast in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0841.predict",
+      "text": "A toy seller treatment adds OwnLift 10 to treated sales but takes Stolen 0 from controls. What treated-minus-control gap is measured?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.reveal.0",
+      "text": "The retained results are Stolen=0; MeasuredGap=10 and Stolen=8; MeasuredGap=18.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.reveal.1",
+      "text": "A control loss can enlarge the experimental contrast without creating the same market-wide gain. Interference changes the estimand. This comparison isolates the control displacement inflating a measured sales contrast.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.case.0.witness",
+      "text": "Stolen=0; MeasuredGap=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OwnLift\",10],[\"Stolen\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeasuredGap\",\"value\":10},{\"label\":\"NetLift\",\"value\":10}]},\"metrics\":[{\"label\":\"MeasuredGap\",\"value\":\"10\"},{\"label\":\"Stolen\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.case.1.witness",
+      "text": "Stolen=8; MeasuredGap=18",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OwnLift\",10],[\"Stolen\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeasuredGap\",\"value\":18},{\"label\":\"NetLift\",\"value\":2}]},\"metrics\":[{\"label\":\"MeasuredGap\",\"value\":\"18\"},{\"label\":\"Stolen\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0841.recall",
+      "text": "A toy seller treatment adds OwnLift 11 to treated sales but takes Stolen 0 from controls. What treated-minus-control gap is measured? Answer 11.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0841/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #841. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller treatment adds OwnLift 11 to treated sales but takes Stolen 0 from controls. What treated-minus-control gap is measured?",
+    "options": [
+      "6.6",
+      "15.4",
+      "11"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives MeasuredGap 11 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0841",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-841"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 841,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceEntryOriginal": "- **841. Star-rating spillover** \\[Slider\\]: a new rating algorithm boosts treated products' displayed stars; buyers shift from control products, so the A/B lift is mostly stolen sales. Slide the substitution rate and watch the bias grow.",
+    "modelBoundary": "the control displacement inflating a measured sales contrast",
+    "recallInputs": [
+      11,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

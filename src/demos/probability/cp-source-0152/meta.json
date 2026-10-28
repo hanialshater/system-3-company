@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0152",
+  "title": "Win the election and lead throughout",
+  "hook": "Two stated cases: explore the strict lead event under random vote ordering.",
+  "domain": "probability",
+  "concept": "cp-source-0152",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the strict lead event under random vote ordering affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Lead, regardless of the stated inputs.",
+  "objective": "Compare the strict lead event under random vote ordering in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0152.predict",
+      "text": "A has 60 votes and B has 40, with A greater. In a uniformly random count order, what is the chance A stays strictly ahead after every count?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.reveal.0",
+      "text": "The retained results are A=60 B=40; Lead=0.2 and A=80 B=20; Lead=0.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.reveal.1",
+      "text": "The strict ballot event excludes ties at any intermediate count. Final victory alone does not imply a lead throughout. This comparison isolates the strict lead event under random vote ordering.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.case.0.witness",
+      "text": "A=60 B=40; Lead=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",60],[\"B\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lead\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Lead\",\"value\":\"0.2\"},{\"label\":\"A\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.case.1.witness",
+      "text": "A=80 B=20; Lead=0.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",80],[\"B\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Lead\",\"value\":0.6}]},\"metrics\":[{\"label\":\"Lead\",\"value\":\"0.6\"},{\"label\":\"A\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0152.recall",
+      "text": "A has 61 votes and B has 40, with A greater. In a uniformly random count order, what is the chance A stays strictly ahead after every count? Answer 0.208.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0152/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #152. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A has 61 votes and B has 40, with A greater. In a uniformly random count order, what is the chance A stays strictly ahead after every count?",
+    "options": [
+      "0.208",
+      "0.108",
+      "0.308"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Lead 0.208 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0152",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-152"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 152,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **152. The ballot problem** \\[Predict\\]: if A gets 60% of votes, what's the chance A leads throughout the count? 20%.",
+    "modelBoundary": "the strict lead event under random vote ordering",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      61,
+      40
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "owner": "release-manager",
+  "recordedAt": "2026-10-28T00:08:14.970835+00:00",
+  "purpose": "founder-authorized unchecked Lessons World inspection",
+  "state": "historical first preview trigger pushed; deployment unconfirmed and hosted verification blocked",
+  "appSourceCommit": "2ff4748e9720de33dfb7c3f43989f977e871ebcb",
+  "localBuildId": "y54lbicpjgyppu2w1Kq9a",
+  "localBuildResult": "passed (completed production build and actual BUILD_ID observed)",
+  "releaseCommit": "06aa3dce68fa0c8b74c7463796b0da8f84e3d99c",
+  "deployment": null,
+  "canonicalUrl": "https://system-3-company.vercel.app",
+  "hostedVerification": "not performed: enforced network policy denies canonical host; no actual deployment receipt/preview URL discovered",
+  "currentServingDeployment": null,
+  "content": {
+    "lessons": 3742,
+    "islands": 156,
+    "newPrLessons": 2097,
+    "publicationStatusChanges": 0,
+    "qualityDisclosure": "Unchecked; no publication or verification implied"
+  },
+  "approvalRecords": [
+    "company/product/2026-10-27-world-all-lessons-inspection.md",
+    "company/engineering/readiness/2026-10-27-world-inspection-source-review.md",
+    "company/engineering/readiness/2026-10-27-world-inspection-qa.md",
+    "company/engineering/readiness/2026-10-28-world-inspection-ops.md"
+  ],
+  "pendingEvidence": [
+    "actual Vercel deployment receipt identifying target/source/URL",
+    "hosted World/player/source smoke"
+  ],
+  "triggerPlan": "one marker commit on codex/all-lessons-inspection through the existing enabled Git connection after coordinator clearance; do not repeat markers if no deployment appears; do not promote canonical production alias without identifying actual target and serving/previous deployments",
+  "rollback": {
+    "databaseChanges": false,
+    "preferred": "withdraw inspection preview, or promote previous immutable deployment if actual current/previous IDs become available",
+    "gitFallback": "git diff 63ef10015^ 2ff4748e9 -- src/app/catalog/page.tsx src/app/learn/world src/components/world src/lib/lessons-world.ts src/lib/world-catalog.ts tests/world/inventory.test.mjs | git apply --reverse --index; inspect staged source/test paths, create an additive withdrawal commit and use the existing release route; never reset or force-push",
+    "scope": "withdraw World UI and catalog entry while preserving integrated lesson content and existing publication states",
+    "limitation": "cannot claim rollback complete until actual hosted source is confirmed",
+    "rehearsal": "principal-engineer-ops independently rehearsed updated source-only reverse patch through2ff4748e9 with --check: exit0"
+  },
+  "baselineAppSourceCommit": "782afa361066cf6b2d7232de12d1abdb0c5588fb",
+  "baselineLocalBuildId": "fsL1oO0CEQic0ISRWCIY7",
+  "releaseClearance": "coordinator clearance after final affected QA PASS and actual normal atomic merges",
+  "coordinatorMergeCommit": "fa1516b1f",
+  "mergedMainCommit": "f2927f757",
+  "publicationStatusChanges": 0,
+  "triggerBranch": "codex/all-lessons-inspection",
+  "triggerRequestedAt": "2026-10-28T00:20:03.935344+00:00",
+  "pullRequestClosure": {
+    "16": "MERGED",
+    "17": "MERGED",
+    "19": "MERGED",
+    "21": "MERGED",
+    "22": "MERGED",
+    "23": "MERGED",
+    "24": "MERGED",
+    "25": "MERGED",
+    "28": "MERGED",
+    "29": "MERGED"
+  },
+  "markerPush": {
+    "result": "success",
+    "branch": "codex/all-lessons-inspection",
+    "remoteHeadConfirmed": "06aa3dce68fa0c8b74c7463796b0da8f84e3d99c",
+    "defaultOrMainMarker": false,
+    "canonicalAliasChanged": false
+  },
+  "targetRequested": "inspection branch / preview",
+  "actualTarget": null,
+  "previewUrl": null,
+  "observedAt": "2026-10-28T00:22:57.851812+00:00",
+  "observations": [
+    "Native Git confirmed inspection branch at exact marker SHA.",
+    "Public GitHub marker /checks page exposes GitHub Actions ci constitution and verify; constitution succeeded in16s.",
+    "No Vercel check, deployment ID, immutable preview URL or READY receipt observed in actual GitHub checks HTML.",
+    "Canonical HTTP request fails at sidecar CONNECT403; this is network-policy denial, not an application HTTP failure.",
+    "No authenticated Vercel connection or Vercel tool is available in this session; no login, credentials, project creation or proxy bypass attempted."
+  ],
+  "triggerAttempts": 1,
+  "noFurtherMarker": "Single ops-approved trigger attempted; no repeated marker or canonical promotion performed.",
+  "supersession": "Coordinator subsequently discovered PR29 advanced to76a87df1d with153 additional draft lessons. This receipt remains pinned to the historical3742-lesson source2ff4748e9 and marker06aa3dce6; the coordinator is preparing a new3895-lesson integration/build separately. This receipt does not certify that later source or imply it was deployed.",
+  "latestCandidate": {
+    "appSourceCommit": "a39e39968a4aca936693d32ace2b1701a7fbe8a0",
+    "localBuildId": "7RPMubtedbVVPXsJdQM4F",
+    "lessons": 3895,
+    "islands": 162,
+    "build": "passed",
+    "browserSmoke": "passed",
+    "scienceModelTests": "35 passed",
+    "publicationChanges": 0,
+    "pr29SnapshotHead": "76a87df1d9b279f7ad0075fddbca934cf20450c6",
+    "deployment": "not observed; no additional marker attempted",
+    "readySourceCommit": "6e86c1c0b"
+  },
+  "closureEvidence": "Actual GitHub pull-request HTML state observed; PR29 confirmed after completed76a87df1d was merged into main8258c150f."
+}

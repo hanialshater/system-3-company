@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0938",
+  "title": "Confirmed cases change a fatality ratio",
+  "hook": "Two stated cases for confirmed cases change a fatality ratio.",
+  "domain": "probability",
+  "concept": "cp-source-0938",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the ascertainment denominator rather than a clinical risk estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the ascertainment denominator rather than a clinical risk estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0938.predict",
+      "text": "A toy comparison has 10/100 in A and 10/1000 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.reveal.0",
+      "text": "The retained results are TotalA=100; Gap=9 and TotalA=500; Gap=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the ascertainment denominator rather than a clinical risk estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.case.0.witness",
+      "text": "TotalA=100; Gap=9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",10],[\"TotalA\",100],[\"HitB\",10],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":9.000000000000002}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"9\"},{\"label\":\"TotalA\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.case.1.witness",
+      "text": "TotalA=500; Gap=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",10],[\"TotalA\",500],[\"HitB\",10],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":1}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"1\"},{\"label\":\"TotalA\",\"value\":\"500\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0938.recall",
+      "text": "A toy comparison has 11/100 in A and 10/1,000 in B. What is A minus B in percentage points? Answer 10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0938/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #938. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 11/100 in A and 10/1,000 in B. What is A minus B in percentage points?",
+    "options": [
+      "10",
+      "6",
+      "14"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap 10 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0938",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-938"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 938,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **938. Case vs infection fatality** \\[Gotcha\\]: dividing deaths by confirmed cases overstates fatality when many infections go uncounted.",
+    "modelBoundary": "the ascertainment denominator rather than a clinical risk estimate",
+    "recallInputs": [
+      11,
+      100,
+      10,
+      1000
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

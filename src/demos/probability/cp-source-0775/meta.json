@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0775",
+  "title": "A candidate network pays for size",
+  "hook": "Two stated cases for a candidate network pays for size.",
+  "domain": "probability",
+  "concept": "cp-source-0775",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the likelihood and complexity terms before causal identification affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines BIC, regardless of the stated inputs.",
+  "objective": "Compare the likelihood and complexity terms before causal identification in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0775.predict",
+      "text": "A toy candidate model has log likelihood -100, 3 parameters and N 100. What BIC score results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.reveal.0",
+      "text": "The retained results are LogLikelihood=-100 Parameters=3; BIC=213.816 and LogLikelihood=-95 Parameters=8; BIC=226.841.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.reveal.1",
+      "text": "The score penalizes additional parameters while rewarding likelihood fit. A better score is not by itself proof of a graph’s causal direction. This comparison isolates the likelihood and complexity terms before causal identification.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.case.0.witness",
+      "text": "LogLikelihood=-100 Parameters=3; BIC=213.816",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogLikelihood\",-100],[\"Parameters\",3],[\"N\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BIC\",\"value\":213.81551055796427}]},\"metrics\":[{\"label\":\"BIC\",\"value\":\"213.816\"},{\"label\":\"LogLikelihood\",\"value\":\"-100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.case.1.witness",
+      "text": "LogLikelihood=-95 Parameters=8; BIC=226.841",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogLikelihood\",-95],[\"Parameters\",8],[\"N\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BIC\",\"value\":226.84136148790475}]},\"metrics\":[{\"label\":\"BIC\",\"value\":\"226.841\"},{\"label\":\"LogLikelihood\",\"value\":\"-95\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0775.recall",
+      "text": "A toy candidate model has log likelihood -99, 3 parameters and N 100. What BIC score results? Answer 211.816.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0775/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #775. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy candidate model has log likelihood -99, 3 parameters and N 100. What BIC score results?",
+    "options": [
+      "127.089",
+      "296.542",
+      "211.816"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives BIC 211.816 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0775",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-775"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 775,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **775. Learn the structure** \\[Slider\\]: generate data from a hidden network, then watch an algorithm rebuild it.",
+    "modelBoundary": "the likelihood and complexity terms before causal identification",
+    "recallInputs": [
+      -99,
+      3,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0594",
+  "title": "A higher slice leaves a narrower set",
+  "hook": "Two stated cases: explore the normal-density level set in a slice-sampling step.",
+  "domain": "probability",
+  "concept": "cp-source-0594",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the normal-density level set in a slice-sampling step affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Width, regardless of the stated inputs.",
+  "objective": "Compare the normal-density level set in a slice-sampling step in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0594.predict",
+      "text": "For unnormalized toy density exp(-x²/2), choose slice Height 0.1 in (0,1). What is the full width of the retained horizontal slice?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.reveal.0",
+      "text": "The retained results are Height=0.1; Width=4.292 and Height=0.9; Width=0.918.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.reveal.1",
+      "text": "Conditioning on a height turns this density level set into an interval. A full slice sampler must also sample its height and position correctly. This comparison isolates the normal-density level set in a slice-sampling step.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.case.0.witness",
+      "text": "Height=0.1; Width=4.292",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Height\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.001,\"y\":7.4338443776996765},{\"x\":0.042583333333333334,\"y\":5.0249715132059665},{\"x\":0.08416666666666667,\"y\":4.44967982572664},{\"x\":0.12574999999999997,\"y\":4.0727970438039645},{\"x\":0.16733333333333333,\"y\":3.781816968557328},{\"x\":0.20891666666666667,\"y\":3.5392878725662813},{\"x\":0.25049999999999994,\"y\":3.3278177335391645},{\"x\":0.2920833333333333,\"y\":3.1377904701256862},{\"x\":0.33366666666666667,\"y\":2.9632587309717335},{\"x\":0.37525,\"y\":2.8002325738674863},{\"x\":0.41683333333333333,\"y\":2.6458553510463463},{\"x\":0.45841666666666664,\"y\":2.4979619787253435},{\"x\":0.49999999999999994,\"y\":2.3548200450309493},{\"x\":0.5415833333333333,\"y\":2.2149642541147947},{\"x\":0.5831666666666666,\"y\":2.07707921051173},{\"x\":0.62475,\"y\":1.9399045528418666},{\"x\":0.6663333333333333,\"y\":1.8021436860580162},{\"x\":0.7079166666666667,\"y\":1.6623571088405882},{\"x\":0.7494999999999999,\"y\":1.5188125926248695},{\"x\":0.7910833333333334,\"y\":1.3692391022413546},{\"x\":0.8326666666666667,\"y\":1.210361522735166},{\"x\":0.87425,\"y\":1.0368757034038434},{\"x\":0.9158333333333333,\"y\":0.8386698104616399},{\"x\":0.9574166666666667,\"y\":0.5900277547151321},{\"x\":0.9989999999999999,\"y\":0.0894650918999649}],\"xLabel\":\"Height\",\"yLabel\":\"Width\"},\"metrics\":[{\"label\":\"Width\",\"value\":\"4.292\"},{\"label\":\"Height\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.case.1.witness",
+      "text": "Height=0.9; Width=0.918",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Height\",0.9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.001,\"y\":7.4338443776996765},{\"x\":0.042583333333333334,\"y\":5.0249715132059665},{\"x\":0.08416666666666667,\"y\":4.44967982572664},{\"x\":0.12574999999999997,\"y\":4.0727970438039645},{\"x\":0.16733333333333333,\"y\":3.781816968557328},{\"x\":0.20891666666666667,\"y\":3.5392878725662813},{\"x\":0.25049999999999994,\"y\":3.3278177335391645},{\"x\":0.2920833333333333,\"y\":3.1377904701256862},{\"x\":0.33366666666666667,\"y\":2.9632587309717335},{\"x\":0.37525,\"y\":2.8002325738674863},{\"x\":0.41683333333333333,\"y\":2.6458553510463463},{\"x\":0.45841666666666664,\"y\":2.4979619787253435},{\"x\":0.49999999999999994,\"y\":2.3548200450309493},{\"x\":0.5415833333333333,\"y\":2.2149642541147947},{\"x\":0.5831666666666666,\"y\":2.07707921051173},{\"x\":0.62475,\"y\":1.9399045528418666},{\"x\":0.6663333333333333,\"y\":1.8021436860580162},{\"x\":0.7079166666666667,\"y\":1.6623571088405882},{\"x\":0.7494999999999999,\"y\":1.5188125926248695},{\"x\":0.7910833333333334,\"y\":1.3692391022413546},{\"x\":0.8326666666666667,\"y\":1.210361522735166},{\"x\":0.87425,\"y\":1.0368757034038434},{\"x\":0.9158333333333333,\"y\":0.8386698104616399},{\"x\":0.9574166666666667,\"y\":0.5900277547151321},{\"x\":0.9989999999999999,\"y\":0.0894650918999649}],\"xLabel\":\"Height\",\"yLabel\":\"Width\"},\"metrics\":[{\"label\":\"Width\",\"value\":\"0.918\"},{\"label\":\"Height\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0594.recall",
+      "text": "For unnormalized toy density exp(-x²/2), choose slice Height 0.2 in (0,1). What is the full width of the retained horizontal slice? Answer 3.588.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0594/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #594. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For unnormalized toy density exp(-x²/2), choose slice Height 0.2 in (0,1). What is the full width of the retained horizontal slice?",
+    "options": [
+      "2.153",
+      "3.588",
+      "5.024"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Width 3.588 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0594",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-594"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 594,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **594. Slice sampling** \\[Slider\\]: draw a horizontal slice under the curve and sample uniformly within it.",
+    "modelBoundary": "the normal-density level set in a slice-sampling step",
+    "recallInputs": [
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

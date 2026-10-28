@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0977",
+  "title": "A random rule thins active events",
+  "hook": "Two stated cases for a random rule thins active events.",
+  "domain": "probability",
+  "concept": "cp-source-0977",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the independent activation probability before a cellular automaton affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the independent activation probability before a cellular automaton in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0977.predict",
+      "text": "Thin a toy Poisson stream of Rate 10 independently with Share 0.1, then merge an independent Poisson stream of rate 0. What rate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.reveal.0",
+      "text": "The retained results are Share=0.1; Rate=1 and Share=0.9; Rate=9.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.reveal.1",
+      "text": "Independent thinning and superposition preserve Poisson structure. Dependence between streams can invalidate that process-level conclusion. This comparison isolates the independent activation probability before a cellular automaton.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.case.0.witness",
+      "text": "Share=0.1; Rate=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",10],[\"Share\",0.1],[\"Added\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":1}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"1\"},{\"label\":\"Share\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.case.1.witness",
+      "text": "Share=0.9; Rate=9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",10],[\"Share\",0.9],[\"Added\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":9}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"9\"},{\"label\":\"Share\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0977.recall",
+      "text": "Thin a toy Poisson stream of Rate 11 independently with Share 0.1, then merge an independent Poisson stream of rate 0. What rate results? Answer 1.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0977/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #977. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Thin a toy Poisson stream of Rate 11 independently with Share 0.1, then merge an independent Poisson stream of rate 0. What rate results?",
+    "options": [
+      "1.1",
+      "0.66",
+      "1.54"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Rate 1.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0977",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-977"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 977,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **977. Noisy cellular automata** \\[Slider\\]: add randomness to simple local rules and watch fire, growth or traffic patterns.",
+    "modelBoundary": "the independent activation probability before a cellular automaton",
+    "recallInputs": [
+      11,
+      0.1,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

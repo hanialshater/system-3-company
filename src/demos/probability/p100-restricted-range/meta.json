@@ -1,0 +1,161 @@
+{
+  "slug": "p100-restricted-range",
+  "title": "Who made it into the sample?",
+  "hook": "Keep the outcome rule fixed and narrow which predictor values enter.",
+  "domain": "probability",
+  "concept": "p100-restricted-range",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "among admitted students only, test scores barely predict grades."
+    ]
+  },
+  "misconception": "Treating restricted range as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "among admitted students only, test scores barely predict grades.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-restricted-range.predict",
+      "text": "For each x in −2…2, you have y=2x−1 and y=2x+1. Restricting x to −1,0,1 changes Pearson correlation to about what?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.reveal.0",
+      "text": "The restricted case retains r=0.853; the full range retains r=0.943. The outcome rule and noise stay the same, but the admitted predictor spread changes.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.reveal.1",
+      "text": "With less predictor variation, the fixed vertical noise occupies more of the remaining variation. Restricting all the way to a single x would make correlation undefined, not zero.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.recall",
+      "text": "If every admitted person has the same test score, is Pearson correlation with grades defined? The correlation denominator contains predictor standard deviation, which is zero in a constant-score sample.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.scenario.0.summary",
+      "text": "Restricted r=0.853",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":-2,\"y\":-5},{\"x\":-2,\"y\":-3},{\"x\":-1,\"y\":-3},{\"x\":-1,\"y\":-1},{\"x\":0,\"y\":-1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":1},{\"x\":1,\"y\":3},{\"x\":2,\"y\":3},{\"x\":2,\"y\":5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Narrow range\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":-1,\"y\":-3},{\"x\":-1,\"y\":-1},{\"x\":0,\"y\":-1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":1},{\"x\":1,\"y\":3}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.scenario.1.summary",
+      "text": "Full r=0.943",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"x range\"],\"rows\":[[-2],[2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Full range\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":-2,\"y\":-5},{\"x\":-2,\"y\":-3},{\"x\":-1,\"y\":-3},{\"x\":-1,\"y\":-1},{\"x\":0,\"y\":-1},{\"x\":0,\"y\":1},{\"x\":1,\"y\":1},{\"x\":1,\"y\":3},{\"x\":2,\"y\":3},{\"x\":2,\"y\":5}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-restricted-range/spec.ts; exact finite illustration specified in manager numericCase: Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-restricted-range.hook",
+      "text": "Keep the outcome rule fixed and narrow which predictor values enter.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-restricted-range/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If every admitted person has the same test score, is Pearson correlation with grades defined?",
+    "options": [
+      "No: predictor variance is zero",
+      "Yes: it must be zero",
+      "Yes: it must be one"
+    ],
+    "answer": 0,
+    "why": "The correlation denominator contains predictor standard deviation, which is zero in a constant-score sample."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-restricted-range",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "range-restriction"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 279,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceTitle": "Restricted range",
+    "sourceText": "among admitted students only, test scores barely predict grades.",
+    "sourceEntryOriginal": "- **279. Restricted range** \\[Slider\\]: among admitted students only, test scores barely predict grades.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/estimate-a-range",
+    "difference": "New teaching boundary: Restricted range. Existing boundary: Stress-test a schedule at the longer end of an explicit range.",
+    "numericCase": "Ten points: each x in [-2,-1,0,1,2] appears twice, with y=2x-1 and y=2x+1. Full r=sqrt(8/9)≈.94281. Restrict x to [-1,0,1]: r=sqrt(8/11)≈.85280. Restrict to x=0: r undefined because x has zero variance. Fixed y rule; only the admitted range changes."
+  },
+  "modelAudit": {
+    "a": 0.8528028654224418,
+    "b": 0.9428090415820635
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0648",
+  "title": "A marginal density trades fit and spread",
+  "hook": "Two stated cases: explore the one-observation marginal-likelihood ingredient.",
+  "domain": "probability",
+  "concept": "cp-source-0648",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-observation marginal-likelihood ingredient affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines LogDensity, regardless of the stated inputs.",
+  "objective": "Compare the one-observation marginal-likelihood ingredient in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0648.predict",
+      "text": "A single toy GP observation 2 is marginally normal with mean zero and variance Amplitude 1+Noise 0.1. What is its log marginal density?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.reveal.0",
+      "text": "The retained results are Amplitude=1; LogDensity=-2.785 and Amplitude=4; LogDensity=-2.112.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.reveal.1",
+      "text": "Marginal likelihood trades off fit and predictive spread. A one-point calculation is not evidence that a multi-parameter optimization has a unique good solution. This comparison isolates the one-observation marginal-likelihood ingredient.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.case.0.witness",
+      "text": "Amplitude=1; LogDensity=-2.785",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Observation\",2],[\"Amplitude\",1],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LogDensity\",\"value\":-2.7847754412886534}]},\"metrics\":[{\"label\":\"LogDensity\",\"value\":\"-2.785\"},{\"label\":\"Amplitude\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.case.1.witness",
+      "text": "Amplitude=4; LogDensity=-2.112",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Observation\",2],[\"Amplitude\",4],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LogDensity\",\"value\":-2.112236898108584}]},\"metrics\":[{\"label\":\"LogDensity\",\"value\":\"-2.112\"},{\"label\":\"Amplitude\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0648.recall",
+      "text": "A single toy GP observation 3 is marginally normal with mean zero and variance Amplitude 1+Noise 0.1. What is its log marginal density? Answer -5.058.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0648/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #648. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A single toy GP observation 3 is marginally normal with mean zero and variance Amplitude 1+Noise 0.1. What is its log marginal density?",
+    "options": [
+      "-7.081",
+      "-5.058",
+      "-3.035"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives LogDensity -5.058 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0648",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-648"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 648,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **648. Let the data choose** \\[Slider\\]: the marginal likelihood surface over length scale and noise has a clear peak.",
+    "modelBoundary": "the one-observation marginal-likelihood ingredient",
+    "recallInputs": [
+      3,
+      1,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

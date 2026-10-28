@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0663", "title": "Prediction and measurement change spread", "op": "kalman", "labels": ["Mean", "PriorVar", "ProcessVar", "Observation", "Noise"], "outputs": ["Posterior", "Variance", "Gain"], "a": [0.0, 1.0, 4.0, 3.0, 1.0], "b": [0.0, 1.0, 0.0, 3.0, 1.0], "question": "A scalar toy filter predicts from Mean 0, PriorVar 1, adds ProcessVar 4, then observes 3 with noise variance 1. What posterior mean results?", "questionTemplate": "A scalar toy filter predicts from Mean {Mean}, PriorVar {PriorVar}, adds ProcessVar {ProcessVar}, then observes {Observation} with noise variance {Noise}. What posterior mean results?", "explain": "Prediction grows uncertainty; a measurement combines the predicted state and observation according to their uncertainties. This is a scalar linear-Gaussian update.", "lens": "the process-variance input in a scalar filtering step", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0353",
+  "title": "Select on a consequence of the outcome",
+  "hook": "Two stated cases: explore the selection facet of conditioning on downstream information.",
+  "domain": "probability",
+  "concept": "cp-source-0353",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the selection facet of conditioning on downstream information affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines YGiven, regardless of the stated inputs.",
+  "objective": "Compare the selection facet of conditioning on downstream information in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0353.predict",
+      "text": "Independent toy binary X,Y have probabilities 0.5,0.5. Selected 1=1 keeps only X OR Y=1; otherwise all. Given X=0, what is P(Y=1) in the retained set?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.reveal.0",
+      "text": "The retained results are XValue=0; YGiven=1 and XValue=1; YGiven=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.reveal.1",
+      "text": "Selecting a common consequence can create a negative association between initially independent causes. Conditioning and intervening answer different questions. This comparison isolates the selection facet of conditioning on downstream information.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.case.0.witness",
+      "text": "XValue=0; YGiven=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"PX\",0.5],[\"PY\",0.5],[\"Selected\",1],[\"XValue\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"S\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"y\",\"to\":\"m\",\"active\":true}]},\"metrics\":[{\"label\":\"YGiven\",\"value\":\"1\"},{\"label\":\"XValue\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.case.1.witness",
+      "text": "XValue=1; YGiven=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"PX\",0.5],[\"PY\",0.5],[\"Selected\",1],[\"XValue\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"S\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"y\",\"to\":\"m\",\"active\":true}]},\"metrics\":[{\"label\":\"YGiven\",\"value\":\"0.5\"},{\"label\":\"XValue\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0353.recall",
+      "text": "Independent toy binary X,Y have probabilities 0.5,0.3. Selected 1=1 keeps only X OR Y=1; otherwise all. Given X=1, what is P(Y=1) in the retained set? Answer 0.3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0353/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #353. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent toy binary X,Y have probabilities 0.5,0.3. Selected 1=1 keeps only X OR Y=1; otherwise all. Given X=1, what is P(Y=1) in the retained set?",
+    "options": [
+      "0.3",
+      "0.18",
+      "0.42"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives YGiven 0.3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0353",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-353"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 353,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceEntryOriginal": "- **353. Controlling for the outcome's child** \\[Gotcha\\]: adjusting for a consequence of the outcome distorts the effect.",
+    "modelBoundary": "the selection facet of conditioning on downstream information",
+    "recallInputs": [
+      0.5,
+      0.3,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

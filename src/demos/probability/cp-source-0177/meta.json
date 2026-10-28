@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0177",
+  "title": "Count coprime pairs before the limit",
+  "hook": "Two stated cases: explore the finite integer sampling range.",
+  "domain": "probability",
+  "concept": "cp-source-0177",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the finite integer sampling range affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Fraction, regardless of the stated inputs.",
+  "objective": "Compare the finite integer sampling range in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0177.predict",
+      "text": "Choose two independent integers uniformly from 1 through 100. What exact fraction of ordered pairs is coprime?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.reveal.0",
+      "text": "The retained results are Maximum=100; Fraction=0.609 and Maximum=200; Fraction=0.612.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.reveal.1",
+      "text": "Finite enumeration gives a finite-range fraction. The limiting six-over-pi-squared result is a separate asymptotic statement. This comparison isolates the finite integer sampling range.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.case.0.witness",
+      "text": "Maximum=100; Fraction=0.609",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Maximum\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.6087}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.609\"},{\"label\":\"Maximum\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.case.1.witness",
+      "text": "Maximum=200; Fraction=0.612",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Maximum\",200]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Fraction\",\"value\":0.611575}]},\"metrics\":[{\"label\":\"Fraction\",\"value\":\"0.612\"},{\"label\":\"Maximum\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0177.recall",
+      "text": "Choose two independent integers uniformly from 1 through 101. What exact fraction of ordered pairs is coprime? Answer 0.616.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0177/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Choose two independent integers uniformly from 1 through 101. What exact fraction of ordered pairs is coprime?",
+    "options": [
+      "0.37",
+      "0.616",
+      "0.863"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Fraction 0.616 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0177",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-177"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 177,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **177. π from fractions** \\[Predict\\]: the chance two random integers share no factor is 6/π² ≈ 61%.",
+    "modelBoundary": "the finite integer sampling range",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101
+    ]
+  }
+}

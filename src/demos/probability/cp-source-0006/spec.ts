@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0006", "title": "Condition on at least one boy", "op": "reportchild", "labels": ["Days"], "outputs": ["BothBoys"], "a": [1.0], "b": [7.0], "question": "Two children have independent sex and uniform birthdays across 1 equally likely day categories. Condition on at least one boy in a specified category. What is the probability of two boys?", "questionTemplate": "Two children have independent sex and uniform birthdays across {Days} equally likely day categories. Condition on at least one boy in a specified category. What is the probability of two boys?", "explain": "This conditions on the stated family-level event, rather than hearing about a randomly selected child. Reporting protocols change the sample space.", "lens": "the family-level conditioning event", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

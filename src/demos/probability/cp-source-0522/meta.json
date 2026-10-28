@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0522",
+  "title": "One arrival can choose the shorter line",
+  "hook": "Two stated cases: explore routing with observed equal-duration jobs.",
+  "domain": "probability",
+  "concept": "cp-source-0522",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How routing with observed equal-duration jobs affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ExpectedWait, regardless of the stated inputs.",
+  "objective": "Compare routing with observed equal-duration jobs in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0522.predict",
+      "text": "Two toy queues contain 10,0 equal-duration jobs, each taking 1. Shortest 0=1 joins the shorter, 0 picks uniformly. What is expected wait for this arrival?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.reveal.0",
+      "text": "The retained results are Shortest=0; ExpectedWait=5 and Shortest=1; ExpectedWait=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.reveal.1",
+      "text": "Routing on observed queue lengths changes this arrival’s delay. A one-arrival comparison is not a full stationary routing analysis. This comparison isolates routing with observed equal-duration jobs.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.case.0.witness",
+      "text": "Shortest=0; ExpectedWait=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",10],[\"B\",0],[\"Service\",1],[\"Shortest\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ExpectedWait\",\"value\":5}]},\"metrics\":[{\"label\":\"ExpectedWait\",\"value\":\"5\"},{\"label\":\"Shortest\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.case.1.witness",
+      "text": "Shortest=1; ExpectedWait=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",10],[\"B\",0],[\"Service\",1],[\"Shortest\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ExpectedWait\",\"value\":0}]},\"metrics\":[{\"label\":\"ExpectedWait\",\"value\":\"0\"},{\"label\":\"Shortest\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0522.recall",
+      "text": "Two toy queues contain 11,0 equal-duration jobs, each taking 1. Shortest 0=1 joins the shorter, 0 picks uniformly. What is expected wait for this arrival? Answer 5.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0522/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #522. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy queues contain 11,0 equal-duration jobs, each taking 1. Shortest 0=1 joins the shorter, 0 picks uniformly. What is expected wait for this arrival?",
+    "options": [
+      "3.3",
+      "5.5",
+      "7.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives ExpectedWait 5.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0522",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-522"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 522,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **522. Shortest queue vs random** \\[Split\\]: watch two server farms side by side, one routing randomly, one to the shortest line.",
+    "modelBoundary": "routing with observed equal-duration jobs",
+    "recallInputs": [
+      11,
+      0,
+      1,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0554",
+  "title": "Arrivals offset per-capita departures",
+  "hook": "Two stated cases: explore the mean balance of an immigration-death model.",
+  "domain": "probability",
+  "concept": "cp-source-0554",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mean balance of an immigration-death model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the mean balance of an immigration-death model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0554.predict",
+      "text": "A toy population receives immigrants at rate 10; per-capita death rate 0.2; initial size 0. What is expected size at Time 10?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.reveal.0",
+      "text": "The retained results are Time=10; Expected=43.233 and Time=30; Expected=49.876.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.reveal.1",
+      "text": "Surviving initial members and surviving immigrants both contribute. The equilibrium mean is a model balance, not a guarantee about one realized population. This comparison isolates the mean balance of an immigration-death model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.case.0.witness",
+      "text": "Time=10; Expected=43.233",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",10],[\"Death\",0.2],[\"Initial\",0],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":43.233235838169364}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"43.233\"},{\"label\":\"Time\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.case.1.witness",
+      "text": "Time=30; Expected=49.876",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",10],[\"Death\",0.2],[\"Initial\",0],[\"Time\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":49.876062391166684}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"49.876\"},{\"label\":\"Time\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0554.recall",
+      "text": "A toy population receives immigrants at rate 11; per-capita death rate 0.2; initial size 0. What is expected size at Time 10? Answer 47.557.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0554/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #554. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population receives immigrants at rate 11; per-capita death rate 0.2; initial size 0. What is expected size at Time 10?",
+    "options": [
+      "47.557",
+      "28.534",
+      "66.579"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Expected 47.557 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0554",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-554"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 554,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **554. Immigration and death** \\[Slider\\]: a population fed by arrivals and drained by deaths settles into a Poisson-shaped balance.",
+    "modelBoundary": "the mean balance of an immigration-death model",
+    "recallInputs": [
+      11,
+      0.2,
+      0,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

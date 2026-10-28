@@ -1,0 +1,103 @@
+{
+  "slug": "be-wages-in-two-envelopes",
+  "title": "Wages in two envelopes",
+  "hook": "Would separating the same wages change how much you save?",
+  "domain": "behavioral",
+  "concept": "be-wages-in-two-envelopes",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Track partitioned balances without treating labeling as additional income."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Track partitioned balances without treating labeling as additional income.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-wages-in-two-envelopes.inputs",
+      "text": "A toy wage payment puts €40 in one envelope and €60 in another. After spending €30, what remains altogether? Toy inputs A=[40, 60, 30]; B=[100, 0, 30].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-wages-in-two-envelopes.trace",
+      "text": "Computed results: [[70, 40, 60], [70, 100, 0]]. Labels: Remainder €, Envelope 1 €, Envelope 2 €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-wages-in-two-envelopes.reveal",
+      "text": "Partitioning the payment changes its arrangement while the total obeys the same conservation rule. The comparison pools it in one place. Any effect on later spending requires behavioral evidence beyond this identity.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-wages-in-two-envelopes.recall",
+      "text": "A new toy case uses Envelope 1 €=100, Envelope 2 €=0, Spending €=30. What is Remainder €? Answer: 70.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Envelope 1 €=100, Envelope 2 €=0, Spending €=30. What is Remainder €?",
+    "options": [
+      "91",
+      "70",
+      "49"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 70. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-wages-in-two-envelopes",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-118"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 118,
+    "section": "6. Mental accounting",
+    "text": "Indian laborers saved more when wages were split into sealed envelopes, especially envelopes showing their children's photos (Soman & Cheema, 2011).",
+    "pointer": "500-behavioral-economics-findings.md entry 118: Soman & Cheema, 2011",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-smart-sunk-cost-boundary",
+  "meaningfulDifference": "Track partitioned balances without treating labeling as additional income."
+}

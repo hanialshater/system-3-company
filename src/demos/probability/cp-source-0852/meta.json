@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0852",
+  "title": "An early vote gets amplified",
+  "hook": "Two stated cases: explore the initial vote in a toy herding recurrence.",
+  "domain": "probability",
+  "concept": "cp-source-0852",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the initial vote in a toy herding recurrence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the initial vote in a toy herding recurrence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0852.predict",
+      "text": "A toy feedback process starts at 10; each step multiplies the current level by 1.1. What level follows 5 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.reveal.0",
+      "text": "The retained results are Initial=10; Level=16.105 and Initial=11; Level=17.716.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.reveal.1",
+      "text": "A self-reinforcing measurement process can amplify its starting differences. The recurrence is assumed and does not separate true underlying need from observed activity. This comparison isolates the initial vote in a toy herding recurrence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.case.0.witness",
+      "text": "Initial=10; Level=16.105",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",10],[\"Amplification\",1.1],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":10},{\"label\":\"1.25\",\"value\":11.265250579928898},{\"label\":\"2.5\",\"value\":12.690587062858835},{\"label\":\"3.75\",\"value\":14.296264326950867},{\"label\":\"5\",\"value\":16.105100000000007}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"16.105\"},{\"label\":\"Initial\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.case.1.witness",
+      "text": "Initial=11; Level=17.716",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",11],[\"Amplification\",1.1],[\"Steps\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":11},{\"label\":\"1.25\",\"value\":12.391775637921787},{\"label\":\"2.5\",\"value\":13.95964576914472},{\"label\":\"3.75\",\"value\":15.725890759645953},{\"label\":\"5\",\"value\":17.715610000000005}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"17.716\"},{\"label\":\"Initial\",\"value\":\"11\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0852.recall",
+      "text": "A toy feedback process starts at 10; each step multiplies the current level by 1.2. What level follows 5 steps? Answer 24.883.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0852/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #852. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy feedback process starts at 10; each step multiplies the current level by 1.2. What level follows 5 steps?",
+    "options": [
+      "14.93",
+      "24.883",
+      "34.836"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Level 24.883 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0852",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-852"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 852,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceEntryOriginal": "- **852. Herding on votes** \\[Story\\]: one random early upvote raised a comment's final rating about 25% on a news site (Muchnik, Aral & Taylor, 2013).",
+    "modelBoundary": "the initial vote in a toy herding recurrence",
+    "recallInputs": [
+      10,
+      1.2000000000000002,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

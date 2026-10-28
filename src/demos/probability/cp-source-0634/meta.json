@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0634",
+  "title": "Small hospitals have noisier proportions",
+  "hook": "Two stated cases: explore the binomial sampling-spread facet of a funnel plot.",
+  "domain": "probability",
+  "concept": "cp-source-0634",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the binomial sampling-spread facet of a funnel plot affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare the binomial sampling-spread facet of a funnel plot in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0634.predict",
+      "text": "For 20 independent toy Bernoulli observations with probability 0.05, what is the standard deviation of the sample proportion?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.reveal.0",
+      "text": "The retained results are N=20; SD=0.049 and N=2,000; SD=0.005.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.reveal.1",
+      "text": "Sampling spread depends on sample size as well as the underlying probability. This exact model assumes independent observations. This comparison isolates the binomial sampling-spread facet of a funnel plot.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.case.0.witness",
+      "text": "N=20; SD=0.049",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.05],[\"N\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.04873397172404482}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.049\"},{\"label\":\"N\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.case.1.witness",
+      "text": "N=2,000; SD=0.005",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.05],[\"N\",2000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.004873397172404482}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.005\"},{\"label\":\"N\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0634.recall",
+      "text": "For 20 independent toy Bernoulli observations with probability 0.04, what is the standard deviation of the sample proportion? Answer 0.044.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0634/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #634. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 20 independent toy Bernoulli observations with probability 0.04, what is the standard deviation of the sample proportion?",
+    "options": [
+      "-0.056",
+      "0.144",
+      "0.044"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives SD 0.044 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0634",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-634"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 634,
+    "sourceSection": "32. Hierarchical & multilevel models",
+    "sourceEntryOriginal": "- **634. Hospital league tables** \\[Slider\\]: a funnel plot shows most \"worst\" hospitals are just small ones with noisy rates.",
+    "modelBoundary": "the binomial sampling-spread facet of a funnel plot",
+    "recallInputs": [
+      0.04000000000000001,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0167",
+  "title": "A single retirement return assumption",
+  "hook": "Two stated cases for a single retirement return assumption.",
+  "domain": "probability",
+  "concept": "cp-source-0167",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stated constant-return path rather than a survival guarantee affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Balance, regardless of the stated inputs.",
+  "objective": "Compare the stated constant-return path rather than a survival guarantee in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0167.predict",
+      "text": "Toy principal 100000 grows at annual return 0.05 minus annual fee 0.01 for 20 years. What balance results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.reveal.0",
+      "text": "The retained results are Return=0.05; Balance=219,112.314 and Return=0.01; Balance=100,000.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.reveal.1",
+      "text": "Repeated fees compound through the balance. The constant return is an illustrative assumption and excludes taxes and uncertainty. This comparison isolates the stated constant-return path rather than a survival guarantee.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.case.0.witness",
+      "text": "Return=0.05; Balance=219,112.314",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Principal\",100000],[\"Return\",0.05],[\"Fee\",0.01],[\"Years\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Balance\",\"value\":219112.31430334208}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"219,112.314\"},{\"label\":\"Return\",\"value\":\"0.05\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.case.1.witness",
+      "text": "Return=0.01; Balance=100,000",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Principal\",100000],[\"Return\",0.01],[\"Fee\",0.01],[\"Years\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Balance\",\"value\":100000}]},\"metrics\":[{\"label\":\"Balance\",\"value\":\"100,000\"},{\"label\":\"Return\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0167.recall",
+      "text": "Toy principal 100,001 grows at annual return 0.05 minus annual fee 0.01 for 20 years. What balance results? Answer 219,114.505.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0167/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #167. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy principal 100,001 grows at annual return 0.05 minus annual fee 0.01 for 20 years. What balance results?",
+    "options": [
+      "219,114.505",
+      "131,468.703",
+      "306,760.308"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Balance 219,114.505 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0167",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-167"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 167,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **167. Retirement plan** \\[Slider\\]: simulate thousands of market paths and see the chance your savings last.",
+    "modelBoundary": "the stated constant-return path rather than a survival guarantee",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      100001,
+      0.05,
+      0.01,
+      20
+    ]
+  }
+}

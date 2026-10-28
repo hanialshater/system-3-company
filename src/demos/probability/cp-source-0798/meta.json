@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0798",
+  "title": "A green-token count gets a null score",
+  "hook": "Two stated cases: explore the Bernoulli null used to standardize a token tally.",
+  "domain": "probability",
+  "concept": "cp-source-0798",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Bernoulli null used to standardize a token tally affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Z, regardless of the stated inputs.",
+  "objective": "Compare the Bernoulli null used to standardize a token tally in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0798.predict",
+      "text": "A toy token tally has Count 60 green tokens among N 100, with independent null chance NullP 0.5. What standardized count results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.reveal.0",
+      "text": "The retained results are Count=60; Z=2 and Count=50; Z=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.reveal.1",
+      "text": "This score uses an independent Bernoulli null variance. Dependence, editing and key selection affect any actual watermark test. This comparison isolates the Bernoulli null used to standardize a token tally.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.case.0.witness",
+      "text": "Count=60; Z=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Count\",60],[\"N\",100],[\"NullP\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Z\",\"value\":2}]},\"metrics\":[{\"label\":\"Z\",\"value\":\"2\"},{\"label\":\"Count\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.case.1.witness",
+      "text": "Count=50; Z=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Count\",50],[\"N\",100],[\"NullP\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Z\",\"value\":0}]},\"metrics\":[{\"label\":\"Z\",\"value\":\"0\"},{\"label\":\"Count\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0798.recall",
+      "text": "A toy token tally has Count 61 green tokens among N 100, with independent null chance NullP 0.5. What standardized count results? Answer 2.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0798/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #798. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy token tally has Count 61 green tokens among N 100, with independent null chance NullP 0.5. What standardized count results?",
+    "options": [
+      "1.32",
+      "2.2",
+      "3.08"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Z 2.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0798",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-798"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 798,
+    "sourceSection": "40. Probabilistic deep learning & generative models",
+    "sourceEntryOriginal": "- **798. Detecting watermarks** \\[Slider\\]: a z-score over \"green-listed\" tokens reveals watermarked AI text (Kirchenbauer et al., 2023).",
+    "modelBoundary": "the Bernoulli null used to standardize a token tally",
+    "recallInputs": [
+      61,
+      100,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

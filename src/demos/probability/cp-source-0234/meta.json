@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0234",
+  "title": "Three pairs of die faces",
+  "hook": "Two stated cases: explore the Pearson statistic for three grouped categories.",
+  "domain": "probability",
+  "concept": "cp-source-0234",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Pearson statistic for three grouped categories affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Statistic, regardless of the stated inputs.",
+  "objective": "Compare the Pearson statistic for three grouped categories in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0234.predict",
+      "text": "Three toy category counts are 20,20,20. Under equal expected shares, what is the Pearson chi-square statistic?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.reveal.0",
+      "text": "The retained results are A=20 C=20; Statistic=0 and A=30 C=10; Statistic=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.reveal.1",
+      "text": "Compare observed counts with expected counts using the same total. A statistic alone is not a p-value without a reference distribution and assumptions. This comparison isolates the Pearson statistic for three grouped categories.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.case.0.witness",
+      "text": "A=20 C=20; Statistic=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",20],[\"B\",20],[\"C\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Statistic\",\"value\":0}]},\"metrics\":[{\"label\":\"Statistic\",\"value\":\"0\"},{\"label\":\"A\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.case.1.witness",
+      "text": "A=30 C=10; Statistic=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",30],[\"B\",20],[\"C\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Statistic\",\"value\":10}]},\"metrics\":[{\"label\":\"Statistic\",\"value\":\"10\"},{\"label\":\"A\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0234.recall",
+      "text": "Three toy category counts are 21,20,20. Under equal expected shares, what is the Pearson chi-square statistic? Answer 0.033.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0234/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #234. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three toy category counts are 21,20,20. Under equal expected shares, what is the Pearson chi-square statistic?",
+    "options": [
+      "-0.067",
+      "0.033",
+      "0.133"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Statistic 0.033 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0234",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-234"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 234,
+    "sourceSection": "12. Hypothesis tests & p-value traps",
+    "sourceEntryOriginal": "- **234. Is your die fair?** \\[Measure\\]: roll 60 times and run a chi-square test on the counts.",
+    "modelBoundary": "the Pearson statistic for three grouped categories",
+    "recallInputs": [
+      21,
+      20,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

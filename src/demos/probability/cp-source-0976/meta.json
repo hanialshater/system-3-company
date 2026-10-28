@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0976",
+  "title": "A random baseline has empty regions",
+  "hook": "Two stated cases: explore the void probability under a homogeneous Poisson baseline.",
+  "domain": "probability",
+  "concept": "cp-source-0976",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the void probability under a homogeneous Poisson baseline affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the void probability under a homogeneous Poisson baseline in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0976.predict",
+      "text": "A toy Poisson count has mean 1. What is the probability of exactly 0 events?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.reveal.0",
+      "text": "The retained results are Rate=1; Probability=0.368 and Rate=5; Probability=0.007.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.reveal.1",
+      "text": "The mean fixes this Poisson distribution. Agreement at one count does not establish that real events satisfy the model. This comparison isolates the void probability under a homogeneous Poisson baseline.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.case.0.witness",
+      "text": "Rate=1; Probability=0.368",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",1],[\"Count\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.36787944117144233}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.368\"},{\"label\":\"Rate\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.case.1.witness",
+      "text": "Rate=5; Probability=0.007",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",5],[\"Count\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.006737946999085467}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.007\"},{\"label\":\"Rate\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0976.recall",
+      "text": "A toy Poisson count has mean 2. What is the probability of exactly 0 events? Answer 0.135.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0976/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #976. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Poisson count has mean 2. What is the probability of exactly 0 events?",
+    "options": [
+      "0.035",
+      "0.235",
+      "0.135"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Probability 0.135 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0976",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-976"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 976,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **976. Cosmic web vs random** \\[Split\\]: real galaxy maps show filaments and voids; a Poisson scatter doesn't.",
+    "modelBoundary": "the void probability under a homogeneous Poisson baseline",
+    "recallInputs": [
+      2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

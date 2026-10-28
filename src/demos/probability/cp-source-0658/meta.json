@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0658",
+  "title": "Scale variances while adding units",
+  "hook": "Two stated cases: explore the finite variance-scaling ingredient of a wide-network limit.",
+  "domain": "probability",
+  "concept": "cp-source-0658",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the finite variance-scaling ingredient of a wide-network limit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Variance, regardless of the stated inputs.",
+  "objective": "Compare the finite variance-scaling ingredient of a wide-network limit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0658.predict",
+      "text": "Sum Width 100 independent zero-mean toy units, each with variance 0.01. What is total variance?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.reveal.0",
+      "text": "The retained results are Width=100 UnitVariance=0.01; Variance=1 and Width=1,000 UnitVariance=0.001; Variance=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.reveal.1",
+      "text": "Variance scaling can keep a growing sum finite. This calculation alone does not prove a network’s infinite-width process limit. This comparison isolates the finite variance-scaling ingredient of a wide-network limit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.case.0.witness",
+      "text": "Width=100 UnitVariance=0.01; Variance=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Width\",100],[\"UnitVariance\",0.01]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Variance\",\"value\":1}]},\"metrics\":[{\"label\":\"Variance\",\"value\":\"1\"},{\"label\":\"Width\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.case.1.witness",
+      "text": "Width=1,000 UnitVariance=0.001; Variance=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Width\",1000],[\"UnitVariance\",0.001]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Variance\",\"value\":1}]},\"metrics\":[{\"label\":\"Variance\",\"value\":\"1\"},{\"label\":\"Width\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0658.recall",
+      "text": "Sum Width 101 independent zero-mean toy units, each with variance 0.01. What is total variance? Answer 1.01.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0658/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #658. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Sum Width 101 independent zero-mean toy units, each with variance 0.01. What is total variance?",
+    "options": [
+      "0.606",
+      "1.414",
+      "1.01"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Variance 1.01 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0658",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-658"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 658,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **658. Infinitely wide networks** \\[Gotcha\\]: as a neural net's layers grow infinitely wide, it becomes a Gaussian process.",
+    "modelBoundary": "the finite variance-scaling ingredient of a wide-network limit",
+    "recallInputs": [
+      101,
+      0.01
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

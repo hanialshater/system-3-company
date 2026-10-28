@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0629", "title": "A new seller has little direct evidence", "op": "poolnormal", "labels": ["Grand", "Group", "N", "NoiseVar", "GroupVar"], "outputs": ["Posterior", "Weight"], "a": [0.9, 1.0, 2.0, 0.09, 0.005], "b": [0.9, 1.0, 200.0, 0.09, 0.005], "question": "Toy group mean 1 comes from N 2 observations of variance 0.09. A normal prior has Grand mean 0.9, GroupVar 0.005. What posterior mean results?", "questionTemplate": "Toy group mean {Group} comes from N {N} observations of variance {NoiseVar}. A normal prior has Grand mean {Grand}, GroupVar {GroupVar}. What posterior mean results?", "explain": "Small or noisy groups borrow more from the stipulated population prior. Hyperparameter uncertainty is held fixed in this elementary update.", "lens": "the prior-data weighting for an explicit seller model", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

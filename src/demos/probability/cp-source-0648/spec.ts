@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0648", "title": "A marginal density trades fit and spread", "op": "gpevidence", "labels": ["Observation", "Amplitude", "Noise"], "outputs": ["LogDensity"], "a": [2.0, 1.0, 0.1], "b": [2.0, 4.0, 0.1], "question": "A single toy GP observation 2 is marginally normal with mean zero and variance Amplitude 1+Noise 0.1. What is its log marginal density?", "questionTemplate": "A single toy GP observation {Observation} is marginally normal with mean zero and variance Amplitude {Amplitude}+Noise {Noise}. What is its log marginal density?", "explain": "Marginal likelihood trades off fit and predictive spread. A one-point calculation is not evidence that a multi-parameter optimization has a unique good solution.", "lens": "the one-observation marginal-likelihood ingredient", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0497",
+  "title": "A trial contrast in standardized units",
+  "hook": "Two stated cases: explore the outcome spread behind a standardized estimate.",
+  "domain": "probability",
+  "concept": "cp-source-0497",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the outcome spread behind a standardized estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Difference, regardless of the stated inputs.",
+  "objective": "Compare the outcome spread behind a standardized estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0497.predict",
+      "text": "Toy covariate means are 50 and 40, with chosen reference SD 10. What is their standardized mean difference?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.reveal.0",
+      "text": "The retained results are SD=10; Difference=1 and SD=20; Difference=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.reveal.1",
+      "text": "Balance diagnostics describe observed covariates on a common scale. Observed balance cannot demonstrate balance of every unmeasured cause. This comparison isolates the outcome spread behind a standardized estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.case.0.witness",
+      "text": "SD=10; Difference=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",50],[\"MeanB\",40],[\"SD\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Difference\",\"value\":1}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"1\"},{\"label\":\"SD\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.case.1.witness",
+      "text": "SD=20; Difference=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",50],[\"MeanB\",40],[\"SD\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Difference\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Difference\",\"value\":\"0.5\"},{\"label\":\"SD\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0497.recall",
+      "text": "Toy covariate means are 51 and 40, with chosen reference SD 10. What is their standardized mean difference? Answer 1.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0497/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #497. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy covariate means are 51 and 40, with chosen reference SD 10. What is their standardized mean difference?",
+    "options": [
+      "1.1",
+      "0.66",
+      "1.54"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Difference 1.1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0497",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-497"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 497,
+    "sourceSection": "25. Famous real-world causal and probability stories",
+    "sourceEntryOriginal": "- **497. Streptomycin** \\[Story\\]: the 1948 UK Medical Research Council trial was among the first properly randomized clinical trials.",
+    "modelBoundary": "the outcome spread behind a standardized estimate",
+    "recallInputs": [
+      51,
+      40,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

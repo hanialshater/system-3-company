@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0380",
+  "title": "Infer noise, change X, replay Y",
+  "hook": "Two stated cases: explore abduction and intervention in a stated linear equation.",
+  "domain": "probability",
+  "concept": "cp-source-0380",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How abduction and intervention in a stated linear equation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Counterfactual, regardless of the stated inputs.",
+  "objective": "Compare abduction and intervention in a stated linear equation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0380.predict",
+      "text": "Toy Y=Slope 2×X+U. Observe X=3,Y=10; hold inferred U fixed and intervene X=4. What counterfactual Y results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.reveal.0",
+      "text": "The retained results are NewX=4; Counterfactual=12 and NewX=1; Counterfactual=6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.reveal.1",
+      "text": "Infer the disturbance from the observation, change the assigned cause, and reuse that disturbance. The answer depends on this specified structural model. This comparison isolates abduction and intervention in a stated linear equation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.case.0.witness",
+      "text": "NewX=4; Counterfactual=12",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Slope\",2],[\"ObservedX\",3],[\"ObservedY\",10],[\"NewX\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Counterfactual\",\"value\":\"12\"},{\"label\":\"NewX\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.case.1.witness",
+      "text": "NewX=1; Counterfactual=6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Slope\",2],[\"ObservedX\",3],[\"ObservedY\",10],[\"NewX\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Counterfactual\",\"value\":\"6\"},{\"label\":\"NewX\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0380.recall",
+      "text": "Toy Y=Slope 3×X+U. Observe X=3,Y=10; hold inferred U fixed and intervene X=4. What counterfactual Y results? Answer 13.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0380/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #380. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy Y=Slope 3×X+U. Observe X=3,Y=10; hold inferred U fixed and intervene X=4. What counterfactual Y results?",
+    "options": [
+      "13",
+      "7.8",
+      "18.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Counterfactual 13 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0380",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-380"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 380,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **380. Three steps to a counterfactual** \\[Slider\\]: infer the hidden noise, change the cause, replay the model (Pearl's abduction–action–prediction).",
+    "modelBoundary": "abduction and intervention in a stated linear equation",
+    "recallInputs": [
+      3,
+      3,
+      10,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

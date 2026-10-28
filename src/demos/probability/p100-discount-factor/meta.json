@@ -1,0 +1,163 @@
+{
+  "slug": "p100-discount-factor",
+  "title": "Near reward or distant reward?",
+  "hook": "Near reward or distant reward? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-discount-factor",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "lower it and the agent grabs a nearby small reward instead of a distant big one."
+    ]
+  },
+  "misconception": "Choose reward 4 now or reward 10 after three steps. With discounted value γ^t r and γ=0.8, what is the delayed reward’s present value? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "lower it and the agent grabs a nearby small reward instead of a distant big one.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-discount-factor.case",
+      "text": "Choose reward 4 now or reward 10 after three steps. With discounted value γ^t r and γ=0.8, what is the delayed reward’s present value? Options: 1.25; 5.12; 10. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Nearbyreward4nowversusdistantreward10in3steps. Discountgamma.5,.8,1givesdistantvalue1.25,5.12,10; switchoptimalchoicewhen gamma>cube-root(.4).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.recall",
+      "text": "Reward 8 arrives in two steps, γ=0.5. Discounted value? 8×0.5²=2.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.hook",
+      "text": "Near reward or distant reward? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c4",
+      "text": "At γ=0.8, the delayed reward is worth 5.12, above 4 now. At γ=0.5, it is worth 1.25, below 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c5",
+      "text": "The same future reward can change rank when the stipulated discount factor changes. This is an explicit planning objective, not a factual claim that people have one universal discount factor. Reward timing and γ both belong in the decision.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-discount-factor/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c7",
+      "text": "Delayed value: 5.12",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Now\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"1\",\"x\":120,\"y\":120},{\"id\":\"2\",\"label\":\"2\",\"x\":200,\"y\":75},{\"id\":\"3\",\"label\":\"3\",\"x\":280,\"y\":120}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"2\"},{\"from\":\"2\",\"to\":\"3\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Now\",\"value\":4},{\"label\":\"Delayed\",\"value\":5.120000000000001}]}. [{\"label\":\"Delayed value\",\"value\":\"5.12\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c10",
+      "text": "Delayed value: 1.25",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Now\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"1\",\"x\":120,\"y\":120},{\"id\":\"2\",\"label\":\"2\",\"x\":200,\"y\":75},{\"id\":\"3\",\"label\":\"3\",\"x\":280,\"y\":120}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"2\"},{\"from\":\"2\",\"to\":\"3\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-discount-factor.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Now\",\"value\":4},{\"label\":\"Delayed\",\"value\":1.25}]}. [{\"label\":\"Delayed value\",\"value\":\"1.25\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-discount-factor/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Reward 8 arrives in two steps, γ=0.5. Discounted value?",
+    "options": [
+      "2",
+      "4",
+      "8"
+    ],
+    "answer": 0,
+    "why": "8×0.5²=2."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-discount-factor",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-702",
+      "graph"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 702,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceTitle": "Discount factor",
+    "sourceText": "lower it and the agent grabs a nearby small reward instead of a distant big one.",
+    "sourceEntryOriginal": "- **702. Discount factor** \\[Slider\\]: lower it and the agent grabs a nearby small reward instead of a distant big one.",
+    "numericCase": "Nearbyreward4nowversusdistantreward10in3steps. Discountgamma.5,.8,1givesdistantvalue1.25,5.12,10; switchoptimalchoicewhen gamma>cube-root(.4).",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "ai/loophole-lap-farming",
+    "difference": "New teaching boundary: Discount factor. Existing boundary: The learner can explain that a maximiser optimises the reward as written, so a small repeating reward can outweigh the one-off goal it was meant to encourage."
+  },
+  "modelOutputs": [
+    5.120000000000001,
+    1.25
+  ]
+}

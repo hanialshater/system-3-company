@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0736",
+  "title": "A drive cohort loses members",
+  "hook": "Two stated cases: explore the illustrative drive-cohort event counts.",
+  "domain": "probability",
+  "concept": "cp-source-0736",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the illustrative drive-cohort event counts affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Survival, regardless of the stated inputs.",
+  "objective": "Compare the illustrative drive-cohort event counts in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0736.predict",
+      "text": "Two toy event times have risk sets N1 1000, N2 900 and failures D1 10, D2 20. What Kaplan-Meier survival product results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.reveal.0",
+      "text": "The retained results are D2=20; Survival=0.968 and D2=100; Survival=0.88.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.reveal.1",
+      "text": "Each drop uses the risk set just before that event time. Censoring assumptions matter for interpreting the estimated curve. This comparison isolates the illustrative drive-cohort event counts.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.case.0.witness",
+      "text": "D2=20; Survival=0.968",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N1\",1000],[\"D1\",10],[\"N2\",900],[\"D2\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.968}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.968\"},{\"label\":\"D2\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.case.1.witness",
+      "text": "D2=100; Survival=0.88",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N1\",1000],[\"D1\",10],[\"N2\",900],[\"D2\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Survival\",\"value\":0.8799999999999999}]},\"metrics\":[{\"label\":\"Survival\",\"value\":\"0.88\"},{\"label\":\"D2\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0736.recall",
+      "text": "Two toy event times have risk sets N1 1,000, N2 900 and failures D1 11, D2 20. What Kaplan-Meier survival product results? Answer 0.967.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0736/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #736. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy event times have risk sets N1 1,000, N2 900 and failures D1 11, D2 20. What Kaplan-Meier survival product results?",
+    "options": [
+      "0.58",
+      "1.354",
+      "0.967"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Survival 0.967 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0736",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-736"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 736,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **736. Hard drive failures** \\[Story\\]: Backblaze publishes failure data for hundreds of thousands of drives, a real-world survival dataset.",
+    "modelBoundary": "the illustrative drive-cohort event counts",
+    "recallInputs": [
+      1000,
+      11,
+      900,
+      20
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

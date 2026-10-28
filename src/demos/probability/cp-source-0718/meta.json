@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0718",
+  "title": "The maximum selects positive noise",
+  "hook": "Two stated cases: explore the number of noisy equal-valued actions.",
+  "domain": "probability",
+  "concept": "cp-source-0718",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the number of noisy equal-valued actions affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bias, regardless of the stated inputs.",
+  "objective": "Compare the number of noisy equal-valued actions in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0718.predict",
+      "text": "Each of 2 equal-value arms has independent noise ±Scale 1, each equally likely. What is the expected maximum estimation error?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.reveal.0",
+      "text": "The retained results are Arms=2; Bias=0.5 and Arms=8; Bias=0.992.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.reveal.1",
+      "text": "Taking a maximum selects positive noise unless every estimate is low. Independent evaluation avoids this selection in the stated symmetric model. This comparison isolates the number of noisy equal-valued actions.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.case.0.witness",
+      "text": "Arms=2; Bias=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arms\",2],[\"Scale\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Bias\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Bias\",\"value\":\"0.5\"},{\"label\":\"Arms\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.case.1.witness",
+      "text": "Arms=8; Bias=0.992",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arms\",8],[\"Scale\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Bias\",\"value\":0.9921875}]},\"metrics\":[{\"label\":\"Bias\",\"value\":\"0.992\"},{\"label\":\"Arms\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0718.recall",
+      "text": "Each of 3 equal-value arms has independent noise ±Scale 1, each equally likely. What is the expected maximum estimation error? Answer 0.75.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0718/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #718. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each of 3 equal-value arms has independent noise ±Scale 1, each equally likely. What is the expected maximum estimation error?",
+    "options": [
+      "0.45",
+      "1.05",
+      "0.75"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Bias 0.75 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0718",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-718"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 718,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **718. Max is optimistic** \\[Gotcha\\]: taking the max of noisy estimates overestimates value; double Q-learning fixes it.",
+    "modelBoundary": "the number of noisy equal-valued actions",
+    "recallInputs": [
+      3,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

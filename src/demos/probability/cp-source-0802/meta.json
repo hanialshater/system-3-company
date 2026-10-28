@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0802",
+  "title": "Temperature softens confidence",
+  "hook": "Two stated cases: explore the probability transformation before calibration evaluation.",
+  "domain": "probability",
+  "concept": "cp-source-0802",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the probability transformation before calibration evaluation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ProbabilityA, regardless of the stated inputs.",
+  "objective": "Compare the probability transformation before calibration evaluation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0802.predict",
+      "text": "Two toy logits are 3 and 0, divided by positive Temperature 1 before softmax. What probability is assigned to A?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.reveal.0",
+      "text": "The retained results are Temperature=1; ProbabilityA=0.953 and Temperature=3; ProbabilityA=0.731.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.reveal.1",
+      "text": "Temperature changes sampling concentration while preserving logit order. It does not supply evidence that the scores are calibrated. This comparison isolates the probability transformation before calibration evaluation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.case.0.witness",
+      "text": "Temperature=1; ProbabilityA=0.953",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",3],[\"LogitB\",0],[\"Temperature\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.9525741268224334}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"0.953\"},{\"label\":\"Temperature\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.case.1.witness",
+      "text": "Temperature=3; ProbabilityA=0.731",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"LogitA\",3],[\"LogitB\",0],[\"Temperature\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ProbabilityA\",\"value\":0.7310585786300049}]},\"metrics\":[{\"label\":\"ProbabilityA\",\"value\":\"0.731\"},{\"label\":\"Temperature\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0802.recall",
+      "text": "Two toy logits are 4 and 0, divided by positive Temperature 1 before softmax. What probability is assigned to A? Answer 0.982.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0802/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #802. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy logits are 4 and 0, divided by positive Temperature 1 before softmax. What probability is assigned to A?",
+    "options": [
+      "0.589",
+      "1.375",
+      "0.982"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives ProbabilityA 0.982 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0802",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-802"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 802,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **802. Temperature scaling** \\[Slider\\]: one knob bends an overconfident model's probabilities back onto the diagonal.",
+    "modelBoundary": "the probability transformation before calibration evaluation",
+    "recallInputs": [
+      4,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0018",
+  "title": "A lower deductible",
+  "hook": "Two stated cases: explore the claim probability needed to offset a premium.",
+  "domain": "behavioral",
+  "concept": "be-source-0018",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the claim probability needed to offset a premium affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the claim probability needed to offset a premium in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0018.predict",
+      "text": "A toy policy reduces a loss by 500 with probability 0.05 and costs 100. What is its expected cash gain minus cost?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.reveal.0",
+      "text": "The retained results are Probability=0.05; Net=-75 and Probability=0.25; Net=25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.reveal.1",
+      "text": "Expected cash value weights the avoided loss by its probability. Utility, liquidity and risk tolerance are separate assumptions. This comparison isolates the claim probability needed to offset a premium.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.case.0.witness",
+      "text": "Probability=0.05; Net=-75",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.05],[\"Reduction\",500],[\"Cost\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":-75}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-75\"},{\"label\":\"Probability\",\"value\":\"0.05\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.case.1.witness",
+      "text": "Probability=0.25; Net=25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Probability\",0.25],[\"Reduction\",500],[\"Cost\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":25}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"25\"},{\"label\":\"Probability\",\"value\":\"0.25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0018.recall",
+      "text": "A toy policy reduces a loss by 500 with probability 0.04 and costs 100. What is its expected cash gain minus cost? Answer -80.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0018/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #18. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy reduces a loss by 500 with probability 0.04 and costs 100. What is its expected cash gain minus cost?",
+    "options": [
+      "-112",
+      "-80",
+      "-48"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Net -80 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0018",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-18"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 18,
+    "sourceSection": "1. Loss aversion & prospect theory",
+    "sourceEntryOriginal": "- **18.** Home-insurance customers paid about $100 a year to cut their deductible from $1,000 to $500, despite a claim rate under 5% (Sydnor, 2010).",
+    "modelBoundary": "the claim probability needed to offset a premium",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.04000000000000001,
+      500,
+      100
+    ]
+  }
+}

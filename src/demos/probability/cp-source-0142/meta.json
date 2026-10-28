@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0142",
+  "title": "Return at a finite time",
+  "hook": "Two stated cases: explore finite endpoint return versus ever returning.",
+  "domain": "probability",
+  "concept": "cp-source-0142",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How finite endpoint return versus ever returning affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtOrigin, regardless of the stated inputs.",
+  "objective": "Compare finite endpoint return versus ever returning in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0142.predict",
+      "text": "A toy lattice walk starts at the origin in Dimension 1; each step uniformly chooses one of 2d unit directions. What is the probability it is at the origin after exactly 6 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.reveal.0",
+      "text": "The retained results are Dimension=1; AtOrigin=0.313 and Dimension=3; AtOrigin=0.04.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.reveal.1",
+      "text": "Endpoint return at a fixed finite time differs from ever returning over an infinite future. This enumeration answers only the finite question. This comparison isolates finite endpoint return versus ever returning.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.case.0.witness",
+      "text": "Dimension=1; AtOrigin=0.313",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",6],[\"Dimension\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtOrigin\",\"value\":0.3125}]},\"metrics\":[{\"label\":\"AtOrigin\",\"value\":\"0.313\"},{\"label\":\"Dimension\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.case.1.witness",
+      "text": "Dimension=3; AtOrigin=0.04",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",6],[\"Dimension\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtOrigin\",\"value\":0.03986625514403292}]},\"metrics\":[{\"label\":\"AtOrigin\",\"value\":\"0.04\"},{\"label\":\"Dimension\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0142.recall",
+      "text": "A toy lattice walk starts at the origin in Dimension 1; each step uniformly chooses one of 2d unit directions. What is the probability it is at the origin after exactly 7 steps? Answer 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0142/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #142. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy lattice walk starts at the origin in Dimension 1; each step uniformly chooses one of 2d unit directions. What is the probability it is at the origin after exactly 7 steps?",
+    "options": [
+      "-0.1",
+      "0.1",
+      "0"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives AtOrigin 0 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0142",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-142"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 142,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **142. Drunk man vs drunk bird** \\[Gotcha\\]: a random walker in 1D or 2D always returns home; in 3D, only about 34% do (Pólya).",
+    "modelBoundary": "finite endpoint return versus ever returning",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      7,
+      1
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0043",
+  "title": "A witness names the rare cab",
+  "hook": "Two stated cases: explore the cab prevalence before the witness report.",
+  "domain": "probability",
+  "concept": "cp-source-0043",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cab prevalence before the witness report affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the cab prevalence before the witness report in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0043.predict",
+      "text": "A toy condition has prevalence 0.15; a test catches fraction 0.8 of cases and flags fraction 0.2 of noncases. Given a positive, what probability is a case?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.reveal.0",
+      "text": "The retained results are Prior=0.15; Posterior=0.414 and Prior=0.5; Posterior=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.reveal.1",
+      "text": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive. This comparison isolates the cab prevalence before the witness report.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.case.0.witness",
+      "text": "Prior=0.15; Posterior=0.414",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.15],[\"Sensitivity\",0.8],[\"FalsePositive\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.4137931034482758}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.414\"},{\"label\":\"Prior\",\"value\":\"0.15\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.case.1.witness",
+      "text": "Prior=0.5; Posterior=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"Sensitivity\",0.8],[\"FalsePositive\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.8\"},{\"label\":\"Prior\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0043.recall",
+      "text": "A toy condition has prevalence 0.12; a test catches fraction 0.8 of cases and flags fraction 0.2 of noncases. Given a positive, what probability is a case? Answer 0.353.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0043/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #43. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy condition has prevalence 0.12; a test catches fraction 0.8 of cases and flags fraction 0.2 of noncases. Given a positive, what probability is a case?",
+    "options": [
+      "0.212",
+      "0.494",
+      "0.353"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Posterior 0.353 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0043",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-43"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 43,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **43. The cab problem** \\[Gotcha\\]: an 80%-reliable witness says the cab was blue, but only 15% of cabs are. Real chance: about 41%.",
+    "modelBoundary": "the cab prevalence before the witness report",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.12,
+      0.8,
+      0.2
+    ]
+  }
+}

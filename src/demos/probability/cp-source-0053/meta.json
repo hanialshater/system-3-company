@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0053",
+  "title": "A negative test with a high prior",
+  "hook": "Two stated cases: explore the probability left after a negative result.",
+  "domain": "probability",
+  "concept": "cp-source-0053",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the probability left after a negative result affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the probability left after a negative result in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0053.predict",
+      "text": "Toy prevalence is 0.5, sensitivity 0.8 and false-positive rate 0.02. After a negative result, what is the probability of the condition?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.reveal.0",
+      "text": "The retained results are Prior=0.5; Posterior=0.169 and Prior=0.01; Posterior=0.002.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.reveal.1",
+      "text": "A negative result reweights cases and noncases by their probabilities of testing negative. A test result alone does not fix its predictive meaning. This comparison isolates the probability left after a negative result.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.case.0.witness",
+      "text": "Prior=0.5; Posterior=0.169",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"Sensitivity\",0.8],[\"FalsePositive\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.16949152542372878}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.169\"},{\"label\":\"Prior\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.case.1.witness",
+      "text": "Prior=0.01; Posterior=0.002",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.01],[\"Sensitivity\",0.8],[\"FalsePositive\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.0020571898786257968}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.002\"},{\"label\":\"Prior\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0053.recall",
+      "text": "Toy prevalence is 0.4, sensitivity 0.8 and false-positive rate 0.02. After a negative result, what is the probability of the condition? Answer 0.12.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0053/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #53. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prevalence is 0.4, sensitivity 0.8 and false-positive rate 0.02. After a negative result, what is the probability of the condition?",
+    "options": [
+      "0.12",
+      "0.02",
+      "0.22"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 0.12 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0053",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-53"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 53,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **53. What a negative test means** \\[Slider\\]: a negative rapid test reassures less when symptoms or local prevalence are high.",
+    "modelBoundary": "the probability left after a negative result",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.4,
+      0.8,
+      0.02
+    ]
+  }
+}

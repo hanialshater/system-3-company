@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0891",
+  "title": "A marker threshold triggers treatment",
+  "hook": "Two stated cases for a marker threshold triggers treatment.",
+  "domain": "probability",
+  "concept": "cp-source-0891",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the eligibility threshold before comparing dynamic treatment strategies affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Matched, regardless of the stated inputs.",
+  "objective": "Compare the eligibility threshold before comparing dynamic treatment strategies in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0891.predict",
+      "text": "A toy pair has score gap 5; accept a match when gap is at most Tolerance 4. Is it retained (1) or rejected (0)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.reveal.0",
+      "text": "The retained results are Tolerance=4; Matched=0 and Tolerance=6; Matched=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.reveal.1",
+      "text": "A tighter caliper can improve closeness while excluding units. Retained pairs need not represent the original population. This comparison isolates the eligibility threshold before comparing dynamic treatment strategies.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.case.0.witness",
+      "text": "Tolerance=4; Matched=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gap\",5],[\"Tolerance\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Matched\",\"value\":0}]},\"metrics\":[{\"label\":\"Matched\",\"value\":\"0\"},{\"label\":\"Tolerance\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.case.1.witness",
+      "text": "Tolerance=6; Matched=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gap\",5],[\"Tolerance\",6]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Matched\",\"value\":1}]},\"metrics\":[{\"label\":\"Matched\",\"value\":\"1\"},{\"label\":\"Tolerance\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0891.recall",
+      "text": "A toy pair has score gap 5; accept a match when gap is at most Tolerance 5. Is it retained (1) or rejected (0)? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0891/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #891. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pair has score gap 5; accept a match when gap is at most Tolerance 5. Is it retained (1) or rejected (0)?",
+    "options": [
+      "0: no / blocked",
+      "1: yes / active"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Matched 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0891",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-891"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 891,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **891. When to start treatment** \\[Slider\\]: compare strategies like \"treat when a marker crosses X\" across simulated patients.",
+    "modelBoundary": "the eligibility threshold before comparing dynamic treatment strategies",
+    "recallInputs": [
+      5,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

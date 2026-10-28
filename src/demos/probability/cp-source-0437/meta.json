@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0437",
+  "title": "A common ratio meets different baselines",
+  "hook": "Two stated cases: explore the baseline-dependent absolute effect.",
+  "domain": "probability",
+  "concept": "cp-source-0437",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the baseline-dependent absolute effect affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines LowDifference, regardless of the stated inputs.",
+  "objective": "Compare the baseline-dependent absolute effect in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0437.predict",
+      "text": "Two toy groups have baseline risks 0.01 and 0.2, sharing risk ratio 0.5. What is the first group’s treated-minus-baseline risk difference?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.reveal.0",
+      "text": "The retained results are Base=0.01; LowDifference=-0.005 and Base=0.1; LowDifference=-0.05.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.reveal.1",
+      "text": "A common risk ratio can coexist with different absolute risk differences. Interaction is a property of both the model and the chosen effect scale. This comparison isolates the baseline-dependent absolute effect.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.case.0.witness",
+      "text": "Base=0.01; LowDifference=-0.005",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",0.01],[\"RiskRatio\",0.5],[\"HighBase\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LowDifference\",\"value\":-0.005},{\"label\":\"HighDifference\",\"value\":-0.1}]},\"metrics\":[{\"label\":\"LowDifference\",\"value\":\"-0.005\"},{\"label\":\"Base\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.case.1.witness",
+      "text": "Base=0.1; LowDifference=-0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",0.1],[\"RiskRatio\",0.5],[\"HighBase\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"LowDifference\",\"value\":-0.05},{\"label\":\"HighDifference\",\"value\":-0.1}]},\"metrics\":[{\"label\":\"LowDifference\",\"value\":\"-0.05\"},{\"label\":\"Base\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0437.recall",
+      "text": "Two toy groups have baseline risks 0.11 and 0.2, sharing risk ratio 0.5. What is the first group’s treated-minus-baseline risk difference? Answer -0.055.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0437/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #437. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy groups have baseline risks 0.11 and 0.2, sharing risk ratio 0.5. What is the first group’s treated-minus-baseline risk difference?",
+    "options": [
+      "-0.055",
+      "-0.155",
+      "0.045"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives LowDifference -0.055 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0437",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-437"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 437,
+    "sourceSection": "22. Heterogeneous effects, uplift & mediation",
+    "sourceEntryOriginal": "- **437. Baseline risk matters** \\[Slider\\]: the same relative benefit helps high-risk patients far more in absolute terms.",
+    "modelBoundary": "the baseline-dependent absolute effect",
+    "recallInputs": [
+      0.11,
+      0.5,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

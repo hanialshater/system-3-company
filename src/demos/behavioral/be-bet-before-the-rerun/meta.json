@@ -1,0 +1,103 @@
+{
+  "slug": "be-bet-before-the-rerun",
+  "title": "Bet before the rerun",
+  "hook": "How could you test whether forecasts identify replicable studies?",
+  "domain": "behavioral",
+  "concept": "be-bet-before-the-rerun",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Compare forecasts recorded before replication with later outcomes rather than hindsight explanations."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Compare forecasts recorded before replication with later outcomes rather than hindsight explanations.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-bet-before-the-rerun.inputs",
+      "text": "Four toy preregistered forecasts are 0.8, 0.2, 0.7 and 0.3; outcomes are 1, 0, 1 and 0. What is their mean squared-error score? Toy inputs A=[0.8, 0.2, 0.7, 0.3]; B=[0.5, 0.5, 0.5, 0.5].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-bet-before-the-rerun.trace",
+      "text": "Computed results: [[0.065, 0.25, 4], [0.25, 0.25, 2]]. Labels: Mean Brier score, Chance score, Correct labels.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-bet-before-the-rerun.reveal",
+      "text": "Recording forecasts before the reruns permits an out-of-sample scoring rule. The comparison is an uninformative probability benchmark. Later explanations do not replace a dated forecast, and performance on these four cases does not establish universal forecasting skill.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-bet-before-the-rerun.recall",
+      "text": "A new toy case uses Forecast 1=0.5, Forecast 2=0.5, Forecast 3=0.5, Forecast 4=0.5. What is Mean Brier score? Answer: 0.25.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Forecast 1=0.5, Forecast 2=0.5, Forecast 3=0.5, Forecast 4=0.5. What is Mean Brier score?",
+    "options": [
+      "1.25",
+      "0.25",
+      "-0.75"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0.25. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-bet-before-the-rerun",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-492"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 492,
+    "section": "25. Famous findings that failed to replicate or shrank",
+    "text": "Researchers betting in prediction markets forecast which studies would replicate better than chance (Dreber et al., 2015).",
+    "pointer": "500-behavioral-economics-findings.md entry 492: Dreber et al., 2015",
+    "status": "evidence-methodology",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "noise-draws-dunning-kruger",
+  "meaningfulDifference": "Compare forecasts recorded before replication with later outcomes rather than hindsight explanations."
+}

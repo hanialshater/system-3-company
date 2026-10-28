@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0447",
+  "title": "Neighbors receive an indirect benefit",
+  "hook": "Two stated cases: explore the neighborhood exposure in an interference model.",
+  "domain": "probability",
+  "concept": "cp-source-0447",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the neighborhood exposure in an interference model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Total, regardless of the stated inputs.",
+  "objective": "Compare the neighborhood exposure in an interference model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0447.predict",
+      "text": "A toy unit gets direct effect 0 plus Spill 0.2 per treated neighbor. With 0 treated neighbors, what total effect results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.reveal.0",
+      "text": "The retained results are TreatedNeighbors=0; Total=0 and TreatedNeighbors=4; Total=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.reveal.1",
+      "text": "With interference, exposure includes neighbors’ assignments. A single treatment indicator is insufficient to define every unit’s outcome. This comparison isolates the neighborhood exposure in an interference model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.case.0.witness",
+      "text": "TreatedNeighbors=0; Total=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Spill\",0.2],[\"TreatedNeighbors\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"Neighbors\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"0\"},{\"label\":\"TreatedNeighbors\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.case.1.witness",
+      "text": "TreatedNeighbors=4; Total=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Spill\",0.2],[\"TreatedNeighbors\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"Neighbors\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"y\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Total\",\"value\":\"0.8\"},{\"label\":\"TreatedNeighbors\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0447.recall",
+      "text": "A toy unit gets direct effect 1 plus Spill 0.2 per treated neighbor. With 0 treated neighbors, what total effect results? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0447/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #447. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy unit gets direct effect 1 plus Spill 0.2 per treated neighbor. With 0 treated neighbors, what total effect results?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Total 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0447",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-447"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 447,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **447. Herd immunity** \\[Slider\\]: vaccinate a share of a network and watch unvaccinated people get protected too.",
+    "modelBoundary": "the neighborhood exposure in an interference model",
+    "recallInputs": [
+      1,
+      0.2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

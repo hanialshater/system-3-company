@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0373",
+  "title": "Shared background and noisy measurement",
+  "hook": "Two stated cases: explore the model-based weight of a noisy related observation.",
+  "domain": "probability",
+  "concept": "cp-source-0373",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the model-based weight of a noisy related observation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the model-based weight of a noisy related observation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0373.predict",
+      "text": "A toy normal prior has mean 0, variance 4; one normal measurement is 2 with noise variance 1. What is the posterior mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.reveal.0",
+      "text": "The retained results are Noise=1; Mean=1.6 and Noise=10; Mean=0.571.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.reveal.1",
+      "text": "Precisions weight the prior and measurement. The variance calculation assumes the stated independent normal model. This comparison isolates the model-based weight of a noisy related observation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.case.0.witness",
+      "text": "Noise=1; Mean=1.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",2],[\"Noise\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1.6},{\"label\":\"Variance\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1.6\"},{\"label\":\"Noise\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.case.1.witness",
+      "text": "Noise=10; Mean=0.571",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",4],[\"Measurement\",2],[\"Noise\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.5714285714285715},{\"label\":\"Variance\",\"value\":2.857142857142857}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.571\"},{\"label\":\"Noise\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0373.recall",
+      "text": "A toy normal prior has mean 0, variance 5; one normal measurement is 2 with noise variance 1. What is the posterior mean? Answer 1.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0373/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #373. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal prior has mean 0, variance 5; one normal measurement is 2 with noise variance 1. What is the posterior mean?",
+    "options": [
+      "1",
+      "2.333",
+      "1.667"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 1.667 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0373",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-373"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 373,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **373. Twin studies** \\[Story\\]: identical twins raised apart give a natural, if imperfect, look at counterfactual lives.",
+    "modelBoundary": "the model-based weight of a noisy related observation",
+    "recallInputs": [
+      0,
+      5,
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

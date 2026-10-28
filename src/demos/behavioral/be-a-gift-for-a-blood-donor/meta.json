@@ -1,0 +1,103 @@
+{
+  "slug": "be-a-gift-for-a-blood-donor",
+  "title": "A gift for a blood donor",
+  "hook": "Must every reward crowd out a prosocial action?",
+  "domain": "behavioral",
+  "concept": "be-a-gift-for-a-blood-donor",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Contrast a gift-card field result with a blanket crowding-out rule."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Contrast a gift-card field result with a blanket crowding-out rule.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-a-gift-for-a-blood-donor.inputs",
+      "text": "A toy donor values giving at four units and a gift at three, with time cost five. What net benefit results? Toy inputs A=[4, 3, 5]; B=[1, 3, 5].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-gift-for-a-blood-donor.trace",
+      "text": "Computed results: [[2, 4, 3], [-1, 1, 3]]. Labels: Net benefit, Donation value, Gift value.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-gift-for-a-blood-donor.reveal",
+      "text": "A gift need not reduce giving under this explicit payoff rule. The comparison changes the underlying value of donation, making the result depend on context. Crowding out is an empirical mechanism, not an algebraic consequence of paying people.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-a-gift-for-a-blood-donor.recall",
+      "text": "A new toy case uses Donation value=1, Gift value=3, Time cost=5. What is Net benefit? Answer: -1.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Donation value=1, Gift value=3, Time cost=5. What is Net benefit?",
+    "options": [
+      "0",
+      "-1",
+      "-2"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives -1. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-a-gift-for-a-blood-donor",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-305"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 305,
+    "section": "16. Incentives & motivation",
+    "text": "Gift cards for Red Cross blood drives raised turnout without lowering donor quality (Lacetera, Macis & Slonim, 2012).",
+    "pointer": "500-behavioral-economics-findings.md entry 305: Lacetera, Macis & Slonim, 2012",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-rewards-metric-gaming",
+  "meaningfulDifference": "Contrast a gift-card field result with a blanket crowding-out rule."
+}

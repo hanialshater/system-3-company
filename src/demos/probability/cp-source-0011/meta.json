@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0011",
+  "title": "Sample experiments or visits?",
+  "hook": "Two stated cases: explore the unit being sampled in repeated experiments.",
+  "domain": "probability",
+  "concept": "cp-source-0011",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the unit being sampled in repeated experiments affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HeadsGivenVisit, regardless of the stated inputs.",
+  "objective": "Compare the unit being sampled in repeated experiments in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0011.predict",
+      "text": "A toy experiment has heads probability 0.5, 1 visits after heads and 2 after tails. Sampling a visit uniformly from repeated experiments, what fraction come from heads?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.reveal.0",
+      "text": "The retained results are TailsVisits=2; HeadsGivenVisit=0.333 and TailsVisits=1; HeadsGivenVisit=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.reveal.1",
+      "text": "Sampling visits weights experiments by their number of visits. This resolves the stated sampling question, not every philosophical formulation. This comparison isolates the unit being sampled in repeated experiments.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.case.0.witness",
+      "text": "TailsVisits=2; HeadsGivenVisit=0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"HeadsVisits\",1],[\"TailsVisits\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HeadsGivenVisit\",\"value\":0.3333333333333333}]},\"metrics\":[{\"label\":\"HeadsGivenVisit\",\"value\":\"0.333\"},{\"label\":\"TailsVisits\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.case.1.witness",
+      "text": "TailsVisits=1; HeadsGivenVisit=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.5],[\"HeadsVisits\",1],[\"TailsVisits\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HeadsGivenVisit\",\"value\":0.5}]},\"metrics\":[{\"label\":\"HeadsGivenVisit\",\"value\":\"0.5\"},{\"label\":\"TailsVisits\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0011.recall",
+      "text": "A toy experiment has heads probability 0.4, 1 visits after heads and 2 after tails. Sampling a visit uniformly from repeated experiments, what fraction come from heads? Answer 0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0011/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #11. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy experiment has heads probability 0.4, 1 visits after heads and 2 after tails. Sampling a visit uniformly from repeated experiments, what fraction come from heads?",
+    "options": [
+      "0.25",
+      "0.15",
+      "0.35"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives HeadsGivenVisit 0.25 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0011",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-11"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 11,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **11. Sleeping Beauty** \\[Split\\]: poll viewers as \"halfers\" or \"thirders\", then show each side's best argument.",
+    "modelBoundary": "the unit being sampled in repeated experiments",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.4,
+      1,
+      2
+    ]
+  }
+}

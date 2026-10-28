@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0314",
+  "title": "Initial loss and later regain",
+  "hook": "Two stated cases: explore the retained amount after a specified reversal.",
+  "domain": "behavioral",
+  "concept": "be-source-0314",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the retained amount after a specified reversal affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the retained amount after a specified reversal in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0314.predict",
+      "text": "A toy baseline is 14; it changes by -50 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.reveal.0",
+      "text": "The retained results are Baseline=14 Percent=-50; Final=7 and Baseline=4 Percent=0; Final=4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the retained amount after a specified reversal.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.case.0.witness",
+      "text": "Baseline=14 Percent=-50; Final=7",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",14],[\"Percent\",-50]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":7}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"7\"},{\"label\":\"Baseline\",\"value\":\"14\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.case.1.witness",
+      "text": "Baseline=4 Percent=0; Final=4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",4],[\"Percent\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":4}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"4\"},{\"label\":\"Baseline\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0314.recall",
+      "text": "A toy baseline is 15; it changes by -50 percent. What is the final level? Answer 7.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0314/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #314. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 15; it changes by -50 percent. What is the final level?",
+    "options": [
+      "7.5",
+      "4.5",
+      "10.5"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Final 7.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0314",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-314"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 314,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **314.** Lottery and deposit-contract incentives helped people lose about 13–14 lb in 16 weeks versus about 4 lb in controls, though much was regained (Volpp et al., 2008).",
+    "modelBoundary": "the retained amount after a specified reversal",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      15,
+      -50
+    ]
+  }
+}

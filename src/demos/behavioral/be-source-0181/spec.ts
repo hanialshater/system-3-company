@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0181", "title": "Money sent and money returned", "op": "trust", "labels": ["Endowment", "Sent", "Multiplier", "Returned"], "outputs": ["Sender"], "a": [10.0, 5.0, 3.0, 0.5], "b": [10.0, 5.0, 3.0, 0.2], "question": "A toy sender has 10, sends 5, which is multiplied by 3; the recipient returns fraction 0.5 of that pot. What does the sender finish with?", "explain": "Sending and returning are two decisions. A multiplier creates surplus, but the sender’s payoff also depends on the return rule.", "lens": "the two decisions inside a trust game", "kind": "timeline", "answerPosition": 1, "questionTemplate": "A toy sender has {Endowment}, sends {Sent}, which is multiplied by {Multiplier}; the recipient returns fraction {Returned} of that pot. What does the sender finish with?"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0410",
+  "title": "Coarsen ages into explicit bands",
+  "hook": "Two stated cases: explore the grouping boundary used for a coarsened match.",
+  "domain": "probability",
+  "concept": "cp-source-0410",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the grouping boundary used for a coarsened match affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Group, regardless of the stated inputs.",
+  "objective": "Compare the grouping boundary used for a coarsened match in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0410.predict",
+      "text": "Coarsen toy Age 37 into bands of positive Width 10, starting at zero. What zero-based band index is assigned?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.reveal.0",
+      "text": "The retained results are Width=10; Group=3 and Width=5; Group=7.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.reveal.1",
+      "text": "Coarsening makes an exact match within a band possible but does not make all people in that band identical. Boundary choices affect membership. This comparison isolates the grouping boundary used for a coarsened match.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.case.0.witness",
+      "text": "Width=10; Group=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Age\",37],[\"Width\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Group\",\"value\":3}]},\"metrics\":[{\"label\":\"Group\",\"value\":\"3\"},{\"label\":\"Width\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.case.1.witness",
+      "text": "Width=5; Group=7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Age\",37],[\"Width\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Group\",\"value\":7}]},\"metrics\":[{\"label\":\"Group\",\"value\":\"7\"},{\"label\":\"Width\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0410.recall",
+      "text": "Coarsen toy Age 40 into bands of positive Width 10, starting at zero. What zero-based band index is assigned? Answer 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0410/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #410. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Coarsen toy Age 40 into bands of positive Width 10, starting at zero. What zero-based band index is assigned?",
+    "options": [
+      "4",
+      "2.4",
+      "5.6"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Group 4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0410",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-410"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 410,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceEntryOriginal": "- **410. Coarsened matching** \\[Slider\\]: group ages into bands and match exactly within them.",
+    "modelBoundary": "the grouping boundary used for a coarsened match",
+    "recallInputs": [
+      40,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

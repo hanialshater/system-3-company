@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0360",
+  "title": "A healthy share grows nine percent",
+  "hook": "Two stated cases: explore relative share change versus percentage points.",
+  "domain": "behavioral",
+  "concept": "be-source-0360",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How relative share change versus percentage points affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare relative share change versus percentage points in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0360.predict",
+      "text": "A toy baseline is 0.4; it changes by 9 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.reveal.0",
+      "text": "The retained results are Baseline=0.4; Final=0.436 and Baseline=0.6; Final=0.654.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates relative share change versus percentage points.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.case.0.witness",
+      "text": "Baseline=0.4; Final=0.436",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",0.4],[\"Percent\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":0.43600000000000005}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"0.436\"},{\"label\":\"Baseline\",\"value\":\"0.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.case.1.witness",
+      "text": "Baseline=0.6; Final=0.654",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",0.6],[\"Percent\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":0.654}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"0.654\"},{\"label\":\"Baseline\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0360.recall",
+      "text": "A toy baseline is 0.5; it changes by 9 percent. What is the final level? Answer 0.545.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0360/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #360. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 0.5; it changes by 9 percent. What is the final level?",
+    "options": [
+      "0.327",
+      "0.545",
+      "0.763"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 0.545 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0360",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-360"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 360,
+    "sourceSection": "18. Health behavior",
+    "sourceEntryOriginal": "- **360.** A 25% rebate on healthy groceries raised the healthy share of purchases about 9% (An, 2013).",
+    "modelBoundary": "relative share change versus percentage points",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.5,
+      9
+    ]
+  }
+}

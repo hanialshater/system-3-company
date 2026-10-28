@@ -1,0 +1,163 @@
+{
+  "slug": "p100-drifting-arms",
+  "title": "Has the winning arm changed?",
+  "hook": "Has the winning arm changed? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-drifting-arms",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "arm payouts change over time; discounting old data lets the bandit adapt."
+    ]
+  },
+  "misconception": "A’s period rates are 0.8,0.8,0.2; B’s are 0.4,0.4,0.7. At period three, which arm does an all-history average favor? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "arm payouts change over time; discounting old data lets the bandit adapt.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-drifting-arms.case",
+      "text": "A’s period rates are 0.8,0.8,0.2; B’s are 0.4,0.4,0.7. At period three, which arm does an all-history average favor? Options: A; B; They tie. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: ArmA successrates[.8,.8,.2,.2],B[.4,.4,.7,.7]. All-historyaverageA.5,B.55; last2A.2,B.7. Atstep3 all-historyA.6,B.5stillchoosesoldwinner; slidingwindow of latestperiodchoosesB.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.recall",
+      "text": "After a sudden shift, can a long historical average favor yesterday’s winner? Old observations retain weight after the environment changes.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.hook",
+      "text": "Has the winning arm changed? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c4",
+      "text": "At period three, all-history averages favor A by 0.1. The latest-period comparison favors B by 0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c5",
+      "text": "Older observations still describe the earlier environment and can delay response to this stipulated change. The cases compare averaging rules on fixed rates; they are not sampled rewards or evidence that one window size is always best.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-drifting-arms/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c7",
+      "text": "A−B history: 0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0.8},{\"label\":\"1\",\"value\":0.8},{\"label\":\"2\",\"value\":0.2}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A\",\"value\":0.6},{\"label\":\"B\",\"value\":0.5}]}. [{\"label\":\"A−B history\",\"value\":\"0.1\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c10",
+      "text": "A−B latest: -0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0.4},{\"label\":\"1\",\"value\":0.4},{\"label\":\"2\",\"value\":0.7}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-drifting-arms.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A\",\"value\":0.2},{\"label\":\"B\",\"value\":0.7}]}. [{\"label\":\"A−B latest\",\"value\":\"-0.5\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-drifting-arms/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After a sudden shift, can a long historical average favor yesterday’s winner?",
+    "options": [
+      "Yes",
+      "No",
+      "Only with missing data"
+    ],
+    "answer": 0,
+    "why": "Old observations retain weight after the environment changes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-drifting-arms",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-687",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 687,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceTitle": "Drifting arms",
+    "sourceText": "arm payouts change over time; discounting old data lets the bandit adapt.",
+    "sourceEntryOriginal": "- **687. Drifting arms** \\[Slider\\]: arm payouts change over time; discounting old data lets the bandit adapt.",
+    "numericCase": "ArmA successrates[.8,.8,.2,.2],B[.4,.4,.7,.7]. All-historyaverageA.5,B.55; last2A.2,B.7. Atstep3 all-historyA.6,B.5stillchoosesoldwinner; slidingwindow of latestperiodchoosesB.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "probability/same-picture-two-histories",
+    "difference": "New teaching boundary: Drifting arms. Existing boundary: The learner can explain that a picking history (links change, colours fixed) and a copying history (colours change, links fixed) can end in the identical picture, so one snapshot cannot separate selection from influence, and that telling them apart needs data over time."
+  },
+  "modelOutputs": [
+    0.09999999999999998,
+    -0.49999999999999994
+  ]
+}

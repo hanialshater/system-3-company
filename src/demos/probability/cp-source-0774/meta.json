@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0774",
+  "title": "Independent features multiply odds",
+  "hook": "Two stated cases: explore the conditional independence assumption in naive Bayes.",
+  "domain": "probability",
+  "concept": "cp-source-0774",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the conditional independence assumption in naive Bayes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the conditional independence assumption in naive Bayes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0774.predict",
+      "text": "Toy prior 0.2 receives two conditionally independent evidence likelihood ratios LR1 4, LR2 4. What posterior results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.reveal.0",
+      "text": "The retained results are LR2=4; Posterior=0.8 and LR2=1; Posterior=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.reveal.1",
+      "text": "Likelihood messages multiply odds under the stated conditional independence. Dependent evidence must not be counted as independent. This comparison isolates the conditional independence assumption in naive Bayes.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.case.0.witness",
+      "text": "LR2=4; Posterior=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.2],[\"LR1\",4],[\"LR2\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.8\"},{\"label\":\"LR2\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.case.1.witness",
+      "text": "LR2=1; Posterior=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.2],[\"LR1\",4],[\"LR2\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.5\"},{\"label\":\"LR2\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0774.recall",
+      "text": "Toy prior 0.16 receives two conditionally independent evidence likelihood ratios LR1 4, LR2 4. What posterior results? Answer 0.753.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0774/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #774. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prior 0.16 receives two conditionally independent evidence likelihood ratios LR1 4, LR2 4. What posterior results?",
+    "options": [
+      "0.452",
+      "0.753",
+      "1.054"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 0.753 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0774",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-774"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 774,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **774. Naive Bayes as a graph** \\[Slider\\]: one class node with arrows to every feature, and why that assumption breaks.",
+    "modelBoundary": "the conditional independence assumption in naive Bayes",
+    "recallInputs": [
+      0.16000000000000003,
+      4,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

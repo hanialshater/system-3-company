@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0574",
+  "title": "A two-note Markov melody",
+  "hook": "Two stated cases: explore the next-state mixture in a stipulated note-transition model.",
+  "domain": "probability",
+  "concept": "cp-source-0574",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the next-state mixture in a stipulated note-transition model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rain, regardless of the stated inputs.",
+  "objective": "Compare the next-state mixture in a stipulated note-transition model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0574.predict",
+      "text": "A toy chain switches sun to rain with chance 0.2, rain to sun with 0.8; initial rain probability 0. What is rain probability after 10 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.reveal.0",
+      "text": "The retained results are ToRain=0.2 ToSun=0.8; Rain=0.2 and ToRain=0.8 ToSun=0.2; Rain=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.reveal.1",
+      "text": "Transition probabilities determine both the stationary share and how the initial condition fades. This formula is for the stated two-state chain. This comparison isolates the next-state mixture in a stipulated note-transition model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.case.0.witness",
+      "text": "ToRain=0.2 ToSun=0.8; Rain=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ToRain\",0.2],[\"ToSun\",0.8],[\"StartRain\",0],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rain\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Rain\",\"value\":\"0.2\"},{\"label\":\"ToRain\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.case.1.witness",
+      "text": "ToRain=0.8 ToSun=0.2; Rain=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ToRain\",0.8],[\"ToSun\",0.2],[\"StartRain\",0],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rain\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Rain\",\"value\":\"0.8\"},{\"label\":\"ToRain\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0574.recall",
+      "text": "A toy chain switches sun to rain with chance 0.3, rain to sun with 0.8; initial rain probability 0. What is rain probability after 10 steps? Answer 0.273.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0574/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #574. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy chain switches sun to rain with chance 0.3, rain to sun with 0.8; initial rain probability 0. What is rain probability after 10 steps?",
+    "options": [
+      "0.164",
+      "0.382",
+      "0.273"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rain 0.273 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0574",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-574"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 574,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **574. Markov melodies** \\[Slider\\]: generate music from note-transition probabilities, then raise the order.",
+    "modelBoundary": "the next-state mixture in a stipulated note-transition model",
+    "recallInputs": [
+      0.30000000000000004,
+      0.8,
+      0,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

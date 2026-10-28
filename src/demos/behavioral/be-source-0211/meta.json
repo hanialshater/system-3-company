@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0211",
+  "title": "A small effect at large scale",
+  "hook": "Two stated cases: explore the population needed to turn a small rate into a count.",
+  "domain": "behavioral",
+  "concept": "be-source-0211",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the population needed to turn a small rate into a count affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Added, regardless of the stated inputs.",
+  "objective": "Compare the population needed to turn a small rate into a count in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0211.predict",
+      "text": "A toy program has 6.8e+07 eligible units, uptake fraction 0.005, and added amount 1 per participant. What total is added?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.reveal.0",
+      "text": "The retained results are Eligible=6.80e+7; Added=340,000 and Eligible=6.80e+6; Added=34,000.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.reveal.1",
+      "text": "Separate the effect among participants from the share who participate. Scaling a program requires both pieces. This comparison isolates the population needed to turn a small rate into a count.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.case.0.witness",
+      "text": "Eligible=6.80e+7; Added=340,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",68000000],[\"Uptake\",0.005],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":340000}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"340,000\"},{\"label\":\"Eligible\",\"value\":\"6.80e+7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.case.1.witness",
+      "text": "Eligible=6.80e+6; Added=34,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Eligible\",6800000],[\"Uptake\",0.005],[\"Increase\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Added\",\"value\":34000}]},\"metrics\":[{\"label\":\"Added\",\"value\":\"34,000\"},{\"label\":\"Eligible\",\"value\":\"6.80e+6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0211.recall",
+      "text": "A toy program has 6.80e+7 eligible units, uptake fraction 0.005, and added amount 1 per participant. What total is added? Answer 340,000.005.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0211/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #211. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy program has 6.80e+7 eligible units, uptake fraction 0.005, and added amount 1 per participant. What total is added?",
+    "options": [
+      "204,000.003",
+      "476,000.007",
+      "340,000.005"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Added 340,000.005 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0211",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-211"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 211,
+    "sourceSection": "11. Social norms & conformity",
+    "sourceEntryOriginal": "- **211.** A Facebook message showing friends who had voted generated an estimated 340,000 extra votes (Bond et al., 2012).",
+    "modelBoundary": "the population needed to turn a small rate into a count",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      68000001,
+      0.005,
+      1
+    ]
+  }
+}

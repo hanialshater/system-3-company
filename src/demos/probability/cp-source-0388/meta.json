@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0388",
+  "title": "A wider cutoff window trades errors",
+  "hook": "Two stated cases: explore the assumed bias-variance tradeoff in a local fit.",
+  "domain": "probability",
+  "concept": "cp-source-0388",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed bias-variance tradeoff in a local fit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MSE, regardless of the stated inputs.",
+  "objective": "Compare the assumed bias-variance tradeoff in a local fit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0388.predict",
+      "text": "A toy squared-error decomposition has Bias 0.1, estimation Variance 4, and irreducible Noise variance 0. What MSE results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.reveal.0",
+      "text": "The retained results are Bias=0.1 Variance=4; MSE=4.01 and Bias=1 Variance=0.5; MSE=1.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.reveal.1",
+      "text": "Bias squared, variance and noise contribute separately. Lower training error does not establish lower new-data error. This comparison isolates the assumed bias-variance tradeoff in a local fit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.case.0.witness",
+      "text": "Bias=0.1 Variance=4; MSE=4.01",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Bias\",0.1],[\"Variance\",4],[\"Noise\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MSE\",\"value\":4.01}]},\"metrics\":[{\"label\":\"MSE\",\"value\":\"4.01\"},{\"label\":\"Bias\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.case.1.witness",
+      "text": "Bias=1 Variance=0.5; MSE=1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Bias\",1],[\"Variance\",0.5],[\"Noise\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MSE\",\"value\":1.5}]},\"metrics\":[{\"label\":\"MSE\",\"value\":\"1.5\"},{\"label\":\"Bias\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0388.recall",
+      "text": "A toy squared-error decomposition has Bias 0.2, estimation Variance 4, and irreducible Noise variance 0. What MSE results? Answer 4.04.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0388/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #388. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy squared-error decomposition has Bias 0.2, estimation Variance 4, and irreducible Noise variance 0. What MSE results?",
+    "options": [
+      "2.424",
+      "5.656",
+      "4.04"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives MSE 4.04 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0388",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-388"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 388,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceEntryOriginal": "- **388. RDD bandwidth** \\[Slider\\]: widen the window around the cutoff and trade bias for noise.",
+    "modelBoundary": "the assumed bias-variance tradeoff in a local fit",
+    "recallInputs": [
+      0.2,
+      4,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

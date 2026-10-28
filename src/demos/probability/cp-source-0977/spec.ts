@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0977", "title": "A random rule thins active events", "op": "poissonstreams", "labels": ["Rate", "Share", "Added"], "outputs": ["Rate"], "a": [10.0, 0.1, 0.0], "b": [10.0, 0.9, 0.0], "question": "Thin a toy Poisson stream of Rate 10 independently with Share 0.1, then merge an independent Poisson stream of rate 0. What rate results?", "questionTemplate": "Thin a toy Poisson stream of Rate {Rate} independently with Share {Share}, then merge an independent Poisson stream of rate {Added}. What rate results?", "explain": "Independent thinning and superposition preserve Poisson structure. Dependence between streams can invalidate that process-level conclusion.", "lens": "the independent activation probability before a cellular automaton", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

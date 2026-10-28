@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0818",
+  "title": "Push aggregate odds toward extremes",
+  "hook": "Two stated cases: explore the log-odds scaling of a forecast aggregate.",
+  "domain": "probability",
+  "concept": "cp-source-0818",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the log-odds scaling of a forecast aggregate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the log-odds scaling of a forecast aggregate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0818.predict",
+      "text": "Multiply toy log odds of P 0.7 by Strength 1. What transformed probability results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.reveal.0",
+      "text": "The retained results are Strength=1; Probability=0.7 and Strength=2; Probability=0.845.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.reveal.1",
+      "text": "Strength above one pushes probabilities toward extremes. Whether this improves accuracy requires held-out forecast evidence. This comparison isolates the log-odds scaling of a forecast aggregate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.case.0.witness",
+      "text": "Strength=1; Probability=0.7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.7],[\"Strength\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.01,\"y\":0.010000000000000002},{\"x\":0.050833333333333335,\"y\":0.050833333333333335},{\"x\":0.09166666666666666,\"y\":0.09166666666666666},{\"x\":0.1325,\"y\":0.1325},{\"x\":0.17333333333333334,\"y\":0.17333333333333337},{\"x\":0.2141666666666667,\"y\":0.21416666666666673},{\"x\":0.255,\"y\":0.255},{\"x\":0.29583333333333334,\"y\":0.29583333333333334},{\"x\":0.33666666666666667,\"y\":0.33666666666666667},{\"x\":0.3775,\"y\":0.37749999999999995},{\"x\":0.4183333333333334,\"y\":0.4183333333333334},{\"x\":0.45916666666666667,\"y\":0.4591666666666667},{\"x\":0.5,\"y\":0.5},{\"x\":0.5408333333333334,\"y\":0.5408333333333334},{\"x\":0.5816666666666667,\"y\":0.5816666666666667},{\"x\":0.6224999999999999,\"y\":0.6224999999999999},{\"x\":0.6633333333333333,\"y\":0.6633333333333334},{\"x\":0.7041666666666667,\"y\":0.7041666666666667},{\"x\":0.745,\"y\":0.745},{\"x\":0.7858333333333334,\"y\":0.7858333333333333},{\"x\":0.8266666666666668,\"y\":0.8266666666666668},{\"x\":0.8674999999999999,\"y\":0.8674999999999999},{\"x\":0.9083333333333333,\"y\":0.9083333333333333},{\"x\":0.9491666666666666,\"y\":0.9491666666666665},{\"x\":0.99,\"y\":0.99}],\"xLabel\":\"P\",\"yLabel\":\"Probability\"},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.7\"},{\"label\":\"Strength\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.case.1.witness",
+      "text": "Strength=2; Probability=0.845",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.7],[\"Strength\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0.01,\"y\":0.0001020199959192002},{\"x\":0.050833333333333335,\"y\":0.002860015280060136},{\"x\":0.09166666666666666,\"y\":0.010081653057823693},{\"x\":0.1325,\"y\":0.022796993945689754},{\"x\":0.17333333333333334,\"y\":0.04211313231996014},{\"x\":0.2141666666666667,\"y\":0.0691396820677946},{\"x\":0.255,\"y\":0.10487057495363275},{\"x\":0.29583333333333334,\"y\":0.15002083209332778},{\"x\":0.33666666666666667,\"y\":0.20483113127986824},{\"x\":0.3775,\"y\":0.2688733756279333},{\"x\":0.4183333333333334,\"y\":0.3409108126535429},{\"x\":0.45916666666666667,\"y\":0.4188743960419536},{\"x\":0.5,\"y\":0.5},{\"x\":0.5408333333333334,\"y\":0.5811256039580466},{\"x\":0.5816666666666667,\"y\":0.6590891873464574},{\"x\":0.6224999999999999,\"y\":0.7311266243720667},{\"x\":0.6633333333333333,\"y\":0.7951688687201317},{\"x\":0.7041666666666667,\"y\":0.8499791679066723},{\"x\":0.745,\"y\":0.8951294250463672},{\"x\":0.7858333333333334,\"y\":0.9308603179322054},{\"x\":0.8266666666666668,\"y\":0.95788686768004},{\"x\":0.8674999999999999,\"y\":0.9772030060543102},{\"x\":0.9083333333333333,\"y\":0.9899183469421763},{\"x\":0.9491666666666666,\"y\":0.9971399847199399},{\"x\":0.99,\"y\":0.9998979800040808}],\"xLabel\":\"P\",\"yLabel\":\"Probability\"},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.845\"},{\"label\":\"Strength\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0818.recall",
+      "text": "Multiply toy log odds of P 0.56 by Strength 1. What transformed probability results? Answer 0.56.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0818/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #818. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Multiply toy log odds of P 0.56 by Strength 1. What transformed probability results?",
+    "options": [
+      "0.56",
+      "0.336",
+      "0.784"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 0.56 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0818",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-818"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 818,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceEntryOriginal": "- **818. Superforecasters** \\[Story\\]: in the Good Judgment Project, aggregating top forecasters and pushing averages toward the extremes improved accuracy.",
+    "modelBoundary": "the log-odds scaling of a forecast aggregate",
+    "recallInputs": [
+      0.5599999999999999,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

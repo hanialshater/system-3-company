@@ -45,20 +45,43 @@ const meta = (version = 1) => ({ slug: "fixture", version, evidence: { qa: [], s
 
 // ---------------------------------------------------------------- the three cases the brief asks for
 
-test("(i) same-week-a-year-apart: passes the old gate, NOT ready under the new policy (current-version learner review says revise)", () => {
-  const m = findMeta("same-week-a-year-apart");
-  assert.ok(m, "lesson exists");
-  const rec = path.join(ROOT, "company/reviews/same-week-a-year-apart/2026-10-16-learner-no-econ-adult-r1.md");
-  const t = fs.readFileSync(rec, "utf8");
+// Keep the known-answer case independent of lessons that legitimately change versions.
+// These files are synthetic test inputs, never evidence in company/reviews/.
+const REVISE_FIXTURE = path.join(HERE, "fixtures/current-version-revise");
+function currentReviseFixture() {
+  const m = JSON.parse(fs.readFileSync(path.join(REVISE_FIXTURE, "meta.json"), "utf8"));
+  const records = (paths) => paths.map((f) => ({ f, t: fs.readFileSync(path.join(REVISE_FIXTURE, f), "utf8"), linked: true }));
+  return { m, ctx: { learner: records(m.evidence.simulatedLearner), qa: records(m.evidence.qa), hold: null } };
+}
+
+test("(i) immutable fixture passes the old existence gate, NOT readiness when its current-version learner review says revise", () => {
+  const { m, ctx } = currentReviseFixture();
+  const t = ctx.learner[0].t;
   assert.match(t, /^lesson version: v1$/m, "the review is stamped for v1");
   assert.match(t, /^Verdict: revise$/m, "the review says revise");
-  assert.equal(m.version, 1, "and v1 is the current version");
+  assert.equal(m.version, 1, "v1 is the immutable fixture's current version");
   // Old gate: only file existence. Both evidence lists are non-empty and point at real files.
   assert.ok(m.evidence.qa.length && m.evidence.simulatedLearner.length);
-  for (const r of [...m.evidence.qa, ...m.evidence.simulatedLearner]) assert.ok(fs.existsSync(path.join(ROOT, r)), r);
-  const r = readiness(m, loadContext(ROOT, m, { holds: loadHolds(ROOT), isAncestor: gitAncestry(ROOT) }));
+  for (const r of [...m.evidence.qa, ...m.evidence.simulatedLearner]) assert.ok(fs.existsSync(path.join(REVISE_FIXTURE, r)), r);
+  const r = readiness(m, ctx);
   assert.equal(r.ready, false);
-  assert.ok(r.reasons.includes("learner review: verdict revise"), r.reasons.join("; "));
+  assert.equal(r.qa.ready, true, "QA passes, isolating the learner verdict failure");
+  assert.deepEqual(r.reasons, ["learner review: verdict revise"]);
+  const launch = { ...ctx.learner[0], t: t.replace(/^Verdict: revise$/m, "Verdict: launch") };
+  assert.equal(readiness(m, { ...ctx, learner: [launch] }).ready, true, "control: a current-version launch with passing QA is ready");
+});
+
+test("(i-b) immutable fixture rejects an older-version launch despite current-version passing QA", () => {
+  const { m, ctx } = currentReviseFixture();
+  const launch = { ...ctx.learner[0], t: ctx.learner[0].t.replace(/^Verdict: revise$/m, "Verdict: launch") };
+  const current = { ...m, version: 2 };
+  const newerQa = { ...ctx.qa[0], t: ctx.qa[0].t.replace("lesson version: v1", "lesson version: v2") };
+  const r = readiness(current, { ...ctx, learner: [launch], qa: [newerQa] });
+  assert.equal(r.ready, false);
+  assert.equal(r.qa.ready, true, "current-version QA cannot rescue stale learner evidence");
+  assert.deepEqual(r.reasons, ["learner review: verdict is for an older version"]);
+  const currentLaunch = { ...launch, t: launch.t.replace("lesson version: v1", "lesson version: v2") };
+  assert.equal(readiness(current, { ...ctx, learner: [currentLaunch], qa: [newerQa] }).ready, true, "control: matching-version launch becomes ready");
 });
 
 test("(ii) an active hold makes a lesson not ready, even when every verdict passes", () => {

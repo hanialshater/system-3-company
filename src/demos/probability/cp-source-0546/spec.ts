@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0546", "title": "A random count of random claims", "op": "compoundpoisson", "labels": ["Rate", "Time", "Mean", "Variance"], "outputs": ["Expected", "SD"], "a": [2.0, 10.0, 100.0, 400.0], "b": [2.0, 10.0, 100.0, 10000.0], "question": "Independent toy claims arrive at Poisson Rate 2 for Time 10; sizes have Mean 100, Variance 400. What is expected total payout?", "questionTemplate": "Independent toy claims arrive at Poisson Rate {Rate} for Time {Time}; sizes have Mean {Mean}, Variance {Variance}. What is expected total payout?", "explain": "Both claim-count randomness and size variability enter the total variance. The model assumes independent identically distributed sizes, independent of arrivals.", "lens": "claim-count and claim-size uncertainty", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

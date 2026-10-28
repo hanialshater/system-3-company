@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0187",
+  "title": "A public-goods game restarts",
+  "hook": "Two stated cases: explore the contribution level after a stated restart.",
+  "domain": "behavioral",
+  "concept": "be-source-0187",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the contribution level after a stated restart affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Payoff, regardless of the stated inputs.",
+  "objective": "Compare the contribution level after a stated restart in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0187.predict",
+      "text": "In a toy group of 4, everyone starts with 10, contributes 1, and the pot is multiplied by 1.6 then split equally. What is each payoff?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.reveal.0",
+      "text": "The retained results are Contribution=1; Payoff=10.6 and Contribution=5; Payoff=13.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.reveal.1",
+      "text": "Group benefit and the private return to one extra contribution differ. This symmetric case shows the accounting, not a predicted participation rate. This comparison isolates the contribution level after a stated restart.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.case.0.witness",
+      "text": "Contribution=1; Payoff=10.6",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"People\",4],[\"Endowment\",10],[\"Contribution\",1],[\"Multiplier\",1.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Payoff\",\"value\":10.6}]},\"metrics\":[{\"label\":\"Payoff\",\"value\":\"10.6\"},{\"label\":\"Contribution\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.case.1.witness",
+      "text": "Contribution=5; Payoff=13",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"People\",4],[\"Endowment\",10],[\"Contribution\",5],[\"Multiplier\",1.6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Payoff\",\"value\":13}]},\"metrics\":[{\"label\":\"Payoff\",\"value\":\"13\"},{\"label\":\"Contribution\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0187.recall",
+      "text": "In a toy group of 4, everyone starts with 11, contributes 1, and the pot is multiplied by 1.6 then split equally. What is each payoff? Answer 11.6.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0187/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #187. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy group of 4, everyone starts with 11, contributes 1, and the pot is multiplied by 1.6 then split equally. What is each payoff?",
+    "options": [
+      "6.96",
+      "16.24",
+      "11.6"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Payoff 11.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0187",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-187"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 187,
+    "sourceSection": "10. Trust, reciprocity & cooperation",
+    "sourceEntryOriginal": "- **187.** When a public goods game restarts, contributions jump back up (Andreoni, 1988).",
+    "modelBoundary": "the contribution level after a stated restart",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      4,
+      11,
+      1,
+      1.6
+    ]
+  }
+}

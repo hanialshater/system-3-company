@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0520", "title": "Variability, load and service duration", "op": "kingman", "labels": ["Arrival", "Mean", "ArrivalSCV", "ServiceSCV"], "outputs": ["Wait"], "a": [0.8, 1.0, 1.0, 1.0], "b": [0.8, 1.0, 4.0, 1.0], "question": "A stable toy GI/G/1 queue has Arrival rate 0.8, mean service 1, squared coefficients of variation 1,1. What wait does Kingman’s approximation give?", "questionTemplate": "A stable toy GI/G/1 queue has Arrival rate {Arrival}, mean service {Mean}, squared coefficients of variation {ArrivalSCV},{ServiceSCV}. What wait does Kingman’s approximation give?", "explain": "The approximation separates load and variability. It is a heavy-traffic approximation under renewal and service assumptions, not a universal exact queue formula.", "lens": "the three factors in a stated heavy-traffic approximation", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

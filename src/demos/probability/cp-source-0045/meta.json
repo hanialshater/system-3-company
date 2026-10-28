@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0045",
+  "title": "Reverse the conditional carefully",
+  "hook": "Two stated cases: explore the specified population and reverse conditional.",
+  "domain": "probability",
+  "concept": "cp-source-0045",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the specified population and reverse conditional affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the specified population and reverse conditional in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0045.predict",
+      "text": "A toy condition has prevalence 0.1; a test catches fraction 0.8 of cases and flags fraction 0.02 of noncases. Given a positive, what probability is a case?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.reveal.0",
+      "text": "The retained results are Prior=0.1; Posterior=0.816 and Prior=0.01; Posterior=0.288.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.reveal.1",
+      "text": "Count true and false positives in one common population. A test’s sensitivity is not the probability of a condition after a positive. This comparison isolates the specified population and reverse conditional.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.case.0.witness",
+      "text": "Prior=0.1; Posterior=0.816",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.1],[\"Sensitivity\",0.8],[\"FalsePositive\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.8163265306122449}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.816\"},{\"label\":\"Prior\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.case.1.witness",
+      "text": "Prior=0.01; Posterior=0.288",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.01],[\"Sensitivity\",0.8],[\"FalsePositive\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Posterior\",\"value\":0.28776978417266186}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.288\"},{\"label\":\"Prior\",\"value\":\"0.01\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0045.recall",
+      "text": "A toy condition has prevalence 0.08; a test catches fraction 0.8 of cases and flags fraction 0.02 of noncases. Given a positive, what probability is a case? Answer 0.777.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0045/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #45. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy condition has prevalence 0.08; a test catches fraction 0.8 of cases and flags fraction 0.02 of noncases. Given a positive, what probability is a case?",
+    "options": [
+      "0.466",
+      "0.777",
+      "1.087"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Posterior 0.777 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0045",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-45"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 45,
+    "sourceSection": "3. Conditional probability & Bayes' rule",
+    "sourceEntryOriginal": "- **45. Defense attorney's fallacy** \\[Gotcha\\]: few abusers become murderers, but among murdered women with abusive partners, the partner is the likely culprit.",
+    "modelBoundary": "the specified population and reverse conditional",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.08000000000000002,
+      0.8,
+      0.02
+    ]
+  }
+}

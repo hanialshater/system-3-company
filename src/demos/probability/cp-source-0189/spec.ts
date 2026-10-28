@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0189", "title": "Keep the smallest probability prefix", "op": "topp", "labels": ["First", "Second", "Threshold"], "outputs": ["Count", "Mass", "FirstProb"], "a": [0.6, 0.3, 0.65], "b": [0.6, 0.3, 0.95], "question": "Three sorted toy probabilities are First 0.6, Second 0.3, and the remainder. Keep the smallest prefix reaching Threshold 0.65. How many candidates remain?", "questionTemplate": "Three sorted toy probabilities are First {First}, Second {Second}, and the remainder. Keep the smallest prefix reaching Threshold {Threshold}. How many candidates remain?", "explain": "Nucleus sampling retains a probability-mass prefix and renormalizes it. It does not keep a fixed number of candidates across distributions.", "lens": "the retained mass and renormalization in top-p sampling", "kind": "grid", "answerPosition": 0, "recall": [0.7, 0.2, 0.6]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,163 @@
+{
+  "slug": "p100-cuped",
+  "title": "Can yesterday reduce the noise?",
+  "hook": "Use a pre-score to adjust outcomes, then inspect the remaining spread.",
+  "domain": "probability",
+  "concept": "p100-cuped",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "adjust for each user's pre-experiment behavior and confidence intervals narrow."
+    ]
+  },
+  "misconception": "Treating cuped as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "adjust for each user's pre-experiment behavior and confidence intervals narrow.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-cuped.predict",
+      "text": "For pre-score X=1,2,3,4 and post-score Y=3,3,5,5, use θ=cov(X,Y)/var(X)=.8 and Yadj=Y−θ(X−mean X). What variance remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.reveal.0",
+      "text": "The adjusted outcome retains variance 0.2; the unadjusted outcome retains 1. The pre-score predicts variation that can be removed without shifting this sample’s mean of 4.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.reveal.1",
+      "text": "CUPED uses a pre-treatment covariate rather than a treatment consequence. This exact toy calculation illustrates variance reduction; real uncertainty estimates must respect how the adjustment coefficient and experiment were estimated.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.recall",
+      "text": "Why should an experiment covariate used for variance reduction be pre-treatment? A post-treatment variable may lie on a causal pathway and change the estimand or introduce bias.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.scenario.0.summary",
+      "text": "Variance 0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":3},{\"x\":2,\"y\":3},{\"x\":3,\"y\":5},{\"x\":4,\"y\":5}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Pre-score adjustment\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":4.2},{\"x\":2,\"y\":3.4},{\"x\":3,\"y\":4.6},{\"x\":4,\"y\":3.8}],\"xLabel\":\"x\",\"yLabel\":\"y\"},\"metrics\":[{\"label\":\"theta\",\"value\":0.8}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.scenario.1.summary",
+      "text": "Variance 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Y\"],\"rows\":[[3],[3],[5],[5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Unadjusted outcome\",\"visual\":{\"kind\":\"scatter\",\"points\":[{\"x\":1,\"y\":3},{\"x\":2,\"y\":3},{\"x\":3,\"y\":5},{\"x\":4,\"y\":5}],\"xLabel\":\"x\",\"yLabel\":\"y\"}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-cuped/spec.ts; exact finite illustration specified in manager numericCase: Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-cuped.hook",
+      "text": "Use a pre-score to adjust outcomes, then inspect the remaining spread.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-cuped/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why should an experiment covariate used for variance reduction be pre-treatment?",
+    "options": [
+      "To avoid adjusting away treatment consequences",
+      "To force an outcome increase",
+      "To guarantee significance"
+    ],
+    "answer": 0,
+    "why": "A post-treatment variable may lie on a causal pathway and change the estimand or introduce bias."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-cuped",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "cuped"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 333,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "CUPED",
+    "sourceText": "adjust for each user's pre-experiment behavior and confidence intervals narrow.",
+    "sourceEntryOriginal": "- **333. CUPED** \\[Slider\\]: adjust for each user's pre-experiment behavior and confidence intervals narrow.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "cs/algo-interleaving-dp",
+    "difference": "New teaching boundary: CUPED. Existing boundary: Recognize an interleaving with a two-prefix state that keeps each source's internal order.",
+    "numericCase": "Pre score X=[1,2,3,4], post Y=[3,3,5,5]. Xvariance1.25,Yvariance1,cov1, optimaltheta.8. AdjustedY=[4.2,3.4,4.6,3.8] variance.2; reduction80%."
+  },
+  "modelAudit": {
+    "a": 0.19999999999999996,
+    "b": 1,
+    "theta": 0.8,
+    "adjustedMean": 4
+  }
+}

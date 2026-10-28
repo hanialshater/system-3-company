@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0175",
+  "title": "Distance scale in a larger cube",
+  "hook": "Two stated cases: explore the root-mean-square distance between uniform points.",
+  "domain": "probability",
+  "concept": "cp-source-0175",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the root-mean-square distance between uniform points affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines RMS, regardless of the stated inputs.",
+  "objective": "Compare the root-mean-square distance between uniform points in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0175.predict",
+      "text": "Two independent toy points are uniform on a unit cube with Dimension 2. What is their root-mean-square Euclidean distance?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.reveal.0",
+      "text": "The retained results are Dimension=2; RMS=0.577 and Dimension=100; RMS=4.082.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.reveal.1",
+      "text": "Squared coordinate differences add in expectation. Root-mean-square distance is not identical to mean distance or a proof of concentration by itself. This comparison isolates the root-mean-square distance between uniform points.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.case.0.witness",
+      "text": "Dimension=2; RMS=0.577",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Dimension\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RMS\",\"value\":0.5773502691896257}]},\"metrics\":[{\"label\":\"RMS\",\"value\":\"0.577\"},{\"label\":\"Dimension\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.case.1.witness",
+      "text": "Dimension=100; RMS=4.082",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Dimension\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"RMS\",\"value\":4.08248290463863}]},\"metrics\":[{\"label\":\"RMS\",\"value\":\"4.082\"},{\"label\":\"Dimension\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0175.recall",
+      "text": "Two independent toy points are uniform on a unit cube with Dimension 3. What is their root-mean-square Euclidean distance? Answer 0.707.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0175/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #175. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two independent toy points are uniform on a unit cube with Dimension 3. What is their root-mean-square Euclidean distance?",
+    "options": [
+      "0.424",
+      "0.99",
+      "0.707"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives RMS 0.707 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0175",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-175"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 175,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **175. Everyone is far away** \\[Gotcha\\]: in high dimensions, random points are all roughly the same distance apart.",
+    "modelBoundary": "the root-mean-square distance between uniform points",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      3
+    ]
+  }
+}

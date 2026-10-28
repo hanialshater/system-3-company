@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0714",
+  "title": "Shape reward with a potential",
+  "hook": "Two stated cases: explore the potential difference added to an immediate reward.",
+  "domain": "probability",
+  "concept": "cp-source-0714",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the potential difference added to an immediate reward affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Reward, regardless of the stated inputs.",
+  "objective": "Compare the potential difference added to an immediate reward in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0714.predict",
+      "text": "Add potential shaping Gamma 0.9×PhiNext 4-PhiNow 2 to Reward 0. What shaped reward results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.reveal.0",
+      "text": "The retained results are PhiNext=4; Reward=1.6 and PhiNext=1; Reward=-1.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.reveal.1",
+      "text": "Potential differences provide intermediate feedback. Policy-invariance claims additionally require compatible discounting, boundaries and a full MDP. This comparison isolates the potential difference added to an immediate reward.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.case.0.witness",
+      "text": "PhiNext=4; Reward=1.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reward\",0],[\"Gamma\",0.9],[\"PhiNow\",2],[\"PhiNext\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Reward\",\"value\":1.6}]},\"metrics\":[{\"label\":\"Reward\",\"value\":\"1.6\"},{\"label\":\"PhiNext\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.case.1.witness",
+      "text": "PhiNext=1; Reward=-1.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Reward\",0],[\"Gamma\",0.9],[\"PhiNow\",2],[\"PhiNext\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Reward\",\"value\":-1.1}]},\"metrics\":[{\"label\":\"Reward\",\"value\":\"-1.1\"},{\"label\":\"PhiNext\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0714.recall",
+      "text": "Add potential shaping Gamma 0.9×PhiNext 4-PhiNow 2 to Reward 1. What shaped reward results? Answer 2.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0714/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #714. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Add potential shaping Gamma 0.9×PhiNext 4-PhiNow 2 to Reward 1. What shaped reward results?",
+    "options": [
+      "1.56",
+      "2.6",
+      "3.64"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Reward 2.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0714",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-714"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 714,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **714. Reward shaping** \\[Slider\\]: add hints along the way and learning speeds up, or the agent games the hints.",
+    "modelBoundary": "the potential difference added to an immediate reward",
+    "recallInputs": [
+      1,
+      0.9,
+      2,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "be-can-anyone-see-the-report",
+  "title": "Can anyone see the report?",
+  "hook": "Would a visible false report feel the same as a private one?",
+  "domain": "behavioral",
+  "concept": "be-can-anyone-see-the-report",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish observability of dishonesty from the material payoff to lying."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish observability of dishonesty from the material payoff to lying.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-can-anyone-see-the-report.inputs",
+      "text": "A toy lie gains €5 and has an 80% chance of a €10 penalty. What is its expected net payoff? Toy inputs A=[5, 0.8, 10]; B=[5, 0, 10].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-can-anyone-see-the-report.trace",
+      "text": "Computed results: [[-3, 8, 5], [5, 0, 5]]. Labels: Expected net €, Expected penalty €, Gain €.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-can-anyone-see-the-report.reveal",
+      "text": "Observability can change a detection probability while leaving the gain from lying fixed. The comparison separates that risk from the material reward. These are explicit toy probabilities rather than measured deterrence or honesty rates.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-can-anyone-see-the-report.recall",
+      "text": "A new toy case uses Gain €=5, Detection P=0, Penalty €=10. What is Expected net €? Answer: 5.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Gain €=5, Detection P=0, Penalty €=10. What is Expected net €?",
+    "options": [
+      "6.5",
+      "5",
+      "3.5"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 5. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-can-anyone-see-the-report",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-458"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 458,
+    "section": "23. Honesty & dishonesty",
+    "text": "People lie less when others can see the lie (Gneezy, Kajackaite & Sobel, 2018).",
+    "pointer": "500-behavioral-economics-findings.md entry 458: Gneezy, Kajackaite & Sobel, 2018",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "two-suspects-payoff",
+  "meaningfulDifference": "Distinguish observability of dishonesty from the material payoff to lying."
+}

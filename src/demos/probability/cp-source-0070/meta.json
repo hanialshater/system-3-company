@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0070",
+  "title": "Normalize a finite Zipf vocabulary",
+  "hook": "Two stated cases: explore the normalization of ranked frequency weights.",
+  "domain": "probability",
+  "concept": "cp-source-0070",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the normalization of ranked frequency weights affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines FirstShare, regardless of the stated inputs.",
+  "objective": "Compare the normalization of ranked frequency weights in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0070.predict",
+      "text": "A toy vocabulary has 1000 ranks with weights proportional to rank raised to -1. What share belongs to rank 1?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.reveal.0",
+      "text": "The retained results are Exponent=1; FirstShare=0.134 and Exponent=1.2; FirstShare=0.231.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.reveal.1",
+      "text": "Normalize the power-law weights over the stated finite vocabulary. A Zipf curve does not mean each successive rank is exactly half as frequent. This comparison isolates the normalization of ranked frequency weights.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.case.0.witness",
+      "text": "Exponent=1; FirstShare=0.134",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ranks\",1000],[\"Exponent\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FirstShare\",\"value\":0.13359213049244018}]},\"metrics\":[{\"label\":\"FirstShare\",\"value\":\"0.134\"},{\"label\":\"Exponent\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.case.1.witness",
+      "text": "Exponent=1.2; FirstShare=0.231",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Ranks\",1000],[\"Exponent\",1.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"FirstShare\",\"value\":0.2306398172796488}]},\"metrics\":[{\"label\":\"FirstShare\",\"value\":\"0.231\"},{\"label\":\"Exponent\",\"value\":\"1.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0070.recall",
+      "text": "A toy vocabulary has 1,000 ranks with weights proportional to rank raised to -2. What share belongs to rank 1? Answer 0.608.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0070/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #70. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy vocabulary has 1,000 ranks with weights proportional to rank raised to -2. What share belongs to rank 1?",
+    "options": [
+      "0.365",
+      "0.852",
+      "0.608"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives FirstShare 0.608 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0070",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-70"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 70,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **70. Zipf's law** \\[Predict\\]: guess the share of English text that is \"the\". Around 5–7%, with each next word roughly half as common.",
+    "modelBoundary": "the normalization of ranked frequency weights",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1000,
+      2
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0455",
+  "title": "An audit changes expected cash",
+  "hook": "Two stated cases: explore the detection probability in an explicit payoff model.",
+  "domain": "behavioral",
+  "concept": "be-source-0455",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the detection probability in an explicit payoff model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the detection probability in an explicit payoff model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0455.predict",
+      "text": "A toy action earns 100 but incurs fine 500 with probability 0.1. What is its expected cash gain?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.reveal.0",
+      "text": "The retained results are Catch=0.1; Net=50 and Catch=0.3; Net=-50.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.reveal.1",
+      "text": "A sanction changes the expected payoff through both its size and its probability. A payoff change does not establish how people respond. This comparison isolates the detection probability in an explicit payoff model.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.case.0.witness",
+      "text": "Catch=0.1; Net=50",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",100],[\"Fine\",500],[\"Catch\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":50}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"50\"},{\"label\":\"Catch\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.case.1.witness",
+      "text": "Catch=0.3; Net=-50",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",100],[\"Fine\",500],[\"Catch\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Net\",\"value\":-50}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"-50\"},{\"label\":\"Catch\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0455.recall",
+      "text": "A toy action earns 101 but incurs fine 500 with probability 0.1. What is its expected cash gain? Answer 51.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0455/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #455. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy action earns 101 but incurs fine 500 with probability 0.1. What is its expected cash gain?",
+    "options": [
+      "51",
+      "30.6",
+      "71.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Net 51 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0455",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-455"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 455,
+    "sourceSection": "23. Honesty & dishonesty",
+    "sourceEntryOriginal": "- **455.** In the same study, letters threatening audits raised self-reported income (Kleven et al., 2011).",
+    "modelBoundary": "the detection probability in an explicit payoff model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      500,
+      0.1
+    ]
+  }
+}

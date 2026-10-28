@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0082",
+  "title": "The same link after adjustment",
+  "hook": "Two stated cases: explore composition changes rather than a causal diagnosis.",
+  "domain": "behavioral",
+  "concept": "be-source-0082",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How composition changes rather than a causal diagnosis affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare composition changes rather than a causal diagnosis in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0082.predict",
+      "text": "A toy mixture puts fraction 0.9 at rate 0.8 and the remainder at rate 0.4. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.reveal.0",
+      "text": "The retained results are Weight=0.9; Rate=0.76 and Weight=0.5; Rate=0.6.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates composition changes rather than a causal diagnosis.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.case.0.witness",
+      "text": "Weight=0.9; Rate=0.76",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.9],[\"RateA\",0.8],[\"RateB\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.7600000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.76\"},{\"label\":\"Weight\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.case.1.witness",
+      "text": "Weight=0.5; Rate=0.6",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.5],[\"RateA\",0.8],[\"RateB\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.6000000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.6\"},{\"label\":\"Weight\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0082.recall",
+      "text": "A toy mixture puts fraction 0.72 at rate 0.8 and the remainder at rate 0.4. What is its aggregate rate? Answer 0.688.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0082/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #82. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.72 at rate 0.8 and the remainder at rate 0.4. What is its aggregate rate?",
+    "options": [
+      "0.413",
+      "0.963",
+      "0.688"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rate 0.688 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0082",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-82"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 82,
+    "sourceSection": "5. Present bias & time preferences",
+    "sourceEntryOriginal": "- **82.** **\\[contested\\]** A larger, more diverse replication found the link about half as strong and mostly explained by family background (Watts, Duncan & Quan, 2018).",
+    "modelBoundary": "composition changes rather than a causal diagnosis",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.7200000000000001,
+      0.8,
+      0.4
+    ]
+  }
+}

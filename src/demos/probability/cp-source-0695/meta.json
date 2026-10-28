@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0695",
+  "title": "Pace a daily advertising budget",
+  "hook": "Two stated cases: explore the spend rate determining the remaining budget.",
+  "domain": "probability",
+  "concept": "cp-source-0695",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the spend rate determining the remaining budget affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Remaining, regardless of the stated inputs.",
+  "objective": "Compare the spend rate determining the remaining budget in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0695.predict",
+      "text": "A toy budget starts with 100 and spends 10 per day for 4 days. What remains?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.reveal.0",
+      "text": "The retained results are Spend=10; Remaining=60 and Spend=20; Remaining=20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.reveal.1",
+      "text": "The timing of an inflow and the rate of spending determine the remaining buffer. The schedule is an illustration, not observed household data. This comparison isolates the spend rate determining the remaining budget.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.case.0.witness",
+      "text": "Spend=10; Remaining=60",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",100],[\"Days\",4],[\"Spend\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"2\",\"value\":80},{\"label\":\"4\",\"value\":60}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"60\"},{\"label\":\"Spend\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.case.1.witness",
+      "text": "Spend=20; Remaining=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",100],[\"Days\",4],[\"Spend\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"2\",\"value\":60},{\"label\":\"4\",\"value\":20}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"20\"},{\"label\":\"Spend\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0695.recall",
+      "text": "A toy budget starts with 101 and spends 10 per day for 4 days. What remains? Answer 61.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0695/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #695. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy budget starts with 101 and spends 10 per day for 4 days. What remains?",
+    "options": [
+      "61",
+      "36.6",
+      "85.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Remaining 61 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0695",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-695"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 695,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceEntryOriginal": "- **695. Ad budget pacing** \\[Slider\\]: spend a daily budget evenly while learning which placements work.",
+    "modelBoundary": "the spend rate determining the remaining budget",
+    "recallInputs": [
+      101,
+      4,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

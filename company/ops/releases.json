@@ -1242,6 +1242,45 @@
           "main does not yet contain 80c847c55 (U6: main merges it alone, before the pilot)."
         ]
       }
+    },
+    {
+      "version": "r24",
+      "date": "2026-10-28T00:38:44.000Z",
+      "commit": "0fc13b86a255e5bbdaba1a005e08723643928aaa",
+      "deploy_commit": "e7335139454e2a6eadee8b9f0f94074d89bd69f9 (empty marker commit on 0fc13b86a, same tree; branch codex/all-lessons-inspection)",
+      "target": "production",
+      "deployment": "dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f (company/ops/deployments/2026-10-28-r24-production.json); preview attempt dpl_FVtr8bSaPScRKkAq6kBRCG29zFwj failed (\"Resource provisioning failed\")",
+      "rollback_target": "dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (r23)",
+      "approved_by": {
+        "who": "founder",
+        "record": "conversation, 2026-10-28: \"Deploy\" for codex/all-lessons-inspection at 0fc13b86a (route /learn/world); after the preview failed, \"Deploy to production\"",
+        "quote": "\"Deploy\" and then \"Deploy to production\" (founder, 2026-10-28)"
+      },
+      "summary": "Inspection release: Codex's Lessons World at /learn/world, 3,895 lessons on 162 islands, most of them unchecked drafts with their statuses unchanged. Not a launch.",
+      "added": {
+        "features": [
+          "Lessons World (/learn/world) and its catalog entry: every lesson on the map, statuses shown as committed (720 published, 234 review, 2,941 draft)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "Inspection only: most lessons are unchecked drafts; no status promoted, no claim verified, no launch review.",
+          "The marker commit e7335139454e says 'Preview only; the production alias is not changed by this commit'. Wrong: the preview failed and this commit went to production.",
+          "Regression: Next.js 16.4.0 again (r23's 16.4.3 security fix is on main, not on this source); the critical next advisories are back on production (R-031).",
+          "Regression: flatten-the-cube-to-a-dot (published in r22) is not in this source and is no longer served.",
+          "Deploy date is the marker commit's time (a lower bound); the READY time was not recorded. Smoke was relayed by the coordinator (/, /learn/world, /catalog 200; World loads without page errors on phone and desktop); feed and contract specs were not run against production.",
+          "company check: 783 errors, 4 warnings on this tree (inherited)."
+        ]
+      }
     }
   ],
   "historical_deployments": [

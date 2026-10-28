@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0558",
+  "title": "The boundary between two line seeds",
+  "hook": "Two stated cases: explore the one-dimensional equal-distance Voronoi boundary.",
+  "domain": "probability",
+  "concept": "cp-source-0558",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-dimensional equal-distance Voronoi boundary affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Boundary, regardless of the stated inputs.",
+  "objective": "Compare the one-dimensional equal-distance Voronoi boundary in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0558.predict",
+      "text": "Two toy seeds lie at 0,10 on a line with ordinary distance. Where is their equal-distance Voronoi boundary?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.reveal.0",
+      "text": "The retained results are SeedB=10; Boundary=5 and SeedB=20; Boundary=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.reveal.1",
+      "text": "The perpendicular-bisector idea reduces to a midpoint on this line. A full plane partition needs all seed locations and a distance metric. This comparison isolates the one-dimensional equal-distance Voronoi boundary.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.case.0.witness",
+      "text": "SeedB=10; Boundary=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SeedA\",0],[\"SeedB\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Boundary\",\"value\":5}]},\"metrics\":[{\"label\":\"Boundary\",\"value\":\"5\"},{\"label\":\"SeedB\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.case.1.witness",
+      "text": "SeedB=20; Boundary=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"SeedA\",0],[\"SeedB\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Boundary\",\"value\":10}]},\"metrics\":[{\"label\":\"Boundary\",\"value\":\"10\"},{\"label\":\"SeedB\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0558.recall",
+      "text": "Two toy seeds lie at 1,10 on a line with ordinary distance. Where is their equal-distance Voronoi boundary? Answer 5.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0558/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #558. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy seeds lie at 1,10 on a line with ordinary distance. Where is their equal-distance Voronoi boundary?",
+    "options": [
+      "3.3",
+      "5.5",
+      "7.7"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Boundary 5.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0558",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-558"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 558,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **558. Voronoi cells** \\[Slider\\]: drop random seed points and the plane splits into cells, like cracked mud or giraffe spots.",
+    "modelBoundary": "the one-dimensional equal-distance Voronoi boundary",
+    "recallInputs": [
+      1,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

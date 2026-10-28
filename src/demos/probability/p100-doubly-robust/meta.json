@@ -1,0 +1,162 @@
+{
+  "slug": "p100-doubly-robust",
+  "title": "Which model can be wrong?",
+  "hook": "One nuisance model is wrong. Compare that case with two wrong models.",
+  "domain": "probability",
+  "concept": "p100-doubly-robust",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "break the outcome model or the propensity model; the combined estimator survives either, not both."
+    ]
+  },
+  "misconception": "Treating doubly robust as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "break the outcome model or the propensity model; the combined estimator survives either, not both.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-doubly-robust.predict",
+      "text": "A toy population has equal strata, untreated risks .1 and .5, treatment adds .2, and uptake .2 and .8. If the propensity model is right but both outcome models wrongly say .4, what expected AIPW effect results?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.reveal.0",
+      "text": "The correct-propensity case retains AIPW 0.2 even with wrong outcome models. Making both nuisance models constant and wrong retains 0.44.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.reveal.1",
+      "text": "The augmentation and weighting errors cancel in expectation when either nuisance model is correct under the identification and overlap assumptions. Double robustness does not rescue failure of both models, hidden confounding, or absent overlap.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.recall",
+      "text": "Does double robustness guarantee a correct effect when both nuisance models are wrong? Its robustness is to one nuisance-model misspecification, conditional on the causal assumptions, not arbitrary simultaneous errors.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.scenario.0.summary",
+      "text": "AIPW 0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"p\",\"Y0\",\"Y1\"],\"rows\":[[0.2,0.1,0.3],[0.8,0.5,0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Right propensity\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"AIPW\",\"value\":0.19999999999999998}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.scenario.1.summary",
+      "text": "AIPW 0.44",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"p\",\"Y0\",\"Y1\"],\"rows\":[[0.2,0.1,0.3],[0.8,0.5,0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Both wrong\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"AIPW\",\"value\":0.44}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-doubly-robust/spec.ts; exact finite illustration specified in manager numericCase: Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-doubly-robust.hook",
+      "text": "One nuisance model is wrong. Compare that case with two wrong models.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-doubly-robust/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does double robustness guarantee a correct effect when both nuisance models are wrong?",
+    "options": [
+      "No",
+      "Yes, automatically",
+      "Yes, if the sample is large"
+    ],
+    "answer": 0,
+    "why": "Its robustness is to one nuisance-model misspecification, conditional on the causal assumptions, not arbitrary simultaneous errors."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-doubly-robust",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "doubly-robust"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 408,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceTitle": "Doubly robust",
+    "sourceText": "break the outcome model or the propensity model; the combined estimator survives either, not both.",
+    "sourceEntryOriginal": "- **408. Doubly robust** \\[Split\\]: break the outcome model or the propensity model; the combined estimator survives either, not both.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "lifehacks/mail-or-vs-and",
+    "difference": "New teaching boundary: Doubly robust. Existing boundary: Distinguish union and intersection in a message filter.",
+    "numericCase": "Two equally common strata baseline risks .1,.5; treatment adds.2; treatment propensities .2,.8. Exact eight-cell population; AIPW recovers.2 if propensity model correct or outcome model correct. Both wrongly constant can fail. Builder must derive cell-sum expectations, not mock values."
+  },
+  "modelAudit": {
+    "a": 0.19999999999999998,
+    "b": 0.44,
+    "rightOutcome": 0.19999999999999996
+  }
+}

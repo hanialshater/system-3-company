@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0365",
+  "title": "Planning and turnout points",
+  "hook": "Two stated cases: explore the denominators behind an absolute turnout gap.",
+  "domain": "behavioral",
+  "concept": "be-source-0365",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the denominators behind an absolute turnout gap affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the denominators behind an absolute turnout gap in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0365.predict",
+      "text": "A toy comparison has 541/1000 in A and 500/1000 in B. What is A minus B in percentage points?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.reveal.0",
+      "text": "The retained results are TotalA=1,000; Gap=4.1 and TotalA=2,000; Gap=-22.95.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.reveal.1",
+      "text": "Divide by each group’s own denominator before subtracting. A rate difference alone does not explain the cause of that difference. This comparison isolates the denominators behind an absolute turnout gap.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.case.0.witness",
+      "text": "TotalA=1,000; Gap=4.1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",541],[\"TotalA\",1000],[\"HitB\",500],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":4.100000000000003}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"4.1\"},{\"label\":\"TotalA\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.case.1.witness",
+      "text": "TotalA=2,000; Gap=-22.95",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"HitA\",541],[\"TotalA\",2000],[\"HitB\",500],[\"TotalB\",1000]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-22.95}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-22.95\"},{\"label\":\"TotalA\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0365.recall",
+      "text": "A toy comparison has 542/1,000 in A and 500/1,000 in B. What is A minus B in percentage points? Answer 4.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0365/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #365. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy comparison has 542/1,000 in A and 500/1,000 in B. What is A minus B in percentage points?",
+    "options": [
+      "4.2",
+      "2.52",
+      "5.88"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gap 4.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0365",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-365"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 365,
+    "sourceSection": "19. Public policy nudges: tax, energy, voting",
+    "sourceEntryOriginal": "- **365.** Asking voters when, where and how they would vote raised turnout 4.1 points in single-voter households (Nickerson & Rogers, 2010).",
+    "modelBoundary": "the denominators behind an absolute turnout gap",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      542,
+      1000,
+      500,
+      1000
+    ]
+  }
+}

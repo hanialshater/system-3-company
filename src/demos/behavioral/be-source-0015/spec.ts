@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0015", "title": "How often do you look?", "op": "groupedloss", "labels": ["Gain", "Loss", "Lambda", "Group"], "outputs": ["Value", "Cash"], "a": [10.0, 8.0, 2.0, 1.0], "b": [10.0, 8.0, 2.0, 3.0], "question": "A fixed toy cash path is gain 10, loss 8, gain 10. Negative values have weight 2. Group 1 means separate if 1, combined if 3. What model value results?", "explain": "The cash path stays fixed. Valuing each interval before adding can disagree with adding the cash first under an asymmetric value rule.", "lens": "valuing the same cash path at different intervals", "kind": "timeline", "answerPosition": 0, "questionTemplate": "A fixed toy cash path is gain {Gain}, loss {Loss}, gain {Gain}. Negative values have weight {Lambda}. Group {Group} means separate if 1, combined if 3. What model value results?"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

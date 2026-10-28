@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0371", "title": "Keep the inferred disturbance fixed", "op": "counterlinear", "labels": ["Slope", "ObservedX", "ObservedY", "NewX"], "outputs": ["Counterfactual", "Noise"], "a": [2.0, 1.0, 5.0, 2.0], "b": [2.0, 1.0, 5.0, 3.0], "question": "Toy Y=Slope 2×X+U. Observe X=1,Y=5; hold inferred U fixed and intervene X=2. What counterfactual Y results?", "questionTemplate": "Toy Y=Slope {Slope}×X+U. Observe X={ObservedX},Y={ObservedY}; hold inferred U fixed and intervene X={NewX}. What counterfactual Y results?", "explain": "Infer the disturbance from the observation, change the assigned cause, and reuse that disturbance. The answer depends on this specified structural model.", "lens": "the structural counterfactual rather than an arbitrary feature swap", "kind": "graph", "answerPosition": 2, "graph": "counterfactual"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,162 @@
+{
+  "slug": "p100-structural-equations",
+  "title": "What do these rules generate?",
+  "hook": "Generate four worlds, then replace one variable’s assignment rule.",
+  "domain": "probability",
+  "concept": "p100-structural-equations",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "write y = 2x + noise, x = z + noise, and watch data generate from the rules."
+    ]
+  },
+  "misconception": "Treating structural equations as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "write y = 2x + noise, x = z + noise, and watch data generate from the rules.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-structural-equations.predict",
+      "text": "Independent fair binary Z,U generate X=Z+U and Y=2X+Z. After intervening to set X=1 for every world, what is mean Y?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.reveal.0",
+      "text": "The intervention retains mean Y=2.5 and fixes every X at 1. The natural equations retain outcomes ranging from 0 to 5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.reveal.1",
+      "text": "An intervention replaces the X equation; it does not regenerate Z or U. The unchanged upstream worlds feed into the revised outcome rule, which is why the remaining Y variation comes only from Z here.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.recall",
+      "text": "For Y=3X+Z, with fair binary Z, setting X=2 gives which mean Y? The intervention fixes 3X=6 and leaves mean Z=.5, giving mean Y=6.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.scenario.0.summary",
+      "text": "Intervened mean 2.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Z\",\"U\",\"X\",\"Y\"],\"rows\":[[0,0,0,0],[0,1,1,2],[1,0,1,3],[1,1,2,5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Replace X equation\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Z\",\"U\",\"X\",\"Y\"],\"rows\":[[0,0,1,2],[0,1,1,2],[1,0,1,3],[1,1,1,3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.scenario.1.summary",
+      "text": "Natural range 0–5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"Z\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"U\",\"x\":120,\"y\":115},{\"id\":\"2\",\"label\":\"X\",\"x\":200,\"y\":45},{\"id\":\"3\",\"label\":\"Y\",\"x\":280,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"2\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true},{\"from\":\"2\",\"to\":\"3\",\"active\":true},{\"from\":\"0\",\"to\":\"3\",\"active\":true}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Natural equations\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Z\",\"U\",\"X\",\"Y\"],\"rows\":[[0,0,0,0],[0,1,1,2],[1,0,1,3],[1,1,2,5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-structural-equations/spec.ts; exact finite illustration specified in manager numericCase: Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-structural-equations.hook",
+      "text": "Generate four worlds, then replace one variable’s assignment rule.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-structural-equations/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For Y=3X+Z, with fair binary Z, setting X=2 gives which mean Y?",
+    "options": [
+      "6.0",
+      "6.5",
+      "7.0"
+    ],
+    "answer": 1,
+    "why": "The intervention fixes 3X=6 and leaves mean Z=.5, giving mean Y=6.5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-structural-equations",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "structural-equations"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 350,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Structural equations",
+    "sourceText": "write y = 2x + noise, x = z + noise, and watch data generate from the rules.",
+    "sourceEntryOriginal": "- **350. Structural equations** \\[Slider\\]: write y = 2x + noise, x = z + noise, and watch data generate from the rules.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/prompt-injection",
+    "difference": "New teaching boundary: Structural equations. Existing boundary: Distinguish retrieved task data from an embedded instruction under two declared reader rules.",
+    "numericCase": "Enumerate Z,U independent fairbinary, X=Z+U,Y=2X+Z. Four worlds (Z,U,X,Y):0000,0112,1013,1125. InterveneX=1 producesY2or3 regardlessU."
+  },
+  "modelAudit": {
+    "a": 2.5,
+    "b": 5,
+    "naturalMean": 2.5
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0158",
+  "title": "A popular node attracts the next link",
+  "hook": "Two stated cases: explore degree-proportional attachment.",
+  "domain": "probability",
+  "concept": "cp-source-0158",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How degree-proportional attachment affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare degree-proportional attachment in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0158.predict",
+      "text": "A toy new network link chooses an existing node proportional to degree. A node has Degree 20, total network degree 100. What is its attachment probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.reveal.0",
+      "text": "The retained results are Degree=20; Probability=0.2 and Degree=5; Probability=0.05.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.reveal.1",
+      "text": "Preferential attachment weights nodes by existing degree. The one-step probability does not alone specify an entire network-growth process. This comparison isolates degree-proportional attachment.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.case.0.witness",
+      "text": "Degree=20; Probability=0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Degree\",20],[\"TotalDegree\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.2}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.2\"},{\"label\":\"Degree\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.case.1.witness",
+      "text": "Degree=5; Probability=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Degree\",5],[\"TotalDegree\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.05}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.05\"},{\"label\":\"Degree\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0158.recall",
+      "text": "A toy new network link chooses an existing node proportional to degree. A node has Degree 21, total network degree 100. What is its attachment probability? Answer 0.21.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0158/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #158. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy new network link chooses an existing node proportional to degree. A node has Degree 21, total network degree 100. What is its attachment probability?",
+    "options": [
+      "0.21",
+      "0.11",
+      "0.31"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 0.21 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0158",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-158"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 158,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **158. Rich get richer** \\[Slider\\]: grow a network where new nodes prefer popular ones and hubs emerge.",
+    "modelBoundary": "degree-proportional attachment",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      21,
+      100
+    ]
+  }
+}

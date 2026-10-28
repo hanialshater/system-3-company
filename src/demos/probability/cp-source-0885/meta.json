@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0885",
+  "title": "A weighted control also has a trend",
+  "hook": "Two stated cases: explore the control trend after unit and time weighting.",
+  "domain": "probability",
+  "concept": "cp-source-0885",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the control trend after unit and time weighting affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the control trend after unit and time weighting in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0885.predict",
+      "text": "Toy treated outcomes move 10→15; controls move 8→10. What difference-in-differences results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.reveal.0",
+      "text": "The retained results are CAfter=10; Estimate=3 and CAfter=13; Estimate=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.reveal.1",
+      "text": "The arithmetic removes the control change. Interpreting it causally requires parallel untreated trends and other design assumptions. This comparison isolates the control trend after unit and time weighting.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.case.0.witness",
+      "text": "CAfter=10; Estimate=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",10],[\"TAfter\",15],[\"CBefore\",8],[\"CAfter\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":3}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"3\"},{\"label\":\"CAfter\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.case.1.witness",
+      "text": "CAfter=13; Estimate=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TBefore\",10],[\"TAfter\",15],[\"CBefore\",8],[\"CAfter\",13]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":0}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0\"},{\"label\":\"CAfter\",\"value\":\"13\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0885.recall",
+      "text": "Toy treated outcomes move 11→15; controls move 8→10. What difference-in-differences results? Answer 2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0885/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #885. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy treated outcomes move 11→15; controls move 8→10. What difference-in-differences results?",
+    "options": [
+      "1.2",
+      "2",
+      "2.8"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0885",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-885"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 885,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **885. Synthetic diff-in-diff** \\[Slider\\]: weight both units and time periods to blend synthetic control with diff-in-diff (Arkhangelsky et al., 2021).",
+    "modelBoundary": "the control trend after unit and time weighting",
+    "recallInputs": [
+      11,
+      15,
+      8,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

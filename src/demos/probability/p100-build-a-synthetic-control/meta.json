@@ -1,0 +1,162 @@
+{
+  "slug": "p100-build-a-synthetic-control",
+  "title": "Can another region be rebuilt?",
+  "hook": "Two donor regions offer a counterfactual. Which weights match the past?",
+  "domain": "probability",
+  "concept": "p100-build-a-synthetic-control",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "weight donor regions until their blend tracks the treated region before treatment."
+    ]
+  },
+  "misconception": "Treating build a synthetic control as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "weight donor regions until their blend tracks the treated region before treatment.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-build-a-synthetic-control.predict",
+      "text": "A treated region goes 10→14 before policy and reaches 25 afterward. Donors A go 8→12→16 and B go 12→16→20. What post-policy gap does their equal-weight blend imply?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.reveal.0",
+      "text": "The equal blend retains a post-policy value of 18 and gap 7. Changing donor weights gives 17 and gap 8, while worsening the pre-policy match.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.reveal.1",
+      "text": "A good pre-policy fit constrains the counterfactual. The gap is causal only if the untreated blend would keep tracking the treated region and no other treated-only shock intervenes.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.recall",
+      "text": "A matched donor blend predicts 30 after policy; the treated unit reaches 34. What is the estimated gap? The observed-minus-counterfactual gap is 34−30=4; causal interpretation still needs the design assumptions.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.scenario.0.summary",
+      "text": "Blend 18; gap 7",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Pre1\",\"Pre2\"],\"rows\":[[10,14],[10,14]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · 50% donor A\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Before1\",\"value\":10},{\"label\":\"Before2\",\"value\":14},{\"label\":\"After\",\"value\":18}]},\"metrics\":[{\"label\":\"Pre fit error\",\"value\":0}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.scenario.1.summary",
+      "text": "Blend 17; gap 8",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Pre1\",\"Pre2\"],\"rows\":[[10,14],[9,13]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · 75% donor A\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Before1\",\"value\":9},{\"label\":\"Before2\",\"value\":13},{\"label\":\"After\",\"value\":17}]},\"metrics\":[{\"label\":\"Pre fit error\",\"value\":2}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-build-a-synthetic-control/spec.ts; exact finite illustration specified in manager numericCase: Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-build-a-synthetic-control.hook",
+      "text": "Two donor regions offer a counterfactual. Which weights match the past?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-build-a-synthetic-control/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A matched donor blend predicts 30 after policy; the treated unit reaches 34. What is the estimated gap?",
+    "options": [
+      "−4",
+      "4",
+      "64"
+    ],
+    "answer": 1,
+    "why": "The observed-minus-counterfactual gap is 34−30=4; causal interpretation still needs the design assumptions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-build-a-synthetic-control",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "synthetic-control"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 395,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceTitle": "Build a synthetic control",
+    "sourceText": "weight donor regions until their blend tracks the treated region before treatment.",
+    "sourceEntryOriginal": "- **395. Build a synthetic control** \\[Slider\\]: weight donor regions until their blend tracks the treated region before treatment.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "life/quiet-decades-then-everywhere",
+    "difference": "New teaching boundary: Build a synthetic control. Existing boundary: The learner can explain that in the toy region, at year 25 of a roughly 50-year climb, the plants are only about 1% of their final number, because each doubling adds as much as everything before it.",
+    "numericCase": "Treated region pre outcomes [10,14], post 25. Donor A [8,12,16], donor B [12,16,20]. Weights .5/.5 reproduce [10,14] and predict 18; post gap 7. Wrong weight .75/.25 produces pre [9,13], post 17."
+  },
+  "modelAudit": {
+    "a": 7,
+    "b": 8,
+    "equalBlend": 18
+  }
+}

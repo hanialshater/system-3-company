@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0589",
+  "title": "The funnel changes the coordinate scale",
+  "hook": "Two stated cases: explore the scale transformation of a standardized latent coordinate.",
+  "domain": "probability",
+  "concept": "cp-source-0589",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the scale transformation of a standardized latent coordinate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines X, regardless of the stated inputs.",
+  "objective": "Compare the scale transformation of a standardized latent coordinate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0589.predict",
+      "text": "A toy funnel coordinate is X=exp(V/2)×Z. With V -6, Z 1, what X results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.reveal.0",
+      "text": "The retained results are V=-6; X=0.05 and V=2; X=2.718.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.reveal.1",
+      "text": "The same standardized coordinate maps into very different scales across the funnel. Reparameterizing changes geometry without creating new data. This comparison isolates the scale transformation of a standardized latent coordinate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.case.0.witness",
+      "text": "V=-6; X=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"V\",-6],[\"Z\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"X\",\"value\":0.049787068367863944},{\"label\":\"SD\",\"value\":0.049787068367863944}]},\"metrics\":[{\"label\":\"X\",\"value\":\"0.05\"},{\"label\":\"V\",\"value\":\"-6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.case.1.witness",
+      "text": "V=2; X=2.718",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"V\",2],[\"Z\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"X\",\"value\":2.718281828459045},{\"label\":\"SD\",\"value\":2.718281828459045}]},\"metrics\":[{\"label\":\"X\",\"value\":\"2.718\"},{\"label\":\"V\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0589.recall",
+      "text": "A toy funnel coordinate is X=exp(V/2)×Z. With V -5, Z 1, what X results? Answer 0.082.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0589/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #589. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy funnel coordinate is X=exp(V/2)×Z. With V -5, Z 1, what X results?",
+    "options": [
+      "-0.018",
+      "0.182",
+      "0.082"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives X 0.082 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0589",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-589"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 589,
+    "sourceSection": "30. MCMC & sampling algorithms",
+    "sourceEntryOriginal": "- **589. Neal's funnel** \\[Gotcha\\]: a hierarchical posterior's narrow neck causes divergences; red dots mark where the sampler breaks.",
+    "modelBoundary": "the scale transformation of a standardized latent coordinate",
+    "recallInputs": [
+      -5,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

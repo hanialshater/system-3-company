@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0735",
+  "title": "Count survival time up to a cutoff",
+  "hook": "Two stated cases: explore the restricted horizon in mean survival time.",
+  "domain": "probability",
+  "concept": "cp-source-0735",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the restricted horizon in mean survival time affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines RMST, regardless of the stated inputs.",
+  "objective": "Compare the restricted horizon in mean survival time in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0735.predict",
+      "text": "A toy exponential lifetime has Rate 0.1. What is expected survival time restricted to Horizon 5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.reveal.0",
+      "text": "The retained results are Horizon=5; RMST=3.935 and Horizon=10; RMST=6.321.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.reveal.1",
+      "text": "Restricted mean survival integrates survival only up to the chosen horizon. It has units of time and depends on that horizon. This comparison isolates the restricted horizon in mean survival time.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.case.0.witness",
+      "text": "Horizon=5; RMST=3.935",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.1],[\"Horizon\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.4166666666666667,\"y\":0.40810542890861834},{\"x\":0.8333333333333334,\"y\":0.7995558537067682},{\"x\":1.25,\"y\":1.1750309741540454},{\"x\":1.6666666666666667,\"y\":1.5351827510938598},{\"x\":2.0833333333333335,\"y\":1.8806365384936508},{\"x\":2.5,\"y\":2.211992169285951},{\"x\":2.9166666666666665,\"y\":2.5298249968956754},{\"x\":3.3333333333333335,\"y\":2.8346868942621084},{\"x\":3.75,\"y\":3.1271072120902788},{\"x\":4.166666666666667,\"y\":3.4075936979955634},{\"x\":4.583333333333333,\"y\":3.6766333781375016},{\"x\":5,\"y\":3.9346934028736658},{\"x\":5.416666666666667,\"y\":4.182221857901918},{\"x\":5.833333333333333,\"y\":4.419648542299528},{\"x\":6.25,\"y\":4.647385714810097},{\"x\":6.666666666666667,\"y\":4.865828809674079},{\"x\":7.083333333333333,\"y\":5.075357123245903},{\"x\":7.5,\"y\":5.276334472589853},{\"x\":7.916666666666667,\"y\":5.46910982719831},{\"x\":8.333333333333334,\"y\":5.654017914929219},{\"x\":8.75,\"y\":5.831379803214915},{\"x\":9.166666666666666,\"y\":6.001503456551527},{\"x\":9.583333333333334,\"y\":6.164684271236893},{\"x\":10,\"y\":6.321205588285577}],\"xLabel\":\"Horizon\",\"yLabel\":\"RMST\"},\"metrics\":[{\"label\":\"RMST\",\"value\":\"3.935\"},{\"label\":\"Horizon\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.case.1.witness",
+      "text": "Horizon=10; RMST=6.321",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.1],[\"Horizon\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":0.4166666666666667,\"y\":0.40810542890861834},{\"x\":0.8333333333333334,\"y\":0.7995558537067682},{\"x\":1.25,\"y\":1.1750309741540454},{\"x\":1.6666666666666667,\"y\":1.5351827510938598},{\"x\":2.0833333333333335,\"y\":1.8806365384936508},{\"x\":2.5,\"y\":2.211992169285951},{\"x\":2.9166666666666665,\"y\":2.5298249968956754},{\"x\":3.3333333333333335,\"y\":2.8346868942621084},{\"x\":3.75,\"y\":3.1271072120902788},{\"x\":4.166666666666667,\"y\":3.4075936979955634},{\"x\":4.583333333333333,\"y\":3.6766333781375016},{\"x\":5,\"y\":3.9346934028736658},{\"x\":5.416666666666667,\"y\":4.182221857901918},{\"x\":5.833333333333333,\"y\":4.419648542299528},{\"x\":6.25,\"y\":4.647385714810097},{\"x\":6.666666666666667,\"y\":4.865828809674079},{\"x\":7.083333333333333,\"y\":5.075357123245903},{\"x\":7.5,\"y\":5.276334472589853},{\"x\":7.916666666666667,\"y\":5.46910982719831},{\"x\":8.333333333333334,\"y\":5.654017914929219},{\"x\":8.75,\"y\":5.831379803214915},{\"x\":9.166666666666666,\"y\":6.001503456551527},{\"x\":9.583333333333334,\"y\":6.164684271236893},{\"x\":10,\"y\":6.321205588285577}],\"xLabel\":\"Horizon\",\"yLabel\":\"RMST\"},\"metrics\":[{\"label\":\"RMST\",\"value\":\"6.321\"},{\"label\":\"Horizon\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0735.recall",
+      "text": "A toy exponential lifetime has Rate 0.2. What is expected survival time restricted to Horizon 5? Answer 3.161.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0735/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #735. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy exponential lifetime has Rate 0.2. What is expected survival time restricted to Horizon 5?",
+    "options": [
+      "1.896",
+      "3.161",
+      "4.425"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives RMST 3.161 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0735",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-735"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 735,
+    "sourceSection": "37. Survival analysis & reliability",
+    "sourceEntryOriginal": "- **735. Restricted mean survival** \\[Slider\\]: the area under the curve up to a cutoff, an easy-to-explain alternative to hazard ratios.",
+    "modelBoundary": "the restricted horizon in mean survival time",
+    "recallInputs": [
+      0.2,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

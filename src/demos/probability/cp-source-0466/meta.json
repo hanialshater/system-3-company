@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0466",
+  "title": "Regress residual on residual",
+  "hook": "Two stated cases: explore the residual projection ingredient of a causal estimator.",
+  "domain": "probability",
+  "concept": "cp-source-0466",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the residual projection ingredient of a causal estimator affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Slope, regardless of the stated inputs.",
+  "objective": "Compare the residual projection ingredient of a causal estimator in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0466.predict",
+      "text": "Two toy residual pairs are T/Y=1/2 and -1/-2. What zero-intercept residual-on-residual regression slope results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.reveal.0",
+      "text": "The retained results are Y1=2 Y2=-2; Slope=2 and Y1=3 Y2=-3; Slope=3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.reveal.1",
+      "text": "Residualization removes the fitted nuisance components in this calculation. A causal DML interpretation additionally needs identification, nuisance-rate and sample-splitting assumptions. This comparison isolates the residual projection ingredient of a causal estimator.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.case.0.witness",
+      "text": "Y1=2 Y2=-2; Slope=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"T1\",1],[\"Y1\",2],[\"T2\",-1],[\"Y2\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Slope\",\"value\":2}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"2\"},{\"label\":\"Y1\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.case.1.witness",
+      "text": "Y1=3 Y2=-3; Slope=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"T1\",1],[\"Y1\",3],[\"T2\",-1],[\"Y2\",-3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Slope\",\"value\":3}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"3\"},{\"label\":\"Y1\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0466.recall",
+      "text": "Two toy residual pairs are T/Y=2/2 and -1/-2. What zero-intercept residual-on-residual regression slope results? Answer 1.2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0466/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy residual pairs are T/Y=2/2 and -1/-2. What zero-intercept residual-on-residual regression slope results?",
+    "options": [
+      "0.72",
+      "1.68",
+      "1.2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Slope 1.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0466",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-466"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 466,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **466. Double machine learning** \\[Slider\\]: residualize treatment and outcome with ML, then regress residual on residual.",
+    "modelBoundary": "the residual projection ingredient of a causal estimator",
+    "recallInputs": [
+      2,
+      2,
+      -1,
+      -2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

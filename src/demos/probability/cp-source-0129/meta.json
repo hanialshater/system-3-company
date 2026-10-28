@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0129",
+  "title": "A startup mean exceeds the typical case",
+  "hook": "Two stated cases: explore an extreme success in a toy payoff distribution.",
+  "domain": "probability",
+  "concept": "cp-source-0129",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How an extreme success in a toy payoff distribution affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare an extreme success in a toy payoff distribution in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0129.predict",
+      "text": "A toy sample has 99 identical values 0 and one extreme 10000. What is the sample mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.reveal.0",
+      "text": "The retained results are Extreme=10,000; Mean=100 and Extreme=100,000; Mean=1,000.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.reveal.1",
+      "text": "The extreme value can move the mean substantially while the median of this sample stays at the repeated value. Sensitivity does not itself establish which observations are invalid. This comparison isolates an extreme success in a toy payoff distribution.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.case.0.witness",
+      "text": "Extreme=10,000; Mean=100",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",0],[\"N\",99],[\"Extreme\",10000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":100},{\"label\":\"Median\",\"value\":0}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"100\"},{\"label\":\"Extreme\",\"value\":\"10,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.case.1.witness",
+      "text": "Extreme=100,000; Mean=1,000",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Regular\",0],[\"N\",99],[\"Extreme\",100000]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1000},{\"label\":\"Median\",\"value\":0}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1,000\"},{\"label\":\"Extreme\",\"value\":\"100,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0129.recall",
+      "text": "A toy sample has 99 identical values 1 and one extreme 10,000. What is the sample mean? Answer 100.99.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0129/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #129. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy sample has 99 identical values 1 and one extreme 10,000. What is the sample mean?",
+    "options": [
+      "60.594",
+      "100.99",
+      "141.386"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 100.99 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0129",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-129"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 129,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **129. Mean vs median startup** \\[Gotcha\\]: the average outcome is great, while the typical founder gets nothing.",
+    "modelBoundary": "an extreme success in a toy payoff distribution",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1,
+      99,
+      10000
+    ]
+  }
+}

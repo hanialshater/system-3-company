@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0811", "title": "A mean is easier to predict than a point", "op": "predwidth", "labels": ["SD", "N", "Z", "Prediction"], "outputs": ["HalfWidth"], "a": [2.0, 20.0, 2.0, 0.0], "b": [2.0, 20.0, 2.0, 1.0], "question": "Known toy SD 2, N 20, Z multiplier 2. Prediction 0=1 targets a new observation, 0 the mean. What normal interval half-width results?", "questionTemplate": "Known toy SD {SD}, N {N}, Z multiplier {Z}. Prediction {Prediction}=1 targets a new observation, 0 the mean. What normal interval half-width results?", "explain": "An individual prediction includes irreducible observation noise. These normal intervals assume a known variance and independent data.", "lens": "the additional observation noise in a prediction interval", "kind": "bars", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

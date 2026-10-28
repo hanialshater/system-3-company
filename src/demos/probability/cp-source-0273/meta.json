@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0273",
+  "title": "Two trends can co-move without cause",
+  "hook": "Two stated cases: explore a stipulated time trend rather than a causal link.",
+  "domain": "probability",
+  "concept": "cp-source-0273",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a stipulated time trend rather than a causal link affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Prediction, regardless of the stated inputs.",
+  "objective": "Compare a stipulated time trend rather than a causal link in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0273.predict",
+      "text": "A toy fitted line has Intercept 10, Slope -0.1; what does it predict at X 10?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.reveal.0",
+      "text": "The retained results are X=10; Prediction=9 and X=20; Prediction=8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.reveal.1",
+      "text": "A line mechanically extrapolates beyond observed inputs. Whether its slope persists is an additional empirical assumption. This comparison isolates a stipulated time trend rather than a causal link.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.case.0.witness",
+      "text": "X=10; Prediction=9",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",10],[\"Slope\",-0.1],[\"X\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":9}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"9\"},{\"label\":\"X\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.case.1.witness",
+      "text": "X=20; Prediction=8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Intercept\",10],[\"Slope\",-0.1],[\"X\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Prediction\",\"value\":8}]},\"metrics\":[{\"label\":\"Prediction\",\"value\":\"8\"},{\"label\":\"X\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0273.recall",
+      "text": "A toy fitted line has Intercept 11, Slope -0.1; what does it predict at X 10? Answer 10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0273/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #273. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy fitted line has Intercept 11, Slope -0.1; what does it predict at X 10?",
+    "options": [
+      "6",
+      "10",
+      "14"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Prediction 10 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0273",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-273"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 273,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceEntryOriginal": "- **273. Pirates and global warming** \\[Gotcha\\]: pirate numbers fell as temperatures rose, a classic parody chart.",
+    "modelBoundary": "a stipulated time trend rather than a causal link",
+    "recallInputs": [
+      11,
+      -0.1,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

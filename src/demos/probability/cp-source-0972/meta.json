@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0972",
+  "title": "Uncertainty grows away from a sensor",
+  "hook": "Two stated cases: explore the one-observation Gaussian-process posterior variance.",
+  "domain": "probability",
+  "concept": "cp-source-0972",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-observation Gaussian-process posterior variance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Variance, regardless of the stated inputs.",
+  "objective": "Compare the one-observation Gaussian-process posterior variance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0972.predict",
+      "text": "A unit-variance RBF toy GP has one noisy observation. At Distance 0, Length 1, noise variance 0.1, what posterior latent variance results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.reveal.0",
+      "text": "The retained results are Distance=0; Variance=0.091 and Distance=3; Variance=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.reveal.1",
+      "text": "Conditional uncertainty is reduced near the observation. The variance is conditional on the stated kernel and fixed hyperparameters. This comparison isolates the one-observation Gaussian-process posterior variance.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.case.0.witness",
+      "text": "Distance=0; Variance=0.091",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",0],[\"Length\",1],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.09090909090909094},{\"x\":0.125,\"y\":0.1050032390859924},{\"x\":0.25,\"y\":0.1459881247150221},{\"x\":0.375,\"y\":0.21016813067014262},{\"x\":0.5,\"y\":0.2919992881169047},{\"x\":0.625,\"y\":0.38487832167115554},{\"x\":0.75,\"y\":0.48201561388097913},{\"x\":0.875,\"y\":0.577233465332676},{\"x\":1,\"y\":0.6655641443895979},{\"x\":1.125,\"y\":0.7435791348238041},{\"x\":1.25,\"y\":0.809444193499002},{\"x\":1.375,\"y\":0.862747801403714},{\"x\":1.5,\"y\":0.9041825231255779},{\"x\":1.625,\"y\":0.9351666520929472},{\"x\":1.75,\"y\":0.9574812523782191},{\"x\":1.875,\"y\":0.9729734396489466},{\"x\":2,\"y\":0.9833494191920599},{\"x\":2.125,\"y\":0.9900574840812683},{\"x\":2.25,\"y\":0.9942457132477402},{\"x\":2.375,\"y\":0.9967721376752341},{\"x\":2.5,\"y\":0.9982450416943385},{\"x\":2.625,\"y\":0.9990752019603503},{\"x\":2.75,\"y\":0.9995276593798592},{\"x\":2.875,\"y\":0.999766174437454},{\"x\":3,\"y\":0.9998878092690121}],\"xLabel\":\"Distance\",\"yLabel\":\"Variance\"},\"metrics\":[{\"label\":\"Variance\",\"value\":\"0.091\"},{\"label\":\"Distance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.case.1.witness",
+      "text": "Distance=3; Variance=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",3],[\"Length\",1],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.09090909090909094},{\"x\":0.125,\"y\":0.1050032390859924},{\"x\":0.25,\"y\":0.1459881247150221},{\"x\":0.375,\"y\":0.21016813067014262},{\"x\":0.5,\"y\":0.2919992881169047},{\"x\":0.625,\"y\":0.38487832167115554},{\"x\":0.75,\"y\":0.48201561388097913},{\"x\":0.875,\"y\":0.577233465332676},{\"x\":1,\"y\":0.6655641443895979},{\"x\":1.125,\"y\":0.7435791348238041},{\"x\":1.25,\"y\":0.809444193499002},{\"x\":1.375,\"y\":0.862747801403714},{\"x\":1.5,\"y\":0.9041825231255779},{\"x\":1.625,\"y\":0.9351666520929472},{\"x\":1.75,\"y\":0.9574812523782191},{\"x\":1.875,\"y\":0.9729734396489466},{\"x\":2,\"y\":0.9833494191920599},{\"x\":2.125,\"y\":0.9900574840812683},{\"x\":2.25,\"y\":0.9942457132477402},{\"x\":2.375,\"y\":0.9967721376752341},{\"x\":2.5,\"y\":0.9982450416943385},{\"x\":2.625,\"y\":0.9990752019603503},{\"x\":2.75,\"y\":0.9995276593798592},{\"x\":2.875,\"y\":0.999766174437454},{\"x\":3,\"y\":0.9998878092690121}],\"xLabel\":\"Distance\",\"yLabel\":\"Variance\"},\"metrics\":[{\"label\":\"Variance\",\"value\":\"1\"},{\"label\":\"Distance\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0972.recall",
+      "text": "A unit-variance RBF toy GP has one noisy observation. At Distance 1, Length 1, noise variance 0.1, what posterior latent variance results? Answer 0.666.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0972/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #972. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A unit-variance RBF toy GP has one noisy observation. At Distance 1, Length 1, noise variance 0.1, what posterior latent variance results?",
+    "options": [
+      "0.399",
+      "0.666",
+      "0.932"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Variance 0.666 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0972",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-972"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 972,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **972. Uncertainty maps** \\[Slider\\]: kriging maps both the estimate and where it's unreliable, far from sensors.",
+    "modelBoundary": "the one-observation Gaussian-process posterior variance",
+    "recallInputs": [
+      1,
+      1,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

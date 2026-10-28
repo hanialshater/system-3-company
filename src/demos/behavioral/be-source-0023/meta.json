@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0023",
+  "title": "A smaller later estimate",
+  "hook": "Two stated cases: explore how evidence weights affect an apparent replication gap.",
+  "domain": "behavioral",
+  "concept": "be-source-0023",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How how evidence weights affect an apparent replication gap affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare how evidence weights affect an apparent replication gap in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0023.predict",
+      "text": "A toy pooled estimate gives 0.8 weight 1 and another estimate 0.1 weight 1. What is the weighted mean?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.reveal.0",
+      "text": "The retained results are Weight=1; Mean=0.45 and Weight=10; Mean=0.736.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.reveal.1",
+      "text": "A pooled result depends on both estimates and their weights. A larger headline alone is not stronger evidence. This comparison isolates how evidence weights affect an apparent replication gap.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.case.0.witness",
+      "text": "Weight=1; Mean=0.45",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.8],[\"Weight\",1],[\"Other\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.45}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.45\"},{\"label\":\"Weight\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.case.1.witness",
+      "text": "Weight=10; Mean=0.736",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",0.8],[\"Weight\",10],[\"Other\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.7363636363636363}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.736\"},{\"label\":\"Weight\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0023.recall",
+      "text": "A toy pooled estimate gives 0.9 weight 1 and another estimate 0.1 weight 1. What is the weighted mean? Answer 0.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0023/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pooled estimate gives 0.9 weight 1 and another estimate 0.1 weight 1. What is the weighted mean?",
+    "options": [
+      "0.5",
+      "0.3",
+      "0.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 0.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0023",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-23"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 23,
+    "sourceSection": "2. Anchoring",
+    "sourceEntryOriginal": "- **23.** Students with high final digits in their Social Security number bid 57–107% more for wine and chocolate (Ariely, Loewenstein & Prelec, 2003). **\\[contested\\]** Later replications found much smaller effects (Maniadis, Tufano & List, 2014).",
+    "modelBoundary": "how evidence weights affect an apparent replication gap",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.9,
+      1,
+      0.1
+    ]
+  }
+}

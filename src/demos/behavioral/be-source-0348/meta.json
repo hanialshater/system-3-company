@@ -1,0 +1,151 @@
+{
+  "slug": "be-source-0348",
+  "title": "Volume after a tax",
+  "hook": "Two stated cases: explore the baseline and units behind a volume change.",
+  "domain": "behavioral",
+  "concept": "be-source-0348",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the baseline and units behind a volume change affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Final, regardless of the stated inputs.",
+  "objective": "Compare the baseline and units behind a volume change in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0348.predict",
+      "text": "A toy baseline is 1000; it changes by -38 percent. What is the final level?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.reveal.0",
+      "text": "The retained results are Baseline=1,000; Final=620 and Baseline=2,000; Final=1,240.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.reveal.1",
+      "text": "A relative percentage uses the baseline as denominator. It is different from the same number of percentage points. This comparison isolates the baseline and units behind a volume change.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.case.0.witness",
+      "text": "Baseline=1,000; Final=620",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",1000],[\"Percent\",-38]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":620}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"620\"},{\"label\":\"Baseline\",\"value\":\"1,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.case.1.witness",
+      "text": "Baseline=2,000; Final=1,240",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Baseline\",2000],[\"Percent\",-38]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Final\",\"value\":1240}]},\"metrics\":[{\"label\":\"Final\",\"value\":\"1,240\"},{\"label\":\"Baseline\",\"value\":\"2,000\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0348.recall",
+      "text": "A toy baseline is 1,001; it changes by -38 percent. What is the final level? Answer 620.62.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0348/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #348. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy baseline is 1,001; it changes by -38 percent. What is the final level?",
+    "options": [
+      "372.372",
+      "620.62",
+      "868.868"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Final 620.62 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0348",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-348"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 348,
+    "sourceSection": "18. Health behavior",
+    "sourceEntryOriginal": "- **348.** Philadelphia's soda tax cut taxed-drink volume about 38% after accounting for shopping outside the city (Roberto et al., 2019).",
+    "modelBoundary": "the baseline and units behind a volume change",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      -38
+    ]
+  }
+}

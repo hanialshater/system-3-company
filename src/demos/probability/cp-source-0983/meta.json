@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0983",
+  "title": "Average option payoffs after the kink",
+  "hook": "Two stated cases: explore the payoff convexity in a two-outcome pricing benchmark.",
+  "domain": "probability",
+  "concept": "cp-source-0983",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the payoff convexity in a two-outcome pricing benchmark affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Price, regardless of the stated inputs.",
+  "objective": "Compare the payoff convexity in a two-outcome pricing benchmark in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0983.predict",
+      "text": "A toy terminal asset is High 120 with risk-neutral probability P 0.5, otherwise Low 80; call Strike 100, discount factor 1. What expected discounted payoff results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.reveal.0",
+      "text": "The retained results are Low=80 High=120; Price=10 and Low=60 High=140; Price=20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.reveal.1",
+      "text": "Nonlinear payoffs must be computed before averaging. This exact two-outcome calculation is a benchmark for simulation. This comparison isolates the payoff convexity in a two-outcome pricing benchmark.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.case.0.witness",
+      "text": "Low=80 High=120; Price=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Low\",80],[\"High\",120],[\"Strike\",100],[\"P\",0.5],[\"Discount\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Price\",\"value\":10}]},\"metrics\":[{\"label\":\"Price\",\"value\":\"10\"},{\"label\":\"Low\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.case.1.witness",
+      "text": "Low=60 High=140; Price=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Low\",60],[\"High\",140],[\"Strike\",100],[\"P\",0.5],[\"Discount\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Price\",\"value\":20}]},\"metrics\":[{\"label\":\"Price\",\"value\":\"20\"},{\"label\":\"Low\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0983.recall",
+      "text": "A toy terminal asset is High 121 with risk-neutral probability P 0.5, otherwise Low 80; call Strike 100, discount factor 1. What expected discounted payoff results? Answer 10.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0983/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #983. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy terminal asset is High 121 with risk-neutral probability P 0.5, otherwise Low 80; call Strike 100, discount factor 1. What expected discounted payoff results?",
+    "options": [
+      "10.5",
+      "6.3",
+      "14.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Price 10.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0983",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-983"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 983,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **983. Price an option by simulation** \\[Slider\\]: simulate thousands of price paths and average the payoffs.",
+    "modelBoundary": "the payoff convexity in a two-outcome pricing benchmark",
+    "recallInputs": [
+      80,
+      121,
+      100,
+      0.5,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

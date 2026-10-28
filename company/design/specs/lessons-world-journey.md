@@ -1,0 +1,51 @@
+# Lessons World: illustrated-adventure implementation direction
+
+owner: design-lead
+date: 2026-10-27
+status: manager direction for the founder-approved revision; not an artifact or launch verdict
+source: company/decisions/2026-10-27-founder-lessons-world-journey.md
+
+## Decision
+
+Agree with the approved journey plan. **Lessons has its own illustrated-adventure identity, independent of S3 City.** This supersedes Number Island's quiet paper-atlas styling and region-switched phone composition. Reuse the prototype's real lesson references and accessible control approach, not its static desktop-first layout. No additional mockup/founder pre-code approval loop is needed: build this direction, independently review the result, and show actual phone/desktop screenshots for founder approval before deployment.
+
+**Current dependency:** founder's later gates-first instruction pauses all further feature-source implementation until the required checks are green. This is a document-only direction, not permission to start a builder or waive a failing check. Head-of-product owns the personalization lane while VP Personalization is parked under F-52. Chief-of-staff tracks the $60 target and mandatory $120 pause against actual reported spend; do not invent cost measurements.
+
+## Visual identity and reusable SVG kit
+
+- Use page-local roles: deep ink `#102A43`, light surface `#FFFDF5`, sky `#BEEBFF`, sea `#086F9B`, teal `#16B7A4`, lime `#D9F56A`, coral `#FF8B76`. These are explicit art candidates, not a measured accessibility approval. Use deep ink on light/lime surfaces; keep normal text on solid light panels. Independently measure final pairs before release. Set foreground/background explicitly under both system color preferences; do not change feed/global tokens.
+- Build an original **Lessons scene library**, not a City asset dependency: `Terrain`, `Shore`, `Trail`, `Bridge`, `Vegetation`, `Landmark`, `RecallFlag` and decorative accents, assembled by authored region manifests. Reuse shape vocabulary, material edges and shadows across scenes; vary silhouette, elevation, landmark and vegetation so repetition is not obvious. SVG definitions must have collision-safe IDs when multiple scenes mount.
+- Style: rounded layered land shelves, saturated clear water, warm winding trails, bold roof/rock silhouettes, restrained soft offset shadows and small clustered details. Use depth and scale changes rather than a flat sticker collage. No copied game assets, coins, rewards, anthropomorphic guides or City branding. Decorative SVG remains `aria-hidden`; controls and meaningful labels are semantic HTML.
+- First island: Number Village, Fraction Harbour, Scaling Mountain, with the existing 3/4/5 stop grouping. Give each region an authored scene, a distinctive landmark and a short topic hint. Source question titles from lesson data; new topic wording goes through the category/learning owners. No teaching diagrams or mathematical claims hidden in scenery.
+
+## Continuous world composition
+
+- Phone is primary: an edge-to-edge vertical landscape under compact app chrome, not a large website title above a small map. Header includes World/Feed navigation, island name, actual understood count and due-revisit affordance. Keep Map/List one action away.
+- Show all three regions in one continuous scrolling journey; remove the phone-only region switch as the means of reaching later stops. A compact region index may jump to an anchored region without replacing other regions. Do not trap ordinary vertical swipes or force scroll-snap on the map; snapping belongs to the lesson player.
+- Each region owns a stable ID, scenic height, ordered stop anchors, label-safe rectangles, and trail entry/exit anchors. Use a 400-unit logical scene width; connect authored trail endpoints at region seams. Reserve empty space around controls and labels in the composition rather than laying plaques over the finished drawing. Use approximately 480–640 CSS px per initial region at 390 px width; expand height if five stops or long labels need more room. These are composition targets, never clipping caps.
+- Native stop hit areas remain at least **44×44 CSS px** at 320 px width; do not put controls inside a downscaled SVG/control layer. Separate neighboring hit areas and full focus rings; increase vertical spacing instead of shrinking buttons. Keep region names on clear land and at least 16 px from the trail, coast edge and node rings at the narrowest supported width. Long titles belong in the sheet or tooltip, not tiny map plaques.
+- Below the summit, connect into the next *authored* island when available. Lazy-load upcoming scenes without recycling focused controls or changing the height of already viewed terrain. Until more content exists, end with a calm truthful end-of-world treatment and revisit/feed actions; do not loop or invent islands. The manifest must accommodate 4–5 regions and 20–30 stops without new UI assumptions.
+- Desktop retains the continuous journey in a centered landscape column (maximum about 820 px) with a sticky detail rail. It must not return to a tiny all-island postcard that hides the vertical journey. Wider margins can contain light scenery; primary controls preserve reading order and legibility.
+
+## Stop, recommendation and revisit language
+
+- Stop state must use the reviewed owned-evidence projection: **Not started** = hollow light node; **Explored** = teal inner mark with a distinct dot symbol; **Understood** = lime inner mark with a check symbol. Keep dark outlines/numerals. Text labels and accessible names carry state independently of color. A selected stop receives a separate outer ring; selection never looks like completion.
+- A small distinct clock/loop icon plus **Ready to revisit** identifies due work without replacing the evidence state. Do not use flames, streak counts, red shame marks or evidence that fades merely because time passes. Unknown ownership/storage shows a neutral pending/unavailable state, not zero understood or twelve new lessons.
+- The suggested next stop has a **Next** label and static contrasting halo, plus at most three slow pulse cycles on entry. Disable the pulse under reduced motion and stop it after interaction. Highlight the suggested route using a dotted accent; node evidence alone shows actual progress, so skipped nodes never look completed. Explicit destinations override the default suggestion. Do not auto-pan or change selection while the learner is exploring.
+- On hover or keyboard focus, expose the real question as a readable tooltip; on tap, update the sheet with that question. No hover-only action or informational content. Remove Published badges and the earlier internal map/composition explanations. Unpublished-content disclosure, if needed, remains Product's responsibility and is not replaced with a fake learning state.
+
+## Mobile sheet and player round trip
+
+- Use a nonmodal bottom sheet: collapsed shows actual question, evidence/revisit cue, duration and **Open lesson**; explicit expand/collapse controls expose more detail. There is no backdrop or focus trap. Expanded height is bounded by the viewport with a scrollable body, but title/action must remain available at 200% text size. Give the map bottom clearance equal to the actual sheet height plus safe-area inset so no last stop or flag is hidden. Do not make the whole sheet a drag-only control.
+- Preserve the map as the learner scrolls; selecting a stop changes its detail, not its evidence. Tapping Open enters the existing TikTok-style lesson experience at the selected stop, then swipes through that island's authored order. The ordinary feed stays ordinary. **Back to world** returns to island, stop and prior scroll position without restarting at the top.
+- List presents the same real stops, states, questions, durations, due cues and opening behavior, grouped by region. It is a complete accessible alternative. Empty or unavailable data retains a usable feed/list route; scenic assets failing must never remove lesson navigation.
+
+## Recall flag
+
+The summit flag is an explicit **Recall check** control, never an access gate. Its sheet offers practice or the eligible delayed check using the reviewed eligibility rules. The 2–3 minute flow is capped at six existing recall questions even for future 4–5-region islands, with every region represented; learning owners define the deterministic allocation. Show factual question progress, not a new activity score. Immediate practice is labelled as practice and earns neither understood credit nor a seal. After an eligible >=5/6 result, show an earned recall seal on that island and suggest the next available island; do not mark all twelve lessons understood, imply permanent mastery or lock anything. Before eligibility, explain that the seal is for remembering later, without a streak/countdown pressure mechanic. Use **Seal attempt opens tomorrow** only when the computed eligibility date is the next date in the learner's current locale/timezone; otherwise show an accurate localized date and time. Learning/model owners under head-of-product supply evidence/eligibility truth; Design only presents it.
+
+## Implementation and independent acceptance
+
+After the required gates are green, platform-engineer implements the SVG kit, authored scene assembly, responsive map/list/sheet and visual states using the approved engineering/data interfaces. Existing learner-model/feed owners, routed through head-of-product, implement evidence, recommendation, assessment and player-session behavior. No new role or specialist approval loop is introduced by this direction.
+
+Evaluation-steward routes independent QA/accessibility on the actual pinned artifact: 320 px and 390×844 phone, desktop, keyboard, 200% text, reduced motion, all stop targets, label/path/coast separation, sheet clearance, long titles, region seams, truthful loading/end states, recommendation interruption and complete player round trips. Reviewers see the artifact before builder accounts; Design does not approve its own work. Show actual revised screenshots after these findings are addressed. Existing release gates and founder screenshot approval remain prerequisites to deployment.

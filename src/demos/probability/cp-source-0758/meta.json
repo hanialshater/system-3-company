@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0758",
+  "title": "A catastrophe payout has layers",
+  "hook": "Two stated cases: explore the attachment point of a bounded insurance layer.",
+  "domain": "probability",
+  "concept": "cp-source-0758",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the attachment point of a bounded insurance layer affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Payout, regardless of the stated inputs.",
+  "objective": "Compare the attachment point of a bounded insurance layer in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0758.predict",
+      "text": "A toy loss is 100. A layer attaches at 50 and pays at most Limit 40. What payout results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.reveal.0",
+      "text": "The retained results are Attachment=50; Payout=40 and Attachment=80; Payout=20.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.reveal.1",
+      "text": "Layering separates which part of a loss is covered. Pricing requires the loss distribution and other contract assumptions. This comparison isolates the attachment point of a bounded insurance layer.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.case.0.witness",
+      "text": "Attachment=50; Payout=40",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",100],[\"Attachment\",50],[\"Limit\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":8.333333333333334,\"y\":0},{\"x\":16.666666666666668,\"y\":0},{\"x\":25,\"y\":0},{\"x\":33.333333333333336,\"y\":0},{\"x\":41.666666666666664,\"y\":0},{\"x\":50,\"y\":0},{\"x\":58.333333333333336,\"y\":8.333333333333336},{\"x\":66.66666666666667,\"y\":16.66666666666667},{\"x\":75,\"y\":25},{\"x\":83.33333333333333,\"y\":33.33333333333333},{\"x\":91.66666666666667,\"y\":40},{\"x\":100,\"y\":40},{\"x\":108.33333333333333,\"y\":40},{\"x\":116.66666666666667,\"y\":40},{\"x\":125,\"y\":40},{\"x\":133.33333333333334,\"y\":40},{\"x\":141.66666666666666,\"y\":40},{\"x\":150,\"y\":40},{\"x\":158.33333333333334,\"y\":40},{\"x\":166.66666666666666,\"y\":40},{\"x\":175,\"y\":40},{\"x\":183.33333333333334,\"y\":40},{\"x\":191.66666666666666,\"y\":40},{\"x\":200,\"y\":40}],\"xLabel\":\"Loss\",\"yLabel\":\"Payout\"},\"metrics\":[{\"label\":\"Payout\",\"value\":\"40\"},{\"label\":\"Attachment\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.case.1.witness",
+      "text": "Attachment=80; Payout=20",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",100],[\"Attachment\",80],[\"Limit\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0},{\"x\":8.333333333333334,\"y\":0},{\"x\":16.666666666666668,\"y\":0},{\"x\":25,\"y\":0},{\"x\":33.333333333333336,\"y\":0},{\"x\":41.666666666666664,\"y\":0},{\"x\":50,\"y\":0},{\"x\":58.333333333333336,\"y\":0},{\"x\":66.66666666666667,\"y\":0},{\"x\":75,\"y\":0},{\"x\":83.33333333333333,\"y\":3.3333333333333286},{\"x\":91.66666666666667,\"y\":11.666666666666671},{\"x\":100,\"y\":20},{\"x\":108.33333333333333,\"y\":28.33333333333333},{\"x\":116.66666666666667,\"y\":36.66666666666667},{\"x\":125,\"y\":40},{\"x\":133.33333333333334,\"y\":40},{\"x\":141.66666666666666,\"y\":40},{\"x\":150,\"y\":40},{\"x\":158.33333333333334,\"y\":40},{\"x\":166.66666666666666,\"y\":40},{\"x\":175,\"y\":40},{\"x\":183.33333333333334,\"y\":40},{\"x\":191.66666666666666,\"y\":40},{\"x\":200,\"y\":40}],\"xLabel\":\"Loss\",\"yLabel\":\"Payout\"},\"metrics\":[{\"label\":\"Payout\",\"value\":\"20\"},{\"label\":\"Attachment\",\"value\":\"80\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0758.recall",
+      "text": "A toy loss is 100. A layer attaches at 50 and pays at most Limit 41. What payout results? Answer 41.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0758/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #758. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy loss is 100. A layer attaches at 50 and pays at most Limit 41. What payout results?",
+    "options": [
+      "41",
+      "24.6",
+      "57.4"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Payout 41 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0758",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-758"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 758,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **758. Reinsurance layers** \\[Slider\\]: slice a catastrophe loss distribution into layers and price each one.",
+    "modelBoundary": "the attachment point of a bounded insurance layer",
+    "recallInputs": [
+      100,
+      50,
+      41
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

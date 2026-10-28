@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0646", "title": "More observation noise softens the fit", "op": "gpkernel", "labels": ["Distance", "Length", "Noise", "Observation", "Kernel"], "outputs": ["Mean", "Variance"], "a": [0.0, 1.0, 0.1, 2.0, 0.0], "b": [0.0, 1.0, 4.0, 2.0, 0.0], "question": "A unit-variance zero-mean toy GP has one Observation 2, noise variance 0.1, Distance 0, Length 1. Kernel 0: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results?", "questionTemplate": "A unit-variance zero-mean toy GP has one Observation {Observation}, noise variance {Noise}, Distance {Distance}, Length {Length}. Kernel {Kernel}: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results?", "explain": "The kernel supplies similarity and posterior uncertainty. This one-observation conditional calculation does not fit kernel parameters or represent a full dataset.", "lens": "the noise term of a one-point GP update", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0013",
+  "title": "A race between overlapping patterns",
+  "hook": "Two stated cases: explore the suffix state in first-pattern arrival.",
+  "domain": "probability",
+  "concept": "cp-source-0013",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the suffix state in first-pattern arrival affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines BFirst, regardless of the stated inputs.",
+  "objective": "Compare the suffix state in first-pattern arrival in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0013.predict",
+      "text": "Race two 3-flip patterns on a fair coin. A is code 0, B code 4, in binary with H=0,T=1. What probability does B finish first, iterated through 300 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.reveal.0",
+      "text": "The retained results are A=0 B=4; BFirst=0.875 and A=1 B=5; BFirst=0.375.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.reveal.1",
+      "text": "Pattern overlaps determine first-arrival probabilities. The finite-state computation retains only suffixes that can begin either target. This comparison isolates the suffix state in first-pattern arrival.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.case.0.witness",
+      "text": "A=0 B=4; BFirst=0.875",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0],[\"B\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BFirst\",\"value\":0.875}]},\"metrics\":[{\"label\":\"BFirst\",\"value\":\"0.875\"},{\"label\":\"A\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.case.1.witness",
+      "text": "A=1 B=5; BFirst=0.375",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",1],[\"B\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"BFirst\",\"value\":0.375}]},\"metrics\":[{\"label\":\"BFirst\",\"value\":\"0.375\"},{\"label\":\"A\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0013.recall",
+      "text": "Race two 3-flip patterns on a fair coin. A is code 1, B code 4, in binary with H=0,T=1. What probability does B finish first, iterated through 300 steps? Answer 0.75.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0013/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #13. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Race two 3-flip patterns on a fair coin. A is code 1, B code 4, in binary with H=0,T=1. What probability does B finish first, iterated through 300 steps?",
+    "options": [
+      "0.45",
+      "1.05",
+      "0.75"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives BFirst 0.75 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0013",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-13"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 13,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **13. Penney's game** \\[Predict\\]: pick a 3-flip pattern; the app always picks one that beats it, up to 7:1.",
+    "modelBoundary": "the suffix state in first-pattern arrival",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1,
+      4
+    ]
+  }
+}

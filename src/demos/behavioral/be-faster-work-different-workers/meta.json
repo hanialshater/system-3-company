@@ -1,0 +1,103 @@
+{
+  "slug": "be-faster-work-different-workers",
+  "title": "Faster work, different workers",
+  "hook": "If output rises after piece pay, how much came from who joined?",
+  "domain": "behavioral",
+  "concept": "be-faster-work-different-workers",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Decompose an observed productivity increase into worker effort and workforce selection."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Decompose an observed productivity increase into worker effort and workforce selection.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-faster-work-different-workers.inputs",
+      "text": "A toy firm’s output index rises from 100 to 144, with 22 units from within-worker change and 22 from workforce selection. What share of the 44-unit gain is selection? Toy inputs A=[100, 22, 22]; B=[100, 44, 0].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-faster-work-different-workers.trace",
+      "text": "Computed results: [[144, 22, 50], [144, 44, 0]]. Labels: Final output, Within gain, Selection share %.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-faster-work-different-workers.reveal",
+      "text": "The total improvement can combine changed behavior by existing workers and a changed workforce. The comparison assigns the same total gain entirely to within-worker change. An aggregate percentage alone cannot identify that decomposition.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-faster-work-different-workers.recall",
+      "text": "A new toy case uses Baseline output=100, Within-worker gain=44, Selection gain=0. What is Selection share %? Answer: 0.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Baseline output=100, Within-worker gain=44, Selection gain=0. What is Selection share %?",
+    "options": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 0. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-faster-work-different-workers",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-309"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 309,
+    "section": "16. Incentives & motivation",
+    "text": "Switching Safelite windshield installers to piece rates raised productivity 44%, about half from attracting faster workers (Lazear, 2000).",
+    "pointer": "500-behavioral-economics-findings.md entry 309: Lazear, 2000",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "bk-rewards-metric-gaming",
+  "meaningfulDifference": "Decompose an observed productivity increase into worker effort and workforce selection."
+}

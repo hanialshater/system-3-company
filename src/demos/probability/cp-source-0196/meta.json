@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0196",
+  "title": "Count the keystrokes actually saved",
+  "hook": "Two stated cases: explore the metric boundary for an autocomplete saving.",
+  "domain": "probability",
+  "concept": "cp-source-0196",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the metric boundary for an autocomplete saving affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Saved, regardless of the stated inputs.",
+  "objective": "Compare the metric boundary for an autocomplete saving in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0196.predict",
+      "text": "A toy completed phrase has 100 characters; prediction required typing 60. How many keystrokes were saved, ignoring selection actions?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.reveal.0",
+      "text": "The retained results are Typed=60; Saved=40 and Typed=90; Saved=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.reveal.1",
+      "text": "A saving metric needs its accounting boundary. Selection effort, errors and time can change the practical value of autocomplete. This comparison isolates the metric boundary for an autocomplete saving.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.case.0.witness",
+      "text": "Typed=60; Saved=40",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Characters\",100],[\"Typed\",60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Saved\",\"value\":40}]},\"metrics\":[{\"label\":\"Saved\",\"value\":\"40\"},{\"label\":\"Typed\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.case.1.witness",
+      "text": "Typed=90; Saved=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Characters\",100],[\"Typed\",90]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Saved\",\"value\":10}]},\"metrics\":[{\"label\":\"Saved\",\"value\":\"10\"},{\"label\":\"Typed\",\"value\":\"90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0196.recall",
+      "text": "A toy completed phrase has 101 characters; prediction required typing 60. How many keystrokes were saved, ignoring selection actions? Answer 41.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0196/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #196. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy completed phrase has 101 characters; prediction required typing 60. How many keystrokes were saved, ignoring selection actions?",
+    "options": [
+      "24.6",
+      "57.4",
+      "41"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Saved 41 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0196",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-196"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 196,
+    "sourceSection": "10. Probabilistic models in ML",
+    "sourceEntryOriginal": "- **196. Keyboard autocomplete** \\[Measure\\]: type a phrase and see how many keystrokes prediction saved you.",
+    "modelBoundary": "the metric boundary for an autocomplete saving",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      60
+    ]
+  }
+}

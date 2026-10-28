@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0377",
+  "title": "A colder thermostat default",
+  "hook": "Two stated cases: explore the assumed pass-through from default to selected setting.",
+  "domain": "behavioral",
+  "concept": "be-source-0377",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed pass-through from default to selected setting affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare the assumed pass-through from default to selected setting in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0377.predict",
+      "text": "A toy belief starts at 22, receives estimate 21, and moves fraction 0.38 toward it. What belief results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.reveal.0",
+      "text": "The retained results are Weight=0.38; Posterior=21.62 and Weight=1; Posterior=21.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.reveal.1",
+      "text": "Different update weights can create asymmetric learning from equally informative news. The toy rule is an assumption, not a psychological measurement. This comparison isolates the assumed pass-through from default to selected setting.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.case.0.witness",
+      "text": "Weight=0.38; Posterior=21.62",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",22],[\"News\",21],[\"Weight\",0.38]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":21.62}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"21.62\"},{\"label\":\"Weight\",\"value\":\"0.38\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.case.1.witness",
+      "text": "Weight=1; Posterior=21",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",22],[\"News\",21],[\"Weight\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":21}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"21\"},{\"label\":\"Weight\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0377.recall",
+      "text": "A toy belief starts at 23, receives estimate 21, and moves fraction 0.38 toward it. What belief results? Answer 22.24.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0377/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #377. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy belief starts at 23, receives estimate 21, and moves fraction 0.38 toward it. What belief results?",
+    "options": [
+      "22.24",
+      "13.344",
+      "31.136"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Posterior 22.24 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0377",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-377"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 377,
+    "sourceSection": "19. Public policy nudges: tax, energy, voting",
+    "sourceEntryOriginal": "- **377.** Lowering office thermostats' default by 1°C lowered average settings by 0.38°C (Brown, Johnstone, Haščič, Vong & Barascud, 2013).",
+    "modelBoundary": "the assumed pass-through from default to selected setting",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      23,
+      21,
+      0.38
+    ]
+  }
+}

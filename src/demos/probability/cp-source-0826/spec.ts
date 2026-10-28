@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0826", "title": "Evidence grows as likelihood wealth", "op": "betwealth", "labels": ["Heads", "Trials", "Null", "Alt"], "outputs": ["Wealth"], "a": [12.0, 20.0, 0.5, 0.7], "b": [16.0, 20.0, 0.5, 0.7], "question": "Toy Bernoulli data have Heads 12 in Trials 20. Compare fixed Alt 0.7 with Null 0.5. What likelihood-ratio wealth results?", "questionTemplate": "Toy Bernoulli data have Heads {Heads} in Trials {Trials}. Compare fixed Alt {Alt} with Null {Null}. What likelihood-ratio wealth results?", "explain": "Under the stated independent null and fixed alternative this ratio is a nonnegative martingale. A valid sequential decision needs a specified threshold.", "lens": "the fixed-alternative likelihood ratio under a Bernoulli null", "kind": "bars", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

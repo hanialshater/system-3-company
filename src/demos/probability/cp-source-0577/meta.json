@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0577",
+  "title": "A toy pair of paths can meet",
+  "hook": "Two stated cases: explore the independent meeting-chance analogy to card-path coalescence.",
+  "domain": "probability",
+  "concept": "cp-source-0577",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the independent meeting-chance analogy to card-path coalescence affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines AtLeastOne, regardless of the stated inputs.",
+  "objective": "Compare the independent meeting-chance analogy to card-path coalescence in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0577.predict",
+      "text": "An event independently occurs with probability 0.1 on each of 10 trials. What is the probability of at least one occurrence?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.reveal.0",
+      "text": "The retained results are Trials=10; AtLeastOne=0.651 and Trials=30; AtLeastOne=0.958.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.reveal.1",
+      "text": "The complement is no occurrence on every trial. Independence is required for the product used here. This comparison isolates the independent meeting-chance analogy to card-path coalescence.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.case.0.witness",
+      "text": "Trials=10; AtLeastOne=0.651",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.1],[\"Trials\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.6513215599}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.651\"},{\"label\":\"Trials\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.case.1.witness",
+      "text": "Trials=30; AtLeastOne=0.958",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.1],[\"Trials\",30]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"AtLeastOne\",\"value\":0.9576088417247838}]},\"metrics\":[{\"label\":\"AtLeastOne\",\"value\":\"0.958\"},{\"label\":\"Trials\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0577.recall",
+      "text": "An event independently occurs with probability 0.08 on each of 10 trials. What is the probability of at least one occurrence? Answer 0.566.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0577/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #577. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An event independently occurs with probability 0.08 on each of 10 trials. What is the probability of at least one occurrence?",
+    "options": [
+      "0.339",
+      "0.792",
+      "0.566"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives AtLeastOne 0.566 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0577",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-577"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 577,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **577. The Kruskal count** \\[Gotcha\\]: two people following card-count paths almost always land on the same card.",
+    "modelBoundary": "the independent meeting-chance analogy to card-path coalescence",
+    "recallInputs": [
+      0.08000000000000002,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

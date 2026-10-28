@@ -1,0 +1,161 @@
+{
+  "slug": "p100-fake-treatment-dates",
+  "title": "Would a fake policy date work?",
+  "hook": "Place a pretend policy before the real one. What should its contrast show?",
+  "domain": "probability",
+  "concept": "p100-fake-treatment-dates",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "rerun diff-in-diff with placebo dates; real designs show no fake effects."
+    ]
+  },
+  "misconception": "Treating fake treatment dates as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "rerun diff-in-diff with placebo dates; real designs show no fake effects.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-fake-treatment-dates.predict",
+      "text": "Before a true policy, control outcomes are 10,11,12 and treated are 12,13,14. Put a placebo date between the first two points. What fake DiD appears in this pre-policy window?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.reveal.0",
+      "text": "The pre-policy placebo retains DiD 0; the actual policy date retains 5. The pre-policy gap is stable at 2, then the stipulated post-policy gap becomes 7.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.reveal.1",
+      "text": "A nonzero pre-policy placebo would challenge this design. Passing this check only removes one visible contradiction; it does not prove parallel untreated trends after policy or eliminate an unobserved policy-time shock.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.recall",
+      "text": "A design passes a pre-period placebo test. Does that prove its post-period effect is causal? Passing a falsification test supports a design but does not establish every identification assumption.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.scenario.0.summary",
+      "text": "Placebo DiD 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"C\",\"T\"],\"rows\":[[10,12],[11,13],[12,14]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Pre-policy placebo\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":2},{\"label\":\"1\",\"value\":2},{\"label\":\"2\",\"value\":2}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.scenario.1.summary",
+      "text": "Policy DiD 5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Pre gap\",\"Post gap\"],\"rows\":[[2,7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · True policy date\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":2},{\"label\":\"1\",\"value\":2},{\"label\":\"2\",\"value\":2},{\"label\":\"3\",\"value\":7},{\"label\":\"4\",\"value\":7}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-fake-treatment-dates/spec.ts; exact finite illustration specified in manager numericCase: Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-fake-treatment-dates.hook",
+      "text": "Place a pretend policy before the real one. What should its contrast show?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-fake-treatment-dates/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A design passes a pre-period placebo test. Does that prove its post-period effect is causal?",
+    "options": [
+      "No",
+      "Yes, with no other assumptions",
+      "Yes, if the graph looks smooth"
+    ],
+    "answer": 0,
+    "why": "Passing a falsification test supports a design but does not establish every identification assumption."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-fake-treatment-dates",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "placebo"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 400,
+    "sourceSection": "20. Natural experiments: IV, RDD, diff-in-diff, synthetic control",
+    "sourceTitle": "Fake treatment dates",
+    "sourceText": "rerun diff-in-diff with placebo dates; real designs show no fake effects.",
+    "sourceEntryOriginal": "- **400. Fake treatment dates** \\[Predict\\]: rerun diff-in-diff with placebo dates; real designs show no fake effects.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/rank-the-pairs",
+    "difference": "New teaching boundary: Fake treatment dates. Existing boundary: The learner can say that AUC is the share of spam-and-real pairs the scorer orders correctly (ties counting half), and that this needs no threshold.",
+    "numericCase": "Control series[10,11,12,13,14], treated[12,13,14,20,21]. True post starts index3; fixed trend difference2 pre,7post. Fake date index1 sees no shift before true policy; teach placebo falsification cannot prove absence of confounding."
+  },
+  "modelAudit": {
+    "a": 0,
+    "b": 5
+  }
+}

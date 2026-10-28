@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0012",
+  "title": "Two ways to randomize a chord",
+  "hook": "Two stated cases: explore the midpoint sampling measure.",
+  "domain": "probability",
+  "concept": "cp-source-0012",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the midpoint sampling measure affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Longer, regardless of the stated inputs.",
+  "objective": "Compare the midpoint sampling measure in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0012.predict",
+      "text": "A toy chord has midpoint radius r in a unit disk. It is long when r is below 0.5. Mode 0 uses radius-uniform if 0, area-uniform if 1. What is the long-chord probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.reveal.0",
+      "text": "The retained results are RadiusMode=0; Longer=0.5 and RadiusMode=1; Longer=0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.reveal.1",
+      "text": "A random procedure needs a measure. Radius-uniform and area-uniform midpoint sampling assign different probabilities to the same geometric event. This comparison isolates the midpoint sampling measure.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.case.0.witness",
+      "text": "RadiusMode=0; Longer=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Threshold\",0.5],[\"RadiusMode\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Longer\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Longer\",\"value\":\"0.5\"},{\"label\":\"RadiusMode\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.case.1.witness",
+      "text": "RadiusMode=1; Longer=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Threshold\",0.5],[\"RadiusMode\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Longer\",\"value\":0.25}]},\"metrics\":[{\"label\":\"Longer\",\"value\":\"0.25\"},{\"label\":\"RadiusMode\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0012.recall",
+      "text": "A toy chord has midpoint radius r in a unit disk. It is long when r is below 0.6. Mode 0 uses radius-uniform if 0, area-uniform if 1. What is the long-chord probability? Answer 0.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0012/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #12. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy chord has midpoint radius r in a unit disk. It is long when r is below 0.6. Mode 0 uses radius-uniform if 0, area-uniform if 1. What is the long-chord probability?",
+    "options": [
+      "0.36",
+      "0.6",
+      "0.84"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Longer 0.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0012",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-12"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 12,
+    "sourceSection": "1. Probability paradoxes & puzzles",
+    "sourceEntryOriginal": "- **12. Bertrand's chord** \\[Slider\\]: three ways to draw a \"random\" chord give answers of 1/2, 1/3 and 1/4. \"Random\" needs a definition.",
+    "modelBoundary": "the midpoint sampling measure",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.6,
+      0
+    ]
+  }
+}

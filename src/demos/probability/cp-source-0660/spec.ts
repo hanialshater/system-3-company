@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0660", "title": "Measure where variance is high", "op": "gpvariance", "labels": ["Distance", "Length", "Noise"], "outputs": ["Variance"], "a": [0.0, 1.0, 0.1], "b": [3.0, 1.0, 0.1], "question": "A unit-variance RBF toy GP has one noisy observation. At Distance 0, Length 1, noise variance 0.1, what posterior latent variance results?", "questionTemplate": "A unit-variance RBF toy GP has one noisy observation. At Distance {Distance}, Length {Length}, noise variance {Noise}, what posterior latent variance results?", "explain": "Conditional uncertainty is reduced near the observation. The variance is conditional on the stated kernel and fixed hyperparameters.", "lens": "the conditional variance used in a toy active-learning decision", "kind": "curve", "answerPosition": 0, "plot": [0, 0, 3]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

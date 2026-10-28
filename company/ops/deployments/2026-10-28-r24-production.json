@@ -1,0 +1,53 @@
+{
+  "release": "r24",
+  "status": "READY",
+  "target": "production",
+  "recordedBy": "release-manager, 2026-10-28, from the coordinator's account of the deploy (this session had no Vercel access and made no Vercel call; the deployment facts below are relayed, not re-observed)",
+  "commit": "e7335139454e2a6eadee8b9f0f94074d89bd69f9",
+  "sourceCommit": "0fc13b86a255e5bbdaba1a005e08723643928aaa",
+  "treeIdentical": "e7335139454e is an empty commit whose only parent is 0fc13b86a (git diff 0fc13b86a e7335139454e is empty); it exists only to carry the deploy marker.",
+  "sourceBranch": "codex/all-lessons-inspection",
+  "deploymentId": "dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f",
+  "productionUrl": "https://system-3-company.vercel.app",
+  "previousProduction": {
+    "release": "r23",
+    "commit": "80c847c5527c02e7b1926f8879891ef2d4169486",
+    "deployCommit": "0b8b6f539257c9519f5b5cc1b114f4b779b8e9f0",
+    "deploymentId": "dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz",
+    "deploymentUrl": "https://system-3-company-eoy3ek8zo-hanis-projects-2e2b67f6.vercel.app"
+  },
+  "approval": {
+    "who": "founder",
+    "date": "2026-10-28",
+    "words": ["Deploy", "Deploy to production"],
+    "record": "conversation, 2026-10-28: \"Deploy\" for branch codex/all-lessons-inspection at 0fc13b86a (route /learn/world); after the preview failed, the founder chose \"Deploy to production\". Covers this one production deploy of 0fc13b86a's tree; nothing else."
+  },
+  "attempts": [
+    {
+      "target": "preview",
+      "deploymentId": "dpl_FVtr8bSaPScRKkAq6kBRCG29zFwj",
+      "result": "failed: \"Resource provisioning failed\"",
+      "productionAliasChanged": false
+    },
+    {
+      "target": "production",
+      "deploymentId": "dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f",
+      "result": "READY, aliased to system-3-company.vercel.app"
+    }
+  ],
+  "markerCorrection": "The marker commit's message (e7335139454e) says \"Preview only; the production alias is not changed by this commit.\" That is wrong: the preview failed and the founder then deployed this commit to production, which moved the production alias. A released commit's message is not rewritten; this record is the correction.",
+  "nature": "Inspection release, not a launch. It serves Codex's Lessons World (/learn/world): 3,895 lessons on 162 islands with statuses preserved as committed (720 published, 234 review, 2,941 draft). Most lessons are unchecked drafts; no status was promoted, no claim was verified and no launch review was run for this release.",
+  "productionSmoke": {
+    "http": {"/": 200, "/learn/world": 200, "/catalog": 200},
+    "world": "loads with no page errors on phone and desktop",
+    "by": "the coordinator, relayed; release-manager did not rerun it (no network access to the host from this session)",
+    "notRun": "tests/qa/feed.spec.ts and contract.spec.ts against production; runtime-error scan after READY"
+  },
+  "regressionsAgainstR23": [
+    "Next.js is back to 16.4.0 (package-lock.json at 0fc13b86a: node_modules/next 16.4.0). r23 (80c847c55) moved it to 16.4.3 to clear the critical next advisories on production; that fix lives on main and was never merged into this branch, so r24 reinstates them (R-031).",
+    "flatten-the-cube-to-a-dot, published in r22, is not in 0fc13b86a's tree, so production no longer serves it (published lessons: 721 at r23's source, 720 at r24's).",
+    "main has 452 commits the default branch lacks (merge-base 60eaf60ac, the r21 record); anything else released from main in r22 or r23 is not in r24."
+  ],
+  "defaultBranchSync": "e7335139454e merged into the default branch ccr-4c6c7654-ew9ko1 with a normal merge commit (tree unchanged). The 12 later commits on codex/all-lessons-inspection (f5114cba0..d67b966bd: branching world zoom, Number Island art) are not live and were not merged.",
+  "rollback": "Vercel instant rollback to dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (r23), then a COE. It removes the World and restores Next 16.4.3 and flatten-the-cube-to-a-dot. It needs the founder's approval (no pre-approval covers it; AMD-015 covers only the flag-off withdrawal)."
+}

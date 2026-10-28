@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0219",
+  "title": "A test reduces average uncertainty",
+  "hook": "Two stated cases: explore information averaged over positive and negative results.",
+  "domain": "probability",
+  "concept": "cp-source-0219",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How information averaged over positive and negative results affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Bits, regardless of the stated inputs.",
+  "objective": "Compare information averaged over positive and negative results in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0219.predict",
+      "text": "Toy prevalence is 0.1; sensitivity 0.9, false-positive rate 0.05. What is prior binary entropy minus expected posterior entropy, in bits?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.reveal.0",
+      "text": "The retained results are Sensitivity=0.9 FalsePositive=0.05; Bits=0.266 and Sensitivity=0.6 FalsePositive=0.4; Bits=0.011.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.reveal.1",
+      "text": "Average uncertainty reduction weighs positive and negative results by their frequencies. Information value and decision value are different quantities. This comparison isolates information averaged over positive and negative results.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.case.0.witness",
+      "text": "Sensitivity=0.9 FalsePositive=0.05; Bits=0.266",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.1],[\"Sensitivity\",0.9],[\"FalsePositive\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":0.266336139313601}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"0.266\"},{\"label\":\"Sensitivity\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.case.1.witness",
+      "text": "Sensitivity=0.6 FalsePositive=0.4; Bits=0.011",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.1],[\"Sensitivity\",0.6],[\"FalsePositive\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Bits\",\"value\":0.010503300578984909}]},\"metrics\":[{\"label\":\"Bits\",\"value\":\"0.011\"},{\"label\":\"Sensitivity\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0219.recall",
+      "text": "Toy prevalence is 0.08; sensitivity 0.9, false-positive rate 0.05. What is prior binary entropy minus expected posterior entropy, in bits? Answer 0.223.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0219/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #219. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy prevalence is 0.08; sensitivity 0.9, false-positive rate 0.05. What is prior binary entropy minus expected posterior entropy, in bits?",
+    "options": [
+      "0.123",
+      "0.223",
+      "0.323"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Bits 0.223 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0219",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-219"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 219,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **219. Is the test worth it?** \\[Slider\\]: see how much a test reduces your uncertainty about a diagnosis.",
+    "modelBoundary": "information averaged over positive and negative results",
+    "recallInputs": [
+      0.08000000000000002,
+      0.9,
+      0.05
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

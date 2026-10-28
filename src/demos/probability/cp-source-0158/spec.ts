@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0158", "title": "A popular node attracts the next link", "op": "attachment", "labels": ["Degree", "TotalDegree"], "outputs": ["Probability"], "a": [20.0, 100.0], "b": [5.0, 100.0], "question": "A toy new network link chooses an existing node proportional to degree. A node has Degree 20, total network degree 100. What is its attachment probability?", "questionTemplate": "A toy new network link chooses an existing node proportional to degree. A node has Degree {Degree}, total network degree {TotalDegree}. What is its attachment probability?", "explain": "Preferential attachment weights nodes by existing degree. The one-step probability does not alone specify an entire network-growth process.", "lens": "degree-proportional attachment", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0025",
+  "title": "Uniform shuffles allow repeats",
+  "hook": "Two stated cases: explore adjacent artist repeats under uniform shuffling.",
+  "domain": "probability",
+  "concept": "cp-source-0025",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How adjacent artist repeats under uniform shuffling affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Repeat, regardless of the stated inputs.",
+  "objective": "Compare adjacent artist repeats under uniform shuffling in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0025.predict",
+      "text": "Uniformly shuffle 5 songs by artist A and 5 by artist B. What is the chance the first two songs have the same artist?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.reveal.0",
+      "text": "The retained results are A=5 B=5; Repeat=0.444 and A=9 B=1; Repeat=0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.reveal.1",
+      "text": "Uniform shuffling permits adjacent repeats. Removing repeats imposes a different distribution rather than demonstrating that uniform randomness was defective. This comparison isolates adjacent artist repeats under uniform shuffling.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.case.0.witness",
+      "text": "A=5 B=5; Repeat=0.444",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",5],[\"B\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Repeat\",\"value\":0.4444444444444444}]},\"metrics\":[{\"label\":\"Repeat\",\"value\":\"0.444\"},{\"label\":\"A\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.case.1.witness",
+      "text": "A=9 B=1; Repeat=0.8",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",9],[\"B\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Repeat\",\"value\":0.8}]},\"metrics\":[{\"label\":\"Repeat\",\"value\":\"0.8\"},{\"label\":\"A\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0025.recall",
+      "text": "Uniformly shuffle 6 songs by artist A and 5 by artist B. What is the chance the first two songs have the same artist? Answer 0.455.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0025/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #25. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Uniformly shuffle 6 songs by artist A and 5 by artist B. What is the chance the first two songs have the same artist?",
+    "options": [
+      "0.273",
+      "0.636",
+      "0.455"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Repeat 0.455 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0025",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-25"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 25,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **25. Shuffle feels rigged** \\[Gotcha\\]: truly random playlists repeat artists, which is why music apps make shuffle *less* random.",
+    "modelBoundary": "adjacent artist repeats under uniform shuffling",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      6,
+      5
+    ]
+  }
+}

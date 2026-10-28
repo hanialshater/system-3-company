@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0836",
+  "title": "Count significant simulated replicates",
+  "hook": "Two stated cases: explore an illustrative rejection-count distribution under fixed power.",
+  "domain": "probability",
+  "concept": "cp-source-0836",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How an illustrative rejection-count distribution under fixed power affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare an illustrative rejection-count distribution under fixed power in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0836.predict",
+      "text": "In 10 independent Bernoulli trials with success probability 0.8, what is the probability of exactly 8 successes?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.reveal.0",
+      "text": "The retained results are P=0.8; Probability=0.302 and P=0.5; Probability=0.044.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.reveal.1",
+      "text": "The binomial coefficient counts placements of the successes. A single ordered sequence is only one of those placements. This comparison isolates an illustrative rejection-count distribution under fixed power.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.case.0.witness",
+      "text": "P=0.8; Probability=0.302",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10],[\"P\",0.8],[\"K\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.30198988800000004}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.302\"},{\"label\":\"P\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.case.1.witness",
+      "text": "P=0.5; Probability=0.044",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",10],[\"P\",0.5],[\"K\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.0439453125}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.044\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0836.recall",
+      "text": "In 11 independent Bernoulli trials with success probability 0.8, what is the probability of exactly 8 successes? Answer 0.221.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0836/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #836. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In 11 independent Bernoulli trials with success probability 0.8, what is the probability of exactly 8 successes?",
+    "options": [
+      "0.221",
+      "0.121",
+      "0.321"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 0.221 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0836",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-836"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 836,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceEntryOriginal": "- **836. Power by simulation** \\[Slider\\]: simulate your exact design thousands of times to estimate power.",
+    "modelBoundary": "an illustrative rejection-count distribution under fixed power",
+    "recallInputs": [
+      11,
+      0.8,
+      8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

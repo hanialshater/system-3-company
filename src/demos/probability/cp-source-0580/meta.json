@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0580",
+  "title": "Repair and failure set availability",
+  "hook": "Two stated cases: explore the rates of a two-state continuous-time machine.",
+  "domain": "probability",
+  "concept": "cp-source-0580",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the rates of a two-state continuous-time machine affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Up, regardless of the stated inputs.",
+  "objective": "Compare the rates of a two-state continuous-time machine in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0580.predict",
+      "text": "A toy two-state continuous-time machine has breakdown rate 0.1, repair rate 0.5, initial up probability 1. What is up probability at Time 10?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.reveal.0",
+      "text": "The retained results are Break=0.1; Up=0.834 and Break=0.5; Up=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.reveal.1",
+      "text": "Repair and failure rates jointly determine availability and transient recovery. Independence and constant hazards are explicit model assumptions. This comparison isolates the rates of a two-state continuous-time machine.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.case.0.witness",
+      "text": "Break=0.1; Up=0.834",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Break\",0.1],[\"Repair\",0.5],[\"Start\",1],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Up\",\"value\":0.8337464586961111}]},\"metrics\":[{\"label\":\"Up\",\"value\":\"0.834\"},{\"label\":\"Break\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.case.1.witness",
+      "text": "Break=0.5; Up=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Break\",0.5],[\"Repair\",0.5],[\"Start\",1],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Up\",\"value\":0.5000226999648812}]},\"metrics\":[{\"label\":\"Up\",\"value\":\"0.5\"},{\"label\":\"Break\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0580.recall",
+      "text": "A toy two-state continuous-time machine has breakdown rate 0.2, repair rate 0.5, initial up probability 1. What is up probability at Time 10? Answer 0.715.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0580/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #580. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy two-state continuous-time machine has breakdown rate 0.2, repair rate 0.5, initial up probability 1. What is up probability at Time 10?",
+    "options": [
+      "0.429",
+      "1",
+      "0.715"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Up 0.715 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0580",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-580"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 580,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceEntryOriginal": "- **580. Machine up and down** \\[Slider\\]: a continuous-time chain of breakdowns and repairs; set rates and see availability.",
+    "modelBoundary": "the rates of a two-state continuous-time machine",
+    "recallInputs": [
+      0.2,
+      0.5,
+      1,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

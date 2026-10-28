@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0612",
+  "title": "Attraction and repulsion in one step",
+  "hook": "Two stated cases: explore the two-particle SVGD field for a standard-normal target.",
+  "domain": "probability",
+  "concept": "cp-source-0612",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the two-particle SVGD field for a standard-normal target affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Next, regardless of the stated inputs.",
+  "objective": "Compare the two-particle SVGD field for a standard-normal target in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0612.predict",
+      "text": "Two toy SVGD particles X -1, Y 1 target a standard normal, with RBF exp(-distance²/Bandwidth 1) and Step 0.1. What updated X results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.reveal.0",
+      "text": "The retained results are Bandwidth=1; Next=-0.955 and Bandwidth=0.1; Next=-0.95.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.reveal.1",
+      "text": "The field combines target scores and a kernel-gradient repulsion term. This one-step two-particle illustration is not a guarantee of posterior approximation quality. This comparison isolates the two-particle SVGD field for a standard-normal target.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.case.0.witness",
+      "text": "Bandwidth=1; Next=-0.955",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",-1],[\"Y\",1],[\"Bandwidth\",1],[\"Step\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Next\",\"value\":-0.9545789097221835},{\"label\":\"Field\",\"value\":0.45421090277816456}]},\"metrics\":[{\"label\":\"Next\",\"value\":\"-0.955\"},{\"label\":\"Bandwidth\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.case.1.witness",
+      "text": "Bandwidth=0.1; Next=-0.95",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",-1],[\"Y\",1],[\"Bandwidth\",0.1],[\"Step\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Next\",\"value\":-0.95},{\"label\":\"Field\",\"value\":0.4999999999999999}]},\"metrics\":[{\"label\":\"Next\",\"value\":\"-0.95\"},{\"label\":\"Bandwidth\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0612.recall",
+      "text": "Two toy SVGD particles X 0, Y 1 target a standard normal, with RBF exp(-distance²/Bandwidth 1) and Step 0.1. What updated X results? Answer -0.055.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0612/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #612. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy SVGD particles X 0, Y 1 target a standard normal, with RBF exp(-distance²/Bandwidth 1) and Step 0.1. What updated X results?",
+    "options": [
+      "-0.155",
+      "-0.055",
+      "0.045"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Next -0.055 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0612",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-612"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 612,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **612. Repelling particles** \\[Slider\\]: Stein variational gradient descent pushes particles toward high density while they repel each other.",
+    "modelBoundary": "the two-particle SVGD field for a standard-normal target",
+    "recallInputs": [
+      0,
+      1,
+      1,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

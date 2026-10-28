@@ -1,0 +1,163 @@
+{
+  "slug": "p100-long-run-heat-map",
+  "title": "Which squares get more visits?",
+  "hook": "Which squares get more visits? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-long-run-heat-map",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "run a chain on a grid and watch visit frequencies converge to the stationary distribution."
+    ]
+  },
+  "misconception": "A chain switches A→B with probability 0.1 and B→A with 0.2. What is its stationary share in A? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "run a chain on a grid and watch visit frequencies converge to the stationary distribution.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-long-run-heat-map.case",
+      "text": "A chain switches A→B with probability 0.1 and B→A with 0.2. What is its stationary share in A? Options: 1/3; 1/2; 2/3. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Two-statechain P=[[.9,.1],[.2,.8]], stationaryA2/3,B1/3. Start[A1,B0]; distribute massone step[.9,.1],then[.83,.17],thenconverge. Doesnotrequire simulated tally.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.recall",
+      "text": "If A→B is 0.3 and B→A is 0.1, stationary A share? A=0.1/(0.3+0.1)=1/4.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.hook",
+      "text": "Which squares get more visits? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c4",
+      "text": "After six transitions, mass in A is 0.706 from an all-A start and 0.588 from an all-B start. The paths move toward the same balance point, 2/3.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c5",
+      "text": "At stationarity, A’s outward flow 0.1A equals B’s return flow 0.2B. A distribution can be stable even though individuals keep moving. Six transitions are shown; they are not claimed to be exact stationarity.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-long-run-heat-map/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c7",
+      "text": "A after6: 0.706",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A\",\"value\":1},{\"label\":\"B\",\"value\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"1\",\"value\":0.9},{\"label\":\"2\",\"value\":0.8300000000000001},{\"label\":\"3\",\"value\":0.7810000000000001},{\"label\":\"4\",\"value\":0.7467000000000001},{\"label\":\"5\",\"value\":0.72269},{\"label\":\"6\",\"value\":0.705883}]}. [{\"label\":\"A after6\",\"value\":\"0.706\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c10",
+      "text": "A after6: 0.588",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"A\",\"value\":0},{\"label\":\"B\",\"value\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-long-run-heat-map.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0.2},{\"label\":\"2\",\"value\":0.3400000000000001},{\"label\":\"3\",\"value\":0.43800000000000006},{\"label\":\"4\",\"value\":0.5066},{\"label\":\"5\",\"value\":0.5546200000000001},{\"label\":\"6\",\"value\":0.5882340000000001}]}. [{\"label\":\"A after6\",\"value\":\"0.588\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-long-run-heat-map/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "If A→B is 0.3 and B→A is 0.1, stationary A share?",
+    "options": [
+      "1/4",
+      "1/2",
+      "3/4"
+    ],
+    "answer": 0,
+    "why": "A=0.1/(0.3+0.1)=1/4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-long-run-heat-map",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-562",
+      "graph"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 562,
+    "sourceSection": "29. Markov chains, mixing & PageRank",
+    "sourceTitle": "Long-run heat map",
+    "sourceText": "run a chain on a grid and watch visit frequencies converge to the stationary distribution.",
+    "sourceEntryOriginal": "- **562. Long-run heat map** \\[Slider\\]: run a chain on a grid and watch visit frequencies converge to the stationary distribution.",
+    "numericCase": "Two-statechain P=[[.9,.1],[.2,.8]], stationaryA2/3,B1/3. Start[A1,B0]; distribute massone step[.9,.1],then[.83,.17],thenconverge. Doesnotrequire simulated tally.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "probability/capped-doubling-game",
+    "difference": "New teaching boundary: Long-run heat map. Existing boundary: The learner can say that the fair price is the long-run average payout ($20 here), that it comes from rare big wins, and that most plays pay $4 or less."
+  },
+  "modelOutputs": [
+    0.705883,
+    0.5882340000000001
+  ]
+}

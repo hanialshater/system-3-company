@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0778",
+  "title": "A direct stock linkage is conditional",
+  "hook": "Two stated cases for a direct stock linkage is conditional.",
+  "domain": "probability",
+  "concept": "cp-source-0778",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Gaussian conditional correlation of a supplied precision block affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Correlation, regardless of the stated inputs.",
+  "objective": "Compare the Gaussian conditional correlation of a supplied precision block in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0778.predict",
+      "text": "A toy Gaussian precision block has diagonals 3,3, off-diagonal -1. What partial correlation is implied?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.reveal.0",
+      "text": "The retained results are Off=-1; Correlation=0.333 and Off=-2; Correlation=0.667.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.reveal.1",
+      "text": "A zero precision entry encodes conditional independence in a nonsingular Gaussian model. Correlation is not a causal direction. This comparison isolates the Gaussian conditional correlation of a supplied precision block.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.case.0.witness",
+      "text": "Off=-1; Correlation=0.333",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"DiagA\",3],[\"Off\",-1],[\"DiagB\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Correlation\",\"value\":0.3333333333333333}]},\"metrics\":[{\"label\":\"Correlation\",\"value\":\"0.333\"},{\"label\":\"Off\",\"value\":\"-1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.case.1.witness",
+      "text": "Off=-2; Correlation=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"DiagA\",3],[\"Off\",-2],[\"DiagB\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Correlation\",\"value\":0.6666666666666666}]},\"metrics\":[{\"label\":\"Correlation\",\"value\":\"0.667\"},{\"label\":\"Off\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0778.recall",
+      "text": "A toy Gaussian precision block has diagonals 4,3, off-diagonal -1. What partial correlation is implied? Answer 0.289.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0778/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #778. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Gaussian precision block has diagonals 4,3, off-diagonal -1. What partial correlation is implied?",
+    "options": [
+      "0.173",
+      "0.404",
+      "0.289"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Correlation 0.289 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0778",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-778"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 778,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **778. Stock network** \\[Slider\\]: a sparse graph of direct dependencies among stocks, clustered by sector.",
+    "modelBoundary": "the Gaussian conditional correlation of a supplied precision block",
+    "recallInputs": [
+      4,
+      -1,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0169", "title": "How many proposals survive rejection?", "op": "acceptance", "labels": ["Area", "Rectangle", "Attempts"], "outputs": ["Accepted"], "a": [2.0, 10.0, 1000.0], "b": [8.0, 10.0, 1000.0], "question": "A toy rejection sampler proposes uniformly in area 10; accepted region area is 2. Over 1000 attempts, what accepted count is expected?", "questionTemplate": "A toy rejection sampler proposes uniformly in area {Rectangle}; accepted region area is {Area}. Over {Attempts} attempts, what accepted count is expected?", "explain": "Acceptance is proportional to area under a uniform proposal. Correctly drawing inside the retained region still depends on that proposal rule.", "lens": "the accepted area under a uniform proposal", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

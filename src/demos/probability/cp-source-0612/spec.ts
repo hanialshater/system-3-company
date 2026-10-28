@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0612", "title": "Attraction and repulsion in one step", "op": "svgd", "labels": ["X", "Y", "Bandwidth", "Step"], "outputs": ["Next", "Field"], "a": [-1.0, 1.0, 1.0, 0.1], "b": [-1.0, 1.0, 0.1, 0.1], "question": "Two toy SVGD particles X -1, Y 1 target a standard normal, with RBF exp(-distance²/Bandwidth 1) and Step 0.1. What updated X results?", "questionTemplate": "Two toy SVGD particles X {X}, Y {Y} target a standard normal, with RBF exp(-distance²/Bandwidth {Bandwidth}) and Step {Step}. What updated X results?", "explain": "The field combines target scores and a kernel-gradient repulsion term. This one-step two-particle illustration is not a guarantee of posterior approximation quality.", "lens": "the two-particle SVGD field for a standard-normal target", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0929",
+  "title": "Tracing back oversamples prolific cases",
+  "hook": "Two stated cases: explore the size bias from following a random transmission link.",
+  "domain": "probability",
+  "concept": "cp-source-0929",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the size bias from following a random transmission link affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weighted, regardless of the stated inputs.",
+  "objective": "Compare the size bias from following a random transmission link in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0929.predict",
+      "text": "A toy population has 90 units of size 1 and 10 of size 10. Sampling units proportional to size, what mean size is seen?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.reveal.0",
+      "text": "The retained results are ValueB=10; Weighted=5.737 and ValueB=30; Weighted=23.308.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.reveal.1",
+      "text": "Size-weighted sampling overrepresents large units. Compare it with the ordinary mean over units before interpreting an apparent paradox. This comparison isolates the size bias from following a random transmission link.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.case.0.witness",
+      "text": "ValueB=10; Weighted=5.737",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",1],[\"CountA\",90],[\"ValueB\",10],[\"CountB\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":5.7368421052631575},{\"label\":\"Ordinary\",\"value\":1.9}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"5.737\"},{\"label\":\"ValueB\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.case.1.witness",
+      "text": "ValueB=30; Weighted=23.308",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ValueA\",1],[\"CountA\",90],[\"ValueB\",30],[\"CountB\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Weighted\",\"value\":23.307692307692307},{\"label\":\"Ordinary\",\"value\":3.9}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"23.308\"},{\"label\":\"ValueB\",\"value\":\"30\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0929.recall",
+      "text": "A toy population has 90 units of size 2 and 10 of size 10. Sampling units proportional to size, what mean size is seen? Answer 4.857.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0929/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #929. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has 90 units of size 2 and 10 of size 10. Sampling units proportional to size, what mean size is seen?",
+    "options": [
+      "4.857",
+      "2.914",
+      "6.8"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Weighted 4.857 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0929",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-929"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 929,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **929. Trace backward** \\[Gotcha\\]: finding who infected a case uncovers more infections than tracing whom the case infected.",
+    "modelBoundary": "the size bias from following a random transmission link",
+    "recallInputs": [
+      2,
+      90,
+      10,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

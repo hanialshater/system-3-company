@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+const model=async id=>(await import(`../../src/demos/probability/cp-source-${String(id).padStart(4,'0')}/model.ts`)).compute;
+let checks=0;const ok=x=>{assert(x);checks++;},near=(a,b)=>{assert(Math.abs(a-b)<1e-9,`${a} != ${b}`);checks++;};
+const entropy=await model(203);near(entropy([.5])[0],1);near(entropy([.2])[0],entropy([.8])[0]);ok(entropy([.99])[0]<entropy([.5])[0]);
+const capacity=await model(215);ok(capacity([3,3])[0]>=24);
+const kl=await model(210);near(kl([.5,.5])[0],0);ok(kl([.8,.5])[0]>0);ok(Math.abs(kl([.8,.5])[0]-kl([.5,.8])[0])>.01);
+const squared=await model(212);near(squared([1/3])[1],0);ok(squared([1/3])[0]>0);
+const info=await model(219);near(info([.5,.5,.5])[0],0);near(info([.5,1,0])[0],1);
+const family=await model(228);ok(family([100,.05,1])[0]<=.05);ok(family([100,.05,0])[0]>.95);
+const tea=await model(229);near(tea([8,4,4,4])[0],1/70);
+const chi=await model(234);near(chi([20,20,20])[0],0);ok(chi([30,20,10])[0]>0);
+const quad=await model(260);near(quad([4,9])[0],Math.sqrt(13));ok(quad([4,9])[0]<5);
+const common=await model(261);near(common([1,2,.8,1])[0],common([1,20,.8,1])[0]);ok(common([1,2,.8,0])[0]!==common([1,20,.8,0])[0]);
+const collider=await model(302);ok(collider([.5,.5,1,0])[0]>collider([.5,.5,1,1])[0]);near(collider([.5,.5,0,0])[0],collider([.5,.5,0,1])[0]);
+const simpson=await model(285);ok(simpson([.1,.9,.8,.2,.05])[0]<0);near(simpson([.5,.5,.8,.2,.05])[0],.05);
+const selection=await model(306);near(selection([20,-20,.5,1,1])[0],0);ok(selection([20,-20,.5,1,.1])[0]>0);
+const path=await model(344);near(path([0,1])[0],0);near(path([1,1])[0],0);near(path([2,1])[0],1);assert.throws(()=>path([2,2]));checks++;
+const medianEffect=await model(365);near(medianEffect([.5,4,-4])[0],0);
+const iv=await model(390);near(iv([.4,.2])[0],iv([.8,.4])[0]);
+const weights=await model(405);near(weights([.01,1])[0],100);
+const speed=await model(298);near(speed([30,60])[0],40);
+const nonconvex=await model(385);ok(nonconvex([-.5,4,1])[0]<0);
+const structural=await model(380);near(structural([2,3,10,3])[0],10);near(structural([2,3,10,4])[0],12);
+const record=JSON.parse(fs.readFileSync('company/reviews/continuation-batch-05/manifest.json'));
+for(const r of record.entries){const meta=JSON.parse(fs.readFileSync(`src/demos/probability/${r.slug}/meta.json`));const {curation:c}=await import(`../../src/demos/probability/${r.slug}/spec.ts`);assert.notDeepEqual(meta.provenance.recallInputs,c.a);assert.notDeepEqual(meta.provenance.recallInputs,c.b);checks+=2;}
+console.log(`${checks} inference model and fresh-recall relationship checks pass.`);

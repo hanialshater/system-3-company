@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0109",
+  "title": "Blend ratings with a prior mean",
+  "hook": "Two stated cases: explore the relative weight of reviews and a prior pseudoreview.",
+  "domain": "probability",
+  "concept": "cp-source-0109",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the relative weight of reviews and a prior pseudoreview affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the relative weight of reviews and a prior pseudoreview in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0109.predict",
+      "text": "A toy pooled estimate gives 5 weight 3 and another estimate 4 weight 1. What is the weighted mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.reveal.0",
+      "text": "The retained results are Weight=3; Mean=4.75 and Weight=300; Mean=4.997.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.reveal.1",
+      "text": "A pooled result depends on both estimates and their weights. A larger headline alone is not stronger evidence. This comparison isolates the relative weight of reviews and a prior pseudoreview.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.case.0.witness",
+      "text": "Weight=3; Mean=4.75",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",5],[\"Weight\",3],[\"Other\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":4.75}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"4.75\"},{\"label\":\"Weight\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.case.1.witness",
+      "text": "Weight=300; Mean=4.997",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Estimate\",5],[\"Weight\",300],[\"Other\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":4.996677740863787}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"4.997\"},{\"label\":\"Weight\",\"value\":\"300\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0109.recall",
+      "text": "A toy pooled estimate gives 6 weight 3 and another estimate 4 weight 1. What is the weighted mean? Answer 5.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0109/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #109. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pooled estimate gives 6 weight 3 and another estimate 4 weight 1. What is the weighted mean?",
+    "options": [
+      "3.3",
+      "7.7",
+      "5.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 5.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0109",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-109"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 109,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **109. Bayesian average ratings** \\[Slider\\]: blend each product's stars with the site average, weighted by review count.",
+    "modelBoundary": "the relative weight of reviews and a prior pseudoreview",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      6,
+      3,
+      4
+    ]
+  }
+}

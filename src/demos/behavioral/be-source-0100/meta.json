@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0100",
+  "title": "A forecast of self-control",
+  "hook": "Two stated cases: explore how much contrary evidence changes a belief.",
+  "domain": "behavioral",
+  "concept": "be-source-0100",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How how much contrary evidence changes a belief affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Posterior, regardless of the stated inputs.",
+  "objective": "Compare how much contrary evidence changes a belief in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0100.predict",
+      "text": "A toy belief starts at 0.9, receives estimate 0.5, and moves fraction 0.2 toward it. What belief results?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.reveal.0",
+      "text": "The retained results are Weight=0.2; Posterior=0.82 and Weight=0.8; Posterior=0.58.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.reveal.1",
+      "text": "Different update weights can create asymmetric learning from equally informative news. The toy rule is an assumption, not a psychological measurement. This comparison isolates how much contrary evidence changes a belief.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.case.0.witness",
+      "text": "Weight=0.2; Posterior=0.82",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.9],[\"News\",0.5],[\"Weight\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.8200000000000001}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.82\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.case.1.witness",
+      "text": "Weight=0.8; Posterior=0.58",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0.9],[\"News\",0.5],[\"Weight\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Posterior\",\"value\":0.58}]},\"metrics\":[{\"label\":\"Posterior\",\"value\":\"0.58\"},{\"label\":\"Weight\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0100.recall",
+      "text": "A toy belief starts at 0.72, receives estimate 0.5, and moves fraction 0.2 toward it. What belief results? Answer 0.676.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0100/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #100. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy belief starts at 0.72, receives estimate 0.5, and moves fraction 0.2 toward it. What belief results?",
+    "options": [
+      "0.406",
+      "0.946",
+      "0.676"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Posterior 0.676 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0100",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-100"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 100,
+    "sourceSection": "5. Present bias & time preferences",
+    "sourceEntryOriginal": "- **100.** People who overrated their self-control exposed themselves to more temptation, and smokers among them relapsed more (Nordgren, van der Pligt & van Harreveld, 2009).",
+    "modelBoundary": "how much contrary evidence changes a belief",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.7200000000000001,
+      0.5,
+      0.2
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0825", "title": "Fixed and repeated looks use budgets", "op": "confidencewidth", "labels": ["N", "Alpha", "Safe"], "outputs": ["HalfWidth"], "a": [50.0, 0.05, 0.0], "b": [50.0, 0.05, 1.0], "question": "For independent [0,1] toy data use N 50, error Alpha 0.05. Safe 0=1 allocates α/[n(n+1)] per look; 0 uses α at one fixed look. What Hoeffding half-width results?", "questionTemplate": "For independent [0,1] toy data use N {N}, error Alpha {Alpha}. Safe {Safe}=1 allocates α/[n(n+1)] per look; 0 uses α at one fixed look. What Hoeffding half-width results?", "explain": "The summable allocation permits a union bound over all positive integer looks. It is conservative and assumes independent bounded observations.", "lens": "the error allocation for a single look or all looks", "kind": "bars", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

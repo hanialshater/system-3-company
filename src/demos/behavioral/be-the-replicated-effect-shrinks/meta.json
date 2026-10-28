@@ -1,0 +1,103 @@
+{
+  "slug": "be-the-replicated-effect-shrinks",
+  "title": "The replicated effect shrinks",
+  "hook": "Can a result replicate while the estimated effect becomes smaller?",
+  "domain": "behavioral",
+  "concept": "be-the-replicated-effect-shrinks",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Distinguish direction or significance replication from equality of effect size."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Distinguish direction or significance replication from equality of effect size.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-the-replicated-effect-shrinks.inputs",
+      "text": "An illustrative effect falls from 0.8 in the original study to 0.4 in a rerun. What is the rerun-to-original size ratio? Toy inputs A=[0.8, 0.4, 13, 21]; B=[0.8, 0.8, 13, 21].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-replicated-effect-shrinks.trace",
+      "text": "Computed results: [[0.5, 61.904761904761905, 0.4], [1, 61.904761904761905, 0]]. Labels: Size ratio, Significant %, Size decrease.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-replicated-effect-shrinks.reveal",
+      "text": "Effect-size agreement and significance replication are separate measurements. The comparison keeps the significant-rerun count fixed while changing size agreement. Counting successful reruns alone would hide the size difference.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-the-replicated-effect-shrinks.recall",
+      "text": "A new toy case uses Original effect=0.8, Rerun effect=0.8, Significant reruns=13, Total reruns=21. What is Size ratio? Answer: 1.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Original effect=0.8, Rerun effect=0.8, Significant reruns=13, Total reruns=21. What is Size ratio?",
+    "options": [
+      "2",
+      "1",
+      "0"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 1. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-the-replicated-effect-shrinks",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-491"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 491,
+    "section": "25. Famous findings that failed to replicate or shrank",
+    "text": "13 of 21 social science experiments in *Nature* and *Science* replicated, with effects about half their original size (Camerer et al., 2018).",
+    "pointer": "500-behavioral-economics-findings.md entry 491: Camerer et al., 2018",
+    "status": "evidence-methodology",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "noise-draws-dunning-kruger",
+  "meaningfulDifference": "Distinguish direction or significance replication from equality of effect size."
+}

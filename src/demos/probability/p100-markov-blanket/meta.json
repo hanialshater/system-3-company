@@ -1,0 +1,163 @@
+{
+  "slug": "p100-markov-blanket",
+  "title": "Which neighbors tell you enough?",
+  "hook": "Which neighbors tell you enough? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-markov-blanket",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "tap a node and its blanket lights up; nothing else adds information."
+    ]
+  },
+  "misconception": "In A→B→C, B flips A with probability 0.1 and C flips B independently with 0.1. Given B=1, does additionally knowing A change P(C=1)? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "tap a node and its blanket lights up; nothing else adds information.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-markov-blanket.case",
+      "text": "In A→B→C, B flips A with probability 0.1 and C flips B independently with 0.1. Given B=1, does additionally knowing A change P(C=1)? Options: Yes, to 0.82; No, it stays 0.9; Yes, to 1. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: GraphA→B→C; binaryflipsBfromA10%,CfromB10%. GivenB1,P(C1)=.9regardlessA; withoutB,A1givesP(C1)=.82. HighlightBblanket ofleafC, keepstateassumptions.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.recall",
+      "text": "In X→Y→Z with no extra paths, what screens Z from X? Y blocks the only path between X and Z.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.hook",
+      "text": "Which neighbors tell you enough? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c4",
+      "text": "Conditioning on B=1 gives C=1 probability 0.9. Knowing only A=1 gives 0.82 after averaging over B.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c5",
+      "text": "In this chain, the middle node screens the last node from the first: once B is known, A supplies no extra information about C. The independent flip mechanism is stipulated, so the conditional independence follows from the toy graph and equations.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-markov-blanket/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c7",
+      "text": "P(C1|B1): 0.9",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"B=1\",\"x\":160,\"y\":120},{\"id\":\"2\",\"label\":\"C\",\"x\":280,\"y\":75}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"2\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"C=1\",\"value\":0.9},{\"label\":\"C=0\",\"value\":0.09999999999999998}]}. [{\"label\":\"P(C1|B1)\",\"value\":\"0.9\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c10",
+      "text": "P(C1|A1): 0.82",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A=1\",\"x\":40,\"y\":75},{\"id\":\"1\",\"label\":\"B\",\"x\":160,\"y\":120},{\"id\":\"2\",\"label\":\"C\",\"x\":280,\"y\":75}],\"edges\":[{\"from\":\"0\",\"to\":\"1\"},{\"from\":\"1\",\"to\":\"2\"}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-markov-blanket.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"C=1\",\"value\":0.8200000000000001},{\"label\":\"C=0\",\"value\":0.17999999999999994}]}. [{\"label\":\"P(C1|A1)\",\"value\":\"0.82\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-markov-blanket/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In X→Y→Z with no extra paths, what screens Z from X?",
+    "options": [
+      "Conditioning on Y",
+      "Conditioning on X",
+      "Ignoring Y"
+    ],
+    "answer": 0,
+    "why": "Y blocks the only path between X and Z."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-markov-blanket",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-771",
+      "graph"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 771,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceTitle": "Markov blanket",
+    "sourceText": "tap a node and its blanket lights up; nothing else adds information.",
+    "sourceEntryOriginal": "- **771. Markov blanket** \\[Slider\\]: tap a node and its blanket lights up; nothing else adds information.",
+    "numericCase": "GraphA→B→C; binaryflipsBfromA10%,CfromB10%. GivenB1,P(C1)=.9regardlessA; withoutB,A1givesP(C1)=.82. HighlightBblanket ofleafC, keepstateassumptions.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "math/sieve-crossing-out",
+    "difference": "New teaching boundary: Markov blanket. Existing boundary: The learner can explain that every non-prime up to 100 has a factor of at most 10, so sweeping out the multiples of 2, 3, 5 and 7 leaves exactly the 25 primes, and sweeping 11 adds nothing."
+  },
+  "modelOutputs": [
+    0.9,
+    0.8200000000000001
+  ]
+}

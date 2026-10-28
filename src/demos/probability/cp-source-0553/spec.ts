@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0553", "title": "A two-state signal forgets its start", "op": "availability", "labels": ["Break", "Repair", "Start", "Time"], "outputs": ["Up"], "a": [0.2, 0.4, 1.0, 10.0], "b": [0.2, 0.4, 0.0, 10.0], "question": "A toy two-state continuous-time machine has breakdown rate 0.2, repair rate 0.4, initial up probability 1. What is up probability at Time 10?", "questionTemplate": "A toy two-state continuous-time machine has breakdown rate {Break}, repair rate {Repair}, initial up probability {Start}. What is up probability at Time {Time}?", "explain": "Repair and failure rates jointly determine availability and transient recovery. Independence and constant hazards are explicit model assumptions.", "lens": "continuous-time transition rates in a two-state signal", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

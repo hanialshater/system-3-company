@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0258",
+  "title": "One child or a group?",
+  "hook": "Two stated cases: explore total versus per-recipient giving in an explicit example.",
+  "domain": "behavioral",
+  "concept": "be-source-0258",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How total versus per-recipient giving in an explicit example affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UnitCost, regardless of the stated inputs.",
+  "objective": "Compare total versus per-recipient giving in an explicit example in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0258.predict",
+      "text": "A toy pack costs 80 for 1 units. What is its price per 1 units?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.reveal.0",
+      "text": "The retained results are Quantity=1; UnitCost=80 and Quantity=8; UnitCost=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.reveal.1",
+      "text": "A common unit denominator makes unequal packages comparable. Package appearance does not change their stated contents. This comparison isolates total versus per-recipient giving in an explicit example.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.case.0.witness",
+      "text": "Quantity=1; UnitCost=80",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",80],[\"Quantity\",1],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":80}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"80\"},{\"label\":\"Quantity\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.case.1.witness",
+      "text": "Quantity=8; UnitCost=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Price\",80],[\"Quantity\",8],[\"Units\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UnitCost\",\"value\":10}]},\"metrics\":[{\"label\":\"UnitCost\",\"value\":\"10\"},{\"label\":\"Quantity\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0258.recall",
+      "text": "A toy pack costs 81 for 1 units. What is its price per 1 units? Answer 81.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0258/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #258. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pack costs 81 for 1 units. What is its price per 1 units?",
+    "options": [
+      "48.6",
+      "81",
+      "113.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives UnitCost 81 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0258",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-258"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 258,
+    "sourceSection": "13. Availability, representativeness & other heuristics",
+    "sourceEntryOriginal": "- **258.** A single identified child drew more donations than a group of eight (Kogut & Ritov, 2005).",
+    "modelBoundary": "total versus per-recipient giving in an explicit example",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      81,
+      1,
+      1
+    ]
+  }
+}

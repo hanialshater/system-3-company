@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0987",
+  "title": "Noise changes a threshold estimate",
+  "hook": "Two stated cases for noise changes a threshold estimate.",
+  "domain": "probability",
+  "concept": "cp-source-0987",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Gaussian observation-noise ingredient before stochastic resonance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the Gaussian observation-noise ingredient before stochastic resonance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0987.predict",
+      "text": "A toy normal prior has mean 0, variance 1; one normal measurement is 0.5 with noise variance 0.1. What is the posterior mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.reveal.0",
+      "text": "The retained results are Noise=0.1; Mean=0.455 and Noise=2; Mean=0.167.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.reveal.1",
+      "text": "Precisions weight the prior and measurement. The variance calculation assumes the stated independent normal model. This comparison isolates the Gaussian observation-noise ingredient before stochastic resonance.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.case.0.witness",
+      "text": "Noise=0.1; Mean=0.455",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",1],[\"Measurement\",0.5],[\"Noise\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.45454545454545453},{\"label\":\"Variance\",\"value\":0.09090909090909091}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.455\"},{\"label\":\"Noise\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.case.1.witness",
+      "text": "Noise=2; Mean=0.167",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Prior\",0],[\"Variance\",1],[\"Measurement\",0.5],[\"Noise\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.16666666666666666},{\"label\":\"Variance\",\"value\":0.6666666666666666}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.167\"},{\"label\":\"Noise\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0987.recall",
+      "text": "A toy normal prior has mean 0, variance 2; one normal measurement is 0.5 with noise variance 0.1. What is the posterior mean? Answer 0.476.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0987/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #987. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy normal prior has mean 0, variance 2; one normal measurement is 0.5 with noise variance 0.1. What is the posterior mean?",
+    "options": [
+      "0.286",
+      "0.476",
+      "0.667"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 0.476 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0987",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-987"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 987,
+    "sourceSection": "50. Stochastic models in physics, finance & biology",
+    "sourceEntryOriginal": "- **987. Stochastic resonance** \\[Slider\\]: adding the right amount of noise helps a threshold detector catch a weak signal.",
+    "modelBoundary": "the Gaussian observation-noise ingredient before stochastic resonance",
+    "recallInputs": [
+      0,
+      2,
+      0.5,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

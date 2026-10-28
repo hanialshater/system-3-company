@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0917",
+  "title": "Chosen ratings select favorable cases",
+  "hook": "Two stated cases for chosen ratings select favorable cases.",
+  "domain": "probability",
+  "concept": "cp-source-0917",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the outcome-dependent response propensity in a ratings illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Selected, regardless of the stated inputs.",
+  "objective": "Compare the outcome-dependent response propensity in a ratings illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0917.predict",
+      "text": "A toy population has Good outcome 5 with share 0.5, otherwise Bad 1. Retain fractions 1 and 1 respectively. What mean is observed among retained units?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.reveal.0",
+      "text": "The retained results are KeepBad=1; Selected=3 and KeepBad=0.1; Selected=4.636.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.reveal.1",
+      "text": "Outcome-dependent inclusion changes the observed mixture. A large selected sample cannot by itself repair missing low-retention outcomes. This comparison isolates the outcome-dependent response propensity in a ratings illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.case.0.witness",
+      "text": "KeepBad=1; Selected=3",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Good\",5],[\"Bad\",1],[\"Share\",0.5],[\"KeepGood\",1],[\"KeepBad\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Selected\",\"value\":3},{\"label\":\"Full\",\"value\":3}]},\"metrics\":[{\"label\":\"Selected\",\"value\":\"3\"},{\"label\":\"KeepBad\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.case.1.witness",
+      "text": "KeepBad=0.1; Selected=4.636",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Good\",5],[\"Bad\",1],[\"Share\",0.5],[\"KeepGood\",1],[\"KeepBad\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Selected\",\"value\":4.636363636363636},{\"label\":\"Full\",\"value\":3}]},\"metrics\":[{\"label\":\"Selected\",\"value\":\"4.636\"},{\"label\":\"KeepBad\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0917.recall",
+      "text": "A toy population has Good outcome 6 with share 0.5, otherwise Bad 1. Retain fractions 1 and 1 respectively. What mean is observed among retained units? Answer 3.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0917/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #917. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has Good outcome 6 with share 0.5, otherwise Bad 1. Retain fractions 1 and 1 respectively. What mean is observed among retained units?",
+    "options": [
+      "3.5",
+      "2.1",
+      "4.9"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Selected 3.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0917",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-917"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 917,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **917. Ratings aren't random** \\[Gotcha\\]: on randomly assigned songs, users' ratings were far lower than on songs they chose to rate (Marlin & Zemel, 2009).",
+    "modelBoundary": "the outcome-dependent response propensity in a ratings illustration",
+    "recallInputs": [
+      6,
+      1,
+      0.5,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

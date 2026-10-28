@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0153",
+  "title": "Particles move but the mean settles",
+  "hook": "Two stated cases: explore expectation versus fluctuating equilibrium counts.",
+  "domain": "probability",
+  "concept": "cp-source-0153",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How expectation versus fluctuating equilibrium counts affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare expectation versus fluctuating equilibrium counts in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0153.predict",
+      "text": "A toy Ehrenfest urn has 100 particles, initially 100 on the left. Each step moves one uniformly selected particle across. What is expected left count after 10 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.reveal.0",
+      "text": "The retained results are Steps=10; Expected=90.854 and Steps=100; Expected=56.631.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.reveal.1",
+      "text": "The mean relaxes toward half, while realized counts continue fluctuating. An expectation is not a deterministic equilibrium path. This comparison isolates expectation versus fluctuating equilibrium counts.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.case.0.witness",
+      "text": "Steps=10; Expected=90.854",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Particles\",100],[\"Initial\",100],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":90.85364034437734}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"90.854\"},{\"label\":\"Steps\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.case.1.witness",
+      "text": "Steps=100; Expected=56.631",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Particles\",100],[\"Initial\",100],[\"Steps\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":56.630977794737646}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"56.631\"},{\"label\":\"Steps\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0153.recall",
+      "text": "A toy Ehrenfest urn has 101 particles, initially 100 on the left. Each step moves one uniformly selected particle across. What is expected left count after 10 steps? Answer 91.027.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0153/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #153. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Ehrenfest urn has 101 particles, initially 100 on the left. Each step moves one uniformly selected particle across. What is expected left count after 10 steps?",
+    "options": [
+      "54.616",
+      "91.027",
+      "127.438"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Expected 91.027 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0153",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-153"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 153,
+    "sourceSection": "8. Random processes: walks, chains, queues",
+    "sourceEntryOriginal": "- **153. Ehrenfest urn** \\[Slider\\]: particles hop between two rooms and settle near 50/50 with fluctuations.",
+    "modelBoundary": "expectation versus fluctuating equilibrium counts",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      100,
+      10
+    ]
+  }
+}

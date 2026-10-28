@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0545",
+  "title": "Renewal spread changes the residual wait",
+  "hook": "Two stated cases: explore the second-moment inspection effect at a fixed mean lifetime.",
+  "domain": "probability",
+  "concept": "cp-source-0545",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the second-moment inspection effect at a fixed mean lifetime affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Residual, regardless of the stated inputs.",
+  "objective": "Compare the second-moment inspection effect at a fixed mean lifetime in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0545.predict",
+      "text": "Inspect a stationary toy renewal process at a random time. Lifetimes have Mean 10, Variance 0. What is expected remaining life?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.reveal.0",
+      "text": "The retained results are Variance=0; Residual=5 and Variance=100; Residual=10.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.reveal.1",
+      "text": "Long intervals are sampled more often at random times. The second moment affects residual wait even when the long-run renewal rate stays fixed. This comparison isolates the second-moment inspection effect at a fixed mean lifetime.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.case.0.witness",
+      "text": "Variance=0; Residual=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"Variance\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Residual\",\"value\":5},{\"label\":\"Rate\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Residual\",\"value\":\"5\"},{\"label\":\"Variance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.case.1.witness",
+      "text": "Variance=100; Residual=10",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",10],[\"Variance\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Residual\",\"value\":10},{\"label\":\"Rate\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Residual\",\"value\":\"10\"},{\"label\":\"Variance\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0545.recall",
+      "text": "Inspect a stationary toy renewal process at a random time. Lifetimes have Mean 11, Variance 0. What is expected remaining life? Answer 5.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0545/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #545. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Inspect a stationary toy renewal process at a random time. Lifetimes have Mean 11, Variance 0. What is expected remaining life?",
+    "options": [
+      "5.5",
+      "3.3",
+      "7.7"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Residual 5.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0545",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-545"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 545,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **545. Replacing bulbs** \\[Slider\\]: a renewal process; tune lifetime spread and see replacement timing smooth out.",
+    "modelBoundary": "the second-moment inspection effect at a fixed mean lifetime",
+    "recallInputs": [
+      11,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

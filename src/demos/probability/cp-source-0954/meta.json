@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0954",
+  "title": "Reversion sets a spectral bend",
+  "hook": "Two stated cases: explore the reversion rate in a stationary OU spectrum.",
+  "domain": "probability",
+  "concept": "cp-source-0954",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reversion rate in a stationary OU spectrum affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Power, regardless of the stated inputs.",
+  "objective": "Compare the reversion rate in a stationary OU spectrum in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0954.predict",
+      "text": "A stationary toy OU process has reversion K 1, diffusion Sigma 1. What two-sided spectral density occurs at cycles-per-time Frequency 0.2?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.reveal.0",
+      "text": "The retained results are K=1; Power=0.388 and K=3; Power=0.095.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.reveal.1",
+      "text": "The reversion rate sets the spectral bend. This convention uses a two-sided density in ordinary frequency units. This comparison isolates the reversion rate in a stationary OU spectrum.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.case.0.witness",
+      "text": "K=1; Power=0.388",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",0.2],[\"K\",1],[\"Sigma\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":1},{\"x\":0.125,\"y\":0.6184864581588363},{\"x\":0.25,\"y\":0.288400439142001},{\"x\":0.375,\"y\":0.15263324843958118},{\"x\":0.5,\"y\":0.09199966835037524},{\"x\":0.625,\"y\":0.06089667846428755},{\"x\":0.75,\"y\":0.04309117118801489},{\"x\":0.875,\"y\":0.032024940020691096},{\"x\":1,\"y\":0.02470452303185764},{\"x\":1.125,\"y\":0.019621357912876093},{\"x\":1.25,\"y\":0.015952772771638105},{\"x\":1.375,\"y\":0.013220713429300484},{\"x\":1.5,\"y\":0.011132579720891595},{\"x\":1.625,\"y\":0.009501395597082815},{\"x\":1.75,\"y\":0.008203266851850962},{\"x\":1.875,\"y\":0.007153520390341603},{\"x\":2,\"y\":0.006292724832125705},{\"x\":2.125,\"y\":0.005578186584086385},{\"x\":2.25,\"y\":0.004978604717013464},{\"x\":2.375,\"y\":0.004470613442514565},{\"x\":2.5,\"y\":0.0040364880757099465},{\"x\":2.625,\"y\":0.0036625881496894996},{\"x\":2.75,\"y\":0.003338279181630625},{\"x\":2.875,\"y\":0.003055172173353572},{\"x\":3,\"y\":0.002806578272493995}],\"xLabel\":\"Frequency\",\"yLabel\":\"Power\"},\"metrics\":[{\"label\":\"Power\",\"value\":\"0.388\"},{\"label\":\"K\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.case.1.witness",
+      "text": "K=3; Power=0.095",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Frequency\",0.2],[\"K\",3],[\"Sigma\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":0,\"y\":0.1111111111111111},{\"x\":0.125,\"y\":0.10398414984088127},{\"x\":0.25,\"y\":0.08720371697613777},{\"x\":0.375,\"y\":0.06872071757320403},{\"x\":0.5,\"y\":0.0529952816574294},{\"x\":0.625,\"y\":0.040947933394615735},{\"x\":0.75,\"y\":0.032044493238000106},{\"x\":0.875,\"y\":0.02549351397337836},{\"x\":1,\"y\":0.020627735999165866},{\"x\":1.125,\"y\":0.01695924982662013},{\"x\":1.25,\"y\":0.014147267607750147},{\"x\":1.375,\"y\":0.011956161545265468},{\"x\":1.5,\"y\":0.010222185372263914},{\"x\":1.625,\"y\":0.008830201682019657},{\"x\":1.75,\"y\":0.007698072132283604},{\"x\":1.875,\"y\":0.006766297607143063},{\"x\":2,\"y\":0.0059911210238150535},{\"x\":2.125,\"y\":0.005339891303834166},{\"x\":2.25,\"y\":0.0047879079097794324},{\"x\":2.375,\"y\":0.0043162433965174786},{\"x\":2.5,\"y\":0.003910219636229566},{\"x\":2.625,\"y\":0.0035583266689656772},{\"x\":2.75,\"y\":0.0032514453237546224},{\"x\":2.875,\"y\":0.0029822811151447083},{\"x\":3,\"y\":0.0027449470035397377}],\"xLabel\":\"Frequency\",\"yLabel\":\"Power\"},\"metrics\":[{\"label\":\"Power\",\"value\":\"0.095\"},{\"label\":\"K\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0954.recall",
+      "text": "A stationary toy OU process has reversion K 1, diffusion Sigma 1. What two-sided spectral density occurs at cycles-per-time Frequency 0.3? Answer 0.22.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0954/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #954. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stationary toy OU process has reversion K 1, diffusion Sigma 1. What two-sided spectral density occurs at cycles-per-time Frequency 0.3?",
+    "options": [
+      "0.12",
+      "0.22",
+      "0.32"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Power 0.22 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0954",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-954"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 954,
+    "sourceSection": "48. Fourier, spectra & signals",
+    "sourceEntryOriginal": "- **954. Spectrum of a random process** \\[Slider\\]: an Ornstein–Uhlenbeck process has a smooth spectrum whose bend moves with its mean-reversion speed.",
+    "modelBoundary": "the reversion rate in a stationary OU spectrum",
+    "recallInputs": [
+      0.30000000000000004,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

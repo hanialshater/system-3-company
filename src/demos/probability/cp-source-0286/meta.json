@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0286",
+  "title": "A pooled contrast can reverse",
+  "hook": "Two stated cases: explore the mixture component of a pooled comparison.",
+  "domain": "probability",
+  "concept": "cp-source-0286",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mixture component of a pooled comparison affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gap, regardless of the stated inputs.",
+  "objective": "Compare the mixture component of a pooled comparison in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0286.predict",
+      "text": "Two toy strata have B rates 0.9,0.2; A is better by 0.1 in both. Stratum-1 shares are 0.2 in A, 0.8 in B. What is aggregate A minus B?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.reveal.0",
+      "text": "The retained results are WeightA=0.2 WeightB=0.8; Gap=-0.32 and WeightA=0.5 WeightB=0.5; Gap=0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.reveal.1",
+      "text": "Each stratum has the same stipulated advantage, but different weights can reverse the aggregate comparison. Equalizing weights removes this composition channel. This comparison isolates the mixture component of a pooled comparison.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.case.0.witness",
+      "text": "WeightA=0.2 WeightB=0.8; Gap=-0.32",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightA\",0.2],[\"WeightB\",0.8],[\"Rate1\",0.9],[\"Rate2\",0.2],[\"Advantage\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":-0.32000000000000006},{\"label\":\"AggregateA\",\"value\":0.44000000000000006},{\"label\":\"AggregateB\",\"value\":0.7600000000000001}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"-0.32\"},{\"label\":\"WeightA\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.case.1.witness",
+      "text": "WeightA=0.5 WeightB=0.5; Gap=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightA\",0.5],[\"WeightB\",0.5],[\"Rate1\",0.9],[\"Rate2\",0.2],[\"Advantage\",0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Gap\",\"value\":0.1},{\"label\":\"AggregateA\",\"value\":0.65},{\"label\":\"AggregateB\",\"value\":0.55}]},\"metrics\":[{\"label\":\"Gap\",\"value\":\"0.1\"},{\"label\":\"WeightA\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0286.recall",
+      "text": "Two toy strata have B rates 0.9,0.2; A is better by 0.1 in both. Stratum-1 shares are 0.3 in A, 0.8 in B. What is aggregate A minus B? Answer -0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0286/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #286. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy strata have B rates 0.9,0.2; A is better by 0.1 in both. Stratum-1 shares are 0.3 in A, 0.8 in B. What is aggregate A minus B?",
+    "options": [
+      "-0.35",
+      "-0.15",
+      "-0.25"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Gap -0.25 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0286",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-286"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 286,
+    "sourceSection": "15. Simpson's paradox & aggregation",
+    "sourceEntryOriginal": "- **286. Slopes that flip** \\[Slider\\]: within each group the trend is up; pooled, it points down.",
+    "modelBoundary": "the mixture component of a pooled comparison",
+    "recallInputs": [
+      0.30000000000000004,
+      0.8,
+      0.9,
+      0.2,
+      0.1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

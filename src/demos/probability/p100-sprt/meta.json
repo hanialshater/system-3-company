@@ -1,0 +1,163 @@
+{
+  "slug": "p100-sprt",
+  "title": "When can this test stop?",
+  "hook": "When can this test stop? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-sprt",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "a running log-likelihood ratio wanders between two boundaries; the test stops when it crosses one."
+    ]
+  },
+  "misconception": "Compare coin hypotheses p(H)=0.5 and 0.75. Start log-likelihood ratio at zero. Six heads add 6×log(1.5). With upper boundary log(9), what happens? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "a running log-likelihood ratio wanders between two boundaries; the test stops when it crosses one.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-sprt.case",
+      "text": "Compare coin hypotheses p(H)=0.5 and 0.75. Start log-likelihood ratio at zero. Six heads add 6×log(1.5). With upper boundary log(9), what happens? Options: Below boundary; Exactly boundary; Above boundary. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Hypothesescoinp0=.5,p1=.75. EachHloglikelihoodratio log1.5≈.405465;eachTlog.5≈-.693147. Thresholds log9and-log9; 6Hcrossupper2.43279,alternatingHTdoesnot. Labelsillustrativethresholds, not exacterror guarantees.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.recall",
+      "text": "Under the same hypotheses, a tail multiplies the likelihood ratio by? P(T|p=.75)/P(T|p=.5)=.25/.5=.5.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.hook",
+      "text": "When can this test stop? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c4",
+      "text": "Six heads produce log-ratio 2.433, above log(9)≈2.197. Alternating HT produces -0.863 and does not cross the upper boundary.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c5",
+      "text": "Each observation adds its log likelihood ratio; tails subtract more than a head adds in this comparison. These are fixed sequences with illustrative stopping boundaries, not a demonstration of exact frequentist error guarantees.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-sprt/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c7",
+      "text": "Log ratio: 2.433",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0.4054651081081644}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0.4054651081081644},{\"label\":\"2\",\"value\":0.8109302162163288},{\"label\":\"3\",\"value\":1.2163953243244932},{\"label\":\"4\",\"value\":1.6218604324326575},{\"label\":\"5\",\"value\":2.027325540540822},{\"label\":\"6\",\"value\":2.4327906486489868}]}. [{\"label\":\"Log ratio\",\"value\":\"2.433\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c10",
+      "text": "Log ratio: -0.863",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0.4054651081081644}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-sprt.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":0},{\"label\":\"1\",\"value\":0.4054651081081644},{\"label\":\"2\",\"value\":-0.2876820724517809},{\"label\":\"3\",\"value\":0.11778303565638348},{\"label\":\"4\",\"value\":-0.5753641449035618},{\"label\":\"5\",\"value\":-0.16989903679539742},{\"label\":\"6\",\"value\":-0.8630462173553427}]}. [{\"label\":\"Log ratio\",\"value\":\"-0.863\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-sprt/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the same hypotheses, a tail multiplies the likelihood ratio by?",
+    "options": [
+      "0.5",
+      "1",
+      "1.5"
+    ],
+    "answer": 0,
+    "why": "P(T|p=.75)/P(T|p=.5)=.25/.5=.5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-sprt",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-821",
+      "timeline"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 821,
+    "sourceSection": "42. Sequential testing & Bayesian experimental design",
+    "sourceTitle": "SPRT",
+    "sourceText": "a running log-likelihood ratio wanders between two boundaries; the test stops when it crosses one.",
+    "sourceEntryOriginal": "- **821. SPRT** \\[Slider\\]: a running log-likelihood ratio wanders between two boundaries; the test stops when it crosses one.",
+    "numericCase": "Hypothesescoinp0=.5,p1=.75. EachHloglikelihoodratio log1.5≈.405465;eachTlog.5≈-.693147. Thresholds log9and-log9; 6Hcrossupper2.43279,alternatingHTdoesnot. Labelsillustrativethresholds, not exacterror guarantees.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "lifehacks/lh-offcuts-not-one-piece",
+    "difference": "New teaching boundary: SPRT. Existing boundary: Respect indivisible stock-piece boundaries when counting reusable offcuts."
+  },
+  "modelOutputs": [
+    2.4327906486489868,
+    -0.8630462173553427
+  ]
+}

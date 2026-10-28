@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0863", "title": "A no-harm assumption tightens a bound", "op": "manski", "labels": ["Share", "M1", "M0", "Monotone"], "outputs": ["Lower", "Upper"], "a": [0.5, 0.7, 0.3, 0.0], "b": [0.5, 0.7, 0.3, 1.0], "question": "Binary toy outcomes have treated Share 0.5, treated mean M1 0.7, control mean M0 0.3. Monotone 0=1 assumes no harmful effects. What lower ATE bound results?", "questionTemplate": "Binary toy outcomes have treated Share {Share}, treated mean M1 {M1}, control mean M0 {M0}. Monotone {Monotone}=1 assumes no harmful effects. What lower ATE bound results?", "explain": "Unobserved counterfactual means range from zero to one. A no-harm assumption intersects these bounds with nonnegative effects; it must be justified.", "lens": "the monotone-response restriction on a partial identification set", "kind": "bars", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

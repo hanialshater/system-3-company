@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0265",
+  "title": "A long shot at what price?",
+  "hook": "Two stated cases: explore the actual win probability behind betting value.",
+  "domain": "behavioral",
+  "concept": "be-source-0265",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the actual win probability behind betting value affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the actual win probability behind betting value in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0265.predict",
+      "text": "A toy gamble gains 190 with probability 0.04 and loses 10 otherwise. What is its expected cash change?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.reveal.0",
+      "text": "The retained results are Probability=0.04; Expected=-2 and Probability=0.06; Expected=2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.reveal.1",
+      "text": "Reaching an emotionally important balance is different from maximizing expected cash change. Neither guarantees the outcome of one play. This comparison isolates the actual win probability behind betting value.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.case.0.witness",
+      "text": "Probability=0.04; Expected=-2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",10],[\"Win\",190],[\"Probability\",0.04]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":-1.9999999999999991}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"-2\"},{\"label\":\"Probability\",\"value\":\"0.04\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.case.1.witness",
+      "text": "Probability=0.06; Expected=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",10],[\"Win\",190],[\"Probability\",0.06]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":2.0000000000000018}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2\"},{\"label\":\"Probability\",\"value\":\"0.06\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0265.recall",
+      "text": "A toy gamble gains 190 with probability 0.04 and loses 11 otherwise. What is its expected cash change? Answer -2.96.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0265/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #265. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy gamble gains 190 with probability 0.04 and loses 11 otherwise. What is its expected cash change?",
+    "options": [
+      "-4.144",
+      "-1.776",
+      "-2.96"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected -2.96 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0265",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-265"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 265,
+    "sourceSection": "14. Risk & probability weighting",
+    "sourceEntryOriginal": "- **265.** Long shots at the racetrack are overbet and favorites underbet (Griffith, 1949), mainly from misjudged probabilities (Snowberg & Wolfers, 2010).",
+    "modelBoundary": "the actual win probability behind betting value",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      190,
+      0.04
+    ]
+  }
+}

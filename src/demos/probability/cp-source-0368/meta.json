@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0368",
+  "title": "Two sufficient causes can overlap",
+  "hook": "Two stated cases: explore the difference between necessity and sufficiency.",
+  "domain": "probability",
+  "concept": "cp-source-0368",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the difference between necessity and sufficiency affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Outcome, regardless of the stated inputs.",
+  "objective": "Compare the difference between necessity and sufficiency in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0368.predict",
+      "text": "Two toy binary causes A=1,B=1 each suffice for an outcome: Y=A OR B. What outcome is generated?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.reveal.0",
+      "text": "The retained results are A=1 B=1; Outcome=1 and A=0 B=0; Outcome=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.reveal.1",
+      "text": "When both causes suffice, removing either alone may leave the outcome unchanged. A but-for test and the full structural causal account can differ. This comparison isolates the difference between necessity and sufficiency.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.case.0.witness",
+      "text": "A=1 B=1; Outcome=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",1],[\"B\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Outcome\",\"value\":1}]},\"metrics\":[{\"label\":\"Outcome\",\"value\":\"1\"},{\"label\":\"A\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.case.1.witness",
+      "text": "A=0 B=0; Outcome=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"A\",0],[\"B\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Outcome\",\"value\":0}]},\"metrics\":[{\"label\":\"Outcome\",\"value\":\"0\"},{\"label\":\"A\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0368.recall",
+      "text": "Two toy binary causes A=1,B=0 each suffice for an outcome: Y=A OR B. What outcome is generated? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0368/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #368. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy binary causes A=1,B=0 each suffice for an outcome: Y=A OR B. What outcome is generated?",
+    "options": [
+      "0: no / blocked",
+      "1: yes / active"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Outcome 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0368",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-368"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 368,
+    "sourceSection": "19. Counterfactuals & potential outcomes",
+    "sourceEntryOriginal": "- **368. Firing squad** \\[Gotcha\\]: two shooters fire; neither shot is \"necessary\", yet both caused the death.",
+    "modelBoundary": "the difference between necessity and sufficiency",
+    "recallInputs": [
+      1,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

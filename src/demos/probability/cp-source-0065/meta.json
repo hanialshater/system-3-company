@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0065",
+  "title": "Rare incidents per unit of exposure",
+  "hook": "Two stated cases: explore the stated Poisson rate per exposure unit.",
+  "domain": "probability",
+  "concept": "cp-source-0065",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stated Poisson rate per exposure unit affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the stated Poisson rate per exposure unit in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0065.predict",
+      "text": "A toy Poisson count has mean 0.6. What is the probability of exactly 0 events?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.reveal.0",
+      "text": "The retained results are Rate=0.6; Probability=0.549 and Rate=1.2; Probability=0.301.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.reveal.1",
+      "text": "The mean fixes this Poisson distribution. Agreement at one count does not establish that real events satisfy the model. This comparison isolates the stated Poisson rate per exposure unit.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.case.0.witness",
+      "text": "Rate=0.6; Probability=0.549",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.6],[\"Count\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.5488116360940265}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.549\"},{\"label\":\"Rate\",\"value\":\"0.6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.case.1.witness",
+      "text": "Rate=1.2; Probability=0.301",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",1.2],[\"Count\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.3011942119122021}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.301\"},{\"label\":\"Rate\",\"value\":\"1.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0065.recall",
+      "text": "A toy Poisson count has mean 0.7. What is the probability of exactly 0 events? Answer 0.497.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0065/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #65. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Poisson count has mean 0.7. What is the probability of exactly 0 events?",
+    "options": [
+      "0.497",
+      "0.298",
+      "0.695"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Probability 0.497 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0065",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-65"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 65,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **65. Horse kicks** \\[Story\\]: Prussian cavalry deaths by horse kick fit a Poisson distribution almost perfectly (Bortkiewicz, 1898).",
+    "modelBoundary": "the stated Poisson rate per exposure unit",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.7,
+      0
+    ]
+  }
+}

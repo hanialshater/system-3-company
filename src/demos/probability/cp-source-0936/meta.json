@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0936",
+  "title": "Turn growth into a doubling time",
+  "hook": "Two stated cases: explore the discrete daily growth assumption.",
+  "domain": "probability",
+  "concept": "cp-source-0936",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the discrete daily growth assumption affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Time, regardless of the stated inputs.",
+  "objective": "Compare the discrete daily growth assumption in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0936.predict",
+      "text": "A toy count grows by fraction Rate 0.07 each period. What doubling time follows from discrete compounding?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.reveal.0",
+      "text": "The retained results are Rate=0.07; Time=10.245 and Rate=0.14; Time=5.29.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.reveal.1",
+      "text": "Doubling time translates a constant proportional growth assumption into time units. Changing rates break that extrapolation. This comparison isolates the discrete daily growth assumption.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.case.0.witness",
+      "text": "Rate=0.07; Time=10.245",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.07]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Time\",\"value\":10.244768351058712}]},\"metrics\":[{\"label\":\"Time\",\"value\":\"10.245\"},{\"label\":\"Rate\",\"value\":\"0.07\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.case.1.witness",
+      "text": "Rate=0.14; Time=5.29",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",0.14]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Time\",\"value\":5.290058555535471}]},\"metrics\":[{\"label\":\"Time\",\"value\":\"5.29\"},{\"label\":\"Rate\",\"value\":\"0.14\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0936.recall",
+      "text": "A toy count grows by fraction Rate 0.17 each period. What doubling time follows from discrete compounding? Answer 4.415.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0936/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #936. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy count grows by fraction Rate 0.17 each period. What doubling time follows from discrete compounding?",
+    "options": [
+      "2.649",
+      "4.415",
+      "6.181"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Time 4.415 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0936",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-936"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 936,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **936. Doubling time** \\[Slider\\]: convert a daily growth rate into doubling time; 7% a day doubles in about 10 days.",
+    "modelBoundary": "the discrete daily growth assumption",
+    "recallInputs": [
+      0.17
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

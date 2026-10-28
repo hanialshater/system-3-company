@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
+const batch=process.argv[2],url=process.argv[3];
+if(!/^batch-\d{2}$/.test(batch??'')||!url)throw Error('Usage: qa.mjs batch-04 http://127.0.0.1:3494');
+const m=JSON.parse(fs.readFileSync(`company/reviews/continuation-${batch}/manifest.json`)),slugs=m.entries.map(x=>x.slug);
+if(slugs.length!==m.count||new Set(slugs).size!==slugs.length)throw Error('Invalid manifest');
+const out=`artifacts/continuation-${batch}`;fs.mkdirSync(out,{recursive:true});
+const run=(cmd,args,env={})=>{const r=spawnSync(cmd,args,{env:{...process.env,...env},stdio:'inherit'});if(r.error)throw r.error;return r.status??1;};
+const contract=run('npx',['playwright','test','tests/qa/contract.spec.ts','--workers=6'],{QA_BASE_URL:url,QA_ONLY:slugs.join(','),QA_OUT:`${out}/contract`});
+const fit=run('node',['tools/reveal-fit.mjs','--url',url,'--jobs','6','--out',`${out}/fit.json`,'--strict',...slugs]);
+fs.writeFileSync(`${out}/exit-status.json`,JSON.stringify({batch,count:slugs.length,contract,fit},null,2)+'\n');process.exit(contract||fit);

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0559",
+  "title": "First hit within a finite horizon",
+  "hook": "Two stated cases: explore the absorbing finite-lattice analogue of first passage.",
+  "domain": "probability",
+  "concept": "cp-source-0559",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the absorbing finite-lattice analogue of first passage affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Hit, regardless of the stated inputs.",
+  "objective": "Compare the absorbing finite-lattice analogue of first passage in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0559.predict",
+      "text": "A toy ±1 walk starts at zero, steps up with probability 0.5. What is probability of first reaching positive Barrier 3 within 20 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.reveal.0",
+      "text": "The retained results are Steps=20; Hit=0.503 and Steps=100; Hit=0.764.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.reveal.1",
+      "text": "Absorbing the first-hit mass answers a path event, not just endpoint position. This finite lattice model is not an exact Brownian first-passage distribution. This comparison isolates the absorbing finite-lattice analogue of first passage.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.case.0.witness",
+      "text": "Steps=20; Hit=0.503",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",20],[\"Barrier\",3],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Hit\",\"value\":0.5034446716308594}]},\"metrics\":[{\"label\":\"Hit\",\"value\":\"0.503\"},{\"label\":\"Steps\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.case.1.witness",
+      "text": "Steps=100; Hit=0.764",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Steps\",100],[\"Barrier\",3],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Hit\",\"value\":0.7643534344026669}]},\"metrics\":[{\"label\":\"Hit\",\"value\":\"0.764\"},{\"label\":\"Steps\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0559.recall",
+      "text": "A toy ±1 walk starts at zero, steps up with probability 0.5. What is probability of first reaching positive Barrier 3 within 21 steps? Answer 0.523.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0559/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #559. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy ±1 walk starts at zero, steps up with probability 0.5. What is probability of first reaching positive Barrier 3 within 21 steps?",
+    "options": [
+      "0.314",
+      "0.733",
+      "0.523"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Hit 0.523 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0559",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-559"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 559,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **559. First passage** \\[Slider\\]: how long until a Brownian path first hits a barrier? The distribution has a heavy tail.",
+    "modelBoundary": "the absorbing finite-lattice analogue of first passage",
+    "recallInputs": [
+      21,
+      3,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

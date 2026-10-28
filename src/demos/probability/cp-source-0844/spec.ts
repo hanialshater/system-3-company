@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0844", "title": "Both sides determine exposure", "op": "spillover", "labels": ["Direct", "Spill", "TreatedNeighbors"], "outputs": ["Total"], "a": [2.0, 1.0, 2.0], "b": [2.0, 1.0, 8.0], "question": "A toy unit gets direct effect 2 plus Spill 1 per treated neighbor. With 2 treated neighbors, what total effect results?", "questionTemplate": "A toy unit gets direct effect {Direct} plus Spill {Spill} per treated neighbor. With {TreatedNeighbors} treated neighbors, what total effect results?", "explain": "With interference, exposure includes neighbors’ assignments. A single treatment indicator is insufficient to define every unit’s outcome.", "lens": "a two-sided exposure count before a randomization estimator", "kind": "graph", "answerPosition": 1, "graph": "spillover"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

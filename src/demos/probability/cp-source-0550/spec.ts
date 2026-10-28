@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0550", "title": "An expected path returns toward its mean", "op": "ou", "labels": ["Mean", "Start", "K", "Sigma", "Time"], "outputs": ["Expected", "Variance"], "a": [0.0, 10.0, 0.2, 1.0, 10.0], "b": [0.0, 10.0, 0.2, 1.0, 20.0], "question": "A toy Ornstein-Uhlenbeck process has long-run Mean 0, Start 10, reversion K 0.2, diffusion Sigma 1. What is expected level at Time 10?", "questionTemplate": "A toy Ornstein-Uhlenbeck process has long-run Mean {Mean}, Start {Start}, reversion K {K}, diffusion Sigma {Sigma}. What is expected level at Time {Time}?", "explain": "The conditional mean returns toward the center while stochastic variance grows toward its stationary level. A mean curve is not a realized sample path.", "lens": "conditional mean reversion in a stipulated diffusion", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

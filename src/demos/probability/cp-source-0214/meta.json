@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0214",
+  "title": "Code distance sets an error bound",
+  "hook": "Two stated cases: explore symbol errors rather than covered image area.",
+  "domain": "probability",
+  "concept": "cp-source-0214",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How symbol errors rather than covered image area affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Errors, regardless of the stated inputs.",
+  "objective": "Compare symbol errors rather than covered image area in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0214.predict",
+      "text": "A toy block code has minimum Hamming Distance 15. How many arbitrary symbol errors can nearest-codeword decoding guarantee to correct?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.reveal.0",
+      "text": "The retained results are Distance=15; Errors=7 and Distance=25; Errors=12.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.reveal.1",
+      "text": "Minimum distance supplies a worst-case correction bound. A percentage of covered image area is not automatically the same as this code-symbol error count. This comparison isolates symbol errors rather than covered image area.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.case.0.witness",
+      "text": "Distance=15; Errors=7",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",15]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Errors\",\"value\":7}]},\"metrics\":[{\"label\":\"Errors\",\"value\":\"7\"},{\"label\":\"Distance\",\"value\":\"15\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.case.1.witness",
+      "text": "Distance=25; Errors=12",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Errors\",\"value\":12}]},\"metrics\":[{\"label\":\"Errors\",\"value\":\"12\"},{\"label\":\"Distance\",\"value\":\"25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0214.recall",
+      "text": "A toy block code has minimum Hamming Distance 17. How many arbitrary symbol errors can nearest-codeword decoding guarantee to correct? Answer 8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0214/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #214. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy block code has minimum Hamming Distance 17. How many arbitrary symbol errors can nearest-codeword decoding guarantee to correct?",
+    "options": [
+      "4.8",
+      "11.2",
+      "8"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Errors 8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0214",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-214"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 214,
+    "sourceSection": "11. Information, entropy & surprise",
+    "sourceEntryOriginal": "- **214. Damaged QR code** \\[Predict\\]: cover more and more of a QR code; error correction keeps it readable up to about 30%.",
+    "modelBoundary": "symbol errors rather than covered image area",
+    "recallInputs": [
+      17
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

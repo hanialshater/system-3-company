@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0767",
+  "title": "A label has local compatibility",
+  "hook": "Two stated cases: explore a local compatibility factor rather than a sentence decoder.",
+  "domain": "probability",
+  "concept": "cp-source-0767",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a local compatibility factor rather than a sentence decoder affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UpProbability, regardless of the stated inputs.",
+  "objective": "Compare a local compatibility factor rather than a sentence decoder in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0767.predict",
+      "text": "A toy Ising-site conditional uses inverse temperature Beta 1, coupling J 0.5, neighbor-spin sum 2, and external Field 0. What is P(spin=+1)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.reveal.0",
+      "text": "The retained results are Field=0; UpProbability=0.881 and Field=-2; UpProbability=0.119.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.reveal.1",
+      "text": "The local conditional favors agreement when coupling is positive. One site’s probability does not demonstrate global equilibrium or critical behavior. This comparison isolates a local compatibility factor rather than a sentence decoder.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.case.0.witness",
+      "text": "Field=0; UpProbability=0.881",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Beta\",1],[\"J\",0.5],[\"Neighbors\",2],[\"Field\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UpProbability\",\"value\":0.8807970779778823}]},\"metrics\":[{\"label\":\"UpProbability\",\"value\":\"0.881\"},{\"label\":\"Field\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.case.1.witness",
+      "text": "Field=-2; UpProbability=0.119",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Beta\",1],[\"J\",0.5],[\"Neighbors\",2],[\"Field\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UpProbability\",\"value\":0.11920292202211755}]},\"metrics\":[{\"label\":\"UpProbability\",\"value\":\"0.119\"},{\"label\":\"Field\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0767.recall",
+      "text": "A toy Ising-site conditional uses inverse temperature Beta 2, coupling J 0.5, neighbor-spin sum 2, and external Field 0. What is P(spin=+1)? Answer 0.982.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0767/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #767. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Ising-site conditional uses inverse temperature Beta 2, coupling J 0.5, neighbor-spin sum 2, and external Field 0. What is P(spin=+1)?",
+    "options": [
+      "0.982",
+      "0.589",
+      "1.375"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives UpProbability 0.982 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0767",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-767"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 767,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **767. Tag the names** \\[Slider\\]: a conditional random field labels people and places in a sentence.",
+    "modelBoundary": "a local compatibility factor rather than a sentence decoder",
+    "recallInputs": [
+      2,
+      0.5,
+      2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

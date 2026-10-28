@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0697",
+  "title": "Rare visits carry a larger bonus",
+  "hook": "Two stated cases: explore the count-based optimism ingredient of exploration.",
+  "domain": "probability",
+  "concept": "cp-source-0697",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the count-based optimism ingredient of exploration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UCB, regardless of the stated inputs.",
+  "objective": "Compare the count-based optimism ingredient of exploration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0697.predict",
+      "text": "A toy UCB score adds sqrt(2 log Total/Pulls) to Mean 0. Total 100, Pulls 1: what score results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.reveal.0",
+      "text": "The retained results are Pulls=1; UCB=3.035 and Pulls=25; UCB=0.607.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.reveal.1",
+      "text": "Less sampled arms receive a larger optimism bonus. This one-step score does not establish cumulative regret. This comparison isolates the count-based optimism ingredient of exploration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.case.0.witness",
+      "text": "Pulls=1; UCB=3.035",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"Total\",100],[\"Pulls\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"UCB\",\"value\":3.034854258770293},{\"label\":\"Bonus\",\"value\":3.034854258770293}]},\"metrics\":[{\"label\":\"UCB\",\"value\":\"3.035\"},{\"label\":\"Pulls\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.case.1.witness",
+      "text": "Pulls=25; UCB=0.607",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0],[\"Total\",100],[\"Pulls\",25]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"UCB\",\"value\":0.6069708517540585},{\"label\":\"Bonus\",\"value\":0.6069708517540585}]},\"metrics\":[{\"label\":\"UCB\",\"value\":\"0.607\"},{\"label\":\"Pulls\",\"value\":\"25\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0697.recall",
+      "text": "A toy UCB score adds sqrt(2 log Total/Pulls) to Mean 1. Total 100, Pulls 1: what score results? Answer 4.035.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0697/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #697. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy UCB score adds sqrt(2 log Total/Pulls) to Mean 1. Total 100, Pulls 1: what score results?",
+    "options": [
+      "2.421",
+      "5.649",
+      "4.035"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives UCB 4.035 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0697",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-697"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 697,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceEntryOriginal": "- **697. Curiosity bonus** \\[Slider\\]: reward an agent for visiting rarely seen states and it explores a maze faster.",
+    "modelBoundary": "the count-based optimism ingredient of exploration",
+    "recallInputs": [
+      1,
+      100,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

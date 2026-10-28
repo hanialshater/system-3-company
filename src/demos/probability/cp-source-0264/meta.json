@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0264",
+  "title": "Population size can drive both counts",
+  "hook": "Two stated cases: explore the common scale factor behind two observed variables.",
+  "domain": "probability",
+  "concept": "cp-source-0264",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the common scale factor behind two observed variables affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Slope, regardless of the stated inputs.",
+  "objective": "Compare the common scale factor behind two observed variables in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0264.predict",
+      "text": "Standardized toy X and U have Corr 0.9; Y=Direct 0×X+Common 4×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.reveal.0",
+      "text": "The retained results are Do=0; Slope=3.6 and Do=1; Slope=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.reveal.1",
+      "text": "The common cause can change the observational slope without changing the intervention derivative. The causal conclusion follows the specified structural equations. This comparison isolates the common scale factor behind two observed variables.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.case.0.witness",
+      "text": "Do=0; Slope=3.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Common\",4],[\"Corr\",0.9],[\"Do\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"3.6\"},{\"label\":\"Do\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.case.1.witness",
+      "text": "Do=1; Slope=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",0],[\"Common\",4],[\"Corr\",0.9],[\"Do\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"U\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"m\",\"to\":\"x\",\"active\":false},{\"from\":\"m\",\"to\":\"y\",\"active\":true},{\"from\":\"x\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Slope\",\"value\":\"0\"},{\"label\":\"Do\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0264.recall",
+      "text": "Standardized toy X and U have Corr 0.9; Y=Direct 1×X+Common 4×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results? Answer 4.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0264/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #264. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Standardized toy X and U have Corr 0.9; Y=Direct 1×X+Common 4×U+noise. Do 0=0 asks the observational slope, 1 the intervention derivative. What results?",
+    "options": [
+      "2.76",
+      "4.6",
+      "6.44"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Slope 4.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0264",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-264"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 264,
+    "sourceSection": "14. Correlation vs causation",
+    "sourceEntryOriginal": "- **264. Storks and babies** \\[Story\\]: European stork populations correlate with birth rates (Matthews, 2000).",
+    "modelBoundary": "the common scale factor behind two observed variables",
+    "recallInputs": [
+      1,
+      4,
+      0.9,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0850",
+  "title": "Stars and sales can amplify each other",
+  "hook": "Two stated cases: explore the stipulated feedback multiplier of a rating loop.",
+  "domain": "probability",
+  "concept": "cp-source-0850",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated feedback multiplier of a rating loop affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the stipulated feedback multiplier of a rating loop in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0850.predict",
+      "text": "A toy feedback process starts at 1; each step multiplies the current level by 1.1. What level follows 10 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.reveal.0",
+      "text": "The retained results are Amplification=1.1; Level=2.594 and Amplification=1.3; Level=13.786.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.reveal.1",
+      "text": "A self-reinforcing measurement process can amplify its starting differences. The recurrence is assumed and does not separate true underlying need from observed activity. This comparison isolates the stipulated feedback multiplier of a rating loop.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.case.0.witness",
+      "text": "Amplification=1.1; Level=2.594",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1],[\"Amplification\",1.1],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"2.5\",\"value\":1.2690587062858836},{\"label\":\"5\",\"value\":1.6105100000000006},{\"label\":\"7.5\",\"value\":2.0438317370604793},{\"label\":\"10\",\"value\":2.5937424601000023}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"2.594\"},{\"label\":\"Amplification\",\"value\":\"1.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.case.1.witness",
+      "text": "Amplification=1.3; Level=13.786",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1],[\"Amplification\",1.3],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"2.5\",\"value\":1.9268964684175434},{\"label\":\"5\",\"value\":3.7129300000000005},{\"label\":\"7.5\",\"value\":7.15443170448155},{\"label\":\"10\",\"value\":13.785849184900005}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"13.786\"},{\"label\":\"Amplification\",\"value\":\"1.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0850.recall",
+      "text": "A toy feedback process starts at 2; each step multiplies the current level by 1.1. What level follows 10 steps? Answer 5.187.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0850/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #850. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy feedback process starts at 2; each step multiplies the current level by 1.1. What level follows 10 steps?",
+    "options": [
+      "3.112",
+      "7.262",
+      "5.187"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Level 5.187 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0850",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-850"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 850,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceEntryOriginal": "- **850. Ratings feedback loop** \\[Slider\\]: higher displayed stars bring more sales, more reviews and even higher stars.",
+    "modelBoundary": "the stipulated feedback multiplier of a rating loop",
+    "recallInputs": [
+      2,
+      1.1,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

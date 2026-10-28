@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0306",
+  "title": "Reward now, activity later",
+  "hook": "Two stated cases: explore a specified activity path rather than a universal reward effect.",
+  "domain": "behavioral",
+  "concept": "be-source-0306",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a specified activity path rather than a universal reward effect affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Remaining, regardless of the stated inputs.",
+  "objective": "Compare a specified activity path rather than a universal reward effect in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0306.predict",
+      "text": "A toy budget starts with 100 and spends 3 per day for 10 days. What remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.reveal.0",
+      "text": "The retained results are Spend=3; Remaining=70 and Spend=6; Remaining=40.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.reveal.1",
+      "text": "The timing of an inflow and the rate of spending determine the remaining buffer. The schedule is an illustration, not observed household data. This comparison isolates a specified activity path rather than a universal reward effect.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.case.0.witness",
+      "text": "Spend=3; Remaining=70",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",100],[\"Days\",10],[\"Spend\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"5\",\"value\":85},{\"label\":\"10\",\"value\":70}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"70\"},{\"label\":\"Spend\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.case.1.witness",
+      "text": "Spend=6; Remaining=40",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Income\",100],[\"Days\",10],[\"Spend\",6]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":100},{\"label\":\"5\",\"value\":70},{\"label\":\"10\",\"value\":40}]},\"metrics\":[{\"label\":\"Remaining\",\"value\":\"40\"},{\"label\":\"Spend\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0306.recall",
+      "text": "A toy budget starts with 101 and spends 3 per day for 10 days. What remains? Answer 71.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0306/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #306. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy budget starts with 101 and spends 3 per day for 10 days. What remains?",
+    "options": [
+      "42.6",
+      "71",
+      "99.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Remaining 71 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0306",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-306"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 306,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **306.** Children promised a reward for drawing later drew less in free time than unrewarded children (Lepper, Greene & Nisbett, 1973).",
+    "modelBoundary": "a specified activity path rather than a universal reward effect",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      10,
+      3
+    ]
+  }
+}

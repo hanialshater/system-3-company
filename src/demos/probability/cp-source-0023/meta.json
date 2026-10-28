@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0023",
+  "title": "The coin does not owe you tails",
+  "hook": "Two stated cases: explore independence after a specified streak.",
+  "domain": "probability",
+  "concept": "cp-source-0023",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How independence after a specified streak affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines NextHead, regardless of the stated inputs.",
+  "objective": "Compare independence after a specified streak in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0023.predict",
+      "text": "Independent toy flips have fixed heads probability 0.5. After 5 heads, what is the next-head probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.reveal.0",
+      "text": "The retained results are PastHeads=5; NextHead=0.5 and PastHeads=20; NextHead=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.reveal.1",
+      "text": "Independence keeps the next-trial probability fixed. Learning an unknown bias from data is a different model. This comparison isolates independence after a specified streak.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.case.0.witness",
+      "text": "PastHeads=5; NextHead=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"PastHeads\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"NextHead\",\"value\":0.5}]},\"metrics\":[{\"label\":\"NextHead\",\"value\":\"0.5\"},{\"label\":\"PastHeads\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.case.1.witness",
+      "text": "PastHeads=20; NextHead=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"PastHeads\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"NextHead\",\"value\":0.5}]},\"metrics\":[{\"label\":\"NextHead\",\"value\":\"0.5\"},{\"label\":\"PastHeads\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0023.recall",
+      "text": "Independent toy flips have fixed heads probability 0.4. After 5 heads, what is the next-head probability? Answer 0.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0023/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #23. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent toy flips have fixed heads probability 0.4. After 5 heads, what is the next-head probability?",
+    "options": [
+      "0.4",
+      "0.24",
+      "0.56"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives NextHead 0.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0023",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-23"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 23,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **23. Gambler's fallacy** \\[Measure\\]: after 5 heads, call the next flip. Your hit rate stays stubbornly at 50%.",
+    "modelBoundary": "independence after a specified streak",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.4,
+      5
+    ]
+  }
+}

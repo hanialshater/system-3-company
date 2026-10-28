@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0173",
+  "title": "Accept an uphill move while warm",
+  "hook": "Two stated cases: explore the temperature in a stated annealing acceptance rule.",
+  "domain": "probability",
+  "concept": "cp-source-0173",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the temperature in a stated annealing acceptance rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Acceptance, regardless of the stated inputs.",
+  "objective": "Compare the temperature in a stated annealing acceptance rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0173.predict",
+      "text": "A toy annealing move increases cost by 5, with positive temperature 10. What acceptance probability does exp(-increase/temperature) assign?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.reveal.0",
+      "text": "The retained results are Temperature=10; Acceptance=0.607 and Temperature=1; Acceptance=0.007.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.reveal.1",
+      "text": "A higher temperature permits more uphill moves. This one-step rule alone does not guarantee a global optimum. This comparison isolates the temperature in a stated annealing acceptance rule.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.case.0.witness",
+      "text": "Temperature=10; Acceptance=0.607",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Increase\",5],[\"Temperature\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.6065306597126334}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"0.607\"},{\"label\":\"Temperature\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.case.1.witness",
+      "text": "Temperature=1; Acceptance=0.007",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Increase\",5],[\"Temperature\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Acceptance\",\"value\":0.006737946999085467}]},\"metrics\":[{\"label\":\"Acceptance\",\"value\":\"0.007\"},{\"label\":\"Temperature\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0173.recall",
+      "text": "A toy annealing move increases cost by 6, with positive temperature 10. What acceptance probability does exp(-increase/temperature) assign? Answer 0.549.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0173/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #173. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy annealing move increases cost by 6, with positive temperature 10. What acceptance probability does exp(-increase/temperature) assign?",
+    "options": [
+      "0.549",
+      "0.329",
+      "0.768"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Acceptance 0.549 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0173",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-173"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 173,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **173. Simulated annealing** \\[Slider\\]: cool slowly and a random search finds a short delivery route.",
+    "modelBoundary": "the temperature in a stated annealing acceptance rule",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      6,
+      10
+    ]
+  }
+}

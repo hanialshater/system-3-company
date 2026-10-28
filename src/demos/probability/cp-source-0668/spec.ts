@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0668", "title": "Curvature changes a predicted mean", "op": "squarednormal", "labels": ["Mean", "Variance", "Linearized"], "outputs": ["Expected", "ExactVariance"], "a": [0.0, 1.0, 1.0], "b": [0.0, 1.0, 0.0], "question": "A toy normal X has Mean 0, Variance 1; transform Y=X². Linearized 1=1 plugs in the mean, 0 uses the exact moment. What predicted mean results?", "questionTemplate": "A toy normal X has Mean {Mean}, Variance {Variance}; transform Y=X². Linearized {Linearized}=1 plugs in the mean, 0 uses the exact moment. What predicted mean results?", "explain": "Curvature can make transforming the mean differ from averaging the transformed variable. This moment example isolates one limitation of linearization.", "lens": "the exact transformed moment versus a mean linearization", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

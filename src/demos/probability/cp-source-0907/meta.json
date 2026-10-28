@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0907",
+  "title": "Reweight a click for exposure",
+  "hook": "Two stated cases: explore the inverse exposure probability on one observed click.",
+  "domain": "probability",
+  "concept": "cp-source-0907",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the inverse exposure probability on one observed click affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Weighted, regardless of the stated inputs.",
+  "objective": "Compare the inverse exposure probability on one observed click in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0907.predict",
+      "text": "A toy action has Target probability 1, Behavior probability 0.8, observed Reward 1. What importance-weighted reward results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.reveal.0",
+      "text": "The retained results are Behavior=0.8; Weighted=1.25 and Behavior=0.2; Weighted=5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.reveal.1",
+      "text": "The probability ratio reweights a sample toward the target policy. Valid policy evaluation also requires support and correctly recorded behavior probabilities. This comparison isolates the inverse exposure probability on one observed click.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.case.0.witness",
+      "text": "Behavior=0.8; Weighted=1.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",1],[\"Behavior\",0.8],[\"Reward\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Weighted\",\"value\":1.25}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"1.25\"},{\"label\":\"Behavior\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.case.1.witness",
+      "text": "Behavior=0.2; Weighted=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",1],[\"Behavior\",0.2],[\"Reward\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Weighted\",\"value\":5}]},\"metrics\":[{\"label\":\"Weighted\",\"value\":\"5\"},{\"label\":\"Behavior\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0907.recall",
+      "text": "A toy action has Target probability 1, Behavior probability 0.9, observed Reward 1. What importance-weighted reward results? Answer 1.111.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0907/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #907. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy action has Target probability 1, Behavior probability 0.9, observed Reward 1. What importance-weighted reward results?",
+    "options": [
+      "0.667",
+      "1.556",
+      "1.111"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Weighted 1.111 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0907",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-907"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 907,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **907. Counterfactual learning to rank** \\[Slider\\]: train a ranker on clicks reweighted for position bias.",
+    "modelBoundary": "the inverse exposure probability on one observed click",
+    "recallInputs": [
+      1,
+      0.9,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

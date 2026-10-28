@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0553",
+  "title": "A two-state signal forgets its start",
+  "hook": "Two stated cases: explore continuous-time transition rates in a two-state signal.",
+  "domain": "probability",
+  "concept": "cp-source-0553",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How continuous-time transition rates in a two-state signal affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Up, regardless of the stated inputs.",
+  "objective": "Compare continuous-time transition rates in a two-state signal in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0553.predict",
+      "text": "A toy two-state continuous-time machine has breakdown rate 0.2, repair rate 0.4, initial up probability 1. What is up probability at Time 10?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.reveal.0",
+      "text": "The retained results are Start=1; Up=0.667 and Start=0; Up=0.665.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.reveal.1",
+      "text": "Repair and failure rates jointly determine availability and transient recovery. Independence and constant hazards are explicit model assumptions. This comparison isolates continuous-time transition rates in a two-state signal.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.case.0.witness",
+      "text": "Start=1; Up=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Break\",0.2],[\"Repair\",0.4],[\"Start\",1],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Up\",\"value\":0.667492917392222}]},\"metrics\":[{\"label\":\"Up\",\"value\":\"0.667\"},{\"label\":\"Start\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.case.1.witness",
+      "text": "Start=0; Up=0.665",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Break\",0.2],[\"Repair\",0.4],[\"Start\",0],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Up\",\"value\":0.6650141652155557}]},\"metrics\":[{\"label\":\"Up\",\"value\":\"0.665\"},{\"label\":\"Start\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0553.recall",
+      "text": "A toy two-state continuous-time machine has breakdown rate 0.3, repair rate 0.4, initial up probability 1. What is up probability at Time 10? Answer 0.572.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0553/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #553. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy two-state continuous-time machine has breakdown rate 0.3, repair rate 0.4, initial up probability 1. What is up probability at Time 10?",
+    "options": [
+      "0.343",
+      "0.801",
+      "0.572"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Up 0.572 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0553",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-553"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 553,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **553. Random telegraph** \\[Slider\\]: a signal that flips between two states at random times.",
+    "modelBoundary": "continuous-time transition rates in a two-state signal",
+    "recallInputs": [
+      0.30000000000000004,
+      0.4,
+      1,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

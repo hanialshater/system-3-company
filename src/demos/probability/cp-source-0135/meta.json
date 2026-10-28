@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0135",
+  "title": "Up fifty, down fifty",
+  "hook": "Two stated cases: explore multiplicative return arithmetic.",
+  "domain": "probability",
+  "concept": "cp-source-0135",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How multiplicative return arithmetic affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Factor, regardless of the stated inputs.",
+  "objective": "Compare multiplicative return arithmetic in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0135.predict",
+      "text": "A toy investment returns 0.5 in one period and -0.5 in the next. What final-to-initial wealth factor results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.reveal.0",
+      "text": "The retained results are Up=0.5 Down=-0.5; Factor=0.75 and Up=0.1 Down=-0.1; Factor=0.99.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.reveal.1",
+      "text": "Returns multiply through the changing balance. Their arithmetic average need not describe realized compound growth. This comparison isolates multiplicative return arithmetic.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.case.0.witness",
+      "text": "Up=0.5 Down=-0.5; Factor=0.75",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Up\",0.5],[\"Down\",-0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Factor\",\"value\":0.75}]},\"metrics\":[{\"label\":\"Factor\",\"value\":\"0.75\"},{\"label\":\"Up\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.case.1.witness",
+      "text": "Up=0.1 Down=-0.1; Factor=0.99",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Up\",0.1],[\"Down\",-0.1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Factor\",\"value\":0.9900000000000001}]},\"metrics\":[{\"label\":\"Factor\",\"value\":\"0.99\"},{\"label\":\"Up\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0135.recall",
+      "text": "A toy investment returns 0.6 in one period and -0.5 in the next. What final-to-initial wealth factor results? Answer 0.8.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0135/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #135. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy investment returns 0.6 in one period and -0.5 in the next. What final-to-initial wealth factor results?",
+    "options": [
+      "0.48",
+      "0.8",
+      "1.12"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Factor 0.8 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0135",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-135"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 135,
+    "sourceSection": "7. Expected value, risk & decisions",
+    "sourceEntryOriginal": "- **135. Volatility drag** \\[Gotcha\\]: +50% then −50% leaves you with 75%.",
+    "modelBoundary": "multiplicative return arithmetic",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.6,
+      -0.5
+    ]
+  }
+}

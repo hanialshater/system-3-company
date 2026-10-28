@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0142", "title": "Return at a finite time", "op": "returnwalk", "labels": ["Steps", "Dimension"], "outputs": ["AtOrigin"], "a": [6.0, 1.0], "b": [6.0, 3.0], "question": "A toy lattice walk starts at the origin in Dimension 1; each step uniformly chooses one of 2d unit directions. What is the probability it is at the origin after exactly 6 steps?", "questionTemplate": "A toy lattice walk starts at the origin in Dimension {Dimension}; each step uniformly chooses one of 2d unit directions. What is the probability it is at the origin after exactly {Steps} steps?", "explain": "Endpoint return at a fixed finite time differs from ever returning over an infinite future. This enumeration answers only the finite question.", "lens": "finite endpoint return versus ever returning", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

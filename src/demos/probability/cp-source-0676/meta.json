@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0676",
+  "title": "Which detection belongs to which dot?",
+  "hook": "Two stated cases: explore the squared-distance association cost.",
+  "domain": "probability",
+  "concept": "cp-source-0676",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the squared-distance association cost affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines CostGap, regardless of the stated inputs.",
+  "objective": "Compare the squared-distance association cost in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0676.predict",
+      "text": "Two toy tracks are 0,10; detections 1,9. What is straight assignment squared error minus swapped assignment squared error?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.reveal.0",
+      "text": "The retained results are DetectA=1 DetectB=9; CostGap=-160 and DetectA=9 DetectB=1; CostGap=160.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.reveal.1",
+      "text": "The lower-cost association depends on both locations. This is one association step, not a multi-target tracker. This comparison isolates the squared-distance association cost.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.case.0.witness",
+      "text": "DetectA=1 DetectB=9; CostGap=-160",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TrackA\",0],[\"TrackB\",10],[\"DetectA\",1],[\"DetectB\",9]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"CostGap\",\"value\":-160},{\"label\":\"Straight\",\"value\":2},{\"label\":\"Swapped\",\"value\":162}]},\"metrics\":[{\"label\":\"CostGap\",\"value\":\"-160\"},{\"label\":\"DetectA\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.case.1.witness",
+      "text": "DetectA=9 DetectB=1; CostGap=160",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"TrackA\",0],[\"TrackB\",10],[\"DetectA\",9],[\"DetectB\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"CostGap\",\"value\":160},{\"label\":\"Straight\",\"value\":162},{\"label\":\"Swapped\",\"value\":2}]},\"metrics\":[{\"label\":\"CostGap\",\"value\":\"160\"},{\"label\":\"DetectA\",\"value\":\"9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0676.recall",
+      "text": "Two toy tracks are 1,10; detections 1,9. What is straight assignment squared error minus swapped assignment squared error? Answer -144.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0676/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #676. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy tracks are 1,10; detections 1,9. What is straight assignment squared error minus swapped assignment squared error?",
+    "options": [
+      "-201.6",
+      "-86.4",
+      "-144"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives CostGap -144 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0676",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-676"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 676,
+    "sourceSection": "34. State-space models, Kalman & particle filters",
+    "sourceEntryOriginal": "- **676. Many targets** \\[Slider\\]: track several moving dots whose detections get mixed up.",
+    "modelBoundary": "the squared-distance association cost",
+    "recallInputs": [
+      1,
+      10,
+      1,
+      9
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

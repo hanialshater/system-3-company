@@ -1,0 +1,103 @@
+{
+  "slug": "be-more-shifts-less-effort",
+  "title": "More shifts, less effort",
+  "hook": "Can total labor supply rise while effort per shift falls?",
+  "domain": "behavioral",
+  "concept": "be-more-shifts-less-effort",
+  "status": "draft",
+  "durationSec": 60,
+  "version": 1,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and reading a small table"
+    ],
+    "doesNotKnow": [
+      "Separate the extensive margin of taking shifts from within-shift effort."
+    ]
+  },
+  "misconception": "The quantities in this case can be combined without checking their reference, denominator, or information boundary.",
+  "objective": "Separate the extensive margin of taking shifts from within-shift effort.",
+  "keyState": "Both complete computed cases are visible as retained observations; the question-case picture survives Reset.",
+  "claims": [
+    {
+      "id": "behavioral.be-more-shifts-less-effort.inputs",
+      "text": "A toy courier works six shifts at nine output units each, compared with five shifts at ten. What is the new total output? Toy inputs A=[6, 9]; B=[5, 10].",
+      "support": "convention",
+      "source": "Local explicit hypothetical assumptions in spec.ts and model.ts; not participant measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-more-shifts-less-effort.trace",
+      "text": "Computed results: [[54, 6, 9], [50, 5, 10]]. Labels: Total output, Shifts, Output/shift.",
+      "support": "derivation",
+      "source": "compute() in the lesson-local model.ts; finite numeric operations over the explicit inputs.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-more-shifts-less-effort.reveal",
+      "text": "More shifts and less effort per shift can coexist with higher total output. The multiplication separates the extensive and intensive margins. A single total would conceal those opposing changes.",
+      "support": "derivation",
+      "source": "The two controlled cases in spec.ts; scope limited to these toy inputs and displayed model rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-more-shifts-less-effort.recall",
+      "text": "A new toy case uses Shifts=5, Output/shift=10. What is Total output? Answer: 50.",
+      "support": "derivation",
+      "source": "compute() applied to the contrasting new input case; source list is an idea pointer only.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A new toy case uses Shifts=5, Output/shift=10. What is Total output?",
+    "options": [
+      "65",
+      "50",
+      "35"
+    ],
+    "answer": 1,
+    "why": "Applying the stated toy rule to the new inputs gives 50. The result depends on these assumptions; it is not a universal behavioral response."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "behavioral:be-more-shifts-less-effort",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "behavioral",
+      "toy-model",
+      "source-entry-381"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "run-case",
+    "compare-case",
+    "step-trace",
+    "reset-retained-evidence"
+  ],
+  "sourceProvenance": {
+    "file": "500-behavioral-economics-findings.md",
+    "entry": 381,
+    "section": "20. Labor & the workplace",
+    "text": "Zurich bike messengers worked more shifts when pay rose but put in less effort per shift (Fehr & Goette, 2007).",
+    "pointer": "500-behavioral-economics-findings.md entry 381: Fehr & Goette, 2007",
+    "status": "unverified-primary-source",
+    "caveat": "Original list says figures are approximate and papers were not individually rechecked. No empirical source is verified by this build."
+  },
+  "nearestExistingLesson": "net-hourly-after-costs",
+  "meaningfulDifference": "Separate the extensive margin of taking shifts from within-shift effort."
+}

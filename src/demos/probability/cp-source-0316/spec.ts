@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0316", "title": "Crediting guaranteed survival time", "op": "immortaltime", "labels": ["Deaths", "PersonTime", "Guaranteed", "People"], "outputs": ["Rate"], "a": [10.0, 100.0, 5.0, 20.0], "b": [10.0, 100.0, 0.0, 20.0], "question": "A toy analysis records 10 events over 100 time units, then credits 5 guaranteed event-free units for each of 20 people. What recorded event rate results?", "questionTemplate": "A toy analysis records {Deaths} events over {PersonTime} time units, then credits {Guaranteed} guaranteed event-free units for each of {People} people. What recorded event rate results?", "explain": "Crediting guaranteed survival time enlarges the denominator without adding possible events. Time-zero alignment is essential to a causal survival comparison.", "lens": "the time denominator before causal interpretation", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0139",
+  "title": "A routine purchase reference",
+  "hook": "Two stated cases: explore the assumed loss weight in a routine exchange.",
+  "domain": "behavioral",
+  "concept": "be-source-0139",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed loss weight in a routine exchange affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Value, regardless of the stated inputs.",
+  "objective": "Compare the assumed loss weight in a routine exchange in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0139.predict",
+      "text": "A toy bet wins 12 with probability 0.5; otherwise it loses 10. Losses count 1 times gains. What is its expected model value?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.reveal.0",
+      "text": "The retained results are Lambda=1; Value=1 and Lambda=2; Value=-4.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.reveal.1",
+      "text": "The model weights a loss separately from its probability. A positive cash expectation can coexist with a negative model valuation. This comparison isolates the assumed loss weight in a routine exchange.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.case.0.witness",
+      "text": "Lambda=1; Value=1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",12],[\"Loss\",10],[\"Lambda\",1],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":1}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"1\"},{\"label\":\"Lambda\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.case.1.witness",
+      "text": "Lambda=2; Value=-4",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Gain\",12],[\"Loss\",10],[\"Lambda\",2],[\"P\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Value\",\"value\":-4}]},\"metrics\":[{\"label\":\"Value\",\"value\":\"-4\"},{\"label\":\"Lambda\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0139.recall",
+      "text": "A toy bet wins 13 with probability 0.5; otherwise it loses 10. Losses count 1 times gains. What is its expected model value? Answer 1.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0139/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #139. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy bet wins 13 with probability 0.5; otherwise it loses 10. Losses count 1 times gains. What is its expected model value?",
+    "options": [
+      "0.9",
+      "2.1",
+      "1.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Value 1.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0139",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-139"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 139,
+    "sourceSection": "7. Endowment effect & status quo bias",
+    "sourceEntryOriginal": "- **139.** There is no loss aversion for money handed over in routine purchases (Novemsky & Kahneman, 2005).",
+    "modelBoundary": "the assumed loss weight in a routine exchange",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      13,
+      10,
+      1,
+      0.5
+    ]
+  }
+}

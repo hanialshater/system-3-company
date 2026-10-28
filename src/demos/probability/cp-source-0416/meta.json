@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0416",
+  "title": "Trimming changes whose average is taken",
+  "hook": "Two stated cases: explore the population mixture after excluding a subgroup.",
+  "domain": "probability",
+  "concept": "cp-source-0416",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the population mixture after excluding a subgroup affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Average, regardless of the stated inputs.",
+  "objective": "Compare the population mixture after excluding a subgroup in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0416.predict",
+      "text": "A toy population has share 0.5 with effect 4, the rest with effect -2. What is its average treatment effect?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.reveal.0",
+      "text": "The retained results are Share=0.5; Average=1 and Share=0.9; Average=3.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.reveal.1",
+      "text": "Averages can hide opposite effects across groups. Targeting requires an identified effect for the relevant population, not just a large average. This comparison isolates the population mixture after excluding a subgroup.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.case.0.witness",
+      "text": "Share=0.5; Average=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"EffectA\",4],[\"EffectB\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Average\",\"value\":1}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"1\"},{\"label\":\"Share\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.case.1.witness",
+      "text": "Share=0.9; Average=3.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.9],[\"EffectA\",4],[\"EffectB\",-2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Average\",\"value\":3.4000000000000004}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"3.4\"},{\"label\":\"Share\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0416.recall",
+      "text": "A toy population has share 0.4 with effect 4, the rest with effect -2. What is its average treatment effect? Answer 0.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0416/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #416. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has share 0.4 with effect 4, the rest with effect -2. What is its average treatment effect?",
+    "options": [
+      "0.4",
+      "0.24",
+      "0.56"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Average 0.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0416",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-416"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 416,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceEntryOriginal": "- **416. Trimming changes the question** \\[Gotcha\\]: dropping hard-to-match people changes *whose* effect you estimate.",
+    "modelBoundary": "the population mixture after excluding a subgroup",
+    "recallInputs": [
+      0.4,
+      4,
+      -2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

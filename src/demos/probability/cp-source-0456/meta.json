@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0456",
+  "title": "Correlated days reduce effective draws",
+  "hook": "Two stated cases: explore the mean-variance ESS of a specified AR(1) series.",
+  "domain": "probability",
+  "concept": "cp-source-0456",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the mean-variance ESS of a specified AR(1) series affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ESS, regardless of the stated inputs.",
+  "objective": "Compare the mean-variance ESS of a specified AR(1) series in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0456.predict",
+      "text": "A stationary toy AR(1) sequence has 100 draws and lag-one correlation 0.8. What finite-sample ESS gives the same variance for its mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.reveal.0",
+      "text": "The retained results are Rho=0.8; ESS=11.628 and Rho=0; ESS=100.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.reveal.1",
+      "text": "The calculation sums all lag covariances in this specific AR(1) model. A generic sampler need not have this correlation structure. This comparison isolates the mean-variance ESS of a specified AR(1) series.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.case.0.witness",
+      "text": "Rho=0.8; ESS=11.628",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Rho\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ESS\",\"value\":11.627906976634014}]},\"metrics\":[{\"label\":\"ESS\",\"value\":\"11.628\"},{\"label\":\"Rho\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.case.1.witness",
+      "text": "Rho=0; ESS=100",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Rho\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ESS\",\"value\":100}]},\"metrics\":[{\"label\":\"ESS\",\"value\":\"100\"},{\"label\":\"Rho\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0456.recall",
+      "text": "A stationary toy AR(1) sequence has 101 draws and lag-one correlation 0.8. What finite-sample ESS gives the same variance for its mean? Answer 11.739.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0456/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #456. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stationary toy AR(1) sequence has 101 draws and lag-one correlation 0.8. What finite-sample ESS gives the same variance for its mean?",
+    "options": [
+      "7.043",
+      "11.739",
+      "16.434"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives ESS 11.739 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0456",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-456"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 456,
+    "sourceSection": "23. Time, feedback loops & interference",
+    "sourceEntryOriginal": "- **456. Autocorrelation** \\[Gotcha\\]: treating correlated days as independent makes noise look highly significant.",
+    "modelBoundary": "the mean-variance ESS of a specified AR(1) series",
+    "recallInputs": [
+      101,
+      0.8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

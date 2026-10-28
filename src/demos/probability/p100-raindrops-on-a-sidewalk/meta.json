@@ -1,0 +1,163 @@
+{
+  "slug": "p100-raindrops-on-a-sidewalk",
+  "title": "Where will the raindrops land?",
+  "hook": "Where will the raindrops land? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-raindrops-on-a-sidewalk",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "Poisson drops fall on tiles; set the rate and watch how unevenly tiles get wet."
+    ]
+  },
+  "misconception": "A toy tile count is Poisson with mean one drop. What is its probability of zero drops? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "Poisson drops fall on tiles; set the rate and watch how unevenly tiles get wet.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.case",
+      "text": "A toy tile count is Poisson with mean one drop. What is its probability of zero drops? Options: 13.5%; 36.8%; 50%. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Poissonper-tile rate lambda=.5,1,2; emptytileprobexp(-lambda)=.60653,.367879,.135335; chance>=2=1-exp(-lambda)*(1+lambda). Exactexpectedfrequencies, not randomly handpicked tile counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.recall",
+      "text": "A Poisson count has mean 0.5. Chance of zero? P(0)=exp(−0.5)≈0.607.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.hook",
+      "text": "Where will the raindrops land? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c4",
+      "text": "The zero-drop probabilities are 36.788% at mean 1 and 13.534% at mean 2. Each picture partitions probability into zero, one and two-or-more drops.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c5",
+      "text": "These are exact probabilities under a homogeneous Poisson model, not observed tile counts. Empty tiles remain possible even when the mean is one drop per tile.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c7",
+      "text": "P(empty): 0.368",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":1}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"0\",\"value\":0.36787944117144233},{\"label\":\"1\",\"value\":0.36787944117144233},{\"label\":\"2+\",\"value\":0.26424111765711533}]}. [{\"label\":\"P(empty)\",\"value\":\"0.368\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c10",
+      "text": "P(empty): 0.135",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Mean\",\"value\":2}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-raindrops-on-a-sidewalk.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"0\",\"value\":0.1353352832366127},{\"label\":\"1\",\"value\":0.2706705664732254},{\"label\":\"2+\",\"value\":0.5939941502901619}]}. [{\"label\":\"P(empty)\",\"value\":\"0.135\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-raindrops-on-a-sidewalk/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A Poisson count has mean 0.5. Chance of zero?",
+    "options": [
+      "39.3%",
+      "50%",
+      "60.7%"
+    ],
+    "answer": 2,
+    "why": "P(0)=exp(−0.5)≈0.607."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-raindrops-on-a-sidewalk",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-541",
+      "distribution"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 541,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceTitle": "Raindrops on a sidewalk",
+    "sourceText": "Poisson drops fall on tiles; set the rate and watch how unevenly tiles get wet.",
+    "sourceEntryOriginal": "- **541. Raindrops on a sidewalk** \\[Slider\\]: Poisson drops fall on tiles; set the rate and watch how unevenly tiles get wet.",
+    "numericCase": "Poissonper-tile rate lambda=.5,1,2; emptytileprobexp(-lambda)=.60653,.367879,.135335; chance>=2=1-exp(-lambda)*(1+lambda). Exactexpectedfrequencies, not randomly handpicked tile counts.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "economics/unit-price-aisle",
+    "difference": "New teaching boundary: Raindrops on a sidewalk. Existing boundary: The learner can compare packs by dividing price by size, and explain that the rate need not fall as the pack grows."
+  },
+  "modelOutputs": [
+    0.36787944117144233,
+    0.1353352832366127
+  ]
+}

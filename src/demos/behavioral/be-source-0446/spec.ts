@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0446", "title": "Exclude fabricated field records", "op": "removeinvalid", "labels": ["Sum", "N", "RemovedSum", "RemovedN"], "outputs": ["RemainingMean"], "a": [1000.0, 100.0, 900.0, 90.0], "b": [1000.0, 100.0, 0.0, 0.0], "question": "A toy dataset totals 1000 over 100 records. Exclude 90 invalid records totaling 900. What is the remaining mean?", "questionTemplate": "A toy dataset totals {Sum} over {N} records. Exclude {RemovedN} invalid records totaling {RemovedSum}. What is the remaining mean?", "explain": "Invalid data cannot be retained as evidence merely because they support a preferred story. This arithmetic illustrates exclusion, not a reconstruction of a retracted study.", "lens": "the evidential consequence of excluding invalid records", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

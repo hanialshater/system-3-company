@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0881",
+  "title": "Aggregate group-time effects explicitly",
+  "hook": "Two stated cases: explore the cohort weights behind a declared causal aggregation.",
+  "domain": "probability",
+  "concept": "cp-source-0881",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the cohort weights behind a declared causal aggregation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Average, regardless of the stated inputs.",
+  "objective": "Compare the cohort weights behind a declared causal aggregation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0881.predict",
+      "text": "A toy population has share 0.5 with effect 2, the rest with effect 8. What is its average treatment effect?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.reveal.0",
+      "text": "The retained results are Share=0.5; Average=5 and Share=0.9; Average=2.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.reveal.1",
+      "text": "Averages can hide opposite effects across groups. Targeting requires an identified effect for the relevant population, not just a large average. This comparison isolates the cohort weights behind a declared causal aggregation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.case.0.witness",
+      "text": "Share=0.5; Average=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.5],[\"EffectA\",2],[\"EffectB\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Average\",\"value\":5}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"5\"},{\"label\":\"Share\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.case.1.witness",
+      "text": "Share=0.9; Average=2.6",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Share\",0.9],[\"EffectA\",2],[\"EffectB\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Average\",\"value\":2.5999999999999996}]},\"metrics\":[{\"label\":\"Average\",\"value\":\"2.6\"},{\"label\":\"Share\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0881.recall",
+      "text": "A toy population has share 0.4 with effect 2, the rest with effect 8. What is its average treatment effect? Answer 5.6.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0881/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #881. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy population has share 0.4 with effect 2, the rest with effect 8. What is its average treatment effect?",
+    "options": [
+      "5.6",
+      "3.36",
+      "7.84"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Average 5.6 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0881",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-881"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 881,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **881. Group-time effects** \\[Slider\\]: a grid of effects for each adoption cohort and each period, then aggregated (Callaway & Sant'Anna, 2021).",
+    "modelBoundary": "the cohort weights behind a declared causal aggregation",
+    "recallInputs": [
+      0.4,
+      2,
+      8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

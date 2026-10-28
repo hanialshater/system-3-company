@@ -12,7 +12,10 @@
 
 2026-10-25 · tools-lead: the city dashboard (tools/hq/hq-dashboard.mjs) gains `principles` (Meta's audit, left out without Meta), `features` (new company/features.json, 16 features) and `releases` (company/ops/releases.json, newest first, approvals only as recorded); the city pages Principles, Features and Release log copied into tools/hq/ with `"hq": "."`; test tools/hq/dashboard.test.mjs. Read-only; tier 1 (company/engineering/readiness/2026-10-25-hq-dashboard-principles-features-releases.md).
 
+2026-10-24 · platform-engineer: Added isolated numerical trace geometry and state for the founder's 100 behavioral +100 causal/probability draft PR, with local per-lesson specs, two witnessed cases, saved evidence across Reset, eight visual families and focused validation/state tests. Existing kit and lesson engines unchanged. Tier-2 readiness remains pending independent review (`company/engineering/readiness/2026-10-24-mini-lab-engine.md`).
+
 2026-10-20 · tools-lead: new tools/reconcile.mjs (W-2026, EXP-009): deterministic reconciliation of events.jsonl/ledger.jsonl against an independent list (dispatch requests, role memory, run labels in records, role commits, founder quotes, meta.json publishes, releases.json, mailboxes when present), coded gap causes and a ±10/±60 min spread; tests in tests/reconcile/; first run in company/experiments/EXP-009/run-2026-10-20.json. Read-only; tier 1 (company/engineering/readiness/2026-10-20-reconcile-exp009.md).
+
 
 2026-10-20 · personalization-engineer: Merged PR13 into default: explicit account-saved feed preferences, ordinary main-feed matching, profile edit/off/reset and export/delete, synthetic HQ and later-round admission tooling. AMD016 ratified; bounded exact candidate admitted. Compiled feature checks passed; inherited aggregate failures disclosed. Source only: no external schema/environment/deployment change. Receipt company/ops/delivery/2026-10-20-account-preferences-source.json.
 

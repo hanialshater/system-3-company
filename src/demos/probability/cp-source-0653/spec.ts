@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0653", "title": "Latent uncertainty softens a class score", "op": "gpclass", "labels": ["Mean", "Variance"], "outputs": ["ApproxProbability"], "a": [2.0, 0.0], "b": [2.0, 4.0], "question": "A toy latent normal has Mean 2, Variance 0. Use the stated approximation logistic(mean/sqrt(1+pi×variance/8)). What class probability results?", "questionTemplate": "A toy latent normal has Mean {Mean}, Variance {Variance}. Use the stated approximation logistic(mean/sqrt(1+pi×variance/8)). What class probability results?", "explain": "Integrating over latent uncertainty can soften a plug-in logistic score. This displayed formula is an approximation, not exact GP classification inference.", "lens": "the displayed logistic-normal approximation", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0010",
+  "title": "A bonus paid first",
+  "hook": "Two stated cases: explore the difference between a path and its final cash balance.",
+  "domain": "behavioral",
+  "concept": "be-source-0010",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the difference between a path and its final cash balance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Net, regardless of the stated inputs.",
+  "objective": "Compare the difference between a path and its final cash balance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0010.predict",
+      "text": "A toy account starts at 1000, receives 200, and pays back 200. What final balance remains?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.reveal.0",
+      "text": "The retained results are Bonus=200 Penalty=200; Net=1,000 and Bonus=0 Penalty=0; Net=1,000.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.reveal.1",
+      "text": "Track the final balance as well as the wording. Equivalent cash paths can carry different descriptions without changing the arithmetic. This comparison isolates the difference between a path and its final cash balance.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.case.0.witness",
+      "text": "Bonus=200 Penalty=200; Net=1,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",1000],[\"Bonus\",200],[\"Penalty\",200]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Start\",\"value\":1000},{\"label\":\"Bonus\",\"value\":1200},{\"label\":\"End\",\"value\":1000}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"1,000\"},{\"label\":\"Bonus\",\"value\":\"200\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.case.1.witness",
+      "text": "Bonus=0 Penalty=0; Net=1,000",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Endowment\",1000],[\"Bonus\",0],[\"Penalty\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"Start\",\"value\":1000},{\"label\":\"Bonus\",\"value\":1000},{\"label\":\"End\",\"value\":1000}]},\"metrics\":[{\"label\":\"Net\",\"value\":\"1,000\"},{\"label\":\"Bonus\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0010.recall",
+      "text": "A toy account starts at 1,001, receives 200, and pays back 200. What final balance remains? Answer 1,001.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0010/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #10. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy account starts at 1,001, receives 200, and pays back 200. What final balance remains?",
+    "options": [
+      "600.6",
+      "1,401.4",
+      "1,001"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Net 1,001 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0010",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-10"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 10,
+    "sourceSection": "1. Loss aversion & prospect theory",
+    "sourceEntryOriginal": "- **10.** Teachers paid a bonus upfront that they had to return if targets were missed raised student math scores; an equal end-of-year bonus did not (Fryer, Levitt, List & Sadoff, 2012).",
+    "modelBoundary": "the difference between a path and its final cash balance",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      1001,
+      200,
+      200
+    ]
+  }
+}

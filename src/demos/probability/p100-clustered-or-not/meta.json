@@ -1,0 +1,163 @@
+{
+  "slug": "p100-clustered-or-not",
+  "title": "Do these points cluster?",
+  "hook": "Do these points cluster? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-clustered-or-not",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "Ripley's K curve shows whether points cluster or repel at each distance."
+    ]
+  },
+  "misconception": "Points lie at 0,1,9,10 on a line. Count other points within distance 1.1 of each point. What is the average neighbor count? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "Ripley's K curve shows whether points cluster or repel at each distance.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-clustered-or-not.case",
+      "text": "Points lie at 0,1,9,10 on a line. Count other points within distance 1.1 of each point. What is the average neighbor count? Options: 0; 1; 2. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Fourpointslinepositions[0,1,9,10]. At radius1.1eachhasoneotherneighbor; evenlyspaced[0,3.333,6.667,10]haszero. Showpairdistancesand scale-dependentneighborcount; labeluncorrectedtoycountnotformalboundary-correctedK.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.recall",
+      "text": "Points 0,2,4 have how many neighbors within radius 1 of each? All pair distances exceed one.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.hook",
+      "text": "Do these points cluster? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c4",
+      "text": "The paired points have mean neighbor count 1 within radius 1.1; the evenly spaced comparison has 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c5",
+      "text": "Clustering depends on the scale at which neighbors are counted. The point locations and radius are explicitly fixed. This is an uncorrected finite distance count, not a boundary-corrected spatial K-function or proof that a random process is clustered.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-clustered-or-not/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c7",
+      "text": "Mean neighbors: 1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":1,\"y\":0},{\"x\":9,\"y\":0},{\"x\":10,\"y\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"P1\",\"value\":1},{\"label\":\"P2\",\"value\":1},{\"label\":\"P3\",\"value\":1},{\"label\":\"P4\",\"value\":1}]}. [{\"label\":\"Mean neighbors\",\"value\":\"1\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c10",
+      "text": "Mean neighbors: 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":0,\"y\":0},{\"x\":3.3333333333333335,\"y\":0},{\"x\":6.666666666666667,\"y\":0},{\"x\":10,\"y\":0}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-clustered-or-not.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"P1\",\"value\":0},{\"label\":\"P2\",\"value\":0},{\"label\":\"P3\",\"value\":0},{\"label\":\"P4\",\"value\":0}]}. [{\"label\":\"Mean neighbors\",\"value\":\"0\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-clustered-or-not/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Points 0,2,4 have how many neighbors within radius 1 of each?",
+    "options": [
+      "0",
+      "1",
+      "2"
+    ],
+    "answer": 0,
+    "why": "All pair distances exceed one."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-clustered-or-not",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-971",
+      "scatter"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 971,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceTitle": "Clustered or not?",
+    "sourceText": "Ripley's K curve shows whether points cluster or repel at each distance.",
+    "sourceEntryOriginal": "- **971. Clustered or not?** \\[Slider\\]: Ripley's K curve shows whether points cluster or repel at each distance.",
+    "numericCase": "Fourpointslinepositions[0,1,9,10]. At radius1.1eachhasoneotherneighbor; evenlyspaced[0,3.333,6.667,10]haszero. Showpairdistancesand scale-dependentneighborcount; labeluncorrectedtoycountnotformalboundary-correctedK.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "physics/ruler-catch",
+    "difference": "New teaching boundary: Clustered or not?. Existing boundary: The learner can explain that a ruler caught after a fall of about 20 cm shows a reaction time of about 0.2 s, because fall distance grows with the square of time."
+  },
+  "modelOutputs": [
+    1,
+    0
+  ]
+}

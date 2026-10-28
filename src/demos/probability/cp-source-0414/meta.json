@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0414",
+  "title": "Choose weights to hit one target mean",
+  "hook": "Two stated cases: explore the support and moment constraint of a two-point balance.",
+  "domain": "probability",
+  "concept": "cp-source-0414",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the support and moment constraint of a two-point balance affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines HighWeight, regardless of the stated inputs.",
+  "objective": "Compare the support and moment constraint of a two-point balance in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0414.predict",
+      "text": "Mix toy values Low 20 and High 60 to obtain Target mean 40. What weight on High is required?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.reveal.0",
+      "text": "The retained results are Target=40; HighWeight=0.5 and Target=50; HighWeight=0.75.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.reveal.1",
+      "text": "Matching a mean can be solved algebraically when the target lies inside the support. Matching that moment does not guarantee every distributional or causal property. This comparison isolates the support and moment constraint of a two-point balance.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.case.0.witness",
+      "text": "Target=40; HighWeight=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",40],[\"Low\",20],[\"High\",60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HighWeight\",\"value\":0.5}]},\"metrics\":[{\"label\":\"HighWeight\",\"value\":\"0.5\"},{\"label\":\"Target\",\"value\":\"40\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.case.1.witness",
+      "text": "Target=50; HighWeight=0.75",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Target\",50],[\"Low\",20],[\"High\",60]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"HighWeight\",\"value\":0.75}]},\"metrics\":[{\"label\":\"HighWeight\",\"value\":\"0.75\"},{\"label\":\"Target\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0414.recall",
+      "text": "Mix toy values Low 20 and High 60 to obtain Target mean 41. What weight on High is required? Answer 0.525.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0414/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #414. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Mix toy values Low 20 and High 60 to obtain Target mean 41. What weight on High is required?",
+    "options": [
+      "0.315",
+      "0.525",
+      "0.735"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives HighWeight 0.525 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0414",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-414"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 414,
+    "sourceSection": "21. Matching, weighting & propensity scores",
+    "sourceEntryOriginal": "- **414. Entropy balancing** \\[Slider\\]: solve for weights that match group means exactly.",
+    "modelBoundary": "the support and moment constraint of a two-point balance",
+    "recallInputs": [
+      41,
+      20,
+      60
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0555",
+  "title": "A neutral allele can take over",
+  "hook": "Two stated cases: explore the initial frequency under a neutral finite-population model.",
+  "domain": "probability",
+  "concept": "cp-source-0555",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the initial frequency under a neutral finite-population model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Probability, regardless of the stated inputs.",
+  "objective": "Compare the initial frequency under a neutral finite-population model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0555.predict",
+      "text": "A neutral toy Moran population has 5 copies of an allele among 100. With no mutation or selection, what is its eventual fixation probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.reveal.0",
+      "text": "The retained results are Copies=5; Probability=0.05 and Copies=50; Probability=0.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.reveal.1",
+      "text": "Under this neutral finite model, the initial frequency equals fixation probability. Time to fixation and selective advantages are different questions. This comparison isolates the initial frequency under a neutral finite-population model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.case.0.witness",
+      "text": "Copies=5; Probability=0.05",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Copies\",5],[\"Population\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.05}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.05\"},{\"label\":\"Copies\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.case.1.witness",
+      "text": "Copies=50; Probability=0.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Copies\",50],[\"Population\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Probability\",\"value\":0.5}]},\"metrics\":[{\"label\":\"Probability\",\"value\":\"0.5\"},{\"label\":\"Copies\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0555.recall",
+      "text": "A neutral toy Moran population has 6 copies of an allele among 100. With no mutation or selection, what is its eventual fixation probability? Answer 0.06.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0555/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #555. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A neutral toy Moran population has 6 copies of an allele among 100. With no mutation or selection, what is its eventual fixation probability?",
+    "options": [
+      "-0.04",
+      "0.06",
+      "0.16"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Probability 0.06 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0555",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-555"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 555,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **555. Genetic drift** \\[Slider\\]: in a Moran model, a neutral gene randomly takes over or vanishes in a small population.",
+    "modelBoundary": "the initial frequency under a neutral finite-population model",
+    "recallInputs": [
+      6,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

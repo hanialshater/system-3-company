@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0334",
+  "title": "The employer in the fund menu",
+  "hook": "Two stated cases: explore the exposure induced by an allocation menu.",
+  "domain": "behavioral",
+  "concept": "be-source-0334",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the exposure induced by an allocation menu affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines StockMoney, regardless of the stated inputs.",
+  "objective": "Compare the exposure induced by an allocation menu in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0334.predict",
+      "text": "A toy investor splits 100 equally across 3 stock funds and 1 bond funds. How much goes to stocks?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.reveal.0",
+      "text": "The retained results are Stocks=3 Bonds=1; StockMoney=75 and Stocks=1 Bonds=3; StockMoney=25.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.reveal.1",
+      "text": "Equal allocation over menu items is not equal allocation over asset classes. The menu changes the resulting exposure. This comparison isolates the exposure induced by an allocation menu.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.case.0.witness",
+      "text": "Stocks=3 Bonds=1; StockMoney=75",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Stocks\",3],[\"Bonds\",1],[\"Budget\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"StockMoney\",\"value\":75}]},\"metrics\":[{\"label\":\"StockMoney\",\"value\":\"75\"},{\"label\":\"Stocks\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.case.1.witness",
+      "text": "Stocks=1 Bonds=3; StockMoney=25",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Stocks\",1],[\"Bonds\",3],[\"Budget\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"StockMoney\",\"value\":25}]},\"metrics\":[{\"label\":\"StockMoney\",\"value\":\"25\"},{\"label\":\"Stocks\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0334.recall",
+      "text": "A toy investor splits 100 equally across 4 stock funds and 1 bond funds. How much goes to stocks? Answer 80.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0334/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #334. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy investor splits 100 equally across 4 stock funds and 1 bond funds. How much goes to stocks?",
+    "options": [
+      "48",
+      "112",
+      "80"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives StockMoney 80 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0334",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-334"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 334,
+    "sourceSection": "17. Saving, retirement & household finance",
+    "sourceEntryOriginal": "- **334.** Employees overinvest in their own company's stock, especially after it has done well (Benartzi, 2001).",
+    "modelBoundary": "the exposure induced by an allocation menu",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      4,
+      1,
+      100
+    ]
+  }
+}

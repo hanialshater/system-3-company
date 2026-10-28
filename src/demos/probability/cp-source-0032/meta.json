@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0032",
+  "title": "A toy crowd favors seven",
+  "hook": "Two stated cases: explore the group mixture behind an observed choice share.",
+  "domain": "probability",
+  "concept": "cp-source-0032",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the group mixture behind an observed choice share affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the group mixture behind an observed choice share in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0032.predict",
+      "text": "A toy mixture puts fraction 0.7 at rate 0.3 and the remainder at rate 0.05. What is its aggregate rate?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.reveal.0",
+      "text": "The retained results are Weight=0.7; Rate=0.225 and Weight=0.2; Rate=0.1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.reveal.1",
+      "text": "An aggregate mixes groups with their weights. Changes in composition can move it while component rates stay fixed. This comparison isolates the group mixture behind an observed choice share.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.case.0.witness",
+      "text": "Weight=0.7; Rate=0.225",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.7],[\"RateA\",0.3],[\"RateB\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.225}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.225\"},{\"label\":\"Weight\",\"value\":\"0.7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.case.1.witness",
+      "text": "Weight=0.2; Rate=0.1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.2],[\"RateA\",0.3],[\"RateB\",0.05]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Rate\",\"value\":0.1}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"0.1\"},{\"label\":\"Weight\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0032.recall",
+      "text": "A toy mixture puts fraction 0.56 at rate 0.3 and the remainder at rate 0.05. What is its aggregate rate? Answer 0.19.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0032/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #32. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy mixture puts fraction 0.56 at rate 0.3 and the remainder at rate 0.05. What is its aggregate rate?",
+    "options": [
+      "0.19",
+      "0.09",
+      "0.29"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Rate 0.19 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0032",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-32"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 32,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **32. Pick a number 1–10** \\[Split\\]: see the crowd's distribution; 7 dominates and 1 and 10 are rare.",
+    "modelBoundary": "the group mixture behind an observed choice share",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.5599999999999999,
+      0.3,
+      0.05
+    ]
+  }
+}

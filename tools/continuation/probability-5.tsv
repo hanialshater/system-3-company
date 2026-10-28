@@ -1,0 +1,201 @@
+id	op	title	A	B	lens	Recall
+201	capacity	Twenty balanced questions	2,20	2,10	the maximum number of distinct answer strings	
+202	binaryentropy	One feedback split in a word game	0.5	0.9	the average information of a binary feedback partition	
+203	binaryentropy	Ask the balanced board question	0.5	0.1	the expected information of a yes-no split	
+204	bitsurprise	Bits in a surprising outcome	0.5	0.001	the logarithm of a specified event probability	
+205	passwordbits	A uniform password model	26,8	26,12	the independence assumption behind password entropy	
+206	binaryentropy	Repetition lowers source entropy	0.5	0.99	the entropy rate of a stated binary source	
+207	codeaverage	Give the frequent symbol fewer bits	0.5,0.25,1,2,2	0.25,0.25,1,2,2	frequency-weighted prefix-code length	
+208	codeaverage	A short code for the common symbol	0.6,0.2,1,2,2	0.2,0.2,1,2,2	the probability weight of a short code	
+209	bitsurprise	A predictable next character	0.5	0.9	surprisal in a stated next-character model	
+210	binarykl	Reverse the KL arguments	0.8,0.5	0.5,0.8	the weighting distribution in directional divergence	
+211	logloss	Confident and wrong costs more	1,0.99	1,0.01	the probability assigned to the observed class	
+212	squaredependence	Zero correlation can hide a function	0.3333333333333333	0.5	linear correlation versus deterministic dependence	
+213	binomtail	Three noisy copies and a majority	3,0.8,1	3,0.6,1	independent correctness in a toy repetition channel	
+214	correctable	Code distance sets an error bound	15	25	symbol errors rather than covered image area	
+215	capacity	Three outcomes per weighing	3,3	3,2	the information capacity of a balance-scale answer	
+216	capacity	Binary labels for poisoned bottles	2,10	2,9	the number of binary taster-result patterns	
+217	binaryentropy	A two-option week has an entropy	0.5	0.95	diversity under a stated two-category frequency model	
+218	maxent	A die constrained by its mean	6,4.5	6,2.5	the mean constraint in an exponential maximum-entropy family	
+219	testinfo	A test reduces average uncertainty	0.1,0.9,0.05	0.1,0.6,0.4	information averaged over positive and negative results	
+220	birthday	A small hash space still collides	30,1000	10,1000	the birthday event in a finite uniform hash space	
+221	familyerror	Twenty chances for a false discovery	20,0.05,0	20,0.05,1	family-wise error under independent null tests	
+222	uniontests	Many analysis paths add opportunities	10,0.05	2,0.05	a union-bound ceiling rather than a fitted p-hacking simulator	
+223	uniontests	Repeated opportunities need a model	20,0.05	5,0.05	a conservative bound without assuming independent repeated looks	2,0.1
+224	binomtail	A p-value under a specified null	20,0.5,14	20,0.5,9	the null-tail event rather than probability of the null	
+225	binomtail	The count changes across repetitions	20,0.5,14	20,0.5,10	the tail probability as realized data vary	
+226	binomtail	Power for a stated rejection rule	20,0.7,14	100,0.7,59	the detection probability under a specified alternative	
+227	selectedmean	Select only the large estimates	0.8,0.1,0.2,1,0.05	0.8,0.1,0.2,1,1	outcome-dependent inclusion in a toy study collection	
+228	familyerror	Bonferroni changes the threshold	100,0.05,0	100,0.05,1	the independent-test family rejection probability	
+229	hypergeom	Milk-first cups under random guessing	8,4,4,4	8,4,4,3	the fixed-margin tail of a random allocation	
+230	uniontests	Forks create more possible analyses	16,0.05	4,0.05	the number of false-alarm opportunities	
+231	familyerror	Null voxels can still light up	100,0.05,0	100,0.05,1	multiple testing under an all-null toy scan	
+232	zscore	A tiny effect with a huge sample	0.01,1,100	0.01,1,1000000	the standard error behind statistical separation	
+233	hypergeom	Shuffle labels while keeping margins	20,10,10,8	20,10,10,5	the randomization distribution with fixed totals	
+234	chi3	Three pairs of die faces	20,20,20	30,20,10	the Pearson statistic for three grouped categories	
+235	tailcount	One tail versus two tails	0.04,1	0.04,2	the disjoint tail events included in a test	
+236	uniontests	Choose a hypothesis after the search	20,0.05	1,0.05	the hidden search opportunity behind a selected pattern	3,0.05
+237	familyerror	Five percent is an input	20,0.05,0	20,0.01,0	the chosen nominal threshold under a null model	
+238	waldinterval	The same z score at different scales	0.1,0.05,1.96	10,5,1.96	the effect scale and interval width	
+239	bayes	How many selected findings are true?	0.1,0.8,0.05	0.5,0.8,0.05	the prior share of true alternatives and test power	
+240	uptake	False rejections in one hundred tests	100,0.05,1	1000,0.05,1	the expected count under a specified null rejection rate	
+242	mse	Training fit is not prediction error	0,4,1	1,0.5,1	bias and variance in an explicit error decomposition	
+243	mse	Accuracy and precision contribute	2,0.1,0	0,4,0	squared bias versus sampling variance	
+245	mse	Compare estimated new-data errors	0.1,3,1	1,0.5,1	the risk decomposition rather than training fit alone	
+246	ridge	A penalty shrinks one coefficient	20,10,0	20,10,10	the ridge denominator in a centered single-feature model	
+247	outlier	One point pulls the mean	10,9,100	10,9,10	the influence of an extreme observation	
+248	outlier	The billionaire changes the average	100,99,1000000	100,99,100	the mean and median of a fixed toy sample	
+249	capture	Tagged fish in the second sample	50,50,5	50,50,10	the recaptured tagged fraction under a closed-population model	
+252	line	A straight trend beyond the data	12,-0.01,100	12,-0.01,300	the unsupported persistence of an extrapolated slope	
+253	productrange	Multiply ranges in a Fermi estimate	100,200,2,5	100,500,2,5	positive-factor bounds rather than a confidence interval	
+254	percentile	A crowd estimate against a benchmark	1000,1010	1000,1100	the signed error of a stated aggregate guess	
+255	shrink	A stated blend of crowd estimates	100,10,120	100,1,120	the weights behind a pooled numerical guess	
+256	shrink	Pull early averages toward the group	0.4,2,0.25	0.4,20,0.25	the evidence weight in a toy shrinkage estimator	
+258	samplesd	A bandwidth changes local information	0.5,10	0.5,100	the local sample-size facet of a smoothing tradeoff	
+259	unitprice	Histogram counts need their widths	20,1,1	20,5,1	the count per unit bin width in a density display	
+260	quadrature	Independent measurement errors combine	4,9	16,9	the addition of independent variances	
+261	confounded	A common summer cause	0,2,0.8,0	0,2,0.8,1	the common-cause path in a stipulated structural model	
+262	familyerror	Search enough unrelated series	100,0.01,0	1000,0.01,0	the search opportunity behind a selected coincidence	
+263	confounded	A wealth proxy can predict both	0,3,0.7,0	0,3,0.7,1	the observational slope with a shared background cause	
+264	confounded	Population size can drive both counts	0,4,0.9,0	0,4,0.9,1	the common scale factor behind two observed variables	
+265	confounded	Severe fires bring both responses	-1,3,0.8,0	-1,3,0.8,1	the common severity cause and the intervention derivative	
+266	confounded	Age connects two childhood measures	0,2,0.9,0	0,2,0.9,1	the shared age path in a structural toy model	
+267	confounded	Sicker people select into hospital	-1,4,0.8,0	-1,4,0.8,1	selection by a common severity variable	
+268	familyerror	Fishing across a thousand variables	1000,0.01,0	10,0.01,0	the multiplicity of a stipulated correlation search	
+271	confounded	A smoking confounder in a toy model	0,2,0.8,0	0,2,0.8,1	the open common-cause path before an intervention	
+272	confounded	An observed breakfast association	0,1,0.7,0	0,1,0.7,1	the difference between observing and assigning a behavior	
+273	line	Two trends can co-move without cause	10,-0.1,10	10,-0.1,20	a stipulated time trend rather than a causal link	
+274	confounded	A night out is a common cause	0,3,0.8,0	0,3,0.8,1	the common background event in an observational association	
+275	rsquared	Translate a correlation carefully	0.3	0.8	the explained share in a simple linear regression	
+277	outlier	A summary can miss one strange point	10,10,50	10,10,10	the sensitivity hidden by a single numerical summary	
+278	dispersion	Different point clouds can share means	0,1,2	1,1,1	the insufficiency of a mean to determine a data shape	
+280	simpson	Groups and people use different weights	0.2,0.8,0.9,0.3,0.05	0.5,0.5,0.9,0.3,0.05	aggregation across groups rather than individual causal inference	
+281	simpson	Stone size changes the treatment mix	0.2,0.8,0.9,0.3,0.05	0.5,0.5,0.9,0.3,0.05	unequal difficulty weights despite a stratum-level advantage	
+282	simpson	Departments have different base rates	0.2,0.8,0.8,0.2,0.05	0.5,0.5,0.8,0.2,0.05	department composition behind an aggregate admission contrast	
+283	simpson	Season weights flip a batting average	0.2,0.8,0.4,0.2,0.02	0.5,0.5,0.4,0.2,0.02	at-bat weights across seasons	
+284	simpson	Age weights change a fatality average	0.2,0.8,0.2,0.01,0.01	0.5,0.5,0.2,0.01,0.01	the population age composition of a descriptive risk	
+285	simpson	Build a composition reversal	0.1,0.9,0.8,0.2,0.05	0.5,0.5,0.8,0.2,0.05	group weights with unchanged within-group rates	
+286	simpson	A pooled contrast can reverse	0.2,0.8,0.9,0.2,0.1	0.5,0.5,0.9,0.2,0.1	the mixture component of a pooled comparison	
+287	simpson	Age mix can reverse a health contrast	0.2,0.8,0.8,0.2,0.05	0.5,0.5,0.8,0.2,0.05	the age-stratum weights before interpreting an aggregate	
+288	simpson	A surgeon's risk mix matters	0.2,0.8,0.9,0.3,0.05	0.5,0.5,0.9,0.3,0.05	case difficulty in a toy surgeon comparison	
+290	mixture	A more educated workforce changes a mean	0.2,30,10	0.8,28,9	composition changes despite declining component means	
+291	simpson	Younger smokers in an aggregate sample	0.8,0.2,0.9,0.3,-0.05	0.5,0.5,0.9,0.3,-0.05	age composition versus a stratum-level disadvantage	
+292	did	Baseline adjustment changes the contrast	50,55,40,45	50,55,40,50	the chosen pre-post comparison and identifying assumptions	
+294	simpson	Device mix changes an ad aggregate	0.2,0.8,0.2,0.02,0.01	0.5,0.5,0.2,0.02,0.01	mobile and desktop weights in a conversion comparison	
+295	simpson	Airports have different delay risks	0.2,0.8,0.9,0.4,0.03	0.5,0.5,0.9,0.4,0.03	the airport composition behind on-time rates	
+296	collider	Select on a shared birth-weight cause	0.5,0.5,1,0	0.5,0.5,1,1	selection on a common consequence in a binary toy graph	0.5,0.3,1,1
+298	harmonic	Equal distances at unequal speeds	30,60	40,40	time weighting of an out-and-back speed	
+300	simpson	Hospital counts need age composition	0.2,0.8,0.3,0.02,-0.01	0.5,0.5,0.3,0.02,-0.01	the strata weights behind a hospital-risk aggregate	
+301	selectedmean	Only returning aircraft are counted	10,100,0.5,1,0.05	10,100,0.5,1,1	outcome-dependent survival into the observed sample	
+302	collider	Two diseases in a selected hospital	0.5,0.5,1,0	0.5,0.5,1,1	conditioning on a shared admission consequence	0.5,0.3,1,1
+303	collider	Select people who pass either screen	0.5,0.5,1,0	0.5,0.5,1,1	the selection rule creating an apparent tradeoff	0.5,0.3,1,1
+304	collider	Condition on X or Y being high	0.5,0.5,1,0	0.5,0.5,1,1	the binary OR version of collider selection	0.5,0.3,1,1
+305	collider	A fame threshold selects either cause	0.5,0.5,1,0	0.5,0.5,1,1	selection on a common consequence of two traits	0.5,0.3,1,1
+306	selectedmean	Failed funds leave the database	20,-20,0.5,1,0.1	20,-20,0.5,1,1	outcome-dependent inclusion in a fund-return average	
+307	selectedmean	The weak buildings have disappeared	100,20,0.5,1,0.1	100,20,0.5,1,1	retention differences in a surviving-building sample	
+308	selectedmean	A veterinary sample omits some outcomes	1,0,0.5,1,0.1	1,0,0.5,1,1	outcome-dependent inclusion in observed cases	
+309	selectedmean	Famous dropouts are a selected subset	1000,0,0.01,1,0.01	1000,0,0.01,1,1	the missing denominator of unsuccessful cases	
+310	mixture	A huge poll still has the wrong mix	0.9,0.8,0.3	0.5,0.8,0.3	selection composition rather than sampling noise alone	
+312	selectedmean	Employment selects on underlying health	90,30,0.5,1,0.2	90,30,0.5,1,1	health-dependent inclusion in an employed sample	
+316	immortaltime	Crediting guaranteed survival time	10,100,5,20	10,100,0,20	the time denominator before causal interpretation	
+318	selectedmean	Success stories omit unsuccessful risks	100,0,0.1,1,0.05	100,0,0.1,1,1	outcome-dependent visibility in a founder sample	
+320	collider	Either trait can pass a pro threshold	0.5,0.5,1,0	0.5,0.5,1,1	selection on a shared professional-entry consequence	0.5,0.3,1,1
+321	confounded	A clinician's choice is not assignment	-1,3,0.8,0	-1,3,0.8,1	the common severity path versus an intervention derivative	
+322	twosamplesd	Random groups can differ by chance	0.4,500	0.4,5000	expected balance rather than exact realized balance	
+323	samplesize	Precision has a sample-size price	0.1,1.96,0.01	0.1,1.96,0.005	the half-width target of a stated normal approximation	
+326	effect	Compare a toy placebo outcome	6,5,2	6,5,4	the spread behind a standardized mean contrast	
+327	confounded	A cue can drive the apparent skill	0,1,0.9,0	0,1,0.9,1	the hidden cue in a structural toy model	
+338	lagged	Yesterday's treatment carries over	1,2,0.5	1,2,0	the prior-exposure imbalance in a current-day comparison	
+339	familyerror	Forty-one candidates create a family	41,0.05,0	41,0.05,1	the independent-null multiplicity baseline	
+340	growth	A small change on a revenue baseline	100,12	1000,12	the base behind a relative revenue change	
+341	confounded	Seeing a reading versus setting it	0,2,0.8,0	0,2,0.8,1	the observation-intervention distinction	
+342	dsep	Read a three-node causal path	0,0	0,1	conditioning on the middle node of a fork	1,1
+344	dsep	A collider behaves differently	2,0	2,1	conditioning on a collider rather than a noncollider	1,0
+345	dsep	Which path stays active?	1,0	1,1	the d-connection test for one isolated chain	2,1
+347	mediation	A coefficient answers a partial question	1,2,3	1,2,0	the direct path versus the total intervention effect	
+352	confounded	One adjustment choice is insufficient	1,2,0.5,0	1,2,0.5,1	the common-cause facet of a more complex adjustment problem	
+353	collider	Select on a consequence of the outcome	0.5,0.5,1,0	0.5,0.5,1,1	the selection facet of conditioning on downstream information	0.5,0.3,1,1
+354	mediation	An occupation path is part of the total	1,2,3	1,0,3	the mediated component removed by holding a mediator fixed	
+356	confounded	A rooster can predict without causing	0,1,0.95,0	0,1,0.95,1	a common clock variable rather than an intervention effect	
+360	mediation	State a model for the decision graph	1,0.5,2	1,0.5,0	the specified direct and mediated paths	
+361	ite	Two outcomes for the same toy unit	3,8	3,2	the contrast between two modeled potential outcomes	
+363	ite	Fill the missing potential outcome	5,9	5,4	the individual effect in a fully specified toy table	
+365	heteroeffect	Zero average can hide opposite effects	0.5,4,-4	0.8,4,-4	the subgroup mixture of treatment effects	
+366	ite	A structural survival counterfactual	0,1	1,1	the stipulated missing outcome rather than an identified individual claim	
+367	sufficient	Would the other cause suffice?	0,1	0,0	the OR structural rule behind a but-for contrast	1,0
+368	sufficient	Two sufficient causes can overlap	1,1	0,0	the difference between necessity and sufficiency	1,0
+369	preempt	The earlier event happens first	2,5	5,2	the timing rule that distinguishes a backup cause	
+370	spillover	Your exposure includes treated neighbors	1,0.5,0	1,0.5,4	interference beyond a unit's own treatment	
+371	counterlinear	Keep the inferred disturbance fixed	2,1,5,2	2,1,5,3	the structural counterfactual rather than an arbitrary feature swap	
+372	line	A decision score crosses a threshold	-5,1,4	-5,1,6	the stipulated score rule rather than a causal fairness guarantee	
+373	normalshrink	Shared background and noisy measurement	0,4,2,1	0,4,2,10	the model-based weight of a noisy related observation	
+374	ite	Compare two predicted potential outcomes	5,8	5,4	the model-dependent imputation of an unobserved outcome	
+375	breakeven	A good choice can still lose once	10,20,0.6	10,20,0.2	expected payoff rather than a single realized outcome	
+376	feedback	A small initial difference grows	0.001,2,10	0.002,2,10	the amplification assumed in a divergent toy recurrence	
+377	attributable	An attributable fraction needs a model	0.3,3	0.1,3	exposure prevalence under a homogeneous causal risk-ratio model	
+378	ite	Deaths versus a modeled baseline	100,130	120,130	the specified counterfactual baseline in an excess count	
+379	relativeevent	Compare two modeled event probabilities	0.2,0.05	0.2,0.1	the probability ratio across stipulated worlds	
+380	counterlinear	Infer noise, change X, replay Y	2,3,10,4	2,3,10,1	abduction and intervention in a stated linear equation	
+382	did	The control trend changes the estimate	10,15,10,12	10,15,10,16	the untreated-trend assumption behind a difference-in-differences	
+383	did	A toy neighboring-state comparison	20,22,20,20	20,22,20,24	the control change in a two-period policy comparison	
+384	did	A pre-period check is another contrast	10,12,10,12	10,12,10,15	the pre-period trend diagnostic before causal interpretation	
+385	weightedcontrast	Negative comparison weights can distort	-0.5,4,1	0.5,4,1	the weighted-effect arithmetic behind problematic comparisons	
+387	rdjump	Just below and above an age cutoff	10,12	10,10	the local outcome discontinuity under a threshold model	
+388	mse	A wider cutoff window trades errors	0.1,4,0	1,0.5,0	the assumed bias-variance tradeoff in a local fit	
+389	rates	Counts bunch on one side of a cutoff	60,100,40,100	50,100,50,100	a descriptive density imbalance near an assignment line	
+390	wald	An assignment changes service uptake	2,0.2	2,0.4	the first-stage denominator in a toy IV estimate	
+392	wald	A weak first stage amplifies the ratio	1,0.5	1,0.01	the sensitivity of the Wald ratio to weak uptake	
+393	wald	An extra outcome path contaminates IV	2,0.2	4,0.2	the reduced-form numerator under a violated exclusion story	
+394	synthetic	Actual minus a synthetic donor mix	0.4,100,80,70	0.8,100,80,70	the donor weights defining a model-based counterfactual	
+396	line	Project the pre-policy trend	10,2,5	10,1,5	the assumed continuation of a fitted pre-period slope	
+397	wald	A lottery offer is not full take-up	1,0.25	1,0.5	the intention-to-treat change divided by the uptake change	
+398	wald	A slope change divided by a first stage	2,0.5	2,0.2	the ratio of stipulated local slope changes	
+399	wald	A stipulated college-distance instrument	1,0.1	1,0.2	the first stage and untested exclusion assumptions	
+402	overlap	Count supported toy strata	50,50,50,50	0,50,50,0	the observed treatment support within strata	0,20,20,20
+403	overlap	An empty assignment cell	0,50,50,0	50,50,50,50	the distinction between support and extrapolation	0,20,20,20
+404	ipweight	A weighted unit changes its influence	0.2,1	0.8,1	the inverse assignment probability of an observed unit	
+405	ipweight	One rare assignment gets a large weight	0.01,1	0.5,1	the scale of a positivity-near-boundary weight	
+406	percentile	A method versus a trial benchmark	2,5	2,2	the numerical estimation error against a stipulated benchmark	
+407	evalue	A risk-ratio sensitivity function	2	4	the stated confounding sensitivity function	
+409	stdgap	Balance on a common covariate scale	50,40,10	42,40,10	the observed standardized mean difference	
+410	band	Coarsen ages into explicit bands	37,10	37,5	the grouping boundary used for a coarsened match	
+411	line	A regression beyond the matched region	0,2,5	0,2,20	the prediction outside an observed comparison region	
+412	familyerror	Outcome-guided tuning creates a search	20,0.05,0	1,0.05,0	the multiplicity facet of selecting an analysis by outcomes	
+413	stdgap	A matching procedure can worsen balance	50,49,10	50,40,10	the realized covariate balance rather than a method label	
+414	balanceweight	Choose weights to hit one target mean	40,20,60	50,20,60	the support and moment constraint of a two-point balance	
+415	caliper	A tighter caliper drops a pair	0.1,0.2	0.1,0.05	the distance threshold for retaining a toy match	
+416	heteroeffect	Trimming changes whose average is taken	0.5,4,-2	0.9,4,-2	the population mixture after excluding a subgroup	
+417	confounded	Healthy behavior predicts both choices	0,2,0.7,0	0,2,0.7,1	the common background cause behind an observed benefit	
+418	confounded	An association before the season	0,2,0.8,0	0,2,0.8,1	the common-cause explanation of a negative-control association	
+419	oddsbias	Hidden odds in a matched pair	1	3	the assignment-probability bound under a stated Gamma	
+420	did	State the comparison before fitting	10,15,10,12	10,15,10,15	the explicit time and comparison structure of a toy target trial	
+421	heteroeffect	Some customers move, others do not	0.5,0.2,0	0.1,0.2,0	the mixture of causal response types	
+422	policyvalue	High propensity is not high uplift	0.9,0.01,0.05,100	0.2,0.2,0.05,100	incremental net value rather than baseline conversion	
+423	policyvalue	Cumulative gains can turn negative	0.5,0.2,0.05,100	0.5,-0.1,0.05,100	the incremental value of a marginal targeted group	
+424	line	A stipulated effect surface along age	-1,0.05,20	-1,0.05,60	the age slice of a specified heterogeneous-effect model	
+425	familyerror	Twelve null subgroups can mislead	12,0.05,0	12,0.05,1	the subgroup-search multiplicity under a toy null	
+426	policyvalue	Spend a fixed treatment budget well	0.4,0.3,0.1,100	0.9,0.02,0.1,100	the stipulated causal lift net of treatment cost	
+427	line	A toy effect changes linearly with age	-1,0.05,20	-1,0.05,50	the slope assumption in an age-effect curve	
+428	interaction	One ratio, unequal absolute differences	0.01,2,0.2	0.1,2,0.2	the effect scale used to describe interaction	
+429	mediation	Add the direct and mediator paths	1,2,3	1,2,0	the linear no-confounding mediation decomposition	
+430	confounded	A mediator association can be confounded	1,2,0.8,0	1,2,0.8,1	the common-cause facet missing from a naive mediation split	
+431	policyvalue	Coupon response differs across segments	0.3,0.2,0.05,100	0.9,0.01,0.05,100	the causal lift rather than loyalty alone	
+432	policyvalue	Paying people who already would buy	0.9,0,0.05,100	0.9,0.1,0.05,100	the difference between baseline purchase and incremental lift	
+433	policyvalue	A message can have negative uplift	0.5,-0.1,0.01,100	0.5,0.1,0.01,100	the signed incremental response to treatment	
+434	mse	Compare toy effect-estimator errors	0.1,0.2,0	0.5,0.01,0	the bias-variance risk rather than an estimator's name	
+435	riskchange	Convert an absolute risk reduction	0.1,0.05	0.01,0.005	the reciprocal risk difference under a stipulated causal model	
+436	riskchange	Doubling a tiny baseline risk	0.0001,0.0002	0.1,0.2	absolute versus relative risk change	
+437	interaction	A common ratio meets different baselines	0.01,0.5,0.2	0.1,0.5,0.2	the baseline-dependent absolute effect	
+438	policyvalue	Allocate aid by graduation lift	0.9,0.02,0.01,100	0.3,0.2,0.01,100	the incremental benefit under a constrained policy budget	
+439	heteroeffect	An average can hide a harmed segment	0.8,2,-4	0.5,2,-4	the segment weights behind an average effect	
+440	mediation	An ad can act through a search path	0.1,0.4,0.5	0.1,0.4,0	the direct and mediated terms in a toy path model	
+441	policyvalue	A bounty needs incremental outcomes	0.9,0,1,100	0.9,2,1,100	the causal objective rather than a paid activity count	
+442	feedback	Observed activity reinforces exposure	10,1.2,10	10,1,10	the amplification assumed in a feedback recurrence	
+443	feedback	Popularity feeds the next exposure	10,1.5,5	10,1,5	the recursive exposure rule in a toy popularity loop	
+444	confounded	A shared clock predicts both signals	0,1,0.95,0	0,1,0.95,1	prediction through a common cause without intervention effect	
+445	lagged	A delayed effect enters the comparison	0,2,0.5	0,2,0	the alignment of lagged exposure and current outcome	
+446	confounded	A thermostat reacts to the cold	1,-3,0.8,0	1,-3,0.8,1	feedback selection versus a stipulated heating intervention	
+447	spillover	Neighbors receive an indirect benefit	0,0.2,0	0,0.2,4	the neighborhood exposure in an interference model	
+448	spillover	Controls share some treated exposure	1,-0.2,0	1,-0.2,4	contamination of a unit-level treatment contrast	
+449	displacement	A control loss enlarges measured lift	10,0	10,10	market displacement versus a treated-control gap	
+450	lagged	A switchback still has carryover	2,1,0.5	2,1,0	the prior-slot exposure left in a current-period contrast	

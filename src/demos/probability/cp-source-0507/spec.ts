@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0507", "title": "One fast server or two slower ones", "op": "erlang", "labels": ["Arrival", "Service", "Servers", "Threshold"], "outputs": ["Wait", "Total", "SLA", "Utilization"], "a": [1.8, 2.0, 1.0, 1.0], "b": [1.8, 1.0, 2.0, 1.0], "question": "A stable toy M/M/c queue has arrival rate 1.8, service rate 2 per server, 1 servers and wait threshold 1. What is mean waiting time before service?", "questionTemplate": "A stable toy M/M/c queue has arrival rate {Arrival}, service rate {Service} per server, {Servers} servers and wait threshold {Threshold}. What is mean waiting time before service?", "explain": "Pooling servers changes both waiting probability and delay. Erlang C assumes Poisson arrivals, exponential service, an infinite queue and no abandonment.", "lens": "waiting and total time at equal total service capacity", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

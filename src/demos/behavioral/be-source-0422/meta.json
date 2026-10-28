@@ -1,0 +1,153 @@
+{
+  "slug": "be-source-0422",
+  "title": "A gentler ending changes the summary",
+  "hook": "Two stated cases: explore the peak-end summary versus time-integrated discomfort.",
+  "domain": "behavioral",
+  "concept": "be-source-0422",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the peak-end summary versus time-integrated discomfort affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Memory, regardless of the stated inputs.",
+  "objective": "Compare the peak-end summary versus time-integrated discomfort in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0422.predict",
+      "text": "A toy memory rule averages peak 8 and end 6. The actual experience has mean 5 and duration 10. What is the memory-rule score?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.reveal.0",
+      "text": "The retained results are End=6 Duration=10; Memory=7 and End=2 Duration=12; Memory=5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.reveal.1",
+      "text": "The peak-end summary and the time-integrated total answer different questions. Changing duration alone changes total exposure while leaving this assumed summary fixed. This comparison isolates the peak-end summary versus time-integrated discomfort.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.case.0.witness",
+      "text": "End=6 Duration=10; Memory=7",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Peak\",8],[\"End\",6],[\"Mean\",5],[\"Duration\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Memory\",\"value\":7},{\"label\":\"Total\",\"value\":50}]},\"metrics\":[{\"label\":\"Memory\",\"value\":\"7\"},{\"label\":\"End\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.case.1.witness",
+      "text": "End=2 Duration=12; Memory=5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Peak\",8],[\"End\",2],[\"Mean\",5],[\"Duration\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Memory\",\"value\":5},{\"label\":\"Total\",\"value\":60}]},\"metrics\":[{\"label\":\"Memory\",\"value\":\"5\"},{\"label\":\"End\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0422.recall",
+      "text": "A toy memory rule averages peak 9 and end 6. The actual experience has mean 5 and duration 10. What is the memory-rule score? Answer 7.5.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0422/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #422. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy memory rule averages peak 9 and end 6. The actual experience has mean 5 and duration 10. What is the memory-rule score?",
+    "options": [
+      "7.5",
+      "4.5",
+      "10.5"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Memory 7.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0422",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-422"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 422,
+    "sourceSection": "22. Experience, memory & happiness",
+    "sourceEntryOriginal": "- **422.** Colonoscopy patients judged the experience by its worst and final moments; adding a gentler ending improved ratings and later return rates (Redelmeier & Kahneman, 1996; Redelmeier, Katz & Kahneman, 2003).",
+    "modelBoundary": "the peak-end summary versus time-integrated discomfort",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      9,
+      6,
+      5,
+      10
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0022",
+  "title": "A bound on long heads windows",
+  "hook": "Two stated cases: explore overlap in a longest-run upper bound.",
+  "domain": "probability",
+  "concept": "cp-source-0022",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How overlap in a longest-run upper bound affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UpperBound, regardless of the stated inputs.",
+  "objective": "Compare overlap in a longest-run upper bound in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0022.predict",
+      "text": "For 100 independent flips with heads probability 0.5, use a union bound over windows of 7 heads. What upper bound does this give for at least one such window?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.reveal.0",
+      "text": "The retained results are Length=7; UpperBound=0.734 and Length=10; UpperBound=0.089.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.reveal.1",
+      "text": "Overlapping windows are not independent. This explicitly labeled upper bound is not the exact longest-run probability. This comparison isolates overlap in a longest-run upper bound.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.case.0.witness",
+      "text": "Length=7; UpperBound=0.734",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"P\",0.5],[\"Length\",7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UpperBound\",\"value\":0.734375}]},\"metrics\":[{\"label\":\"UpperBound\",\"value\":\"0.734\"},{\"label\":\"Length\",\"value\":\"7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.case.1.witness",
+      "text": "Length=10; UpperBound=0.089",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"P\",0.5],[\"Length\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"UpperBound\",\"value\":0.0888671875}]},\"metrics\":[{\"label\":\"UpperBound\",\"value\":\"0.089\"},{\"label\":\"Length\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0022.recall",
+      "text": "For 101 independent flips with heads probability 0.5, use a union bound over windows of 7 heads. What upper bound does this give for at least one such window? Answer 0.742.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0022/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #22. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 101 independent flips with heads probability 0.5, use a union bound over windows of 7 heads. What upper bound does this give for at least one such window?",
+    "options": [
+      "0.445",
+      "1.039",
+      "0.742"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives UpperBound 0.742 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0022",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-22"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 22,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **22. Longest streak** \\[Predict\\]: guess the longest run in 100 real flips. It's usually 6 or 7.",
+    "modelBoundary": "overlap in a longest-run upper bound",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      101,
+      0.5,
+      7
+    ]
+  }
+}

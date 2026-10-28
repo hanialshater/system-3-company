@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0897",
+  "title": "A previous treatment can carry over",
+  "hook": "Two stated cases: explore the remaining effect before and after an idealized washout.",
+  "domain": "probability",
+  "concept": "cp-source-0897",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the remaining effect before and after an idealized washout affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ObservedGap, regardless of the stated inputs.",
+  "objective": "Compare the remaining effect before and after an idealized washout in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0897.predict",
+      "text": "A toy current outcome gap combines Direct 1 and carryover coefficient 0.8 times previous-exposure gap 3. What gap is observed?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.reveal.0",
+      "text": "The retained results are Carry=0.8; ObservedGap=3.4 and Carry=0; ObservedGap=1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.reveal.1",
+      "text": "A lag can contaminate a current-period contrast. Timing and washout assumptions matter before calling the observed gap a direct effect. This comparison isolates the remaining effect before and after an idealized washout.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.case.0.witness",
+      "text": "Carry=0.8; ObservedGap=3.4",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"Carry\",0.8],[\"PreviousGap\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ObservedGap\",\"value\":3.4000000000000004}]},\"metrics\":[{\"label\":\"ObservedGap\",\"value\":\"3.4\"},{\"label\":\"Carry\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.case.1.witness",
+      "text": "Carry=0; ObservedGap=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Direct\",1],[\"Carry\",0],[\"PreviousGap\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ObservedGap\",\"value\":1}]},\"metrics\":[{\"label\":\"ObservedGap\",\"value\":\"1\"},{\"label\":\"Carry\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0897.recall",
+      "text": "A toy current outcome gap combines Direct 2 and carryover coefficient 0.8 times previous-exposure gap 3. What gap is observed? Answer 4.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0897/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #897. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy current outcome gap combines Direct 2 and carryover coefficient 0.8 times previous-exposure gap 3. What gap is observed?",
+    "options": [
+      "2.64",
+      "4.4",
+      "6.16"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives ObservedGap 4.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0897",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-897"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 897,
+    "sourceSection": "45. Advanced diff-in-diff, synthetic control & causal time series",
+    "sourceEntryOriginal": "- **897. Crossover carryover** \\[Slider\\]: a drug's effect lingers into the next period unless a washout gap is added.",
+    "modelBoundary": "the remaining effect before and after an idealized washout",
+    "recallInputs": [
+      2,
+      0.8,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

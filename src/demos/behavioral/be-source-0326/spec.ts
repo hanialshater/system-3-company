@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0326", "title": "A different trial collection", "op": "selectedpool", "labels": ["Visible", "VisibleN", "Missing", "MissingN"], "outputs": ["Pooled"], "a": [0.1, 10.0, 0.3, 10.0], "b": [0.1, 10.0, 0.3, 40.0], "question": "Toy visible studies average 0.1 across 10 equal-weight studies; missing studies average 0.3 across 10. What is the mean if all are included?", "questionTemplate": "Toy visible studies average {Visible} across {VisibleN} equal-weight studies; missing studies average {Missing} across {MissingN}. What is the mean if all are included?", "explain": "Selection of studies can change a pooled estimate. Missing results here are explicit sensitivity assumptions, not recovered observations.", "lens": "the evidence mix behind conflicting pooled estimates", "kind": "grid", "answerPosition": 2};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

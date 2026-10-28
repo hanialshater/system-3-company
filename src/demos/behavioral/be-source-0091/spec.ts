@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "be-source-0091", "title": "Money or tomorrow's effort", "op": "beta", "labels": ["Soon", "Later", "Delay", "Beta", "Delta"], "outputs": ["Advantage"], "a": [10.0, 12.0, 1.0, 0.9, 1.0], "b": [10.0, 12.0, 1.0, 0.6, 1.0], "question": "A toy model values immediate 10 normally, but delayed 12 after 1 periods as Beta 0.9 times Delta 1 to the delay. What is delayed minus immediate value?", "explain": "An extra present-time weight can reverse the ranking when an option becomes immediate. The weights are explicit model assumptions.", "lens": "different model weights for different reward domains", "kind": "timeline", "answerPosition": 1, "questionTemplate": "A toy model values immediate {Soon} normally, but delayed {Later} after {Delay} periods as Beta {Beta} times Delta {Delta} to the delay. What is delayed minus immediate value?"};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

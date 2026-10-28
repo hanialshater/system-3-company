@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0531", "title": "Retries can exceed available capacity", "op": "fluid", "labels": ["Initial", "Arrival", "Capacity", "Time"], "outputs": ["Backlog"], "a": [0.0, 120.0, 100.0, 10.0], "b": [0.0, 80.0, 100.0, 10.0], "question": "A toy fluid queue starts at 0; constant arrival rate 120 and capacity 100 run for Time 10. What backlog remains, reflected at zero?", "questionTemplate": "A toy fluid queue starts at {Initial}; constant arrival rate {Arrival} and capacity {Capacity} run for Time {Time}. What backlog remains, reflected at zero?", "explain": "A persistent input-capacity gap accumulates work. This deterministic fluid approximation omits stochastic waiting-time variability.", "lens": "the stipulated effective arrival rate after retries", "kind": "timeline", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

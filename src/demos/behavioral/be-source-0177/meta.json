@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0177",
+  "title": "Acceptance and the offered share",
+  "hook": "Two stated cases: explore the assumed response probability with a fixed offer.",
+  "domain": "behavioral",
+  "concept": "be-source-0177",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the assumed response probability with a fixed offer affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the assumed response probability with a fixed offer in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0177.predict",
+      "text": "A toy proposer divides pie 10, offers 1, and is accepted with probability 0.3; rejection pays zero. What is the proposer’s expected payoff?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.reveal.0",
+      "text": "The retained results are Accept=0.3; Expected=2.7 and Accept=0.7; Expected=6.3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.reveal.1",
+      "text": "The offered share and acceptance probability must be considered together. The assumed response is not a claim about all recipients. This comparison isolates the assumed response probability with a fixed offer.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.case.0.witness",
+      "text": "Accept=0.3; Expected=2.7",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Pie\",10],[\"Offer\",1],[\"Accept\",0.3]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":2.6999999999999997}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2.7\"},{\"label\":\"Accept\",\"value\":\"0.3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.case.1.witness",
+      "text": "Accept=0.7; Expected=6.3",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Pie\",10],[\"Offer\",1],[\"Accept\",0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":6.3}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"6.3\"},{\"label\":\"Accept\",\"value\":\"0.7\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0177.recall",
+      "text": "A toy proposer divides pie 11, offers 1, and is accepted with probability 0.3; rejection pays zero. What is the proposer’s expected payoff? Answer 3.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0177/model.ts; finite explicit model from tools/continuation/behavioral-2.tsv; source idea 500-behavioral-economics-findings.md #177. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy proposer divides pie 11, offers 1, and is accepted with probability 0.3; rejection pays zero. What is the proposer’s expected payoff?",
+    "options": [
+      "1.8",
+      "3",
+      "4.2"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Expected 3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0177",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-02",
+      "source-177"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 177,
+    "sourceSection": "9. Fairness: ultimatum & dictator games",
+    "sourceEntryOriginal": "- **177.** Disrupting the right prefrontal cortex with magnetic stimulation made people accept more unfair offers (Knoch et al., 2006).",
+    "modelBoundary": "the assumed response probability with a fixed offer",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      1,
+      0.3
+    ]
+  }
+}

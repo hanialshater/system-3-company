@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0490", "title": "Leaving out the undamaged cases", "op": "selectedmean", "labels": ["Good", "Bad", "Share", "KeepGood", "KeepBad"], "outputs": ["Selected", "Full"], "a": [0.0, 1.0, 0.8, 0.0, 1.0], "b": [0.0, 1.0, 0.8, 1.0, 1.0], "question": "A toy population has Good outcome 0 with share 0.8, otherwise Bad 1. Retain fractions 0 and 1 respectively. What mean is observed among retained units?", "questionTemplate": "A toy population has Good outcome {Good} with share {Share}, otherwise Bad {Bad}. Retain fractions {KeepGood} and {KeepBad} respectively. What mean is observed among retained units?", "explain": "Outcome-dependent inclusion changes the observed mixture. A large selected sample cannot by itself repair missing low-retention outcomes.", "lens": "outcome-dependent selection in a damage sample", "kind": "grid", "answerPosition": 1};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0742",
+  "title": "One stipulated extreme-value family",
+  "hook": "Two stated cases: explore the location parameter of a Gumbel CDF.",
+  "domain": "probability",
+  "concept": "cp-source-0742",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the location parameter of a Gumbel CDF affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines CDF, regardless of the stated inputs.",
+  "objective": "Compare the location parameter of a Gumbel CDF in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0742.predict",
+      "text": "A stipulated Gumbel distribution has Location 0, Scale 1. What is its CDF at X 0?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.reveal.0",
+      "text": "The retained results are Location=0; CDF=0.368 and Location=1; CDF=0.066.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.reveal.1",
+      "text": "This is one extreme-value family. Selecting a family for data requires tail assumptions and validation. This comparison isolates the location parameter of a Gumbel CDF.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.case.0.witness",
+      "text": "Location=0; CDF=0.368",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",0],[\"Location\",0],[\"Scale\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":1.8921786948382924e-9},{\"x\":-2.625,\"y\":0.0000010109963926157281},{\"x\":-2.25,\"y\":0.00007577547728260715},{\"x\":-1.875,\"y\":0.001472462484282561},{\"x\":-1.5,\"y\":0.011314286380459625},{\"x\":-1.125,\"y\":0.04594929151446973},{\"x\":-0.75,\"y\":0.12039226207982957},{\"x\":-0.375,\"y\":0.23340236774098924},{\"x\":0,\"y\":0.36787944117144233},{\"x\":0.375,\"y\":0.5029375464134954},{\"x\":0.75,\"y\":0.6235249162568004},{\"x\":1.125,\"y\":0.7227784991200459},{\"x\":1.5,\"y\":0.8000107130043536},{\"x\":1.875,\"y\":0.8578251682679061},{\"x\":2.25,\"y\":0.8999651626606278},{\"x\":2.625,\"y\":0.9301217782669365},{\"x\":3,\"y\":0.9514319929004534},{\"x\":3.375,\"y\":0.9663607006837476},{\"x\":3.75,\"y\":0.9767566411323356},{\"x\":4.125,\"y\":0.9839664337167711},{\"x\":4.5,\"y\":0.9889524805037951},{\"x\":4.875,\"y\":0.992393979073509},{\"x\":5.25,\"y\":0.9947662257740503},{\"x\":5.625,\"y\":0.996399932701249},{\"x\":6,\"y\":0.9975243173927525}],\"xLabel\":\"X\",\"yLabel\":\"CDF\"},\"metrics\":[{\"label\":\"CDF\",\"value\":\"0.368\"},{\"label\":\"Location\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.case.1.witness",
+      "text": "Location=1; CDF=0.066",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"X\",0],[\"Location\",1],[\"Scale\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"curve\",\"points\":[{\"x\":-3,\"y\":1.9423376049564073e-24},{\"x\":-2.625,\"y\":5.049167717544199e-17},{\"x\":-2.25,\"y\":6.300828916156515e-12},{\"x\":-1.875,\"y\":2.0042233367372913e-8},{\"x\":-1.5,\"y\":0.000005119294298670733},{\"x\":-1.125,\"y\":0.00023104513241018967},{\"x\":-0.75,\"y\":0.003168165149053246},{\"x\":-0.375,\"y\":0.0191571986970244},{\"x\":0,\"y\":0.06598803584531254},{\"x\":0.375,\"y\":0.15439423851080514},{\"x\":0.75,\"y\":0.27692033409990896},{\"x\":1.125,\"y\":0.41374853106857634},{\"x\":1.5,\"y\":0.545239211892605},{\"x\":1.875,\"y\":0.6591118581362205},{\"x\":2.25,\"y\":0.7508834766393948},{\"x\":2.625,\"y\":0.821263168010922},{\"x\":3,\"y\":0.8734230184931167},{\"x\":3.375,\"y\":0.9111802979172058},{\"x\":3.75,\"y\":0.9380726685202482},{\"x\":4.125,\"y\":0.9570143109948294},{\"x\":4.5,\"y\":0.9702540025910624},{\"x\":4.875,\"y\":0.9794595511327027},{\"x\":5.25,\"y\":0.9858370182755026},{\"x\":5.625,\"y\":0.9902442441334356},{\"x\":6,\"y\":0.9932847020678415}],\"xLabel\":\"X\",\"yLabel\":\"CDF\"},\"metrics\":[{\"label\":\"CDF\",\"value\":\"0.066\"},{\"label\":\"Location\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0742.recall",
+      "text": "A stipulated Gumbel distribution has Location 0, Scale 1. What is its CDF at X 1? Answer 0.692.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0742/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #742. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stipulated Gumbel distribution has Location 0, Scale 1. What is its CDF at X 1?",
+    "options": [
+      "0.415",
+      "0.969",
+      "0.692"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives CDF 0.692 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0742",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-742"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 742,
+    "sourceSection": "38. Extreme values, heavy tails & risk",
+    "sourceEntryOriginal": "- **742. Three tail families** \\[Split\\]: Gumbel, Fréchet and Weibull extremes, from light-tailed, heavy-tailed and bounded data.",
+    "modelBoundary": "the location parameter of a Gumbel CDF",
+    "recallInputs": [
+      1,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

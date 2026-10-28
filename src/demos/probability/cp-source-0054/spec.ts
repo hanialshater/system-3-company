@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0054", "title": "Three independent reports of rain", "op": "testrepeat", "labels": ["Prior", "Sensitivity", "FalsePositive", "Tests"], "outputs": ["Posterior"], "a": [0.25, 0.6666666666666666, 0.3333333333333333, 3.0], "b": [0.25, 0.6666666666666666, 0.3333333333333333, 1.0], "question": "Toy prevalence is 0.25; sensitivity 0.666667, false-positive rate 0.333333. Given 3 positive tests independent conditional on status, what is posterior probability?", "questionTemplate": "Toy prevalence is {Prior}; sensitivity {Sensitivity}, false-positive rate {FalsePositive}. Given {Tests} positive tests independent conditional on status, what is posterior probability?", "explain": "Conditional independence permits multiplication within each status. Repeating a correlated test need not provide the same evidence.", "lens": "the conditional independence of witness reports", "kind": "grid", "answerPosition": 0};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

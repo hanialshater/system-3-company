@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0683",
+  "title": "An optimism bonus shrinks",
+  "hook": "Two stated cases: explore the pull count in a specified UCB rule.",
+  "domain": "probability",
+  "concept": "cp-source-0683",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the pull count in a specified UCB rule affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines UCB, regardless of the stated inputs.",
+  "objective": "Compare the pull count in a specified UCB rule in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0683.predict",
+      "text": "A toy UCB score adds sqrt(2 log Total/Pulls) to Mean 0.5. Total 100, Pulls 5: what score results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.reveal.0",
+      "text": "The retained results are Pulls=5; UCB=1.857 and Pulls=50; UCB=0.929.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.reveal.1",
+      "text": "Less sampled arms receive a larger optimism bonus. This one-step score does not establish cumulative regret. This comparison isolates the pull count in a specified UCB rule.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.case.0.witness",
+      "text": "Pulls=5; UCB=1.857",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0.5],[\"Total\",100],[\"Pulls\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"UCB\",\"value\":1.8572280848830225},{\"label\":\"Bonus\",\"value\":1.3572280848830225}]},\"metrics\":[{\"label\":\"UCB\",\"value\":\"1.857\"},{\"label\":\"Pulls\",\"value\":\"5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.case.1.witness",
+      "text": "Pulls=50; UCB=0.929",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Mean\",0.5],[\"Total\",100],[\"Pulls\",50]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"UCB\",\"value\":0.9291932052578695},{\"label\":\"Bonus\",\"value\":0.42919320525786947}]},\"metrics\":[{\"label\":\"UCB\",\"value\":\"0.929\"},{\"label\":\"Pulls\",\"value\":\"50\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0683.recall",
+      "text": "A toy UCB score adds sqrt(2 log Total/Pulls) to Mean 0.6. Total 100, Pulls 5: what score results? Answer 1.957.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0683/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #683. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy UCB score adds sqrt(2 log Total/Pulls) to Mean 0.6. Total 100, Pulls 5: what score results?",
+    "options": [
+      "1.957",
+      "1.174",
+      "2.74"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives UCB 1.957 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0683",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-683"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 683,
+    "sourceSection": "35. Bandits & sequential experimentation",
+    "sourceEntryOriginal": "- **683. UCB bars** \\[Slider\\]: each arm's bar shows its estimate plus an optimism bonus that shrinks as it's tried.",
+    "modelBoundary": "the pull count in a specified UCB rule",
+    "recallInputs": [
+      0.6,
+      100,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

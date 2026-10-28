@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0918",
+  "title": "A relevance-diversity score has weights",
+  "hook": "Two stated cases for a relevance-diversity score has weights.",
+  "domain": "probability",
+  "concept": "cp-source-0918",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the explicit scoring tradeoff rather than a guaranteed accuracy gain affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Contrast, regardless of the stated inputs.",
+  "objective": "Compare the explicit scoring tradeoff rather than a guaranteed accuracy gain in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0918.predict",
+      "text": "A toy estimator combines effects 0.8,0.4 with weights 0.9 and 1-Weight, permitting negative weights. What contrast results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.reveal.0",
+      "text": "The retained results are Weight=0.9; Contrast=0.76 and Weight=0.1; Contrast=0.44.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.reveal.1",
+      "text": "A nonconvex comparison can fall outside the component-effect range. These are estimator weights, not population shares. This comparison isolates the explicit scoring tradeoff rather than a guaranteed accuracy gain.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.case.0.witness",
+      "text": "Weight=0.9; Contrast=0.76",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.9],[\"EffectA\",0.8],[\"EffectB\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Contrast\",\"value\":0.7600000000000001}]},\"metrics\":[{\"label\":\"Contrast\",\"value\":\"0.76\"},{\"label\":\"Weight\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.case.1.witness",
+      "text": "Weight=0.1; Contrast=0.44",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Weight\",0.1],[\"EffectA\",0.8],[\"EffectB\",0.4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Contrast\",\"value\":0.44000000000000006}]},\"metrics\":[{\"label\":\"Contrast\",\"value\":\"0.44\"},{\"label\":\"Weight\",\"value\":\"0.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0918.recall",
+      "text": "A toy estimator combines effects 0.8,0.4 with weights 0.72 and 1-Weight, permitting negative weights. What contrast results? Answer 0.688.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0918/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #918. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy estimator combines effects 0.8,0.4 with weights 0.72 and 1-Weight, permitting negative weights. What contrast results?",
+    "options": [
+      "0.413",
+      "0.688",
+      "0.963"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Contrast 0.688 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0918",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-918"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 918,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **918. Relevance vs diversity** \\[Slider\\]: slide toward diversity and watch accuracy and coverage trade off.",
+    "modelBoundary": "the explicit scoring tradeoff rather than a guaranteed accuracy gain",
+    "recallInputs": [
+      0.7200000000000001,
+      0.8,
+      0.4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

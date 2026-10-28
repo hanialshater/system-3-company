@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0162",
+  "title": "Needle crossings need a denominator",
+  "hook": "Two stated cases: explore the crossing fraction before any nonlinear pi transformation.",
+  "domain": "probability",
+  "concept": "cp-source-0162",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the crossing fraction before any nonlinear pi transformation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the crossing fraction before any nonlinear pi transformation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0162.predict",
+      "text": "A toy Monte Carlo sample has 637 hits among 1000; multiply the hit fraction by Scale 1. What estimate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.reveal.0",
+      "text": "The retained results are Hits=637 N=1,000; Estimate=0.637 and Hits=6,370 N=10,000; Estimate=0.637.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.reveal.1",
+      "text": "Sampling error remains after a Monte Carlo estimate. The reported plug-in standard error assumes independent indicator draws. This comparison isolates the crossing fraction before any nonlinear pi transformation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.case.0.witness",
+      "text": "Hits=637 N=1,000; Estimate=0.637",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Hits\",637],[\"N\",1000],[\"Scale\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":0.637},{\"label\":\"SE\",\"value\":0.015206281596761254}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0.637\"},{\"label\":\"Hits\",\"value\":\"637\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.case.1.witness",
+      "text": "Hits=6,370 N=10,000; Estimate=0.637",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Hits\",6370],[\"N\",10000],[\"Scale\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Estimate\",\"value\":0.637},{\"label\":\"SE\",\"value\":0.004808648458766766}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0.637\"},{\"label\":\"Hits\",\"value\":\"6,370\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0162.recall",
+      "text": "A toy Monte Carlo sample has 638 hits among 1,000; multiply the hit fraction by Scale 1. What estimate results? Answer 0.638.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0162/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #162. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy Monte Carlo sample has 638 hits among 1,000; multiply the hit fraction by Scale 1. What estimate results?",
+    "options": [
+      "0.383",
+      "0.638",
+      "0.893"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 0.638 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0162",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-162"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 162,
+    "sourceSection": "9. Monte Carlo & simulation",
+    "sourceEntryOriginal": "- **162. Buffon's needle** \\[Predict\\]: drop needles on striped floorboards and π appears again.",
+    "modelBoundary": "the crossing fraction before any nonlinear pi transformation",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      638,
+      1000,
+      1
+    ]
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "slug": "cp-source-0345",
+  "title": "Which path stays active?",
+  "hook": "Two stated cases: explore the d-connection test for one isolated chain.",
+  "domain": "probability",
+  "concept": "cp-source-0345",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the d-connection test for one isolated chain affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Active, regardless of the stated inputs.",
+  "objective": "Compare the d-connection test for one isolated chain in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0345.predict",
+      "text": "A three-node path is Pattern 1: 0=fork, 1=chain, 2=collider. The middle node is conditioned on if Conditioned 0=1. Is the path active (1) or blocked (0)?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.reveal.0",
+      "text": "The retained results are Conditioned=0; Active=1 and Conditioned=1; Active=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.reveal.1",
+      "text": "Conditioning blocks a noncollider path but opens a collider path. This path test assumes no other paths or conditioned descendants. This comparison isolates the d-connection test for one isolated chain.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.case.0.witness",
+      "text": "Conditioned=0; Active=1",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Pattern\",1],[\"Conditioned\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"M\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":true},{\"from\":\"m\",\"to\":\"y\",\"active\":true}]},\"metrics\":[{\"label\":\"Active\",\"value\":\"1\"},{\"label\":\"Conditioned\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.case.1.witness",
+      "text": "Conditioned=1; Active=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Pattern\",1],[\"Conditioned\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"x\",\"label\":\"X\",\"x\":40,\"y\":130},{\"id\":\"m\",\"label\":\"M\",\"x\":160,\"y\":40},{\"id\":\"y\",\"label\":\"Y\",\"x\":280,\"y\":130}],\"edges\":[{\"from\":\"x\",\"to\":\"m\",\"active\":false},{\"from\":\"m\",\"to\":\"y\",\"active\":false}]},\"metrics\":[{\"label\":\"Active\",\"value\":\"0\"},{\"label\":\"Conditioned\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0345.recall",
+      "text": "A three-node path is Pattern 2: 0=fork, 1=chain, 2=collider. The middle node is conditioned on if Conditioned 1=1. Is the path active (1) or blocked (0)? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0345/model.ts; finite explicit model from tools/continuation/probability-5.tsv; source idea 1000-causal-inference-probability-demos.md #345. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A three-node path is Pattern 2: 0=fork, 1=chain, 2=collider. The middle node is conditioned on if Conditioned 1=1. Is the path active (1) or blocked (0)?",
+    "options": [
+      "0: no / blocked",
+      "1: yes / active"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Active 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0345",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-05",
+      "source-345"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 345,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceEntryOriginal": "- **345. d-separation game** \\[Measure\\]: given a graph, say whether two variables are independent; score your streak.",
+    "modelBoundary": "the d-connection test for one isolated chain",
+    "recallInputs": [
+      2,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

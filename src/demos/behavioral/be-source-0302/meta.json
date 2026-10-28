@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0302",
+  "title": "A small payment with a cost",
+  "hook": "Two stated cases: explore a stated participation cost alongside a reward.",
+  "domain": "behavioral",
+  "concept": "be-source-0302",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How a stated participation cost alongside a reward affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Gain, regardless of the stated inputs.",
+  "objective": "Compare a stated participation cost alongside a reward in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0302.predict",
+      "text": "Keeping a toy option yields 10. Switching yields 12 and costs 3. What is the gain from switching?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.reveal.0",
+      "text": "The retained results are SwitchFee=3; Gain=-1 and SwitchFee=0; Gain=2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.reveal.1",
+      "text": "Make the opportunity cost visible before judging a refusal to switch. Equal-risk labels can obscure a straightforward payoff difference. This comparison isolates a stated participation cost alongside a reward.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.case.0.witness",
+      "text": "SwitchFee=3; Gain=-1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",10],[\"SwitchFee\",3],[\"After\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":-1}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"-1\"},{\"label\":\"SwitchFee\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.case.1.witness",
+      "text": "SwitchFee=0; Gain=2",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Before\",10],[\"SwitchFee\",0],[\"After\",12]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Gain\",\"value\":2}]},\"metrics\":[{\"label\":\"Gain\",\"value\":\"2\"},{\"label\":\"SwitchFee\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0302.recall",
+      "text": "Keeping a toy option yields 11. Switching yields 12 and costs 3. What is the gain from switching? Answer -2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0302/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #302. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Keeping a toy option yields 11. Switching yields 12 and costs 3. What is the gain from switching?",
+    "options": [
+      "-2",
+      "-2.8",
+      "-1.2"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Gain -2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0302",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-302"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 302,
+    "sourceSection": "16. Incentives & motivation",
+    "sourceEntryOriginal": "- **302.** Small payments lowered performance on IQ questions and charity collection compared with no payment, \"pay enough or don't pay at all\" (Gneezy & Rustichini, 2000).",
+    "modelBoundary": "a stated participation cost alongside a reward",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      3,
+      12
+    ]
+  }
+}

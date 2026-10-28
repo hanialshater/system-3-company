@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0040",
+  "title": "A toy jail-detour chain",
+  "hook": "Two stated cases: explore the visit rate in a stated two-state board model.",
+  "domain": "probability",
+  "concept": "cp-source-0040",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the visit rate in a stated two-state board model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rain, regardless of the stated inputs.",
+  "objective": "Compare the visit rate in a stated two-state board model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0040.predict",
+      "text": "A toy chain switches sun to rain with chance 0.2, rain to sun with 0.5; initial rain probability 0. What is rain probability after 20 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.reveal.0",
+      "text": "The retained results are ToRain=0.2; Rain=0.286 and ToRain=0.05; Rain=0.091.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.reveal.1",
+      "text": "Transition probabilities determine both the stationary share and how the initial condition fades. This formula is for the stated two-state chain. This comparison isolates the visit rate in a stated two-state board model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.case.0.witness",
+      "text": "ToRain=0.2; Rain=0.286",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ToRain\",0.2],[\"ToSun\",0.5],[\"StartRain\",0],[\"Steps\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rain\",\"value\":0.2857142857043235}]},\"metrics\":[{\"label\":\"Rain\",\"value\":\"0.286\"},{\"label\":\"ToRain\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.case.1.witness",
+      "text": "ToRain=0.05; Rain=0.091",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"ToRain\",0.05],[\"ToSun\",0.5],[\"StartRain\",0],[\"Steps\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rain\",\"value\":0.09090908036867883}]},\"metrics\":[{\"label\":\"Rain\",\"value\":\"0.091\"},{\"label\":\"ToRain\",\"value\":\"0.05\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0040.recall",
+      "text": "A toy chain switches sun to rain with chance 0.3, rain to sun with 0.5; initial rain probability 0. What is rain probability after 20 steps? Answer 0.375.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0040/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #40. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy chain switches sun to rain with chance 0.3, rain to sun with 0.5; initial rain probability 0. What is rain probability after 20 steps?",
+    "options": [
+      "0.225",
+      "0.525",
+      "0.375"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rain 0.375 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0040",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-40"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 40,
+    "sourceSection": "2. Coins, dice & randomness intuition",
+    "sourceEntryOriginal": "- **40. Monopoly heatmap** \\[Predict\\]: guess the most-landed square. Jail, thanks to the dice-and-card mechanics.",
+    "modelBoundary": "the visit rate in a stated two-state board model",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.30000000000000004,
+      0.5,
+      0,
+      20
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "slug": "p100-monday-vs-weekend",
+  "title": "Have you tested the weekend?",
+  "hook": "The effect depends on the day. Which days should your average represent?",
+  "domain": "probability",
+  "concept": "p100-monday-vs-weekend",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "a test run only on weekdays can mislead about weekend users."
+    ]
+  },
+  "misconception": "Treating monday vs weekend as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "a test run only on weekdays can mislead about weekend users.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-monday-vs-weekend.predict",
+      "text": "A change adds 10 percentage points on weekdays and loses 10 on weekends. Giving each of seven days equal weight, what is the weekly average?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.reveal.0",
+      "text": "Equal-day weighting retains +4.286 points; weekend-heavy traffic retains −4. The treatment responses are unchanged, but the target population mix changes.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.reveal.1",
+      "text": "A weekdays-only experiment answers a different weighted question from a full week or a weekend-heavy audience. Choose weights that match the deployment question and check whether treatment response varies with those periods.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.recall",
+      "text": "Weekday effect is +6 and weekend effect −6. With equal traffic in each type, what average follows? Equal weights cancel the +6 and −6 responses.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.scenario.0.summary",
+      "text": "Weekly 4.286pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Weekday\",\"Weekend\"],\"rows\":[[5,2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Uniform-day week\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Weekday pp\",\"value\":10},{\"label\":\"Weekend pp\",\"value\":-10}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.scenario.1.summary",
+      "text": "Traffic-weighted -4pp",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Weekday share\",\"Weekend share\"],\"rows\":[[0.3,0.7]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Weekend-heavy visits\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Weighted weekday\",\"value\":3},{\"label\":\"Weighted weekend\",\"value\":-7}]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-monday-vs-weekend/spec.ts; exact finite illustration specified in manager numericCase: Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-monday-vs-weekend.hook",
+      "text": "The effect depends on the day. Which days should your average represent?",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-monday-vs-weekend/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Weekday effect is +6 and weekend effect −6. With equal traffic in each type, what average follows?",
+    "options": [
+      "−6",
+      "0",
+      "6"
+    ],
+    "answer": 1,
+    "why": "Equal weights cancel the +6 and −6 responses."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-monday-vs-weekend",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "calendar-mix"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 335,
+    "sourceSection": "17. Randomized experiments & A/B tests",
+    "sourceTitle": "Monday vs weekend",
+    "sourceText": "a test run only on weekdays can mislead about weekend users.",
+    "sourceEntryOriginal": "- **335. Monday vs weekend** \\[Gotcha\\]: a test run only on weekdays can mislead about weekend users.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "books/bk-habit-cue-policy",
+    "difference": "New teaching boundary: Monday vs weekend. Existing boundary: Separate a specified trigger policy from evidence about an acquired habit.",
+    "numericCase": "Weekday lift+10pp, weekend lift-10pp. Fiveweekday/twoweekend uniform-day average(5*10-2*10)/7=4.2857pp; weekdays-only10pp; weekend-heavy traffic weights.3/.7 gives-4pp."
+  },
+  "modelAudit": {
+    "a": 4.285714285714286,
+    "b": -4
+  }
+}

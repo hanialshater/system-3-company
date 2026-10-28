@@ -1,0 +1,163 @@
+{
+  "slug": "p100-unroll-the-loop",
+  "title": "Can you draw a feedback loop?",
+  "hook": "Update two variables simultaneously, then draw their arrows across time.",
+  "domain": "probability",
+  "concept": "p100-unroll-the-loop",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "arithmetic means, rates and simple plotted values"
+    ],
+    "doesNotKnow": [
+      "a feedback cycle becomes an ordinary graph once drawn across time steps."
+    ]
+  },
+  "misconception": "Treating unroll the loop as valid without checking the stated model, denominators or causal assumptions.",
+  "objective": "a feedback cycle becomes an ordinary graph once drawn across time steps.",
+  "keyState": "Both finite cases completed; their computed summaries retained.",
+  "claims": [
+    {
+      "id": "probability.p100-unroll-the-loop.predict",
+      "text": "Start A₀=B₀=0 with Aₜ₊₁=.5Bₜ and Bₜ₊₁=Aₜ+1. After two simultaneous updates, what state appears?",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.setup",
+      "text": "Toy model · two controlled cases",
+      "support": "convention",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.reveal.0",
+      "text": "Two updates retain A=0.5, B=1; four retain A=0.75, B=1.5. Each update uses the previous time’s values simultaneously.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.reveal.1",
+      "text": "The feedback exists across time, not as a same-instant directed cycle. Unrolling time makes each arrow point from a prior state to a later state, giving an acyclic representation of this dynamic system.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.recall",
+      "text": "With Aₜ₊₁=2Bₜ and Bₜ₊₁=Aₜ, does the arrow from Bₜ to Aₜ₊₁ travel backward in time? The subscript t+1 is later than t; feedback can be represented by forward arrows across successive layers.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.scenario.0.summary",
+      "text": "A=0.5; B=1",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.scenario.0.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A previous\",\"B previous\"],\"rows\":[[0,1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.scenario.0.frame.1",
+      "text": "{\"caption\":\"Toy model · Time 2\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A1\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"B1\",\"x\":120,\"y\":115},{\"id\":\"2\",\"label\":\"A2\",\"x\":200,\"y\":45},{\"id\":\"3\",\"label\":\"B2\",\"x\":280,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"3\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Update\",\"value\":\"A=.5B; B=A+1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.scenario.1.summary",
+      "text": "A=0.75; B=1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.scenario.1.frame.0",
+      "text": "{\"caption\":\"Toy model · inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"A previous\",\"B previous\"],\"rows\":[[0.5,1.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.scenario.1.frame.1",
+      "text": "{\"caption\":\"Toy model · Time 4\",\"visual\":{\"kind\":\"graph\",\"nodes\":[{\"id\":\"0\",\"label\":\"A3\",\"x\":40,\"y\":45},{\"id\":\"1\",\"label\":\"B3\",\"x\":120,\"y\":115},{\"id\":\"2\",\"label\":\"A4\",\"x\":200,\"y\":45},{\"id\":\"3\",\"label\":\"B4\",\"x\":280,\"y\":115}],\"edges\":[{\"from\":\"0\",\"to\":\"3\",\"active\":true},{\"from\":\"1\",\"to\":\"2\",\"active\":true}]},\"metrics\":[{\"label\":\"Update\",\"value\":\"A=.5B; B=A+1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-unroll-the-loop/spec.ts; exact finite illustration specified in manager numericCase: Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-unroll-the-loop.hook",
+      "text": "Update two variables simultaneously, then draw their arrows across time.",
+      "support": "convention",
+      "source": "Explicit finite model in src/demos/probability/p100-unroll-the-loop/spec.ts; no empirical finding inferred.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With Aₜ₊₁=2Bₜ and Bₜ₊₁=Aₜ, does the arrow from Bₜ to Aₜ₊₁ travel backward in time?",
+    "options": [
+      "No",
+      "Yes",
+      "Only when B is negative"
+    ],
+    "answer": 0,
+    "why": "The subscript t+1 is later than t; feedback can be represented by forward arrows across successive layers."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:p100-unroll-the-loop",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "causal-probability-100",
+      "time-unroll"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "case-comparison",
+    "step-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 357,
+    "sourceSection": "18. Causal graphs & the do-operator",
+    "sourceTitle": "Unroll the loop",
+    "sourceText": "a feedback cycle becomes an ordinary graph once drawn across time steps.",
+    "sourceEntryOriginal": "- **357. Unroll the loop** \\[Slider\\]: a feedback cycle becomes an ordinary graph once drawn across time steps.",
+    "verification": "unverified idea pointer; numerical illustration is not empirical validation",
+    "nearestExistingLesson": "ai/ai-discount-factor",
+    "difference": "New teaching boundary: Unroll the loop. Existing boundary: gamma is applied once per elapsed transition; a reward two steps away gets gamma², not one copy of gamma. Distinct from the already briefed value-vs-reward: focus on time weights across one fixed reward stream rather than choosing between actions.",
+    "numericCase": "Two-period feedback A(t+1)=.5B(t),B(t+1)=A(t)+1; startA0=B0=0. States t1(0,1),t2(.5,1),t3(.5,1.5),t4(.75,1.5). Unroll arrows into time layers, no within-time DAGcycle."
+  },
+  "modelAudit": {
+    "a": 0.5,
+    "b": 1,
+    "lateA": 0.75,
+    "lateB": 1.5
+  }
+}

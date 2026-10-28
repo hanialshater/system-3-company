@@ -1,0 +1,5 @@
+import {makeCuratedSpec,type CuratedCase} from '../../../lib/continuation/scenario';
+import {compute} from './model';
+const c:CuratedCase={"id": "cp-source-0345", "title": "Which path stays active?", "op": "dsep", "labels": ["Pattern", "Conditioned"], "outputs": ["Active"], "a": [1.0, 0.0], "b": [1.0, 1.0], "question": "A three-node path is Pattern 1: 0=fork, 1=chain, 2=collider. The middle node is conditioned on if Conditioned 0=1. Is the path active (1) or blocked (0)?", "questionTemplate": "A three-node path is Pattern {Pattern}: 0=fork, 1=chain, 2=collider. The middle node is conditioned on if Conditioned {Conditioned}=1. Is the path active (1) or blocked (0)?", "explain": "Conditioning blocks a noncollider path but opens a collider path. This path test assumes no other paths or conditioned descendants.", "lens": "the d-connection test for one isolated chain", "kind": "graph", "answerPosition": 0, "graph": "dsep", "binary": true, "recall": [2.0, 1.0]};
+export const spec=makeCuratedSpec(c,compute);
+export const curation=c;

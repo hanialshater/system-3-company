@@ -1,0 +1,163 @@
+{
+  "slug": "p100-reliability-diagram",
+  "title": "Do these confidence scores match?",
+  "hook": "Do these confidence scores match? Change one condition and inspect the result.",
+  "domain": "probability",
+  "concept": "p100-reliability-diagram",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fractions and arithmetic",
+      "that a toy model states its assumptions"
+    ],
+    "doesNotKnow": [
+      "plot predicted vs actual frequency; bars below the diagonal mean overconfidence."
+    ]
+  },
+  "misconception": "Ten forecasts of 0.8 contain six positive outcomes. By how many percentage points does the forecast exceed the observed fraction? The prediction alternatives contrast different consequences of the stated model.",
+  "objective": "plot predicted vs actual frequency; bars below the diagonal mean overconfidence.",
+  "keyState": "Both computed cases completed, with their numerical summaries retained across Reset.",
+  "claims": [
+    {
+      "id": "probability.p100-reliability-diagram.case",
+      "text": "Ten forecasts of 0.8 contain six positive outcomes. By how many percentage points does the forecast exceed the observed fraction? Options: 0; 10; 20. Toy model: compare two controlled cases.",
+      "support": "convention",
+      "source": "Stipulated numerical case in model.ts, based on manager numericCase: Forecastbins.2,.5,.8,each10cases; observedpositives2,5,6. Calibrationpairs(.2,.2),(.5,.5),(.8,.6). Lastbinoverconfident20pp; learneradjustspredictionto.6andcountunchanged.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.recall",
+      "text": "A 0.3 forecast bin has 4 positives out of 10. Forecast minus observed gap? 0.3\u22120.4=\u22120.1, or \u221210 percentage points.",
+      "support": "derivation",
+      "source": "Transfer arithmetic or model implication under the same explicitly stated assumptions. Independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.hook",
+      "text": "Do these confidence scores match? Change one condition and inspect the result.",
+      "support": "convention",
+      "source": "Invitation to manipulate the labelled toy case, not a population claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c4",
+      "text": "The final bin\u2019s forecast exceeds its observed fraction by 20 percentage points. Relabelling that forecast as 0.6 makes this finite-bin gap 0.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().reveal[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c5",
+      "text": "Observed counts stay fixed while the assigned probability changes. A reliability diagram compares stated probabilities with frequencies in comparable bins. Ten cases provide limited evidence; matching this one bin does not establish population calibration.",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().reveal[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c6",
+      "text": "Run the question case, compare the changed case, and inspect both retained results.",
+      "support": "convention",
+      "source": "src/demos/probability/p100-reliability-diagram/spec.ts#hint; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c7",
+      "text": "Gap fraction: 0.2",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().scenarios[0].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c8",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":0.2,\"y\":0.2},{\"x\":0.5,\"y\":0.5},{\"x\":0.8,\"y\":0.6}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().scenarios[0].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c9",
+      "text": "Toy model: case A. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Forecast\",\"value\":0.8},{\"label\":\"Observed\",\"value\":0.6}]}. [{\"label\":\"Gap fraction\",\"value\":\"0.2\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().scenarios[0].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c10",
+      "text": "Gap fraction: 0",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().scenarios[1].summary; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c11",
+      "text": "Toy model: inputs. Displayed values: {\"kind\":\"scatter\",\"points\":[{\"x\":0.2,\"y\":0.2},{\"x\":0.5,\"y\":0.5},{\"x\":0.6,\"y\":0.6}]}. []",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().scenarios[1].frames[0]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.p100-reliability-diagram.c12",
+      "text": "Toy model: case B. Displayed values: {\"kind\":\"bars\",\"items\":[{\"label\":\"Forecast\",\"value\":0.6},{\"label\":\"Observed\",\"value\":0.6}]}. [{\"label\":\"Gap fraction\",\"value\":\"0\"}]",
+      "support": "derivation",
+      "source": "src/demos/probability/p100-reliability-diagram/model.ts#compute().scenarios[1].frames[1]; stipulated local model, independent verification pending.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 0.3 forecast bin has 4 positives out of 10. Forecast minus observed gap?",
+    "options": [
+      "\u221210 points",
+      "0 points",
+      "+10 points"
+    ],
+    "answer": 0,
+    "why": "0.3\u22120.4=\u22120.1, or \u221210 percentage points."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "probability:p100-reliability-diagram",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "references": [],
+    "tags": [
+      "founder-2026-10-24",
+      "source-entry-801",
+      "scatter"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "controlled-case-comparison",
+    "step-through-trace"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 801,
+    "sourceSection": "41. Uncertainty quantification, calibration & conformal prediction",
+    "sourceTitle": "Reliability diagram",
+    "sourceText": "plot predicted vs actual frequency; bars below the diagonal mean overconfidence.",
+    "sourceEntryOriginal": "- **801. Reliability diagram** \\[Slider\\]: plot predicted vs actual frequency; bars below the diagonal mean overconfidence.",
+    "numericCase": "Forecastbins.2,.5,.8,each10cases; observedpositives2,5,6. Calibrationpairs(.2,.2),(.5,.5),(.8,.6). Lastbinoverconfident20pp; learneradjustspredictionto.6andcountunchanged.",
+    "sourceStatus": "unverified idea pointer; empirical and historical claims excluded from learner copy",
+    "nearestExistingLesson": "books/bk-gene-frequency-dependent",
+    "difference": "New teaching boundary: Reliability diagram. Existing boundary: Identify opponent frequency as an input to mean strategy payoff."
+  },
+  "modelOutputs": [
+    0.20000000000000007,
+    0
+  ]
+}

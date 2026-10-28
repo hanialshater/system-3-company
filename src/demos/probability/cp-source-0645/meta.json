@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0645",
+  "title": "A prior linear-function variance",
+  "hook": "Two stated cases: explore the Gaussian linear-function prior as a simple process example.",
+  "domain": "probability",
+  "concept": "cp-source-0645",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Gaussian linear-function prior as a simple process example affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the Gaussian linear-function prior as a simple process example in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0645.predict",
+      "text": "A toy linear weight has mean 0, variance 1; input X 1, independent output-noise variance 0. What predictive mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.reveal.0",
+      "text": "The retained results are X=1; Mean=0 and X=2; Mean=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.reveal.1",
+      "text": "Weight uncertainty and observation noise contribute differently to predictive variance. This one-weight model is not a full Bayesian neural network. This comparison isolates the Gaussian linear-function prior as a simple process example.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.case.0.witness",
+      "text": "X=1; Mean=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightMean\",0],[\"WeightVar\",1],[\"X\",1],[\"Noise\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0},{\"label\":\"Variance\",\"value\":1}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0\"},{\"label\":\"X\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.case.1.witness",
+      "text": "X=2; Mean=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"WeightMean\",0],[\"WeightVar\",1],[\"X\",2],[\"Noise\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0},{\"label\":\"Variance\",\"value\":4}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0\"},{\"label\":\"X\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0645.recall",
+      "text": "A toy linear weight has mean 1, variance 1; input X 1, independent output-noise variance 0. What predictive mean results? Answer 1.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0645/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #645. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy linear weight has mean 1, variance 1; input X 1, independent output-noise variance 0. What predictive mean results?",
+    "options": [
+      "0.6",
+      "1",
+      "1.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Mean 1 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0645",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-645"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 645,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **645. Functions from the prior** \\[Slider\\]: draw random functions from a GP before seeing any data.",
+    "modelBoundary": "the Gaussian linear-function prior as a simple process example",
+    "recallInputs": [
+      1,
+      1,
+      1,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

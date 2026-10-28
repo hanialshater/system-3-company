@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0619",
+  "title": "An exact coin posterior as a benchmark",
+  "hook": "Two stated cases: explore the exact conjugate mean before assessing an approximation.",
+  "domain": "probability",
+  "concept": "cp-source-0619",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the exact conjugate mean before assessing an approximation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the exact conjugate mean before assessing an approximation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0619.predict",
+      "text": "A toy coin has Beta(1,1) prior and independent data of 7 wins and 3 losses. What is the posterior predictive win probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.reveal.0",
+      "text": "The retained results are Alpha=1 Beta=1; Mean=0.667 and Alpha=10 Beta=10; Mean=0.567.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.reveal.1",
+      "text": "Prior counts and observed counts add under this model. The posterior mean also gives the next-trial predictive probability. This comparison isolates the exact conjugate mean before assessing an approximation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.case.0.witness",
+      "text": "Alpha=1 Beta=1; Mean=0.667",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",7],[\"Losses\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.6666666666666666}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.667\"},{\"label\":\"Alpha\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.case.1.witness",
+      "text": "Alpha=10 Beta=10; Mean=0.567",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",10],[\"Beta\",10],[\"Wins\",7],[\"Losses\",3]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.5666666666666667}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.567\"},{\"label\":\"Alpha\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0619.recall",
+      "text": "A toy coin has Beta(2,1) prior and independent data of 7 wins and 3 losses. What is the posterior predictive win probability? Answer 0.692.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0619/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #619. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy coin has Beta(2,1) prior and independent data of 7 wins and 3 losses. What is the posterior predictive win probability?",
+    "options": [
+      "0.415",
+      "0.969",
+      "0.692"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Mean 0.692 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0619",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-619"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 619,
+    "sourceSection": "31. Variational inference & approximate Bayes",
+    "sourceEntryOriginal": "- **619. VI on a coin** \\[Split\\]: compare a variational answer with the exact beta posterior; they nearly match.",
+    "modelBoundary": "the exact conjugate mean before assessing an approximation",
+    "recallInputs": [
+      2,
+      1,
+      7,
+      3
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0843",
+  "title": "The split changes stolen sales",
+  "hook": "Two stated cases: explore the substitution exposure under two assumed split designs.",
+  "domain": "probability",
+  "concept": "cp-source-0843",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the substitution exposure under two assumed split designs affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines MeasuredGap, regardless of the stated inputs.",
+  "objective": "Compare the substitution exposure under two assumed split designs in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0843.predict",
+      "text": "A toy seller treatment adds OwnLift 10 to treated sales but takes Stolen 8 from controls. What treated-minus-control gap is measured?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.reveal.0",
+      "text": "The retained results are Stolen=8; MeasuredGap=18 and Stolen=2; MeasuredGap=12.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.reveal.1",
+      "text": "A control loss can enlarge the experimental contrast without creating the same market-wide gain. Interference changes the estimand. This comparison isolates the substitution exposure under two assumed split designs.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.case.0.witness",
+      "text": "Stolen=8; MeasuredGap=18",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OwnLift\",10],[\"Stolen\",8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeasuredGap\",\"value\":18},{\"label\":\"NetLift\",\"value\":2}]},\"metrics\":[{\"label\":\"MeasuredGap\",\"value\":\"18\"},{\"label\":\"Stolen\",\"value\":\"8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.case.1.witness",
+      "text": "Stolen=2; MeasuredGap=12",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"OwnLift\",10],[\"Stolen\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"MeasuredGap\",\"value\":12},{\"label\":\"NetLift\",\"value\":8}]},\"metrics\":[{\"label\":\"MeasuredGap\",\"value\":\"12\"},{\"label\":\"Stolen\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0843.recall",
+      "text": "A toy seller treatment adds OwnLift 11 to treated sales but takes Stolen 8 from controls. What treated-minus-control gap is measured? Answer 19.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0843/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #843. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy seller treatment adds OwnLift 11 to treated sales but takes Stolen 8 from controls. What treated-minus-control gap is measured?",
+    "options": [
+      "11.4",
+      "19",
+      "26.6"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives MeasuredGap 19 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0843",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-843"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 843,
+    "sourceSection": "43. Interference, networks & marketplace experiments",
+    "sourceEntryOriginal": "- **843. Randomize users or items?** \\[Split\\]: the same rating change tested by user split and by item split gives opposite biases.",
+    "modelBoundary": "the substitution exposure under two assumed split designs",
+    "recallInputs": [
+      11,
+      8
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

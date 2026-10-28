@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0463",
+  "title": "A non-Gaussian noise clue",
+  "hook": "Two stated cases: explore the asymmetry of a specified noise distribution.",
+  "domain": "probability",
+  "concept": "cp-source-0463",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the asymmetry of a specified noise distribution affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Skewness, regardless of the stated inputs.",
+  "objective": "Compare the asymmetry of a specified noise distribution in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0463.predict",
+      "text": "A toy noise takes Low 0 with probability 0.2, otherwise High 1. What standardized third central moment results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.reveal.0",
+      "text": "The retained results are P=0.2; Skewness=-1.5 and P=0.5; Skewness=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.reveal.1",
+      "text": "Asymmetry is one departure from Gaussian noise. This moment alone does not identify a causal graph or verify the other assumptions of a discovery method. This comparison isolates the asymmetry of a specified noise distribution.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.case.0.witness",
+      "text": "P=0.2; Skewness=-1.5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.2],[\"Low\",0],[\"High\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Skewness\",\"value\":-1.5}]},\"metrics\":[{\"label\":\"Skewness\",\"value\":\"-1.5\"},{\"label\":\"P\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.case.1.witness",
+      "text": "P=0.5; Skewness=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Low\",0],[\"High\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Skewness\",\"value\":0}]},\"metrics\":[{\"label\":\"Skewness\",\"value\":\"0\"},{\"label\":\"P\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0463.recall",
+      "text": "A toy noise takes Low 0 with probability 0.16, otherwise High 1. What standardized third central moment results? Answer -1.855.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0463/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #463. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy noise takes Low 0 with probability 0.16, otherwise High 1. What standardized third central moment results?",
+    "options": [
+      "-2.597",
+      "-1.113",
+      "-1.855"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Skewness -1.855 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0463",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-463"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 463,
+    "sourceSection": "24. Causal discovery & causal ML",
+    "sourceEntryOriginal": "- **463. Non-Gaussian clue** \\[Slider\\]: with non-normal noise, a linear model's direction becomes identifiable (LiNGAM).",
+    "modelBoundary": "the asymmetry of a specified noise distribution",
+    "recallInputs": [
+      0.16000000000000003,
+      0,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

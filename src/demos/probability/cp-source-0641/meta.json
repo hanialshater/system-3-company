@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0641",
+  "title": "One data point bends a GP mean",
+  "hook": "Two stated cases: explore the one-observation Gaussian conditional update.",
+  "domain": "probability",
+  "concept": "cp-source-0641",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the one-observation Gaussian conditional update affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the one-observation Gaussian conditional update in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0641.predict",
+      "text": "A unit-variance zero-mean toy GP has one Observation 2, noise variance 0.1, Distance 0, Length 1. Kernel 0: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.reveal.0",
+      "text": "The retained results are Distance=0; Mean=1.818 and Distance=2; Mean=0.246.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.reveal.1",
+      "text": "The kernel supplies similarity and posterior uncertainty. This one-observation conditional calculation does not fit kernel parameters or represent a full dataset. This comparison isolates the one-observation Gaussian conditional update.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.case.0.witness",
+      "text": "Distance=0; Mean=1.818",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",0],[\"Length\",1],[\"Noise\",0.1],[\"Observation\",2],[\"Kernel\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":1.8181818181818181},{\"label\":\"Variance\",\"value\":0.09090909090909094}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"1.818\"},{\"label\":\"Distance\",\"value\":\"0\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.case.1.witness",
+      "text": "Distance=2; Mean=0.246",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Distance\",2],[\"Length\",1],[\"Noise\",0.1],[\"Observation\",2],[\"Kernel\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.2460641513392958},{\"label\":\"Variance\",\"value\":0.9833494191920599}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.246\"},{\"label\":\"Distance\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0641.recall",
+      "text": "A unit-variance zero-mean toy GP has one Observation 2, noise variance 0.1, Distance 1, Length 1. Kernel 0: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results? Answer 1.103.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0641/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #641. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A unit-variance zero-mean toy GP has one Observation 2, noise variance 0.1, Distance 1, Length 1. Kernel 0: 0 RBF, 1 exponential, 2 unit-period periodic. What posterior mean results?",
+    "options": [
+      "1.103",
+      "0.662",
+      "1.544"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 1.103 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0641",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-641"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 641,
+    "sourceSection": "33. Gaussian processes & Bayesian optimization",
+    "sourceEntryOriginal": "- **641. Tap to add data** \\[Slider\\]: tap the screen to drop points; the GP mean bends through them and the uncertainty band pinches at each one.",
+    "modelBoundary": "the one-observation Gaussian conditional update",
+    "recallInputs": [
+      1,
+      1,
+      0.1,
+      2,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

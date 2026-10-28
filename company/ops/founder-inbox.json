@@ -697,6 +697,25 @@
       "recommendation": "Wait for the evaluation steward's redraft (W-2036); her objection to (b) stands. Then A, or B if she keeps the objection.",
       "note": "Touches the protected tools/company.mjs, so it needs a ratified amendment. Drafted by chief-of-staff-ceo-office 2026-10-25; nothing applied.",
       "decision": "founder 2026-10-25, option \"F-51 (AMD-017) now\": \"Ratify sampling learner walks at 1 in 5 now. The org-health role advises NOT yet: the weekly 50-lesson audit that should make up for it has never run.\" Ratified knowing the objection (open, owner chief-of-staff-ceo-office). Applied by evaluation-steward; record company/decisions/2026-10-25-founder-f51-amd017.md"
+    },
+    {
+      "id": "F-55",
+      "title": "r24 (the Lessons World production deploy) undid r23 and r22: production runs Next.js 16.4.0 again, with the critical advisories r23 cleared, and no longer serves flatten-the-cube-to-a-dot",
+      "category": "deploy",
+      "priority": 1,
+      "links": [
+        "company/ops/deployments/2026-10-28-r24-production.json",
+        "company/ops/deployments/2026-10-26-r23-production.json",
+        "company/ops/releases.json"
+      ],
+      "status": "open",
+      "options": [
+        "A: roll back to r23 (dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz): restores Next 16.4.3 and the cube lesson, removes the World",
+        "B: keep r24 live, and approve one new release r25: the default branch with 80c847c55 (Next 16.4.3) and the cube lesson merged, so the World stays and the fixes return (release-manager prepares; nothing deploys before your approval of that deploy)",
+        "C: keep r24 as it is (accept the advisories while the World is inspected)"
+      ],
+      "recommendation": "B if r25 can be ready today; A if not. Not C: r23 was a security deploy.",
+      "note": "Numbered F-52 on the default branch because main already holds F-50 and F-51; renumbered F-55 on 2026-10-28 in the main/default unification (integration engineer), because main's decision records already use F-52, F-53 and F-54. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff)."
     }
   ]
 }

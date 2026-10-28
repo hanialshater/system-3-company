@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0903",
+  "title": "Normalize an importance-weighted mean",
+  "hook": "Two stated cases: explore the shared weight scale removed by normalization.",
+  "domain": "probability",
+  "concept": "cp-source-0903",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the shared weight scale removed by normalization affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Estimate, regardless of the stated inputs.",
+  "objective": "Compare the shared weight scale removed by normalization in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0903.predict",
+      "text": "Two toy samples have weights/rewards W1/R1 1/1, W2/R2 3/0. What self-normalized weighted reward results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.reveal.0",
+      "text": "The retained results are W1=1 W2=3; Estimate=0.25 and W1=10 W2=30; Estimate=0.25.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.reveal.1",
+      "text": "Normalizing makes a weighted average invariant to shared weight scaling. Finite-sample bias and support still need attention. This comparison isolates the shared weight scale removed by normalization.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.case.0.witness",
+      "text": "W1=1 W2=3; Estimate=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"W1\",1],[\"R1\",1],[\"W2\",3],[\"R2\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":0.25}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0.25\"},{\"label\":\"W1\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.case.1.witness",
+      "text": "W1=10 W2=30; Estimate=0.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"W1\",10],[\"R1\",1],[\"W2\",30],[\"R2\",0]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Estimate\",\"value\":0.25}]},\"metrics\":[{\"label\":\"Estimate\",\"value\":\"0.25\"},{\"label\":\"W1\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0903.recall",
+      "text": "Two toy samples have weights/rewards W1/R1 2/1, W2/R2 3/0. What self-normalized weighted reward results? Answer 0.4.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0903/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #903. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy samples have weights/rewards W1/R1 2/1, W2/R2 3/0. What self-normalized weighted reward results?",
+    "options": [
+      "0.24",
+      "0.4",
+      "0.56"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Estimate 0.4 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0903",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-903"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 903,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **903. Self-normalized IPS** \\[Slider\\]: normalize the weights and variance drops at the cost of small bias.",
+    "modelBoundary": "the shared weight scale removed by normalization",
+    "recallInputs": [
+      2,
+      1,
+      3,
+      0
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

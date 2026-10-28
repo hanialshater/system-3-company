@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0101",
+  "title": "Learn the coin's next-head probability",
+  "hook": "Two stated cases: explore the Beta-Bernoulli predictive mean.",
+  "domain": "probability",
+  "concept": "cp-source-0101",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the Beta-Bernoulli predictive mean affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Mean, regardless of the stated inputs.",
+  "objective": "Compare the Beta-Bernoulli predictive mean in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0101.predict",
+      "text": "A toy coin has Beta(1,1) prior and independent data of 6 wins and 4 losses. What is the posterior predictive win probability?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.reveal.0",
+      "text": "The retained results are Wins=6 Losses=4; Mean=0.583 and Wins=60 Losses=40; Mean=0.598.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.reveal.1",
+      "text": "Prior counts and observed counts add under this model. The posterior mean also gives the next-trial predictive probability. This comparison isolates the Beta-Bernoulli predictive mean.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.case.0.witness",
+      "text": "Wins=6 Losses=4; Mean=0.583",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",6],[\"Losses\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.5833333333333334}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.583\"},{\"label\":\"Wins\",\"value\":\"6\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.case.1.witness",
+      "text": "Wins=60 Losses=40; Mean=0.598",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Alpha\",1],[\"Beta\",1],[\"Wins\",60],[\"Losses\",40]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Mean\",\"value\":0.5980392156862745}]},\"metrics\":[{\"label\":\"Mean\",\"value\":\"0.598\"},{\"label\":\"Wins\",\"value\":\"60\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0101.recall",
+      "text": "A toy coin has Beta(2,1) prior and independent data of 6 wins and 4 losses. What is the posterior predictive win probability? Answer 0.615.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0101/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #101. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy coin has Beta(2,1) prior and independent data of 6 wins and 4 losses. What is the posterior predictive win probability?",
+    "options": [
+      "0.615",
+      "0.369",
+      "0.862"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Mean 0.615 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0101",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-101"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 101,
+    "sourceSection": "6. Bayesian updating & inference",
+    "sourceEntryOriginal": "- **101. Is the coin fair?** \\[Slider\\]: flip and watch the posterior over the coin's bias narrow with each toss.",
+    "modelBoundary": "the Beta-Bernoulli predictive mean",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      2,
+      1,
+      6,
+      4
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0935",
+  "title": "A spreader can leave the active state",
+  "hook": "Two stated cases: explore the stipulated transition out of active spreading.",
+  "domain": "probability",
+  "concept": "cp-source-0935",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated transition out of active spreading affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Up, regardless of the stated inputs.",
+  "objective": "Compare the stipulated transition out of active spreading in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0935.predict",
+      "text": "A toy two-state continuous-time machine has breakdown rate 0.2, repair rate 0, initial up probability 1. What is up probability at Time 5?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.reveal.0",
+      "text": "The retained results are Break=0.2; Up=0.368 and Break=0.8; Up=0.018.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.reveal.1",
+      "text": "Repair and failure rates jointly determine availability and transient recovery. Independence and constant hazards are explicit model assumptions. This comparison isolates the stipulated transition out of active spreading.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.case.0.witness",
+      "text": "Break=0.2; Up=0.368",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Break\",0.2],[\"Repair\",0],[\"Start\",1],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Up\",\"value\":0.36787944117144233}]},\"metrics\":[{\"label\":\"Up\",\"value\":\"0.368\"},{\"label\":\"Break\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.case.1.witness",
+      "text": "Break=0.8; Up=0.018",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Break\",0.8],[\"Repair\",0],[\"Start\",1],[\"Time\",5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Up\",\"value\":0.01831563888873418}]},\"metrics\":[{\"label\":\"Up\",\"value\":\"0.018\"},{\"label\":\"Break\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0935.recall",
+      "text": "A toy two-state continuous-time machine has breakdown rate 0.3, repair rate 0, initial up probability 1. What is up probability at Time 5? Answer 0.223.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0935/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #935. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy two-state continuous-time machine has breakdown rate 0.3, repair rate 0, initial up probability 1. What is up probability at Time 5?",
+    "options": [
+      "0.223",
+      "0.123",
+      "0.323"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Up 0.223 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0935",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-935"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 935,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **935. Rumors** \\[Slider\\]: spreaders stop once they meet people who already know; part of the population never hears.",
+    "modelBoundary": "the stipulated transition out of active spreading",
+    "recallInputs": [
+      0.30000000000000004,
+      0,
+      1,
+      5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

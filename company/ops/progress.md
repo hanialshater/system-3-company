@@ -6,6 +6,37 @@
 - **Next:** W-2117 and W-2118: review and refine each subject's drafts. W-2119: independent scientific, pedagogy, overlap, design and accessibility review of all 500. Reconcile board and registry changes with physics PR 28 when integrating.
 - **Blocked:** None of the 500 drafts is cleared for publication. Repository-wide verification remains blocked by the recorded existing readiness failures.
 
+## 2026-10-28 · release-manager · r24 recorded; production regressed r23's security fix
+
+**First thing to know: r24 undid r23 and r22.** The Lessons World production deploy (r24, dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f, source 0fc13b86a, marker e7335139454e) was built from a branch that never had main's later releases. Production now runs Next.js 16.4.0 again (package-lock at 0fc13b86a), so the critical next advisories that r23 (80c847c55, Next 16.4.3) cleared are back (R-031). It also no longer serves flatten-the-cube-to-a-dot (published in r22): 720 published lessons against r23's 721. The founder decides between rolling back to r23 (dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz) and a new release r25 that keeps the World and restores both (founder-inbox F-52, board W-2120). I did not roll back. The coordinator's brief said not to touch Vercel, and no pre-approval covers a rollback.
+
+What changed (default branch ccr-4c6c7654-ew9ko1):
+- Merge e462fed32 is a normal merge of e7335139454e. The production SHA is now an ancestor of the default branch, and the tree is unchanged. The default branch already held 0fc13b86a, so a deploy from it would not have removed the World. The brief's worry was unfounded, but the merge makes the SHA itself traceable.
+- The 12 later commits on codex/all-lessons-inspection (f5114cba0..d67b966bd: branching zoom and Number Island art) are not live. I did not merge them, so that the default branch matches production (W-2122).
+- releases.json: r23 brought over from main (identical r1..r22 prefix), then r24 appended. It carries the founder's "Deploy" and "Deploy to production", the failed preview dpl_FVtr8bSaPScRKkAq6kBRCG29zFwj ("Resource provisioning failed"), the correction that the marker's "Preview only" text is wrong, and the inspection-only note (3,895 lessons, statuses unchanged, most unchecked).
+- Receipts: company/ops/deployments/2026-10-28-r24-production.json (new), plus r22's and r23's records from main.
+- Protected paths: the inspection branch changes none.
+
+What I believe and how sure:
+- The deployment facts (ids, READY, the alias, the 200s, no page errors) come from the coordinator. I did not observe them myself: no Vercel or host access here. High confidence in the git facts (versions and trees read from the commits). r24's date is the marker's commit time, a lower bound.
+- releases.json still fails validateReleases at r12 (a date not in UTC Z form), and tests/hq/releases.test.mjs still expects r13. Both are inherited from main and not fixed here.
+
+Next: the founder's F-52. Then the chief of staff reconciles the default branch with main (452 commits, W-2121) before any further deploy from either branch. Board numbers W-2120..2122 and F-52 skip past main's highest ids so that merge will not collide.
+
+Checks: npm run check gave 783 errors and 4 warnings before the merge and the same after (it stops at company check, as before).
+
+## 2026-10-28 — Completed all500 science drafts included;3895-stop snapshot ready
+
+PR29 advanced during implementation from347 to500 draft lessons. The final76a87df1d snapshot adds153, yielding3895 unique stops/162 islands, with720 Published/234 Review/2941 Draft preserved. Frozenapp a39e39968, build7RPMubtedbVVPXsJdQM4F passed8230staticpages;35science model tests pass. Independent actualbrowser addendum confirms3895unique list entries, both new science players, exact return offsets and native stage swipe. See company/engineering/readiness/2026-10-28-world-completed-build.json and completed-science provenance.
+
+Release-manager pushed exactly one historical inspection marker06aa3dce6 for the earlier3742 snapshot. No Vercel receipt or preview URL appeared; active proxy still denies hosted access/API. Latest3895 candidate is ready but hosted deployment is unconfirmed; no repeated marker or canonical promotion. Founder was told to publish saved network changes. Full content review cleanup remains paused; no false verification or mastery claimed. Next release-manager obtains actual hosted READY and smoke through restored supported access; do not equate Git push with deployment.
+
+## 2026-10-28 — All-lessons world inspection ready
+
+Founder reprioritized coverage and unchecked inspection over whole-company cleanup. Integrated all2097 actual new lesson PR additions for3742 unique world stops across156 islands, preserving720 Published/234 Review/2788 Draft. App2ff4748e9, build y54lbicpjgyppu2w1Kq9a passed; independent source, ops and built-browser checks approved scoped inspection. Final stage-swipe/44px/label fixes and exact Map/List return rechecked. Source/build/QA/ops records are in company/engineering/readiness/*world-inspection*; durable screenshots in company/design/previews/2026-10-28-lessons-world/.
+
+Broad content findings remain unresolved and preserved; no lesson status promoted. PR20 lab prototype and PR26 proposed deploy amendment excluded. Stacked PR board IDs remapped explicitly in company/ops/delivery/2026-10-27-world-inspection-board-remap.json. Next: normal Git merge publication of10 lesson PRs, then release-manager one authorized inspection-branch marker attempt and actual hosted receipt; active network still blocks Vercel/API calls. No hosted availability claimed.
+
 ## 2026-10-27 · chief-of-staff · visual chemistry and biology batch, 347 of 500 drafted
 
 - **Changed:** Added 141 chemistry and 141 biology drafts since the 65-lesson handoff. PR 29 now has 171 chemistry and 176 biology drafts. Chemistry adds atomic and ion-counting, ionic ratios, gas-law pistons, titration, particle classifications, periodic comparisons, reaction-energy profiles, organic functional groups and limiting reactants. Biology adds cell-energy maps, osmosis, enzyme-rate curves, population models, phylogenetic trees, food webs, ecological interactions, circulation, digestion, neural signaling and immune interactions. The visual models include SVG diagrams, charts, sliders and shared renderers.
@@ -244,6 +275,12 @@
   - release-manager: the artifact deploy of `artifacts/lesson-frames/dist` with its `vercel.json` (add the preview alias with `--frame-ancestors`) and the preview, each with the founder's approval (C9, W-2098).
   - Me: W-2103.
 - **Blocked:** merge waits on C10 and W-2101. Production flag-on waits on C5, C6, and AMD-018 parts (a), (b) and (d) ratified (the steward's C7 ruling, `c8c5f225f`). Nothing here deploys.
+
+## 2026-10-26 · final source batch · 100 drafts and recall audit
+
+Implemented the last 100 probability-list entries. The complete stack covers all 500 behavioral and 1,000 probability IDs exactly once. Bounded finite illustrations do not certify the richer suggested simulator, historical claim, learning benefit or novelty. All 1,500 lessons remain drafts with unverified claims and empty evidence.
+
+Validation: final-batch 442 arithmetic/schema/state assertions, 13,841 coverage/relationship/recall/source-hash checks and TypeScript pass. Audited all 600 older continuation recalls: two duplicated a displayed case and are corrected; one long top-p chart label is shortened. These three lessons have version 2; all 600 now record recall inputs. W-2037 is done; implementation queue W-2033 and final review W-2040 are in review. Company check retains the identical 811 errors/four warnings. Full verify retains inherited publication failures. Production build and browser checks for batches06–08 will be recorded after completion; interrupted runs are not passes. No independent approval, merge or deploy.
 
 ## 2026-10-25 · evaluation-steward · C7 ruled (W-2096): the frame QA copy is not enough for production flag-on; AMD-018 (W-087) drafted, not ratified
 
@@ -675,6 +712,32 @@ Founder: "make it grounded in real compatibility test", "Yes go ahead with B12".
 
 **Belief (medium-high):** at the same budget the autonomous org now matches one strong agent within about a point, and gets there in under half the wall-clock time; the single agent is still slightly better per dollar. **Next:** test the org's speed advantage directly (same wall-clock limit for both, or a budget that does not run out), with the wake-notes fix. **Blocked:** nothing.
 
+## 2026-10-25 · source batch 07 · 200 sequential and survival drafts
+
+Implemented exactly 200 probability-list entries (remaining ledger positions 600–799). These are bounded numerical illustrations with source-specific boundaries; richer simulations suggested by the source list are not asserted to be complete. All lessons remain draft, claims unverified, evidence empty. No independent review or novelty certification is claimed.
+
+Validation: 938 cross-language arithmetic/schema/state assertions and 1,044 relationship, new-recall and draft-boundary checks pass. TypeScript and browser/build checks are recorded separately when completed. Company check retains 811 errors/four warnings; full verify stops at inherited publication failures. W-2039 tracks independent review. Implementation coverage reaches 1,400 of 1,500 entries; the last 100 remain, plus the earlier recall audit W-2037. No merge or deploy.
+
+## 2026-10-25 · source batch 06 · 200 process and inference drafts
+
+Implemented the next 200 source entries with explicit queueing, stochastic-process, sampler, pooling, GP and filtering models. 1,020 arithmetic/schema/state assertions and 434 relationship/fresh-recall checks pass. TypeScript passes with a 6 GiB Node heap after the default heap exhausted memory. Company check remains 811 errors/four warnings. This batch's build/browser validation is pending; independent approvals are not claimed.
+
+Saved completed batch05 evidence: 400 protected browser passes, 200 strict phone fits, final production build exit 0 and 2,645 pages. Batches02–04 have 1,200 browser passes and 600 strict phone fits recorded in continuation-series. Source/learner/overlap readiness remains open. Implementation coverage now reaches 1,200 supplied-list entries; 300 probability entries remain (200 then 100). Prior transfer-case audit W-2037 remains to be completed. No merge or deploy.
+
+## 2026-10-25 · source batch 05 · 200 information and inference drafts
+
+Implemented the next 200 remaining source entries, spanning information, testing, confounding, selection, counterfactual and experimental-design models. Exact curation and boundaries are in company/reviews/continuation-batch-05. All claims remain unverified and all lessons draft. No independent review is asserted.
+
+Validation: 956 arithmetic/schema/state assertions, 437 relationship/fresh-recall checks and TypeScript pass; inherited company diagnostics remain 811 errors/four warnings. The full verification retains publication failures. Production browser checks for batches 02–04 are running from their recorded snapshot; this batch's build and browser checks remain pending. Transfer generation now rejects either displayed input as recall; older continuation cases are queued for audit before completion.
+
+Source-list implementation coverage is now 500 behavioral plus 500 probability entries, 1,000 total; 500 probability entries remain (200, 200, 100). W-2033 remains doing; this batch and its review boundaries are recorded separately. No merge or deploy.
+
+## 2026-10-25 · source batch 04 · 200 probability drafts
+
+Implemented probability source entries 1–200 as explicit finite mini-labs. Manifest, original provenance, curation and fixtures are in company/reviews/continuation-batch-04. Validation: 854 arithmetic/schema/state assertions, 32 mathematical relationships and TypeScript pass. Company check remains 811 errors/four warnings; full verify retains publication failures. Build and browser validation remain pending after session interruption; no completed result is fabricated. No independent source or learner approval is claimed.
+
+Implementation progress against supplied lists: 500 behavioral and 300 probability entries are implemented across PR16, PR17, PR19 and this batch; 700 probability entries remain. W-2035 tracks this draft batch and W-2033 the remaining queue. Each new batch is at most 200, with a final 100 remainder. All new lessons remain drafts. No merge or deploy.
+
 ## 2026-10-24 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 11: SQLite-compatible database in Clojure; off-boarding and a persistent knowledge base
 
 Founder: "go for sqllight", "Clojure, core families"; the org must have autonomy (continuous work, self-landing, roles not limits); "add the persistent knowledge base", "i thought we have agents off boarding"; "make it grounded in real compatibility test".
@@ -726,6 +789,21 @@ Founder: "go after B8", "no native image", "go with K39", then the principles (a
 
 **Next:** three kernel fixes (a held stage error escalates or retries; a retry re-runs integration; K39 does not score effect rules on gate-failing orders), then B9b (fork population) and B9c (the autonomous org of PRINCIPLES.md), lean, against V's 0.542 at $70. **Blocked:** nothing.
 
+## 2026-10-24 · remaining source demos · second continuation batch (200 behavioral drafts)
+
+Implemented batch 03 as exactly 200 additional behavioral source entries. Together with PR16 and PR17, this completes implementation coverage of the 500-entry behavioral list; independent source and learner approval remain open. Explicit curation, fixtures, unverified claim records and manifest live in company/reviews/continuation-batch-03. The single operator makes no independent review claim.
+
+Arithmetic/schema/state: 812 checks; 14 relationship checks; TypeScript pass. Company diagnostics are identical to the inherited 811 errors/four warnings. Build and browser validation pending. The remaining implementation queue is 900 probability entries in four batches of 200 and a final 100. W-2031/2032 track draft batches, W-2033 the remaining probability queue and W-2034 independent template review. No merge or deploy authorized.
+
+## 2026-10-24 · chief-of-staff · PR #16: 100 behavioral + 100 probability/causal demos
+
+Implemented exactly 200 new draft lessons from the two attached source lists: 100 behavioral (four per each of 25 sections) and 100 probability/causal (34 sections). PR: https://github.com/hanialshater/system-3-company/pull/16. Each has its own computed cases, original source provenance, curriculum entry and recall. Shared renderer has eight visual kinds and retained evidence through Reset; local wrappers render the actual kit Lesson and four controls. No new role, dependency version or protected path changed.
+
+Verification completed: exact 200-entry manifest/runtime checks; 500 behavioral fixture/state/provenance checks, 100 probability-A numerical assertions, 50 probability-B fixture tests, 12 engine regression tests, TypeScript, production build and all 400 phone/desktop contract cases (zero retries). Build has 1,845 lesson pages. `npm run check` remains the exact baseline 811 errors/four warnings (identity hash in validation.json); full verify stops at the same two existing publication tests. Strict phone fit passes all 200 at 390×844; 20 actual screenshots cover both domains and all eight visual kinds. All 27 completed supplemental Reset probes pass; that extra loop was interrupted and 173 were not run. The ordinary protected contract already exercises Reset last on every route. The QA report records three open content findings, routed to category managers as W-2029/W-2030.
+
+What I believe: high confidence in implementation counts, pure arithmetic fixtures, contract behavior and bounded engineering fixes; these checks do not establish learning or verify the supplied empirical findings. All 200 lessons are draft and all 1,601 claims remain unverified. Source verification, independent learner reviews, publication boundaries and shared-engine ops readiness remain open. The framework reported an existing Next.js security advisory; its supported build retry passed, and no upgrade was made in this content PR.
+
+Next: review PR #16, then the owning category managers route fact checks and independent learner reviews. The manager/source/engineering/QA records and reproducible manifest are under `company/reviews/behavioral-probability-200/`. No merge or deploy has been performed. GitHub publication used the authenticated connector; its initial cc61db3 commit has the exact tree8b484292 of local source422b1109, verified against the create-tree response.
 ## 2026-10-23 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 8 written up; K38 and K39 built; Benchmark 9 ready to run
 
 Founder: "Go with the C compiler in Clojure", "We need S vs vanilla", "do the comparison after W7 then keep going", "No native image, go after B8", "for learnings lets make them baysian", "Yes go with K39".

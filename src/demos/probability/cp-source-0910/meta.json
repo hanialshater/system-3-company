@@ -1,0 +1,152 @@
+{
+  "slug": "cp-source-0910",
+  "title": "A recommendation loop amplifies a lead",
+  "hook": "Two stated cases for a recommendation loop amplifies a lead.",
+  "domain": "probability",
+  "concept": "cp-source-0910",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the stipulated feedback strength rather than an empirical homogenization estimate affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Level, regardless of the stated inputs.",
+  "objective": "Compare the stipulated feedback strength rather than an empirical homogenization estimate in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0910.predict",
+      "text": "A toy feedback process starts at 1; each step multiplies the current level by 1.1. What level follows 10 steps?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.reveal.0",
+      "text": "The retained results are Amplification=1.1; Level=2.594 and Amplification=1.4; Level=28.925.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.reveal.1",
+      "text": "A self-reinforcing measurement process can amplify its starting differences. The recurrence is assumed and does not separate true underlying need from observed activity. This comparison isolates the stipulated feedback strength rather than an empirical homogenization estimate.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.case.0.witness",
+      "text": "Amplification=1.1; Level=2.594",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1],[\"Amplification\",1.1],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"2.5\",\"value\":1.2690587062858836},{\"label\":\"5\",\"value\":1.6105100000000006},{\"label\":\"7.5\",\"value\":2.0438317370604793},{\"label\":\"10\",\"value\":2.5937424601000023}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"2.594\"},{\"label\":\"Amplification\",\"value\":\"1.1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.case.1.witness",
+      "text": "Amplification=1.4; Level=28.925",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Initial\",1],[\"Amplification\",1.4],[\"Steps\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"timeline\",\"events\":[{\"label\":\"0\",\"value\":1},{\"label\":\"2.5\",\"value\":2.319103274975049},{\"label\":\"5\",\"value\":5.378239999999998},{\"label\":\"7.5\",\"value\":12.472693997601803},{\"label\":\"10\",\"value\":28.925465497599983}]},\"metrics\":[{\"label\":\"Level\",\"value\":\"28.925\"},{\"label\":\"Amplification\",\"value\":\"1.4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0910.recall",
+      "text": "A toy feedback process starts at 2; each step multiplies the current level by 1.1. What level follows 10 steps? Answer 5.187.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0910/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #910. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy feedback process starts at 2; each step multiplies the current level by 1.1. What level follows 10 steps?",
+    "options": [
+      "3.112",
+      "7.262",
+      "5.187"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Level 5.187 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0910",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-910"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 910,
+    "sourceSection": "46. Off-policy evaluation & causal recommender systems",
+    "sourceEntryOriginal": "- **910. Homogenizing feedback** \\[Story\\]: simulations show recommender feedback loops make users' consumption more alike (Chaney, Stewart & Engelhardt, 2018).",
+    "modelBoundary": "the stipulated feedback strength rather than an empirical homogenization estimate",
+    "recallInputs": [
+      2,
+      1.1,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

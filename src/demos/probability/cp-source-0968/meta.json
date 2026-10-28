@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0968",
+  "title": "Slow change reduces independent samples",
+  "hook": "Two stated cases: explore the autocorrelation cost in a critical-slowing illustration.",
+  "domain": "probability",
+  "concept": "cp-source-0968",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the autocorrelation cost in a critical-slowing illustration affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines ESS, regardless of the stated inputs.",
+  "objective": "Compare the autocorrelation cost in a critical-slowing illustration in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0968.predict",
+      "text": "A stationary toy AR(1) sequence has 100 draws and lag-one correlation 0.2. What finite-sample ESS gives the same variance for its mean?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.reveal.0",
+      "text": "The retained results are Rho=0.2; ESS=66.946 and Rho=0.95; ESS=3.18.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.reveal.1",
+      "text": "The calculation sums all lag covariances in this specific AR(1) model. A generic sampler need not have this correlation structure. This comparison isolates the autocorrelation cost in a critical-slowing illustration.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.case.0.witness",
+      "text": "Rho=0.2; ESS=66.946",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Rho\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ESS\",\"value\":66.94560669456067}]},\"metrics\":[{\"label\":\"ESS\",\"value\":\"66.946\"},{\"label\":\"Rho\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.case.1.witness",
+      "text": "Rho=0.95; ESS=3.18",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"N\",100],[\"Rho\",0.95]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"ESS\",\"value\":3.180156229938765}]},\"metrics\":[{\"label\":\"ESS\",\"value\":\"3.18\"},{\"label\":\"Rho\",\"value\":\"0.95\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0968.recall",
+      "text": "A stationary toy AR(1) sequence has 101 draws and lag-one correlation 0.2. What finite-sample ESS gives the same variance for its mean? Answer 67.612.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0968/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #968. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stationary toy AR(1) sequence has 101 draws and lag-one correlation 0.2. What finite-sample ESS gives the same variance for its mean?",
+    "options": [
+      "67.612",
+      "40.567",
+      "94.657"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives ESS 67.612 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0968",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-968"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 968,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **968. Critical slowing** \\[Slider\\]: near the Ising model's critical temperature, domains of all sizes appear and change very slowly.",
+    "modelBoundary": "the autocorrelation cost in a critical-slowing illustration",
+    "recallInputs": [
+      101,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

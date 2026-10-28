@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0062",
+  "title": "Averages shrink their sampling spread",
+  "hook": "Two stated cases: explore the finite-variance averaging scale.",
+  "domain": "probability",
+  "concept": "cp-source-0062",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the finite-variance averaging scale affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines SD, regardless of the stated inputs.",
+  "objective": "Compare the finite-variance averaging scale in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0062.predict",
+      "text": "For 10 independent toy Bernoulli observations with probability 0.3, what is the standard deviation of the sample proportion?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.reveal.0",
+      "text": "The retained results are N=10; SD=0.145 and N=100; SD=0.046.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.reveal.1",
+      "text": "Sampling spread depends on sample size as well as the underlying probability. This exact model assumes independent observations. This comparison isolates the finite-variance averaging scale.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.case.0.witness",
+      "text": "N=10; SD=0.145",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.3],[\"N\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.14491376746189438}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.145\"},{\"label\":\"N\",\"value\":\"10\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.case.1.witness",
+      "text": "N=100; SD=0.046",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.3],[\"N\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"SD\",\"value\":0.0458257569495584}]},\"metrics\":[{\"label\":\"SD\",\"value\":\"0.046\"},{\"label\":\"N\",\"value\":\"100\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0062.recall",
+      "text": "For 10 independent toy Bernoulli observations with probability 0.24, what is the standard deviation of the sample proportion? Answer 0.135.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0062/model.ts; finite explicit model from tools/continuation/probability-4.tsv; source idea 1000-causal-inference-probability-demos.md #62. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For 10 independent toy Bernoulli observations with probability 0.24, what is the standard deviation of the sample proportion?",
+    "options": [
+      "0.135",
+      "0.035",
+      "0.235"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives SD 0.135 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0062",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-04",
+      "source-62"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 62,
+    "sourceSection": "4. Distributions you can feel",
+    "sourceEntryOriginal": "- **62. Central limit theorem** \\[Slider\\]: average N rolls of a weird die; as N grows, any shape turns into a bell.",
+    "modelBoundary": "the finite-variance averaging scale",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      0.24,
+      10
+    ]
+  }
+}

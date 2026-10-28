@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0536",
+  "title": "A green-time share sets average capacity",
+  "hook": "Two stated cases: explore the supplied signal duty cycle in a fluid model.",
+  "domain": "probability",
+  "concept": "cp-source-0536",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the supplied signal duty cycle in a fluid model affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Backlog, regardless of the stated inputs.",
+  "objective": "Compare the supplied signal duty cycle in a fluid model in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0536.predict",
+      "text": "Toy traffic arrives at rate 80. Saturation flow is 100, available for Green fraction 0.5; starting empty over Time 10, what fluid backlog accumulates?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.reveal.0",
+      "text": "The retained results are Green=0.5; Backlog=300 and Green=0.9; Backlog=0.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.reveal.1",
+      "text": "Green time changes effective capacity. This average-rate calculation omits within-cycle queues and interactions at other intersections. This comparison isolates the supplied signal duty cycle in a fluid model.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.case.0.witness",
+      "text": "Green=0.5; Backlog=300",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",80],[\"Saturation\",100],[\"Green\",0.5],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Backlog\",\"value\":300}]},\"metrics\":[{\"label\":\"Backlog\",\"value\":\"300\"},{\"label\":\"Green\",\"value\":\"0.5\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.case.1.witness",
+      "text": "Green=0.9; Backlog=0",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Arrival\",80],[\"Saturation\",100],[\"Green\",0.9],[\"Time\",10]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Backlog\",\"value\":0}]},\"metrics\":[{\"label\":\"Backlog\",\"value\":\"0\"},{\"label\":\"Green\",\"value\":\"0.9\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0536.recall",
+      "text": "Toy traffic arrives at rate 81. Saturation flow is 100, available for Green fraction 0.5; starting empty over Time 10, what fluid backlog accumulates? Answer 310.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0536/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #536. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Toy traffic arrives at rate 81. Saturation flow is 100, available for Green fraction 0.5; starting empty over Time 10, what fluid backlog accumulates?",
+    "options": [
+      "310",
+      "186",
+      "434"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives Backlog 310 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0536",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-536"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 536,
+    "sourceSection": "27. Queueing networks, scheduling & load balancing",
+    "sourceEntryOriginal": "- **536. Traffic light timing** \\[Slider\\]: tune green times at an intersection and see queues on each road.",
+    "modelBoundary": "the supplied signal duty cycle in a fluid model",
+    "recallInputs": [
+      81,
+      100,
+      0.5,
+      10
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

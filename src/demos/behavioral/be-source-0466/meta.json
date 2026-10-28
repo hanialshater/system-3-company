@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0466",
+  "title": "Deactivation and a measured outcome",
+  "hook": "Two stated cases: explore the unit and spread behind a mean difference.",
+  "domain": "behavioral",
+  "concept": "be-source-0466",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the unit and spread behind a mean difference affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines D, regardless of the stated inputs.",
+  "objective": "Compare the unit and spread behind a mean difference in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0466.predict",
+      "text": "Two toy means are 5.1 and 5, with common standard deviation 1. What is their standardized difference?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.reveal.0",
+      "text": "The retained results are SD=1; D=0.1 and SD=2; D=0.05.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.reveal.1",
+      "text": "A standardized effect divides the raw difference by spread. It does not by itself describe practical importance or replication success. This comparison isolates the unit and spread behind a mean difference.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.case.0.witness",
+      "text": "SD=1; D=0.1",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",5.1],[\"MeanB\",5],[\"SD\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"D\",\"value\":0.09999999999999964}]},\"metrics\":[{\"label\":\"D\",\"value\":\"0.1\"},{\"label\":\"SD\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.case.1.witness",
+      "text": "SD=2; D=0.05",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"MeanA\",5.1],[\"MeanB\",5],[\"SD\",2]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"D\",\"value\":0.04999999999999982}]},\"metrics\":[{\"label\":\"D\",\"value\":\"0.05\"},{\"label\":\"SD\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0466.recall",
+      "text": "Two toy means are 5.2 and 5, with common standard deviation 1. What is their standardized difference? Answer 0.2.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0466/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #466. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two toy means are 5.2 and 5, with common standard deviation 1. What is their standardized difference?",
+    "options": [
+      "0.1",
+      "0.3",
+      "0.2"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives D 0.2 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0466",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-466"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 466,
+    "sourceSection": "24. Scarcity, attention & cognitive load",
+    "sourceEntryOriginal": "- **466.** Deactivating Facebook for four weeks modestly raised wellbeing and reduced political polarization (Allcott, Braghieri, Eichmeyer & Gentzkow, 2020).",
+    "modelBoundary": "the unit and spread behind a mean difference",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      5.199999999999999,
+      5,
+      1
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "cp-source-0925",
+  "title": "Offspring variance changes total spread",
+  "hook": "Two stated cases: explore the offspring-size variance in a compound transmission count.",
+  "domain": "probability",
+  "concept": "cp-source-0925",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the offspring-size variance in a compound transmission count affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the offspring-size variance in a compound transmission count in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0925.predict",
+      "text": "Independent toy claims arrive at Poisson Rate 2 for Time 1; sizes have Mean 1, Variance 1. What is expected total payout?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.reveal.0",
+      "text": "The retained results are Variance=1; Expected=2 and Variance=20; Expected=2.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.reveal.1",
+      "text": "Both claim-count randomness and size variability enter the total variance. The model assumes independent identically distributed sizes, independent of arrivals. This comparison isolates the offspring-size variance in a compound transmission count.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.case.0.witness",
+      "text": "Variance=1; Expected=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",2],[\"Time\",1],[\"Mean\",1],[\"Variance\",1]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":2},{\"label\":\"SD\",\"value\":2}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2\"},{\"label\":\"Variance\",\"value\":\"1\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.case.1.witness",
+      "text": "Variance=20; Expected=2",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Rate\",2],[\"Time\",1],[\"Mean\",1],[\"Variance\",20]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Expected\",\"value\":2},{\"label\":\"SD\",\"value\":6.48074069840786}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"2\"},{\"label\":\"Variance\",\"value\":\"20\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0925.recall",
+      "text": "Independent toy claims arrive at Poisson Rate 3 for Time 1; sizes have Mean 1, Variance 1. What is expected total payout? Answer 3.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0925/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #925. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Independent toy claims arrive at Poisson Rate 3 for Time 1; sizes have Mean 1, Variance 1. What is expected total payout?",
+    "options": [
+      "1.8",
+      "4.2",
+      "3"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Expected 3 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0925",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-925"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 925,
+    "sourceSection": "47. Epidemics, contagion & cascades",
+    "sourceEntryOriginal": "- **925. Superspreading** \\[Slider\\]: lower the dispersion parameter and a small share of cases cause most transmission.",
+    "modelBoundary": "the offspring-size variance in a compound transmission count",
+    "recallInputs": [
+      3,
+      1,
+      1,
+      1
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "slug": "be-source-0417",
+  "title": "A stock with lottery-like payoffs",
+  "hook": "Two stated cases: explore the probability behind a skewed payoff expectation.",
+  "domain": "behavioral",
+  "concept": "be-source-0417",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the probability behind a skewed payoff expectation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Expected, regardless of the stated inputs.",
+  "objective": "Compare the probability behind a skewed payoff expectation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "behavioral.be-source-0417.predict",
+      "text": "A toy gamble gains 990 with probability 0.005 and loses 10 otherwise. What is its expected cash change?",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.reveal.0",
+      "text": "The retained results are Probability=0.005; Expected=-5 and Probability=0.02; Expected=10.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.reveal.1",
+      "text": "Reaching an emotionally important balance is different from maximizing expected cash change. Neither guarantees the outcome of one play. This comparison isolates the probability behind a skewed payoff expectation.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.case.0.witness",
+      "text": "Probability=0.005; Expected=-5",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",10],[\"Win\",990],[\"Probability\",0.005]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":-4.999999999999999}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"-5\"},{\"label\":\"Probability\",\"value\":\"0.005\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.case.1.witness",
+      "text": "Probability=0.02; Expected=10",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Loss\",10],[\"Win\",990],[\"Probability\",0.02]]}}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Expected\",\"value\":10}]},\"metrics\":[{\"label\":\"Expected\",\"value\":\"10\"},{\"label\":\"Probability\",\"value\":\"0.02\"}]}",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.be-source-0417.recall",
+      "text": "A toy gamble gains 990 with probability 0.005 and loses 11 otherwise. What is its expected cash change? Answer -5.995.",
+      "support": "derivation",
+      "source": "src/demos/behavioral/be-source-0417/model.ts; finite explicit model from tools/continuation/behavioral-3.tsv; source idea 500-behavioral-economics-findings.md #417. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy gamble gains 990 with probability 0.005 and loses 11 otherwise. What is its expected cash change?",
+    "options": [
+      "-8.393",
+      "-5.995",
+      "-3.597"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Expected -5.995 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:be-source-0417",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-03",
+      "source-417"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "500-behavioral-economics-findings.md",
+    "sourceEntryId": 417,
+    "sourceSection": "21. Behavioral finance & markets",
+    "sourceEntryOriginal": "- **417.** Individual investors favor lottery-like stocks with low prices and high skew, especially lower-income investors (Kumar, 2009).",
+    "modelBoundary": "the probability behind a skewed payoff expectation",
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open.",
+    "recallInputs": [
+      11,
+      990,
+      0.005
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0544",
+  "title": "Events create expected descendants",
+  "hook": "Two stated cases: explore the subcritical offspring multiplier.",
+  "domain": "probability",
+  "concept": "cp-source-0544",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the subcritical offspring multiplier affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Rate, regardless of the stated inputs.",
+  "objective": "Compare the subcritical offspring multiplier in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0544.predict",
+      "text": "A stationary toy linear Hawkes model has base rate 1 and offspring mean Branching 0.2 below 1. What total mean event rate results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.reveal.0",
+      "text": "The retained results are Branching=0.2; Rate=1.25 and Branching=0.8; Rate=5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.reveal.1",
+      "text": "Descendant generations amplify the immigrant rate. A stationary finite mean requires the stated subcritical branching condition. This comparison isolates the subcritical offspring multiplier.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.case.0.witness",
+      "text": "Branching=0.2; Rate=1.25",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",1],[\"Branching\",0.2]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":1.25},{\"label\":\"Multiplier\",\"value\":1.25}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"1.25\"},{\"label\":\"Branching\",\"value\":\"0.2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.case.1.witness",
+      "text": "Branching=0.8; Rate=5",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Base\",1],[\"Branching\",0.8]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Rate\",\"value\":5.000000000000001},{\"label\":\"Multiplier\",\"value\":5.000000000000001}]},\"metrics\":[{\"label\":\"Rate\",\"value\":\"5\"},{\"label\":\"Branching\",\"value\":\"0.8\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0544.recall",
+      "text": "A stationary toy linear Hawkes model has base rate 2 and offspring mean Branching 0.2 below 1. What total mean event rate results? Answer 2.5.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0544/model.ts; finite explicit model from tools/continuation/probability-6.tsv; source idea 1000-causal-inference-probability-demos.md #544. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A stationary toy linear Hawkes model has base rate 2 and offspring mean Branching 0.2 below 1. What total mean event rate results?",
+    "options": [
+      "1.5",
+      "3.5",
+      "2.5"
+    ],
+    "answer": 2,
+    "why": "The same explicit rule gives Rate 2.5 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0544",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-06",
+      "source-544"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 544,
+    "sourceSection": "28. Stochastic processes: Poisson, renewal & branching",
+    "sourceEntryOriginal": "- **544. Aftershocks** \\[Slider\\]: a self-exciting Hawkes process where each event raises the chance of more, like earthquakes or retweets.",
+    "modelBoundary": "the subcritical offspring multiplier",
+    "recallInputs": [
+      2,
+      0.2
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

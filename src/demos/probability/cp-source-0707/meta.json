@@ -1,0 +1,154 @@
+{
+  "slug": "cp-source-0707",
+  "title": "Reward nudges an action probability",
+  "hook": "Two stated cases: explore the reward sign in one score-function step.",
+  "domain": "probability",
+  "concept": "cp-source-0707",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the reward sign in one score-function step affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines NewP, regardless of the stated inputs.",
+  "objective": "Compare the reward sign in one score-function step in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0707.predict",
+      "text": "For a toy Bernoulli policy P 0.5, observed Action 1, Reward 2, Baseline 0, Step 0.5, update its logit by Step×(Reward-Baseline)×(Action-P). What new P results?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.reveal.0",
+      "text": "The retained results are Reward=2; NewP=0.622 and Reward=-2; NewP=0.378.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.reveal.1",
+      "text": "A score-function step changes the action probability using centered reward. One stochastic step does not guarantee improvement. This comparison isolates the reward sign in one score-function step.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.case.0.witness",
+      "text": "Reward=2; NewP=0.622",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Action\",1],[\"Reward\",2],[\"Baseline\",0],[\"Step\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"NewP\",\"value\":0.6224593312018546},{\"label\":\"Gradient\",\"value\":1}]},\"metrics\":[{\"label\":\"NewP\",\"value\":\"0.622\"},{\"label\":\"Reward\",\"value\":\"2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.case.1.witness",
+      "text": "Reward=-2; NewP=0.378",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"P\",0.5],[\"Action\",1],[\"Reward\",-2],[\"Baseline\",0],[\"Step\",0.5]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"NewP\",\"value\":0.3775406687981454},{\"label\":\"Gradient\",\"value\":-1}]},\"metrics\":[{\"label\":\"NewP\",\"value\":\"0.378\"},{\"label\":\"Reward\",\"value\":\"-2\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0707.recall",
+      "text": "For a toy Bernoulli policy P 0.4, observed Action 1, Reward 2, Baseline 0, Step 0.5, update its logit by Step×(Reward-Baseline)×(Action-P). What new P results? Answer 0.548.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0707/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #707. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For a toy Bernoulli policy P 0.4, observed Action 1, Reward 2, Baseline 0, Step 0.5, update its logit by Step×(Reward-Baseline)×(Action-P). What new P results?",
+    "options": [
+      "0.548",
+      "0.329",
+      "0.768"
+    ],
+    "answer": 0,
+    "why": "The same explicit rule gives NewP 0.548 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0707",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-707"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 707,
+    "sourceSection": "36. MDPs & reinforcement learning",
+    "sourceEntryOriginal": "- **707. Policy gradient** \\[Slider\\]: nudge action probabilities toward choices that paid off.",
+    "modelBoundary": "the reward sign in one score-function step",
+    "recallInputs": [
+      0.4,
+      1,
+      2,
+      0,
+      0.5
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0969",
+  "title": "A parking realization leaves gaps",
+  "hook": "Two stated cases: explore the occupied length in two stipulated parking outcomes.",
+  "domain": "probability",
+  "concept": "cp-source-0969",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the occupied length in two stipulated parking outcomes affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Percent, regardless of the stated inputs.",
+  "objective": "Compare the occupied length in two stipulated parking outcomes in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0969.predict",
+      "text": "A toy saving is 75 on a price of 100. What percentage of the original price is saved?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.reveal.0",
+      "text": "The retained results are Saving=75; Percent=75 and Saving=90; Percent=90.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.reveal.1",
+      "text": "The cash saving is the numerator; the reference price supplies the denominator. The same saving can therefore have different relative sizes. This comparison isolates the occupied length in two stipulated parking outcomes.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.case.0.witness",
+      "text": "Saving=75; Percent=75",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Saving\",75],[\"Price\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Percent\",\"value\":75}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"75\"},{\"label\":\"Saving\",\"value\":\"75\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.case.1.witness",
+      "text": "Saving=90; Percent=90",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Saving\",90],[\"Price\",100]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"bars\",\"items\":[{\"label\":\"Percent\",\"value\":90}]},\"metrics\":[{\"label\":\"Percent\",\"value\":\"90\"},{\"label\":\"Saving\",\"value\":\"90\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0969.recall",
+      "text": "A toy saving is 76 on a price of 100. What percentage of the original price is saved? Answer 76.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0969/model.ts; finite explicit model from tools/continuation/probability-8.tsv; source idea 1000-causal-inference-probability-demos.md #969. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy saving is 76 on a price of 100. What percentage of the original price is saved?",
+    "options": [
+      "45.6",
+      "76",
+      "106.4"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Percent 76 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0969",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-08",
+      "source-969"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 969,
+    "sourceSection": "49. Random fields, spatial processes & textures",
+    "sourceEntryOriginal": "- **969. Random parking** \\[Predict\\]: cars park at random spots on a curb; they fill only about 75% of it before no gap fits.",
+    "modelBoundary": "the occupied length in two stipulated parking outcomes",
+    "recallInputs": [
+      76,
+      100
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}

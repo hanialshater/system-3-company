@@ -1,0 +1,151 @@
+{
+  "slug": "cp-source-0768",
+  "title": "Constraints reduce possible grids",
+  "hook": "Two stated cases for constraints reduce possible grids.",
+  "domain": "probability",
+  "concept": "cp-source-0768",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Reading the stated arithmetic assumptions and a small numerical chart"
+    ],
+    "doesNotKnow": [
+      "How the choice-count ingredient before Sudoku constraint propagation affects the stated comparison"
+    ]
+  },
+  "misconception": "The headline alone determines Capacity, regardless of the stated inputs.",
+  "objective": "Compare the choice-count ingredient before Sudoku constraint propagation in two explicit finite cases; separate model arithmetic from an empirical population claim.",
+  "keyState": "Both question and changed cases computed; both parameter/result witnesses retained.",
+  "claims": [
+    {
+      "id": "probability.cp-source-0768.predict",
+      "text": "With 4 possible answers per question and 4 questions, what is the maximum number of distinct answer sequences?",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.setup",
+      "text": "Toy model: two stated cases",
+      "support": "convention",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.reveal.0",
+      "text": "The retained results are Outcomes=4; Capacity=256 and Outcomes=3; Capacity=81.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.reveal.1",
+      "text": "Balanced questions can use the available answer sequences efficiently. Counting sequences is a capacity bound, not a guarantee that a particular puzzle achieves it. This comparison isolates the choice-count ingredient before Sudoku constraint propagation.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.case.0.witness",
+      "text": "Outcomes=4; Capacity=256",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.case.0.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",4],[\"Questions\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.case.0.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":256}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"256\"},{\"label\":\"Outcomes\",\"value\":\"4\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.case.1.witness",
+      "text": "Outcomes=3; Capacity=81",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.case.1.frame.0",
+      "text": "{\"caption\":\"Toy inputs\",\"visual\":{\"kind\":\"table\",\"columns\":[\"Given\",\"Value\"],\"rows\":[[\"Outcomes\",3],[\"Questions\",4]]}}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.case.1.frame.1",
+      "text": "{\"caption\":\"Toy result\",\"visual\":{\"kind\":\"grid\",\"cells\":[{\"label\":\"Capacity\",\"value\":81}]},\"metrics\":[{\"label\":\"Capacity\",\"value\":\"81\"},{\"label\":\"Outcomes\",\"value\":\"3\"}]}",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.cp-source-0768.recall",
+      "text": "With 5 possible answers per question and 4 questions, what is the maximum number of distinct answer sequences? Answer 625.",
+      "support": "derivation",
+      "source": "src/demos/probability/cp-source-0768/model.ts; finite explicit model from tools/continuation/probability-7.tsv; source idea 1000-causal-inference-probability-demos.md #768. Empirical source remains unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With 5 possible answers per question and 4 questions, what is the maximum number of distinct answer sequences?",
+    "options": [
+      "375",
+      "625",
+      "875"
+    ],
+    "answer": 1,
+    "why": "The same explicit rule gives Capacity 625 for the changed inputs. This is a new numerical case."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:cp-source-0768",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "source-list-continuation",
+      "batch-07",
+      "source-768"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "computed-case-comparison"
+  ],
+  "provenance": {
+    "sourceFile": "1000-causal-inference-probability-demos.md",
+    "sourceEntryId": 768,
+    "sourceSection": "39. Graphical models & belief propagation",
+    "sourceEntryOriginal": "- **768. Sudoku as a factor graph** \\[Slider\\]: cells pass constraint messages until the puzzle resolves.",
+    "modelBoundary": "the choice-count ingredient before Sudoku constraint propagation",
+    "recallInputs": [
+      5,
+      4
+    ],
+    "sourceVerification": "unverified; not a replication",
+    "overlapBoundary": "Source-specific finite model; cross-category publication review remains open."
+  }
+}
