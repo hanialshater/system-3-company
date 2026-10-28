@@ -1,0 +1,8 @@
+.wrap { display: grid; gap: 0.45rem; }
+.panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+.panel { min-width: 0; text-align: center; border: 1px solid var(--line); border-radius: 0.75rem; background: var(--bg-2); }
+.caseTitle { padding-top: 0.3rem; font-weight: 700; }
+.drawing { display: block; width: 100%; max-height: 130px; }
+.dot { fill: var(--fg); }
+.gaps { margin: 0 0 0.4rem; font-size: 0.85rem; }
+.focus { margin: 0; font-size: 0.85rem; color: var(--muted); }

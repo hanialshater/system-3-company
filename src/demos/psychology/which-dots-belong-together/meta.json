@@ -1,0 +1,74 @@
+{
+  "slug": "which-dots-belong-together",
+  "title": "Which dots belong together?",
+  "hook": "Four dots, two arrangements. What changes when their gaps swap?",
+  "domain": "psychology",
+  "concept": "proximity-in-visual-grouping",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-behavioral", "builder": "demo-builder" },
+  "learner": {
+    "knows": ["distance can be compared", "four dots can form a rectangle"],
+    "doesNotKnow": ["distance between marks can be a cue for perceptual grouping"]
+  },
+  "misconception": "The same unconnected marks must be grouped in one fixed way regardless of their arrangement.",
+  "objective": "Compare two arrangements of four equal dots and explain that proximity can suggest different visual groupings without guaranteeing how each individual perceives them.",
+  "claims": [
+    {
+      "id": "psychology.which-dots-belong-together.c1",
+      "text": "Case A has four equal dots with a horizontal center-to-center gap of 40 units and a vertical gap of 88 units; side-by-side neighbors are closer.",
+      "support": "derivation",
+      "source": "Demo.tsx defines Case A as across 40 and down 88, then uses half-gaps symmetrically to place four equal-radius circles; 40 < 88. Statement is about this constructed stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.which-dots-belong-together.c2",
+      "text": "Case B swaps the gaps, 88 units across and 40 units down, so vertically adjacent neighbors are closer. Both cases remain displayed when the view is reset.",
+      "support": "derivation",
+      "source": "Demo.tsx Case B coordinates are across 88, down 40; 40 < 88. The seen array retains each selected case while Reset view clears only focus.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.which-dots-belong-together.c3",
+      "text": "Closeness is one cue people can use to group what they see; the same dots in another arrangement can suggest a different grouping, although personal perception may differ.",
+      "support": "source",
+      "source": "OpenStax Psychology 2e, section 5.6, Gestalt Principles of Perception: https://openstax.org/books/psychology-2e/pages/5-6-gestalt-principles-of-perception . Source has not been independently checked for this claim and its limitations.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.which-dots-belong-together.c4",
+      "text": "The displayed dots are not joined by connecting lines.",
+      "support": "convention",
+      "source": "Demo.tsx Diagram draws circles without connection lines; both arrangements are authored illustrations, not experimental results.",
+      "status": "unverified"
+    },
+    {
+      "id": "psychology.which-dots-belong-together.c5",
+      "text": "In the recall arrangement the horizontal gap of 6 units is shorter than the vertical gap of 15 units, so side-by-side neighbors are closest; perceived grouping is not guaranteed.",
+      "support": "derivation",
+      "source": "The recall specifies horizontal separation 6 and vertical separation 15; 6 < 15. The perception qualification is supported by claim c3 and needs independent checking.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Four dots form a rectangle with a 6-unit horizontal gap and a 15-unit vertical gap. Which neighbors are closest?",
+    "options": ["Side-by-side dots", "Dots above and below", "Both are equally close"],
+    "answer": 0,
+    "why": "Six is less than fifteen, so side-by-side dots are closer. Proximity can suggest a grouping, though it does not dictate anyone's perception."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "psychology:proximity-in-visual-grouping",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "references": ["https://openstax.org/books/psychology-2e/pages/5-6-gestalt-principles-of-perception"],
+    "tags": ["perception", "visual-grouping", "proximity"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "compare-case", "reset-retained-evidence"],
+  "nearestExistingLesson": "same-grey-in-shadow",
+  "meaningfulDifference": "Examines spatial grouping from distances rather than how surrounding illumination affects perceived lightness."
+}

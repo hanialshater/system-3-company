@@ -1,0 +1,7 @@
+# Psychology and human learning
+
+Status: incubating; subject matter and all new lessons await independent review. Interim coordinating owner: cm-behavioral (accepted, `company/domains/2026-10-28-psychology-behavioral-handoff.md`); domain-scout supplies the subject map and briefs. Product direction: `company/decisions/2026-10-28-psychology-product-scope.md`.
+
+The founder asked for at least 500 interactive psychology, human learning, and deeper psychology demos. A demo is a distinct functioning experience, not a title or a parameter variant. Initial drafts explore perception, memory, and learning; later work can cover emotion, identity, social processes, development, and psychological research. Cross-link related existing Behavioral Economics, Big Ideas, Books, Life Hacks, Life Sciences and Probability material; check objectives and interactions for overlap.
+
+Every factual learner-visible sentence requires a source and unverified claim record; builders do not verify their own claims. Distinguish a stimulus, a fictional model, a learner's observation, and an empirical finding. Effects vary by task, person and context; demonstrations do not diagnose or provide treatment. Route sensitive psychological material for appropriate independent subject, cultural, accessibility, learner and safety review. Existing launch and publication gates remain in force; draft creation is not launch approval.
