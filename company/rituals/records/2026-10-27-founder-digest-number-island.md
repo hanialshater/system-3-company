@@ -6,7 +6,7 @@ owner: chief-of-staff
 
 - Cloud workspace is accessible. Dependencies installed; baseline typecheck, production build and representative phone/desktop lesson QA passed. No feature UI has been changed.
 - Founder asks for SVG Number Island and preview deployment through the company. Approval verbatim is in company/decisions/2026-10-27-founder-number-island.md.
-- W-2026 through W-2030 capture design, product, engineering, independent QA and preview-release steps.
+- W-2123 through W-2127 capture design, product, engineering, independent QA and preview-release steps.
 - Design-lead and head-of-product agree with changes: optional 12-lesson map/list view, existing player, no new lessons/rewards/locks/history reads. Principal-engineer classifies the dedicated new route tier 2; EDD precedes code and independent ops readiness precedes release.
 - Release-manager reports failing baseline publication tests, default-branch workflow constraints, and Forbidden GitHub API requests despite working native Git reads. No deployment is claimed.
 - Business review recorded at company/rituals/records/2026-10-27-wbr-number-island.md, with generated metrics and explicit missing learner-outcome data.

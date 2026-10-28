@@ -1,6 +1,6 @@
 # Zoology and deep-time lessons: interaction directions
 
-Status: draft design directions for W-2055, 2026-10-28. These are prompts for individual lesson briefs, not implemented lessons, verified science, or a new approved lesson format. The 500-item curriculum is a proposal; review overlap and scientific claims before production. Preserve the existing predict → explore → reveal → later recall contract.
+Status: draft design directions for W-2162, 2026-10-28. These are prompts for individual lesson briefs, not implemented lessons, verified science, or a new approved lesson format. The 500-item curriculum is a proposal; review overlap and scientific claims before production. Preserve the existing predict → explore → reveal → later recall contract.
 
 ## Visual principles
 

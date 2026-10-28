@@ -34,4 +34,4 @@ Proceed to the functioning page when the required product, engineering, readines
 
 ## Handoff
 
-Chief of staff links this direction to W-2026 and obtains head-of-product's composition concurrence. The visual-designer handoff is supplied at `company/design/specs/number-island-visual.md` and forms part of the implementation direction under principal-engineer's scope. After the build, evaluation-steward routes independent QA/a11y; design-lead reviews built captures only after their first findings. No app code, board, progress, event log or production artwork was changed in this selection pass.
+Chief of staff links this direction to W-2123 and obtains head-of-product's composition concurrence. The visual-designer handoff is supplied at `company/design/specs/number-island-visual.md` and forms part of the implementation direction under principal-engineer's scope. After the build, evaluation-steward routes independent QA/a11y; design-lead reviews built captures only after their first findings. No app code, board, progress, event log or production artwork was changed in this selection pass.

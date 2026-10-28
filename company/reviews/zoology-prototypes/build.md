@@ -1,6 +1,6 @@
 # Zoology prototypes — 2026-10-28
 
-Two initial draft lessons toward a requested 500. W-2055 tracks the remaining 498, including the subject plan, independently sourced claims, content and QA. These are prototypes, not a complete batch or a publication recommendation. No generated images; the diagrams are original schematic SVGs.
+Two initial draft lessons toward a requested 500. W-2162 tracks the remaining 498, including the subject plan, independently sourced claims, content and QA. These are prototypes, not a complete batch or a publication recommendation. No generated images; the diagrams are original schematic SVGs.
 
 ## Fossil tracks and bones — pre-flight v1
 

@@ -5,7 +5,7 @@ reviewers: principal-engineer + design-lead (affected presentation owner)
 tier: 2
 status: proposed
 date: 2026-10-27
-board: W-2028
+board: W-2125
 
 ## Problem and why now
 
@@ -122,4 +122,4 @@ Use focused pure-helper tests and standalone browser tests outside `tests/qa/**`
 
 ## Handoff
 
-Record proposed EDD against W-2028. Next: principal-engineer and affected Design review, then implementation only after preflight/design inputs. No application code, artwork, tests, board/events/progress, deployment or readiness approval changed by this EDD task.
+Record proposed EDD against W-2125. Next: principal-engineer and affected Design review, then implementation only after preflight/design inputs. No application code, artwork, tests, board/events/progress, deployment or readiness approval changed by this EDD task.
