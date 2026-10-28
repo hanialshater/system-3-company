@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-deeptime-date-range-not-point",
+  "title": "An age measurement",
+  "hook": "Compare two pieces of evidence.",
+  "domain": "life",
+  "concept": "zoo-deeptime-date-range-not-point",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Evidence can constrain an interpretation."
+    ],
+    "doesNotKnow": [
+      "The marked interval runs from 98 to 102 million years for the stated ±2 example. Real radiometric dates require method-specific uncertainty and geological interpretation; this is an arithmetic illustration."
+    ]
+  },
+  "misconception": "The first apparent interpretation is the only possible one.",
+  "objective": "A modeled measurement reports 100 ± 2 million years. Which interval represents that reported uncertainty?",
+  "claims": [
+    {
+      "id": "life.zoo-deeptime-date-range-not-point.c1",
+      "text": "A modeled measurement reports 100 ± 2 million years. Which interval represents that reported uncertainty? The marked interval runs from 98 to 102 million years for the stated ±2 example. Real radiometric dates require method-specific uncertainty and geological interpretation; this is an arithmetic illustration. Reported center. Stated range",
+      "support": "source",
+      "source": "Unverified source leads for independent fact-checking: Smithsonian National Museum of Natural History, https://naturalhistory.si.edu/education/teaching-resources/paleontology ; US Geological Survey, https://www.usgs.gov/programs/national-geologic-map-database . Claim-specific evidence and definitions have not been checked.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-deeptime-date-range-not-point.c2",
+      "text": "The diagram is an illustrative schematic, not an observation of an actual site.",
+      "support": "convention",
+      "source": "Diagram convention",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-deeptime-date-range-not-point.c3",
+      "text": "A toy date is 50 ± 3 million years. What range does this represent? Subtract and add 3 to obtain 47 to 53 million years.",
+      "support": "source",
+      "source": "Unverified source leads for independent fact-checking: Smithsonian National Museum of Natural History, https://naturalhistory.si.edu/education/teaching-resources/paleontology ; US Geological Survey, https://www.usgs.gov/programs/national-geologic-map-database . Claim-specific evidence and definitions have not been checked.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy date is 50 ± 3 million years. What range does this represent?",
+    "options": [
+      "47 to 53 million years",
+      "50 million years exactly",
+      "3 to 50 million years"
+    ],
+    "answer": 0,
+    "why": "Subtract and add 3 to obtain 47 to 53 million years."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

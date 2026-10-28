@@ -1,0 +1,64 @@
+{
+  "slug": "zoo-ecology-food-capacity-toy",
+  "title": "Food limits a toy habitat",
+  "hook": "A model can tie capacity to an explicit resource rule.",
+  "domain": "life",
+  "concept": "zoo-ecology-food-capacity-toy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Animals interact with other organisms and their surroundings."
+    ],
+    "doesNotKnow": [
+      "In a toy model each animal needs one food unit and no other resources limit survival. How many animals can 8 food units support?"
+    ]
+  },
+  "misconception": "One observation or model rule gives a complete answer about nature.",
+  "objective": "In a toy model each animal needs one food unit and no other resources limit survival. How many animals can 8 food units support?",
+  "claims": [
+    {
+      "id": "life.zoo-ecology-food-capacity-toy.c1",
+      "text": "In a toy model each animal needs one food unit and no other resources limit survival. How many animals can 8 food units support? Under the stipulated one-unit-per-animal rule, 8 food units support at most 8 animals in this toy model. Real carrying capacity depends on many conditions and can change over time.",
+      "support": "source",
+      "source": "Unverified reference lead for independent check: OpenStax Biology 2e, ecology and populations, https://openstax.org/details/books/biology-2e . Exact claim-specific sources have not been verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-ecology-food-capacity-toy.c2",
+      "text": "The panels depict a simplified illustrative scenario, not observations or measurements of real animals.",
+      "support": "convention",
+      "source": "Diagram convention and stipulated model.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.zoo-ecology-food-capacity-toy.c3",
+      "text": "Under the same toy rule, each animal needs two food units. What is the maximum for 10 food units? 10 food units divided by 2 per animal gives 5.",
+      "support": "source",
+      "source": "Unverified reference lead for independent check: OpenStax Biology 2e, ecology and populations, https://openstax.org/details/books/biology-2e . Exact claim-specific sources have not been verified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the same toy rule, each animal needs two food units. What is the maximum for 10 food units?",
+    "options": [
+      "5",
+      "10",
+      "20"
+    ],
+    "answer": 0,
+    "why": "10 food units divided by 2 per animal gives 5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

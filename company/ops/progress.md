@@ -1,3 +1,11 @@
+## 2026-10-28 · zoology second tranche in progress · W-2055
+
+Changed: added 39 more drafts: 14 fossil/deep-time, 13 ecology and conservation, and 12 behavior/sensory lessons. Combined with the first 200 drafts, 239 of the requested 500 are implemented; 261 remain. All are drafts with unverified claims and source leads; shared interaction patterns are not separate calibrated simulations. Two proposed questions were dropped after the builders found overlapping existing lessons.
+
+Checks: builders ran TSX transpilation, metadata/answer and generator checks and visually inspected static Inkscape contact sheets. No browser or phone-fit QA was available in this checkout. Company check remains at the inherited 783 errors and four warnings; verify stops at the inherited publication-readiness failure. Standalone TypeScript was started, result to be recorded in the PR. No deployment or merge.
+
+Next: complete the second 200-entry tranche and final 100; restore browser QA, independently verify claim-specific sources, audit semantic overlaps, and obtain accessibility, visual pedagogy and learner review before publication.
+
 ## 2026-10-28 · zoology first 200 drafts · W-2055
 
 Changed: added 73 more draft lessons to PR #40 after its initial 125, yielding 198 there plus the two prototypes in PR #32: 200 drafts out of the 500 proposed questions. The remaining 300 are not implemented. The new lessons cover additional birds, dinosaurs, mammals, reptiles and amphibians, fishes and arthropods. The drafts use schematics; some use shared interaction patterns. Claims and institutional source leads remain unverified; no merge or publication.
