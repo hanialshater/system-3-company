@@ -1,3 +1,11 @@
+## 2026-10-28 · chief-of-staff · organic chemistry request, prototype tranche
+
+- **Changed:** Began the founder's request for 150 highly visual organic chemistry lessons. Added two drafts: a rotatable Newman projection of ethane and a stepwise SN2 schematic. Both are in the chemistry curriculum and have source-linked, unverified claims. W-2120 tracks the remaining 148.
+- **Checks:** TypeScript passed; the production build compiled and completed before a final copy-only clarification to the SN2 reveal. `npm run check` reported 2,310 errors and five warnings, none naming the new lessons; `npm run verify` stops at two publication-readiness tests. The existing interaction contract passed for both lessons on phone and desktop (4/4); the builder inspected phone reveal screenshots. The strict 390 × 844 fit and independent accessibility review remain open.
+- **Believe:** These are prototypes, not independently validated lessons. The SN2 drawing represents only two of the three spectator bonds and the molecule diagrams are schematic. Scientific, accessibility, pedagogy, overlap and human-learner reviews remain outstanding.
+- **Next:** Complete the remaining 148 with genuinely distinct concepts and visual interactions; route independent science, pedagogy and accessibility review for all drafts. Do not publish on builder checks alone.
+- **Blocked:** Full verification by repository publication-readiness failures. No deployment was requested or performed.
+
 ## 2026-10-28 · chief-of-staff · visual chemistry and biology batch, 500 of 500 drafted
 
 - **Changed:** Added the final 79 chemistry and 74 biology drafts to PR 29: 250 chemistry and 250 biology lessons in the batch. The last tranche includes heat transfer, mass-to-mole conversions, electron-shell counts, equilibrium and percent yield; endocrine signaling, cell-cycle scenes, plant features and bacterial structures. Included the ionic and life-process generator sources missed in the prior checkpoint. All lessons remain drafts with unverified claims.
