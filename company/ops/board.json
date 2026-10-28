@@ -22950,11 +22950,47 @@
       "id": "W-2054",
       "title": "Lessons World: obtain actual hosted inspection preview receipt after lesson PR merges",
       "owner": "release-manager",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-28",
       "links": [],
       "updated": "2026-10-28"
+    },
+    {
+      "id": "W-2120",
+      "title": "P1 r24 regression (dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f): production runs Next.js 16.4.0 again (r23's 16.4.3 security fix 80c847c55 is on main only, R-031 advisories back) and no longer serves flatten-the-cube-to-a-dot (published r22). Founder decides: roll back to r23 dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (removes the World), or approve a new release r25 of the default branch with 80c847c55 and the cube lesson merged. Record company/ops/deployments/2026-10-28-r24-production.json; founder-inbox F-52",
+      "owner": "release-manager",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-28",
+      "links": [
+        "company/ops/deployments/2026-10-28-r24-production.json"
+      ],
+      "note": "numbered after main's W-2119 so the main merge does not collide"
+    },
+    {
+      "id": "W-2121",
+      "title": "Reconcile the default branch ccr-4c6c7654-ew9ko1 with main: main has 452 commits the default lacks (merge-base 60eaf60ac), including r22 and r23's sources (40b8bfbc1, 80c847c55). No deploy from either branch until one branch holds every released change (r24 record)",
+      "owner": "chief-of-staff",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-28",
+      "links": [
+        "company/ops/deployments/2026-10-28-r24-production.json"
+      ],
+      "note": "numbered after main's W-2119 so the main merge does not collide"
+    },
+    {
+      "id": "W-2122",
+      "title": "codex/all-lessons-inspection f5114cba0..d67b966bd (branching world zoom, Number Island art) are not live and not on the default branch: merge them with their own founder-approved deploy, not before",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-28",
+      "links": [
+        "company/ops/deployments/2026-10-28-r24-production.json"
+      ],
+      "note": "numbered after main's W-2119 so the main merge does not collide"
     }
   ]
 }

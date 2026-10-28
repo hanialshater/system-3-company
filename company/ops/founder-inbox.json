@@ -652,6 +652,25 @@
         "C: decline"
       ],
       "note": "Knot briefs 1-4 do NOT wait on this: they build on the catalog line now. Open objection (vp-rnd, unanswered): the kill trigger moved from no brief to no knot lesson with a launch-review go by 2026-11-06. Not delegable: changes the kit (tier 2). Chair: founder (project review)."
+    },
+    {
+      "id": "F-52",
+      "title": "r24 (the Lessons World production deploy) undid r23 and r22: production runs Next.js 16.4.0 again, with the critical advisories r23 cleared, and no longer serves flatten-the-cube-to-a-dot",
+      "category": "deploy",
+      "priority": 1,
+      "links": [
+        "company/ops/deployments/2026-10-28-r24-production.json",
+        "company/ops/deployments/2026-10-26-r23-production.json",
+        "company/ops/releases.json"
+      ],
+      "status": "open",
+      "options": [
+        "A: roll back to r23 (dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz): restores Next 16.4.3 and the cube lesson, removes the World",
+        "B: keep r24 live, and approve one new release r25: the default branch with 80c847c55 (Next 16.4.3) and the cube lesson merged, so the World stays and the fixes return (release-manager prepares; nothing deploys before your approval of that deploy)",
+        "C: keep r24 as it is (accept the advisories while the World is inspected)"
+      ],
+      "recommendation": "B if r25 can be ready today; A if not. Not C: r23 was a security deploy.",
+      "note": "Numbered F-52 because main already holds F-50 and F-51. Board W-2120 (release-manager), W-2121 (branch reconciliation, chief-of-staff)."
     }
   ]
 }

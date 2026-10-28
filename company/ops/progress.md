@@ -1,3 +1,22 @@
+## 2026-10-28 · release-manager · r24 recorded; production regressed r23's security fix
+
+**First thing to know: r24 undid r23 and r22.** The Lessons World production deploy (r24, dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f, source 0fc13b86a, marker e7335139454e) was built from a branch that never had main's later releases. Production now runs Next.js 16.4.0 again (package-lock at 0fc13b86a), so the critical next advisories that r23 (80c847c55, Next 16.4.3) cleared are back (R-031). It also no longer serves flatten-the-cube-to-a-dot (published in r22): 720 published lessons against r23's 721. The founder decides between rolling back to r23 (dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz) and a new release r25 that keeps the World and restores both (founder-inbox F-52, board W-2120). I did not roll back. The coordinator's brief said not to touch Vercel, and no pre-approval covers a rollback.
+
+What changed (default branch ccr-4c6c7654-ew9ko1):
+- Merge e462fed32 is a normal merge of e7335139454e. The production SHA is now an ancestor of the default branch, and the tree is unchanged. The default branch already held 0fc13b86a, so a deploy from it would not have removed the World. The brief's worry was unfounded, but the merge makes the SHA itself traceable.
+- The 12 later commits on codex/all-lessons-inspection (f5114cba0..d67b966bd: branching zoom and Number Island art) are not live. I did not merge them, so that the default branch matches production (W-2122).
+- releases.json: r23 brought over from main (identical r1..r22 prefix), then r24 appended. It carries the founder's "Deploy" and "Deploy to production", the failed preview dpl_FVtr8bSaPScRKkAq6kBRCG29zFwj ("Resource provisioning failed"), the correction that the marker's "Preview only" text is wrong, and the inspection-only note (3,895 lessons, statuses unchanged, most unchecked).
+- Receipts: company/ops/deployments/2026-10-28-r24-production.json (new), plus r22's and r23's records from main.
+- Protected paths: the inspection branch changes none.
+
+What I believe and how sure:
+- The deployment facts (ids, READY, the alias, the 200s, no page errors) come from the coordinator. I did not observe them myself: no Vercel or host access here. High confidence in the git facts (versions and trees read from the commits). r24's date is the marker's commit time, a lower bound.
+- releases.json still fails validateReleases at r12 (a date not in UTC Z form), and tests/hq/releases.test.mjs still expects r13. Both are inherited from main and not fixed here.
+
+Next: the founder's F-52. Then the chief of staff reconciles the default branch with main (452 commits, W-2121) before any further deploy from either branch. Board numbers W-2120..2122 and F-52 skip past main's highest ids so that merge will not collide.
+
+Checks: npm run check gave 783 errors and 4 warnings before the merge and the same after (it stops at company check, as before).
+
 ## 2026-10-28 — Completed all500 science drafts included;3895-stop snapshot ready
 
 PR29 advanced during implementation from347 to500 draft lessons. The final76a87df1d snapshot adds153, yielding3895 unique stops/162 islands, with720 Published/234 Review/2941 Draft preserved. Frozenapp a39e39968, build7RPMubtedbVVPXsJdQM4F passed8230staticpages;35science model tests pass. Independent actualbrowser addendum confirms3895unique list entries, both new science players, exact return offsets and native stage swipe. See company/engineering/readiness/2026-10-28-world-completed-build.json and completed-science provenance.

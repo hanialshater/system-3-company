@@ -1165,6 +1165,122 @@
           "Symbols illustrate narrative context, not exact vehicles, equipment, counts, buildings or campsite locations."
         ]
       }
+    },
+    {
+      "version": "r22",
+      "date": "2026-10-25T20:45:00.000Z",
+      "commit": "40b8bfbc1f902bb51bb56ba470efe38d27ef6a98",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "company/decisions/2026-10-25-founder-cube-pairwise-after-publish.md; system3-meta docs/decisions/2026-10-25-founder-approvals.md item 4",
+        "quote": "Cube lesson: skip pairwise: \"Publish flatten-the-cube-to-a-dot and deploy System 3 Lessons once its own checks pass, without the comparison against a single-card version. That comparison runs after publishing.\" (founder, 2026-10-25)"
+      },
+      "summary": "A new multi-card lesson: flatten a cube to a dot to see why corners minus edges plus faces is 2 for every convex solid.",
+      "added": {
+        "features": [
+          "HQ: floor 8 (System 3 Press) removed; a link to the city HQ (https://system3-city-hq.vercel.app) in its place (tools-lead d5ed24fa4, founder 2026-10-25)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 1,
+            "slugs": [
+              "flatten-the-cube-to-a-dot"
+            ]
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "math/euclid-three-steps: claim c5 re-verified after the 'no finite list' copy edit; its trust line now reads 6 of 6 claims checked (fact-checker dfcd66b13; flagged by tools-lead)."
+        ],
+        "known_issues": [
+          "flatten-the-cube-to-a-dot ships before its lane M pairwise against the single-card twin (founder's decision); W-2057 builds the twin, W-2058 runs the pairwise; if the single card wins, the lesson goes back to lane M for revision or withdrawal. design-lead's objection carried.",
+          "'convex' is unglossed in the hook and reveal (W-2068, non-blocking).",
+          "No head-of-product countersignature (W-2080) or committed launch predictions (W-2081) at publish.",
+          "next build ends with Next.js 16.4.0's SecurityFatalError upgrade advisory after the output is written; not upgraded (W-2067, principal-engineer).",
+          "company check keeps 810 pre-existing errors (grandfathered readiness and decision-record format); none for the two lessons in this release."
+        ]
+      }
+    },
+    {
+      "version": "r23",
+      "date": "2026-10-26T09:14:08.000Z",
+      "commit": "80c847c5527c02e7b1926f8879891ef2d4169486",
+      "deploy_commit": "0b8b6f539257c9519f5b5cc1b114f4b779b8e9f0 (empty [deploy] commit on 80c847c55, same tree; branch release/r23)",
+      "target": "production",
+      "deployment": "dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (company/ops/deployments/2026-10-26-r23-production.json)",
+      "approved_by": {
+        "who": "founder",
+        "record": "conversation, 2026-10-26, option \"Approve deploy + rollback\" (W-2108); readiness company/engineering/readiness/2026-10-26-next-16-4-3-upgrade.md U1-U6 (principal-engineer-ops)",
+        "quote": "\"release-manager deploys exactly 80c847c55 to production as r23, runs the smoke checks, and rolls back to r22 if any fails.\" (founder, 2026-10-26)"
+      },
+      "summary": "Security fix: Next.js 16.4.0 -> 16.4.3, clearing the three next advisories on production; no app source change.",
+      "added": {
+        "features": [
+          "HQ (/hq, on in production) now shows the F-54 org (tools/org/roles.mjs) and the records committed since r22 (readiness record, correction to the code review)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "next, @next/env and @next/swc-* 16.4.0 -> 16.4.3 (package.json, package-lock.json; platform-engineer C8, W-2093); the build no longer ends with SecurityFatalError (W-2067)."
+        ],
+        "known_issues": [
+          "zod <4.6.6 (high) via better-auth remains (R-032, W-2102, its own change and deploy).",
+          "npm ci on Vercel reports 33 vulnerabilities (12 moderate, 20 high, 1 critical) across the whole tree; npm audit was not rerun by release-manager.",
+          "The U3 browser specs (feed, contract) ran against production and sent the app's own beacons to /api/events between about 09:16 and 09:19 UTC (see the deployment record).",
+          "main does not yet contain 80c847c55 (U6: main merges it alone, before the pilot)."
+        ]
+      }
+    },
+    {
+      "version": "r24",
+      "date": "2026-10-28T00:38:44.000Z",
+      "commit": "0fc13b86a255e5bbdaba1a005e08723643928aaa",
+      "deploy_commit": "e7335139454e2a6eadee8b9f0f94074d89bd69f9 (empty marker commit on 0fc13b86a, same tree; branch codex/all-lessons-inspection)",
+      "target": "production",
+      "deployment": "dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f (company/ops/deployments/2026-10-28-r24-production.json); preview attempt dpl_FVtr8bSaPScRKkAq6kBRCG29zFwj failed (\"Resource provisioning failed\")",
+      "rollback_target": "dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz (r23)",
+      "approved_by": {
+        "who": "founder",
+        "record": "conversation, 2026-10-28: \"Deploy\" for codex/all-lessons-inspection at 0fc13b86a (route /learn/world); after the preview failed, \"Deploy to production\"",
+        "quote": "\"Deploy\" and then \"Deploy to production\" (founder, 2026-10-28)"
+      },
+      "summary": "Inspection release: Codex's Lessons World at /learn/world, 3,895 lessons on 162 islands, most of them unchecked drafts with their statuses unchanged. Not a launch.",
+      "added": {
+        "features": [
+          "Lessons World (/learn/world) and its catalog entry: every lesson on the map, statuses shown as committed (720 published, 234 review, 2,941 draft)."
+        ],
+        "lessons": {
+          "published": {
+            "count": 0,
+            "slugs": []
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [],
+        "known_issues": [
+          "Inspection only: most lessons are unchecked drafts; no status promoted, no claim verified, no launch review.",
+          "The marker commit e7335139454e says 'Preview only; the production alias is not changed by this commit'. Wrong: the preview failed and this commit went to production.",
+          "Regression: Next.js 16.4.0 again (r23's 16.4.3 security fix is on main, not on this source); the critical next advisories are back on production (R-031).",
+          "Regression: flatten-the-cube-to-a-dot (published in r22) is not in this source and is no longer served.",
+          "Deploy date is the marker commit's time (a lower bound); the READY time was not recorded. Smoke was relayed by the coordinator (/, /learn/world, /catalog 200; World loads without page errors on phone and desktop); feed and contract specs were not run against production.",
+          "company check: 783 errors, 4 warnings on this tree (inherited)."
+        ]
+      }
     }
   ],
   "historical_deployments": [
