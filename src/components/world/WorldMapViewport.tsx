@@ -5,7 +5,7 @@ import { WorldIcon } from "./WorldIcon";
 import styles from "./world.module.css";
 
 /** One scaleable canvas; native document scrolling remains the vertical camera coordinate. */
-export function WorldMapViewport({ camera, onCameraChange, children, focusSlug }: { camera: WorldCamera; onCameraChange: (camera: WorldCamera) => void; children: ReactNode; focusSlug?: string }) {
+export function WorldMapViewport({ camera, onCameraChange, children, focusSlug, toolbar }: { camera: WorldCamera; onCameraChange: (camera: WorldCamera) => void; children: ReactNode; focusSlug?: string; toolbar?: ReactNode }) {
   const viewport = useRef<HTMLDivElement>(null), content = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0), [width, setWidth] = useState(0), [canvasWidth, setCanvasWidth] = useState(0), [dragging, setDragging] = useState(false);
   const live = useRef({ camera, onCameraChange, width, canvasWidth }); live.current = { camera, onCameraChange, width, canvasWidth };
@@ -100,6 +100,7 @@ export function WorldMapViewport({ camera, onCameraChange, children, focusSlug }
       <output aria-live="polite" aria-label="Map magnification">{Math.round(camera.zoom * 100)}%</output>
       <button type="button" aria-label="Zoom in" disabled={camera.zoom >= MAX_ZOOM} onClick={() => zoom(camera.zoom + .25)}><WorldIcon name="plus"/></button>
       <button type="button" aria-label="Reset zoom and position" onClick={reset}><WorldIcon name="reset"/></button>
+      {toolbar}
       <span className={styles.mapHint}>{"Drag sideways · pinch to zoom"}</span>
     </div>
     <div ref={viewport} className={`${styles.mapViewport} ${canvasWidth * camera.zoom > width ? styles.zoomed : ""} ${dragging ? styles.dragging : ""}`} style={height ? { height: height * camera.zoom } : undefined} data-testid="world-map-viewport" data-zoom={camera.zoom} tabIndex={0} aria-label="World map. Use plus and minus to zoom, zero to reset."
