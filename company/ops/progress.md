@@ -1,3 +1,9 @@
+## 2026-10-28 — Psychology and human learning: founder direction routed
+
+Founder asked for at least 500 psychology, human learning and deep psychology demos. Principal PM supplied a proposed 20-strand capacity allocation, documented in `company/product/verticals/2026-10-28-psychology-human-learning.md`; founder intake and route are in `company/decisions/2026-10-28-founder-psychology-learning.md`. W-2055–W-2058 route the vertical, a checkable proposal and overlap audit, domain decision and host readiness. This is planning, not 500 implemented briefs or demos; no lessons were built or reviewed in this pass.
+
+Baseline: `npm run check` failed with 783 errors and 4 warnings, mostly existing published lesson review/QA gates. `npm run verify` stopped at the existing publish test (34 pass, 1 fail), before typecheck/build/QA. Setup installed npm packages but browser system dependency installation failed on setgroups/setegid permissions. `df -h .` reported about 2.4 GB free; the build-dispatch guard requires 10 GB, so no build was dispatched. Next: principal-engineer-ops provides a qualifying environment and completes browser setup; domain-scout audits overlaps and produces source-backed briefs, followed by head-of-product's domain decision. No deploy, merge, independent lesson review or learning validation was performed.
+
 ## 2026-10-28 — Completed all500 science drafts included;3895-stop snapshot ready
 
 PR29 advanced during implementation from347 to500 draft lessons. The final76a87df1d snapshot adds153, yielding3895 unique stops/162 islands, with720 Published/234 Review/2941 Draft preserved. Frozenapp a39e39968, build7RPMubtedbVVPXsJdQM4F passed8230staticpages;35science model tests pass. Independent actualbrowser addendum confirms3895unique list entries, both new science players, exact return offsets and native stage swipe. See company/engineering/readiness/2026-10-28-world-completed-build.json and completed-science provenance.
