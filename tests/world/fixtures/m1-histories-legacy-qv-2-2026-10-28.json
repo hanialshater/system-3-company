@@ -1,0 +1,1534 @@
+{
+ "schema": "s3.lessons-world.m1-histories-amendment/1",
+ "title": "World M1: amendment 2 to QA's table for R-LEGACY-QV, brief section 10a rulings 4 and 5",
+ "amends": {
+  "files": {
+   "m1-histories.json": "eb500559c2df90afd01796baeffce23fc0b9ebc716bc2c6f5ed929e1cf9d43f3",
+   "m1-histories-legacy-qv-2026-10-28.json": "dd5a71303a2e98091271b82c88b7e6f56774d37fc33ccbb21c563bf79ee92722"
+  },
+  "note": "Neither file is edited. This file adds rows only. Section 10a confirms readings 1 to 3 and overrules no row of the earlier amendment."
+ },
+ "written_by": "qa-tester",
+ "date": "2026-10-28",
+ "board_item": "W-2179",
+ "written_from": "company/product/2026-10-28-world-brief.md section 10a, rulings 4 and 5 (head-of-product, commit 0ed988c4e), with sections 3.2 and 10. No M1 code was read; none exists.",
+ "rulings": {
+  "4": "A counted legacy account row is not rewritten on sync. Stored rows, the browser's store and the export keep source and qv null; the pinned version is applied only when the state is derived.",
+  "5": "Pre-M1 is judged by the record's at_ms, not its arrival. A null-source, null-qv record with at_ms at or after m1_release_at_ms is no evidence: it makes nothing Understood and sets no cue, but is kept and synced. A record with at_ms before release follows the legacy rule even if it syncs later."
+ },
+ "frozen": "Same terms as the earlier files: committed before the M1 maker's first commit under src/; a correction goes in a newer dated file.",
+ "how_to_read": {
+  "same_as": "m1-histories.json and m1-histories-legacy-qv-2026-10-28.json how_to_read.",
+  "late_arrival": "A recall event with at_ms earlier than the step's now_ms arrives at now_ms. In these rows it may be dated before or at m1_release_at_ms and arrive after it. An event with a device is first held by that device alone, until a sync.",
+  "stored_records": "expect.stored_records maps a device to the recall records it stores after the step, ordered by at_ms, each {lesson, at_ms, correct, source, qv}. Reveals are not listed. A legacy row's source and qv must be null.",
+  "export": "expect.export maps a device to the recall records an export shows; same shape as stored_records."
+ },
+ "readings_chosen": [
+  "Row legacy-qv-late-record-is-judged-by-its-own-time-for-condition-2 combines ruling 5 with 10a ruling 2: a late record's time, not its arrival, decides whether a question change came between it and M1. 10a says condition 2 is read from the record's time; if head-of-product reads it otherwise, only that row changes.",
+  "Reveals made by old clients are not covered by ruling 5; these rows keep every reveal before release."
+ ],
+ "coverage_index": {
+  "ruling 4 not rewritten": [
+   "legacy-qv-counted-account-row-is-not-rewritten-on-sync",
+   "legacy-qv-counted-row-stays-null-beside-a-new-answer",
+   "legacy-qv-record-at-release-is-kept-and-synced",
+   "legacy-qv-pre-release-record-syncing-late-follows-the-legacy-rule"
+  ],
+  "ruling 5 release minus 1 ms": [
+   "legacy-qv-record-one-ms-before-release-arriving-later-follows-the-legacy-rule",
+   "legacy-qv-pre-release-record-syncing-late-follows-the-legacy-rule"
+  ],
+  "ruling 5 at release": [
+   "legacy-qv-record-at-release-arriving-later-is-no-evidence",
+   "legacy-qv-record-at-release-does-not-disturb-an-earlier-counted-one",
+   "legacy-qv-record-at-release-is-kept-and-synced"
+  ],
+  "ruling 5 with condition 2": [
+   "legacy-qv-late-record-is-judged-by-its-own-time-for-condition-2"
+  ]
+ },
+ "histories": [
+  {
+   "id": "legacy-qv-counted-account-row-is-not-rewritten-on-sync",
+   "title": "A counted legacy account row keeps source null and qv null in both devices' stores and in the export after a sync, and after a later question change; the pin is applied only when the state is derived",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 4"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release",
+      "account_rows": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "recall",
+        "lesson": "add-a-zero",
+        "at_ms": 172800000,
+        "correct": true,
+        "source": null,
+        "qv": null
+       }
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 435600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      },
+      "stored_records": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ]
+      },
+      "export": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ]
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 518400000,
+     "event": {
+      "type": "qv_change",
+      "lesson": "add-a-zero",
+      "qv": 3
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      },
+      "stored_records": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ]
+      },
+      "export": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-counted-row-stays-null-beside-a-new-answer",
+   "title": "After a counted legacy row, a new-format answer on one device syncs beside it; the legacy row stays null on both devices and the new row keeps its own source and qv",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 4"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release",
+      "account_rows": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "recall",
+        "lesson": "add-a-zero",
+        "at_ms": 172800000,
+        "correct": true,
+        "source": null,
+        "qv": null
+       }
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 435600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      },
+      "stored_records": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ]
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 691200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 2,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 694800000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      },
+      "stored_records": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        },
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 691200000,
+         "correct": true,
+         "source": "scheduled",
+         "qv": 2
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        },
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 691200000,
+         "correct": true,
+         "source": "scheduled",
+         "qv": 2
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-record-one-ms-before-release-arriving-later-follows-the-legacy-rule",
+   "title": "A null-qv recall dated 1 ms before M1's release that arrives after M1 follows the legacy rule: correct gives Understood, wrong gives Explored with the cue",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 5"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 0
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 2,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 435600000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 431999999,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 439200000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 431999999,
+      "correct": false,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 1,
+       "explored": 1,
+       "understood": 1
+      },
+      "another_look": [
+       "more-digits-not-bigger"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-record-at-release-arriving-later-is-no-evidence",
+   "title": "A null-qv recall dated exactly at M1's release, or after it, is no evidence: correct does not give Understood, wrong sets no cue",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 5"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "reveal",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 0
+     },
+     {
+      "type": "reveal",
+      "lesson": "add-the-slices",
+      "at_ms": 0
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 518400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 432000000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 522000000,
+     "event": {
+      "type": "recall",
+      "lesson": "more-digits-not-bigger",
+      "at_ms": 432000000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-the-slices",
+      "at_ms": 604800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "explored",
+       "add-the-slices": "explored"
+      },
+      "counts": {
+       "not_started": 0,
+       "explored": 3,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-record-at-release-does-not-disturb-an-earlier-counted-one",
+   "title": "A null-qv recall at or after M1's release, wrong or correct, neither lowers an Understood lesson nor sets a cue: it is not evidence, so the earlier counted recall still decides",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 5"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     },
+     {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     }
+    ],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 518400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 432000000,
+      "correct": false,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 604800000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 518400000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-record-at-release-is-kept-and-synced",
+   "title": "A null-qv wrong recall dated at M1's release shows no state change and no cue, and is still kept: it appears unchanged in both devices' stores after a sync",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 5",
+    "10a ruling 4"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release",
+      "account_rows": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       },
+       {
+        "type": "reveal",
+        "lesson": "more-digits-not-bigger",
+        "at_ms": 0
+       }
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 435600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "explored",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 1,
+         "explored": 2,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "explored",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 1,
+         "explored": 2,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 518400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 432000000,
+      "correct": false,
+      "source": null,
+      "qv": null,
+      "device": "A"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "explored",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 1,
+         "explored": 2,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "explored",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 1,
+         "explored": 2,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 522000000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "explored",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 1,
+         "explored": 2,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "explored",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 1,
+         "explored": 2,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      },
+      "stored_records": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 432000000,
+         "correct": false,
+         "source": null,
+         "qv": null
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 432000000,
+         "correct": false,
+         "source": null,
+         "qv": null
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-pre-release-record-syncing-late-follows-the-legacy-rule",
+   "title": "A null-qv recall made before release on an offline device and synced after M1 follows the legacy rule: it counts on that device when it arrives and on the other after the next sync, and is stored unrewritten",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 5",
+    "10a ruling 4"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [],
+    "qv_changes": []
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 2,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "devices": [
+    "A",
+    "B"
+   ],
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release",
+      "account_rows": [
+       {
+        "type": "reveal",
+        "lesson": "add-a-zero",
+        "at_ms": 0
+       }
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "not-started",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 3,
+         "explored": 0,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 435600000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 518400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null,
+      "device": "B"
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "explored",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 1,
+         "understood": 0
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      }
+     }
+    },
+    {
+     "n": 4,
+     "now_ms": 522000000,
+     "event": {
+      "type": "sync",
+      "devices": [
+       "A",
+       "B"
+      ]
+     },
+     "expect": {
+      "by_device": {
+       "A": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       },
+       "B": {
+        "states": {
+         "add-a-zero": "understood",
+         "more-digits-not-bigger": "not-started",
+         "add-the-slices": "not-started"
+        },
+        "counts": {
+         "not_started": 2,
+         "explored": 0,
+         "understood": 1
+        },
+        "another_look": []
+       }
+      },
+      "stored_records": {
+       "A": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ],
+       "B": [
+        {
+         "lesson": "add-a-zero",
+         "at_ms": 172800000,
+         "correct": true,
+         "source": null,
+         "qv": null
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "legacy-qv-late-record-is-judged-by-its-own-time-for-condition-2",
+   "title": "A null-qv recall made before a question change that was itself before M1 never counts, even when it only arrives after M1: the record's time decides, not its arrival",
+   "covers": [
+    "R-LEGACY-QV",
+    "P1.5",
+    "P1.7",
+    "10a ruling 5",
+    "10a ruling 2"
+   ],
+   "t0": "2026-11-10T10:00:00Z",
+   "current_qv": {
+    "add-a-zero": 2,
+    "more-digits-not-bigger": 2,
+    "add-the-slices": 2
+   },
+   "legacy_writer_proof": true,
+   "needs_ruling": [
+    "R-LEGACY-QV 10a"
+   ],
+   "m1_release_at_ms": 432000000,
+   "pre_m1": {
+    "records": [
+     {
+      "type": "reveal",
+      "lesson": "add-a-zero",
+      "at_ms": 0
+     }
+    ],
+    "qv_changes": [
+     {
+      "lesson": "add-a-zero",
+      "at_ms": 259200000,
+      "qv": 3
+     }
+    ]
+   },
+   "at_release": {
+    "pinned_qv": {
+     "add-a-zero": 3,
+     "more-digits-not-bigger": 2,
+     "add-the-slices": 2
+    }
+   },
+   "note": "The null record is not in pre_m1: it arrives after M1, so at_release lists no changed_after_record_before_m1.",
+   "steps": [
+    {
+     "n": 1,
+     "now_ms": 432000000,
+     "event": {
+      "type": "m1_release"
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 2,
+     "now_ms": 518400000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 172800000,
+      "correct": true,
+      "source": null,
+      "qv": null
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "explored",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 1,
+       "understood": 0
+      },
+      "another_look": []
+     }
+    },
+    {
+     "n": 3,
+     "now_ms": 691200000,
+     "event": {
+      "type": "recall",
+      "lesson": "add-a-zero",
+      "at_ms": 691200000,
+      "correct": true,
+      "source": "scheduled",
+      "qv": 3
+     },
+     "expect": {
+      "states": {
+       "add-a-zero": "understood",
+       "more-digits-not-bigger": "not-started",
+       "add-the-slices": "not-started"
+      },
+      "counts": {
+       "not_started": 2,
+       "explored": 0,
+       "understood": 1
+      },
+      "another_look": []
+     }
+    }
+   ]
+  }
+ ],
+ "row_count": {
+  "histories": 8,
+  "cases": 28
+ }
+}
