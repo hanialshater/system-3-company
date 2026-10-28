@@ -1,3 +1,11 @@
+## 2026-10-28 · chief-of-staff · organic structure and reaction drafts
+
+- **Changed:** Added 24 condensed-structure comparison exercises to the 30 reaction exercises and two prototypes in PR 31: 56 draft entries toward the requested 150. The 24 share a comparison renderer; the 30 share a reaction renderer. They are related practice, not 54 independently designed simulations. W-2120 is doing; 94 entries remain.
+- **Checks:** Four targeted tests pass: structural valence and answer mappings for the 54, selected regioselectivity fixtures, formula relations and representative isomer classifications. `npm run check` is at 810 errors and 5 warnings; `npm run verify` stops at two existing publication-readiness tests. TypeScript is running. An attempted browser contract run could not launch Chromium due missing browser components and a socket permission error; no new browser checks passed.
+- **Believe:** The figures are schematic connectivity models, not molecular geometry or mechanistic simulations. Chemistry claims are source-linked and unverified. Independent science, pedagogy, accessibility, overlap, strict phone fit and human-learner reviews remain outstanding.
+- **Next:** Finish the remaining 94 with diverse visual models; rerun browser QA in a working environment and route independent review.
+- **Blocked:** Browser execution in this host and repository-wide publication-readiness failures. No lesson here is cleared for publication.
+
 ## 2026-10-28 · chief-of-staff · organic reaction practice tranche
 
 - **Changed:** Added 30 draft organic reaction exercises under the existing chemistry category in PR 31, alongside the first two prototypes. They share one condensed-structure comparison renderer and are related product-prediction practice, not 30 independently designed simulations. W-2120 covers the rest; 118 requested entries remain.
