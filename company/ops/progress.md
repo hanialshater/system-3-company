@@ -1,3 +1,9 @@
+## 2026-10-28 — Completed all500 science drafts included;3895-stop snapshot ready
+
+PR29 advanced during implementation from347 to500 draft lessons. The final76a87df1d snapshot adds153, yielding3895 unique stops/162 islands, with720 Published/234 Review/2941 Draft preserved. Frozenapp a39e39968, build7RPMubtedbVVPXsJdQM4F passed8230staticpages;35science model tests pass. Independent actualbrowser addendum confirms3895unique list entries, both new science players, exact return offsets and native stage swipe. See company/engineering/readiness/2026-10-28-world-completed-build.json and completed-science provenance.
+
+Release-manager pushed exactly one historical inspection marker06aa3dce6 for the earlier3742 snapshot. No Vercel receipt or preview URL appeared; active proxy still denies hosted access/API. Latest3895 candidate is ready but hosted deployment is unconfirmed; no repeated marker or canonical promotion. Founder was told to publish saved network changes. Full content review cleanup remains paused; no false verification or mastery claimed. Next release-manager obtains actual hosted READY and smoke through restored supported access; do not equate Git push with deployment.
+
 ## 2026-10-28 — All-lessons world inspection ready
 
 Founder reprioritized coverage and unchecked inspection over whole-company cleanup. Integrated all2097 actual new lesson PR additions for3742 unique world stops across156 islands, preserving720 Published/234 Review/2788 Draft. App2ff4748e9, build y54lbicpjgyppu2w1Kq9a passed; independent source, ops and built-browser checks approved scoped inspection. Final stage-swipe/44px/label fixes and exact Map/List return rechecked. Source/build/QA/ops records are in company/engineering/readiness/*world-inspection*; durable screenshots in company/design/previews/2026-10-28-lessons-world/.

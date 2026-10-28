@@ -2,14 +2,14 @@
   "owner": "release-manager",
   "recordedAt": "2026-10-28T00:08:14.970835+00:00",
   "purpose": "founder-authorized unchecked Lessons World inspection",
-  "state": "one inspection-branch Git trigger requested; no deployment receipt yet",
+  "state": "historical first preview trigger pushed; deployment unconfirmed and hosted verification blocked",
   "appSourceCommit": "2ff4748e9720de33dfb7c3f43989f977e871ebcb",
   "localBuildId": "y54lbicpjgyppu2w1Kq9a",
   "localBuildResult": "passed (completed production build and actual BUILD_ID observed)",
-  "releaseCommit": null,
+  "releaseCommit": "06aa3dce68fa0c8b74c7463796b0da8f84e3d99c",
   "deployment": null,
   "canonicalUrl": "https://system-3-company.vercel.app",
-  "hostedVerification": "blocked by active enforced restricted network policy: CONNECT403; no READY receipt observed",
+  "hostedVerification": "not performed: enforced network policy denies canonical host; no actual deployment receipt/preview URL discovered",
   "currentServingDeployment": null,
   "content": {
     "lessons": 3742,
@@ -45,5 +45,38 @@
   "publicationStatusChanges": 0,
   "triggerBranch": "codex/all-lessons-inspection",
   "triggerRequestedAt": "2026-10-28T00:20:03.935344+00:00",
-  "pullRequestClosure": "actual lesson heads merged into their bases; GitHub web closure state not yet confirmed"
+  "pullRequestClosure": "At this trigger the coordinator had merged the frozen prior lesson heads. Later PR29 advancement is recorded in supersession; exact GitHub closure is coordinator-owned.",
+  "markerPush": {
+    "result": "success",
+    "branch": "codex/all-lessons-inspection",
+    "remoteHeadConfirmed": "06aa3dce68fa0c8b74c7463796b0da8f84e3d99c",
+    "defaultOrMainMarker": false,
+    "canonicalAliasChanged": false
+  },
+  "targetRequested": "inspection branch / preview",
+  "actualTarget": null,
+  "previewUrl": null,
+  "observedAt": "2026-10-28T00:22:57.851812+00:00",
+  "observations": [
+    "Native Git confirmed inspection branch at exact marker SHA.",
+    "Public GitHub marker /checks page exposes GitHub Actions ci constitution and verify; constitution succeeded in16s.",
+    "No Vercel check, deployment ID, immutable preview URL or READY receipt observed in actual GitHub checks HTML.",
+    "Canonical HTTP request fails at sidecar CONNECT403; this is network-policy denial, not an application HTTP failure.",
+    "No authenticated Vercel connection or Vercel tool is available in this session; no login, credentials, project creation or proxy bypass attempted."
+  ],
+  "triggerAttempts": 1,
+  "noFurtherMarker": "Single ops-approved trigger attempted; no repeated marker or canonical promotion performed.",
+  "supersession": "Coordinator subsequently discovered PR29 advanced to76a87df1d with153 additional draft lessons. This receipt remains pinned to the historical3742-lesson source2ff4748e9 and marker06aa3dce6; the coordinator is preparing a new3895-lesson integration/build separately. This receipt does not certify that later source or imply it was deployed.",
+  "latestCandidate": {
+    "appSourceCommit": "a39e39968a4aca936693d32ace2b1701a7fbe8a0",
+    "localBuildId": "7RPMubtedbVVPXsJdQM4F",
+    "lessons": 3895,
+    "islands": 162,
+    "build": "passed",
+    "browserSmoke": "passed",
+    "scienceModelTests": "35 passed",
+    "publicationChanges": 0,
+    "pr29SnapshotHead": "76a87df1d9b279f7ad0075fddbca934cf20450c6",
+    "deployment": "not observed; no additional marker attempted"
+  }
 }
