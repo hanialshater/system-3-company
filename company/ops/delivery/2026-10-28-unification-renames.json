@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-28",
+  "owner": "integration-engineer",
+  "why": "Unifying origin/main with the default branch ccr-4c6c7654-ew9ko1 (founder, 2026-10-28: merge all System 3 company PRs, then move to system3-lessons). Both lines allocated ids after they diverged at 60eaf60ac (r21). Where an id names two different records, one side's is renumbered to the next free id and the rename is written here.",
+  "rule": "Renumber the newer record. Exception, written down: for the board, the default branch's W-2026..W-2054 are all renumbered, although for W-2039..W-2047 the default's items carry created 2026-10-24 and main's 2026-10-25. Main's ids are referenced from lesson meta.json files, code tests (tools/hq/lifecycle.test.mjs, tests/platform/sequence-probe.test.mjs) and 60+ progress entries; renumbering them would edit lessons the founder said not to touch now. The default's ids are referenced from 13 product/design/engineering notes, all rewritten here.",
+  "not_rewritten": "Append-only logs keep the ids as they were written: company/ops/progress.md, company/ops/changelog.md, company/ops/events.jsonl, and the default branch's own earlier remap record company/ops/delivery/2026-10-27-world-inspection-board-remap.json. Read a default-branch log line dated before 2026-10-28 that names W-2026..W-2054 through the map below. F-52 in decision, design, EDD, experiment and product notes on the default branch names main's F-52 (the principles audit, parked roles) and is unchanged.",
+  "renames": [
+    {
+      "kind": "board",
+      "side": "default branch (ccr-4c6c7654-ew9ko1)",
+      "map": {
+        "W-2026": "W-2123",
+        "W-2027": "W-2124",
+        "W-2028": "W-2125",
+        "W-2029": "W-2126",
+        "W-2030": "W-2127",
+        "W-2031": "W-2128",
+        "W-2032": "W-2129",
+        "W-2033": "W-2130",
+        "W-2034": "W-2131",
+        "W-2035": "W-2132",
+        "W-2036": "W-2133",
+        "W-2037": "W-2134",
+        "W-2038": "W-2135",
+        "W-2039": "W-2136",
+        "W-2040": "W-2137",
+        "W-2041": "W-2138",
+        "W-2042": "W-2139",
+        "W-2043": "W-2140",
+        "W-2044": "W-2141",
+        "W-2045": "W-2142",
+        "W-2046": "W-2143",
+        "W-2047": "W-2144",
+        "W-2048": "W-2145",
+        "W-2049": "W-2146",
+        "W-2050": "W-2147",
+        "W-2051": "W-2148",
+        "W-2052": "W-2149",
+        "W-2053": "W-2150",
+        "W-2054": "W-2151"
+      }
+    },
+    {
+      "kind": "founder-inbox",
+      "side": "default branch",
+      "map": {
+        "F-52": "F-55"
+      },
+      "note": "F-52 on the default branch is the r24 regression item (2026-10-28); main's F-52 is the principles audit decision (company/decisions/2026-10-25-founder-f52.md), and main also has F-53 and F-54. Rewritten in founder-inbox.json and board W-2120 only."
+    },
+    {
+      "kind": "experiment",
+      "side": "default branch",
+      "map": {
+        "EXP-009 (Lessons World exploration and one-week recall)": "EXP-011"
+      },
+      "note": "main's EXP-009 is the meta measurement-integrity experiment (2026-10-20); main also has EXP-010."
+    }
+  ],
+  "pr_renames": []
+}
