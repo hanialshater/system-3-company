@@ -3,7 +3,7 @@
 owner: principal-engineer
 date: 2026-10-27
 tier: 2
-status: architecture supplied; feature implementation blocked by required checks. §6's four-builder split superseded by Addendum A (2026-10-28, one maker)
+status: architecture supplied; feature implementation blocked by required checks. §6's four-builder split superseded by Addendum A (2026-10-28, one maker); §3's seal due condition superseded by Addendum B (2026-10-28, R-SEAL-DUE)
 source: company/decisions/2026-10-27-founder-lessons-world-journey.md
 reviewers: principal-engineer + privacy-reviewer + principal-engineer-ops; learning semantics through head-of-product
 
@@ -49,6 +49,8 @@ Initial `number-island` check samples these current original recall definitions 
 Freeze actual question versions in the authored check definition. A later question change creates a new check version; old attempt evidence is not silently relabelled. For future 4–5-region islands, keep **six questions total**: at least one per region and rotate extra slots deterministically among regions using attempt ordinal. Category/learning owners approve the actual references; do not generate unreviewed questions.
 
 Practice is available anytime. A seal attempt requires all island lessons explored, at least one day since the latest initial exploration, at least one day since the previous flag practice/attempt, and due eligibility for all sampled original questions. Six questions, pass threshold five correct; a failed/abandoned practice does not pretend to be a passed assessment. Credit only delayed, actually answered eligible lesson questions, never all twelve. Persist the practice timestamp needed for the wait without interpreting it as learning. A passed seal records a sampled delayed check, not permanent mastery, all-twelve understanding, or an access unlock.
+
+> **Superseded in part by Addendum B (2026-10-28).** The words "and due eligibility for all sampled original questions" no longer apply: a seal attempt does not require the sampled questions to be due (World brief R-SEAL-DUE). The rest of the paragraph still binds.
 
 Wait copy must be temporally true: use “Seal attempt opens tomorrow” only if the next eligible timestamp is tomorrow in the learner's locale; otherwise show the exact localized date/time. Do not use a streak/countdown or reset already-earned evidence because time passed. Question feedback uses the original recall explanation, not invented teaching claims.
 
@@ -147,3 +149,27 @@ Write them here, with the date and role. Each gets an answer recorded beside it.
 | # | From | Objection | Answer |
 |---|---|---|---|
 | O1 | head-of-product (brief §8) | §6's four-builder split conflicts with one warm maker | Accepted with conditions A2 to A4; §6 superseded by this addendum |
+| O2 | head-of-product (brief §10, R-SEAL-DUE) | §3's seal due condition makes the seal unreachable | Agreed; §3's due words superseded by Addendum B, with condition B2 |
+
+## Addendum B (2026-10-28): a seal attempt needs no due condition
+
+owner: principal-engineer · answers: R-SEAL-DUE in `company/product/2026-10-28-world-brief.md` §10 (head-of-product), board W-2177 · tier of this addendum: 0 (a design record; it changes no source)
+
+### B1. Decision: agreed, the brief governs
+
+§3's seal paragraph drops "and due eligibility for all sampled original questions". A seal attempt opens when every island lesson has a recorded reveal (Explored or Understood, R-EXPLORED-INCLUDES-UNDERSTOOD), at least 24 hours have passed since the latest first exploration, and at least 24 hours since the previous flag practice or attempt. A seal answer qualifies under brief §3.2 rule 1(b) whether or not the lesson is due.
+
+Why I agree, checked against the code rather than taken from the ruling:
+- **The seal branch was unreachable.** With every lesson explored, brief §3.4's branch 3 never applies. Under the due condition, a seal could open only while its sampled lessons were due, and then branch 2 (a due revisit) always wins first. So branch 4 could never be the suggestion. §3's own order (due revisit, then first unexplored, then eligible flag) has the same flaw.
+- **The seal closed for good on a well-known island.** `revisitDue` returns false once a lesson has `REVISIT_SCHEDULE_DAYS.length` (4) correct recalls (`src/kit/progress.ts`, `revisitDue`, line 72). A learner who knows every sampled lesson well could then never attempt the seal. The condition punished the learners a seal is for.
+- **Nothing the due condition protected is lost.** Its purpose was a delayed check, not an immediate one. The two 24-hour waits, brief §3.2 rule 2 (24 hours after the first reveal) and rule 5 (no double credit within 24 hours) already make every seal answer delayed. M3's P3.2 still tests that no fixture earns a seal from immediate practice.
+
+### B2. Condition: a seal answer does not move the revisit schedule
+
+Before R-SEAL-DUE, a seal answer was always given while the lesson was due, so writing it into the lesson's `recalls` would only have done what the scheduled recall does. Now a seal answer can come early: for example, on day 2 when the next scheduled wait is day 3. `revisitDue` counts every correct entry in `p.recalls` and times the next wait from the last one (`src/kit/progress.ts`, lines 71 to 75). So a seal answer written there would advance or reset the lesson's spacing schedule from an answer the schedule did not ask for.
+
+So: seal answers are stored as `WorldCheckAttempt` per-question results (§2), not appended to `LessonProgress.recalls`. The World state function reads both, under brief §3.2. `revisitDue` and its schedule do not change. If the maker finds a reason to write seal answers into `recalls`, `revisitDue` must ignore them, and that is the separate tier-2 note Addendum A's A2 already requires before `revisitDue`'s semantics change. This is a check for platform-engineer's M1/M3 review of `src/kit/progress.ts` and for QA-tester's M3 fixture table: a seal answer on a not-due lesson leaves that lesson's next due time unchanged.
+
+### B3. What changes elsewhere
+
+None in source. §3's suggested-next order is unchanged and now reachable. The brief's §3.3 already states the rule; this addendum only brings EDD-018 in line with it.
