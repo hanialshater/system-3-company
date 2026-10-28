@@ -1,3 +1,13 @@
+## 2026-10-28 · chief-of-staff · founder inbox triaged (31 items: 18 closed, 5 merged, 8 kept)
+
+What changed: company/ops/founder-inbox.json. Of 31 items (30 open plus F-05, which was waiting on review), 18 are closed and 5 are merged (both have status `closed`, with closedAt, closedBy, closedReason and a triage block), and 8 are kept, each rewritten as one plain question with its old wording under `previous`. Nothing was deleted. The record with the table and the kept questions is company/ops/2026-10-28-inbox-triage.md. F-52 (r24) is left for the coordinator.
+
+What I believe and how sure: high confidence in the evidence for each closure (commits and files cited; F-50 to F-54 are on main, not yet on this branch). Medium confidence that HQ shows the list correctly: hq.ts founderQueue hides only `decided`, so closed items still show until hq-engineer adds `closed` to the filter.
+
+Next: the founder answers F-25 and F-26 (due 10-30), then F-23, F-49, F-17, F-05 and F-11. The board follow-ups are listed in the record. The board was not edited in this run, and `npm run check` was not run: the worktree is sparse and the disk is nearly full.
+
+Blocked: nothing new. The F-52 id collides with main's decision record of the same number, and the reconciliation (W-2121) has to renumber one.
+
 ## 2026-10-28 · release-manager · r24 recorded; production regressed r23's security fix
 
 **First thing to know: r24 undid r23 and r22.** The Lessons World production deploy (r24, dpl_7Ugji1xw39RPJN177Tb7sJsrKC1f, source 0fc13b86a, marker e7335139454e) was built from a branch that never had main's later releases. Production now runs Next.js 16.4.0 again (package-lock at 0fc13b86a), so the critical next advisories that r23 (80c847c55, Next 16.4.3) cleared are back (R-031). It also no longer serves flatten-the-cube-to-a-dot (published in r22): 720 published lessons against r23's 721. The founder decides between rolling back to r23 (dpl_8V4QujqEZ3ecL5vHmL2LhLFsyoQz) and a new release r25 that keeps the World and restores both (founder-inbox F-52, board W-2120). I did not roll back. The coordinator's brief said not to touch Vercel, and no pre-approval covers a rollback.
