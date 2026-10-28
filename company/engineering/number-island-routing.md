@@ -4,7 +4,7 @@ owner: principal-engineer
 date: 2026-10-27
 status: agree with changes; implementation not yet cleared
 request: company/decisions/2026-10-27-founder-number-island.md
-board: W-2028
+board: W-2125
 
 ## Answer
 

@@ -1,4 +1,4 @@
-## 2026-10-28 · zoology prototypes · W-2055
+## 2026-10-28 · zoology prototypes · W-2162
 
 Changed: drafted two life-science lessons, one contrasting footprint and bone evidence and one showing birds within a simplified dinosaur tree; added curriculum and registry entries. This is 2 of the requested 500, with 498 still to scope and build. Sources are leads and all claims remain unverified. No publication, merge or deploy.
 
