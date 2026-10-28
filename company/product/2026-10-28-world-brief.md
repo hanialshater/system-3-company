@@ -3,7 +3,7 @@
 owner: head-of-product
 date: 2026-10-28
 class: product / format / progressive learning
-status: proposed. Not self-approved (see "Approval" below). Nothing here is built, run or deployed.
+status: proposed. Not self-approved (see "Approval" below). The founder answered F1 to F4 on 2026-10-28 (section 9). Rulings for QA's M1 table are in section 10. Nothing here is built, run or deployed.
 builds on: the live inspection World (`/learn/world`, released 2026-10-28; release-manager's record, W-2151)
 sources:
 - founder plan and refinements: `company/decisions/2026-10-27-founder-lessons-world-journey.md`
@@ -29,8 +29,8 @@ What this means for a learner in the World:
 - Most stops have facts no one but their builder has checked. Some will be wrong.
 - Recall makes what you learned stick, right or wrong. A learner who explores an unchecked lesson and later answers its recall question correctly has remembered what the lesson said. That is not evidence the lesson was true.
 - So "Understood" means "you recalled this lesson's answer a day or more later", never "this is correct". The Unchecked label stays beside every state, on the map, in the List, in the bottom sheet and in the player.
-- **Seals only on checked islands.** An island offers a seal attempt only if every one of its lessons is Published with all its claims verified. Other islands may offer flag practice, labelled "Practice. This island's lessons are still being checked." Practice earns nothing. Today that leaves Number Island as the first seal candidate. Its 12 lessons are Published with every claim verified, but 11 of the 12 fail their gate on stale review evidence. Its seal is therefore also held until those 11 pass their gates again (category manager for math, through the evaluation owners).
-- The founder chose to keep unchecked lessons visible ("keeping the lessons unchecked statsu but still visible") and to keep Published statuses ("Keep Published; complete independent reviews before continuing"). This brief follows both. The seal rule above is the product's way to keep that choice honest. It needs the founder's yes (section 9).
+- **Seals on every island, labelled** (founder, F2, 2026-10-28: "Seals everywhere, labelled"). Any island may offer a seal attempt. On an island that is not fully checked, the seal and its attempt carry the label "unchecked content". The label rule is R-SEAL-UNCHECKED in section 10. This overrides product's recommendation, which was seals only on fully checked islands. Product's objection travels with the decision (O2, section 8).
+- The founder chose to keep unchecked lessons visible ("keeping the lessons unchecked statsu but still visible") and to keep Published statuses ("Keep Published; complete independent reviews before continuing"). This brief follows both.
 
 ## 3. Definitions (each line can be tested)
 
@@ -64,7 +64,7 @@ A recall answer qualifies only if all six of these hold:
   - We did not take "two per region" on 4–5-region islands. That would make a flag 8–10 questions and miss the time target.
 - **Time target.** A median of 3 minutes or less to answer all six. If QA timing shows an island's six questions run over, the fix is a different sample of questions from the category owners. The cap does not grow.
 - **Which questions.** The sample uses the lessons' own reviewed recall questions, pinned by version in the island's check definition. No question is generated. A new question version makes a new check version.
-- **Seal attempt opens when** all four hold: every lesson on the island is Explored, 24 hours have passed since the last first exploration, 24 hours have passed since the last flag practice or attempt, and the island is checked (section 2).
+- **Seal attempt opens when** all four hold: every lesson on the island is Explored, 24 hours have passed since the last first exploration, and 24 hours have passed since the last flag practice or attempt. "Explored" here means the lesson has a recorded reveal, so Understood lessons count (R-EXPLORED-INCLUDES-UNDERSTOOD). The sampled questions do *not* have to be due (R-SEAL-DUE). An island that is not fully checked still opens, with the label (R-SEAL-UNCHECKED).
 - **Seal is earned** with 5 or more correct out of 6. A seal credits only the lessons whose questions were actually answered. It never marks all 12 (or all 25) as Understood.
 - **Copy.** "Seal attempt opens tomorrow" only when the opening time falls on the learner's next local date. Otherwise show the true date and time. Once open, show "Seal attempt ready".
 - **No pressure.** No streak, countdown, lock on the next island, score or claim of mastery.
@@ -95,7 +95,7 @@ No milestone's maker starts until analytics-steward has registered that mileston
 
 **The holdout design.** We will not judge "learners who open the World" against "feed-only learners". People who choose to open a map differ from people who don't, so that comparison says nothing about cause. The design:
 - **Causal (L1, L2, L4): EXP-009's assignment-based study.** Consented adults, assigned 1:1 to "World offered" or "feed only" *before* exposure, analysed by intention to treat, same lessons and versions in both arms. L4 adds a third arm, or a second registered study, with "World with states, no seals" as control.
-- **Live holdout: only with the founder's O2 decision** (`company/product/surface-value.md`, "No live comparison group unless the founder decides one"). If the founder decides one: a stable per-device 1:1 assignment of the World entry point (shown or not shown), new devices only, assigned before first view, analysed by intention to treat. Until then every live number is a before/after description, never a cause.
+- **Live holdout: not now** (founder, F4, 2026-10-28: "Not yet (Rec.)"). It would need a new founder O2 decision (`company/product/surface-value.md`, "No live comparison group unless the founder decides one"). If the founder decides one: a stable per-device 1:1 assignment of the World entry point (shown or not shown), new devices only, assigned before first view, analysed by intention to treat. Until then every live number is a before/after description, never a cause.
 - **Descriptive slice (allowed now, labelled as such):** World-opening devices against feed-only devices. It is reported to the WBR as description, with the selection caveat printed beside it. It is never a pass or a fail.
 - **Blocker for all of L1 to L4.** The beacon today has no participant link, and `REGISTERED_EXPERIMENTS` is empty (EXP-009, "Minimum instrumentation"). No learning prediction can be judged until privacy-reviewer and backend approve the instruments. The milestones below are judged on the check predictions in section 5, which do not need learner data.
 
@@ -120,6 +120,8 @@ Each milestone has the same shape: registered predictions, then one warm maker, 
 - **Exit.** Evaluation-steward's record. Product does not sign it.
 
 ### M1: State model, list view, player hookup
+
+- **When (founder, F3).** Built now, on a branch, while M0 runs. Released only once `npm run check` is green, or on the founder's explicit release of M1, and every deploy still needs the founder's approval of that deploy. Before the maker starts: analytics-steward's registration and QA's table with the section 10 rulings applied.
 
 - **Build:**
   - the pure state, qualifying-recall and suggested-next functions of section 3, with no `now` argument in the state function (EDD-018 §3);
@@ -202,7 +204,7 @@ Each milestone has the same shape: registered predictions, then one warm maker, 
 ## 6. Cost target and stop rule
 
 - **Target and pause.** $60 per milestone (M1 to M4) for the maker and its checks, pausing at $120 (2×). The proposed total is $240. M0 is company remediation and is not charged here.
-- **This is a change.** The founder's record set $60 *end to end*, with a pause at $120. Per-milestone targets need the founder's yes (section 9, question F1). Until then, the end-to-end line binds.
+- **Founder's yes, F1 (2026-10-28):** "$60 per milestone (Rec.)". This replaces the founder record's $60 end to end.
 - **How it is measured.** No live dollar tool exists, and the founder said "don't worry about tokens". So the stop rule uses whichever of these is available:
   - (a) dollars, where the harness shows them for a dispatch;
   - (b) otherwise sessions. Each milestone plans at most 3 maker sessions and at most 2 check rounds. It pauses at the 7th maker session or the 3rd failed check round, whichever comes first.
@@ -221,21 +223,51 @@ Each milestone has the same shape: registered predictions, then one warm maker, 
   - **Answered (accepted), 2026-10-28, principal-engineer: EDD-018 Addendum A.** §6's reason was parallel building, and the milestones run one after another, so personalization-engineer is the one maker for M1 to M4. The other owners review once at the end (A2). M1 and M3 are tier 2. Stop rule (A4): if backend-engineer's review of the account part fails twice in one milestone, backend-engineer becomes that part's maker, and the milestone record says why.
   - **Its finding A3**, a conflict in this brief between new recall fields and "no new account fields": head-of-product chose option (b), additive columns. The reason is in M1. W-2154.
 - **O2 (product, to the founder):** Unchecked content plus delayed recall can make wrong facts stick. *Product's answer:* the seal-only-on-checked-islands rule (section 2), and Unchecked shown beside every state. The founder may prefer states to show only on checked lessons. That is question F2.
+  - **Decided by the founder, 2026-10-28, against product's recommendation:** "Seals everywhere, labelled". The objection is not withdrawn. A seal on an unchecked island can reward remembering a wrong fact, and the label tells the learner that but does not stop it.
+  - What product does with it: the label rule (R-SEAL-UNCHECKED). Then L4's guardrail, if EXP-009's instruments ever exist, is read separately for checked and unchecked islands. And at each M3 WBR, product reports how many seals were earned on islands that have a disputed or corrected claim.
+  - It reopens if a fact-check finds a wrong claim in a lesson that a seal credited. Product then asks the founder again.
 - **O3 (from EXP-009, carried):** A large consented study may cost more than the feature. *Answer stays EXP-009's:* the study is a design, not a spend. Until it runs, the World's learning claim is unmeasured, and nothing in copy, the WBR or a launch record says otherwise.
 
 ## 9. Questions for the founder
 
-- **F1.** Is the cost target $60 per milestone with a pause at $120, or does the $60 end-to-end line stand?
-- **F2.** The seal rule: seals only on islands where every lesson is Published with verified claims, and Understood states shown with the Unchecked label. Or should states also be held back on unchecked lessons?
-- **F3.** Green checks before M1 (783 errors today): keep it as the precondition, or allow M1 to be built on a branch, unmerged, while M0 runs?
-- **F4.** O2: do you want a live 1:1 holdout of the World entry point, or EXP-009's consented study only?
+- **F1.** Is the cost target $60 per milestone with a pause at $120, or does the $60 end-to-end line stand? **Answer: "$60 per milestone (Rec.)".**
+- **F2.** The seal rule: seals only on islands where every lesson is Published with verified claims, and Understood states shown with the Unchecked label. Or should states also be held back on unchecked lessons? **Answer: "Seals everywhere, labelled"** (overrides product's recommendation; O2).
+- **F3.** Green checks before M1 (783 errors today): keep it as the precondition, or allow M1 to be built on a branch, unmerged, while M0 runs? **Answer: "Yes, build M1 now (Rec.)".** M1 is built on a branch and released only once checks are green, or on the founder's explicit release of it.
+- **F4.** O2: do you want a live 1:1 holdout of the World entry point, or EXP-009's consented study only? **Answer: "Not yet (Rec.)".** No holdout. Live numbers stay descriptive.
 
 ## How to tell a line here has stopped being true
 
 | Line | Stops being true when |
 |---|---|
 | Section 2's counts | `npm run company -- status` and `npm run check` show other numbers |
-| The seal rule | Any island offers a seal while one of its lessons is Draft, In review or has an unverified claim |
+| The seal label | A seal on an island that is not fully checked shows without the "unchecked content" label |
 | 3.2 | Any Understood state rests on a recall under 24 hours, on practice, or on an old-version question |
 | 3.3 | A flag on any island has other than 6 questions, or the QA median goes over 3 minutes |
 | Section 4 | Any milestone's maker starts before analytics-steward's registration commit |
+| Section 10 | QA's M1 table or the M1 code reads one of the five lines differently |
+
+## 10. Rulings on QA's M1 table (head-of-product, 2026-10-28)
+
+QA's table is PR #42: `tests/world/fixtures/m1-histories.json`, 50 histories and 195 cases, pinned by sha256. It names five readings the brief left open. These rulings govern.
+- Four agree with the table.
+- R-LEGACY-QV adds one condition. That condition changes no existing row: no history in the table has a null-`qv` recall followed by a question change. QA adds rows for it in a new dated file, before the maker starts.
+
+- **R-LEGACY-QV: yes, with a condition.** Once engineering's writer proof (3.2 rule 6) exists, a null-`qv` recall counts as the question version that is current when M1 is released. Engineering pins that version per lesson in the M1 record. The condition:
+  - It stops counting once that lesson's question changes after M1 (rule 3).
+  - It never counts if the question changed after the record's time but before M1. Engineering lists those lessons from the question history; the 2026-10-26 recall audit changed three.
+  - *Reason:* a null `qv` means "whatever the question was then". It can stand for the current version only while nothing changed after it.
+- **R-MERGE-FIRST: yes, as the table says.** The first reveal is the earliest `completedAt` on any of the learner's devices. A merge keeps the earliest and never the latest. *Reason:* the 24-hour gap measures time since first seeing the answer, and that starts on whichever device came first.
+- **R-EXPLORED-INCLUDES-UNDERSTOOD: yes, as the table says.** "Every lesson Explored" for a seal attempt means every lesson has a recorded reveal, whether it shows Explored or Understood. *Reason:* otherwise learning more would close the seal.
+- **R-SEAL-DUE: the brief governs, as the table says.** A seal attempt does not require the sampled questions to be due. Its own waits are enough: 24 hours after the last first exploration and after the last practice, plus rule 3.2's 24-hour gap per answer. A seal answer qualifies as a recall under 3.2 rule 1(b) whether or not the lesson is due.
+  - *Reason:* with a due condition, 3.4's branch 2 (a due revisit) always wins first, so branch 4 is never reached. And after four correct recalls, `revisitDue` is false for good, so a learner who knows the island well could never attempt its seal.
+  - EDD-018 §3's sentence "and due eligibility for all sampled original questions" needs amending to match. EDD-018 is principal-engineer's record, so the amendment is routed on the board, not edited here.
+- **R-SEAL-UNCHECKED: the F2 label rule, for M3 (no M1 case).**
+  - **Fully checked** means: every lesson on the island is Published, has all its claims verified and passes its current gate in `npm run check`. Number Island is not fully checked today: 11 of its 12 lessons fail on stale reviews.
+  - **Where the label goes.** On an island that is not fully checked, three places carry it:
+    - the seal-attempt screen, before the first question: "Some of this island's lessons haven't been checked yet. A seal shows you remembered them, not that they are correct.";
+    - the earned seal: "Seal · unchecked content";
+    - the island header, beside the seal.
+  - **Freezing.** The label is set when the seal is earned, together with the check version. It stays on that seal even if the island is checked later. A seal earned after the island is fully checked has no label.
+  - **Same rules otherwise.** A labelled seal gives the same credit under the same rules. The label is never hidden by a setting.
+  - **M3's table** must include islands of both kinds, and an island that becomes fully checked between two seals.
+

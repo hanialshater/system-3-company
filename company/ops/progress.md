@@ -1,3 +1,9 @@
+## 2026-10-28 · head-of-product · World brief: founder F1-F4 recorded, five M1 table rulings
+
+company/product/2026-10-28-world-brief.md now records the founder's answers: F1 $60 per milestone; F2 seals on every island, labelled "unchecked content" (overrides product's recommendation; objection O2 kept and travels); F3 build M1 now on a branch, release only on green checks or the founder's explicit release; F4 no holdout. New §10 rules on QA's M1 table (PR #42): R-LEGACY-QV yes with a condition (adds rows, changes none), R-MERGE-FIRST yes, R-EXPLORED-INCLUDES-UNDERSTOOD yes, R-SEAL-DUE the brief governs (no due condition), R-SEAL-UNCHECKED label rule for M3. Board: W-2177 principal-engineer (amend EDD-018 §3), W-2178 qa-tester (new rows).
+
+Believe (fairly sure): the table needs only added rows, not a rewrite. Next: W-2177, W-2178, analytics-steward's registration, then the M1 maker. Blocked: nothing new.
+
 ## 2026-10-28 · integration engineer · main and the default branch unified; every open PR merged; history pushed to system3-lessons
 
 - **Changed:** `integrate/all` (from origin/main 8258c150f) merges the default branch `ccr-4c6c7654-ew9ko1` (the Lessons World, r24) as a normal merge (d4ed88319), then every open PR in the founder's order: #41, #35, #42 (added by the coordinator, after #35 in intent; merged after #20), #26, #34, #38, #32, #33, #40, #30, #31, #37, #20, and #39 last, twice (f8c6d33ad, then the release manager's records 80ebdf847, so main holds r25's live production commit). Founder's words: "We need to merge (check lessons later not now) all system 3 company prs, then move fully to system 3 lessons"; on AMD-019 "Yes, ratify and merge (Rec.)"; on the move "Push history, then you relink Vercel (Rec.)".
