@@ -1,3 +1,9 @@
+## 2026-10-28 — All-lessons world inspection ready
+
+Founder reprioritized coverage and unchecked inspection over whole-company cleanup. Integrated all2097 actual new lesson PR additions for3742 unique world stops across156 islands, preserving720 Published/234 Review/2788 Draft. App2ff4748e9, build y54lbicpjgyppu2w1Kq9a passed; independent source, ops and built-browser checks approved scoped inspection. Final stage-swipe/44px/label fixes and exact Map/List return rechecked. Source/build/QA/ops records are in company/engineering/readiness/*world-inspection*; durable screenshots in company/design/previews/2026-10-28-lessons-world/.
+
+Broad content findings remain unresolved and preserved; no lesson status promoted. PR20 lab prototype and PR26 proposed deploy amendment excluded. Stacked PR board IDs remapped explicitly in company/ops/delivery/2026-10-27-world-inspection-board-remap.json. Next: normal Git merge publication of10 lesson PRs, then release-manager one authorized inspection-branch marker attempt and actual hosted receipt; active network still blocks Vercel/API calls. No hosted availability claimed.
+
 ## 2026-10-26 · final source batch · 100 drafts and recall audit
 
 Implemented the last 100 probability-list entries. The complete stack covers all 500 behavioral and 1,000 probability IDs exactly once. Bounded finite illustrations do not certify the richer suggested simulator, historical claim, learning benefit or novelty. All 1,500 lessons remain drafts with unverified claims and empty evidence.
