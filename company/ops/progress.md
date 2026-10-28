@@ -1,6 +1,6 @@
 ## 2026-10-28 · chief-of-staff · organic structure and reaction drafts
 
-- **Changed:** Added 24 condensed-structure comparison exercises to the 30 reaction exercises and two prototypes in PR 31: 56 draft entries toward the requested 150. The 24 share a comparison renderer; the 30 share a reaction renderer. They are related practice, not 54 independently designed simulations. W-2120 is doing; 94 entries remain.
+- **Changed:** Added 24 condensed-structure comparison exercises to the 30 reaction exercises and two prototypes in PR 31: 56 draft entries toward the requested 150. The 24 share a comparison renderer; the 30 share a reaction renderer. They are related practice, not 54 independently designed simulations. W-2165 is doing; 94 entries remain.
 - **Checks:** Four targeted tests pass: structural valence and answer mappings for the 54, selected regioselectivity fixtures, formula relations and representative isomer classifications. `npm run check` is at 810 errors and 5 warnings; `npm run verify` stops at two existing publication-readiness tests. TypeScript is running. An attempted browser contract run could not launch Chromium due missing browser components and a socket permission error; no new browser checks passed.
 - **Believe:** The figures are schematic connectivity models, not molecular geometry or mechanistic simulations. Chemistry claims are source-linked and unverified. Independent science, pedagogy, accessibility, overlap, strict phone fit and human-learner reviews remain outstanding.
 - **Next:** Finish the remaining 94 with diverse visual models; rerun browser QA in a working environment and route independent review.
@@ -8,7 +8,7 @@
 
 ## 2026-10-28 · chief-of-staff · organic reaction practice tranche
 
-- **Changed:** Added 30 draft organic reaction exercises under the existing chemistry category in PR 31, alongside the first two prototypes. They share one condensed-structure comparison renderer and are related product-prediction practice, not 30 independently designed simulations. W-2120 covers the rest; 118 requested entries remain.
+- **Changed:** Added 30 draft organic reaction exercises under the existing chemistry category in PR 31, alongside the first two prototypes. They share one condensed-structure comparison renderer and are related product-prediction practice, not 30 independently designed simulations. W-2165 covers the rest; 118 requested entries remain.
 - **Checks:** Graph valence and answer-mapping fixtures pass for all 30; paired regioselectivity and oxidation/reduction fixtures pass. `npm run check` is at 810 errors and 5 warnings; `npm run verify` stops at two existing publication-readiness tests. TypeScript and browser QA are in progress.
 - **Believe:** The diagrams illustrate connectivity, not spatial geometry or reaction mechanisms. Claims are source-linked and unverified. Scientific accuracy, accessibility, learning effectiveness, overlap and strict phone fit need independent review.
 - **Next:** Finish browser QA, resolve visual/scientific findings, build the remaining 118 distinct lessons, and route independent review.
@@ -16,7 +16,7 @@
 
 ## 2026-10-28 · chief-of-staff · organic chemistry request, prototype tranche
 
-- **Changed:** Began the founder's request for 150 highly visual organic chemistry lessons. Added two drafts: a rotatable Newman projection of ethane and a stepwise SN2 schematic. Both are in the chemistry curriculum and have source-linked, unverified claims. W-2120 tracks the remaining 148.
+- **Changed:** Began the founder's request for 150 highly visual organic chemistry lessons. Added two drafts: a rotatable Newman projection of ethane and a stepwise SN2 schematic. Both are in the chemistry curriculum and have source-linked, unverified claims. W-2165 tracks the remaining 148.
 - **Checks:** TypeScript passed; the production build compiled and completed before a final copy-only clarification to the SN2 reveal. `npm run check` reported 2,310 errors and five warnings, none naming the new lessons; `npm run verify` stops at two publication-readiness tests. The existing interaction contract passed for both lessons on phone and desktop (4/4); the builder inspected phone reveal screenshots. The strict 390 × 844 fit and independent accessibility review remain open.
 - **Believe:** These are prototypes, not independently validated lessons. The SN2 drawing represents only two of the three spectator bonds and the molecule diagrams are schematic. Scientific, accessibility, pedagogy, overlap and human-learner reviews remain outstanding.
 - **Next:** Complete the remaining 148 with genuinely distinct concepts and visual interactions; route independent science, pedagogy and accessibility review for all drafts. Do not publish on builder checks alone.
