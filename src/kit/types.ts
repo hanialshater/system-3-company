@@ -16,7 +16,8 @@ export type DomainId =
   | "big-ideas"
   | "history"
   | "behavioral"
-  | "psychology";
+  | "psychology"
+  | "games";
 
 export type DemoStatus = "draft" | "review" | "published" | "retired";
 

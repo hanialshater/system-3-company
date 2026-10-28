@@ -1,0 +1,74 @@
+{
+  "slug": "game-machine-parts-quick",
+  "title": "Human Machine · Quick round",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "machine-parts",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Human Machine · Quick round with friends.",
+  "claims": [
+    {
+      "id": "games.game-machine-parts-quick.c1",
+      "text": "Original house rules: Think of a familiar machine such as a fan or washing machine. The lead silently repeats one motion that suggests how the machine works. The others identify the machine. Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-machine-parts-quick.c2",
+      "text": "For this version: 2–8 players; materials: A timer.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Human Machine, what counts as a successful turn?",
+    "options": [
+      "The others identify the machine.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "The others identify the machine."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "machine-parts",
+    "format": "quick",
+    "family": "mime",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "A timer"
+  }
+}

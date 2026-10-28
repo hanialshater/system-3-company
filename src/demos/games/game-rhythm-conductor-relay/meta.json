@@ -1,0 +1,70 @@
+{
+  "slug": "game-rhythm-conductor-relay",
+  "title": "Rhythm Conductor · Pair relay",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "rhythm-conductor",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Rhythm Conductor · Pair relay with friends.",
+  "claims": [
+    {
+      "id": "games.game-rhythm-conductor-relay.c1",
+      "text": "Original house rules: Choose a four-beat pattern of claps and pauses and one partner. The lead silently signals each beat with a hand; the partner performs the agreed pattern in time. The partner completes the pattern with the lead's four signals. Form pairs. On each pair’s turn, both people make separate attempts with fresh challenges, helping only their partner. The pair earns one point only if both succeed. Each pair has two turns. Highest score wins.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-rhythm-conductor-relay.c2",
+      "text": "For this version: 4, 6 or 8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Rhythm Conductor, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "The partner completes the pattern with the lead's four signals."
+    ],
+    "answer": 2,
+    "why": "The partner completes the pattern with the lead's four signals."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "rhythm-conductor",
+    "format": "relay",
+    "family": "rhythm",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      6,
+      8
+    ],
+    "materials": "None"
+  }
+}

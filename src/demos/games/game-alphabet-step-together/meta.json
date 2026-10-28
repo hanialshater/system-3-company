@@ -1,0 +1,74 @@
+{
+  "slug": "game-alphabet-step-together",
+  "title": "Alphabet Step · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "alphabet-step",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Alphabet Step · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-alphabet-step-together.c1",
+      "text": "Original house rules: Choose a broad category and three consecutive letters. The lead names one category item beginning with each letter in order. All three items fit and use the required initial letters. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-alphabet-step-together.c2",
+      "text": "For this version: 2–8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Alphabet Step, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "All three items fit and use the required initial letters.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "All three items fit and use the required initial letters."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "alphabet-step",
+    "format": "together",
+    "family": "words",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "None"
+  }
+}

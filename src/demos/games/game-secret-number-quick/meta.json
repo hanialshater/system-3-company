@@ -1,0 +1,74 @@
+{
+  "slug": "game-secret-number-quick",
+  "title": "Secret Number · Quick round",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "secret-number",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Secret Number · Quick round with friends.",
+  "claims": [
+    {
+      "id": "games.game-secret-number-quick.c1",
+      "text": "Original house rules: The lead writes a whole number from 1 to 10 without showing it. The others make up to four guesses; after each, the lead says higher, lower or correct. The group guesses the number within four guesses. Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-secret-number-quick.c2",
+      "text": "For this version: 2–8 players; materials: Paper and pencil; a timer.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Secret Number, what counts as a successful turn?",
+    "options": [
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays.",
+      "The group guesses the number within four guesses."
+    ],
+    "answer": 2,
+    "why": "The group guesses the number within four guesses."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "secret-number",
+    "format": "quick",
+    "family": "detective",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Paper and pencil; a timer"
+  }
+}

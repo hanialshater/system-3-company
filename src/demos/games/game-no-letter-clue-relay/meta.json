@@ -1,0 +1,70 @@
+{
+  "slug": "game-no-letter-clue-relay",
+  "title": "No-Letter Clue · Pair relay",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "no-letter-clue",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play No-Letter Clue · Pair relay with friends.",
+  "claims": [
+    {
+      "id": "games.game-no-letter-clue-relay.c1",
+      "text": "Original house rules: Choose a familiar object and a letter it contains. The lead describes the object without using that letter in the spoken clue; the others guess it. The group guesses and the clue avoids the selected letter. Form pairs. On each pair’s turn, both people make separate attempts with fresh challenges, helping only their partner. The pair earns one point only if both succeed. Each pair has two turns. Highest score wins.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-no-letter-clue-relay.c2",
+      "text": "For this version: 4, 6 or 8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In No-Letter Clue, what counts as a successful turn?",
+    "options": [
+      "The group guesses and the clue avoids the selected letter.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "The group guesses and the clue avoids the selected letter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "no-letter-clue",
+    "format": "relay",
+    "family": "words",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      6,
+      8
+    ],
+    "materials": "None"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "slug": "game-story-details-relay",
+  "title": "Story Details · Pair relay",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "story-details",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Story Details · Pair relay with friends.",
+  "claims": [
+    {
+      "id": "games.game-story-details-relay.c1",
+      "text": "Original house rules: A partner makes up a one-sentence story with three concrete details. The partner tells the story once; the lead recalls the three details. All three details match the story. Form pairs. On each pair’s turn, both people make separate attempts with fresh challenges, helping only their partner. The pair earns one point only if both succeed. Each pair has two turns. Highest score wins.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-story-details-relay.c2",
+      "text": "For this version: 4, 6 or 8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Story Details, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "All three details match the story.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "All three details match the story."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "story-details",
+    "format": "relay",
+    "family": "memory",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      6,
+      8
+    ],
+    "materials": "None"
+  }
+}

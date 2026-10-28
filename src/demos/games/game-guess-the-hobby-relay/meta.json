@@ -1,0 +1,70 @@
+{
+  "slug": "game-guess-the-hobby-relay",
+  "title": "Guess the Hobby · Pair relay",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "guess-the-hobby",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Guess the Hobby · Pair relay with friends.",
+  "claims": [
+    {
+      "id": "games.game-guess-the-hobby-relay.c1",
+      "text": "Original house rules: Write familiar hobbies on slips. The lead silently acts out a selected hobby using imaginary equipment. The others identify the hobby. Form pairs. On each pair’s turn, both people make separate attempts with fresh challenges, helping only their partner. The pair earns one point only if both succeed. Each pair has two turns. Highest score wins.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-guess-the-hobby-relay.c2",
+      "text": "For this version: 4, 6 or 8 players; materials: Paper and pencil.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Guess the Hobby, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The others identify the hobby.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The others identify the hobby."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "guess-the-hobby",
+    "format": "relay",
+    "family": "mime",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      6,
+      8
+    ],
+    "materials": "Paper and pencil"
+  }
+}

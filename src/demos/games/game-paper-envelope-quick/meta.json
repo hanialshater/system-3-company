@@ -1,0 +1,74 @@
+{
+  "slug": "game-paper-envelope-quick",
+  "title": "Paper Envelope · Quick round",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "paper-envelope",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Paper Envelope · Quick round with friends.",
+  "claims": [
+    {
+      "id": "games.game-paper-envelope-quick.c1",
+      "text": "Original house rules: Give the lead one sheet and a small folded note made from a second sheet. The lead folds the sheet into a pocket around the note without cutting or tape. The note stays inside the pocket when held upright for five seconds. Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-paper-envelope-quick.c2",
+      "text": "For this version: 2–8 players; materials: Two sheets of paper; a timer.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Paper Envelope, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The note stays inside the pocket when held upright for five seconds.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The note stays inside the pocket when held upright for five seconds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "paper-envelope",
+    "format": "quick",
+    "family": "paper",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Two sheets of paper; a timer"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "slug": "game-surface-comparison-relay",
+  "title": "Surface Comparison · Pair relay",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "surface-comparison",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Surface Comparison · Pair relay with friends.",
+  "claims": [
+    {
+      "id": "games.game-surface-comparison-relay.c1",
+      "text": "Original house rules: Place two objects with visibly different surfaces on a table. The lead describes one visible difference without picking them up. The group agrees the stated difference is visible on both objects. Form pairs. On each pair’s turn, both people make separate attempts with fresh challenges, helping only their partner. The pair earns one point only if both succeed. Each pair has two turns. Highest score wins.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-surface-comparison-relay.c2",
+      "text": "For this version: 4, 6 or 8 players; materials: Two household objects.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Surface Comparison, what counts as a successful turn?",
+    "options": [
+      "The group agrees the stated difference is visible on both objects.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "The group agrees the stated difference is visible on both objects."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "surface-comparison",
+    "format": "relay",
+    "family": "observation",
+    "minPlayers": 4,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      4,
+      6,
+      8
+    ],
+    "materials": "Two household objects"
+  }
+}

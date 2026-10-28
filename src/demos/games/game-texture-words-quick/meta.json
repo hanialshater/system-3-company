@@ -1,0 +1,74 @@
+{
+  "slug": "game-texture-words-quick",
+  "title": "Texture Words · Quick round",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "texture-words",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Texture Words · Quick round with friends.",
+  "claims": [
+    {
+      "id": "games.game-texture-words-quick.c1",
+      "text": "Original house rules: Choose one ordinary object visible to everyone. The lead describes two visible texture features without naming the object; the group guesses. The group identifies the object and can see the described features. Give each attempt 30 seconds. Each player leads two turns and earns one point per success. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-texture-words-quick.c2",
+      "text": "For this version: 2–8 players; materials: One household object; a timer.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Texture Words, what counts as a successful turn?",
+    "options": [
+      "The group identifies the object and can see the described features.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "The group identifies the object and can see the described features."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "texture-words",
+    "format": "quick",
+    "family": "observation",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "One household object; a timer"
+  }
+}

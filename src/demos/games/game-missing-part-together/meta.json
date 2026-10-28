@@ -1,0 +1,74 @@
+{
+  "slug": "game-missing-part-together",
+  "title": "Missing Part · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "missing-part",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Missing Part · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-missing-part-together.c1",
+      "text": "Original house rules: Choose a simple familiar object with several parts. The lead draws the object but deliberately leaves out one distinctive part. Another player names both the object and the missing part. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-missing-part-together.c2",
+      "text": "For this version: 2–8 players; materials: Paper and pencil.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Missing Part, what counts as a successful turn?",
+    "options": [
+      "Another player names both the object and the missing part.",
+      "The lead skips the turn without attempting it.",
+      "The group ends the round before anyone plays."
+    ],
+    "answer": 0,
+    "why": "Another player names both the object and the missing part."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "missing-part",
+    "format": "together",
+    "family": "drawing",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Paper and pencil"
+  }
+}

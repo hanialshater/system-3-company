@@ -1,0 +1,74 @@
+{
+  "slug": "game-shared-riddle-together",
+  "title": "Shared Riddle · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "shared-riddle",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Shared Riddle · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-shared-riddle-together.c1",
+      "text": "Original house rules: Choose two players and a familiar object. The pair takes turns giving one truthful clue each without naming the object. The group identifies the intended object from the two clues. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-shared-riddle-together.c2",
+      "text": "For this version: 2–8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Shared Riddle, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The group identifies the intended object from the two clues.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The group identifies the intended object from the two clues."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "shared-riddle",
+    "format": "together",
+    "family": "team",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "None"
+  }
+}

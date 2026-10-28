@@ -54,6 +54,7 @@ export default function Catalog() {
                 <span className="tag domain">{d.short}</span> {d.name}
                 {d.status !== "active" && <span className="tag status">{d.status}</span>}
               </h2>
+              {d.id === "games" && <p><Link href="/games" className="concept-lesson">Browse games by group and materials →</Link></p>}
               {d.id === "history" && <p><Link href="/history" className="concept-lesson">Explore interactive history map stories →</Link></p>}
               {/* Algorithms (decision company/decisions/2026-10-16-pr6-catalog-algorithms-section.md R1-R5):
                   only visible lessons; no planned titles or counts; nothing when none is visible. */}
@@ -88,7 +89,7 @@ export default function Catalog() {
                 </section>;
               })()}
               <ul className="concepts">
-                {concepts.filter((c) => d.id !== "cs" || !groupedConcepts.has(c.id)).map((c) => {
+                {concepts.filter((c) => d.id !== "games" && (d.id !== "cs" || !groupedConcepts.has(c.id))).map((c) => {
                   const ls = lessons.filter((l) => l.concept === c.id && (d.id !== "cs" || !groupedSlugs.has(l.slug)));
                   return (
                     <li key={c.id} className={ls.length ? "has" : "unmet"}>

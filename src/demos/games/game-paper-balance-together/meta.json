@@ -1,0 +1,74 @@
+{
+  "slug": "game-paper-balance-together",
+  "title": "Paper Balance · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "paper-balance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Paper Balance · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-paper-balance-together.c1",
+      "text": "Original house rules: Give the lead a sheet of paper and a flat table. The lead folds the paper so it balances upright on the table. The folded paper remains upright without support for five seconds. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-paper-balance-together.c2",
+      "text": "For this version: 2–8 players; materials: One sheet of paper.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Paper Balance, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The folded paper remains upright without support for five seconds.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The folded paper remains upright without support for five seconds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "paper-balance",
+    "format": "together",
+    "family": "paper",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "One sheet of paper"
+  }
+}

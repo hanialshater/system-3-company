@@ -28,6 +28,13 @@
 - **Believe:** These are prototypes, not independently validated lessons. The SN2 drawing represents only two of the three spectator bonds and the molecule diagrams are schematic. Scientific, accessibility, pedagogy, overlap and human-learner reviews remain outstanding.
 - **Next:** Complete the remaining 148 with genuinely distinct concepts and visual interactions; route independent science, pedagogy and accessibility review for all drafts. Do not publish on builder checks alone.
 - **Blocked:** Full verification by repository publication-readiness failures. No deployment was requested or performed.
+## 2026-10-28 · chief-of-staff · home-games category, first 200 base activities
+
+- **Changed:** Added an incubating `games` category, owned by the existing cm-lifehacks role, with a searchable `/games` browser, direct illustrated instruction pages, feed entries and a 200-concept curriculum. The 1,000 entries are 200 base activities in five labeled group/scoring formats; they are not 1,000 independent games. SVG illustrations share ten visual families, with some paper-game-specific props. The instructions are original house-rule proposals and remain draft/unverified.
+- **Checks:** Five data and rule-structure tests and a 4 GB-heap TypeScript check pass. The unchanged browser lesson contract passed 20/20 checks for ten representative feed components in a lightweight harness; the catalogue search, group-size and materials filters passed a phone-width harness; the actual Paper Tower guide component rendered and fit mobile width. The production frame, routing and all other entries were not tested. `npm run check` has the recorded 810 errors and five warnings; `npm run verify` stops at two pre-existing readiness failures.
+- **Believe:** Medium confidence in catalog navigation and the sampled interactions; low-to-medium confidence in the playability and picture-to-instruction fit of all entries without independent human playtests. Shared SVGs are illustrative and not 200 bespoke WikiHow-style step sequences. No scientific, accessibility, safety or learner review has been claimed.
+- **Next:** W-2166: expand to 1,000 independently distinct base games. W-2167: independent playability, duplication, accessibility, safety and visual review. W-2168: production build, full-app QA and mobile fit when the host guard permits. Reconcile domain/registry and board records with other open category PRs.
+- **Blocked:** Host free space is under 1 GB, below the operating loop's 10 GB new-build guard. No production build or full-app QA was run; none of the entries is cleared for publication.
 
 ## 2026-10-28 · chief-of-staff · visual chemistry and biology batch, 500 of 500 drafted
 

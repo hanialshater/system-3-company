@@ -1,0 +1,74 @@
+{
+  "slug": "game-paper-target-classic",
+  "title": "Paper Target · Classic",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "paper-target",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Paper Target · Classic with friends.",
+  "claims": [
+    {
+      "id": "games.game-paper-target-classic.c1",
+      "text": "Original house rules: Draw three nested circles on a sheet and place it flat on the table. The lead gently slides a small paper ball from an agreed line toward the circles. The ball comes to rest inside the outer circle. Each player takes two turns. Give the lead one point for each successful turn. Highest score wins; ties are shared.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-paper-target-classic.c2",
+      "text": "For this version: 2–8 players; materials: Two sheets of paper and a pencil.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Paper Target, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The ball comes to rest inside the outer circle.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The ball comes to rest inside the outer circle."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "paper-target",
+    "format": "classic",
+    "family": "paper",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Two sheets of paper and a pencil"
+  }
+}

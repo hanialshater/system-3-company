@@ -1,0 +1,74 @@
+{
+  "slug": "game-mirror-gesture-together",
+  "title": "Mirror Gesture · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "mirror-gesture",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Mirror Gesture · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-mirror-gesture-together.c1",
+      "text": "Original house rules: Choose one player to lead and one to copy. The lead makes a sequence of three gentle gestures while the partner mirrors them. The partner copies all three gestures in order. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-mirror-gesture-together.c2",
+      "text": "For this version: 2–8 players; materials: None.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Mirror Gesture, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The partner copies all three gestures in order.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The partner copies all three gestures in order."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "mirror-gesture",
+    "format": "together",
+    "family": "mime",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "None"
+  }
+}

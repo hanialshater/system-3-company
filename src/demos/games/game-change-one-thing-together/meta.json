@@ -1,0 +1,74 @@
+{
+  "slug": "game-change-one-thing-together",
+  "title": "Change One Thing · Together",
+  "hook": "Find a game, gather your friends and start playing.",
+  "domain": "games",
+  "concept": "change-one-thing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "The group wants an activity to play together."
+    ],
+    "doesNotKnow": [
+      "The setup, turn and ending for this house-rule format."
+    ]
+  },
+  "misconception": "The group has to know a complicated rulebook before starting.",
+  "objective": "Learn how to play Change One Thing · Together with friends.",
+  "claims": [
+    {
+      "id": "games.game-change-one-thing-together.c1",
+      "text": "Original house rules: Arrange three objects and let the lead study them, then ask the lead to look away. A partner changes one object's position; the lead looks back and identifies the change. The lead identifies the moved object and its original position. Play eight turns in total, rotating the lead. The group wins together if at least five turns succeed.",
+      "support": "convention",
+      "source": "Original playable house-rule proposal; not an authoritative ruleset for a traditional game.",
+      "status": "unverified"
+    },
+    {
+      "id": "games.game-change-one-thing-together.c2",
+      "text": "For this version: 2–8 players; materials: Three household objects.",
+      "support": "convention",
+      "source": "Proposed setup and player range for this activity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Change One Thing, what counts as a successful turn?",
+    "options": [
+      "The group ends the round before anyone plays.",
+      "The lead identifies the moved object and its original position.",
+      "The lead skips the turn without attempting it."
+    ],
+    "answer": 1,
+    "why": "The lead identifies the moved object and its original position."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "game": {
+    "base": "change-one-thing",
+    "format": "together",
+    "family": "memory",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "allowedPlayers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "materials": "Three household objects"
+  }
+}
