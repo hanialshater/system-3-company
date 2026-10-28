@@ -17,4 +17,4 @@ The 100 questions are distinct, but they use ten shared schematic visual familie
 
 ## Pre-flight status
 
-Titles and choices received a builder pass for answer leakage; no formal independent copy check was run. The model interaction is the single retained milestone; there is no reset control. Stages, interactions and explanation length were exercised in the component harness, but full-app stage/reveal fit, meaningful scientific grounding of each scene, independent fact-check and learner evidence remain open. Every scientific claim is unverified. W-2120 and W-2121 track independent review and full-app checks.
+Titles and choices received a builder pass for answer leakage; no formal independent copy check was run. The model interaction is the single retained milestone; there is no reset control. Stages, interactions and explanation length were exercised in the component harness, but full-app stage/reveal fit, meaningful scientific grounding of each scene, independent fact-check and learner evidence remain open. Every scientific claim is unverified. W-2163 and W-2164 track independent review and full-app checks.
