@@ -27291,13 +27291,14 @@
       "id": "W-2121",
       "title": "Reconcile the default branch ccr-4c6c7654-ew9ko1 with main: main has 452 commits the default lacks (merge-base 60eaf60ac), including r22 and r23's sources (40b8bfbc1, 80c847c55). No deploy from either branch until one branch holds every released change (r24 record)",
       "owner": "chief-of-staff",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-28",
       "links": [
         "company/ops/deployments/2026-10-28-r24-production.json"
       ],
-      "note": "numbered after main's W-2119 so the main merge does not collide"
+      "note": "numbered after main's W-2119 so the main merge does not collide",
+      "updated": "2026-10-28"
     },
     {
       "id": "W-2122",
@@ -27543,6 +27544,33 @@
       ],
       "updated": "2026-10-25",
       "note": "Pilot deployed READY; live HTTP and A/B/rollback verified with unchanged host deployment. Full live browser recheck remains pending after test workspace became unavailable."
+    },
+    {
+      "id": "W-2174",
+      "title": "Founder: switch Vercel project system-3-company's Git connection to hanialshater/system3-lessons (production branch main), and set AMD-019 (d) there: production and preview-deploy environments with the founder as reviewer, VERCEL_TOKEN as an environment secret. Then the first deploy is a deploy.yml run the founder approves (AMD-019 prediction)",
+      "owner": "release-manager",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-28",
+      "links": []
+    },
+    {
+      "id": "W-2175",
+      "title": "Build memory at 5,254 lessons: npm run typecheck OOMs at Node's default 2 GB heap (passes at 4 GB); a local next build passes under 8 GB only with one page-data worker (peak RSS 7.5 GB, 3 workers are killed). Vercel's one-worker margin is thin: measure on the next deploy and decide (typecheck heap flag, worker count, or fewer statically generated pages)",
+      "owner": "principal-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-28",
+      "links": []
+    },
+    {
+      "id": "W-2176",
+      "title": "Check lessons later (founder 2026-10-28: not now): the unification merged 1,358 new draft lessons from the open PRs (3,896 lessons after the two lines, 5,254 after the PRs) (psychology, zoology, cosmology, organic chemistry, games) unreviewed; npm run check has 783 errors",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-28",
+      "links": []
     }
   ]
 }

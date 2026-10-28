@@ -1,3 +1,15 @@
+## 2026-10-28 · integration engineer · main and the default branch unified; every open PR merged; history pushed to system3-lessons
+
+- **Changed:** `integrate/all` (from origin/main 8258c150f) merges the default branch `ccr-4c6c7654-ew9ko1` (the Lessons World, r24) as a normal merge (d4ed88319), then every open PR in the founder's order: #41, #35, #42 (added by the coordinator, after #35 in intent; merged after #20), #26, #34, #38, #32, #33, #40, #30, #31, #37, #20, and #39 last, twice (f8c6d33ad, then the release manager's records 80ebdf847, so main holds r25's live production commit). Founder's words: "We need to merge (check lessons later not now) all system 3 company prs, then move fully to system 3 lessons"; on AMD-019 "Yes, ratify and merge (Rec.)"; on the move "Push history, then you relink Vercel (Rec.)".
+- **AMD-019 is ratified** (2026-10-28): status line, amendments index and company/decisions/2026-10-28-founder-ratify-amd019.md. `vercel.json` now has Git builds off; `vercel.json`, `.github/workflows/deploy.yml` and `.claude/settings.json` are protected. The AMD-015 objection travels: the flag-off withdrawal now waits for the founder's click on the deploy.yml run.
+- **Renames** (company/ops/delivery/2026-10-28-unification-renames.json): the default branch's board W-2026..W-2054 are W-2123..W-2151; its F-52 (r24 regression) is F-55; its EXP-009 (Lessons World) is EXP-011; PR #35's EXP-010 is EXP-012 and its W-2055..2058 are W-2152..2155; #34 W-2055..2058 -> W-2156..2159; #38 W-2123/2124 -> W-2160/2161; #32 W-2055 -> W-2162; #30 W-2120/2121 -> W-2163/2164; #31 W-2120 -> W-2165; #37 W-2122..2124 -> W-2166..2168; #20 W-2026..2030 -> W-2169..2173. Logs (this file, changelog.md, events.jsonl) keep the ids as written: read a line dated before today through the map. tests/world/fixtures/ (#42) is byte for byte; it says EXP-010 for EXP-012.
+- **Lessons:** union, statuses untouched: 5,254 lessons (721 published, 234 review, 4,299 draft). Nothing published, nothing demoted; every draft PR's lessons are drafts.
+- **Code:** main's r22/r23 (Next 16.4.3, the cube lesson, the lesson-frames pilot flag) and the World; r25's build-memory fix kept (tsc before next build with a 4 GB heap, `typescript.ignoreBuildErrors`). #20: main's newer content-hub code kept (spike/build.mjs is main's; production path stays lesson frames); the PR adds only src/lab/content-hub/ and its R&D records. #37 + #38: both new domains (games, psychology), incubating.
+- **Checks:** `npm run check` 810 errors on main before, 783 after (5 warnings both). `npm run typecheck` passes with a 4 GB heap; at Node's default heap it runs out of memory (W-2175). `npm run build` under an 8 GB memory cgroup: passes with one page-data worker (Vercel's setting; peak RSS 7.5 GB), killed with this host's three workers. Feed spec (tests/qa/feed.spec.ts): 10/10 on the build before #39 (r25 changed build config and records only).
+- **Believe:** high that no record or lesson was lost (id unions checked, no duplicate ids, every lesson's status equals one parent's). Medium on id references inside prose: the default branch's own earlier remap (2026-10-27) left its log text on older numbers, so default-branch log ids were already unreliable before today.
+- **Next:** the founder switches Vercel's Git connection to hanialshater/system3-lessons (W-2174); W-2175 build memory; W-2176 check lessons later. W-2121 done.
+- **Blocked:** nothing in this repository. No deploy was made or triggered; no commit message here carries the deploy marker.
+
 ## 2026-10-28 · chief-of-staff · 100 visual cosmology drafts
 
 - **Changed:** Added 100 unique cosmology questions as physics drafts, in ten strands of ten: scales, light, expansion, early universe, CMB, dark matter, dark energy, structure, stars and evidence. Ten reusable SVG scene families include a projected 3D cosmic web and specialized spectra, rotation/lensing and stellar-remnant views. They are schematic two-state models, not 100 bespoke simulations. Curriculum and registry were regenerated on main `8258c150f` after rebasing over the earlier science batches.
@@ -5,6 +17,7 @@
 - **Believe:** Medium confidence in basic interactions and selected answer mappings; source claims remain unverified. The reusable illustrations vary in how directly they show a lesson's causal explanation; scientific accuracy, overlap, visual pedagogy, accessibility, strict phone fit and learner value require independent review. No human-learner evidence is claimed.
 - **Next:** W-2163: independent scientific, overlap, design and accessibility review. W-2164: production build, full-app QA and 390×844 reveal-fit checks once the operating-loop host guard permits. Record per-lesson pre-flights before seeking publication.
 - **Blocked:** Host free space remained below the operating loop's 10 GB new-build guard after narrowly scoped cleanup. An automatic review rejected blanket removal of old generated build directories. The full build and production-app QA were not run; none of the drafts is cleared for publication.
+
 ## 2026-10-28 · chief-of-staff · organic structure and reaction drafts
 
 - **Changed:** Added 24 condensed-structure comparison exercises to the 30 reaction exercises and two prototypes in PR 31: 56 draft entries toward the requested 150. The 24 share a comparison renderer; the 30 share a reaction renderer. They are related practice, not 54 independently designed simulations. W-2165 is doing; 94 entries remain.
@@ -28,6 +41,7 @@
 - **Believe:** These are prototypes, not independently validated lessons. The SN2 drawing represents only two of the three spectator bonds and the molecule diagrams are schematic. Scientific, accessibility, pedagogy, overlap and human-learner reviews remain outstanding.
 - **Next:** Complete the remaining 148 with genuinely distinct concepts and visual interactions; route independent science, pedagogy and accessibility review for all drafts. Do not publish on builder checks alone.
 - **Blocked:** Full verification by repository publication-readiness failures. No deployment was requested or performed.
+
 ## 2026-10-28 · chief-of-staff · home-games category, first 200 base activities
 
 - **Changed:** Added an incubating `games` category, owned by the existing cm-lifehacks role, with a searchable `/games` browser, direct illustrated instruction pages, feed entries and a 200-concept curriculum. The 1,000 entries are 200 base activities in five labeled group/scoring formats; they are not 1,000 independent games. SVG illustrations share ten visual families, with some paper-game-specific props. The instructions are original house-rule proposals and remain draft/unverified.
@@ -43,6 +57,7 @@
 - **Believe:** Engineering checks cover basic interaction and arithmetic, not independent scientific correctness, overlap, accessibility, strict 390×844 reveal fit or learner effectiveness. Many entries are related practice cases that share a renderer; 500 entries do not mean 500 independently designed simulations. Source claims remain unverified and no human-learner evidence is claimed.
 - **Next:** W-2117 and W-2118: review and refine each subject's drafts. W-2119: independent scientific, pedagogy, overlap, design and accessibility review of all 500. Reconcile board and registry changes with physics PR 28 when integrating.
 - **Blocked:** None of the 500 drafts is cleared for publication. Repository-wide verification remains blocked by the recorded existing readiness failures.
+
 ## 2026-10-28 · chief-of-staff · founder inbox triaged (31 items: 18 closed, 5 merged, 8 kept)
 
 What changed: company/ops/founder-inbox.json. Of 31 items (30 open plus F-05, which was waiting on review), 18 are closed and 5 are merged (both have status `closed`, with closedAt, closedBy, closedReason and a triage block), and 8 are kept, each rewritten as one plain question with its old wording under `previous`. Nothing was deleted. The record with the table and the kept questions is company/ops/2026-10-28-inbox-triage.md. F-52 (r24) is left for the coordinator.
@@ -52,11 +67,13 @@ What I believe and how sure: high confidence in the evidence for each closure (c
 Next: the founder answers F-25 and F-26 (due 10-30), then F-23, F-49, F-17, F-05 and F-11. The board follow-ups are listed in the record. The board was not edited in this run, and `npm run check` was not run: the worktree is sparse and the disk is nearly full.
 
 Blocked: nothing new. The F-52 id collides with main's decision record of the same number, and the reconciliation (W-2121) has to renumber one.
+
 ## 2026-10-28 — Psychology draft pilots started
 
 Founder asked to proceed with at least 500 psychology and human learning demos. A new incubating psychology domain has two draft pilots: `was-that-word-on-the-list` (source monitoring) and `which-dots-belong-together` (proximity). Domain scout's proposal, product scope, interim coordinator acceptance, curriculum, registry and claim records are included. All claims remain unverified; 2 of at least 500 demos implemented, 498 or more remaining. W-2160 tracks continued briefs/builds, W-2161 independent review and QA. No activation, publication, or deployment was approved by this work.
 
 Baseline company check had 783 errors and four warnings; the first post-change check had the identical output. Baseline and post-change verify both stopped at the pre-existing publication test (34 pass, 1 fail). TypeScript and a domain/claim/registry consistency check passed. npm setup could not install Chromium's system dependencies because changing user/group IDs was denied; the cloud browser could not reach the isolated local server. Browser and phone QA, source verification, subject-area overlap sign-off and learner review remain open. Production build outcome is recorded in the pull request. Next: finish independent pilots review, provide a usable browser, and deliver distinct source-backed lessons in bounded batches toward the founder target.
+
 ## 2026-10-28 · release-manager · r25 live: Next 16.4.3 and the cube lesson are back, and the World stays
 
 **First thing to know: production is r25.** It is dpl_GSH8o9Knf1GVJKEcAzGYyd6ba8to (READY 19:08:30Z), on source fead82bd3 with marker f8c6d33ad, from branch release/r25. The coordinator deployed it; release-manager prepared it. It fixes r24's two regressions: Next.js is 16.4.3 again (r23's security fix 80c847c55, R-031 advisories cleared), and flatten-the-cube-to-a-dot (r22) is served again. The Lessons World stays. F-52 is decided (option B) and W-2120 is done.
@@ -99,6 +116,7 @@ What I believe and how sure:
 Next: the founder's F-52. Then the chief of staff reconciles the default branch with main (452 commits, W-2121) before any further deploy from either branch. Board numbers W-2120..2122 and F-52 skip past main's highest ids so that merge will not collide.
 
 Checks: npm run check gave 783 errors and 4 warnings before the merge and the same after (it stops at company check, as before).
+
 ## 2026-10-28 · analytics-steward · W-2152: Lessons World milestone predictions registered (EXP-012)
 
 Wrote company/experiments/EXP-012-lessons-world-milestones.md and indexed it. It freezes the brief's check predictions P0.1-P0.2, P1.1-P1.6 (P1.5/P1.6 being head-of-product's account-column rows), P2.1-P2.4, P3.1-P3.4 and P4.1-P4.4, each with a would_be_wrong_if and a "void if" column (fixture tables and measurement scripts must be committed before the maker starts). It adds P0.3 (no demotion), P0.4 (no backdated evidence), P1.7 (old recall records) and P3.5 (a seal credits only the questions answered), plus a 4-region case in P3.3. L1 and L2 are EXP-009 P1, P2 and G1 by reference; EXP-009 itself is not edited. L3 is registered with a learner-clustered bootstrap and a return/recall split. L4's measure is replaced by a common 7-day probe, because seal answers exist in only one arm; its sample plan must be appended before the first assignment. Baseline: `npm run check` printed 783 errors and 4 warnings on b55b73ff1 (default branch ccr-4c6c7654-ew9ko1 at 0fc13b86a plus the brief).
@@ -116,11 +134,13 @@ Believe (fairly sure): the brief's "no new account fields" conflicts with source
 Wrote company/product/2026-10-28-world-brief.md: the next World milestones after the live inspection build (M0 checks green, M1 state model/list/player, M2 scene polish and bottom sheet, M3 flags and seals, M4 progressive loading and end view). It defines qualifying recall (scheduled-due or eligible-seal answer, >=24 h after first reveal, current question version, latest answer wins, wrong resets to Explored), six-question flags for every island size with a 3-minute median target, seals only on islands whose lessons are all Published with verified claims, one warm maker (personalization-engineer), $60 per milestone pausing at $120 with a session-count fallback. Predictions are proposals; analytics-steward registers them before M1 (W-2152). Holdout: EXP-009's assigned consented study; a live 1:1 holdout only with the founder's O2 decision; opener-vs-feed is descriptive only.
 
 Believe (fairly sure): M0 is the critical path (npm run check: 783 errors, all published-gate failures across 407 lessons); the brief is not self-approved because it covers gamification I wrote. Next: analytics-steward W-2152; principal-engineer on O1 (one maker vs EDD-018 §6); founder questions F1-F4 in the brief §9. Blocked: no learning prediction is judgeable until privacy/backend approve instruments (EXP-009).
+
 ## 2026-10-28 — Psychology and human learning: founder direction routed
 
 Founder asked for at least 500 psychology, human learning and deep psychology demos. Principal PM supplied a proposed 20-strand capacity allocation, documented in `company/product/verticals/2026-10-28-psychology-human-learning.md`; founder intake and route are in `company/decisions/2026-10-28-founder-psychology-learning.md`. W-2156–W-2159 route the vertical, a checkable proposal and overlap audit, domain decision and host readiness. This is planning, not 500 implemented briefs or demos; no lessons were built or reviewed in this pass.
 
 Baseline: `npm run check` failed with 783 errors and 4 warnings, mostly existing published lesson review/QA gates. `npm run verify` stopped at the existing publish test (34 pass, 1 fail), before typecheck/build/QA. Setup installed npm packages but browser system dependency installation failed on setgroups/setegid permissions. `df -h .` reported about 2.4 GB free; the build-dispatch guard requires 10 GB, so no build was dispatched. Next: principal-engineer-ops provides a qualifying environment and completes browser setup; domain-scout audits overlaps and produces source-backed briefs, followed by head-of-product's domain decision. No deploy, merge, independent lesson review or learning validation was performed.
+
 ## 2026-10-28 · zoology first 200 drafts · W-2162
 
 Changed: added 73 more draft lessons to PR #40 after its initial 125, yielding 198 there plus the two prototypes in PR #32: 200 drafts out of the 500 proposed questions. The remaining 300 are not implemented. The new lessons cover additional birds, dinosaurs, mammals, reptiles and amphibians, fishes and arthropods. The drafts use schematics; some use shared interaction patterns. Claims and institutional source leads remain unverified; no merge or publication.
@@ -948,6 +968,7 @@ Verification completed: exact 200-entry manifest/runtime checks; 500 behavioral 
 What I believe: high confidence in implementation counts, pure arithmetic fixtures, contract behavior and bounded engineering fixes; these checks do not establish learning or verify the supplied empirical findings. All 200 lessons are draft and all 1,601 claims remain unverified. Source verification, independent learner reviews, publication boundaries and shared-engine ops readiness remain open. The framework reported an existing Next.js security advisory; its supported build retry passed, and no upgrade was made in this content PR.
 
 Next: review PR #16, then the owning category managers route fact checks and independent learner reviews. The manager/source/engineering/QA records and reproducible manifest are under `company/reviews/behavioral-probability-200/`. No merge or deploy has been performed. GitHub publication used the authenticated connector; its initial cc61db3 commit has the exact tree8b484292 of local source422b1109, verified against the create-tree response.
+
 ## 2026-10-24 · R&D real-catalogue content hub test · W-2172 ready for review
 
 All 1,645 real React demos bundled independently in 185.84 s; shared kit 4.15 s separately. One scoped comment-only source revision rebuilt in 36.6 ms. Selected exactly 1/10/0 demos for isolated/ten/docs edits; shared controls selected 1,643 consumers. Dependency index: 801 ms real / 813 ms with 1,000 labelled source copies (2,645 records). Copies are deduplication fixtures, not incoming authored demos.
@@ -963,6 +984,7 @@ Built src/lab/content-hub/: Git per space, scoped optimistic writes, queued snap
 Repository check diagnostics exactly match isolated base 60eaf60a: 811 errors/four warnings. Full verify stops at the same two publication-readiness failures reproduced on the base; later stages not reached. No production imports, protected paths, dependencies or deployments changed.
 
 Belief: the write/build/publication boundary is feasible for the synthetic fixtures (high confidence); million-demo capacity and production safety remain untested. Next: W-2170 rnd-lead independent acceptance; W-2171 principal-engineer review against EDD-003/SPIKE-001. No manager acceptance or production readiness is claimed.
+
 ## 2026-10-23 · chief-of-staff (for System 3 Meta, as vp-meta) · Benchmark 8 written up; K38 and K39 built; Benchmark 9 ready to run
 
 Founder: "Go with the C compiler in Clojure", "We need S vs vanilla", "do the comparison after W7 then keep going", "No native image, go after B8", "for learnings lets make them baysian", "Yes go with K39".
@@ -1038,6 +1060,7 @@ Founder: "Go go", then "Yes system 3 meta co".
 3. M4: a second domain with an external acceptance measure. The founder picks the use case.
 
 **Blocked:** M1's remote, on the founder.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta) · M3 reached: the hands-free company (Benchmark 4)
 
 Founder: "update tools.md, then go with Agent SDK for M3, also continue previous tasks, keep going decide for me until we reach a big milestone".
@@ -1072,6 +1095,7 @@ Founder: "update tools.md, then go with Agent SDK for M3, also continue previous
 **Blocked:** nothing.
 
 **Note:** `npm run check` reports 811 errors that predate this work; none are in company/sibling.
+
 ## 2026-10-21 · chief-of-staff (for System 3 Meta, as vp-meta's ISS-1/ISS-3) · Benchmark 3: the kickoff ablation
 
 **Done:**
@@ -1416,6 +1440,7 @@ What changed: wrote company/engineering/edd/EDD-016-session-composer-serving.md 
 What I believe: serving should copy a frozen, import-free candidate into src/lib/learner/policies/ with a hash lock, run on the device through EDD-010's glue, and sit behind NEXT_PUBLIC_NEW_LESSON_ORDER with a new value. The AMD-016 stated-fit order wins for a learner who turned it on. Confident in the placement (it follows the EDD-010 C1 precedent); moderately confident in the per-learner precedence (a product call for the amendment). Latency: I measured only the existing one-card composer (median 0.35-0.45 ms in Node); the session composer is not built, so its 2 ms figure is an estimate.
 
 Next: personalization-eval (W-1988) before the criterion freezes. Blocked: everything after G1. Phase A failed, the session composer is unscored, and AMD-015 A1 requires a further amendment (W-1993) before any flag-on deploy. npm run check: 117 errors / 5 warnings, the same baseline as the entry below; none come from these files.
+
 ## 2026-10-20 · chief-of-staff · history maps restored; r18 prepared
 
 Founder: “System3 company, many history lessons don't have a figur or map, fix it then deploy”. All 100 city-history lessons have sourced local maps; 82 previously lacked an SVG figure. Existing 17 data figures retained. New claims unverified, versions +1, statuses unchanged. Source commit 592da6a54bb114afc2e529f461170a81f6ca94b2, integrated on r17. Checks: 102 map regressions, 88 history models, all 100 phone map loads, 16 phone/desktop contract tests, TypeScript and final production build pass. Global check: 811 baseline / 811 final, zero added; full verify blocked by two existing readiness tests. Record: company/reviews/2026-10-20-history-location-maps.md. W-2021. Next: deploy approved r18, confirm live map assets and lesson flow, then save the release receipt.
@@ -1745,6 +1770,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Changed (branch perso-m1-s1):** new company/engineering/edd/EDD-010-personalised-new-lesson-order.md (tier 2, proposed) and its measurement probe EDD-010-probe.mts. The EDD covers: `rank` from reachable-v2 imported in place (hash test); pilot-only dims plus pilot card data in one generated module (drafts excluded before ordering, F5b R6); a view transform on the "all" feed with a pin horizon, so seen and on-screen cards never move; the build flag `NEXT_PUBLIC_NEW_LESSON_ORDER`, on only when it equals `reachable-v2` and off in the repo; the withdrawal path; tests T1-T13, with the 230-slug vector pinned (R7). No product code.
 **Believe:** high (measured by the probe on D2 4a559d6) that `rank` on an empty history is NOT the default order: it moves 229 of 230 cards and orders them by in-pilot prerequisite count, so G11 applies. High that rank's own reason codes cannot be the moved-card lines: 225 of 229 cold-start moves carry `default-order`. EDD §6.3 proposes a run-boundary rule instead, and its truth is unproven (Q-R1). Medium that option A fits the 300 KB chunk cap (+~111 KB raw estimated, not built).
 **Next:** principal-engineer tier-2 review; privacy-reviewer design read under W-1765 (Q-P1..P7, especially Q-P2: slug-bearing requests follow the order); RC/learning-scientist-personalization on Q-R1; head-of-product on intro copy (Q-H1); lesson-dims-owner `--pilot` mode (Q-D1); release-manager flag pinning (Q-O1). **Blocked:** the build, on those gates (EDD §10).
+
 ## 2026-10-17 · vp-personalization (Mateo) · F5b accepted (0 blocking); K6 sent to personalization-eval (run vp-k6-1017, W-1769, W-1770)
 
 **Changed:** batch 5 §13 (company/personalization/batches/2026-10-17-batch-5.md): F5b decision, each of the 13 notes answered, K6 mail, board requests. Mail: K6 dispatch-request 20261017T193416066Z-vp-personalization-bd7b2f8d (personalization-eval, build, /home/user/s3c-k6, perso-c3b-k6, 220k). Marked F5b reports 46277277 and 6a0c7bdf read.
@@ -1766,6 +1792,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Changed:** company/ops/projects.json `personalization`: scope in = batch 3/4 studies (done or closing) plus batch 5 to M1 (candidate, criterion 3b scoring, reproduction, dims index, serving code behind an opt-in, HQ lab production mode, reason copy, go/no-go, merge readiness, and the named reviews); scope out = any release without the founder, any default-on personalization, any stored derived values (D20), phase B, protected-path changes. `estimate:true` dropped; approval.record = the M1 delegation record; approval.covers names the founder's 2.0M (readout-2 decisions, Founder answers) and says the M1 re-scope and anything above 2.0M are the chief of staff's call under the delegation. Budget = 2.0M base + 0.1M top-up (approvedBy chief-of-staff under the delegation) = 2.1M. Board: W-1742, W-1761 done; W-1762 added (chief-of-staff).
 **Believe:** spend measured = 0k of 2.1M (`node tools/ledger.mjs gate --project=personalization`), which is wrong low with high confidence: lane 14 ran 30+ runs since 2026-10-16 and none carries tokens (WBR 2026-10-17 anomaly 1, company/rituals/records/2026-10-17-wbr-lane14.md). Medium-high that 2.1M is too low: batch 5 §2 prices its own items at ~2.1M, on top of batch 3 (~2.0M) and batch 4 (~0.9M); objection written in topUps[0].objection.
 **Next:** chief-of-staff answers W-1762 (keep 2.1M or set ~4M+); ledger owner fixes token capture (WBR anomaly 1). **Blocked:** nothing for this item.
+
 ## 2026-10-17 · personalization-eval (Uma) · K5: criterion 3b draft + harness c3b with a candidate slot (run eval-k5-1017, W-1751, branch perso-c3b-k5)
 
 **Changed (commit 0cf197c):** new company/personalization/eval/2026-10-17-criterion-3b.md, status **draft (unfrozen)**. New harness company/personalization/eval/harness/c3b/ and S record harness/records/2026-10-17-seeds-c3b-k5.json.
@@ -1781,6 +1808,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Believe:** high that the slot is criterion 3's episode (144 hash pairs plus the 12-row chain). Medium that the copy check is useful: it is lexical, and a full rename with comments stripped passes (control P4, stated).
 **Next:** learning-scientist-personalization reviews the draft (F5 already in hand); vp-personalization reads §4.3 K-a and decides whether the tie order needs a reachable-v2 (G6). K6 follows criterion 3b §7.
 **Blocked:** K6 waits for F5, C1's frozen hash and the V3 record. The lock refuses a real candidate without all three plus `status: frozen`.
+
 ## 2026-10-17 · personalization-engineer (Tavi) · H1: HQ lab production mode, precomputed runs, no child process (run pe-h1-1017, W-1751; W-1731 folded in)
 
 **Changed (branch perso-m1-h1, commit 210bf1f; for perso-m1 only):** a released HQ (`NODE_ENV=production`, `HQ_PUBLIC=1`) now serves the lab from committed data in `src/data/hq-personalization/` (README.md there: format and regeneration): 6 simulated personas × 7 ordering policies, seed 1, 7 days (42 gzipped traces) and 14 comparisons (each persona and all; main and all sets; 5 seeds), 0.8 MB, generated by new `tools/hq-lab-precompute.mjs` from `hq-cli.mjs` (`--check` reports staleness; output is byte-deterministic). New reader `src/lib/hq-personalization-precomputed.ts` (manifest-listed files only, sha256-checked, fails closed with a plain message); `runSim` returns from it before any process code when not local; `HQ_LAB_PRECOMPUTED=1` previews it locally. The page names inputs commit, model version, seed and days, and offers only stored choices (no seed/days inputs, no saved-trace loader, stored policies only). New tests `tests/hq/personalization-precomputed.test.mjs` (8: production calls no child_process API, with a control proving the spy sees a live run; all data loads; refusals; 11 fail-closed cases; route; server render). Privacy test scope extended to the new files (gz scanned decompressed); W-1731 `@import`/`image-set(` rows; 47 planted breaks. DoD D1/D5 update rows and the H1-scope grep recorded (company/personalization/lab/2026-10-16-lab-privacy-dod.md). W-1731 → review.
@@ -1833,6 +1861,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Tests:** HQ lab tests 10/10; `npm run test:hq` 72/75 (the same 3 release-history shallow-clone failures); typecheck clean; `npm run check` passes. M6 test mutation-checked: removing the meta join makes it fail. `npm run verify` (build + QA) not run.
 **Believe (high):** the nits are closed as asked; M3 is stricter than asked (`data:` and inline styles flagged too), which a privacy gate can afford. N5, M2, M4 stay notes (W-1719 note).
 **Next:** hq-engineer reviews W-1719 on perso-u1; chief-of-staff merges after. **Blocked:** nothing.
+
 ## 2026-10-16 · learner-data-engineer (Solenne) · W-1717/W-1733 fix round: C1/B2a route moved, C7/D2a atomic PUT (run lde-u2-fix-1016, branch perso-u2)
 
 **Changed:** route moved to src/app/api/account/settings/route.ts (git mv; nothing left under src/app/api/settings/); B2 scan now also fails on any file at the old mount (planted control added, 8 plants). PUT no longer reads before writing: settings-store.ts runs one statement per request (SET_UPSERT_SQL / SET_UPDATE_SQL / MERGE_SQL, chosen by `writePlan` from the request only), each writing only the sent columns on the locked row; merge decides "account lists win, either false stays false" inside the statement. Rule = `applyWrite` in settings.ts (replaced applySet/applyMerge). New tests/settings/settings-write-race.test.mjs; new company/personalization/data/test-settings-write-sql.mjs; note §1-§4, §6, new §7; board W-1733 to review, W-1717 note/links.
@@ -1854,6 +1883,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Tests:** `npm run test:settings` 25/25 (B1 incl. real-catalog drop test; B2 repo-wide write/import scan with planted-break control; B4 sentinel through 11 paths incl. pg-style error detail, with capture control; D1-D3; G2-G3); typecheck clean; build passes (`ƒ /api/settings`); test:platform 30/30; `npm run check` passes.
 **Believe:** the code meets B1, B2 (as a grep), B4, D1-D3, G2-G3 (high). **It cannot work at /api/settings as mounted:** ADR-008 scopes the session cookie to `Path=/api/account`, so this path never receives a session. I recommend mounting at /api/account/settings (one path change + one test constant); principal-engineer (location) and backend-engineer (namespace) decide, and privacy-reviewer's B2 wording follows. Unverified against the accounts branch: session helper, db query shape, flag, FK/table name, migration number, file tracing (note §4).
 **Next:** privacy-reviewer reads B1-B4; backend-engineer: B3 patches (note §5) + order review + wiring; principal-engineer: tier 2 location and package.json. **Blocked:** wiring and any apply on the accounts branch (not in this clone); deploy on the founder.
+
 ## 2026-10-16 · personalization-eval (Uma) · batch 3 K1: criterion 2 interface, draft and harness (run eval-k1-1016, branch perso-k1)
 
 **Changed:**
@@ -1911,6 +1941,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Believe:** the decisions follow from rules written before data (high). Whether the GAM is weak or the world gives ordering no room is unknown (the readout's F4/F7/F16 under-test ordering). Phase B could not detect a sub-point edge at our scale either way (high, readout §3).
 **Recommend:** option C, one headroom-first criterion 2 (sourced 1-7 day forgetting, prior knowledge, learn rate; an oracle ordering), with pre-commitments in the record §5; option A if the founder declines or the oracle shows no headroom. Not B (draft rules live). D (review timing) is a founder question.
 **Next:** C5 (learner-model-engineer); then W-1721 (me). Founder answers via W-1720 (chief-of-staff). **Blocked:** batch 3 beyond the record §7 list waits for the founder.
+
 ## 2026-10-16 · learner-model-engineer (Ifeoma) · C5: phase A readout 1 reproduced, byte-identical (W-1956; run lme-c5-1016, branch perso-c5)
 
 **Changed:** new company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md. Board W-1956 → review (personalization-eval, vp-personalization). No eval file edited.
@@ -1959,12 +1990,14 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Changed:** review record company/engineering/reviews/2026-10-16-w1537-check-wiring.md; board W-1958 → doing (conditions), W-1919 note. No code changed.
 **Believe:** W-1958 approve with conditions (tier 1): check is the right place because CI runs check, not the verify test:* scripts (high, read ci.yml). Node floor is the real risk: engines says >=20, no .nvmrc, check now needs 22.18 (high). Measured: check 1.46 s vs 0.31 s without; check passes with no node_modules. W-1919 "where the model lives": tier 1, approved; phase B serving is tier 2; the lesson-dims half of W-1919 is not covered (high).
 **Next:** learner-model-engineer: C1 Node guard, C2 engines >=22.18, C3 why-check-not-verify note, then privacy-reviewer T1 read. W-1919 lesson-dims part waits on founder Q2; meta.json fields would need an EDD.
+
 ## 2026-10-16 · learner-model-engineer (Ifeoma) · W-1958 privacy T1: personalization tests wired into check (run lme-w1537-1016, branch perso-w1537)
 
 **Changed:** package.json only for wiring (no dependency): new script `test:personalization` = `node company/personalization/model/self-check.mjs && node --test company/personalization/model/sim/privacy-n1-n3.test.mjs`; `check` now ends `&& npm run test:personalization`. So `npm run verify` and the CI verify job (it runs `npm run check`) run them with no ci.yml change. privacy-breaks.mjs (~10 s) deliberately not wired. Notes in company/personalization/model/README.md and sim/README.md. W-1958 → review.
 **Verified by running:** `npm run check` rc 0 (~1.4 s total, tests add ~1 s); `npm run test:personalization` rc 0. Deliberate breaks, each reverted: ageBand penalty in composer.ts → check rc 1 (N3 fails); model.ts naming "personas" → check rc 1 (self-check boundary).
 **Believe:** T1 is met as "enforced" for every check/verify/CI run (high). Risk: CI's node 22 must be ≥22.18 for type stripping; setup-node "22" resolves latest 22.x (high, not run in CI here).
 **Next:** privacy-reviewer confirms T1; principal-engineer reviews the package.json change. T2 (serving-layer N1/N3) stays open for phase B (learner-model-engineer / personalization-engineer).
+
 ## 2026-10-16 · personalization-engineer (Tavi) · W-1950 lab no-real-data test + W-1718 D1 review nits (run pe-d2-1016, batch 2 item D2, branch perso-d2)
 
 **Changed:** new tests/hq/personalization-privacy.test.mjs (runs in `npm run test:hq`): scans the lab files (DoD §2 scope; the page folder is walked so new files are covered) and allows exactly one exception, privacy-reviewer's ruling lines 36/39 (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md, L1): `fetch` of the literal `/api/hq/personalization`, optionally `?` + query. Fails on any other fetch mention (variable, alias, absolute, interpolated before `?`), any other `/api` path, localStorage, `s3c:`, sessionStorage, indexedDB, document.cookie, cookies(), headers(), the L1 module list; stricter extras: XHR/beacon/WebSocket/EventSource, `.headers`/`.cookies` reads, non-literal import/require, an import allowlist, a missing scoped file. W-1718: `meta` no longer takes the run lock (N1); `SimResult` carries `busy: true` and the route returns 429 with `Retry-After: 5` on it (N2); a test that a failed run releases the lock (N3). DoD D5 and F2 updated (company/personalization/lab/2026-10-16-lab-privacy-dod.md). Board: W-1950 to review (hq-engineer, privacy-reviewer), W-1718 to review (hq-engineer).
@@ -1978,12 +2011,14 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Verified by running:** privacy-n1-n3.test.mjs 5/5; privacy-breaks.mjs 13 rows all caught; test-00N-settings.sh 26/26.
 **Believe:** composer tests do what they claim (high). First serving build passes N1/N3 without a finding (about 65%). Schema survives backend order review without a privacy change (about 80%). Not checked: rendered lab page, 001_accounts (branch unavailable), any settings API.
 **Next:** learner-model-engineer wires tests; personalization-engineer W-1949/1529/1530; learner-data-engineer settings API to B1-B4; backend-engineer order review and deletion/export patches; analytics-steward D3 in registration. **Blocked on counsel:** D4, minors defaulted into a personalized arm.
+
 ## 2026-10-16 · personalization-engineer (Tavi) · W-1949 lab labels + W-1951 runSim hardening (run pe-d1-1016, batch 2 item D1, branch perso-d1)
 
 **Changed:** src/app/hq/personalization/Personalization.tsx: "Simulated persona: {name}" heading, "Simulated persona" run select, "Simulated personas" compare select ("all six simulated personas"), comparison caption says "simulated persona(s)", fingerprint caption and aria-label "Simulated fingerprint", curve legend "simulated persona mean" / "selected step's simulated fingerprint". src/lib/hq-personalization-server.ts: one simulator process in flight per module instance (identical request joins it, a different one gets `BUSY`), `meta` cached for the process keyed on the newest mtime under company/personalization/model (out/ skipped) plus sim/out/traces's mtime, child env reduced to `CHILD_ENV` = `NODE_NO_WARNINGS=1`. src/app/api/hq/personalization/route.ts returns 429 on BUSY. New test in tests/hq/personalization.test.mjs. DoD D2/D3 status lines and F3 updated (company/personalization/lab/2026-10-16-lab-privacy-dod.md). Board: W-1949 and W-1951 to review (hq-engineer code; privacy-reviewer for D2/D3). No simulator/model change, no dependency, no new data path.
 **Verified:** typecheck passes; personalization HQ test 6/6; `npm run test:hq` 68/71 with the 3 known shallow-clone git-history failures (now numbered 48/54/55 because one test was added). On a local dev server (port 3217, stopped by pid): all new labels render at 1280 and 390 wide (screenshots git-ignored, artifacts/d1/); a run during a running compare got 429 and the same run succeeded after. Not run: `npm run verify` (build + QA).
 **Believe:** the lock bounds spawns per route as asked (high); Next may load the server module separately for page and route, so the page's meta and an API call can still overlap (two processes at most; medium). `next dev` writes an untracked AGENTS.md in the worktree; not committed.
 **Next:** hq-engineer reviews perso-d1 (W-1949, W-1951); privacy-reviewer reads D2/D3 and rules on H1/H2 (unblocks D2/W-1950). **Blocked:** nothing.
+
 ## 2026-10-16 · personalization-eval (Uma) · batch 2 C1: eval-owned learner, scorer and harness; S set; criterion §8 ruled (run eval-c1-1016)
 
 **Changed:** new company/personalization/eval/harness/ (learner.mjs, scorer.mjs, world-inputs.mjs, personas.copy.mjs are judge modules that import nothing; harness.mjs, checks.mjs, run.mjs, run-worker.mjs, tests.test.mjs, README.md with run and reproduction steps, records/2026-10-16-seeds-c1.json). Criterion company/personalization/eval/2026-10-16-phase-a-criterion.md, still **draft (unfrozen)**: S, the episode definition, the per-term pairs, the rho definition, the persona mapping, the forgetting-range rule and T4 wording written; delta_harm 0.02 -> 0.01; §8 ruled row by row; every C1 change listed in §9. Decision file marked built. Board: W-1927 -> review (learning-scientist-personalization, C2); notes on W-1937 and W-1917. No edit to model/, sim/, personas.ts or any curve.
@@ -2024,6 +2059,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Verified:** the grep has 0 hits for localStorage, s3c:, accounts imports and storage or cookie reads. There are 3 hits for /api/ and fetch: Personalization.tsx:182 and :285 fetch the lab's own route, and route.ts:1 is a comment. I read the CLI's data inputs (personas.ts, the lesson catalog, sim/out/traces) and the transitive imports. The rendered page was not viewed in a browser.
 **Believe:** the lab code has no real-data path (high, from reading the code). D2 and D3 are only partly met: the fingerprint table caption, the curves legend and the persona h2 lack "simulated" (high, from reading the JSX).
 **Next:** privacy-reviewer reads W-1948 and rules on the own-route fetch exception. Then I do W-1949 and W-1950, each with hq-engineer review. **Blocked:** nothing.
+
 ## 2026-10-16 · learner-data-engineer (Solenne) · W-1942 `settings` schema diff + design note (run lde-b4-1016, batch 1 item B4)
 
 **Changed:** new company/personalization/data/: `00N_settings.up.sql` / `.down.sql` (draft), `test-00N-settings.sh` (up/down test on a throwaway local Postgres 16 cluster, stub `auth_user`, fake data only), `2026-10-16-settings-schema-note.md` (SS1 to SS5 clause by clause, proposed inventory rows D21.1-D21.4 and D22, retention line, delete and export patches for backend-engineer, the D20 no-column line, the `personalization_on` default as a question with the VP's position, open questions). Table: `settings(user_id text PK FK auth_user ON DELETE CASCADE, personalization_on boolean NULL, subjects text[] ≤32 id-shaped, less_of text[] ≤50 typed 'domain:'|'concept:'|'lesson:')`, no timestamps, no secondary index. W-1942 → review. **Not written against the `accounts` branch** (not fetchable): drafted on branch `perso-settings-w1521` from main; the number, FK target, runner compatibility and preview down test are backend-engineer's order review (note §0). No edit to auth tables, progress, recall, EDD-008, data-inventory or src/.
@@ -2045,6 +2081,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Believe:** self-check passes, and both new privacy tests fail under a mutation that breaks them (high: ran both mutations in scratch). Strict tsc on the model and sim .ts files is clean, and the HQ CLI `meta` emits the new statuses as plain strings, which the HQ types accept (high). The batch has real inputs today for every wave-1 item, except that B4's `accounts` branch is not in this clone (medium: it must be fetched or drafted on main).
 
 **Next:** chief of staff restarts the session so the six new role types load, then dispatches wave 1 from the batch file. Without a restart, B5 only. Outside lane 14: principal-engineer tier review of W-1919; W-1943/W-1944 consults; hq-engineer W-1940 after W-1945. **Blocked:** no scored comparison until C1 is committed (independence rule); F-19 for anything phase B.
+
 ## 2026-10-16 · hq-engineer · personalization org seated, W-1924 reviewed (run hq-w1524-seats-1016)
 
 **Changed:** no new room or floor (founder rule 2026-10-16-founder-org-and-dispatch-rule.md respected). Re-cut widths in the floor 2 bottom row of src/lib/hq.ts: launch-room 300->140, personalization 150->250 (4 seats: VP, applied scientist, learning scientist, lesson-dims-owner), model-lab 150->250 (4 seats: learner-model-engineer, personalization-engineer, learner-data-engineer, personalization-eval), international 110, locale-desks 178 (both still hold their residents). HOME (people.ts) and ROOM_BY_ROLE (tools/events.mjs) updated. VP stays in the personalization room, as vp-rnd and vp-marketing sit in their own org's room. Review of W-1924 in company/reviews/hq/2026-10-16-w1503-review.md (no blocking issue; one comment fixed in HqTop.tsx; 8 items listed).
@@ -2092,6 +2129,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 **Believe:** phase A touches no real data (high: sim reads only curriculum and meta.json, no storage/network calls by grep). Phase B: `predictedCorrectly` for ordering allowed with conditions (recall-only fallback must stay tested); stated subjects/less-of allowed with conditions on a schema not yet built; the five on-demand signals allowed; fingerprints/need scores stored per learner refused; gapDays refused; masteryOf as input conditional on EDD-009; HQ lab simulated personas only; teen mode same model, age band never an input (medium-high; conditions are on builds I have not seen, about 70% first build is clean). Every phase B ruling rests on AMD-008 P2 as drafted (F-19 open).
 
 **Next:** personalization-lead applies section 8; backend-engineer puts SS1-SS5 in the settings diff; analytics-steward owns N5/T4/AG; I read the settings diff. **Blocked:** F-19; lawyer items in section 7 of the review.
+
 ## 2026-10-16 · learner-model-engineer (Ifeoma) · W-1924 HQ Personalization lab + W-1919 proposal (run lme-w1503-hqlab-1016, branch perso-hq-lab)
 
 **Changed:** new route `/hq/personalization` (HQ tab "Personalization"). It is read-only and uses simulated personas only. You pick a persona, a policy (model policies, the 9 GAM ablations, random, epsilon), a seed and the number of days, then run the simulation live or load a saved `run.mjs` trace. The page shows: persona, fingerprint (means, jittered, step) with privacy status; ground truth, collapsed; each need's pwl curve as SVG with the persona's point and the step's point marked; per-signal x→y, weight, contribution and reason; MODEL_VERSION; the timeline, with candidates per slot carrying every score term, the winner, the deciding constraint, rejected cards and why, and simulated prediction, reveal and recall; and a policy table labelled "UNSCORED: no committed criterion; provisional simulated learner". Files: `src/app/hq/personalization/{page.tsx,Personalization.tsx,personalization.module.css}`, `src/app/api/hq/personalization/route.ts`, `src/lib/hq-personalization.ts` (types and request parsing), `src/lib/hq-personalization-server.ts` (the only gateway), `company/personalization/model/sim/hq-cli.mjs` (JSON CLI), `tests/hq/personalization.test.mjs`, and a tab added in `HqTop.tsx` and `HQ.tsx`. **W-1919 proposal** in `company/personalization/model/README.md` "Where the model lives": the model stays put and the app never imports it. HQ spawns `sim/hq-cli.mjs` and reads JSON. This is local only, with no tsconfig, next.config or dependency change. I edited Mateo's `self-check.mjs` so it now forbids imports and confines child_process to the gateway (W-1936 asks him to ack). Board: W-1924 and W-1919 moved to review; W-1935 (hq-engineer review) and W-1936 added.
@@ -2170,6 +2208,7 @@ Validation: npm check passed; platform 37 passed/4 build-dependent skipped; chan
 - reveal-fit: fit, crop 0, 79 words. Local contract QA 2/2.
 **Blocked:** WebKit was not run, because the proxy refuses the Playwright WebKit download.
 **Next:** W-1600, W-1601, W-1605.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #6 C1: base ed992963 merged, checks green, pushed
 
 **Changed:** renumbered the 18 PR #6 board ids +40 to W-1626..W-1643; W-1644 and W-1645 keep theirs (`49f79204`). Corrected the readiness record's rollback to the path-limited restore. Merged base `ed992963` (`f9615211`), with the registry regenerated by `npm run registry`. W-1644 is done. Pushed `codex/algorithms-200` without force; map and results in `company/engineering/community/prs/6.md` §11–§12.
@@ -2255,16 +2294,19 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Changed:** `tools/publish-ready.mjs` `decide()` orders same-version same-day learner records by built-from git ancestry, then a `supersedes:` line, then `-rN` within one name stem; an unordered tie keeps the most severe verdict; mtime is no longer read. New `tests/publish/publish-ready-tiebreak.test.mjs` (5 tests; `npm run test:publish` 18/18). `company/product/demo-standard.md`: section "The lesson version" (a change to reveal text bumps `meta.version`, Head of Product's rule). Readiness: `company/engineering/readiness/2026-10-16-publish-ready-tiebreak.md` (tier 1 self-check). Changelog line.
 **Believe:** sure the swap fix holds: read-only publish-ready now lists math/the-swap-that-goes-in-circles as a candidate (r2 launch v1; e092f6c3 descends from 236737ff), and a before/after run shows no other lesson's result changed. `npm run check` passes (3 unrelated lifehacks warnings).
 **Next:** release-manager: W-1594 can include the swap without applying ruling 2 by hand (lapse conditions in the r7 record still apply). Demo-builder lane: follow the new version rule. No deploy without the founder. **Blocked:** nothing.
+
 ## 2026-10-16 · analytics-steward · EXP-006: launch predictions for cut-the-busiest-link and the NCM gap four (W-1529 done)
 
 **Changed:** new `company/experiments/EXP-006-launch-predictions-r6-r7.md` (index row in `company/experiments/README.md`); a pointer paragraph under "Committed predictions" in the r6 and r7 launch records. Board: W-1529 done; W-1600 added (privacy-reviewer: may recall/predict events carry a first-time marker with no identifier?).
 **Believe:** sure the rows are committed before any deploy that carries the five (last `[deploy]` is 6cbce514, before publishes f6b2a22e and c97973e7), and sure they are later than the publish commits (stated in EXP-006 "Timing"). Fairly sure the current events cannot compute first-revisit recall or learner pairing (`src/lib/events-intake.ts`, `src/components/Feed.tsx`); so EXP-006 commits measurable aggregate rows A1-A6 plus F1/F2 marked "not measured" until W-1600. That gap also touches the r5 P1/P2 and Life Hacks L1/L2 definitions.
 **Next:** a deploy carrying these five needs no missing-row note from the release-manager. privacy-reviewer rules W-1600. Scoring at the first WBR after day 0 + 14 (analytics-steward). **Blocked:** any read, on W-706 (backend-engineer) and a founder-approved deploy.
+
 ## 2026-10-16 · learner-evaluator · draw-a-table-knot v1 walked: revise
 
 **Changed:** new `company/reviews/draw-a-table-knot/2026-10-16-learner-knows-drawings-not-names.md` (lesson version: v1, Verdict: revise, built from 5c5c719e); linked in meta.json evidence.simulatedLearner only.
 **Believe:** first break is the first tap ("6 drawn, name 4₁"): it needs "one knot has many drawings", which the boundary lacks; "fewest" is told in the reveal, not shown. On the QA path (ends on 5₂) the reveal's "Yours still had 6 crossings drawn" sits under a stage reading "5 · 5₂", which also agrees with the wrong answer; only the small "Seen on 6₁" line bridges them. Moderately sure most learners still connect it from memory; the on-screen contradiction is the revise reason.
 **Next:** demo-builder / design-lead decide how the reveal or reveal-time stage names 6₁ on the 5₂ path; then a learner re-walk. c5 unverified is the fact-checker's. **Blocked:** nothing.
+
 ## 2026-10-16 · design-lead · S4 check of tricolour-check: pass with changes D1, D2 (W-1601)
 
 **Changed:** new `company/design/reviews/2026-10-16-tricolour-check-s4.md` with probes in `2026-10-16-tricolour-check-s4/` (fit-probe, row-probe, geom-probe). Board W-1601 (demo-builder): D1 explore row on one line at 360 wide (`.wrap .controls` gap 4px, `.btn` padding-inline 8px); D2 `.board { width: min(100%, clamp(254px, calc(100dvh - 458px), 320px)); }`. Accepted the builder's choices: loopOne on opening ○ (no design objection; sufficiency is cm-math-discrete's), the row hidden at the reveal, label placement (T3a min 17 units), the crossing-mark rings.
@@ -2299,16 +2341,19 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Changed:** new lesson `src/demos/math/tricolour-check/` (draft, 8 claims, all unverified), build note `company/reviews/tricolour-check/build.md`, registry regenerated; board W-1540 → review. Follows S1 to S4, T1, T3a, the ticks rule and W-1583 (A/B/C letter rings, arc sets in one constant). W-1583's tricolour part of W-1585 is done here; W-1585 stays open for unknot-game and left-or-right.
 **Believe:** local contract QA passes on phone and desktop; reveal-fit at 390x844 is fit, crop 0, 87 words; check and typecheck pass. Fairly sure on the picture (viewed both themes at 390x844); untested with learners. Two calls for others: `loopOne` fires on opening ○ (the only way the QA path reaches it), and the control row hides at the reveal (crop was 22 px without it). Both are in build.md "Decisions".
 **Next:** fact-checker c1 to c8 (c5 is the proof); design-lead S4 review of the walkthrough; qa-tester record; learner walk. **Blocked:** nothing.
+
 ## 2026-10-16 · platform-engineer · W-1587 EDD-004 C4 ruled met; W-1582 `.knot-tint` added
 
 **Changed:** re-ran `company/reviews/draw-a-table-knot/c4-timing.mjs` (3x at 4x, 1x at 1x) on a fresh build; the host was not quieter (load 5 to 6.6). Ruling appended to `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`: **C4 met** (6_1 `layout` 56 to 185 ms cold, ~20 ms warm at 4x, once on mount; tap redraw ~1 ms). `identify`'s cold 105 to 187 ms is the one-time table signature index (`sig` in `src/kit/knots/identify.mjs`), so lessons warm it after first paint: new rule 5 in `src/kit/knots/README.md`; no kit change until a revisit trigger in the note fires. `src/app/globals.css`: `.knot-tint` per the colour ruling (70% light mix, math only). Self-check `company/engineering/readiness/2026-10-16-knot-tint-css.md`; changelog line.
 **Believe:** fairly sure of the ruling (two busy-host runs, same shape); not sure of absolute phone numbers (no device, no idle host).
 **Next:** principal-engineer marks C4 met in the EDD-004 record (W-1590). demo-builder can use `.knot-tint` for unknot-game (W-1585) instead of a lesson-local rule. **Blocked:** nothing.
+
 ## 2026-10-16 · fact-checker · W-1589: draw-a-table-knot c1-c8
 
 **Changed:** draw-a-table-knot meta.json claims only (7 verified, c5 disputed); new `company/reviews/draw-a-table-knot/2026-10-16-fact-check.md` and its scripts in `fc-2026-10-16/`; board W-1589 done, W-1591 (demo-builder) added.
 **Believe:** sure of the knot facts (own Jones bracket, Gauss words, picture geometry, all 11 switches agree with the kit). c5 disputed for the generic sentence "A switch makes a new knot." (false for a nugatory crossing; fix "Your switch made a new knot."). c7's general clause rests on the kit table and naming sources, not on Rolfsen's opened pictures (hosts blocked): medium-high.
 **Next:** demo-builder applies W-1591 (cm-math-discrete owns the script wording); a fact-checker who did not draft the fix re-verifies c5. **Blocked:** nothing.
+
 ## 2026-10-16 · design-lead · W-1588: S4 check of draw-a-table-knot (first built knot lesson)
 
 **Changed:** new `company/design/reviews/2026-10-16-draw-a-table-knot-s4.md` (+ `fit-probe.mjs`, `bbox.mjs`, `contrast.mjs` beside it); board W-1588 done, W-1592 (demo-builder) added.
@@ -2344,6 +2389,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Changed:** company/design/specs/unknot-game.md + .svg and left-or-right.md + .svg, both rendered with the kit by company/design/specs/knots-batch1-mockups.mjs (S1 gap 0.5, stroke 2 butt, viewBox -8 -8 116 116; turnOver never drawn). unknot-game: one switch at a time; the tint is only the first R2's edge that is over at both crossings (design-lead condition), 3 units wide, --domain dark / domain 70% + black light; both tally rows always shown; DOM order crossings, Reset, chips (chips last because QA counts controls once and 4_1 adds a button). left-or-right: A (question chip "Turned over?" per the design lead's objection, optional in-plane "Turn it round", Mirror) and B (two-sided card with the back face authored reflected, PE-C1; Mirror as an outer scaleX(-1) wrapper with a cross-fade, never an animated squeeze; rest-state composition table; builder's browser check and signs test). Both drop Reset and keep a seen line. Board: W-1568 → review; W-1581 (cm-math-discrete decisions), W-1580 (visual-designer tint token).
 **Believe:** high that every number quoted is the kit's (script output; first R2 contains the tapped crossing in 7 of 7, one edge over at both, one under at both). Medium on badge placement near 4_1's right lens (7.0 units clearance in the mockup) and on mid-flip legibility, both for the design lead on the built sheet.
 **Next:** cm-math-discrete W-1581 (A or B and the wording), then demo-builder. Design review of the specs. **Blocked:** nothing.
+
 ## 2026-10-16 · demo-builder (w1539) · draw-a-table-knot built (first knot lesson, first use of `layout`)
 
 **Changed:** new draft lesson `src/demos/math/draw-a-table-knot/` (6₁/5₂, tap a crossing to switch it, name readout from `identify`, milestone `switched`), 8 unverified claims. Imports only `@/kit/knots`; `layout` once per knot in `useMemo`; `draw(pd, { layout: L, gap: 0.5 })`; no size/margin/relax; design-lead S1 to S3 followed, viewBox tightened as S1 allows. Build note `company/reviews/draw-a-table-knot/build.md`; C4 note `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md` with script `company/reviews/draw-a-table-knot/c4-timing.mjs`. Board: W-1539 → review; W-1586 (cm-math-discrete: reveal 93-94 words on the wrong-answer path), W-1587 (platform-engineer: C4), W-1588 (design-lead: S4 walk + 2 departures), W-1589 (fact-checker: c1-c8).
@@ -2355,16 +2401,19 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Changed:** did not move same-picture-two-histories, price-tag-or-auction or worth-something-alone to review: no CLI command moves status (tools/company.mjs has only meta.json validation), my role may not change lesson status (company/roles/cm-course-ncm.md Authority), demo-builder may set draft → review (company/roles/demo-builder.md), and the previous handoff routes the decision to the strand managers. Board: W-1574 (cm-probability-statistics: decide same-picture), W-1575 (cm-economics-markets: decide the two economics lessons; W-507 still doing). Learner notes: W-1571 demo-builder REQUIRED before launch (same-picture: giveaway option 3, unkeyed red/green/dashed codes, step-1 counter), W-1572 and W-1573 demo-builder OPTIONAL (price-tag "tag:" row label; worth-something unnamed 10¢ curve and crowded labels).
 **Believe:** high that the status move is not mine. Medium on calling same-picture's option 3 required: the learner said launch, but a prediction answerable by text-matching defeats the format; the strand manager may overrule in W-1574.
 **Next:** demo-builder W-1571 (then fact-check of changed claims + learner re-walk); strand managers W-1574/W-1575. **Blocked:** nothing.
+
 ## 2026-10-16 · cm-math-discrete · W-1569 answers to the knot design notes (briefs 1 to 4)
 
 **Changed:** company/domains/briefs/math.discrete.md, briefs 1 to 4. Accepted: draw-a-table-knot switch-not-count (and the joke option out, determinant sentence out); tricolour-check staggered cycles (a real QA-path bug in my brief), narrowed doesNotKnow, and the plain-loop chip, which I made required (the narrowed doesNotKnow names it); unknot-game one switch at a time with tally, the "on top twice" tint, and "switch all three" dropped. Brief 4 now holds both versions: A (mirror only, caption "Flip it over", buildable now) and B (designer's two-sided card, only if design lead W-1566 and principal engineer W-1567 both rule yes). knots-check.mjs gained K14 (single switches of 5_2: 3 trefoil, 2 plain loop; 6_1: 4 figure-eight, 2 plain loop), K15 (every single switch on 3_1 and 4_1 offers an R2), K16 (staggered cycles reach three colours), K17 (card end state signs equal signs(turnOver) only if the back face is reflected).
 **Believe:** high that the new numbers are true (rerun the check); high that B is mathematically right if the back face is reflected, and wrong with the usual counter-rotated back face (K17); medium that the tint and card read well (design questions). All citations still unverified.
 **Next:** interaction-designer spec for the tint and the card (W-1568); design lead and principal engineer rulings (W-1566, W-1567); the demo-builder builds 1 to 3 from the revised briefs. **Blocked:** brief 4 build waits on W-1566/W-1567 for version B; version A needs only the design lead's mirror contact sheets.
+
 ## 2026-10-16 · principal-engineer · W-1567 left-or-right two-sided card ruling
 
 **Changed:** ruling at company/engineering/reviews/2026-10-16-knots-left-or-right-card.md, probe at company/engineering/reviews/2026-10-16-W-1567-flip-probe.mjs, and a one-sentence scope note in EDD-011 Part 1. The two-sided card (front `draw(pd)`, back = mirror on the stored layout, CSS flip) fits rule 2(a) and EDD-011 Part 1 with no addendum, under conditions C1 to C4. The reflected mirror equals the turned-over knot: signs read from the drawn geometry, and curves to within 0.1 of 100, on all 17 one-component entries. Catch (C1): the usual back-face idiom shows the back face's content unreflected, so a back face authored as plain `draw(mirror(pd))` ends on the MIRROR knot. It has to be authored reflected and checked in the rendered page. Mid-flip frames show the same diagram as the face they belong to, never the mirror. Around 90° legibility is the design lead's question. Revised brief 4 (mirror-only) is inside the rules, but one sentence in it is stale ("none may be added without an addendum"): W-1576.
 **Believe:** high on the math and on the scope (measured, and checked against the code). Medium-high on C1's CSS reading (CSS Transforms backface rules, not run in a browser here).
 **Next:** W-1566 (design-lead, visual half). W-1576 (cm-math-discrete: fix the stale sentence, then choose mirror-only or the card with learning-designer). If it is the card, W-1568 (interaction-designer) specs it with C1 to C4. **Blocked:** nothing.
+
 ## 2026-10-16 · design-lead (Ines) · knots batch 1 contact sheet, block (b) per lesson, W-1566
 
 **Changed:**
@@ -2390,6 +2439,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Changed:** brief 4 (left-or-right) in company/domains/briefs/math.discrete.md rewritten so everything drawn is allowed: table entries, `mirror` on the stored layout, no drawn `turnOver`, no 3-D flip. "Turn over" is a caption plus marks computed from `signs(turnOver(pd))` (numbers only). Brief 2 U1 (and the same ask in brief 3) now pads through the viewBox `-8 -8 116 116`, never `size`/`margin`. The import-block (a) paragraph says the same. knots-check.mjs gained K5b (mirror plus every switch subset draws) and K13 (padding room: 4_1 has 13 px at 360 px unpadded, 36 px padded).
 **Believe:** high that the brief draws only allowed pictures and its answer (B) is true; medium that "Flip it over" reads well with no picture change (a design-review question). Citations stay unverified.
 **Next:** design-lead contact sheet for the mirror pictures; demo-builder W-1542 may start. **Blocked:** nothing.
+
 ## 2026-10-16 · learner-evaluator (ncm-final-four) · borrowed-mind walks of the 4 NCM gap lessons
 
 **Changed:** walked same-picture-two-histories, price-tag-or-auction, worth-something-alone and the-swap-that-goes-in-circles (all v1, draft) from their meta.json learner boundaries, on a private build of 236737ff. Four records, each linked in its meta.json evidence.simulatedLearner (nothing else in meta.json touched): `company/reviews/<slug>/2026-10-16-learner-knows-*.md`. Verdicts: launch, launch, launch, revise.
@@ -2403,6 +2453,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Believe:** high that the gates are met (re-read cebe763d, readiness 9f7e90cc, verify 0225a38a, all on disk). Medium that brief 4 is otherwise build-ready: it has not been re-read since the F4 finding.
 **Next:** the operating chief of staff dispatches builds 1-3 now (host guard permitting), build 4 after W-1550, and files W-1543 per the checklist. rnd-lead closes W-407 (W-1565). The founder decides tranche 2.
 **Blocked:** nothing on briefs 1-3.
+
 ## 2026-10-16 · learning-designer (Lena) · design notes for knots batch 1 (briefs 1 to 4)
 
 **Changed:** wrote `company/reviews/{draw-a-table-knot,tricolour-check,unknot-game,left-or-right}/design.md` (boundary, misconception, objective, prediction, interaction, notice, reveal ≤ 90 words, recall, flags). Board W-1569 (cm-math-discrete: accept/reject brief changes, add K labels), W-1566 (design-lead) and W-1567 (principal-engineer): the left-or-right flip ruling, W-1568 (interaction-designer: unknot-game tint, left-or-right flip card). No code, no meta.json (no lessons exist).
@@ -2430,6 +2481,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Believe (high):** no protected paths, no dependencies, 500/500 claims unverified, 100/100 draft; check, typecheck, all suites (hq 3 shallow-clone failures, W-1514), build, and the QA contract 200/200 on the 100 map- lessons (stamp clean) pass. The generator reproduces all 300 lesson files byte for byte from the 25 pinned upstream snapshots. **Not ready to merge:** tier 2 with no EDD, readiness record or engineering review (W-1556); the map paths are bulk-derived GPL-3.0 data with no decision record (best-practices 11, W-1557); the sensitive-route stage A (borders, colonialism) was skipped (W-1559 research note, then W-1558 cultural-reviewer).
 **Next:** chief of staff dispatches W-1556, W-1557, W-1559→W-1558; W-1560 (a11y) and W-1561 (reviewRoute shape, cm-history) run alongside, not merge gates. Then community-engineer merges the review branches, re-merges base, rebuilds, re-runs QA and pushes.
 **Blocked:** the push (by design, until those three gates are recorded). W-1554 may duplicate W-1503; test:dispatch passed here.
+
 ## 2026-10-16 · platform-engineer (Noor) · W-408 EDD-004 C3 integrated verify
 
 **Changed:** recorded verify on 29f77f03 in `company/engineering/reviews/2026-10-16-w408-verify.md`. W-408 is done. One test-only fix: the default `BUILT_PORT` in `tests/platform/built-output.test.mjs` was 3659, which Next reserves, so the runtime-404 test could never start a server; it is now 3660. Routed W-1564 to tools-lead: dispatch-check's C3 worktree false positive.
@@ -2455,6 +2507,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Next:** head-of-product either re-affirms the go in a short addendum to the r6 record (naming 82f7f04e as outside the lesson's path), or reruns the review. Then a release-manager run publishes: `node tools/company.mjs publish cut-the-busiest-link`, `npm run check`, changelog line. No deploy without founder approval.
 
 **Blocked:** on head-of-product.
+
 ## 2026-10-16 · principal-engineer-ops (Rhea) · knots W-407 close-out readiness: approved with conditions (W-1521 done)
 
 **Changed:** verdict written into `company/engineering/readiness/2026-10-16-knots-w407.md` (approved with 3 conditions) for rnd-lead's `82f7f04e`. Board W-1521 moved to done.
@@ -2464,6 +2517,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Next:** principal-engineer confirms or rejects EDD-011 Part 1 (the block (a) scope). My approval is not that ruling. W-407 stays with rnd-lead. C3 (W-408) is still before any lesson imports the kit.
 
 **Blocked:** nothing on ops readiness.
+
 ## 2026-10-16 · cm-geography (Ana) · schelling-on-new-york: c10b swap approved, retirement note written (W-1531)
 
 **Changed:** `company/reviews/schelling-on-new-york/retirement.md` (F-46 note, ahead of the 10-19 18:00 deadline); a status line under brief #1 in `company/domains/briefs/geography.people-places.md`; W-1531 → done; added W-1536 (head-of-product checks the note) and W-1537 (comeback precondition: do cultural-ruled disclosure lines count like declared stimulus in the stage budget?). No status flip, no meta.json change.
@@ -2473,12 +2527,14 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Next:** head-of-product checks the note (W-1536), then the status flip and the retired-lessons row on 10-20. The swap is applied in the comeback build, not now.
 
 **Blocked:** the comeback, on W-1537 (head-of-product) or a W-1391 re-ruling (cultural-reviewer).
+
 ## 2026-10-16 · portfolio-manager (Odette) · rnd-knots budget line (W-1520) and triage of W-1517..W-1532
 
 **Changed:** `company/ops/projects.json` rnd-knots: legacy → **proposed**; tranche 2 (EDD-011 Part 2) priced at 0.6M from measured per-run means (rnd-lead est. 0.5M); returns as lessons (`returns.slugs`, the 8 Knots batch 1 slugs); stop rules; kill date 2026-11-06; pre-mortem. Record: `company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md`. Board: W-1517..W-1532 triaged (P/owner/state/note; W-1520 done); new PM-authored W-1539..W-1542 (build knot briefs 1-4, demo-builder, backlog P2), W-1543 (chief-of-staff: founder-inbox filing for tranche 2), W-1538 (chief-of-staff-ceo-office approves my items).
 **Believe:** high that knot briefs 1-4 need no project budget: routine re-reads (maintenance) plus catalog builds, untagged; their gates are W-407, W-1521, W-408 (C3). High that tranche 2 needs the forum with the founder in the chair (kit is tier 2, so the PR2 delegation does not apply). Medium on 0.6M (proxies for rnd-lead and design-lead).
 **Next:** principal-engineer W-407 re-read; principal-engineer-ops W-1521; platform-engineer W-408; chief-of-staff-ceo-office W-1538; chief-of-staff W-1543.
 **Blocked:** tranche 2 on the founder-chaired forum. Not mine but flagged: history (6.3M of 2.5M) and behavioral-econ (2.7M of 1.8M) are past 100% with tagged work (`node tools/ledger.mjs check`).
+
 ## 2026-10-16 · principal-engineer (Kenji) · knots W-407 re-read: EDD-011 Part 1 approved with changes
 
 **Changed:** re-read the W-407 kit change (`82f7f04e`: one test plus README text; no library or table byte changed) code-first, then the change note. Record: `company/engineering/reviews/2026-10-16-knots-w407-reread.md`. EDD-011 status and kit README rule 2(a) updated to "approved with changes", with two conditions: default `relax`, and the default `margin/size` ratio (scale and pad by SVG `viewBox`). `turnOver` pictures stay inside block (a). Board: W-1549 (rnd-lead, ratio row in the test) and W-1550 (cm-math-discrete, brief 4 `turnOver` and back-face flip, U1 padding).
@@ -2508,6 +2564,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Next:** principal-engineer-ops approves `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md`; integrator merges my branch; accessibility-reviewer re-scans before publish (W-1511).
 
 **Blocked:** nothing on engineering.
+
 ## 2026-10-16 · cm-math-discrete (Chiara) · knot theory briefs (W-146, W-419; both moved to done)
 
 **Changed:** `company/domains/briefs/math.discrete.md` section "Knots, batch 1" now holds 8 ranked briefs: 1 draw-a-table-knot (rewritten with the 6_1 decision), 2 tricolour-check, 3 unknot-game, 4 left-or-right (buildable now, each needs its design contact sheet before launch: block (b) lifts per lesson), then 5 unknot-in-disguise, 6 cut-one-ring, 7 wiggle-keeps-the-fingerprint, 8 more-crossings-same-knot (held). 8 `knot-*` concepts added to `content/curriculum/math.json` (knot-table-names first; prerequisites chained). Answer checks: `company/domains/briefs/checks/knots-check.mjs` (K1-K9) and `knots-check-blocked.mjs` (K10-K12). Held briefs are in `company/ops/brief-skips.json` with board ids W-1519 (block a: scramble/apply output) and W-1518 (block c: link drawing), both owner rnd-lead.
@@ -2517,6 +2574,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Believe:** every number in briefs 1-4 is a kit computation I re-ran (high). Found while checking: switching two crossings of the figure-eight gives a trefoil for 2 of 6 pairs, so unknot-game must show "Still a knot" from `simplify` status `minimal`, never from absence of `unknot`. All citations are unverified (the research note read them through snippets); no brief claims `verified`. The misconceptions are hypotheses (no study exists); test with 3-5 people.
 
 **Next:** demo-builder can claim 1 then 2, 3, 4; design-lead reviews each contact sheet (mirror and turned-over pictures of left-or-right have never been seen by design); fact-checker opens the cited sources; rnd-lead owns W-1519 and W-1518. **Blocked:** nothing for 1-4. I accidentally took and released a claim lock (`friends-of-friends-overlap`) while testing `claim.mjs next`; it is released.
+
 ## 2026-10-16 · rnd-lead (Bram) · W-407 knots close-out: what still stands between the kit and a lesson
 
 **Changed:** C1 and C2 were already done on 2026-10-14; re-checked today (`derive.mjs --write` reproduces `table.derived.mjs` byte for byte, kit `table.mjs` = it after the README `sed`; lab README pointer present, status line freshened). The 4 U10 monster-unknot lab tests now read `MONSTER` from `test/benchdata.mjs`, not the table (lab 105/105; 103/103 on a scratch derived-table swap; a test pins table U10 = MONSTER). New EDD-011 (`company/engineering/edd/EDD-011-knots-extra-crossings.md`): Part 1 scopes import block (a) so table-knot pictures (entry, mirror, crossing changes on the stored layout) are outside it, backed by a new kit/lab draw test (0 extra crossings over 301 pictures; only the link L6a4 shows extras, already block c); Part 2 (exported `extraCrossings`) designed, paused per the R&D Review. Kit: one test + README only (`test:kit` 98/98). Change note for the principal engineer: `company/engineering/reviews/2026-10-16-knots-w407-change.md`; readiness `company/engineering/readiness/2026-10-16-knots-w407.md` (ops approval W-1521). Board: W-407 → review; W-857, W-143, W-144 → done; W-1520 (portfolio-manager: rnd-knots budget, my role may not change projects.json); W-1521. `npm run check` and `typecheck` pass. Not pushed, not deployed.
@@ -2526,6 +2584,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Next:** principal-engineer re-reads the change note (caller dispatches). cm-math-discrete can brief draw-a-table-knot (5_2) now (W-146, W-419). platform-engineer: C3 (W-408). First layout lesson: C4 phone timing.
 
 **Blocked:** lessons on random diagrams (block a, EDD-011 Part 2 paused, no brief); 3_1/4_1 pictures until per-lesson design review (block b); links (block c).
+
 ## 2026-10-16 · cm-course-ncm (Jonah) · NCM finish-line refresh
 
 **Changed:** `content/courses/ncm/chapters.json` refreshed against `src/demos` (batch1 status gone; `briefed_wave_j` folded into `covered_by`/`briefed_not_built`; stale slugs mutual-friends-add-up-slower and the-line-takes-up-to-half removed; two-pages-swallow-the-rank and who-pays-same-filter added; `not_yet_published` per section). `company/courses/ncm/coverage.md` rewritten (stale first-map tables dropped, in git at cdee168c). The 4 re-judged briefs (4.2 same-picture-two-histories, 9.2 price-tag-or-auction, 17.6 worth-something-alone, 23.2 the-swap-that-goes-in-circles) made build-ready in `company/courses/ncm/briefs.md` and their strand copies: cm-probability-statistics's "revise" ruling applied to #72, support types fixed (closes W-1393's #13 c3/c4), stage word budgets added, numbers re-run by new `company/courses/ncm/checks/rejudged-four.mjs`. **protest-needs-a-shared-view retired** (ruling in briefs.md J3; proposed concept withdrawn from `content/curriculum/math.json`). payoffs-set-the-threshold added to `company/ops/brief-skips.json` until cm-math fixes the tie rule (W-1393). New `company/courses/ncm/checks/coverage-count.mjs` recounts coverage and flags map drift. Board: W-1522..W-1525 (build the 4 gaps, demo-builder, next), W-1526 (9 concept briefs, backlog).
@@ -2535,6 +2594,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Next:** demo-builder W-1522..W-1525; fact-checker on the 13 review lessons, then the publish gate; cm-economics-markets W-507 (may still object to #26/#27); cm-math W-1393 (J15 tie rule).
 
 **Blocked:** section-number confirmation (book host 403, W-420). Not pushed.
+
 ## 2026-10-16 20:55Z · head-of-product (Priya) · F-46 closeout ruling + launch review r6 (W-1483)
 
 **Changed:** launch review r6 (`company/rituals/records/2026-10-16-launch-review.md`) on the 11 lessons `company status` calls ready. **Go: cut-the-busiest-link** (v2 learner launch r15; qa-tester QA on bf6fde86, which is identical to HEAD for the lesson and kit; claims verified). **No-go: 10**: eight have current versions that were never walked (XW-1/XW-2), karatsuba has a revise verdict on v5, and patience is held by W-1333. Closeout ruling `company/product/2026-10-16-closeout-ruling.md` covers all **364** (235 review + 129 draft): **(a) push 140 · (b) fix once 87 · (c) retire 137** (106 Books if F1/F2 are unanswered by 10-19 18:00; 30 parked Life Hacks unless argued by 10-18; schelling-on-new-york). New stuck rule: 11 path-W lessons with 3+ revised versions get the walk only, and revise means retire. Created `company/product/retired-lessons.md` (no rows). Mailed all 14 lane managers plus release-manager, evaluation-steward and chief-of-staff (ids in the ruling). Board W-1527..W-1530. **Retired: none.** F-46 item 7 requires a CM-written note for each lesson, and none exists yet. Nothing published by me, nothing deployed.
@@ -2544,6 +2604,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 **Next:** release-manager publishes cut-the-busiest-link (W-1527). Lane-10 XW/LW walks, QA-1 and FC-1 per the plan. CMs send their (b) rounds and write (c) notes by 10-19 18:00 (W-1530). chief-of-staff puts F1/F2 to the founder in the daily line. I check notes and chair DLR-H on 10-19.
 
 **Blocked:** Books 106 on the founder's F1/F2. schelling on a source this host cannot open.
+
 ## 2026-10-16 · fact-checker (lane B, F-46 closeout) · NCM-13 re-check, c10b, draft claims
 
 **Changed:** 1 commit on `worktree-agent-af03a3aad9424d7e6` (claims and records; no code):
@@ -2562,6 +2623,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 - Release manager: the NCM-13 need no fact-checker action.
 
 **Blocked:** Rothstein book access (no proxy route).
+
 ## 2026-10-16 · fact-checker · lane A (publish-blocking claims) and the remaining open claims outside Books
 
 **Changed:** 31 claims across 24 lessons. 10 verified: hailstone-27-climbs c4 c5 (Barina 2025 and Tao 2022 abstracts via api.crossref.org), drying-room-water-load c6 (AWMF mold guideline, PMC11097193), lh-pay-for-used-quantity c6, lh-split-order-fixed-fee c5 c6, literacy-split-france c4 and schooling-and-crime-1830s c1 ('young men': 1834/1838 Edinburgh Med Surg J on the French conscription law, PMC5776539/PMC5772286), clap-at-the-cliff recall, schelling-on-new-york c10b (PMC9387904, PMC8099638; Rothstein still unopened). 4 withdrawn as cut, not as false: the behavioral HELD lines (same-week c6, saved-or-die c5, sure-million c6, zero-loses c6); each is behind a `HELD_LINE = false` constant and renders nowhere. 9 disputed with exact corrected text in the claim notes: sock-pairing-by-pattern c1 c3 c4 recall seen, cue-needs-a-boundary seen, two-batteries-side-by-side alt1, scale-on-a-slope c4 alt1. 8 held (only blocked hosts can carry them), each with proposed wording that unblocks it: 4 tariff hedges, lh-scale-recipe-portions c5, mail-exact-phrase and mail-minus-noise recall, wet-knit-hang-stretch c1. batch-by-setup c1/c2 are unchanged and still disputed (W-1484). Records: company/reviews/<slug>/2026-10-16-fact-check-lane-a.md. Board: W-1533 (demo-builder), W-1534 (cm-lifehacks).
@@ -2646,6 +2708,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 - **Believe (medium):** the Meta brief captures the founder's intent; the claim "generate a company" rests on one company and one model, recorded as an objection.
 - **Running:** Leonie retro, backend M1–M6, rome v4 + flips, cultural review.
 - **Blocked on founder:** see digest list; plus F-17/18/20 replies and permission to run the domain price quote.
+
 ## 2026-10-15 ~13:10Z · chief of staff (Ada): r7 live; deployed before approval (COE)
 
 - **Changed:** r7 is in production. It ships 40 newly published lessons (e6805f4), including the first 4 History lessons, plus draft 404s and the publicMeta allow-list. QA was 1930/1930 on a production build, and a production-mode build showed draft 404s and an empty manifest. Vercel built **aefb10a** at 12:46Z, BEFORE the founder's approval, because the release manager's commit body quoted the deploy marker. The founder then approved ("yes, deploy r7"), and no second deploy was made. Release log r7 = aefb10a; test:hq now pins r1..r7. COE: company/rituals/records/2026-10-15-coe.md (W-1051..W-1054). Merged in this session: patience branch (History rulings, claims reset; stray tsconfig reverted); head-of-product rulings (W-997 fold rule, First Light scope, History launch five, ammonia); research notes W-959/W-902. W-981 behavioral DomainId is on branch domainid (959ef69, 5f41f8f, bed597b). The principal engineer approved it, conditional on verify. PE-ops withholds readiness until integrated `npm run verify` (W-1050).
@@ -2908,6 +2971,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
   - evaluation-steward: AMD-001 (c2) ratification and the qa-record hash request (W-667, was branch W-478); stale QA records, 855/879 selected (W-668, was branch W-479).
   - The founder merges the branch.
 - **Blocked:** option 4 and the lesson version hash in records, both on amendments. Disk was full (38 MB free) at session start from other worktrees' `.next-*` dirs. I deleted none of them, but the next builder may hit the same wall.
+
 ## 2026-10-14 design-engineer (Tomoko): W-604 (C1) sequence probe, W-605 (C2) kit dev warnings
 
 - **Changed:** added `tools/sequence-probe.mjs` (C1) and dev warnings in `src/kit/sequence.tsx` (C2): unknown revealCard, dropped non-SubCard children, sub-cards with no milestones. Wrote the results in EDD-006 "Results after review" and a changelog line. Board: W-604 and W-605 moved to review. Added W-630 for design-lead (C1/C2 done; the formats.md row is theirs to flip). I did not edit formats.md: the catalogue says the design lead changes it, after W-601 and W-602. No build and no commit.
@@ -3235,6 +3299,7 @@ W-1640 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
   - This record clears the ritual's overdue alarm even though nothing is decided yet (G7).
 - **Next:** founder W-479. Platform-engineer W-480 and W-481 (AMD-002 falsifier on 2026-10-16). Chief-of-staff W-482. Fact-checker W-483.
 - **Blocked:** AMD-003 and AMD-004 drafting waits on the founder (W-479).
+
 ## 2026-10-14 (principal-engineer, W-600: EDD-006 engineering review)
 
 - **Changed (branch only, not merged):** `company/engineering/reviews/2026-10-14-edd-006-review.md`; branch W-600 moved to done.
